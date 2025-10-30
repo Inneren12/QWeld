@@ -24,3 +24,7 @@
 
 ### CI
 - GitHub Actions workflow `.github/workflows/android.yml` runs the same Gradle tasks (`spotlessCheck detekt test assembleDebug`) on every push/PR and uploads the debug APK artifact.
+
+### Exam assembly (F3)
+Deterministic seed-driven assembly with anti-cluster shuffling, balanced choice positions, and weighted PRACTICE mode sampling.
+

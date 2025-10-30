@@ -1,26 +1,19 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    kotlin("jvm")
 }
 
-android {
-    namespace = "com.qweld.core.domain"
-    compileSdk = 36
-
-    defaultConfig {
-        minSdk = 24
-        consumerProguardFiles("consumer-rules.pro")
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
-
-    kotlinOptions { jvmTarget = "21" }
+kotlin {
+    jvmToolchain(21)
 }
 
 dependencies {
-    // Placeholder for future domain dependencies
+    implementation(kotlin("stdlib"))
+
+    testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.3")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.3")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
