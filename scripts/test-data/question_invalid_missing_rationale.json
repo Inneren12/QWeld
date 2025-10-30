@@ -1,0 +1,12 @@
+{
+  "id": "Q-TEST-NO-RATIONALE",
+  "taskId": "C-9",
+  "stem": "What is the primary reason for using a weave bead in vertical-up SMAW?",
+  "choices": [
+    { "id": "CHOICE-A", "text": "To reduce filler metal deposition" },
+    { "id": "CHOICE-B", "text": "To control molten pool support" },
+    { "id": "CHOICE-C", "text": "To increase travel speed" },
+    { "id": "CHOICE-D", "text": "To avoid slag inclusions" }
+  ],
+  "correctId": "CHOICE-B"
+}
