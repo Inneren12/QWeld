@@ -8,6 +8,20 @@
 - Bootstrap with `scripts/bootstrap.sh` and validate with `scripts/verify-structure.sh` or `scripts/tests/test_verify.sh`.
 - Run `bash scripts/validate-blueprint.sh` to lint blueprints against the JSON schema and quota totals.
 
+## Content tooling (F4)
+
+Use the combined fixer to populate missing `familyId` values and enforce the Russian terminology glossary:
+
+```bash
+# Dry-run (default behaviour)
+bash scripts/content-fix.sh
+
+# Apply changes in-place
+bash scripts/content-fix.sh --apply
+```
+
+The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes the RU terminology linter `qw_ru_lint.py`, writing a detailed report to `logs/ru_lint.txt` with unified diffs stored under `logs/diffs/ru_lint/`.
+
 ## Policy v1.0 & Blueprint
 - Policy: see `docs/content-policy.md` (version 1.0) and blueprint rules in `docs/blueprint-rules.md`.
 - Active blueprint: `content/blueprints/welder_ip_sk_202404.json` (blueprintVersion 1.0.0, policyVersion 1.0).
