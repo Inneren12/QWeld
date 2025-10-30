@@ -1,0 +1,38 @@
+name: Content validation
+
+on:
+  push:
+    paths:
+      - 'content/**'
+      - 'schemas/**'
+      - 'scripts/**'
+      - '.github/workflows/content.yml'
+  pull_request:
+    paths:
+      - 'content/**'
+      - 'schemas/**'
+      - 'scripts/**'
+      - '.github/workflows/content.yml'
+
+jobs:
+  validate-blueprint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Validate blueprint
+        run: |
+          npm install --global ajv-cli
+          bash scripts/validate-blueprint.sh
+
+      - name: Upload validation logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: blueprint-validation-logs
+          path: logs/blueprint-validate.txt
