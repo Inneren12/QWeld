@@ -49,6 +49,10 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 ### CI
 - GitHub Actions workflow `.github/workflows/android.yml` provisions the Android SDK, runs `spotlessCheck detekt test assembleDebug --no-daemon --stacktrace`, and uploads the debug APK artifact on every push/PR.
 
+### F5-A assets & nav
+- Place the flattened exam banks under `app-android/src/main/assets/questions/{en,ru}/bank.v1.json`; copy them from `dist/questions/{en,ru}/bank.v1.json` after running the dist builder.
+- The Android app boots directly into the exam mode chooser powered by `:feature-exam`; it loads the localized bank on startup and shows a snackbar/toast if the asset is missing.
+
 ### Developer tooling
 - Configure Git hooks so Spotless runs automatically before each commit: `git config core.hooksPath .githooks`.
 - Copy `local.properties.sample` to `local.properties` and update `sdk.dir` with your Android SDK path.

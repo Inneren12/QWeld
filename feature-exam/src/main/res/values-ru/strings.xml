@@ -1,0 +1,6 @@
+<resources>
+    <string name="mode_screen_title">Выберите режим экзамена</string>
+    <string name="mode_ip_mock">IP Mock</string>
+    <string name="mode_practice">Практика</string>
+    <string name="mode_bank_missing">Для локали %1$s нет банка вопросов. Скопируйте dist/questions/%1$s/bank.v1.json в app-android/src/main/assets/questions/%1$s/.</string>
+</resources>
