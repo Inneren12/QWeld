@@ -1,6 +1,7 @@
 # Build outputs
 /build/
 **/build/
+dist/
 .idea/
 *.iml
 .local/
