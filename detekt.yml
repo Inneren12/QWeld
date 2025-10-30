@@ -1,0 +1,29 @@
+build:
+  maxIssues: 0
+config:
+  validation: true
+processors:
+  active: true
+  exclude:
+    - 'DetektProgressListener'
+console-reports:
+  active: true
+  exclude: []
+output-reports:
+  active: true
+  reports:
+    - 'txt'
+    - 'xml'
+    - 'html'
+style:
+  MagicNumber:
+    ignoreNumbers: [0, 1, 2]
+  WildcardImport:
+    active: false
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
+naming:
+  PackageNaming:
+    packagePattern: '^[a-z]+(\.[a-z][A-Za-z0-9]*)*$'
+    excludes: ['*.test.*']
