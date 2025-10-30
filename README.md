@@ -6,3 +6,4 @@
 - Content and schema assets live in `content/blueprints`, `content/questions`, and `schemas`.
 - Tooling resides in `tools/generator-python` and shared standards in `docs/standards`.
 - Bootstrap with `scripts/bootstrap.sh` and validate with `scripts/verify-structure.sh` or `scripts/tests/test_verify.sh`.
+- Run `bash scripts/validate-blueprint.sh` to lint blueprints against the JSON schema and quota totals.
