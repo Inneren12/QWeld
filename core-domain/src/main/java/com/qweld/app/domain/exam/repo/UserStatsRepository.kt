@@ -3,8 +3,8 @@ package com.qweld.app.domain.exam.repo
 import com.qweld.app.domain.exam.ItemStats
 
 interface UserStatsRepository {
-  fun loadQuestionStats(
+  fun getUserItemStats(
     userId: String,
-    questionIds: Collection<String>,
+    ids: List<String>,
   ): Map<String, ItemStats>
 }

@@ -3,6 +3,7 @@ package com.qweld.app.domain.exam
 import java.time.Clock
 import java.time.Duration
 import java.time.Instant
+import java.util.Locale
 
 class TimerController(
   private val clock: Clock = Clock.systemUTC(),
@@ -10,6 +11,14 @@ class TimerController(
 ) {
   companion object {
     val EXAM_DURATION: Duration = Duration.ofHours(4)
+
+    fun formatDuration(duration: Duration): String {
+      val seconds = duration.seconds.coerceAtLeast(0)
+      val hours = seconds / 3600
+      val minutes = (seconds % 3600) / 60
+      val secs = seconds % 60
+      return String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, secs)
+    }
   }
 
   private var startedAt: Instant? = null
@@ -18,13 +27,13 @@ class TimerController(
   fun start() {
     startedAt = clock.instant()
     stoppedAt = null
-    logger("[timer_start] startedAt=${startedAt} duration=$EXAM_DURATION")
+    logger("[timer_start] startedAt=${startedAt} duration=${formatDuration(EXAM_DURATION)}")
   }
 
   fun remaining(): Duration {
     val now = clock.instant()
     val remaining = computeRemaining(now)
-    logger("[timer_tick] remaining=$remaining")
+    logger("[timer_tick] remaining=${formatDuration(remaining)}")
     return remaining
   }
 
@@ -32,7 +41,7 @@ class TimerController(
     val stopInstant = clock.instant()
     stoppedAt = stopInstant
     val remaining = computeRemaining(stopInstant)
-    logger("[timer_stop] stoppedAt=$stopInstant remaining=$remaining")
+    logger("[timer_stop] stoppedAt=$stopInstant remaining=${formatDuration(remaining)}")
   }
 
   private fun computeRemaining(now: Instant): Duration {

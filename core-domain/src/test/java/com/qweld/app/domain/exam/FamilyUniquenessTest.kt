@@ -3,7 +3,6 @@ package com.qweld.app.domain.exam
 import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 import org.junit.jupiter.api.Test
 
 class FamilyUniquenessTest {
@@ -70,7 +69,7 @@ class FamilyUniquenessTest {
       }
     val detail = error.details.single()
     assertEquals("A-1", detail.taskId)
-    assertTrue(detail.familyDuplicates)
+    assertEquals(1, detail.familyDuplicates)
     assertEquals(1, detail.have)
     assertEquals(1, detail.missing)
   }

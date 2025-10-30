@@ -23,4 +23,7 @@ android {
 
 dependencies {
   // Placeholder for future data dependencies
+
+  testImplementation(kotlin("test"))
+  testImplementation(project(":core-domain"))
 }
