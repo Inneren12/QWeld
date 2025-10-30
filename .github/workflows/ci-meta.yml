@@ -1,0 +1,23 @@
+name: Meta CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  verify-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run verify-structure
+        run: |
+          bash scripts/verify-structure.sh | tee verify-structure.log
+
+      - name: Upload verify log
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-structure-log
+          path: verify-structure.log
