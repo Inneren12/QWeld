@@ -11,7 +11,12 @@
 ## Policy v1.0 & Blueprint
 - Policy: see `docs/content-policy.md` (version 1.0) and blueprint rules in `docs/blueprint-rules.md`.
 - Active blueprint: `content/blueprints/welder_ip_sk_202404.json` (blueprintVersion 1.0.0, policyVersion 1.0).
-- Run validators locally with `bash scripts/validate-blueprint.sh` and `bash scripts/validate-questions.sh`; both scripts emit logs in `logs/` used by CI (`.github/workflows/policy.yml`).
+- Run validators locally with `bash scripts/validate-blueprint.sh` and `bash scripts/validate-questions.sh`; both scripts emit logs in `logs/` used by CI (`.github/workflows/content-validators.yml`).
+
+## Explanations schema & how to validate
+- Schema: `schemas/explanation.schema.json` defines the required structure for explanation articles (metadata, steps, incorrect choices, and optional references/media blocks).
+- Validate locally with `bash scripts/validate-explanations.sh`; the script will emit `logs/validate-explanations.txt` mirroring CI output and will fail if the linked question JSON is missing.
+- CI runs `scripts/validate-explanations.sh` alongside the question and blueprint checks via `.github/workflows/content-validators.yml`.
 
 ## Android app skeleton
 
