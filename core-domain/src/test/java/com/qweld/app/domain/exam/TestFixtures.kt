@@ -9,7 +9,7 @@ import java.time.ZoneOffset
 class FakeQuestionRepository(
   private val questions: List<Question>,
 ) : QuestionRepository {
-  override fun loadQuestions(
+  override fun listByTaskAndLocale(
     taskId: String,
     locale: String,
     allowFallbackToEnglish: Boolean,
@@ -28,11 +28,11 @@ class FakeQuestionRepository(
 class FakeUserStatsRepository(
   private val stats: Map<String, ItemStats> = emptyMap(),
 ) : UserStatsRepository {
-  override fun loadQuestionStats(
+  override fun getUserItemStats(
     userId: String,
-    questionIds: Collection<String>
+    ids: List<String>,
   ): Map<String, ItemStats> {
-    return questionIds.mapNotNull { id -> stats[id]?.let { id to it } }.toMap()
+    return ids.mapNotNull { id -> stats[id]?.let { id to it } }.toMap()
   }
 }
 
@@ -48,6 +48,11 @@ fun buildQuestion(
   familyId: String? = null,
 ): Question {
   val questionId = "$taskId-$locale-$index"
+  val stem =
+    mapOf(
+      "EN" to "Question $questionId",
+      "RU" to "Вопрос $questionId",
+    )
   val choices =
     listOf("A", "B", "C", "D").mapIndexed { idx, label ->
       val choiceId = "$questionId-$label"
@@ -66,6 +71,7 @@ fun buildQuestion(
     taskId = taskId,
     blockId = blockId,
     locale = locale,
+    stem = stem,
     familyId = familyId,
     choices = choices,
     correctChoiceId = correctChoiceId,

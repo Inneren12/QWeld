@@ -22,8 +22,9 @@ data class ExamBlueprint(
   val taskCount: Int = taskQuotas.size
 
   init {
-    require(totalQuestions == taskQuotas.sumOf { it.required }) {
-      "Blueprint total ($totalQuestions) does not equal quotas sum (${taskQuotas.sumOf { it.required }})"
+    val sum = taskQuotas.sumOf { it.required }
+    require(totalQuestions == sum) {
+      "Blueprint total ($totalQuestions) does not equal quotas sum ($sum)"
     }
   }
 
@@ -65,6 +66,7 @@ data class Question(
   val taskId: String,
   val blockId: String,
   val locale: String,
+  val stem: Map<String, String>,
   val familyId: String? = null,
   val choices: List<Choice>,
   val correctChoiceId: String,

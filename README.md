@@ -56,3 +56,6 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 ### Exam assembly (F3)
 Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted PRACTICE.
 
+- Default config: halfLifeCorrect=2.0, noveltyBoost=2.0, minWeight=0.05, maxWeight=4.0, freshDays=14, antiClusterSwaps=10, allowFallbackToEN=false (always false for IP Mock).
+- Run the deterministic suite with `./gradlew :core-domain:test`.
+

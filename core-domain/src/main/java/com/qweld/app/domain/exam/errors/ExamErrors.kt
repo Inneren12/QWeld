@@ -7,7 +7,7 @@ sealed class ExamAssemblyException(message: String) : RuntimeException(message) 
     val have: Int,
     val missing: Int,
     val locale: String,
-    val familyDuplicates: Boolean,
+    val familyDuplicates: Int,
   )
 
   class Deficit(val details: List<DeficitDetail>) :
@@ -16,7 +16,8 @@ sealed class ExamAssemblyException(message: String) : RuntimeException(message) 
         append("Exam assembly deficit detected for tasks: ")
         append(
           details.joinToString { detail ->
-            "${detail.taskId}(need=${detail.need}, have=${detail.have}, missing=${detail.missing}, locale=${detail.locale}, famDup=${detail.familyDuplicates})"
+            "${detail.taskId}(need=${detail.need}, have=${detail.have}, missing=${detail.missing}, " +
+              "locale=${detail.locale}, famDup=${detail.familyDuplicates})"
           }
         )
       }

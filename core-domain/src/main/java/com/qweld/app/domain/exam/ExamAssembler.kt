@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
@@ -31,9 +32,7 @@ class ExamAssembler(
     seed: AttemptSeed,
     blueprint: ExamBlueprint = ExamBlueprint.default(),
   ): ExamAttempt {
-    logger(
-      "[exam_start] mode=${mode.name} seed=${seed.value} locale=$locale tasks=${blueprint.taskCount}"
-    )
+    logger("[exam_start] mode=${mode.name} seed=${seed.value} locale=$locale tasks=${blueprint.taskCount}")
     val timer = TimerController(clock, logger)
     timer.start()
 
@@ -48,9 +47,8 @@ class ExamAssembler(
     val allSelected = mutableListOf<Question>()
     val deficits = mutableListOf<ExamAssemblyException.DeficitDetail>()
     for (quota in blueprint.taskQuotas) {
-      val pool = questionRepository.loadQuestions(quota.taskId, locale, allowFallback)
-      val stats = statsRepository.loadQuestionStats(userId, pool.map { it.id })
-      val required = quota.required
+      val pool = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)
+      val stats = statsRepository.getUserItemStats(userId, pool.map { it.id })
       val selectionResult =
         when (mode) {
           ExamMode.IP_MOCK -> selectUniform(pool, stats, quota, seed, now, locale)
@@ -59,7 +57,7 @@ class ExamAssembler(
         }
       val selected = selectionResult.questions
       logger(
-        "[exam_pick] taskId=${quota.taskId} need=$required pool=${pool.size} " +
+        "[exam_pick] taskId=${quota.taskId} need=${quota.required} pool=${pool.size} " +
           "selected=${selected.size} fresh=${selectionResult.fresh} reused=${selectionResult.reused}"
       )
       if (selectionResult.deficitDetail != null) {
@@ -106,13 +104,13 @@ class ExamAssembler(
         }
         .toMutableList()
 
-    val balanceResult: ChoiceBalanceResult
-    if (mutableStates.isNotEmpty()) {
-      val balanceRng = Pcg32(Hash64.hash(seed.value, "CHOICE_BALANCE"))
-      balanceResult = balanceCorrectPositions(mutableStates, balanceRng)
-    } else {
-      balanceResult = ChoiceBalanceResult(adjusted = false, histogram = emptyMap())
-    }
+    val balanceResult: ChoiceBalanceResult =
+      if (mutableStates.isNotEmpty()) {
+        val balanceRng = Pcg32(Hash64.hash(seed.value, "CHOICE_BALANCE"))
+        balanceCorrectPositions(mutableStates, balanceRng)
+      } else {
+        ChoiceBalanceResult(adjusted = false, histogram = emptyMap())
+      }
     val histogramJson =
       if (balanceResult.histogram.isEmpty()) {
         "{}"
@@ -128,8 +126,9 @@ class ExamAssembler(
         AssembledQuestion(state.question, state.choices.toList(), state.correctIndex)
       }
 
-    val timeLeft = timer.remaining()
-    logger("[exam_finish] correct=0/${blueprint.totalQuestions} score=0 timeLeft=$timeLeft")
+    val timeLeftDuration = timer.remaining()
+    val formattedTimeLeft = TimerController.formatDuration(timeLeftDuration)
+    logger("[exam_finish] correct=0/${blueprint.totalQuestions} score=0 timeLeft=$formattedTimeLeft")
 
     return ExamAttempt(
       mode = mode,
@@ -160,7 +159,7 @@ class ExamAssembler(
             have = pool.size,
             missing = quota.required - pool.size,
             locale = locale,
-            familyDuplicates = false,
+            familyDuplicates = 0,
           ),
       )
     }
@@ -189,7 +188,7 @@ class ExamAssembler(
             have = pool.size,
             missing = quota.required - pool.size,
             locale = locale,
-            familyDuplicates = false,
+            familyDuplicates = 0,
           ),
       )
     }
@@ -201,7 +200,19 @@ class ExamAssembler(
       sampler.order(pool) { question -> computeWeight(stats[question.id], config, now) }
     val weights = entries.map { it.weight }
     logger("[weights.stats] ${formatWeightsStats(weights)}")
-    val ordered = entries.map { it.item }
+    val freshLookup =
+      pool.associate { question ->
+        val fresh = stats[question.id]?.isFresh(now, config.freshDays) ?: true
+        question.id to fresh
+      }
+    val ordered =
+      entries
+        .sortedWith(
+          compareByDescending<WeightedEntry<Question>> { if (freshLookup[it.item.id] == true) 1 else 0 }
+            .thenBy { it.key }
+            .thenBy { it.item.id }
+        )
+        .map { it.item }
     return selectByFamily(ordered, stats, quota, now, locale)
   }
 
@@ -216,11 +227,11 @@ class ExamAssembler(
     val usedFamilies = mutableSetOf<String>()
     var fresh = 0
     var reused = 0
-    var duplicatesBlocked = false
+    var duplicateFamilies = 0
     for (question in ordered) {
       val family = question.familyId
       if (family != null && !usedFamilies.add(family)) {
-        duplicatesBlocked = true
+        duplicateFamilies++
         continue
       }
       selected += question
@@ -253,7 +264,7 @@ class ExamAssembler(
             have = selected.size,
             missing = quota.required - selected.size,
             locale = locale,
-            familyDuplicates = duplicatesBlocked,
+            familyDuplicates = duplicateFamilies,
           ),
       )
     }
