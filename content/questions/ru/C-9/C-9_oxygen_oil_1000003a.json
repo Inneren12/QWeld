@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-9_oxygen_oil_1000003a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-9_oxygen_oil_1000003a",
   "taskId": "C-9",
   "difficulty": "easy",
   "stem": "Что — the верно practice regarding кислород equipment?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Использовать масло/смазку для предотвращения утечек"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Никогда не использовать масло/смазку на кислородном оборудовании"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Open ацетилен valves fully back-seated"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "not трещина cylinder valves before attaching regulators"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Oil/grease can ignite violently in pure кислород."
+    "CHOICE-2": "Oil/grease can ignite violently in pure кислород."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_scribe_tape_v5_02_3000002e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_scribe_tape_v5_02_3000002e",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "A non-marring way to mark finished surfaces is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Scribe deeply"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Apply masking tape and mark on the tape"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Strike with a chisel"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Использовать acid etch"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Tape lets you mark without damaging the surface."
+    "CHOICE-2": "Tape lets you mark without damaging the surface."
   }
 }

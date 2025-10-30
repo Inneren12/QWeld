@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_damp_rods_10000053",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_damp_rods_10000053",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "What problem can damp E7018 electrodes cause?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Improved penetration"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Porosity and delayed cracking"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Lower hydrogen content"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Faster travel speed"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Moisture in the coating adds hydrogen to the weld pool."
+    "CHOICE-2": "Moisture in the coating adds hydrogen to the weld pool."
   }
 }

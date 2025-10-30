@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_stainless_hexchrome_2000002a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_stainless_hexchrome_2000002a",
   "taskId": "A-3",
   "difficulty": "medium",
   "stem": "Welding on stainless steel can generate which specific hazard?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Helium gas exposure"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Hexavalent chromium in fumes"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Lead paint overspray only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ozone-free air"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Stainless сварки can produce Cr(VI); use controls and PPE per requirements."
+    "CHOICE-2": "Stainless сварки can produce Cr(VI); use controls and PPE per requirements."
   }
 }

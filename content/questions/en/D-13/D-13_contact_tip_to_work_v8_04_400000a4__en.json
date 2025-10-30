@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_contact_tip_to_work_v8_04_400000a4",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_contact_tip_to_work_v8_04_400000a4",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Reducing CTWD at constant WFS and voltage generally:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Lowers current"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Raises current and penetration"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has no effect"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Reduces spatter only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Shorter stickout reduces resistive heating, increasing current."
+    "CHOICE-2": "Shorter stickout reduces resistive heating, increasing current."
   }
 }

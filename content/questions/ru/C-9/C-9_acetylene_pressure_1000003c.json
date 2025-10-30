@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-9_acetylene_pressure_1000003c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-9_acetylene_pressure_1000003c",
   "taskId": "C-9",
   "difficulty": "easy",
   "stem": "Что — the maximum recommended working pressure for ацетилен?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Безопасно выше 30 psi (207 кПа)"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Не использовать ацетилен выше 15 psi (≈103 кПа)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Any pressure — fine with arrestors"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Always use 5 psi or less"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Ацетилен becomes unstable above ~15 psi; keep working pressure below this limit."
+    "CHOICE-2": "Ацетилен becomes unstable above ~15 psi; keep working pressure below this limit."
   }
 }

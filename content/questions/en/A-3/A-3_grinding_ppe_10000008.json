@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_grinding_ppe_10000008",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-3_grinding_ppe_10000008",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "What eye and face protection is appropriate for grinding?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Safety glasses only"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Face shield only"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Safety glasses and a face shield together"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "No eye protection for quick touch‑ups"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Use both safety glasses and a face shield to protect against high‑energy debris."
+    "CHOICE-3": "Use both safety glasses and a face shield to protect against high‑energy debris."
   }
 }

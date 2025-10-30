@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_ladder_extend_secure_20000015",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_ladder_extend_secure_20000015",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "When a portable ladder is used for access to a higher level, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Stop it flush with the landing edge"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Extend above the landing and secure it to prevent movement"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Place it on boxes to gain height"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Grease the feet so it slides into position"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Extend above the landing and tie off/secure to prevent movement."
+    "CHOICE-2": "Extend above the landing and tie off/secure to prevent movement."
   }
 }

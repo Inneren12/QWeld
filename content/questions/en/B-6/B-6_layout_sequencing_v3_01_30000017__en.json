@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_layout_sequencing_v3_01_30000017",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_layout_sequencing_v3_01_30000017",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "Before cutting parts from a plate, a good layout sequence is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Cut first, then decide where features go"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Nest parts to minimize scrap, mark all, then cut"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Draw one part and cut immediately"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ignore grain/orientation"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Nesting reduces scrap and errors before cutting."
+    "CHOICE-2": "Nesting reduces scrap and errors before cutting."
   }
 }

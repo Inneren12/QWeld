@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_tool_calibration_20000045",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_tool_calibration_20000045",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "Measuring tools used for acceptance should be:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Использоватьd regardless of calibration status"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Within calibration date and zeroed before use"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Calibrated once at purchase only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Shared without cases to save time"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use calibrated tools and verify zero to ensure valid measurements."
+    "CHOICE-2": "Use calibrated tools and verify zero to ensure valid measurements."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_ac_balance_effect_v4_07_400000e8",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_ac_balance_effect_v4_07_400000e8",
   "taskId": "D-14",
   "difficulty": "hard",
   "stem": "Increasing the EP portion of AC (переменный ток) balance in GTAW (TIG) will:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase оксида очистка but heat the вольфрамовый электрод more"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Reduce очистка and cool the вольфрамовый электрод"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Not change очистка"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Stop the arc"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "More EP enhances cathodic очистка and вольфрамовый электрод heating."
+    "CHOICE-1": "More EP enhances cathodic очистка and вольфрамовый электрод heating."
   }
 }

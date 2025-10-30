@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_peening_caution_2000005f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_peening_caution_2000005f",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Peening of weld metal should be used:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Heavily on root and final passes"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Lightly on intermediate passes only if permitted by code/WPS"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Never under any circumstances"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "As a substitute for proper parameters"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Peening can relieve stress but is restricted—avoid on root/final unless allowed."
+    "CHOICE-2": "Peening can relieve stress but is restricted—avoid on root/final unless allowed."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_fitup_verification_v4_08_3000005b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_fitup_verification_v4_08_3000005b",
   "taskId": "B-7",
   "difficulty": "easy",
   "stem": "Когда should fit-up be verified?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "After welding is completed"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Перед welding—check dimensions, gaps, and angles"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Только by inspectors"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Skip if schedule is tight"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Verify fit-up beforehand to prevent defects."
+    "CHOICE-2": "Verify fit-up beforehand to prevent defects."
   }
 }

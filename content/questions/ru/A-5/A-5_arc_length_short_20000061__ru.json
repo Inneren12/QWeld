@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_arc_length_short_20000061",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_arc_length_short_20000061",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "Maintaining a short arc length generally:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Improves shielding and reduces брызг"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Increases undercut"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has no effect"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Prevents fusion"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Short arcs improve shielding effectiveness and bead control."
+    "CHOICE-1": "Short arcs improve shielding effectiveness and bead control."
   }
 }

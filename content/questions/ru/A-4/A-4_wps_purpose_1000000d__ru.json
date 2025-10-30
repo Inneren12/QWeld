@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_wps_purpose_1000000d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_wps_purpose_1000000d",
   "taskId": "A-4",
   "difficulty": "easy",
   "stem": "Какова основная цель a Спецификация сварочного процесса (WPS)?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To replace the PQR entirely"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To define essential variables and parameters for production welds"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "For inspectors только; welders need not read it"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Optional for code work"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "The WPS guides the welder with qualified ranges for variables such as ток, положение, and предварительного подогрева."
+    "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as ток, положение, and предварительного подогрева."
   }
 }

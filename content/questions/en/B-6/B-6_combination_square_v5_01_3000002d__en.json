@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_combination_square_v5_01_3000002d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_combination_square_v5_01_3000002d",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "A combination square can be used to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Mix paints"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Check 90°/45° and measure offsets"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Read amperage"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Set spindle speeds"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Combination squares check squareness and setoffs quickly."
+    "CHOICE-2": "Combination squares check squareness and setoffs quickly."
   }
 }

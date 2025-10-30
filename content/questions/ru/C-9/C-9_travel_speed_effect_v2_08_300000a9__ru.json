@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-9_travel_speed_effect_v2_08_300000a9",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-9_travel_speed_effect_v2_08_300000a9",
   "taskId": "C-9",
   "difficulty": "medium",
   "stem": "If travel speed is too fast in кислородно‑топливной cutting, the cut will:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Have heavy bottom slag"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Lag and drag lines will trail far behind the сопла"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Track straight with no change"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Harden the steel surface"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Excessive speed увеличиваетs линиий отставания (lag lines); too slow causes heavy slag."
+    "CHOICE-2": "Excessive speed увеличиваетs линиий отставания (lag lines); too slow causes heavy slag."
   }
 }

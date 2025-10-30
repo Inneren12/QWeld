@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_alignment_tools_use_v3_08_30000050",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_alignment_tools_use_v3_08_30000050",
   "taskId": "B-7",
   "difficulty": "easy",
   "stem": "How can internal misalignment (hi-lo) be minimized during fit-up?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Ignore it until after welding"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Use clamps, hi-lo tools, and alignment fixtures"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Hammer it after cooling"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Fill the offset with weld metal"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Clamps and alignment tools set parts flush before welding."
+    "CHOICE-2": "Clamps and alignment tools set parts flush before welding."
   }
 }

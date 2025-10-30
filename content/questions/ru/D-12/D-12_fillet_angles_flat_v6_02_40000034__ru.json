@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_fillet_angles_flat_v6_02_40000034",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_fillet_angles_flat_v6_02_40000034",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "For a flat fillet weld, typical work/travel angles are:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Work ~45° with 5–15° travel angle"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Work 15° with 45° travel"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "90° to both pieces"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Push 30° into the joint"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "45° work + slight drag/push is common."
+    "CHOICE-1": "45° work + slight drag/push is common."
   }
 }

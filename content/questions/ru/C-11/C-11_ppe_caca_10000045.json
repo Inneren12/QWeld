@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-11_ppe_caca_10000045",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-11_ppe_caca_10000045",
   "taskId": "C-11",
   "difficulty": "easy",
   "stem": "Какое PPE — most appropriate for CAC-A?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Light gloves and защитных очков"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Heavy PPE: защитного щитка, hearing protection, leathers"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "No hearing protection — needed"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Sunglasses — sufficient"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "CAC-A — loud and ejects hot metal; robust PPE — required."
+    "CHOICE-2": "CAC-A — loud and ejects hot metal; robust PPE — required."
   }
 }

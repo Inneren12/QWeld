@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_glove_condition_2000002f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_glove_condition_2000002f",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Before сварки, gloves should be:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Oily to repel water"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Dry and free of holes or tears"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Cut-off fingers for dexterity"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Sprayed with solvent"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Dry, intact gloves protect from heat and electrical hazards."
+    "CHOICE-2": "Dry, intact gloves protect from heat and electrical hazards."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_flowmeter_vertical_20000004",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-1_flowmeter_vertical_20000004",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "How should a ball‑type flowmeter be positioned for an accurate reading?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "At any angle; it self‑levels"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Horizontally, so the ball rolls freely"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Vertically, with the tube upright"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Upside down to prevent dust entry"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Ball‑type flowmeters are read in a vertical position."
+    "CHOICE-3": "Ball‑type flowmeters are read in a vertical position."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_shortc_limitation_v5_02_40000084",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_shortc_limitation_v5_02_40000084",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "A limitation of short‑circuit GMAW on thick plate is:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Excessive fume"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "High penetration causing burn‑through"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Potential lack of fusion in grooves/fillets"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cannot run out of position"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Low energy per droplet risks lack of fusion."
+    "CHOICE-3": "Low energy per droplet risks lack of fusion."
   }
 }

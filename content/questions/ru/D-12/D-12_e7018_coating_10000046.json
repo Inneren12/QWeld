@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_e7018_coating_10000046",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_e7018_coating_10000046",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Что покрытие type characterizes E7018 электроды?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Кислое"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Основное (низководородное)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Рутиловое"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Целлюлозное"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "E7018 — a basic (low-водород), often iron-powder type электрод."
+    "CHOICE-2": "E7018 — a basic (low-водород), often iron-powder type электрод."
   }
 }

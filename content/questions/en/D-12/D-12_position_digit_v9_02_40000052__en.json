@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_position_digit_v9_02_40000052",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_position_digit_v9_02_40000052",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "What does the '1' in E7018 indicate?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Flat only"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Flat and horizontal only"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "All positions"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Overhead only"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Digit '1' means all positions."
+    "CHOICE-3": "Digit '1' means all positions."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_filler_er70s2_v4_06_400000e7",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_filler_er70s2_v4_06_400000e7",
   "taskId": "D-14",
   "difficulty": "easy",
   "stem": "Какое filler classification is common for GTAW (TIG) on carbon steel?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "ER70S-2"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "E7018"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "ER308L"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "E71T-1"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "ER70S-2 is a deoxidized filler for GTAW (TIG) on carbon steel."
+    "CHOICE-1": "ER70S-2 is a deoxidized filler for GTAW (TIG) on carbon steel."
   }
 }

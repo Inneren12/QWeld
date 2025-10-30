@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_gas_flow_too_high_v5_09_4000008b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_gas_flow_too_high_v5_09_4000008b",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Чрезмерный защитного газа газ flow can:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Always improve защитного газа"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Cause turbulence and aspiration of air"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Have no effect"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminate пористости"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Too much flow creates turbulence pulling air into the arc."
+    "CHOICE-2": "Too much flow creates turbulence pulling air into the arc."
   }
 }

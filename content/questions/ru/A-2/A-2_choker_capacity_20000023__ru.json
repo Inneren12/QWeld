@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_choker_capacity_20000023",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_choker_capacity_20000023",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Compared with a basket hitch, a choker hitch of the same sling typically:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Has higher capacity"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Has lower capacity"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has identical capacity"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cannot be used for lifting"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Choker hitches reduce capacity due to bending and friction at the choke."
+    "CHOICE-2": "Choker hitches reduce capacity due to bending and friction at the choke."
   }
 }

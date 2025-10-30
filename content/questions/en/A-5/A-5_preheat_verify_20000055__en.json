@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_preheat_verify_20000055",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_preheat_verify_20000055",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "What is a reliable way to verify preheat temperature?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "By hand feel"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Using temperature‑indicating crayons or a thermometer"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Watching for color change only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Assuming room temperature is enough"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use objective temperature indicators to confirm preheat."
+    "CHOICE-2": "Use objective temperature indicators to confirm preheat."
   }
 }

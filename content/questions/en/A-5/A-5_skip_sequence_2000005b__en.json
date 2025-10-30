@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_skip_sequence_2000005b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_skip_sequence_2000005b",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Skip or back‑step welding sequences are used mainly to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Concentrate heat in one area"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Distribute heat and limit distortion"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Increase crater cracking"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Avoid using clamps"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Heat distribution reduces distortion and residual stress."
+    "CHOICE-2": "Heat distribution reduces distortion and residual stress."
   }
 }

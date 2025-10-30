@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_shortc_limitation_v2_06_4000006a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_shortc_limitation_v2_06_4000006a",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "A limitation of короткозамыкательного GMAW (MIG/MAG) on thick plate is:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Чрезмерный fume"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "High проплавление causing burn-through"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Potential lack of сплавление in grooves/fillets"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cannot run out of положение"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Low energy per droplet risks lack of сплавление."
+    "CHOICE-3": "Low energy per droplet risks lack of сплавление."
   }
 }

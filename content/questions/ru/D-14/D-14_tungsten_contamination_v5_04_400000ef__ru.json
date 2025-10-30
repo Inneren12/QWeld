@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_tungsten_contamination_v5_04_400000ef",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_tungsten_contamination_v5_04_400000ef",
   "taskId": "D-14",
   "difficulty": "medium",
   "stem": "If вольфрамовый электрод touches the molten pool, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Continue welding"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Break off/resharpen вольфрамовый электрод and clean the area"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Increase ток"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Change to CO₂ защитного газа"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Contamination requires regrinding and очистка."
+    "CHOICE-2": "Contamination requires regrinding and очистка."
   }
 }

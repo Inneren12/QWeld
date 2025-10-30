@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_undercut_causes_v1_07_40000007",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_undercut_causes_v1_07_40000007",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "Which condition commonly leads to undercut in SMAW?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Excessive travel speed or a long arc"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Low travel speed with short arc"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Small electrode diameter"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Stringer beads"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "High speed/long arc washes metal from toes, causing undercut."
+    "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
   }
 }

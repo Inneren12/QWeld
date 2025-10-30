@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_fillet_gauge_10000011",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_fillet_gauge_10000011",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "What does a fillet‑weld gauge measure?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Porosity size"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Fillet leg size or effective throat"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Preheat temperature"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Tensile strength"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Fillet gauges verify leg length and throat to drawing or code requirements."
+    "CHOICE-2": "Fillet gauges verify leg length and throat to drawing or code requirements."
   }
 }

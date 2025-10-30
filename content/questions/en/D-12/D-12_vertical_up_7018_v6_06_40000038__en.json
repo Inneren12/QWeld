@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_vertical_up_7018_v6_06_40000038",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_vertical_up_7018_v6_06_40000038",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Which technique helps when welding vertical‑up with E7018?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Wide fast weave"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Stringer beads with brief toe pauses"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Downhand travel with high current"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Long arc"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Stringers with toe pauses control the puddle."
+    "CHOICE-2": "Stringers with toe pauses control the puddle."
   }
 }

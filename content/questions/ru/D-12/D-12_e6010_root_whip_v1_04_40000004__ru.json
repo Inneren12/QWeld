@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_e6010_root_whip_v1_04_40000004",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_e6010_root_whip_v1_04_40000004",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Какое technique is typical for open-корень welding with E6010?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Steady drag with no motion"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Whip-and-pause to control the keyhole"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Fast wide weave"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Backhand push 45°"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Whipping controls the keyhole for корень сплавление."
+    "CHOICE-2": "Whipping controls the keyhole for корень сплавление."
   }
 }

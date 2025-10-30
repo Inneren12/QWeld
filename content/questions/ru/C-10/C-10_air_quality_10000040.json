@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_air_quality_10000040",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-10_air_quality_10000040",
   "taskId": "C-10",
   "difficulty": "easy",
   "stem": "Зачем использовать dry, clean compressed air for PAC?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Wet, oily air extends consumable life"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Dry, clean air уменьшает wear and улучшает cut quality"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Air quality — irrelevant"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Nitrogen — always required instead of air"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Moisture and oil contaminate the plasma stream and damage consumables."
+    "CHOICE-2": "Moisture and oil contaminate the plasma stream and damage consumables."
   }
 }

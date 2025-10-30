@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_steel_rule_read_v3_06_3000001c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_steel_rule_read_v3_06_3000001c",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "For accuracy, a steel rule should be read:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "By estimating to the nearest centimeter"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To the smallest graduation on the rule"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Always rounded up"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "From whichever end is convenient without zeroing"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Reading to the smallest graduation reduces measurement error."
+    "CHOICE-2": "Reading to the smallest graduation reduces measurement error."
   }
 }

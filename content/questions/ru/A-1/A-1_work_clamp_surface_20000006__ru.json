@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_work_clamp_surface_20000006",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_work_clamp_surface_20000006",
   "taskId": "A-1",
   "difficulty": "medium",
   "stem": "To ensure a good электрической цепи обратного провода, the зажима массы should be attached to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Painted surface near the weld"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Rusty scale far from the weld"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Clean bare metal near the weld area"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Any spot; current finds its way"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Clamp to clean, bare metal close to the weld to reduce resistance and магнитный срыв дуги."
+    "CHOICE-3": "Clamp to clean, bare metal close to the weld to reduce resistance and магнитный срыв дуги."
   }
 }

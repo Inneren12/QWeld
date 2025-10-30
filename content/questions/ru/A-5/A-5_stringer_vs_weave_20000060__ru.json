@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_stringer_vs_weave_20000060",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_stringer_vs_weave_20000060",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "For low‑hydrogen электродов on many applications, it is preferable to use:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Wide weaves at high heat"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Stringer beads or limited weave per WPS (спецификации сварочного процесса)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Random motion with long arcs"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Circular motion only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Stringers help control heat input and hydrogen cracking risk."
+    "CHOICE-2": "Stringers help control heat input and hydrogen cracking risk."
   }
 }

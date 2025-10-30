@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_start_methods_10000041",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-10_start_methods_10000041",
   "taskId": "C-10",
   "difficulty": "easy",
   "stem": "Что — the advantage of pilot-arc or HF start in PAC?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "They require scraping the сопло on the work"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "They initiate the arc without dragging the сопло"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They уменьшить the need for shielding"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They увеличивает consumable wear"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Non-контактный starts protect the сопло and улучшить reliability."
+    "CHOICE-2": "Non-контактный starts protect the сопло and улучшить reliability."
   }
 }

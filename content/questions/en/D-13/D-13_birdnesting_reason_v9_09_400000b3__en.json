@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_birdnesting_reason_v9_09_400000b3",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_birdnesting_reason_v9_09_400000b3",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "A common cause of 'birdnesting' in wire feeders is:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Correct liner size"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Incorrect drive‑roll tension or liner size"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Proper conduit length"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Using a clean wire"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Poor feeding due to drag or excessive pressure tangles the wire."
+    "CHOICE-2": "Poor feeding due to drag or excessive pressure tangles the wire."
   }
 }

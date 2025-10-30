@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_arc_blow_mitigation_v9_08_40000058",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_arc_blow_mitigation_v9_08_40000058",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Как можно magnetic магнитного срыва дуги (arc blow) be reduced?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Lengthen the arc and increase ток"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Shorten the arc, move the work lead, or backstep"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Use a larger электрод only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Weld in one direction only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Short arc and better return lead placement help."
+    "CHOICE-2": "Short arc and better return lead placement help."
   }
 }

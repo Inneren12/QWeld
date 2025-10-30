@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_line_visibility_10000021",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_line_visibility_10000021",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "Как можно you keep layout lines visible during cutting/fitting?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Always scratch very deeply"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Use contrasting markers or soapstone and refresh as needed"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Use permanent paint on all metals"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "No indication — needed on stainless"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "High-contrast marks remain visible through handling and light grinding."
+    "CHOICE-2": "High-contrast marks remain visible through handling and light grinding."
   }
 }

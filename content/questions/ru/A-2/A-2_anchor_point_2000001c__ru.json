@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_anchor_point_2000001c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_anchor_point_2000001c",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Допустимая anchorage for a fall‑arrest system is typically:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "A conduit or handrail"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "An engineered or structural anchorage point"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Any pipe overhead"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "The nearest ladder rung"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use only engineered/structural anchor points rated for fall arrest."
+    "CHOICE-2": "Use only engineered/structural anchor points rated for fall arrest."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_lockout_verify_1000000b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_lockout_verify_1000000b",
   "taskId": "A-3",
   "difficulty": "medium",
   "stem": "After isolating and locking equipment, что should be done before starting work?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Remove the locks briefly to test"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Attempt a start to verify zero energy"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Trust только indicator lights"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ask a coworker to avoid touching controls"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Verification by attempting a start подтверждает all energy sources — neutralized."
+    "CHOICE-2": "Verification by attempting a start подтверждает all energy sources — neutralized."
   }
 }

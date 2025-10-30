@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_stepladder_top_step_20000016",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_stepladder_top_step_20000016",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "Какое statement about stepladders is correct?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Standing on the top cap is allowed"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Использовать them closed like a straight ladder"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Do not stand on the top or top step unless designed for it"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Всегда lean them against walls"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Avoid the top/top step unless the ladder is specifically designed for standing there."
+    "CHOICE-3": "Avoid the top/top step unless the ladder is specifically designed for standing there."
   }
 }

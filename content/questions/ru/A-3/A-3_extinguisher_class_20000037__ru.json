@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_extinguisher_class_20000037",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_extinguisher_class_20000037",
   "taskId": "A-3",
   "difficulty": "medium",
   "stem": "Какое statement about fire extinguishers is correct?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Использовать water on energized electrical fires"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Select an extinguisher rated for the fire class (e.g., ABC for many shop fires)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "CO₂ extinguishers are for wood only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Any extinguisher works the same"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use extinguishers suitable for the fire class; do not use water on energized circuits."
+    "CHOICE-2": "Use extinguishers suitable for the fire class; do not use water on energized circuits."
   }
 }

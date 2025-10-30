@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_pierce_height_v2_04_300000c8",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-10_pierce_height_v2_04_300000c8",
   "taskId": "C-10",
   "difficulty": "medium",
   "stem": "A good practice for piercing with PAC is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Pierce at cut height to save time"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Pierce at a higher pierce height, then lower to cut height"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Pierce with the nozzle touching"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Never pierce—edge start only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Higher pierce height protects consumables from molten blowback."
+    "CHOICE-2": "Higher pierce height protects consumables from molten blowback."
   }
 }

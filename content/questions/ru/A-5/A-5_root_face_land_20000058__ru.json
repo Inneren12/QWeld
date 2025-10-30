@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_root_face_land_20000058",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_root_face_land_20000058",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Что такое the purpose of a root face (land) on a groove?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To prevent any penetration"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To help control root penetration and support the root"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To increase arc length"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To eliminate the need for backing"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A small land помогает control root penetration and bead shape."
+    "CHOICE-2": "A small land помогает control root penetration and bead shape."
   }
 }

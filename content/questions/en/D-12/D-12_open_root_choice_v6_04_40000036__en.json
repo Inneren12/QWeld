@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_open_root_choice_v6_04_40000036",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_open_root_choice_v6_04_40000036",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Which electrode best suits deep‑penetration open‑root on rusty steel?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "E7018"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "E308L"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "E6010"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "E7024"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "E6010 offers deep penetration/tolerance to light rust."
+    "CHOICE-3": "E6010 offers deep penetration/tolerance to light rust."
   }
 }

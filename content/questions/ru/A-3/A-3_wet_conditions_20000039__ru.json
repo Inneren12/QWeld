@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_wet_conditions_20000039",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_wet_conditions_20000039",
   "taskId": "A-3",
   "difficulty": "medium",
   "stem": "If сварки must be performed in damp conditions, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Stand in water for stability"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Use УЗО (GFCI) protection, dry platforms, and extra insulation"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Удалить gloves to feel the heat"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ignore site rules for speed"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use dry platforms, УЗО (GFCI), and insulation to reduce shock risk."
+    "CHOICE-2": "Use dry platforms, УЗО (GFCI), and insulation to reduce shock risk."
   }
 }

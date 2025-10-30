@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_preheat_excess_20000076",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_preheat_excess_20000076",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Excessive предварительный подогрев beyond WPS (спецификации сварочного процесса) requirements may:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Всегда improve toughness"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Degrade properties and increase distortion"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Have no effect on properties"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminate hydrogen cracking risk completely"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Too much предварительный подогрев can coarsen microstructure and increase distortion."
+    "CHOICE-2": "Too much предварительный подогрев can coarsen microstructure and increase distortion."
   }
 }

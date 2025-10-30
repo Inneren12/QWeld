@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_power_fan_obstruction_20000012",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_power_fan_obstruction_20000012",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "What should be avoided around сварочного источника cooling fans?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Держать/сохранятьing the area clear"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Blocking the intake to reduce noise"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Placing rags over the guard"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Stacking boxes near vents"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Obstructions at the fan/vents can cause overheating and failure."
+    "CHOICE-2": "Obstructions at the fan/vents can cause overheating and failure."
   }
 }

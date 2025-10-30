@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_no_ride_hook_20000025",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_no_ride_hook_20000025",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "Which statement about crane operations is correct?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "It is acceptable to ride the hook for short distances"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Only supervisors may ride the load"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "No one may ride the hook or suspended load"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Riding is permitted with a harness"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Riding hooks or loads is prohibited; use approved man‑lifts instead."
+    "CHOICE-3": "Riding hooks or loads is prohibited; use approved man‑lifts instead."
   }
 }
