@@ -38,8 +38,11 @@ jobs:
       - name: Validate explanations
         run: bash scripts/validate-explanations.sh
 
-      - name: Check question quotas
-        run: bash scripts/check-quotas.sh
+      - name: Quotas (EN)
+        run: bash scripts/check-quotas.sh --blueprint content/blueprints/welder_ip_sk_202404.json --locales en
+
+      - name: Quotas (RU)
+        run: bash scripts/check-quotas.sh --blueprint content/blueprints/welder_ip_sk_202404.json --locales ru
 
       - name: Build question banks
         run: bash scripts/build-questions-dist.sh
