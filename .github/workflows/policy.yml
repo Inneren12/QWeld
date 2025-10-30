@@ -1,0 +1,43 @@
+name: Policy Validation
+
+on:
+  pull_request:
+    paths:
+      - 'content/**'
+      - 'docs/**'
+      - 'schemas/**'
+      - 'scripts/**'
+      - '.github/workflows/policy.yml'
+      - 'CODEOWNERS'
+      - 'README.md'
+
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install jq and ajv
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+          npm install --global ajv-cli@5
+
+      - name: Validate blueprint
+        run: bash scripts/validate-blueprint.sh
+
+      - name: Validate questions
+        run: bash scripts/validate-questions.sh
+
+      - name: Upload validation logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: policy-logs
+          path: logs

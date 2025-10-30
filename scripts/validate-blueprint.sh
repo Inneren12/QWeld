@@ -1,37 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-DEFAULT_BLUEPRINT="$ROOT_DIR/content/blueprints/welder_ip_2024.json"
-DEFAULT_SCHEMA="$ROOT_DIR/schemas/blueprint.schema.json"
-BLUEPRINT_PATH="${1:-$DEFAULT_BLUEPRINT}"
-SCHEMA_PATH="${2:-$DEFAULT_SCHEMA}"
-LOG_FILE="${BLUEPRINT_LOG_FILE:-$ROOT_DIR/logs/blueprint-validate.txt}"
+LOG_DIR="logs"
+mkdir -p "${LOG_DIR}"
+LOG_FILE="${LOG_DIR}/validate-blueprint.txt"
+: > "${LOG_FILE}"
+exec > >(tee -a "${LOG_FILE}") 2>&1
 
-mkdir -p "$(dirname "$LOG_FILE")"
-: > "$LOG_FILE"
+echo "[policy] start"
 
-log() {
-  echo "$1" | tee -a "$LOG_FILE"
-}
+SCHEMA="schemas/blueprint.schema.json"
+BLUEPRINT="content/blueprints/welder_ip_sk_202404.json"
 
-SCHEMA_CMD_OUTPUT=$(mktemp)
-trap 'rm -f "$SCHEMA_CMD_OUTPUT"' EXIT
-
-if ! npx --yes ajv-cli validate -s "$SCHEMA_PATH" -d "$BLUEPRINT_PATH" >"$SCHEMA_CMD_OUTPUT" 2>&1; then
-  cat "$SCHEMA_CMD_OUTPUT" | tee -a "$LOG_FILE"
-  exit 1
-fi
-log "[blueprint] schema ok"
-
-TOTAL=$(jq -r '.totalQuestions' "$BLUEPRINT_PATH")
-BLOCK_COUNT=$(jq -r '.blocks | length' "$BLUEPRINT_PATH")
-TASK_COUNT=$(jq -r '[.blocks[].tasks | length] | add' "$BLUEPRINT_PATH")
-QUOTA_SUM=$(jq -r '[.blocks[].tasks[].quota] | add' "$BLUEPRINT_PATH")
-
-if [[ "$QUOTA_SUM" != "$TOTAL" ]]; then
-  log "[blueprint] ERROR: quota mismatch (totalQuestions=$TOTAL quotaSum=$QUOTA_SUM)"
+if ! npx --yes ajv-cli@5 validate --spec=draft7 --strict=false --all-errors -s "${SCHEMA}" -d "${BLUEPRINT}"; then
+  echo "[blueprint] ERROR: schema validation failed"
   exit 1
 fi
 
-log "[blueprint] total=$TOTAL blocks=$BLOCK_COUNT tasks=$TASK_COUNT ok"
+total_quota=$(jq '[.blocks[].tasks[].quota] | add' "${BLUEPRINT}")
+expected_total=$(jq '.questionCount' "${BLUEPRINT}")
+task_count=$(jq '[.blocks[].tasks[]] | length' "${BLUEPRINT}")
+version=$(jq -r '.blueprintVersion' "${BLUEPRINT}")
+
+if [[ "${total_quota}" != "${expected_total}" ]]; then
+  echo "[blueprint] ERROR: total=${total_quota} expected=${expected_total}"
+  exit 1
+fi
+
+if [[ "${version}" != 1.0.* ]]; then
+  echo "[blueprint] ERROR: version=${version} does not satisfy 1.0.x policy"
+  exit 1
+fi
+
+echo "[blueprint] schema=ok total=${total_quota} tasks=${task_count} version=${version}"

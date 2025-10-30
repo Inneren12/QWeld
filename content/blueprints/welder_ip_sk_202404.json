@@ -1,0 +1,132 @@
+{
+  "id": "welder_ip_sk_202404",
+  "trade": "Welder",
+  "exam": "Interprovincial Red Seal",
+  "blueprintVersion": "1.0.0",
+  "policyVersion": "1.0",
+  "questionCount": 125,
+  "validFrom": "2024-04-01",
+  "sources": [
+    {
+      "type": "primary",
+      "name": "Saskatchewan Welding Trade Blueprint 2024",
+      "notes": "SK-2024 release aligning with Welder IP structure"
+    },
+    {
+      "type": "historical",
+      "name": "British Columbia Interprovincial Welding Blueprint 2014",
+      "notes": "Legacy distribution used for comparative analytics"
+    },
+    {
+      "type": "reference",
+      "name": "Red Seal RSOS Welding Guide",
+      "notes": "Competency statements and performance objectives"
+    },
+    {
+      "type": "reference",
+      "name": "Red Seal Exam Preparation Handbook",
+      "notes": "Study strategies and sample MCQ frameworks"
+    }
+  ],
+  "blocks": [
+    {
+      "id": "A",
+      "title": "Safety, Tools, and Shop Practice",
+      "tasks": [
+        {
+          "id": "A-1",
+          "title": "Follow welding safety legislation and PPE requirements",
+          "quota": 8
+        },
+        {
+          "id": "A-2",
+          "title": "Inspect and maintain welding tools and equipment",
+          "quota": 6
+        },
+        {
+          "id": "A-3",
+          "title": "Interpret welding documentation and symbols",
+          "quota": 6
+        },
+        {
+          "id": "A-4",
+          "title": "Plan shop workflows and material handling",
+          "quota": 5
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Material Preparation and Fit-up",
+      "tasks": [
+        {
+          "id": "B-5",
+          "title": "Select consumables and filler materials",
+          "quota": 8
+        },
+        {
+          "id": "B-6",
+          "title": "Prepare joints and bevels for welding",
+          "quota": 9
+        },
+        {
+          "id": "B-7",
+          "title": "Assemble components and ensure dimensional accuracy",
+          "quota": 8
+        },
+        {
+          "id": "B-8",
+          "title": "Inspect fit-up and perform tack welding",
+          "quota": 8
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Welding Processes and Quality Control",
+      "tasks": [
+        {
+          "id": "C-9",
+          "title": "Perform SMAW operations across positions",
+          "quota": 9
+        },
+        {
+          "id": "C-10",
+          "title": "Perform GMAW/FCAW operations across materials",
+          "quota": 9
+        },
+        {
+          "id": "C-11",
+          "title": "Perform GTAW and specialized processes",
+          "quota": 9
+        },
+        {
+          "id": "C-12",
+          "title": "Apply weld quality assurance and inspection techniques",
+          "quota": 9
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Fabrication and Repair Applications",
+      "tasks": [
+        {
+          "id": "D-13",
+          "title": "Fabricate structural components and assemblies",
+          "quota": 11
+        },
+        {
+          "id": "D-14",
+          "title": "Repair and restore welded components",
+          "quota": 10
+        },
+        {
+          "id": "D-15",
+          "title": "Coordinate workflow, documentation, and client requirements",
+          "quota": 10
+        }
+      ]
+    }
+  ]
+}

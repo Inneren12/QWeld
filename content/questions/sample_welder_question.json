@@ -1,0 +1,36 @@
+{
+  "id": "Q-0001",
+  "taskId": "A-1",
+  "stem": "Which action best ensures compliance with Saskatchewan welding shop PPE requirements before starting an arc welding operation?",
+  "choices": [
+    {
+      "id": "CHOICE-A",
+      "text": "Check the electrode chart for the proper amperage range."
+    },
+    {
+      "id": "CHOICE-B",
+      "text": "Verify all fire extinguishers are tagged within the past year."
+    },
+    {
+      "id": "CHOICE-C",
+      "text": "Inspect helmet lens shade and confirm leather gauntlets are intact."
+    },
+    {
+      "id": "CHOICE-D",
+      "text": "Confirm the welding machine ground lead is firmly attached."
+    }
+  ],
+  "correctId": "CHOICE-C",
+  "difficulty": "medium",
+  "rationales": {
+    "CHOICE-A": "Machine setup is important but does not address PPE compliance before ignition.",
+    "CHOICE-B": "Fire extinguisher inspection is required by safety plans but not PPE specific.",
+    "CHOICE-C": "PPE checks target protective equipment mandated prior to energizing the arc.",
+    "CHOICE-D": "Ground lead inspection relates to circuit integrity, not personal protective gear."
+  },
+  "tags": [
+    "safety",
+    "ppe"
+  ],
+  "source": "Derived from RSOS safety practices"
+}

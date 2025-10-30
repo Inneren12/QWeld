@@ -1,0 +1,18 @@
+{
+  "id": "Q-TEST-OK",
+  "taskId": "B-5",
+  "stem": "Which filler classification is most appropriate for matching low-alloy structural steel in FCAW?",
+  "choices": [
+    { "id": "CHOICE-1", "text": "E71T-1" },
+    { "id": "CHOICE-2", "text": "ER70S-6" },
+    { "id": "CHOICE-3", "text": "E308L-16" },
+    { "id": "CHOICE-4", "text": "E7018" }
+  ],
+  "correctId": "CHOICE-1",
+  "rationales": {
+    "CHOICE-1": "Flux-cored wire classified as E71T-1 matches low-alloy structural steel applications.",
+    "CHOICE-2": "Solid wire ER70S-6 is used for GMAW, not FCAW.",
+    "CHOICE-3": "Stainless electrode is unsuitable for low-alloy structural steel.",
+    "CHOICE-4": "E7018 is a SMAW electrode, not FCAW wire." 
+  }
+}
