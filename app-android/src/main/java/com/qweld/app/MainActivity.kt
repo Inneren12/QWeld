@@ -16,24 +16,24 @@ import androidx.compose.ui.unit.dp
 import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
-        setContent { QWeldAppRoot() }
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
+    setContent { QWeldAppRoot() }
+  }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QWeldAppRoot() {
-    MaterialTheme {
-        Scaffold(
-            topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.app_name)) }) }
-        ) { paddingValues ->
-            Text(
-                modifier = Modifier.padding(paddingValues).padding(16.dp),
-                text = stringResource(id = R.string.hello_qweld)
-            )
-        }
+  MaterialTheme {
+    Scaffold(
+      topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.app_name)) }) }
+    ) { paddingValues ->
+      Text(
+        modifier = Modifier.padding(paddingValues).padding(16.dp),
+        text = stringResource(id = R.string.hello_qweld)
+      )
     }
+  }
 }

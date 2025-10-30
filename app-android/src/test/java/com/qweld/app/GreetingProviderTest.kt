@@ -6,9 +6,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class GreetingProviderTest {
-    @Test
-    fun greetingProvider_returnsLocalizedMessages() {
-        assertEquals("Hello QWeld", GreetingProvider.greetingForLocale(Locale.ENGLISH))
-        assertEquals("Привет, QWeld", GreetingProvider.greetingForLocale(Locale.forLanguageTag("ru")))
-    }
+  @Test
+  fun greetingProvider_returnsLocalizedMessages() {
+    assertEquals("Hello QWeld", GreetingProvider.greetingForLocale(Locale.ENGLISH))
+    assertEquals("Привет, QWeld", GreetingProvider.greetingForLocale(Locale.forLanguageTag("ru")))
+  }
 }
