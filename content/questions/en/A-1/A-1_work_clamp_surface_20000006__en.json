@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_work_clamp_surface_20000006",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "medium",
+  "stem": "To ensure a good return path, the work clamp should be attached to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Painted surface near the weld"
+    },
+    {
+      "id": "B",
+      "text": "Rusty scale far from the weld"
+    },
+    {
+      "id": "C",
+      "text": "Clean bare metal near the weld area"
+    },
+    {
+      "id": "D",
+      "text": "Any spot; current finds its way"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Clamp to clean, bare metal close to the weld to reduce resistance and arc blow."
+  }
+}

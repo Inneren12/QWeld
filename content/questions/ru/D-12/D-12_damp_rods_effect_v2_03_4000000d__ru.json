@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_damp_rods_effect_v2_03_4000000d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Что problem can damp E7018 электроды cause?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Improved проплавление"
+    },
+    {
+      "id": "B",
+      "text": "Porosity and delayed растрескивание"
+    },
+    {
+      "id": "C",
+      "text": "Lower hydrogen content"
+    },
+    {
+      "id": "D",
+      "text": "Faster скорость перемещения"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Moisture adds hydrogen to the weld pool."
+  }
+}

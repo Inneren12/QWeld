@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_preheat_setting_v3_06_300000b2",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "medium",
+  "stem": "Insufficient preheat during cutting often causes:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Smooth, slag-free cuts"
+    },
+    {
+      "id": "B",
+      "text": "Excess slag and slow starts"
+    },
+    {
+      "id": "C",
+      "text": "Narrow kerf and square edges"
+    },
+    {
+      "id": "D",
+      "text": "No change"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Too little preheat leads to slagging and poor starts."
+  }
+}

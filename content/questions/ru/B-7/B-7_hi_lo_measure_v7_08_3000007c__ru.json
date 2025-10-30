@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_hi_lo_measure_v7_08_3000007c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Internal misalignment (смещения кромок (hi‑lo)) can be measured with:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "A thermometer"
+    },
+    {
+      "id": "B",
+      "text": "A смещения кромок (hi‑lo) gauge or calipers"
+    },
+    {
+      "id": "C",
+      "text": "A voltmeter"
+    },
+    {
+      "id": "D",
+      "text": "A paint stick"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Use proper gauges to measure offset."
+  }
+}

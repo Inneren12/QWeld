@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_polarity_common_v1_02_300000bb",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "medium",
+  "stem": "Which polarity is typical for air plasma cutting systems?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "AC only"
+    },
+    {
+      "id": "B",
+      "text": "DCEN (electrode negative)"
+    },
+    {
+      "id": "C",
+      "text": "DCEP (electrode positive)"
+    },
+    {
+      "id": "D",
+      "text": "Either polarity with no effect"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Air plasma torches commonly use DCEN (electrode negative)."
+  }
+}

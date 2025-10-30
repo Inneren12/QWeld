@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_holder_maintenance_10000003",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "Что верно for maintaining an электрод holder?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Minor cracks in insulation — acceptable"
+    },
+    {
+      "id": "B",
+      "text": "Jaws should be oily to уменьшить sticking"
+    },
+    {
+      "id": "C",
+      "text": "Insulation must be intact and jaws clean with no exposed conductors"
+    },
+    {
+      "id": "D",
+      "text": "Cool the holder in water after heavy use"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Sound insulation and clean jaws предотвращает shock and overheating."
+  }
+}

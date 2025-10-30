@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_ctwd_long_1000005e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Что — the effect of excessive вылета проволоки (Ctwd) in GMAW (MIG/MAG)/FCAW (порошковая)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Higher ток and deeper проплавление"
+    },
+    {
+      "id": "B",
+      "text": "Lower ток and reduced проплавление"
+    },
+    {
+      "id": "C",
+      "text": "No change"
+    },
+    {
+      "id": "D",
+      "text": "Cleaner arc starts"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Long вылет increases resistive heating of the wire, reducing ток at the arc."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_preheat_benefit_v4_00_4000001e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Какова главная benefit of preheating thick/hard steels?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Increase residual stress"
+    },
+    {
+      "id": "B",
+      "text": "Reduce cooling rate and hydrogen растрескивание risk"
+    },
+    {
+      "id": "C",
+      "text": "Eliminate interpass очистка"
+    },
+    {
+      "id": "D",
+      "text": "Strengthen флюса покрытие"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Preheat slows cooling and lowers crack risk."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7018_coating_v9_00_40000050",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "What coating type characterizes E7018 electrodes?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Acid"
+    },
+    {
+      "id": "B",
+      "text": "Basic (low‑hydrogen)"
+    },
+    {
+      "id": "C",
+      "text": "Rutile"
+    },
+    {
+      "id": "D",
+      "text": "Cellulosic"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "E7018 is a basic low‑hydrogen electrode per AWS A5.1."
+  }
+}

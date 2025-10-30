@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_5s_housekeeping_1000000f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "easy",
+  "stem": "Почему apply 5S/бережливого производства in a welding shop?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "It adds non-value work"
+    },
+    {
+      "id": "B",
+      "text": "It уменьшает waste and улучшает safety"
+    },
+    {
+      "id": "C",
+      "text": "It — только for offices"
+    },
+    {
+      "id": "D",
+      "text": "It means sweeping at the end of the day только"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Orderly workplaces cut search time, trip hazards, and defects."
+  }
+}

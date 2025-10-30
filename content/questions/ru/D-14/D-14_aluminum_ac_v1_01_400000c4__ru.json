@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_aluminum_ac_v1_01_400000c4",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Какой ток is commonly used for GTAW (TIG) on aluminum?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (прямая полярность) only"
+    },
+    {
+      "id": "B",
+      "text": "AC (переменный ток)"
+    },
+    {
+      "id": "C",
+      "text": "DCEP (обратная полярность) only"
+    },
+    {
+      "id": "D",
+      "text": "AC (переменный ток) with water защитного газа"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "AC (переменный ток) provides EP очистка action for оксида removal."
+  }
+}

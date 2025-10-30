@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7018_power_setting_v4_05_40000023",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Какое power source setting can E7018 typically use?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (прямая полярность) only"
+    },
+    {
+      "id": "B",
+      "text": "DCEP (обратная полярность) or AC (переменный ток) per manufacturer"
+    },
+    {
+      "id": "C",
+      "text": "AC (переменный ток) only"
+    },
+    {
+      "id": "D",
+      "text": "DCEP (обратная полярность) only, never AC (переменный ток)"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Many E7018 run on DCEP (обратная полярность) and AC (переменный ток)."
+  }
+}

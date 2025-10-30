@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_bevel_angle_10000023",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Почему choose a proper угла скоса кромок during prep?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Zero bevel gives best access"
+    },
+    {
+      "id": "B",
+      "text": "The right angle allows access and proper проплавление"
+    },
+    {
+      "id": "C",
+      "text": "Steeper — always stronger"
+    },
+    {
+      "id": "D",
+      "text": "Shallower — always better"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Adequate groove angle lets the электрод/torch reach the root and sidewalls."
+  }
+}

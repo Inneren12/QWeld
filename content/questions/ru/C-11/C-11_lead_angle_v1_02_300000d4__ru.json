@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-11_lead_angle_v1_02_300000d4",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-11",
+  "difficulty": "medium",
+  "stem": "Что is a typical electrode lead angle for CAC (переменный ток)-A?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Push 90° straight into the work"
+    },
+    {
+      "id": "B",
+      "text": "Lead the electrode about 15–20° in the travel direction"
+    },
+    {
+      "id": "C",
+      "text": "Drag opposite the travel 45°"
+    },
+    {
+      "id": "D",
+      "text": "Point straight down"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A small lead angle directs molten metal out of the gouge."
+  }
+}

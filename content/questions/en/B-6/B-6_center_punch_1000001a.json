@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_center_punch_1000001a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "Why use a center punch during layout?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To erase layout lines"
+    },
+    {
+      "id": "B",
+      "text": "To preserve hole/mark location during cutting or drilling"
+    },
+    {
+      "id": "C",
+      "text": "For decoration only"
+    },
+    {
+      "id": "D",
+      "text": "It significantly weakens the steel"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Punch marks help keep locations visible and guide drill points."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_backing_bar_10000024",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "easy",
+  "stem": "What is the purpose of a backing bar or strip?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "It supports the root pass and helps prevent burn‑through"
+    },
+    {
+      "id": "B",
+      "text": "It adds no benefit"
+    },
+    {
+      "id": "C",
+      "text": "It is forbidden by all codes"
+    },
+    {
+      "id": "D",
+      "text": "It replaces all tacking"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Backing provides support and can aid complete joint penetration."
+  }
+}

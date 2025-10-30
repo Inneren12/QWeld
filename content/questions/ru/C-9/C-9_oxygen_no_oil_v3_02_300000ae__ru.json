@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_oxygen_no_oil_v3_02_300000ae",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "easy",
+  "stem": "Что is the correct practice regarding oxygen equipment?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use oil/grease to stop leaks"
+    },
+    {
+      "id": "B",
+      "text": "Никогда use oil/grease on oxygen equipment"
+    },
+    {
+      "id": "C",
+      "text": "Open acetylene valves fully back-seated"
+    },
+    {
+      "id": "D",
+      "text": "Do not crack cylinder valves before attaching regulators"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Oil/grease can ignite violently in oxygen systems."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-8_wire_wheel_ppe_v1_09_30000086",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-8",
+  "difficulty": "easy",
+  "stem": "Что PPE is appropriate when using a powered wire wheel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "No eye protection; bristles are soft"
+    },
+    {
+      "id": "B",
+      "text": "Safety glasses and a face shield"
+    },
+    {
+      "id": "C",
+      "text": "Earplugs only"
+    },
+    {
+      "id": "D",
+      "text": "A dust mask only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Wire bristles can eject; use both glasses and a shield."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_plan_sequence_10000010",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "medium",
+  "stem": "Which is a sound sequence for organizing a welding job?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Start welding, then look for parts"
+    },
+    {
+      "id": "B",
+      "text": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
+    },
+    {
+      "id": "C",
+      "text": "Skip fit‑up to save time"
+    },
+    {
+      "id": "D",
+      "text": "Ignore distortion until final inspection"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Planning with the current WPS/drawings and confirmed materials prevents delays and rework."
+  }
+}

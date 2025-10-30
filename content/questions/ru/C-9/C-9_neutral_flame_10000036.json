@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_neutral_flame_10000036",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "easy",
+  "stem": "Какое описание соответствует a neutral кислородно-топливного flame?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "A long carburizing (ацетилен) feather"
+    },
+    {
+      "id": "B",
+      "text": "A balanced inner cone with no feather"
+    },
+    {
+      "id": "C",
+      "text": "An oxidizing feather on the inner cone"
+    },
+    {
+      "id": "D",
+      "text": "A loud, popping flame with backfire"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Neutral flame has a well-defined cone and no ацетилен feather."
+  }
+}

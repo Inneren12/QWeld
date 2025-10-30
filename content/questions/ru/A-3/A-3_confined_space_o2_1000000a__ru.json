@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_confined_space_o2_1000000a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "Какое кислород range — considered acceptable for entry into a замкнутого пространства?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "16–18% кислород"
+    },
+    {
+      "id": "B",
+      "text": "19.5–23.5% кислород"
+    },
+    {
+      "id": "C",
+      "text": "Above 24% кислород"
+    },
+    {
+      "id": "D",
+      "text": "Any level if wearing a respirator"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Atmospheres between ~19.5% and 23.5% кислород — considered acceptable for entry."
+  }
+}

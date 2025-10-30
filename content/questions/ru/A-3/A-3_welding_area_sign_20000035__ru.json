@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_welding_area_sign_20000035",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "easy",
+  "stem": "What helps protect посторонних from arc flash in open areas?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Удалить PPE"
+    },
+    {
+      "id": "B",
+      "text": "Use сварки curtains/screens and post warning signs"
+    },
+    {
+      "id": "C",
+      "text": "Point arc toward coworkers"
+    },
+    {
+      "id": "D",
+      "text": "Turn off ventilation"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Screens and signage warn and shield others from arc flash."
+  }
+}

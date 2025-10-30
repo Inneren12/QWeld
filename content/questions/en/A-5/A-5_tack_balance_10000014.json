@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_tack_balance_10000014",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "How should tack welds be placed to control distortion?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "All tacks on one side of the joint"
+    },
+    {
+      "id": "B",
+      "text": "Balanced around the joint to hold alignment"
+    },
+    {
+      "id": "C",
+      "text": "Very large tacks prevent cracking"
+    },
+    {
+      "id": "D",
+      "text": "Tacks are forbidden in fabrication"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Balanced, adequate tacks hold fit‑up and reduce distortion during welding."
+  }
+}

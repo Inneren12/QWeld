@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_edge_prep_clean_v2_01_3000003e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "easy",
+  "stem": "Why remove burrs and oxides from prepped edges?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "It reduces strength"
+    },
+    {
+      "id": "B",
+      "text": "It improves fusion and reduces inclusions"
+    },
+    {
+      "id": "C",
+      "text": "It is only for aluminum"
+    },
+    {
+      "id": "D",
+      "text": "It is unnecessary on any material"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Clean edges promote fusion and fewer inclusions."
+  }
+}

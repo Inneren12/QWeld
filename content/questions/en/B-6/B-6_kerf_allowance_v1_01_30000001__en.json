@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_kerf_allowance_v1_01_30000001",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "medium",
+  "stem": "Why is it important to cutting kerf be accounted for in layout?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Kerf adds material back to the part"
+    },
+    {
+      "id": "B",
+      "text": "It removes material; planning preserves final dimensions"
+    },
+    {
+      "id": "C",
+      "text": "It only matters for plasma cutting"
+    },
+    {
+      "id": "D",
+      "text": "Layout lines are unaffected by kerf"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "The cut removes stock; offsetting cut lines maintains required size."
+  }
+}

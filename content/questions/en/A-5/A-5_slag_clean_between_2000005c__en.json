@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_slag_clean_between_2000005c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Between passes with flux‑shielded processes you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Leave slag; it will burn out"
+    },
+    {
+      "id": "B",
+      "text": "Remove slag and heavy spatter"
+    },
+    {
+      "id": "C",
+      "text": "Add solvent"
+    },
+    {
+      "id": "D",
+      "text": "Water‑quench the joint"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Cleaning prevents slag inclusions and promotes fusion."
+  }
+}

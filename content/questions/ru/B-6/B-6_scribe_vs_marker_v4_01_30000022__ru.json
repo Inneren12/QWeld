@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_scribe_vs_marker_v4_01_30000022",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "medium",
+  "stem": "On oiled or scaled steel, which layout method is best?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Использовать pencil only"
+    },
+    {
+      "id": "B",
+      "text": "Использовать a scribe or paint marker that contrasts the surface"
+    },
+    {
+      "id": "C",
+      "text": "Использовать chalk only"
+    },
+    {
+      "id": "D",
+      "text": "No marking is needed"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Scribes/paint markers remain legible on rough or oily surfaces."
+  }
+}

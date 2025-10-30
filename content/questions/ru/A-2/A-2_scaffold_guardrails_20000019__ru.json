@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_scaffold_guardrails_20000019",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "easy",
+  "stem": "On platforms at height, which protection is appropriate?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "No guardrails if you’re careful"
+    },
+    {
+      "id": "B",
+      "text": "Guardrails and toeboards as required"
+    },
+    {
+      "id": "C",
+      "text": "Loose ropes instead of rails"
+    },
+    {
+      "id": "D",
+      "text": "Just caution tape"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Guardrails/toeboards help prevent falls and falling objects."
+  }
+}

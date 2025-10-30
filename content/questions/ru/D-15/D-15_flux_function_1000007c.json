@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_flux_function_1000007c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "easy",
+  "stem": "Что SAW (под флюсом) флюс primarily provide?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Cooling water and lubrication"
+    },
+    {
+      "id": "B",
+      "text": "Shielding and шлак formation around the weld pool"
+    },
+    {
+      "id": "C",
+      "text": "Electrical insulation только"
+    },
+    {
+      "id": "D",
+      "text": "Extra alloying только"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Granular флюс supplies shielding, шлак, and sometimes alloying elements."
+  }
+}

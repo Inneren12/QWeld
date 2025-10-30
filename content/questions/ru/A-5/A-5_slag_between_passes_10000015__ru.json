@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_slag_between_passes_10000015",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Что следует сделать between weld passes with флюс-shielded processes?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Nothing; inclusions burn out"
+    },
+    {
+      "id": "B",
+      "text": "Remove шлак and heavy spatter"
+    },
+    {
+      "id": "C",
+      "text": "Только chip the final cap"
+    },
+    {
+      "id": "D",
+      "text": "Water-quench шлак to speed the job"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Cleaning between passes предотвращает шлак inclusions and улучшает сплавление."
+  }
+}

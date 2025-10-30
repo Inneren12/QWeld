@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7024_character_v4_08_40000026",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Какое утверждение describes E7024 электроды?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Cellulosic покрытие, deep проплавление"
+    },
+    {
+      "id": "B",
+      "text": "High-deположение iron-powder rutile, flat/horizontal"
+    },
+    {
+      "id": "C",
+      "text": "Basic низководородное for all положениеs"
+    },
+    {
+      "id": "D",
+      "text": "Stainless steel welding only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "E7024 is iron-powder rutile for high deположение in flat/horizontal."
+  }
+}

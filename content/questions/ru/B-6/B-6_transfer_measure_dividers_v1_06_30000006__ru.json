@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_transfer_measure_dividers_v1_06_30000006",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "Какой инструмент помогает transfer equal distances accurately during layout?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Chalk stick"
+    },
+    {
+      "id": "B",
+      "text": "Dividers or a комбинированного угольника"
+    },
+    {
+      "id": "C",
+      "text": "A gloved finger"
+    },
+    {
+      "id": "D",
+      "text": "A pry bar"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Dividers and squares transfer repeated distances precisely."
+  }
+}

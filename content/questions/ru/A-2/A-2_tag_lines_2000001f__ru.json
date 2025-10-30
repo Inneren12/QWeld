@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_tag_lines_2000001f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "easy",
+  "stem": "Что такое the primary purpose of using оттяжек on suspended loads?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To increase the load weight"
+    },
+    {
+      "id": "B",
+      "text": "To steer and control load swing at a distance"
+    },
+    {
+      "id": "C",
+      "text": "To tie off the crane hook"
+    },
+    {
+      "id": "D",
+      "text": "To measure load temperature"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Tag lines let workers control rotation/swing while staying clear."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_chill_bars_1000002b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Как помогают теплоотводящих планок help когда welding thin material?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They увеличивает heat input"
+    },
+    {
+      "id": "B",
+      "text": "They extract heat to control деформации"
+    },
+    {
+      "id": "C",
+      "text": "They measure temperature"
+    },
+    {
+      "id": "D",
+      "text": "They destabilize the arc"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Heat sinks pull heat away to limit деформации and burn-through."
+  }
+}

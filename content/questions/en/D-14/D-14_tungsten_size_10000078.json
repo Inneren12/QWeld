@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_tungsten_size_10000078",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Why choose a larger‑diameter tungsten for higher currents?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To increase spatter"
+    },
+    {
+      "id": "B",
+      "text": "To handle higher heat without melting the tip"
+    },
+    {
+      "id": "C",
+      "text": "To reduce shielding"
+    },
+    {
+      "id": "D",
+      "text": "To avoid the need for filler"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Bigger electrodes carry more current without overheating."
+  }
+}

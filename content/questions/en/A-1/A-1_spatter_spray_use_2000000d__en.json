@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_spatter_spray_use_2000000d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "What is an appropriate use of anti‑spatter compound?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Inside the gas diffuser"
+    },
+    {
+      "id": "B",
+      "text": "On regulator threads"
+    },
+    {
+      "id": "C",
+      "text": "Lightly on nozzles/fixtures per manufacturer’s guidance"
+    },
+    {
+      "id": "D",
+      "text": "On the contact tip bore"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Used correctly on nozzles/fixtures, anti‑spatter helps reduce buildup."
+  }
+}

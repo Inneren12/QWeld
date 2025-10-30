@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_practice_bead_20000071",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Before production сварки on a new setup, a good approach is to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Start immediately on the part"
+    },
+    {
+      "id": "B",
+      "text": "Run practice beads on scrap of similar material and thickness"
+    },
+    {
+      "id": "C",
+      "text": "Skip parameter checks"
+    },
+    {
+      "id": "D",
+      "text": "Использовать random settings"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Practice beads help dial in parameters and technique."
+  }
+}

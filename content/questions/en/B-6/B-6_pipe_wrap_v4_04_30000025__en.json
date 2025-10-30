@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_pipe_wrap_v4_04_30000025",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "What tool helps mark square lines around pipe for cutting?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "A magnetic base"
+    },
+    {
+      "id": "B",
+      "text": "A pipe wrap or flexible square"
+    },
+    {
+      "id": "C",
+      "text": "A center punch only"
+    },
+    {
+      "id": "D",
+      "text": "A drill press"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Flexible wraps allow marking circumferential cut lines square to axis."
+  }
+}

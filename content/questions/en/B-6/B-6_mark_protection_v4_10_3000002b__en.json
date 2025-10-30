@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_mark_protection_v4_10_3000002b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "To avoid losing layout marks during cutting/grinding, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use water to wash them off"
+    },
+    {
+      "id": "B",
+      "text": "Protect or remark them after each step"
+    },
+    {
+      "id": "C",
+      "text": "Rely on the first mark only"
+    },
+    {
+      "id": "D",
+      "text": "Switch off ventilation"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Protect/refresh marks to keep references intact."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_datum_use_1000001c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "medium",
+  "stem": "What is a good practice for choosing a datum in layout?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use multiple random baselines"
+    },
+    {
+      "id": "B",
+      "text": "Select a single clear datum to control accumulated error"
+    },
+    {
+      "id": "C",
+      "text": "Begin anywhere convenient"
+    },
+    {
+      "id": "D",
+      "text": "Datums are only for machining"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A single, consistent datum minimizes tolerance stack‑up."
+  }
+}

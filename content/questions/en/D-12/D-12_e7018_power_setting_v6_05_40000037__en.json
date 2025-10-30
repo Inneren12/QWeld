@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7018_power_setting_v6_05_40000037",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Which power source setting can E7018 typically use?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN only"
+    },
+    {
+      "id": "B",
+      "text": "DCEP or AC per manufacturer"
+    },
+    {
+      "id": "C",
+      "text": "AC only"
+    },
+    {
+      "id": "D",
+      "text": "DCEP only, never AC"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Many E7018 run on DCEP and AC."
+  }
+}

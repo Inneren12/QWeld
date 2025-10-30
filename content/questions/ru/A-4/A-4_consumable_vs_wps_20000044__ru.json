@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_consumable_vs_wps_20000044",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "easy",
+  "stem": "Before starting, consumables should be checked to ensure they:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Match the WPS (спецификации сварочного процесса) classification and size"
+    },
+    {
+      "id": "B",
+      "text": "Are the cheapest available"
+    },
+    {
+      "id": "C",
+      "text": "Were found on the nearest bench"
+    },
+    {
+      "id": "D",
+      "text": "Have the longest storage time"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Confirm wire/rod classification and sizes match the WPS (спецификации сварочного процесса)."
+  }
+}

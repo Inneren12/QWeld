@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_manganese_fume_2000002b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "Какое statement about сварки fumes is correct?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They are harmless at normal levels"
+    },
+    {
+      "id": "B",
+      "text": "They can contain manganese and other metal oxides that require control"
+    },
+    {
+      "id": "C",
+      "text": "Только TIG produces fumes"
+    },
+    {
+      "id": "D",
+      "text": "Fumes are eliminated by higher amperage"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Many processes produce metal oxide fumes; control exposure with ventilation and PPE."
+  }
+}

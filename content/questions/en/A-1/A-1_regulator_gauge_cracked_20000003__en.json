@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_regulator_gauge_cracked_20000003",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "What should be done with a regulator that has a cracked or missing gauge lens?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use it carefully until a replacement arrives"
+    },
+    {
+      "id": "B",
+      "text": "Cover it with tape"
+    },
+    {
+      "id": "C",
+      "text": "Remove from service and have it repaired or replaced"
+    },
+    {
+      "id": "D",
+      "text": "Turn the gauge to face away from people"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Damaged regulators must be removed from service and repaired or replaced."
+  }
+}

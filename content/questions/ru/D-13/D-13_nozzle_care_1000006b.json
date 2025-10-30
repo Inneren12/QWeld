@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_nozzle_care_1000006b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Почему keep the GMAW (MIG/MAG) сопло and токоподводящего наконечника clean?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To увеличивает spatter"
+    },
+    {
+      "id": "B",
+      "text": "To maintain gas coverage and stable electrical контактный"
+    },
+    {
+      "id": "C",
+      "text": "To уменьшить deposition rate"
+    },
+    {
+      "id": "D",
+      "text": "To cool the wire"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Spatter buildup disturbs shielding and electrical continuity."
+  }
+}

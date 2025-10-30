@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_arc_length_short_20000061",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Maintaining a short arc length generally:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Improves shielding and reduces spatter"
+    },
+    {
+      "id": "B",
+      "text": "Increases undercut"
+    },
+    {
+      "id": "C",
+      "text": "Has no effect"
+    },
+    {
+      "id": "D",
+      "text": "Prevents fusion"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Short arcs improve shielding effectiveness and bead control."
+  }
+}

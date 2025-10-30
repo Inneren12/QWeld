@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_confined_space_o2_1000000a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "Which oxygen range is considered acceptable for entry into a confined space?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "16–18% oxygen"
+    },
+    {
+      "id": "B",
+      "text": "19.5–23.5% oxygen"
+    },
+    {
+      "id": "C",
+      "text": "Above 24% oxygen"
+    },
+    {
+      "id": "D",
+      "text": "Any level if wearing a respirator"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Atmospheres between ~19.5% and 23.5% oxygen are considered acceptable for entry."
+  }
+}

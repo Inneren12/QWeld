@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_three_four_five_v1_02_30000002",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "What is the 3-4-5 rule used for during layout?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Measuring thickness"
+    },
+    {
+      "id": "B",
+      "text": "Checking 90° squareness by forming a 3-4-5 triangle"
+    },
+    {
+      "id": "C",
+      "text": "Leveling a table"
+    },
+    {
+      "id": "D",
+      "text": "Finding the center of a circle"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A 3-4-5 triangle forms a right angle and verifies squareness."
+  }
+}

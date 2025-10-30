@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_ctwd_long_effect_v9_04_400000ae",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Чрезмерный вылета/CTWD in GMAW (MIG/MAG)/FCAW (порошковая) causes:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Higher ток/deeper проплавление"
+    },
+    {
+      "id": "B",
+      "text": "Lower ток/reduced проплавление"
+    },
+    {
+      "id": "C",
+      "text": "No change"
+    },
+    {
+      "id": "D",
+      "text": "Cleaner arc starts"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Long вылета increases resistive heating, lowering ток."
+  }
+}

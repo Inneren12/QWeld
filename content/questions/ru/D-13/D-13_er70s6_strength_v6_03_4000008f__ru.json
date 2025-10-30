@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_er70s6_strength_v6_03_4000008f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "In ER70S-6, what does '70' indicate?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "70% защитного газа efficiency"
+    },
+    {
+      "id": "B",
+      "text": "70,000 psi minimum tensile прочность"
+    },
+    {
+      "id": "C",
+      "text": "70 A проволока feed"
+    },
+    {
+      "id": "D",
+      "text": "70° горелка angle"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "'70' = 70 ksi minimum tensile прочность."
+  }
+}

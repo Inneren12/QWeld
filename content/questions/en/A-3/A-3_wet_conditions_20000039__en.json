@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_wet_conditions_20000039",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "If welding must be performed in damp conditions, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Stand in water for stability"
+    },
+    {
+      "id": "B",
+      "text": "Use GFCI protection, dry platforms, and extra insulation"
+    },
+    {
+      "id": "C",
+      "text": "Remove gloves to feel the heat"
+    },
+    {
+      "id": "D",
+      "text": "Ignore site rules for speed"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Use dry platforms, GFCI, and insulation to reduce shock risk."
+  }
+}

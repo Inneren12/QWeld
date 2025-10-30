@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_trial_lift_10000007",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "easy",
+  "stem": "Когда the exact weight of a load — unknown, что — the safest approach?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Guess the weight by the size of the load"
+    },
+    {
+      "id": "B",
+      "text": "Use rated slings and perform a short, controlled пробный подъём"
+    },
+    {
+      "id": "C",
+      "text": "Подъём quickly to avoid swinging"
+    },
+    {
+      "id": "D",
+      "text": "Ride on the load to watch clearances"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A brief пробный подъём lets you verify balance and capacity while staying within control."
+  }
+}

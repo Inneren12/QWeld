@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_wfs_controls_current_1000006a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "In a CV GMAW system, which control primarily changes welding current?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Voltage knob"
+    },
+    {
+      "id": "B",
+      "text": "Wire feed speed"
+    },
+    {
+      "id": "C",
+      "text": "Inductance"
+    },
+    {
+      "id": "D",
+      "text": "Gas flow rate"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "At constant voltage, increasing WFS raises current and deposition rate."
+  }
+}

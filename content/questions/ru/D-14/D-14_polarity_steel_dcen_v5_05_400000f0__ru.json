@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_polarity_steel_dcen_v5_05_400000f0",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Какая полярность is standard for GTAW (TIG) on carbon steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (прямая полярность) (электрод negative)"
+    },
+    {
+      "id": "B",
+      "text": "DCEP (обратная полярность) (электрод positive)"
+    },
+    {
+      "id": "C",
+      "text": "AC (переменный ток) only"
+    },
+    {
+      "id": "D",
+      "text": "Either with no effect"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "DCEN (прямая полярность) focuses heat into the work and protects вольфрамовый электрод."
+  }
+}

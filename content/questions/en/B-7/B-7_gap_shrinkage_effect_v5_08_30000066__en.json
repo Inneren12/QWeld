@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_gap_shrinkage_effect_v5_08_30000066",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "If the root gap is too tight during fit-up, the likely result is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Excessive root penetration"
+    },
+    {
+      "id": "B",
+      "text": "Lack of root penetration/fusion"
+    },
+    {
+      "id": "C",
+      "text": "Perfect fusion in all cases"
+    },
+    {
+      "id": "D",
+      "text": "No effect"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Insufficient gap can prevent root penetration."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-11_air_volume_dry_v1_06_300000d8",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-11",
+  "difficulty": "easy",
+  "stem": "What air supply is required for CAC-A?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Low-volume air works best"
+    },
+    {
+      "id": "B",
+      "text": "High-volume, dry air to blow molten metal clear"
+    },
+    {
+      "id": "C",
+      "text": "No air is needed"
+    },
+    {
+      "id": "D",
+      "text": "Use oxygen for faster gouging"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A high-volume stream of dry compressed air clears molten metal."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_valve_cracking_v1_05_3000009b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "easy",
+  "stem": "Cracking a cylinder valve briefly before attaching a regulator помогает to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Waste gas"
+    },
+    {
+      "id": "B",
+      "text": "Blow dust/debris away from the outlet seat"
+    },
+    {
+      "id": "C",
+      "text": "Cool the valve"
+    },
+    {
+      "id": "D",
+      "text": "Test the regulator threads"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Cracking clears contaminants that could damage regulators."
+  }
+}

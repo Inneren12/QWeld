@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_inductance_effect_v9_03_400000ad",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "hard",
+  "stem": "In короткозамыкательного GMAW (MIG/MAG), increasing индуктивности generally:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Makes arc harsher with more spatter"
+    },
+    {
+      "id": "B",
+      "text": "Softens arc and reduces spatter"
+    },
+    {
+      "id": "C",
+      "text": "Has no effect"
+    },
+    {
+      "id": "D",
+      "text": "Prevents сплавление"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Greater индуктивности slows ток rise and reduces spatter."
+  }
+}

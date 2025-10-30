@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_dross_speed_1000003e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "medium",
+  "stem": "Heavy bottom пригар — usually a sign of что?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Travel speed too fast"
+    },
+    {
+      "id": "B",
+      "text": "Travel speed too slow"
+    },
+    {
+      "id": "C",
+      "text": "Ток set too high только"
+    },
+    {
+      "id": "D",
+      "text": "Shielding gas type — wrong"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Slow travel lets molten metal solidify on the lower edge, forming heavy пригар."
+  }
+}

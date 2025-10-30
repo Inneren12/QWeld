@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7018_current_10000055",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Какие режимы источника питания can E7018 typically run on?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (прямая полярность) (прямая полярность) только"
+    },
+    {
+      "id": "B",
+      "text": "DCEP (обратная полярность) (обратная полярность) or AC (переменный ток), per manufacturer"
+    },
+    {
+      "id": "C",
+      "text": "Только AC (переменный ток) (переменный ток)"
+    },
+    {
+      "id": "D",
+      "text": "DCEP (обратная полярность) (обратная полярность) только, never AC (переменный ток)"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "E7018 — usually suitable for DCEP (обратная полярность) (обратная полярность) and often AC (переменный ток) depending on brand/WPS."
+  }
+}

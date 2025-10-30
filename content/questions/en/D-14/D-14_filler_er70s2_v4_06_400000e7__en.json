@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_filler_er70s2_v4_06_400000e7",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Which filler classification is common for GTAW on carbon steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "ER70S‑2"
+    },
+    {
+      "id": "B",
+      "text": "E7018"
+    },
+    {
+      "id": "C",
+      "text": "ER308L"
+    },
+    {
+      "id": "D",
+      "text": "E71T‑1"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "ER70S‑2 is a deoxidized filler for GTAW on carbon steel."
+  }
+}

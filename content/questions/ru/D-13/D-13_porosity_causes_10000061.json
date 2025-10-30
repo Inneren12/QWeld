@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_porosity_causes_10000061",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Что может вызвать пористости in GMAW (MIG/MAG)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Drafts, improper gas flow, or surface contamination"
+    },
+    {
+      "id": "B",
+      "text": "Higher напряжение только"
+    },
+    {
+      "id": "C",
+      "text": "Small wire diameter"
+    },
+    {
+      "id": "D",
+      "text": "Using a gas lens"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Shielding disruption and contaminants allow gas pores to form."
+  }
+}

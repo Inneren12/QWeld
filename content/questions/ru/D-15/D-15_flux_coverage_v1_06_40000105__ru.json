@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_flux_coverage_v1_06_40000105",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "easy",
+  "stem": "During SAW (под флюсом), the arc should be:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Fully covered by флюса"
+    },
+    {
+      "id": "B",
+      "text": "Barely covered by флюса"
+    },
+    {
+      "id": "C",
+      "text": "Exposed for visibility"
+    },
+    {
+      "id": "D",
+      "text": "Alternatingly exposed"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Full флюса coverage provides защитного газа and шлака formation."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_crater_fill_reason_v2_03_40000067",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Зачем использовать crater-fill or a back-step at end of a GMAW (MIG/MAG) валик?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Save time"
+    },
+    {
+      "id": "B",
+      "text": "Reduce crater растрескивание and underfill"
+    },
+    {
+      "id": "C",
+      "text": "Increase spatter"
+    },
+    {
+      "id": "D",
+      "text": "Cool the горелка"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Filling the crater avoids shrinkage cracks/underfill."
+  }
+}

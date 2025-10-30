@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_nozzle_tip_clean_v2_09_4000006d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Почему keep the сопла and токоподводящего наконечника clean?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Increase spatter"
+    },
+    {
+      "id": "B",
+      "text": "Maintain газ coverage and stable contact"
+    },
+    {
+      "id": "C",
+      "text": "Reduce deположение rate"
+    },
+    {
+      "id": "D",
+      "text": "Cool the проволока"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Spatter buildup disturbs защитного газа/electrical continuity."
+  }
+}

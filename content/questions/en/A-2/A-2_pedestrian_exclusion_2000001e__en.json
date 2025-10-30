@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_pedestrian_exclusion_2000001e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "easy",
+  "stem": "During a lift with a crane or hoist, bystanders should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Walk under the suspended load quickly"
+    },
+    {
+      "id": "B",
+      "text": "Stand close to guide by hand"
+    },
+    {
+      "id": "C",
+      "text": "Stay out of the fall zone and use barriers/tag lines"
+    },
+    {
+      "id": "D",
+      "text": "Ride on the hook for better view"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Keep people out of the fall zone; use tag lines to control the load."
+  }
+}

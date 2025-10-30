@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_cog_estimate_20000024",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "medium",
+  "stem": "Before lifting an irregular load, you should locate the центра тяжести so that:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "The hook is below the COG"
+    },
+    {
+      "id": "B",
+      "text": "The hook is directly above or slightly past the COG toward the heavy end"
+    },
+    {
+      "id": "C",
+      "text": "The hook is far to one side"
+    },
+    {
+      "id": "D",
+      "text": "COG position is irrelevant"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Suspending above/just past the COG помогает the load hang level without tipping."
+  }
+}

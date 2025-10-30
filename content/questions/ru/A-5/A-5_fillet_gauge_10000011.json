@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_fillet_gauge_10000011",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Что a калибра для угловых швов measure?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Пористость size"
+    },
+    {
+      "id": "B",
+      "text": "Fillet leg size or effective throat"
+    },
+    {
+      "id": "C",
+      "text": "Preheat temperature"
+    },
+    {
+      "id": "D",
+      "text": "Tensile strength"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Fillet gauges verify leg length and throat to drawing or code requirements."
+  }
+}

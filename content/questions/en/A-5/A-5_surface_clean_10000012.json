@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_surface_clean_10000012",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Why remove oil, rust, paint, and mill scale before welding?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Mill scale never affects quality"
+    },
+    {
+      "id": "B",
+      "text": "To reduce porosity and lack of fusion"
+    },
+    {
+      "id": "C",
+      "text": "Paint improves arc stability"
+    },
+    {
+      "id": "D",
+      "text": "Dirt adds helpful alloying elements"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Contaminants cause gas generation and prevent fusion at the interface."
+  }
+}

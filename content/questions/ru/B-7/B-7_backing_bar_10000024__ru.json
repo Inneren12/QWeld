@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_backing_bar_10000024",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "easy",
+  "stem": "Какова цель a подкладки (планки)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "It supports the root pass and helps предотвращает burn-through"
+    },
+    {
+      "id": "B",
+      "text": "It adds no benefit"
+    },
+    {
+      "id": "C",
+      "text": "It — forbidden by all codes"
+    },
+    {
+      "id": "D",
+      "text": "It replaces all tacking"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Backing обеспечивает support and can aid complete joint проплавление."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_flowmeter_vertical_20000004",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "Как следует a ball‑type расходомера be positioned for an accurate reading?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "At any angle; it self-levels"
+    },
+    {
+      "id": "B",
+      "text": "Horizontally, so the ball rolls freely"
+    },
+    {
+      "id": "C",
+      "text": "Vertically, with the tube upright"
+    },
+    {
+      "id": "D",
+      "text": "Upside down to prevent dust entry"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Ball‑type расходомераs are read in a vertical position."
+  }
+}

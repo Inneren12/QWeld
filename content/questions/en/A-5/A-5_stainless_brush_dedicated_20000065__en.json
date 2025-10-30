@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_stainless_brush_dedicated_20000065",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "On stainless steel, use a wire brush that is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Previously used on carbon steel"
+    },
+    {
+      "id": "B",
+      "text": "Dedicated stainless‑only"
+    },
+    {
+      "id": "C",
+      "text": "Oily for lubrication"
+    },
+    {
+      "id": "D",
+      "text": "Made of aluminum"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Avoid cross‑contamination; use stainless‑only brushes on stainless."
+  }
+}

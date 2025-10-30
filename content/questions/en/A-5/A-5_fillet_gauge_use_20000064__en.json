@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_fillet_gauge_use_20000064",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "A fillet‑weld gauge is used to measure:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Voltage"
+    },
+    {
+      "id": "B",
+      "text": "Fillet leg size/effective throat"
+    },
+    {
+      "id": "C",
+      "text": "Gas flow"
+    },
+    {
+      "id": "D",
+      "text": "Surface roughness"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Gauges verify fillet size against requirements."
+  }
+}

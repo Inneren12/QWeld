@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_burn_first_aid_20000036",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "easy",
+  "stem": "For a minor thermal burn, initial first aid usually involves:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Applying grease to seal the skin"
+    },
+    {
+      "id": "B",
+      "text": "Cooling the area with cool running water and seeking care if needed"
+    },
+    {
+      "id": "C",
+      "text": "Popping blisters to relieve pressure"
+    },
+    {
+      "id": "D",
+      "text": "Applying strong solvent"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Cool the burn with water; avoid ointments/grease initially."
+  }
+}

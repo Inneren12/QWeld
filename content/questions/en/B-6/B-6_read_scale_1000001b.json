@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_read_scale_1000001b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "How should a steel rule be read for accuracy?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Estimate by eye only"
+    },
+    {
+      "id": "B",
+      "text": "Read to the smallest graduation on the rule"
+    },
+    {
+      "id": "C",
+      "text": "Ignore the zero edge"
+    },
+    {
+      "id": "D",
+      "text": "Always round up"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Read the finest graduation available to reduce measurement error."
+  }
+}

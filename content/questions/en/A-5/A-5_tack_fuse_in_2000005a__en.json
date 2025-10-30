@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_tack_fuse_in_2000005a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "How should tack welds be prepared for incorporation into the final weld?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Leave sharp, unfused ends"
+    },
+    {
+      "id": "B",
+      "text": "Feather/clean tacks so they fuse smoothly into the weld"
+    },
+    {
+      "id": "C",
+      "text": "Always grind them out"
+    },
+    {
+      "id": "D",
+      "text": "Cover with paint first"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Feathered, clean tacks reduce lack‑of‑fusion at tie‑ins."
+  }
+}

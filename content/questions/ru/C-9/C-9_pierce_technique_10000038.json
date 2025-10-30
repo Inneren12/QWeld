@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_pierce_technique_10000038",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "medium",
+  "stem": "Какой верный приём для piercing a plate with кислородно-топливного?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Place the наконечник flat and go to full кислород immediately"
+    },
+    {
+      "id": "B",
+      "text": "Tilt the наконечник, предварительного подогрева, then use the кислород jet to pierce"
+    },
+    {
+      "id": "C",
+      "text": "Только start on the edge"
+    },
+    {
+      "id": "D",
+      "text": "Point straight down without предварительного подогрева"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Preheating and a slight tilt help предотвращает blowback and наконечник damage."
+  }
+}

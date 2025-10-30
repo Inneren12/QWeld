@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_excess_gas_flow_v1_08_400000cb",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "Too much GTAW shielding gas flow can cause:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Improved laminar flow"
+    },
+    {
+      "id": "B",
+      "text": "Turbulence that draws in air"
+    },
+    {
+      "id": "C",
+      "text": "No effect"
+    },
+    {
+      "id": "D",
+      "text": "Higher penetration"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Too much flow creates turbulence and contamination."
+  }
+}

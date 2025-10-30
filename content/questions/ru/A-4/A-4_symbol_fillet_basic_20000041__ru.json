@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_symbol_fillet_basic_20000041",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "easy",
+  "stem": "На сварочных чертежах, the basic triangular weld symbol indicates a:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Plug weld"
+    },
+    {
+      "id": "B",
+      "text": "Fillet weld"
+    },
+    {
+      "id": "C",
+      "text": "Spot weld"
+    },
+    {
+      "id": "D",
+      "text": "Surfacing overlay"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "The triangular symbol denotes a угловой шов per common drafting standards."
+  }
+}

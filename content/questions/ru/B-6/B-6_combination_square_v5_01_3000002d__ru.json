@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_combination_square_v5_01_3000002d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "A комбинированного угольника can be used to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Mix paints"
+    },
+    {
+      "id": "B",
+      "text": "Check 90°/45° and measure offsets"
+    },
+    {
+      "id": "C",
+      "text": "Read amperage"
+    },
+    {
+      "id": "D",
+      "text": "Set spindle speeds"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Combination squares check squareness and setoffs quickly."
+  }
+}

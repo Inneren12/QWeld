@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_flux_coverage_v1_06_40000105",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "easy",
+  "stem": "During SAW, the arc should be:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Fully covered by flux"
+    },
+    {
+      "id": "B",
+      "text": "Barely covered by flux"
+    },
+    {
+      "id": "C",
+      "text": "Exposed for visibility"
+    },
+    {
+      "id": "D",
+      "text": "Alternatingly exposed"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Full flux coverage provides shielding and slag formation."
+  }
+}

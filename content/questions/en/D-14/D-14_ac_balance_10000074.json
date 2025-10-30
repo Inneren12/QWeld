@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_ac_balance_10000074",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "hard",
+  "stem": "Increasing the electrode‑positive (EP) portion of AC balance in GTAW will:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Increase oxide cleaning but heat the tungsten more"
+    },
+    {
+      "id": "B",
+      "text": "Reduce cleaning and cool the tungsten"
+    },
+    {
+      "id": "C",
+      "text": "Not change cleaning action"
+    },
+    {
+      "id": "D",
+      "text": "Stop the arc"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "More EP enhances cathodic cleaning while raising tungsten temperature."
+  }
+}

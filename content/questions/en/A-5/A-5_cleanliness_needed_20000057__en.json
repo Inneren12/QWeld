@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_cleanliness_needed_20000057",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Why remove mill scale, paint, and oil before welding?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They improve fusion"
+    },
+    {
+      "id": "B",
+      "text": "They can cause porosity and lack of fusion"
+    },
+    {
+      "id": "C",
+      "text": "They increase tensile strength"
+    },
+    {
+      "id": "D",
+      "text": "They reduce spatter"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Contaminants produce gas and block fusion, causing defects."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_backing_bar_purpose_v3_07_3000004f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "easy",
+  "stem": "Что is the purpose of a подкладки (планки)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To support the корень шва pass and help prevent burn-through"
+    },
+    {
+      "id": "B",
+      "text": "To add no benefit"
+    },
+    {
+      "id": "C",
+      "text": "To replace all tacks"
+    },
+    {
+      "id": "D",
+      "text": "It is forbidden by all codes"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Backing supports the корень шва and can aid complete penetration."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_strongbacks_function_v3_09_30000051",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "What is the function of strongbacks during fabrication?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They increase warpage"
+    },
+    {
+      "id": "B",
+      "text": "They restrain parts to counteract distortion"
+    },
+    {
+      "id": "C",
+      "text": "They are lifting devices"
+    },
+    {
+      "id": "D",
+      "text": "They replace preheat"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Strongbacks hold alignment and reduce distortion."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_crater_fill_10000016",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "What should be done at the end of a weld bead?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Leave the crater as‑is"
+    },
+    {
+      "id": "B",
+      "text": "Blend and fill the crater before stopping"
+    },
+    {
+      "id": "C",
+      "text": "Strike a new arc on the finished face"
+    },
+    {
+      "id": "D",
+      "text": "Never grind defects"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Filling craters reduces the risk of crater cracking."
+  }
+}

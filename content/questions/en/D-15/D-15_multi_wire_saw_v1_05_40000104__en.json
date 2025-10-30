@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_multi_wire_saw_v1_05_40000104",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "medium",
+  "stem": "A benefit of multi‑wire SAW systems is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Lower deposition rate"
+    },
+    {
+      "id": "B",
+      "text": "Higher deposition rate and productivity"
+    },
+    {
+      "id": "C",
+      "text": "Elimination of flux"
+    },
+    {
+      "id": "D",
+      "text": "All‑position capability"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Multiple wires increase deposition/productivity."
+  }
+}

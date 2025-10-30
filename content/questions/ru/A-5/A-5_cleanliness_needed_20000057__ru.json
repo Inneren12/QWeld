@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_cleanliness_needed_20000057",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Почему remove mill scale, paint, and oil before сварки?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They improve fusion"
+    },
+    {
+      "id": "B",
+      "text": "They can cause пористости and недостаточного сплавления"
+    },
+    {
+      "id": "C",
+      "text": "They increase tensile strength"
+    },
+    {
+      "id": "D",
+      "text": "They reduce брызг"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Contaminants produce gas and block fusion, causing defects."
+  }
+}

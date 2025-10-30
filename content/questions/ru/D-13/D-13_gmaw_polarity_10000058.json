@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_gmaw_polarity_10000058",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Какая полярность — standard for GMAW (MIG/MAG) and most gas-shielded FCAW (порошковая) wires?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (прямая полярность) (прямая полярность)"
+    },
+    {
+      "id": "B",
+      "text": "DCEP (обратная полярность) (обратная полярность)"
+    },
+    {
+      "id": "C",
+      "text": "Только AC (переменный ток) (переменный ток)"
+    },
+    {
+      "id": "D",
+      "text": "Любая — без разницы"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Solid and gas-shielded флюс-cored wires typically use электрод positive (DCEP (обратная полярность) (обратная полярность))."
+  }
+}

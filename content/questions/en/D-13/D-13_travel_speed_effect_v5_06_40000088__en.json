@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_travel_speed_effect_v5_06_40000088",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Increasing travel speed (all else equal) results in:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wider, deeper bead"
+    },
+    {
+      "id": "B",
+      "text": "Narrower bead with less penetration"
+    },
+    {
+      "id": "C",
+      "text": "No change"
+    },
+    {
+      "id": "D",
+      "text": "Eliminates distortion"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Higher speed reduces heat input and penetration."
+  }
+}

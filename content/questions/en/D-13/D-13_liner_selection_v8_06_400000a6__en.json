@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_liner_selection_v8_06_400000a6",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "For soft wires (aluminum), which liner is appropriate?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Steel‑wound liner"
+    },
+    {
+      "id": "B",
+      "text": "Teflon/UHMW‑type liner"
+    },
+    {
+      "id": "C",
+      "text": "Any liner is fine"
+    },
+    {
+      "id": "D",
+      "text": "No liner needed"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Low‑friction liners reduce drag and shavings."
+  }
+}

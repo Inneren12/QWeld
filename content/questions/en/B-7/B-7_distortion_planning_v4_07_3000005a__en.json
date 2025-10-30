@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_distortion_planning_v4_07_3000005a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "How should distortion be addressed during planning?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Assume shrinkage is random"
+    },
+    {
+      "id": "B",
+      "text": "Plan fit and sequence to allow for predicted shrinkage"
+    },
+    {
+      "id": "C",
+      "text": "Avoid clamps"
+    },
+    {
+      "id": "D",
+      "text": "Heat input is unrelated to distortion"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Anticipating shrinkage enables countermeasures."
+  }
+}

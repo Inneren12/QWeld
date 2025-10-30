@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_tip_cleaning_v2_06_300000a7",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "medium",
+  "stem": "Почему clean кислородно‑топливной cutting соплаs with correct сопла cleaners?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To enlarge the orifices for more flow"
+    },
+    {
+      "id": "B",
+      "text": "To maintain proper orifice size/shape and cut quality"
+    },
+    {
+      "id": "C",
+      "text": "To reduce подогрева"
+    },
+    {
+      "id": "D",
+      "text": "To scratch off plating"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Proper cleaners keep orifices correct, preserving flame shape and quality."
+  }
+}

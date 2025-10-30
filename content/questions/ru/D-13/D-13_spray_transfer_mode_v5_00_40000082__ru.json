@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_spray_transfer_mode_v5_00_40000082",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Какой режим переноса provides a continuous stream of fine droplets?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Short-circuit"
+    },
+    {
+      "id": "B",
+      "text": "Globular"
+    },
+    {
+      "id": "C",
+      "text": "Spray"
+    },
+    {
+      "id": "D",
+      "text": "Pulsed"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Spray transfer delivers fine droplets axially."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_wfs_controls_current_v2_08_4000006c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "In a CV GMAW system, which setting primarily changes current?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Voltage control"
+    },
+    {
+      "id": "B",
+      "text": "Wire feed speed"
+    },
+    {
+      "id": "C",
+      "text": "Inductance"
+    },
+    {
+      "id": "D",
+      "text": "Gas flow rate"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Increasing WFS raises current/deposition."
+  }
+}

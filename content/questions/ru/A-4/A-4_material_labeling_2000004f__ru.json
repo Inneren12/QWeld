@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_material_labeling_2000004f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "easy",
+  "stem": "To prevent mix-ups between similar materials, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Удалить all markings"
+    },
+    {
+      "id": "B",
+      "text": "Label clearly and segregate storage locations"
+    },
+    {
+      "id": "C",
+      "text": "Store everything in one bin"
+    },
+    {
+      "id": "D",
+      "text": "Использовать color only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Clear labels and segregation prevent material mix-ups."
+  }
+}

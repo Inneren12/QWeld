@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_gtaw_polarity_steel_1000006d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Which polarity is standard for GTAW on carbon steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (electrode negative)"
+    },
+    {
+      "id": "B",
+      "text": "DCEP (electrode positive)"
+    },
+    {
+      "id": "C",
+      "text": "AC only"
+    },
+    {
+      "id": "D",
+      "text": "Either with no effect"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "DCEN focuses heat into the work for deep penetration and protects the tungsten."
+  }
+}

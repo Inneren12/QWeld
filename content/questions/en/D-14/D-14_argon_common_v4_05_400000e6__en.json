@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_argon_common_v4_05_400000e6",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Which gas is commonly used for GTAW shielding and purge?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Argon"
+    },
+    {
+      "id": "B",
+      "text": "Carbon dioxide"
+    },
+    {
+      "id": "C",
+      "text": "Oxygen"
+    },
+    {
+      "id": "D",
+      "text": "Dry air"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Argon is inert and widely used."
+  }
+}

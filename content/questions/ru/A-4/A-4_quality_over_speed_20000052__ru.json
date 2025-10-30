@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_quality_over_speed_20000052",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "medium",
+  "stem": "If schedule pressure conflicts with WPS (спецификации сварочного процесса) requirements, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Skip предварительный подогрев to save time"
+    },
+    {
+      "id": "B",
+      "text": "Follow the WPS (спецификации сварочного процесса) and escalate schedule concerns"
+    },
+    {
+      "id": "C",
+      "text": "Use any электрода available"
+    },
+    {
+      "id": "D",
+      "text": "Reduce inspections"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "WPS (спецификации сварочного процесса) requirements take precedence; raise timing issues to supervision."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_travel_speed_heat_2000006b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "Increasing travel speed (all else equal) generally:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Raises heat input"
+    },
+    {
+      "id": "B",
+      "text": "Lowers heat input and narrows the bead"
+    },
+    {
+      "id": "C",
+      "text": "Does not affect heat input"
+    },
+    {
+      "id": "D",
+      "text": "Increases penetration"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Higher travel speed reduces heat input and penetration."
+  }
+}

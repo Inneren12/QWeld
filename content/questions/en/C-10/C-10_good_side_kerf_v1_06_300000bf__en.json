@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_good_side_kerf_v1_06_300000bf",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "medium",
+  "stem": "Due to kerf angle in PAC, a good practice is to place the 'good side' of the cut:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "On the scrap side"
+    },
+    {
+      "id": "B",
+      "text": "On the side where squareness is most critical"
+    },
+    {
+      "id": "C",
+      "text": "Opposite the direction of travel always"
+    },
+    {
+      "id": "D",
+      "text": "It does not matter"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Plan cut direction so the squarer edge is on the finished side."
+  }
+}

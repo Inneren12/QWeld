@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_sling_angle_10000005",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "medium",
+  "stem": "How does sling angle affect tension in a two-leg lift?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Smaller angles reduce tension in each leg"
+    },
+    {
+      "id": "B",
+      "text": "Smaller angles increase tension in each leg"
+    },
+    {
+      "id": "C",
+      "text": "Angle has no effect on leg tension"
+    },
+    {
+      "id": "D",
+      "text": "Larger angles always increase tension"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "As the angle from horizontal decreases, leg tension rises significantly."
+  }
+}

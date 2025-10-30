@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_fcaW_s_polarity_10000069",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Most self-shielded FCAW (порошковая) wires run on:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (прямая полярность) (прямая полярность)"
+    },
+    {
+      "id": "B",
+      "text": "DCEP (обратная полярность) (обратная полярность)"
+    },
+    {
+      "id": "C",
+      "text": "Только AC (переменный ток) (переменный ток)"
+    },
+    {
+      "id": "D",
+      "text": "Either полярность"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Popular self-shielded classifications (e.g., E71T-8) use DCEN (прямая полярность) (прямая полярность)."
+  }
+}

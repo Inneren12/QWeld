@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_dross_slow_speed_v2_10_300000ce",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "medium",
+  "stem": "Heavy bottom dross is usually a sign of:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Travel speed too fast"
+    },
+    {
+      "id": "B",
+      "text": "Travel speed too slow"
+    },
+    {
+      "id": "C",
+      "text": "Current too high only"
+    },
+    {
+      "id": "D",
+      "text": "Wrong shielding gas only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Slow travel allows molten metal to solidify along the lower edge."
+  }
+}

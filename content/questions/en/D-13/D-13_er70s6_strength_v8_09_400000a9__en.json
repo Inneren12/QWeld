@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_er70s6_strength_v8_09_400000a9",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "In ER70S‑6, what does '70' indicate?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "70% shielding efficiency"
+    },
+    {
+      "id": "B",
+      "text": "70,000 psi minimum tensile strength"
+    },
+    {
+      "id": "C",
+      "text": "70 A wire feed"
+    },
+    {
+      "id": "D",
+      "text": "70° torch angle"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "'70' = 70 ksi minimum tensile strength."
+  }
+}

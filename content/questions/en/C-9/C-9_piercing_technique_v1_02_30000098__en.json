@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_piercing_technique_v1_02_30000098",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "medium",
+  "stem": "For piercing a plate with oxy-fuel, a good technique is to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Place the tip flat and go to full oxygen immediately"
+    },
+    {
+      "id": "B",
+      "text": "Tilt the tip, preheat, then use the oxygen jet to pierce"
+    },
+    {
+      "id": "C",
+      "text": "Only start from the edge"
+    },
+    {
+      "id": "D",
+      "text": "Point straight down without preheat"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Preheat and a slight tilt help prevent blowback and tip damage."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_backing_strip_removal_20000068",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "If a temporary backing strip is used and drawings require removal, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Leave it in place to save time"
+    },
+    {
+      "id": "B",
+      "text": "Remove and grind smooth per drawing/WPS after welding"
+    },
+    {
+      "id": "C",
+      "text": "Remove only on one side"
+    },
+    {
+      "id": "D",
+      "text": "Paint over it"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Follow drawings/WPS for backing removal and finishing."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_undercut_causes_v5_07_4000002f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Какое condition commonly leads to undercut in SMAW (ручная дуговая)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Чрезмерный скорость перемещения or a long arc"
+    },
+    {
+      "id": "B",
+      "text": "Low скорость перемещения with short arc"
+    },
+    {
+      "id": "C",
+      "text": "Small электрод diameter"
+    },
+    {
+      "id": "D",
+      "text": "Stringer валикs"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "High speed/long arc washes metal from toes, causing undercut."
+  }
+}

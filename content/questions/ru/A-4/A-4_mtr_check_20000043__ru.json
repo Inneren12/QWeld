@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_mtr_check_20000043",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "medium",
+  "stem": "Почему сертификатов МК (MTR) (MTRs) reviewed before fabrication?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To choose paint colors"
+    },
+    {
+      "id": "B",
+      "text": "To verify material grade/heat meets specifications"
+    },
+    {
+      "id": "C",
+      "text": "To estimate power costs"
+    },
+    {
+      "id": "D",
+      "text": "To pick сварки position"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "сертификаты заводских испытаний (MTR) confirm grade and heat/chemistry meet the job requirements."
+  }
+}

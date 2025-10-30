@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_arc_blow_1000004e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Как можно arc blow be reduced during SMAW (ручная дуговая)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Lengthen the arc and увеличивает ток"
+    },
+    {
+      "id": "B",
+      "text": "Shorten the arc, move the work lead, or backstep"
+    },
+    {
+      "id": "C",
+      "text": "Switch to a larger электрод только"
+    },
+    {
+      "id": "D",
+      "text": "Weld только in one direction"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Short arcs and better return lead placement уменьшить magnetic arc blow."
+  }
+}

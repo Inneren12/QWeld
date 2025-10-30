@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_gap_shrinkage_effect_v3_03_3000004b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "If the корень шва gap is too tight during fit-up, the likely result is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Excessive корень шва penetration"
+    },
+    {
+      "id": "B",
+      "text": "Lack of корень шва penetration/fusion"
+    },
+    {
+      "id": "C",
+      "text": "Perfect fusion in all cases"
+    },
+    {
+      "id": "D",
+      "text": "No effect"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Insufficient gap can prevent корень шва penetration."
+  }
+}

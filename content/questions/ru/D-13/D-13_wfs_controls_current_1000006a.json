@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_wfs_controls_current_1000006a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "In a CV GMAW (MIG/MAG) system, какое control primarily changes welding ток?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Напряжение knob"
+    },
+    {
+      "id": "B",
+      "text": "Wire feed speed"
+    },
+    {
+      "id": "C",
+      "text": "Индуктивность"
+    },
+    {
+      "id": "D",
+      "text": "Gas flow rate"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "At constant напряжение, increasing WFS raises ток and deposition rate."
+  }
+}

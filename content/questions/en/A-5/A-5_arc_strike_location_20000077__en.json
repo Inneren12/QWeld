@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_arc_strike_location_20000077",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "To avoid hard spots and cracking from stray arc strikes, where should arc strikes be made?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Anywhere on the base metal and ground later"
+    },
+    {
+      "id": "B",
+      "text": "Only within the joint area or on run‑on tabs"
+    },
+    {
+      "id": "C",
+      "text": "On machined surfaces away from the joint"
+    },
+    {
+      "id": "D",
+      "text": "On painted areas to protect the steel"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Arc strikes can create hard spots/cracks; strike within the joint or on tabs, and remove any stray strikes per procedure."
+  }
+}

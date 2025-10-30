@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_runon_tabs_1000002a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Зачем устанавливать планок разгона и сбега?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They — cosmetic только"
+    },
+    {
+      "id": "B",
+      "text": "Чтобы получить full сплавление at tie-ins and protect part edges"
+    },
+    {
+      "id": "C",
+      "text": "For lifting points"
+    },
+    {
+      "id": "D",
+      "text": "They make the weld weaker"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Tabs allow starting/ending outside the part for complete сплавление."
+  }
+}

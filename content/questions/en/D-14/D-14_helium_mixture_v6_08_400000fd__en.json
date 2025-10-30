@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_helium_mixture_v6_08_400000fd",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "Adding helium to argon shielding generally:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Reduces heat input"
+    },
+    {
+      "id": "B",
+      "text": "Increases heat/penetration and travel speed"
+    },
+    {
+      "id": "C",
+      "text": "Eliminates need for AC"
+    },
+    {
+      "id": "D",
+      "text": "Always causes porosity"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "He‑Ar mixes raise arc voltage and heat input."
+  }
+}

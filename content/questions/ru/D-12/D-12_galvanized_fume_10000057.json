@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_galvanized_fume_10000057",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Что hazard — associated with welding galvanized steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "No special hazard compared to bare steel"
+    },
+    {
+      "id": "B",
+      "text": "Zinc fumes; remove покрытие locally and ensure ventilation"
+    },
+    {
+      "id": "C",
+      "text": "Helium leaks from pores"
+    },
+    {
+      "id": "D",
+      "text": "Aluminum oxide deposits"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Zinc fumes — hazardous; remove coatings where possible and ventilate adequately."
+  }
+}

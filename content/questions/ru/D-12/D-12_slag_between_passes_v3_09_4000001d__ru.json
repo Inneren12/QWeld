@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_slag_between_passes_v3_09_4000001d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Почему remove шлака between passes with E7018?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Optional; шлака burns out"
+    },
+    {
+      "id": "B",
+      "text": "To avoid шлака inclusions and lack of сплавление"
+    },
+    {
+      "id": "C",
+      "text": "To cool the joint"
+    },
+    {
+      "id": "D",
+      "text": "To increase arc length"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Slag can trap and prevent bonding on subsequent валикs."
+  }
+}

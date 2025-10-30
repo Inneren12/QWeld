@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_flux_function_v1_01_40000100",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "easy",
+  "stem": "What does SAW flux primarily provide?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Cooling water and lubrication"
+    },
+    {
+      "id": "B",
+      "text": "Shielding and slag formation"
+    },
+    {
+      "id": "C",
+      "text": "Electrical insulation only"
+    },
+    {
+      "id": "D",
+      "text": "Extra alloying only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Granular flux provides shielding/slag and sometimes alloying."
+  }
+}

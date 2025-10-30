@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_nozzle_care_1000006b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Why keep the GMAW nozzle and contact tip clean?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To increase spatter"
+    },
+    {
+      "id": "B",
+      "text": "To maintain gas coverage and stable electrical contact"
+    },
+    {
+      "id": "C",
+      "text": "To reduce deposition rate"
+    },
+    {
+      "id": "D",
+      "text": "To cool the wire"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Spatter buildup disturbs shielding and electrical continuity."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_plan_sequence_10000010",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "medium",
+  "stem": "Какова верная последовательность for organizing a welding job?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Start welding, then look for parts"
+    },
+    {
+      "id": "B",
+      "text": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
+    },
+    {
+      "id": "C",
+      "text": "Skip fit-up to save time"
+    },
+    {
+      "id": "D",
+      "text": "Ignore деформации until final inspection"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Planning with the ток WPS/drawings and confirmed materials предотвращает delays and rework."
+  }
+}

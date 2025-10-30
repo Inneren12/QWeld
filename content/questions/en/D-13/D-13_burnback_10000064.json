@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_burnback_10000064",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "What typically causes 'burnback' (wire fusing to the contact tip)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Too long stickout"
+    },
+    {
+      "id": "B",
+      "text": "Too short stickout or too slow wire feed relative to voltage"
+    },
+    {
+      "id": "C",
+      "text": "High gas flow"
+    },
+    {
+      "id": "D",
+      "text": "Correct inductance"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "If burnoff exceeds feed, the arc retreats and fuses the tip."
+  }
+}

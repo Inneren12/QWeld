@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_mig_liner_replace_2000000b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "medium",
+  "stem": "Признак того, что a GMAW gun канала подачи (лайнера) may need replacement is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Exceptionally smooth wire feed"
+    },
+    {
+      "id": "B",
+      "text": "Increased feeding resistance and birdnesting"
+    },
+    {
+      "id": "C",
+      "text": "Higher gas flow"
+    },
+    {
+      "id": "D",
+      "text": "Lower duty cycle"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Drag from a worn/dirty канала подачи (лайнера) can cause feeding issues and birdnesting."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_shade_selection_2000002d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "For eye protection during arc welding, a safe practice is to choose a filter shade:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Based on sunglasses tint"
+    },
+    {
+      "id": "B",
+      "text": "According to amperage and process tables"
+    },
+    {
+      "id": "C",
+      "text": "Always the darkest available"
+    },
+    {
+      "id": "D",
+      "text": "No filter needed for short arcs"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Select shade per tables/guidance for the process and current."
+  }
+}

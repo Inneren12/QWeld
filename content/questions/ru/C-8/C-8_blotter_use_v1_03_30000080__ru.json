@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-8_blotter_use_v1_03_30000080",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-8",
+  "difficulty": "medium",
+  "stem": "Почему are paper blotters used between wheel flanges and the wheel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Decoration only"
+    },
+    {
+      "id": "B",
+      "text": "They distribute clamping force and protect the wheel"
+    },
+    {
+      "id": "C",
+      "text": "They увеличивает vibration"
+    },
+    {
+      "id": "D",
+      "text": "They trap oil for lubrication"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Blotters spread load and reduce stress concentrations."
+  }
+}

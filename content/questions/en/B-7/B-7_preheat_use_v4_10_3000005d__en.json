@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_preheat_use_v4_10_3000005d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Preheating before welding primarily:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Increases cooling rate"
+    },
+    {
+      "id": "B",
+      "text": "Reduces cooling rate and hydrogen cracking risk"
+    },
+    {
+      "id": "C",
+      "text": "Eliminates interpass cleaning"
+    },
+    {
+      "id": "D",
+      "text": "Strengthens flux coating"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Preheat slows cooling and lowers crack risk."
+  }
+}

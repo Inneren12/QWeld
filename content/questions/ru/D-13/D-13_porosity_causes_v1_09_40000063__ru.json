@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_porosity_causes_v1_09_40000063",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Какое can cause пористости in GMAW (MIG/MAG)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Drafts, improper газ flow, contamination"
+    },
+    {
+      "id": "B",
+      "text": "Higher напряжение only"
+    },
+    {
+      "id": "C",
+      "text": "Small проволока diameter"
+    },
+    {
+      "id": "D",
+      "text": "Using a газ-линзы"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Shielding disruption and contaminants allow газ pores."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_chill_bars_1000002b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "How do chill bars help when welding thin material?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They increase heat input"
+    },
+    {
+      "id": "B",
+      "text": "They extract heat to control distortion"
+    },
+    {
+      "id": "C",
+      "text": "They measure temperature"
+    },
+    {
+      "id": "D",
+      "text": "They destabilize the arc"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Heat sinks pull heat away to limit distortion and burn‑through."
+  }
+}

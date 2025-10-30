@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_stainless_hexchrome_2000002a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "Welding on stainless steel can generate which specific hazard?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Helium gas exposure"
+    },
+    {
+      "id": "B",
+      "text": "Hexavalent chromium in fumes"
+    },
+    {
+      "id": "C",
+      "text": "Lead paint overspray only"
+    },
+    {
+      "id": "D",
+      "text": "Ozone‑free air"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Stainless welding can produce Cr(VI); use controls and PPE per requirements."
+  }
+}

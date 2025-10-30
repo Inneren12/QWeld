@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-11_polarity_dcep_v2_04_300000e1",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-11",
+  "difficulty": "easy",
+  "stem": "Which polarity is standard for air carbon arc gouging (CAC-A) with DC?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN (straight polarity)"
+    },
+    {
+      "id": "B",
+      "text": "DCEP (reverse polarity)"
+    },
+    {
+      "id": "C",
+      "text": "AC only"
+    },
+    {
+      "id": "D",
+      "text": "Any polarity is fine"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "DCEP helps project molten metal out of the groove."
+  }
+}

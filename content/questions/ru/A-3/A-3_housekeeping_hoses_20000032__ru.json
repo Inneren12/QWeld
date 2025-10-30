@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_housekeeping_hoses_20000032",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "easy",
+  "stem": "Как можно trip hazards from leads and рукаваs be reduced?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Run them across walkways"
+    },
+    {
+      "id": "B",
+      "text": "Lift them overhead or cover/cross at protected points"
+    },
+    {
+      "id": "C",
+      "text": "Hide them under loose cardboard"
+    },
+    {
+      "id": "D",
+      "text": "Ignore if only a few people pass"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Route overhead or cover crossings to reduce tripping."
+  }
+}

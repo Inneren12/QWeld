@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_helium_mixture_v6_08_400000fd",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "Adding helium to argon защитного газа generally:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Reduces тепловложение"
+    },
+    {
+      "id": "B",
+      "text": "Increases heat/проплавление and скорость перемещения"
+    },
+    {
+      "id": "C",
+      "text": "Eliminates need for AC (переменный ток)"
+    },
+    {
+      "id": "D",
+      "text": "Always causes пористости"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "He-Ar mixes raise arc напряжение and тепловложение."
+  }
+}

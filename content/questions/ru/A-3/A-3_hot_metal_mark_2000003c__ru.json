@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_hot_metal_mark_2000003c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "easy",
+  "stem": "After cutting/сварки, a good practice for newly heated parts is to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Leave them unmarked"
+    },
+    {
+      "id": "B",
+      "text": "Mark or tag them as 'HOT' and control the area"
+    },
+    {
+      "id": "C",
+      "text": "Cool them with oil"
+    },
+    {
+      "id": "D",
+      "text": "Place them in walkways"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Marking hot parts помогает prevent contact burns to others."
+  }
+}

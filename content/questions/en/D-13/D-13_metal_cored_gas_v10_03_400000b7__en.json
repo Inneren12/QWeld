@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_metal_cored_gas_v10_03_400000b7",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Metal‑cored (MCAW) wires typically require:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "No shielding gas"
+    },
+    {
+      "id": "B",
+      "text": "External shielding gas"
+    },
+    {
+      "id": "C",
+      "text": "Only CO₂ without exceptions"
+    },
+    {
+      "id": "D",
+      "text": "Flux baking"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "MCAW wires need correct gas mix per specification."
+  }
+}

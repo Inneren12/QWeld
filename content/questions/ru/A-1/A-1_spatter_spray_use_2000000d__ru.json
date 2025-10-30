@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_spatter_spray_use_2000000d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "Что такое an appropriate use of anti‑брызг compound?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Inside the gas diffuser"
+    },
+    {
+      "id": "B",
+      "text": "On редуктора threads"
+    },
+    {
+      "id": "C",
+      "text": "Lightly on соплаs/fixtures per manufacturer’s guidance"
+    },
+    {
+      "id": "D",
+      "text": "On the токоподводящий наконечник bore"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Used correctly on соплаs/fixtures, anti‑брызг helps reduce buildup."
+  }
+}

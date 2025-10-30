@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_bevel_angle_access_v6_00_30000069",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Why select an appropriate bevel angle during joint prep?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Zero bevel always improves access"
+    },
+    {
+      "id": "B",
+      "text": "The right angle allows access and proper penetration"
+    },
+    {
+      "id": "C",
+      "text": "Steeper is always stronger"
+    },
+    {
+      "id": "D",
+      "text": "Shallower is always better"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Adequate groove angle lets the electrode/torch reach sidewalls and root."
+  }
+}

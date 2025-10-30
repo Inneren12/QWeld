@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_positioner_use_20000063",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "Почему rotate parts on a позиционера/turntable when possible?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To make сварки harder"
+    },
+    {
+      "id": "B",
+      "text": "To weld in the flat position for better quality and deposition"
+    },
+    {
+      "id": "C",
+      "text": "To remove the need for fit-up"
+    },
+    {
+      "id": "D",
+      "text": "To eliminate защитного газа"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Flat‑position сварки improves control and productivity."
+  }
+}

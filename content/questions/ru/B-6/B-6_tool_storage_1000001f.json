@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_tool_storage_1000001f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "Как следует precision layout tools be stored?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Keep scribes dull and toss squares in a bin"
+    },
+    {
+      "id": "B",
+      "text": "Protect edges and faces to preserve accuracy"
+    },
+    {
+      "id": "C",
+      "text": "Stack tools to save space"
+    },
+    {
+      "id": "D",
+      "text": "Oil ruins them permanently"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Protecting edges maintains the accuracy of rules, squares, and gauges."
+  }
+}

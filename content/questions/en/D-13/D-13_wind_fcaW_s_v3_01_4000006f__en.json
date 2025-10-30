@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_wind_fcaW_s_v3_01_4000006f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "For self‑shielded FCAW in windy conditions, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use higher gas flow"
+    },
+    {
+      "id": "B",
+      "text": "Use wind shields and adjust parameters, or postpone if excessive wind"
+    },
+    {
+      "id": "C",
+      "text": "Switch to pure argon"
+    },
+    {
+      "id": "D",
+      "text": "Ignore wind"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Wind can strip shielding; use barriers or reschedule."
+  }
+}

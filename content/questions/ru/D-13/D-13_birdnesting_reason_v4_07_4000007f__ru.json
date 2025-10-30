@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_birdnesting_reason_v4_07_4000007f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "A common cause of 'birdnesting' in проволока feeders is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Correct liner size"
+    },
+    {
+      "id": "B",
+      "text": "Incorrect drive-roll tension or liner size"
+    },
+    {
+      "id": "C",
+      "text": "Proper conduit length"
+    },
+    {
+      "id": "D",
+      "text": "Using a clean проволока"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Poor feeding due to drag or excessive pressure tangles the проволока."
+  }
+}

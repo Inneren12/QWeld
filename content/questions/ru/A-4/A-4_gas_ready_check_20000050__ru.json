@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_gas_ready_check_20000050",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "easy",
+  "stem": "Before production сварки, a good readiness check is to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Assume gas баллонаs are full"
+    },
+    {
+      "id": "B",
+      "text": "Verify gas type, pressure, редуктораs, and spares"
+    },
+    {
+      "id": "C",
+      "text": "Start сварки and check later"
+    },
+    {
+      "id": "D",
+      "text": "Использовать any gas available"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Confirm the correct gas type, pressure, and equipment before starting."
+  }
+}

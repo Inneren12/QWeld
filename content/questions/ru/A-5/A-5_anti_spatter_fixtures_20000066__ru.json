@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_anti_spatter_fixtures_20000066",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Applying anti‑брызг to jigs/fixtures can:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Increase пористости"
+    },
+    {
+      "id": "B",
+      "text": "Reduce брызг adhesion and cleanup time"
+    },
+    {
+      "id": "C",
+      "text": "Replace ventilation"
+    },
+    {
+      "id": "D",
+      "text": "Eliminate the need for PPE"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Anti‑брызг on non‑weld surfaces reduces cleanup."
+  }
+}

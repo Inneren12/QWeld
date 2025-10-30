@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_fr_clothing_2000002e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "easy",
+  "stem": "Which clothing is most appropriate for welding?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Synthetic athletic wear"
+    },
+    {
+      "id": "B",
+      "text": "Flame‑resistant cotton or leather"
+    },
+    {
+      "id": "C",
+      "text": "Shorts and sandals"
+    },
+    {
+      "id": "D",
+      "text": "Loose acrylic sweater"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "FR cotton or leather resists ignition and melting."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e6010_whip_1000004a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Какой приём — typical for open-root welding with E6010?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Steady drag with no motion"
+    },
+    {
+      "id": "B",
+      "text": "Whip-and-pause to control the keyhole"
+    },
+    {
+      "id": "C",
+      "text": "Fast weave to wash the toes"
+    },
+    {
+      "id": "D",
+      "text": "Backhand push 45°"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Whipping controls the keyhole and позволяет root сплавление without excessive burn-through."
+  }
+}

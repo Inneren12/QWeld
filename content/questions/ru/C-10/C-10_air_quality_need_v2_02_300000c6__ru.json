@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_air_quality_need_v2_02_300000c6",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "easy",
+  "stem": "Зачем использовать dry, clean compressed air for PAC (переменный ток)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wet/oily air extends consumable life"
+    },
+    {
+      "id": "B",
+      "text": "Dry, clean air уменьшает wear and улучшает cut quality"
+    },
+    {
+      "id": "C",
+      "text": "Air quality is irrelevant"
+    },
+    {
+      "id": "D",
+      "text": "Nitrogen is required instead of air"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Moisture/oil contaminate the plasma and damage расходников."
+  }
+}

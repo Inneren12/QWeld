@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_power_fan_obstruction_20000012",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "What should be avoided around welder cooling fans?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Keeping the area clear"
+    },
+    {
+      "id": "B",
+      "text": "Blocking the intake to reduce noise"
+    },
+    {
+      "id": "C",
+      "text": "Placing rags over the guard"
+    },
+    {
+      "id": "D",
+      "text": "Stacking boxes near vents"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Obstructions at the fan/vents can cause overheating and failure."
+  }
+}

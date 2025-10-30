@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_hearing_protection_2000002c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "easy",
+  "stem": "Когда noise levels are high during шлифования and gouging, workers should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Ignore it for short tasks"
+    },
+    {
+      "id": "B",
+      "text": "Использовать hearing protection"
+    },
+    {
+      "id": "C",
+      "text": "Использовать sunglasses"
+    },
+    {
+      "id": "D",
+      "text": "Turn up the radio"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Hearing protection уменьшает risk of noise-induced hearing loss."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-8_rpm_rating_10000035",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-8",
+  "difficulty": "easy",
+  "stem": "Как следует wheel RPM ratings relate to tool RPM?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wheel rating may be below tool speed"
+    },
+    {
+      "id": "B",
+      "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
+    },
+    {
+      "id": "C",
+      "text": "RPMs not matter"
+    },
+    {
+      "id": "D",
+      "text": "Any mismatch — fine for brief use"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A wheel must be rated for at least the tool’s maximum rotational speed."
+  }
+}

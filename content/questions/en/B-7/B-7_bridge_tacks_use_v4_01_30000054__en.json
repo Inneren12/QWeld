@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_bridge_tacks_use_v4_01_30000054",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "What are bridge tacks used for?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Spanning gaps temporarily during fit-up"
+    },
+    {
+      "id": "B",
+      "text": "Permanent structural members"
+    },
+    {
+      "id": "C",
+      "text": "Replacing the root pass"
+    },
+    {
+      "id": "D",
+      "text": "Forbidden for any process"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Bridge tacks hold edges where small gaps exist until welding."
+  }
+}

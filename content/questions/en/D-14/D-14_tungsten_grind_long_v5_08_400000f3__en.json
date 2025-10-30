@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_tungsten_grind_long_v5_08_400000f3",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "How should tungsten be ground for DC GTAW on steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Circumferentially around the rod"
+    },
+    {
+      "id": "B",
+      "text": "Longitudinally along the rod"
+    },
+    {
+      "id": "C",
+      "text": "No grinding needed"
+    },
+    {
+      "id": "D",
+      "text": "With a blunt chisel only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Longitudinal grinding minimizes arc wander."
+  }
+}

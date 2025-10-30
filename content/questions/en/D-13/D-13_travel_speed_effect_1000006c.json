@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_travel_speed_effect_1000006c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "What is a typical effect of increasing travel speed (all else equal)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wider, deeper bead"
+    },
+    {
+      "id": "B",
+      "text": "Narrower bead with less penetration"
+    },
+    {
+      "id": "C",
+      "text": "No change to bead shape"
+    },
+    {
+      "id": "D",
+      "text": "Eliminates distortion"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Higher travel speed reduces heat input, narrowing the bead and penetration."
+  }
+}

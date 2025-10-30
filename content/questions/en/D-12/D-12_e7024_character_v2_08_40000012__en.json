@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7024_character_v2_08_40000012",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Which statement describes E7024 electrodes?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Cellulosic coating, deep penetration"
+    },
+    {
+      "id": "B",
+      "text": "High‑deposition iron‑powder rutile, flat/horizontal"
+    },
+    {
+      "id": "C",
+      "text": "Basic low‑hydrogen for all positions"
+    },
+    {
+      "id": "D",
+      "text": "Stainless steel welding only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "E7024 is iron‑powder rutile for high deposition in flat/horizontal."
+  }
+}

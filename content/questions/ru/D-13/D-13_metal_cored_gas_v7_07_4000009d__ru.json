@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_metal_cored_gas_v7_07_4000009d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Metal-cored (MCAW (металлонаполненная)) проволокаs typically require:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "No защитного газа газ"
+    },
+    {
+      "id": "B",
+      "text": "External защитного газа газ"
+    },
+    {
+      "id": "C",
+      "text": "Only CO₂ without exceptions"
+    },
+    {
+      "id": "D",
+      "text": "Flux baking"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "MCAW (металлонаполненная) проволокаs need correct газ mix per specification."
+  }
+}

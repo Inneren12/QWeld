@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_tack_sizing_v6_04_3000006d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "easy",
+  "stem": "How should tack welds be sized?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Very large tacks are always best"
+    },
+    {
+      "id": "B",
+      "text": "Sized to fuse into the final weld without defects"
+    },
+    {
+      "id": "C",
+      "text": "Always tiny tacks regardless of gap"
+    },
+    {
+      "id": "D",
+      "text": "Never ground or cleaned"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Proper tacks fuse smoothly into the weld."
+  }
+}

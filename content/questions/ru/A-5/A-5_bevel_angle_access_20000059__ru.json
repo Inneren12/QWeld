@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_bevel_angle_access_20000059",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "Choosing an appropriate угол скоса кромок helps to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Reduce sidewall access"
+    },
+    {
+      "id": "B",
+      "text": "Allow электрода/torch access and proper penetration"
+    },
+    {
+      "id": "C",
+      "text": "Increase distortion only"
+    },
+    {
+      "id": "D",
+      "text": "Avoid cleaning between passes"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Adequate groove angle is required for access and fusion."
+  }
+}

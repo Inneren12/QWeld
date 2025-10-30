@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_pilot_arc_start_v2_03_300000c7",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "easy",
+  "stem": "What is the advantage of pilot-arc or HF start in PAC?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Requires scraping the nozzle on the work"
+    },
+    {
+      "id": "B",
+      "text": "Initiates the arc without dragging the nozzle"
+    },
+    {
+      "id": "C",
+      "text": "Reduces need for PPE"
+    },
+    {
+      "id": "D",
+      "text": "Increases consumable wear"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Non-contact starts protect the nozzle and improve reliability."
+  }
+}

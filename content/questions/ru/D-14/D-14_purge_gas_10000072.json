@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_purge_gas_10000072",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Какой газ — commonly used for GTAW (TIG) shielding and back purging?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Аргон"
+    },
+    {
+      "id": "B",
+      "text": "Углекислый газ"
+    },
+    {
+      "id": "C",
+      "text": "Кислород"
+    },
+    {
+      "id": "D",
+      "text": "Сухой воздух"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Аргон — inert and widely used for GTAW (TIG) and purging."
+  }
+}

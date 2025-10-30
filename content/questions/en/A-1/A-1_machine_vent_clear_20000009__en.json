@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_machine_vent_clear_20000009",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "Which is correct regarding welder power source ventilation?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Block vents to keep dust out"
+    },
+    {
+      "id": "B",
+      "text": "Place the machine against a wall to save space"
+    },
+    {
+      "id": "C",
+      "text": "Keep inlet/outlet vents clear of obstructions"
+    },
+    {
+      "id": "D",
+      "text": "Cover the fan guard during welding"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Adequate airflow is needed to cool internal components."
+  }
+}

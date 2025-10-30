@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_flux_moisture_care_v1_02_40000101",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "medium",
+  "stem": "How should SAW flux be handled to avoid porosity?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Store open to shop air"
+    },
+    {
+      "id": "B",
+      "text": "Keep dry; bake per manufacturer if wet"
+    },
+    {
+      "id": "C",
+      "text": "Mix with oil to bind dust"
+    },
+    {
+      "id": "D",
+      "text": "Wash with water"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Moisture introduces hydrogen; keep flux dry."
+  }
+}

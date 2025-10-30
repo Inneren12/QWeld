@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_fire_watch_10000009",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "Как долго следует a постового пожарного наблюдателя typically remain after hot work ends?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Not required if the area looks clean"
+    },
+    {
+      "id": "B",
+      "text": "At least 30 minutes"
+    },
+    {
+      "id": "C",
+      "text": "Только while cutting — in progress"
+    },
+    {
+      "id": "D",
+      "text": "A fire extinguisher replaces the постового пожарного наблюдателя"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A post-work постового пожарного наблюдателя of ~30 minutes — обычная практика to catch smoldering ignition."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_bend_allowance_1000001d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "medium",
+  "stem": "Why include bend allowance when laying out bent parts?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Metal does not stretch during bending"
+    },
+    {
+      "id": "B",
+      "text": "To achieve the required finished lengths after bending"
+    },
+    {
+      "id": "C",
+      "text": "Always overbend 45° for springback"
+    },
+    {
+      "id": "D",
+      "text": "The K‑factor is always zero"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Material stretches/compresses in bends; allowing for it preserves sizes."
+  }
+}

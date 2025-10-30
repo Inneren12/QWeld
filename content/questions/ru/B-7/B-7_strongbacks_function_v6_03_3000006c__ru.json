@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_strongbacks_function_v6_03_3000006c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Что is the function of стронгбеков (жёстких распорок) during fabrication?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They увеличивает warpage"
+    },
+    {
+      "id": "B",
+      "text": "They restrain parts to counteract distortion"
+    },
+    {
+      "id": "C",
+      "text": "They are lifting devices"
+    },
+    {
+      "id": "D",
+      "text": "They replace подогрева"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Strongbacks hold alignment and reduce distortion."
+  }
+}

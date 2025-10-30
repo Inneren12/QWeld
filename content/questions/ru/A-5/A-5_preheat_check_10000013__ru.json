@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_preheat_check_10000013",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "Как следует предварительного подогрева be verified?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "By hand feel"
+    },
+    {
+      "id": "B",
+      "text": "With temperature-indicating crayons or a thermometer"
+    },
+    {
+      "id": "C",
+      "text": "By metal color alone"
+    },
+    {
+      "id": "D",
+      "text": "Trust the machine panel temperature"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Use objective temperature indicators to confirm required предварительного подогрева."
+  }
+}

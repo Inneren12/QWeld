@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_flashback_arrestors_20000031",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "What device helps prevent flame traveling back into oxy‑fuel hoses?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "A flowmeter"
+    },
+    {
+      "id": "B",
+      "text": "A check valve or flashback arrestor"
+    },
+    {
+      "id": "C",
+      "text": "A pressure gauge"
+    },
+    {
+      "id": "D",
+      "text": "A hose reel"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Check valves/flashback arrestors reduce flashback risk."
+  }
+}

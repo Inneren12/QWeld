@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_wire_brush_ppe_2000006e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "When using powered wire brushes, wear:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "No eye protection; bristles are soft"
+    },
+    {
+      "id": "B",
+      "text": "Safety glasses and a face shield"
+    },
+    {
+      "id": "C",
+      "text": "Earplugs only"
+    },
+    {
+      "id": "D",
+      "text": "A dust mask only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Wire bristles can eject; use both glasses and a face shield."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_tolerance_basic_20000049",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "easy",
+  "stem": "The symbol '±' on a dimension means:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Exact dimension only"
+    },
+    {
+      "id": "B",
+      "text": "Allowed variation around the nominal size"
+    },
+    {
+      "id": "C",
+      "text": "Scrap the part"
+    },
+    {
+      "id": "D",
+      "text": "Millimeters only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "± indicates the permitted deviation from nominal."
+  }
+}

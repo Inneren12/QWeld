@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_travel_speed_effect_1000006c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Каков типичный эффект increasing travel speed (all else equal)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wider, deeper bead"
+    },
+    {
+      "id": "B",
+      "text": "Narrower bead with less проплавление"
+    },
+    {
+      "id": "C",
+      "text": "No change to bead shape"
+    },
+    {
+      "id": "D",
+      "text": "Eliminates деформации"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Higher travel speed уменьшает heat input, narrowing the bead and проплавление."
+  }
+}

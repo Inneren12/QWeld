@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_gas_flow_too_high_v8_05_400000a5",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Excessive shielding gas flow can:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Always improve shielding"
+    },
+    {
+      "id": "B",
+      "text": "Cause turbulence and aspiration of air"
+    },
+    {
+      "id": "C",
+      "text": "Have no effect"
+    },
+    {
+      "id": "D",
+      "text": "Eliminate porosity"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Too much flow creates turbulence pulling air into the arc."
+  }
+}

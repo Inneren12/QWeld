@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_damp_rods_10000053",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Что problem can damp E7018 электроды cause?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Improved проплавление"
+    },
+    {
+      "id": "B",
+      "text": "Пористость and delayed растрескивание"
+    },
+    {
+      "id": "C",
+      "text": "Lower водород content"
+    },
+    {
+      "id": "D",
+      "text": "Faster travel speed"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Moisture in the покрытие adds водород to the weld pool."
+  }
+}

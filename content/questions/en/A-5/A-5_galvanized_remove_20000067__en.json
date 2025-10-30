@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_galvanized_remove_20000067",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "Before welding galvanized steel, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Weld directly through the coating"
+    },
+    {
+      "id": "B",
+      "text": "Remove zinc coating locally and ensure ventilation"
+    },
+    {
+      "id": "C",
+      "text": "Use water as shielding"
+    },
+    {
+      "id": "D",
+      "text": "Switch to AC only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Removing zinc and ventilating reduces fume hazards and defects."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_voltage_effect_v6_06_40000092",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Increasing напряжение in CV GMAW (MIG/MAG) (fixed WFS) tends to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Narrow and stiffen the arc"
+    },
+    {
+      "id": "B",
+      "text": "Widen the валик and increase wetting"
+    },
+    {
+      "id": "C",
+      "text": "Lower тепловложение and widen валик"
+    },
+    {
+      "id": "D",
+      "text": "No effect"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Higher напряжение broadens the arc column, improving wetting."
+  }
+}

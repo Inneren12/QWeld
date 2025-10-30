@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_preheat_setting_v2_07_300000a8",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "medium",
+  "stem": "Insufficient подогрева during cutting often causes:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Smooth, slag-free cuts"
+    },
+    {
+      "id": "B",
+      "text": "Excess slag and slow starts"
+    },
+    {
+      "id": "C",
+      "text": "Narrow пропил (kerf) and square edges"
+    },
+    {
+      "id": "D",
+      "text": "No change"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Too little подогрева leads to slagging and poor starts."
+  }
+}

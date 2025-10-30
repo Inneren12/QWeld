@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_arc_start_methods_v6_09_4000003b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "For SMAW (ручная дуговая), which is a recommended arc start method on finished surfaces?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Strike directly on visible faces"
+    },
+    {
+      "id": "B",
+      "text": "Strike on run-on tabs or within joint area"
+    },
+    {
+      "id": "C",
+      "text": "Strike on machined faces away from joints"
+    },
+    {
+      "id": "D",
+      "text": "No preference"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Start within joint/tabs to avoid hard spots on faces."
+  }
+}

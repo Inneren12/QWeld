@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_presetting_v3_00_30000048",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Presetting (offsetting) parts opposite expected shrinkage is used to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Make parts misaligned after welding"
+    },
+    {
+      "id": "B",
+      "text": "Compensate for predictable contraction"
+    },
+    {
+      "id": "C",
+      "text": "Avoid using clamps"
+    },
+    {
+      "id": "D",
+      "text": "Eliminate need for WPS"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Preset enables correct alignment after shrinkage."
+  }
+}

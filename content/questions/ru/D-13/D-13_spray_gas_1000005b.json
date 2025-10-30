@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_spray_gas_1000005b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Чтобы получить струйного переноса on carbon steel, что — generally required?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "CO₂-только shielding"
+    },
+    {
+      "id": "B",
+      "text": "Аргон-rich shielding gas"
+    },
+    {
+      "id": "C",
+      "text": "Very low напряжение"
+    },
+    {
+      "id": "D",
+      "text": "Short вылет"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Струйный transfer needs an аргон-dominant gas and sufficient ток/напряжение."
+  }
+}

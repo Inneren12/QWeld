@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7018_coating_v3_00_40000014",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Что покрытие type characterizes E7018 электроды?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Acid"
+    },
+    {
+      "id": "B",
+      "text": "Basic (низководородное)"
+    },
+    {
+      "id": "C",
+      "text": "Rutile"
+    },
+    {
+      "id": "D",
+      "text": "Cellulosic"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "E7018 is a basic низководородное электрод per AWS A5.1."
+  }
+}

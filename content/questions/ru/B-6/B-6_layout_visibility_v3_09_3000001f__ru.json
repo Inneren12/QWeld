@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_layout_visibility_v3_09_3000001f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "Как можно layout lines be kept visible through handling and fitting?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Scratch very deep разделкаs"
+    },
+    {
+      "id": "B",
+      "text": "Использовать contrasting markers/soapstone and refresh as needed"
+    },
+    {
+      "id": "C",
+      "text": "Rely on memory of dimensions"
+    },
+    {
+      "id": "D",
+      "text": "Paint over the layout lines"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "High-contrast marks remain visible through light grinding/handling."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_harness_inspect_2000001a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "medium",
+  "stem": "Before using a full-body harness, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Ignore small cuts in webbing"
+    },
+    {
+      "id": "B",
+      "text": "Check webbing, stitching, and hardware; remove if damaged"
+    },
+    {
+      "id": "C",
+      "text": "Tie knots to shorten lanyards"
+    },
+    {
+      "id": "D",
+      "text": "Использовать any carabiner from the hardware store"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Inspect harness components and remove damaged gear from service."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_arc_blow_mitigation_v3_08_4000001c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "How can magnetic arc blow be reduced?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Lengthen the arc and increase current"
+    },
+    {
+      "id": "B",
+      "text": "Shorten the arc, move the work lead, or backstep"
+    },
+    {
+      "id": "C",
+      "text": "Use a larger electrode only"
+    },
+    {
+      "id": "D",
+      "text": "Weld in one direction only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Short arc and better return lead placement help."
+  }
+}

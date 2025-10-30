@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_multi_wire_saw_v1_05_40000104",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "medium",
+  "stem": "A benefit of multi-проволока SAW (под флюсом) systems is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Lower deположение rate"
+    },
+    {
+      "id": "B",
+      "text": "Higher deположение rate and productivity"
+    },
+    {
+      "id": "C",
+      "text": "Elimination of флюса"
+    },
+    {
+      "id": "D",
+      "text": "All-положение capability"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Multiple проволокаs increase deположение/productivity."
+  }
+}

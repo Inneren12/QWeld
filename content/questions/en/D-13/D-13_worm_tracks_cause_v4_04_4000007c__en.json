@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_worm_tracks_cause_v4_04_4000007c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "hard",
+  "stem": "What often causes 'worm tracks' in FCAW‑G welds?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Perfect shielding and low voltage"
+    },
+    {
+      "id": "B",
+      "text": "Excess heat/voltage or contamination"
+    },
+    {
+      "id": "C",
+      "text": "Too short stickout only"
+    },
+    {
+      "id": "D",
+      "text": "Using solid wire"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Gas channels under slag due to heat/contamination leave tracks."
+  }
+}

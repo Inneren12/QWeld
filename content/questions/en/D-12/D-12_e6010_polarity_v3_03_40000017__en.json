@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e6010_polarity_v3_03_40000017",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Which polarity is commonly used with E6010?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN"
+    },
+    {
+      "id": "B",
+      "text": "DCEP"
+    },
+    {
+      "id": "C",
+      "text": "AC only"
+    },
+    {
+      "id": "D",
+      "text": "Either AC or DCEN"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "E6010 typically runs on DCEP for deep penetration."
+  }
+}

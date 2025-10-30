@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_tungsten_contamination_v6_09_400000fe",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "If tungsten touches the molten pool, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Continue welding"
+    },
+    {
+      "id": "B",
+      "text": "Break off/resharpen tungsten and clean the area"
+    },
+    {
+      "id": "C",
+      "text": "Increase current"
+    },
+    {
+      "id": "D",
+      "text": "Change to CO₂ shielding"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Contamination requires regrinding and cleaning."
+  }
+}

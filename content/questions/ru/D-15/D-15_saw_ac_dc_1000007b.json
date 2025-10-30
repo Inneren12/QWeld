@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_saw_ac_dc_1000007b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "medium",
+  "stem": "Почему может AC (переменный ток) be used for high-ток SAW (под флюсом)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To уменьшить arc blow and allow higher currents"
+    },
+    {
+      "id": "B",
+      "text": "To увеличивает arc blow"
+    },
+    {
+      "id": "C",
+      "text": "Because DC cannot make quality welds"
+    },
+    {
+      "id": "D",
+      "text": "To eliminate the need for флюс"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "Alternating ток уменьшает magnetic arc blow and supports very high currents."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_metal_cored_shield_10000067",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Metal-cored (MCAW (металлонаполненная)) wires typically require:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "No shielding gas"
+    },
+    {
+      "id": "B",
+      "text": "External shielding gas"
+    },
+    {
+      "id": "C",
+      "text": "Только CO₂ with no exceptions"
+    },
+    {
+      "id": "D",
+      "text": "Флюс baking before use"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "MCAW (металлонаполненная) wires — gas-shielded and need the верно gas mix per spec."
+  }
+}

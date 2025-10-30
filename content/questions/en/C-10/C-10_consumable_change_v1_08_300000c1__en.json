@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_consumable_change_v1_08_300000c1",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "easy",
+  "stem": "A sign PAC consumables need replacement is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Improved cut squareness"
+    },
+    {
+      "id": "B",
+      "text": "Erratic arc, widening kerf, and dross"
+    },
+    {
+      "id": "C",
+      "text": "Lower noise and smoother arc"
+    },
+    {
+      "id": "D",
+      "text": "Less bevel angle"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Worn parts cause unstable arcs and poor cuts."
+  }
+}

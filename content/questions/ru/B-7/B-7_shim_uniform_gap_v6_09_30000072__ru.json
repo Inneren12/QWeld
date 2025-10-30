@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_shim_uniform_gap_v6_09_30000072",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "easy",
+  "stem": "Зачем использовать прокладок (шимов) during fit-up?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To hide defects"
+    },
+    {
+      "id": "B",
+      "text": "To ensure a consistent корень шва gap when parts vary"
+    },
+    {
+      "id": "C",
+      "text": "To replace beveling"
+    },
+    {
+      "id": "D",
+      "text": "Только for painting"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Shims help set uniform gaps before welding."
+  }
+}

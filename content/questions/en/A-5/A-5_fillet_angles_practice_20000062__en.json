@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_fillet_angles_practice_20000062",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "To avoid undercut on flat fillet welds, a common practice is to hold:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "An excessive travel angle and long arc"
+    },
+    {
+      "id": "B",
+      "text": "A ~45° work angle with a slight travel angle and short arc"
+    },
+    {
+      "id": "C",
+      "text": "A 90° work angle with no travel angle"
+    },
+    {
+      "id": "D",
+      "text": "The torch perpendicular to both plates"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Proper work/travel angles and short arc reduce undercut."
+  }
+}

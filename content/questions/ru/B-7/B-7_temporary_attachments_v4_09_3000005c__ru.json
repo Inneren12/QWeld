@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_temporary_attachments_v4_09_3000005c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "For temporary стронгбеков (жёстких распорок) or tabs, a best practice is to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Leave them on finished products"
+    },
+    {
+      "id": "B",
+      "text": "Удалить and finish per drawings/WPS after welding"
+    },
+    {
+      "id": "C",
+      "text": "Ignore drawing requirements"
+    },
+    {
+      "id": "D",
+      "text": "Paint over them if visible"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Temporary attachments should be removed and finished as specified."
+  }
+}

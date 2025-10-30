@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_hot_work_permit_20000028",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "При использовании outside a designated сварки area, a common requirement is to obtain:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "An equipment calibration sheet"
+    },
+    {
+      "id": "B",
+      "text": "A hot work permit"
+    },
+    {
+      "id": "C",
+      "text": "A shipping manifest"
+    },
+    {
+      "id": "D",
+      "text": "A purchase order"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A hot work permit controls ignition sources and verifies precautions."
+  }
+}

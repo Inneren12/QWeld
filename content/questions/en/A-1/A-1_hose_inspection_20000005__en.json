@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_hose_inspection_20000005",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "Which finding requires removing an oxy‑fuel hose from service?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Minor surface dust"
+    },
+    {
+      "id": "B",
+      "text": "Proper color coding"
+    },
+    {
+      "id": "C",
+      "text": "Blistering, cuts, or dry rot"
+    },
+    {
+      "id": "D",
+      "text": "Hose length over 15 m"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Hoses with cuts, blisters, or rot must be replaced."
+  }
+}

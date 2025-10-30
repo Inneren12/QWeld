@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_position_digit_10000048",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "What does the '1' in E7018 indicate?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Flat position only"
+    },
+    {
+      "id": "B",
+      "text": "Flat and horizontal only"
+    },
+    {
+      "id": "C",
+      "text": "All positions"
+    },
+    {
+      "id": "D",
+      "text": "Overhead only"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "The position digit '1' means the electrode is usable in all positions."
+  }
+}

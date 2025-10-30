@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_protect_hoses_hot_20000034",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "easy",
+  "stem": "Oxy‑fuel and сварки рукаваs should be kept:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Across sharp edges and hot surfaces"
+    },
+    {
+      "id": "B",
+      "text": "Away from hot/walking surfaces and protected from damage"
+    },
+    {
+      "id": "C",
+      "text": "Tied in knots for storage"
+    },
+    {
+      "id": "D",
+      "text": "Painted to prevent wear"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Protect рукаваs from cuts, heat, and traffic."
+  }
+}

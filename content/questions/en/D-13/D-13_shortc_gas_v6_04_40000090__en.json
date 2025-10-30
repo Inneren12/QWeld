@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_shortc_gas_v6_04_40000090",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Which shielding gas is common for short‑circuit GMAW on carbon steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "100% CO₂"
+    },
+    {
+      "id": "B",
+      "text": "75% Ar / 25% CO₂"
+    },
+    {
+      "id": "C",
+      "text": "100% Ar"
+    },
+    {
+      "id": "D",
+      "text": "98% Ar / 2% O₂"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "C25 provides stable short‑circuit with low spatter."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_clean_start_stop_v3_04_3000004c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "To make a clean tie-in when restarting, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Restart directly in the crater"
+    },
+    {
+      "id": "B",
+      "text": "Feather the stop and restart slightly ahead, then backfill"
+    },
+    {
+      "id": "C",
+      "text": "Strike on the finished face without grinding"
+    },
+    {
+      "id": "D",
+      "text": "Use higher current only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Feathering and tie-in ahead blends beads without defects."
+  }
+}

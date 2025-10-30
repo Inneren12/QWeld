@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_flashback_vs_backfire_v3_09_300000b5",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "medium",
+  "stem": "Which statement about backfire vs flashback is correct?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Backfire means flame travels into the hoses"
+    },
+    {
+      "id": "B",
+      "text": "Flashback is flame burning into the torch/hose; backfire is a momentary pop"
+    },
+    {
+      "id": "C",
+      "text": "There is no difference"
+    },
+    {
+      "id": "D",
+      "text": "Backfire is preferred and safer"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Backfire is a brief pop; flashback sustains into torch/hose and is hazardous."
+  }
+}

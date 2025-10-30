@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_level_plumb_v2_04_3000000f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "easy",
+  "stem": "Какое tools help verify level and plumb during layout/fit-up?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Micrometers only"
+    },
+    {
+      "id": "B",
+      "text": "Spirit level, plumb bob, or laser level"
+    },
+    {
+      "id": "C",
+      "text": "Feeler gauges only"
+    },
+    {
+      "id": "D",
+      "text": "Vernier calipers only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Levels/plumb bobs/lasers check horizontal and vertical alignment."
+  }
+}

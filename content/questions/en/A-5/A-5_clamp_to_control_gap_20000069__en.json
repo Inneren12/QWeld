@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_clamp_to_control_gap_20000069",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "To maintain a consistent root gap during fit‑up, you should use:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Only hand pressure"
+    },
+    {
+      "id": "B",
+      "text": "Clamps, spacers/shims, and fixtures"
+    },
+    {
+      "id": "C",
+      "text": "High current to 'pull' parts together"
+    },
+    {
+      "id": "D",
+      "text": "Random tacks without measuring"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Use clamps and shims to set and hold uniform gaps."
+  }
+}

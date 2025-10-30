@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_flashback_arrestors_20000031",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "What device helps prevent flame traveling back into кислородно‑топливных рукаваs?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "A расходомера"
+    },
+    {
+      "id": "B",
+      "text": "A check valve or огнепреградителя/клапана обратного удара"
+    },
+    {
+      "id": "C",
+      "text": "A pressure gauge"
+    },
+    {
+      "id": "D",
+      "text": "A рукава reel"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Check valves/огнепреградителя/клапана обратного удараs reduce flashback risk."
+  }
+}

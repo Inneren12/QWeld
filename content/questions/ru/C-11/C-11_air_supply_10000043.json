@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-11_air_supply_10000043",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-11",
+  "difficulty": "easy",
+  "stem": "Что air supply — required for CAC-A?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Low-volume air works best"
+    },
+    {
+      "id": "B",
+      "text": "High-volume, dry air to blow molten metal clear"
+    },
+    {
+      "id": "C",
+      "text": "No air — needed"
+    },
+    {
+      "id": "D",
+      "text": "Use кислород for faster gouging"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A high-volume stream of dry compressed air clears molten metal from the groove."
+  }
+}

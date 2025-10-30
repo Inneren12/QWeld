@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_preheat_benefit_10000050",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "What is the main benefit of preheating thick or high‑strength steel before welding?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "It increases residual stress"
+    },
+    {
+      "id": "B",
+      "text": "It reduces cooling rate and hydrogen cracking risk"
+    },
+    {
+      "id": "C",
+      "text": "It eliminates the need for interpass cleaning"
+    },
+    {
+      "id": "D",
+      "text": "It strengthens the flux coating"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Preheat slows cooling and allows hydrogen to diffuse, lowering crack risk."
+  }
+}

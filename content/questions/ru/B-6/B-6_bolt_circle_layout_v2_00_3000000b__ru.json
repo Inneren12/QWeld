@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_bolt_circle_layout_v2_00_3000000b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "hard",
+  "stem": "Когда laying out a bolt circle without a CNC, a good approach is to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Guess equally spaced points"
+    },
+    {
+      "id": "B",
+      "text": "Использовать a rotary table/degree wheel or divide circumference mathematically"
+    },
+    {
+      "id": "C",
+      "text": "Start holes anywhere and correct later"
+    },
+    {
+      "id": "D",
+      "text": "Rely on eye-balling"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Use angular division or fixtures to space holes accurately."
+  }
+}

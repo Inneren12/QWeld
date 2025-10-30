@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_arc_length_short_v7_06_40000042",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "For SMAW (ручная дуговая), what arc length is generally recommended?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Very long for visibility"
+    },
+    {
+      "id": "B",
+      "text": "As short as practical (~электрод diameter)"
+    },
+    {
+      "id": "C",
+      "text": "Exactly 1 inch"
+    },
+    {
+      "id": "D",
+      "text": "Arc length has no effect"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Short arcs improve защитного газа and reduce spatter/undercut."
+  }
+}

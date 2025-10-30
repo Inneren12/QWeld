@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_fire_watch_10000009",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "How long should a fire watch typically remain after hot work ends?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Not required if the area looks clean"
+    },
+    {
+      "id": "B",
+      "text": "At least 30 minutes"
+    },
+    {
+      "id": "C",
+      "text": "Only while cutting is in progress"
+    },
+    {
+      "id": "D",
+      "text": "A fire extinguisher replaces the fire watch"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A post‑work fire watch of ~30 minutes is common practice to catch smoldering ignition."
+  }
+}

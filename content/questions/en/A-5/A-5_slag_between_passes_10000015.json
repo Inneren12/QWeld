@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_slag_between_passes_10000015",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "easy",
+  "stem": "What should be done between weld passes with flux‑shielded processes?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Nothing; inclusions burn out"
+    },
+    {
+      "id": "B",
+      "text": "Remove slag and heavy spatter"
+    },
+    {
+      "id": "C",
+      "text": "Only chip the final cap"
+    },
+    {
+      "id": "D",
+      "text": "Water‑quench slag to speed the job"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Cleaning between passes prevents slag inclusions and improves fusion."
+  }
+}

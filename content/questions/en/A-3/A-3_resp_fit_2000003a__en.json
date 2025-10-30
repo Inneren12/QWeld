@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-3_resp_fit_2000003a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-3",
+  "difficulty": "medium",
+  "stem": "For tight‑fitting respirators to work properly, the user should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Have facial hair under the seal"
+    },
+    {
+      "id": "B",
+      "text": "Skip fit testing"
+    },
+    {
+      "id": "C",
+      "text": "Be clean‑shaven where the seal contacts the face"
+    },
+    {
+      "id": "D",
+      "text": "Wear the respirator loosely for comfort"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Facial hair interferes with the seal; fit testing and clean‑shaven seals are required."
+  }
+}

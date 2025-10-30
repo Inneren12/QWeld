@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_ac_usage_reason_v1_03_40000102",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "medium",
+  "stem": "Why might AC be used for high‑current SAW?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To reduce arc blow and allow higher current"
+    },
+    {
+      "id": "B",
+      "text": "To increase arc blow"
+    },
+    {
+      "id": "C",
+      "text": "Because DC cannot make quality welds"
+    },
+    {
+      "id": "D",
+      "text": "To eliminate flux"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "AC reduces magnetic arc blow at high currents."
+  }
+}

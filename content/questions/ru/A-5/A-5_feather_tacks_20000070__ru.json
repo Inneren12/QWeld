@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_feather_tacks_20000070",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "Before сварки over tack welds, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Leave them with abrupt ends"
+    },
+    {
+      "id": "B",
+      "text": "Feather/clean them to avoid недостаточного сплавления"
+    },
+    {
+      "id": "C",
+      "text": "Paint them for visibility"
+    },
+    {
+      "id": "D",
+      "text": "Strike over without stopping"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Feathered tacks blend smoothly into the weld."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_position_digit_v1_02_40000002",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "Что does the '1' in E7018 indicate?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Flat only"
+    },
+    {
+      "id": "B",
+      "text": "Flat and horizontal only"
+    },
+    {
+      "id": "C",
+      "text": "All положениеs"
+    },
+    {
+      "id": "D",
+      "text": "Overhead only"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Digit '1' means all положениеs."
+  }
+}

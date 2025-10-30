@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_angle_finder_v1_08_30000008",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "medium",
+  "stem": "What is the primary use of an angle finder/protractor in layout?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Measuring material thickness"
+    },
+    {
+      "id": "B",
+      "text": "Checking or setting angles against drawings"
+    },
+    {
+      "id": "C",
+      "text": "Estimating weight"
+    },
+    {
+      "id": "D",
+      "text": "Finding center of gravity"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Protractors verify/set angles to match specifications."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_crane_stop_signal_10000006",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "easy",
+  "stem": "Which statement about crane hand signals is correct?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Only the operator may signal a stop"
+    },
+    {
+      "id": "B",
+      "text": "Anyone may give the universal emergency stop signal"
+    },
+    {
+      "id": "C",
+      "text": "Two hands above head always means 'speed up'"
+    },
+    {
+      "id": "D",
+      "text": "There are no standard hand signals for cranes"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "The emergency stop is universal and may be given by any person observing danger."
+  }
+}

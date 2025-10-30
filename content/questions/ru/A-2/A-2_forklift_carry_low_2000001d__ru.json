@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_forklift_carry_low_2000001d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "easy",
+  "stem": "При использовании with a load on a forklift, you should:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Carry the load high for visibility"
+    },
+    {
+      "id": "B",
+      "text": "Carry the load low and tilted back"
+    },
+    {
+      "id": "C",
+      "text": "Travel fast to reduce time under load"
+    },
+    {
+      "id": "D",
+      "text": "Turn on ramps with the load elevated"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Keep the load low and tilted back for stability and visibility."
+  }
+}

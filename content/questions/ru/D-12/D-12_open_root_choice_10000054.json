@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_open_root_choice_10000054",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Какое электрод — best suited for deep-проплавление open-root welding on rusty steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "E7018"
+    },
+    {
+      "id": "B",
+      "text": "E308L"
+    },
+    {
+      "id": "C",
+      "text": "E6010"
+    },
+    {
+      "id": "D",
+      "text": "E7024"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Целлюлозное E6010 обеспечивает deep проплавление and tolerance to light surface contamination."
+  }
+}

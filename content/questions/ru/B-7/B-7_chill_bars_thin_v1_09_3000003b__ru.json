@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_chill_bars_thin_v1_09_3000003b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Как do теплоотводящих планок help on thin material?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "They увеличивает heat input"
+    },
+    {
+      "id": "B",
+      "text": "They extract heat to control distortion and burn-through"
+    },
+    {
+      "id": "C",
+      "text": "They destabilize the arc"
+    },
+    {
+      "id": "D",
+      "text": "They measure temperature"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Chill bars act as heat sinks to limit distortion."
+  }
+}

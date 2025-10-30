@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_lowhyd_oven_1000004b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Why should E7018 electrodes be kept in a heated rod oven between uses?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "To increase flux melting rate"
+    },
+    {
+      "id": "B",
+      "text": "To prevent moisture pickup and hydrogen cracking"
+    },
+    {
+      "id": "C",
+      "text": "To make slag removal easier"
+    },
+    {
+      "id": "D",
+      "text": "To reduce amperage requirements"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Dry storage limits hydrogen pickup that can cause cold cracking."
+  }
+}

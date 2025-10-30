@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_oxide_cleaning_al_v3_05_400000dc",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "On aluminum GTAW (TIG), оксида очистка action is provided by:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Electrode-negative (EN) portion"
+    },
+    {
+      "id": "B",
+      "text": "Electrode-positive (EP) portion of AC (переменный ток)"
+    },
+    {
+      "id": "C",
+      "text": "Back purging"
+    },
+    {
+      "id": "D",
+      "text": "Helium only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "The EP half-cycle breaks the оксида film."
+  }
+}

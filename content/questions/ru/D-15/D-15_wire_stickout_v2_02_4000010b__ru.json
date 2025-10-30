@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-15_wire_stickout_v2_02_4000010b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-15",
+  "difficulty": "medium",
+  "stem": "Чрезмерный SAW (под флюсом) проволока вылета generally:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Increases ток"
+    },
+    {
+      "id": "B",
+      "text": "Reduces ток and проплавление due to resistive heating"
+    },
+    {
+      "id": "C",
+      "text": "Has no effect"
+    },
+    {
+      "id": "D",
+      "text": "Improves валик shape"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Long вылета heats проволока, lowering ток at the arc."
+  }
+}

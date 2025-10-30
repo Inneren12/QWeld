@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_e7018_strength_v7_01_4000003d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "In the designation E7018, what does '70' indicate?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "70% joint efficiency"
+    },
+    {
+      "id": "B",
+      "text": "70 A recommended current"
+    },
+    {
+      "id": "C",
+      "text": "70,000 psi minimum tensile strength"
+    },
+    {
+      "id": "D",
+      "text": "70° included bevel angle"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "'70' = 70 ksi minimum tensile strength."
+  }
+}

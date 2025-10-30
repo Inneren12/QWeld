@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-8_cutoff_side_load_v2_09_30000091",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-8",
+  "difficulty": "easy",
+  "stem": "Which rule is correct for using cut-off wheels?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Side-grind with heavy pressure for speed"
+    },
+    {
+      "id": "B",
+      "text": "Do not side-grind with cut-off wheels"
+    },
+    {
+      "id": "C",
+      "text": "Remove the guard for better visibility"
+    },
+    {
+      "id": "D",
+      "text": "Lubricate the wheel with oil"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Cut-off wheels are not designed for side loads and can shatter."
+  }
+}

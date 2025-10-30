@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_push_vs_pull_1000005f",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Compared with pulling, pushing the GMAW (MIG/MAG) gun typically:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Produces deeper проплавление and narrow bead"
+    },
+    {
+      "id": "B",
+      "text": "Produces a wider, flatter bead with slightly less проплавление"
+    },
+    {
+      "id": "C",
+      "text": "Has identical results"
+    },
+    {
+      "id": "D",
+      "text": "Always causes lack of сплавление"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Push angles broaden the bead and slightly уменьшить проплавление."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_grinder_inspect_10000000",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "Before using a portable angle grinder, which check is mandatory?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Remove the guard to access tight spots"
+    },
+    {
+      "id": "B",
+      "text": "Use any wheel that fits the arbor"
+    },
+    {
+      "id": "C",
+      "text": "Verify the guard is fitted and the wheel RPM rating meets or exceeds tool RPM"
+    },
+    {
+      "id": "D",
+      "text": "Lubricate the wheel with oil for a smoother cut"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "A properly fitted guard and a wheel rated for the tool speed prevent wheel burst."
+  }
+}

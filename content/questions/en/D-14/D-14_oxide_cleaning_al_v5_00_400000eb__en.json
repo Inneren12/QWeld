@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_oxide_cleaning_al_v5_00_400000eb",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "On aluminum GTAW, oxide cleaning action is provided by:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Electrode‑negative (EN) portion"
+    },
+    {
+      "id": "B",
+      "text": "Electrode‑positive (EP) portion of AC"
+    },
+    {
+      "id": "C",
+      "text": "Back purging"
+    },
+    {
+      "id": "D",
+      "text": "Helium only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "The EP half‑cycle breaks the oxide film."
+  }
+}

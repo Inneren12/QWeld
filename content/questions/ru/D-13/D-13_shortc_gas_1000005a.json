@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_shortc_gas_1000005a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Какое shielding gas — commonly used for короткозамыкательного GMAW (MIG/MAG) on carbon steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "100% CO₂"
+    },
+    {
+      "id": "B",
+      "text": "75% Ar / 25% CO₂"
+    },
+    {
+      "id": "C",
+      "text": "100% Ar"
+    },
+    {
+      "id": "D",
+      "text": "98% Ar / 2% O₂"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "C25 (75/25) обеспечивает stable короткозамыкательного transfer with low spatter."
+  }
+}

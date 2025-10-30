@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_arc_length_1000004c",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "easy",
+  "stem": "What arc length is generally recommended for SMAW?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Very long arc for better visibility"
+    },
+    {
+      "id": "B",
+      "text": "As short as practical, about the electrode diameter"
+    },
+    {
+      "id": "C",
+      "text": "Exactly 1 inch"
+    },
+    {
+      "id": "D",
+      "text": "No effect on quality"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Short arcs improve shielding and reduce spatter and undercut."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_bend_allowance_reason_v3_07_3000001d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "medium",
+  "stem": "Зачем учитывать bend allowance when laying out bent parts?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Material does not stretch during bending"
+    },
+    {
+      "id": "B",
+      "text": "To reach the required finished lengths after bending"
+    },
+    {
+      "id": "C",
+      "text": "To reduce springback to zero"
+    },
+    {
+      "id": "D",
+      "text": "To eliminate K-factor considerations"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Material stretches/compresses in the bend; allowance preserves sizes."
+  }
+}

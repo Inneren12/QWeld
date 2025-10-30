@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_inductance_effect_v6_07_40000093",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "hard",
+  "stem": "In short‑circuit GMAW, increasing inductance generally:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Makes arc harsher with more spatter"
+    },
+    {
+      "id": "B",
+      "text": "Softens arc and reduces spatter"
+    },
+    {
+      "id": "C",
+      "text": "Has no effect"
+    },
+    {
+      "id": "D",
+      "text": "Prevents fusion"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Greater inductance slows current rise and reduces spatter."
+  }
+}

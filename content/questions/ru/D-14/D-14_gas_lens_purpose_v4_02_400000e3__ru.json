@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_gas_lens_purpose_v4_02_400000e3",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "Что is the purpose of a газ-линзы on a GTAW (TIG) горелка?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Increase spatter"
+    },
+    {
+      "id": "B",
+      "text": "Create laminar flow and extend защитного газа"
+    },
+    {
+      "id": "C",
+      "text": "Reduce вольфрамовый электрод life"
+    },
+    {
+      "id": "D",
+      "text": "Allow higher ток on DCEN (прямая полярность)"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Gas lens straightens flow, improving coverage with вылета."
+  }
+}

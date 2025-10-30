@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-4_drawing_revision_1000000e",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-4",
+  "difficulty": "easy",
+  "stem": "Какой подход верен когда using чертежей изготовления?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use any drawing you have"
+    },
+    {
+      "id": "B",
+      "text": "Use the latest revision listed in the title block"
+    },
+    {
+      "id": "C",
+      "text": "Older revisions — safer"
+    },
+    {
+      "id": "D",
+      "text": "Let the shop choose per day"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Always confirm and work to the ток drawing revision to avoid rework."
+  }
+}

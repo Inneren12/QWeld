@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_standoff_1000003d",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "easy",
+  "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Always drag the tip regardless of torch design"
+    },
+    {
+      "id": "B",
+      "text": "Maintain the proper standoff/drag per the torch to protect consumables"
+    },
+    {
+      "id": "C",
+      "text": "Closer is always better"
+    },
+    {
+      "id": "D",
+      "text": "Farther is always better"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Correct standoff prevents nozzle damage and preserves cut quality."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_er70s2_10000073",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "easy",
+  "stem": "Какую классификацию присадки — commonly used for GTAW (TIG) on carbon steel?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "ER70S-2"
+    },
+    {
+      "id": "B",
+      "text": "E7018"
+    },
+    {
+      "id": "C",
+      "text": "ER308L"
+    },
+    {
+      "id": "D",
+      "text": "Флюс-cored E71T-1"
+    }
+  ],
+  "correctId": "A",
+  "rationales": {
+    "A": "ER70S-2 — a deoxidized solid filler rod for GTAW (TIG) on carbon steel."
+  }
+}

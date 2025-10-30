@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-8_rpm_rating_match_v2_10_30000092",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-8",
+  "difficulty": "easy",
+  "stem": "How should an abrasive wheel’s RPM rating relate to the tool?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wheel rating may be below tool speed"
+    },
+    {
+      "id": "B",
+      "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
+    },
+    {
+      "id": "C",
+      "text": "RPMs do not matter"
+    },
+    {
+      "id": "D",
+      "text": "Any mismatch is fine briefly"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "The wheel must be rated for at least the tool’s speed."
+  }
+}

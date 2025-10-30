@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_pierce_height_v2_04_300000c8",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "medium",
+  "stem": "Хороший приём for piercing with PAC (переменный ток) is to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Pierce at cut height to save time"
+    },
+    {
+      "id": "B",
+      "text": "Pierce at a higher pierce height, then lower to cut height"
+    },
+    {
+      "id": "C",
+      "text": "Pierce with the nozzle touching"
+    },
+    {
+      "id": "D",
+      "text": "Никогда pierce—edge start only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Higher pierce height protects расходников from molten blowback."
+  }
+}

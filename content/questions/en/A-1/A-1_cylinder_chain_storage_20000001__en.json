@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_cylinder_chain_storage_20000001",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "How should compressed gas cylinders be stored when not in use?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Laid horizontally on the floor"
+    },
+    {
+      "id": "B",
+      "text": "Upright and secured with a chain or strap"
+    },
+    {
+      "id": "C",
+      "text": "Stacked in a corner"
+    },
+    {
+      "id": "D",
+      "text": "Freestanding; the cap prevents tipping"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Cylinders must be upright and restrained to prevent tipping."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_gmaw_polarity_v11_04_400000c2",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "easy",
+  "stem": "Which polarity is standard for GMAW and most gas‑shielded FCAW wires?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "DCEN"
+    },
+    {
+      "id": "B",
+      "text": "DCEP"
+    },
+    {
+      "id": "C",
+      "text": "AC only"
+    },
+    {
+      "id": "D",
+      "text": "Either, no difference"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Solid and gas‑shielded flux‑cored wires typically use DCEP."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_ring_test_wheel_20000000",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "Before mounting a new bonded grinding wheel, which check is recommended?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Spin it up on the grinder at full speed"
+    },
+    {
+      "id": "B",
+      "text": "Perform a ring test and inspect for cracks"
+    },
+    {
+      "id": "C",
+      "text": "Soak the wheel in oil for cooling"
+    },
+    {
+      "id": "D",
+      "text": "Tap the wheel with a metal hammer as hard as possible"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A ring (sound) test and visual inspection help detect hidden cracks before use."
+  }
+}

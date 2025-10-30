@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_stainless_back_purge_v5_09_400000f4",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "What prevents 'sugaring' on the backside of stainless GTAW joints?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Higher torch angle"
+    },
+    {
+      "id": "B",
+      "text": "Back purging with inert gas"
+    },
+    {
+      "id": "C",
+      "text": "More filler metal"
+    },
+    {
+      "id": "D",
+      "text": "Switch to DCEP"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Back purging shields the root until it cools."
+  }
+}

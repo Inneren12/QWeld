@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-14_stainless_back_purge_v2_09_400000d6",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-14",
+  "difficulty": "medium",
+  "stem": "Что prevents 'sugaring' on the обратной стороны of stainless GTAW (TIG) joints?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Higher горелка angle"
+    },
+    {
+      "id": "B",
+      "text": "Back purging with inert газ"
+    },
+    {
+      "id": "C",
+      "text": "More filler metal"
+    },
+    {
+      "id": "D",
+      "text": "Switch to DCEP (обратная полярность)"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Back purging shields the корень until it cools."
+  }
+}

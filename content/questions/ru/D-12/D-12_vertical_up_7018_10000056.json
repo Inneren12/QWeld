@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-12_vertical_up_7018_10000056",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "D",
+  "taskId": "D-12",
+  "difficulty": "medium",
+  "stem": "Какой приём helps control heat когда welding vertical-up with E7018?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wide fast weave"
+    },
+    {
+      "id": "B",
+      "text": "Stringer beads (or limited weave) with pauses at the toes"
+    },
+    {
+      "id": "C",
+      "text": "Downhand travel with high ток"
+    },
+    {
+      "id": "D",
+      "text": "Hold a long arc"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Stringers with brief toe pauses help keep the puddle under control."
+  }
+}

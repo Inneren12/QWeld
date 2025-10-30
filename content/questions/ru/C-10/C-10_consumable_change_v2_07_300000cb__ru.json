@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-10_consumable_change_v2_07_300000cb",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "C",
+  "taskId": "C-10",
+  "difficulty": "easy",
+  "stem": "A sign PAC (переменный ток) расходников need replacement is:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Improved cut squareness"
+    },
+    {
+      "id": "B",
+      "text": "Erratic arc, widening пропил (kerf), and dross"
+    },
+    {
+      "id": "C",
+      "text": "Lower noise and smoother arc"
+    },
+    {
+      "id": "D",
+      "text": "Less bevel angle"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Worn parts cause unstable arcs and poor cuts."
+  }
+}

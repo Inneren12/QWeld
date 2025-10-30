@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-6_datum_selection_v5_04_30000030",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "B",
+  "taskId": "B-6",
+  "difficulty": "medium",
+  "stem": "Какой подход является верным when choosing a layout датум?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use several random edges as датумs"
+    },
+    {
+      "id": "B",
+      "text": "Выберите one clear датум to control accumulated error"
+    },
+    {
+      "id": "C",
+      "text": "Ignore датумs when measuring"
+    },
+    {
+      "id": "D",
+      "text": "Всегда measure from part centerlines only"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "A single, consistent датум minimizes накопление допусков."
+  }
+}

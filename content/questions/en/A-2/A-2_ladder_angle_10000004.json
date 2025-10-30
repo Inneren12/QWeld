@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-2_ladder_angle_10000004",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-2",
+  "difficulty": "easy",
+  "stem": "What is the recommended setup angle for a straight ladder?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "1:1 (about 45°) against the support"
+    },
+    {
+      "id": "B",
+      "text": "4:1 (about 75°) slope from the base to the support"
+    },
+    {
+      "id": "C",
+      "text": "Lean as steep as possible to save space"
+    },
+    {
+      "id": "D",
+      "text": "Lay it nearly horizontal for stability"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "The 4:1 rule provides stable footing and proper contact with the support."
+  }
+}

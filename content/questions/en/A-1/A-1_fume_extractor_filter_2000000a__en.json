@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_fume_extractor_filter_2000000a",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "medium",
+  "stem": "Why maintain fume extractor filters per the indicator or schedule?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Dirty filters always improve capture"
+    },
+    {
+      "id": "B",
+      "text": "It ensures airflow and capture efficiency"
+    },
+    {
+      "id": "C",
+      "text": "It increases arc voltage"
+    },
+    {
+      "id": "D",
+      "text": "It replaces local exhaust hoods"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Clogged filters reduce airflow; maintenance preserves capture efficiency."
+  }
+}

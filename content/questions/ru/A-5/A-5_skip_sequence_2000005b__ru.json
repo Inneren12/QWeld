@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_skip_sequence_2000005b",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "ru",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "Skip or back‑step сварки sequences are used mainly to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Concentrate heat in one area"
+    },
+    {
+      "id": "B",
+      "text": "Distribute heat and limit distortion"
+    },
+    {
+      "id": "C",
+      "text": "Increase crater cracking"
+    },
+    {
+      "id": "D",
+      "text": "Avoid using clamps"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Heat distribution уменьшает distortion and residual stress."
+  }
+}

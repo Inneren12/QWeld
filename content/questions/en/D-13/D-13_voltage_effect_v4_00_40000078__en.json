@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "D-13_voltage_effect_v4_00_40000078",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "D",
+  "taskId": "D-13",
+  "difficulty": "medium",
+  "stem": "Increasing voltage in CV GMAW (fixed WFS) tends to:",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Narrow and stiffen the arc"
+    },
+    {
+      "id": "B",
+      "text": "Widen the bead and increase wetting"
+    },
+    {
+      "id": "C",
+      "text": "Lower heat input and widen bead"
+    },
+    {
+      "id": "D",
+      "text": "No effect"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Higher voltage broadens the arc column, improving wetting."
+  }
+}

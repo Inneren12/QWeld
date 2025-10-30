@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-5_polarity_setup_10000017",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-5",
+  "difficulty": "medium",
+  "stem": "How should power source polarity be chosen?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Use the same polarity for all processes"
+    },
+    {
+      "id": "B",
+      "text": "Follow the WPS and consumable manufacturer requirements"
+    },
+    {
+      "id": "C",
+      "text": "Choose the quietest arc sound"
+    },
+    {
+      "id": "D",
+      "text": "Use DCEN for every job"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Different processes and wires/rods require specific polarity for proper fusion."
+  }
+}

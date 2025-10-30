@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "B-7_root_gap_consistency_v1_00_30000032",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "B",
+  "taskId": "B-7",
+  "difficulty": "medium",
+  "stem": "Why is a consistent root opening important before welding a butt joint?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "It has no effect on penetration"
+    },
+    {
+      "id": "B",
+      "text": "It helps control penetration and root fusion"
+    },
+    {
+      "id": "C",
+      "text": "A completely closed gap is always best"
+    },
+    {
+      "id": "D",
+      "text": "A very large gap prevents burn-through"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Uniform gaps help achieve consistent root fusion without burn-through."
+  }
+}

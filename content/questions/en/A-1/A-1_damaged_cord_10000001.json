@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "A-1_damaged_cord_10000001",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "A",
+  "taskId": "A-1",
+  "difficulty": "easy",
+  "stem": "What should you do if a power tool’s cord insulation is damaged?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Wrap it with tape and continue working"
+    },
+    {
+      "id": "B",
+      "text": "Use it only on GFCI-protected outlets"
+    },
+    {
+      "id": "C",
+      "text": "Tag it out and remove it from service until repaired"
+    },
+    {
+      "id": "D",
+      "text": "Flip the plug to restore the ground"
+    }
+  ],
+  "correctId": "C",
+  "rationales": {
+    "C": "Defective tools must be removed from service and tagged until properly repaired."
+  }
+}

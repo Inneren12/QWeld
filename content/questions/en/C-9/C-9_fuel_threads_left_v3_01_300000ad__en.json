@@ -1,0 +1,33 @@
+{
+  "schema": "qweld.question.v1",
+  "id": "C-9_fuel_threads_left_v3_01_300000ad",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "blockId": "C",
+  "taskId": "C-9",
+  "difficulty": "easy",
+  "stem": "Which statement about oxy-fuel fittings is true?",
+  "choices": [
+    {
+      "id": "A",
+      "text": "Fuel gas fittings use right-hand threads"
+    },
+    {
+      "id": "B",
+      "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
+    },
+    {
+      "id": "C",
+      "text": "Oxygen uses left-hand threads"
+    },
+    {
+      "id": "D",
+      "text": "Both use tapered pipe threads"
+    }
+  ],
+  "correctId": "B",
+  "rationales": {
+    "B": "Left-hand threads help prevent misconnections with fuel gas lines."
+  }
+}
