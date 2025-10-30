@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_oxygen_backseated_20000038",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-3_oxygen_backseated_20000038",
   "taskId": "A-3",
   "difficulty": "medium",
   "stem": "How should an oxygen cylinder valve be opened for use?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Crack it slightly and leave it"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Open it fully back‑seated per manufacturer guidance"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Open it halfway only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Leave it closed and adjust pressure on the regulator"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Oxygen valves are designed to be fully opened to seat the packing."
+    "CHOICE-2": "Oxygen valves are designed to be fully opened to seat the packing."
   }
 }

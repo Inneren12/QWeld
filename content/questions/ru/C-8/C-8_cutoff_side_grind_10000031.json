@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-8_cutoff_side_grind_10000031",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-8_cutoff_side_grind_10000031",
   "taskId": "C-8",
   "difficulty": "easy",
   "stem": "Какое правило безопасного использования верно для cut-off wheels?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Side-grind with heavy pressure for speed"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "not side-grind with cut-off wheels"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Use on stainless только"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "It — fine with the guard removed"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Cut-off wheels — not designed for side loads and can shatter."
+    "CHOICE-2": "Cut-off wheels — not designed for side loads and can shatter."
   }
 }

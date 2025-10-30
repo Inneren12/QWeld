@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_fcaws_polarity_v7_09_4000009f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_fcaws_polarity_v7_09_4000009f",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Most self‑shielded FCAW wires run on:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "DCEN"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "DCEP"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "AC only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Either polarity"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Common self‑shielded types (e.g., E71T‑8) use DCEN."
+    "CHOICE-1": "Common self‑shielded types (e.g., E71T‑8) use DCEN."
   }
 }

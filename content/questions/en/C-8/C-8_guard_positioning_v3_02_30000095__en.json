@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-8_guard_positioning_v3_02_30000095",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-8_guard_positioning_v3_02_30000095",
   "taskId": "C-8",
   "difficulty": "easy",
   "stem": "How should the grinder guard be positioned?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Aim sparks toward coworkers"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Place the guard between the wheel and the operator"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Remove it for visibility"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Open it for cooling"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Position the guard to block fragments and direct debris away."
+    "CHOICE-2": "Position the guard to block fragments and direct debris away."
   }
 }

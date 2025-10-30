@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_quality_over_speed_20000052",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-4_quality_over_speed_20000052",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "If schedule pressure conflicts with WPS requirements, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Skip preheat to save time"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Follow the WPS and escalate schedule concerns"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Use any electrode available"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Reduce inspections"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "WPS requirements take precedence; raise timing issues to supervision."
+    "CHOICE-2": "WPS requirements take precedence; raise timing issues to supervision."
   }
 }

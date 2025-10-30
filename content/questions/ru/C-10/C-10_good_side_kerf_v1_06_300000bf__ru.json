@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_good_side_kerf_v1_06_300000bf",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-10_good_side_kerf_v1_06_300000bf",
   "taskId": "C-10",
   "difficulty": "medium",
   "stem": "Due to пропил (kerf) angle in PAC (переменный ток), a good practice is to place the 'good side' of the cut:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "On the scrap side"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "On the side where squareness is most critical"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Opposite the direction of travel always"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "It does not matter"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Plan cut direction so the squarer edge is on the finished side."
+    "CHOICE-2": "Plan cut direction so the squarer edge is on the finished side."
   }
 }

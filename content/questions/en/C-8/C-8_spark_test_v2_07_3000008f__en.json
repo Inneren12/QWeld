@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-8_spark_test_v2_07_3000008f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-8_spark_test_v2_07_3000008f",
   "taskId": "C-8",
   "difficulty": "medium",
   "stem": "A quick spark test during grinding can help to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Measure voltage"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Identify general steel type by spark pattern"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Check gas flow rate"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Calibrate the grinder"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Spark patterns give a rough indication of carbon/alloy content."
+    "CHOICE-2": "Spark patterns give a rough indication of carbon/alloy content."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_start_methods_10000076",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-14_start_methods_10000076",
   "taskId": "D-14",
   "difficulty": "easy",
   "stem": "Which GTAW start method avoids tungsten contamination without scraping?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Touch‑start on the work"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "High‑frequency or lift‑arc start"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Strike like a match"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Hit with a hammer"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "HF or lift‑arc initiates the arc without rubbing the tungsten."
+    "CHOICE-2": "HF or lift‑arc initiates the arc without rubbing the tungsten."
   }
 }

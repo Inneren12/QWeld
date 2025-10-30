@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_metal_ladder_electric_20000017",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_metal_ladder_electric_20000017",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "Around electrical hazards, which ladder choice is safest?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Metal ladder"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Wet wooden ladder"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Fiberglass ladder in good condition"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Any ladder will do"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Non-conductive fiberglass ladders reduce shock risk near electricity."
+    "CHOICE-3": "Non-conductive fiberglass ladders reduce shock risk near electricity."
   }
 }

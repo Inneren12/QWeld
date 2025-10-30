@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_temporary_tack_removal_v3_01_30000049",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_temporary_tack_removal_v3_01_30000049",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Before final welding, temporary tacks or dogs that interfere should be:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Left in place"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Removed or reshaped per plan to allow proper access"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Hidden under weld metal"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ignored"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Remove interferences so the torch can reach sidewalls/root."
+    "CHOICE-2": "Remove interferences so the torch can reach sidewalls/root."
   }
 }

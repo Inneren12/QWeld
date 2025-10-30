@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-11_angle_caca_10000044",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-11_angle_caca_10000044",
   "taskId": "C-11",
   "difficulty": "medium",
   "stem": "Что — a typical электрод angle for CAC-A?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Push 90° straight into the work"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Lead the электрод 15–20° in the travel direction"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Drag opposite the travel 45°"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Point straight down"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A small lead angle directs the molten metal out of the gouge."
+    "CHOICE-2": "A small lead angle directs the molten metal out of the gouge."
   }
 }

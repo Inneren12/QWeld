@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_transfer_measure_1000001e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_transfer_measure_1000001e",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "Какой способ helps transfer equal measurements accurately?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Использовать dividers or a combination square"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Использовать chalk and estimate by eye"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Wave a hand near the part"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Никогда mark on metal surfaces"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Dividers and squares allow precise transfer of repeated distances."
+    "CHOICE-1": "Dividers and squares allow precise transfer of repeated distances."
   }
 }

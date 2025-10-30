@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_cup_size_selection_20000073",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_cup_size_selection_20000073",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Selecting a larger gas cup/nozzle in GTAW generally:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Improves coverage for larger stickout if flow is adequate"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Reduces shielding effectiveness"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Eliminates the need for a gas lens"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Prevents laminar flow"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Bigger cups can cover more area with proper flow and often with a gas lens."
+    "CHOICE-1": "Bigger cups can cover more area with proper flow and often with a gas lens."
   }
 }

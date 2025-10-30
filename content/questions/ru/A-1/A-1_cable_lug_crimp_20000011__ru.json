@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_cable_lug_crimp_20000011",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_cable_lug_crimp_20000011",
   "taskId": "A-1",
   "difficulty": "medium",
   "stem": "Что такое the correct method to attach lugs to сварки cables?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Hammer-crimp and tape"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Proper crimping/soldering per manufacturer with insulation"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Twist and tie with wire"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Bare copper strands under the lug without insulation"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use proper lugs and crimp/solder tools; insulate to prevent shorts."
+    "CHOICE-2": "Use proper lugs and crimp/solder tools; insulate to prevent shorts."
   }
 }

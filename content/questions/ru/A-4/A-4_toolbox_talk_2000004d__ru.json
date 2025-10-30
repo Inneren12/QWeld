@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_toolbox_talk_2000004d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_toolbox_talk_2000004d",
   "taskId": "A-4",
   "difficulty": "easy",
   "stem": "A short pre-job briefing (toolbox talk) helps to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase paperwork only"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Align the team on hazards, sequence, and responsibilities"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Replace permits"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Avoid using the WPS (спецификации сварочного процесса)"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Briefings align safety and work plans before starting."
+    "CHOICE-2": "Briefings align safety and work plans before starting."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_birdnesting_10000063",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_birdnesting_10000063",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "A common cause of 'birdnesting' in GMAW (MIG/MAG) wire feeders — :",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Верно liner size"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Incorrect drive-roll tension or liner size causing high drag"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Proper conduit length"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Using a clean wire"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Poor feeding due to drag or excessive pressure can tangle the wire at the rolls."
+    "CHOICE-2": "Poor feeding due to drag or excessive pressure can tangle the wire at the rolls."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_push_vs_pull_1000005f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_push_vs_pull_1000005f",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Compared with pulling, pushing the GMAW gun typically:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Produces deeper penetration and narrow bead"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Produces a wider, flatter bead with slightly less penetration"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has identical results"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Always causes lack of fusion"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Push angles broaden the bead and slightly reduce penetration."
+    "CHOICE-2": "Push angles broaden the bead and slightly reduce penetration."
   }
 }

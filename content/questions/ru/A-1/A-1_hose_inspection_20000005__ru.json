@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_hose_inspection_20000005",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_hose_inspection_20000005",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Какое finding requires removing an кислородно‑топливных рукава from service?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Minor surface dust"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Proper color coding"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Blistering, cuts, or dry rot"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Hose length over 15 m"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Hoses with cuts, blisters, or rot must be replaced."
+    "CHOICE-3": "Hoses with cuts, blisters, or rot must be replaced."
   }
 }

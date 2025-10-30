@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_e6010_polarity_10000049",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_e6010_polarity_10000049",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "Какая полярность — commonly used with E6010?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "DCEN (прямая полярность) (прямая полярность)"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "DCEP (обратная полярность) (обратная полярность)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Только AC (переменный ток) (переменный ток)"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "AC (переменный ток) или DCEN (прямая полярность) (прямая полярность)"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Целлюлозное E6010 typically runs on DCEP (обратная полярность) (обратная полярность) for deep проплавление."
+    "CHOICE-2": "Целлюлозное E6010 typically runs on DCEP (обратная полярность) (обратная полярность) for deep проплавление."
   }
 }

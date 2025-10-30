@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_root_opening_10000022",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_root_opening_10000022",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Почему a consistent зазора в корне important before welding a butt joint?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "It has no effect on проплавление"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "It helps control проплавление and root сплавление"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "A completely closed gap — always best"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A very large gap предотвращает burn-through"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Uniform root gaps help achieve consistent root сплавление without burn-through."
+    "CHOICE-2": "Uniform root gaps help achieve consistent root сплавление without burn-through."
   }
 }

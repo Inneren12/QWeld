@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_shield_gas_flow_20000072",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_shield_gas_flow_20000072",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Shielding gas flow for GMAW (MIG/MAG)/GTAW (TIG) should be set to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "The highest possible to be safe"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Provide stable coverage without turbulence or aspiration"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Zero during tack welds"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A fixed value for all соплаs"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Set flow to protect the pool; too much flow causes turbulence and air entrainment."
+    "CHOICE-2": "Set flow to protect the pool; too much flow causes turbulence and air entrainment."
   }
 }

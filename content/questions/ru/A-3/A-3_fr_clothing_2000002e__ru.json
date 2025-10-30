@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_fr_clothing_2000002e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_fr_clothing_2000002e",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Какое clothing is most appropriate for сварки?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Synthetic athletic wear"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Flame-resistant cotton or leather"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Shorts and sandals"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Loose acrylic sweater"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "FR cotton or leather resists ignition and melting."
+    "CHOICE-2": "FR cotton or leather resists ignition and melting."
   }
 }

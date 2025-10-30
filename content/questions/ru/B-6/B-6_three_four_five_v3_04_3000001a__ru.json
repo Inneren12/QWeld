@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_three_four_five_v3_04_3000001a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_three_four_five_v3_04_3000001a",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "Для чего применяется правило 3‑4‑5 during layout?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Measuring thickness"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Checking 90° squareness by forming a 3-4-5 triangle"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Leveling a table"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Finding the center of a circle"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A 3-4-5 triangle forms a right angle and verifies squareness."
+    "CHOICE-2": "A 3-4-5 triangle forms a right angle and verifies squareness."
   }
 }

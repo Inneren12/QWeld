@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_hi_lo_measure_2000006a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_hi_lo_measure_2000006a",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Internal misalignment (hi‑lo) can be checked with:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "A paint marker"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "A hi‑lo gauge or calipers"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "A thermometer"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A voltmeter"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use appropriate gauges to measure internal misalignment."
+    "CHOICE-2": "Use appropriate gauges to measure internal misalignment."
   }
 }

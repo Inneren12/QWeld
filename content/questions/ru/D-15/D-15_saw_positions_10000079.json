@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-15_saw_positions_10000079",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-15_saw_positions_10000079",
   "taskId": "D-15",
   "difficulty": "easy",
   "stem": "Какие положения типичны для submerged arc welding (SAW (под флюсом))?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Во всех положениях"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Primarily flat and horizontal fillet/groove"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Vertical-down только"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Только потолочное"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "The granular флюс and high deposition rate suit flat/horizontal welding."
+    "CHOICE-2": "The granular флюс and high deposition rate suit flat/horizontal welding."
   }
 }

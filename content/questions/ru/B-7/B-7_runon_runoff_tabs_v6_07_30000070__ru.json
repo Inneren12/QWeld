@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_runon_runoff_tabs_v6_07_30000070",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_runon_runoff_tabs_v6_07_30000070",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Почему install планок разгона/сбега?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Cosmetics only"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To start/stop off the part and protect edges"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They weaken the weld"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They are lifting points"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Tabs enable full fusion at tie-ins without damaging part edges."
+    "CHOICE-2": "Tabs enable full fusion at tie-ins without damaging part edges."
   }
 }

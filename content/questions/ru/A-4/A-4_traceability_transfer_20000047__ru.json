@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_traceability_transfer_20000047",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_traceability_transfer_20000047",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "Когда cutting a marked plate, you should maintain heat/lot traceability by:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Grinding off all markings"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Transferring heat numbers to each piece and documenting"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Painting over markings"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ignoring until final inspection"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Transfer and record heat numbers to preserve traceability."
+    "CHOICE-2": "Transfer and record heat numbers to preserve traceability."
   }
 }

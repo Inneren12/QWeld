@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_spool_gun_reason_v3_05_40000073",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_spool_gun_reason_v3_05_40000073",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Зачем использовать a spool gun with aluminum GMAW (MIG/MAG)?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To increase вылета"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To keep soft проволока feed path short, reducing birdnesting"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To eliminate защитного газа газ"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To run DCEN (прямая полярность)"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Short path in the gun reduces feeding issues."
+    "CHOICE-2": "Short path in the gun reduces feeding issues."
   }
 }

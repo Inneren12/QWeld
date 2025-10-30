@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-15_travel_speed_effect_v2_05_4000010e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-15_travel_speed_effect_v2_05_4000010e",
   "taskId": "D-15",
   "difficulty": "medium",
   "stem": "Increasing скорость перемещения in SAW (под флюсом) typically:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Widens the валик"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Narrows the валик and reduces проплавление"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has no effect"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminates distortion"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Higher speed lowers тепловложение and проплавление."
+    "CHOICE-2": "Higher speed lowers тепловложение and проплавление."
   }
 }

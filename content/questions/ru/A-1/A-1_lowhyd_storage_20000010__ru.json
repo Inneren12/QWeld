@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_lowhyd_storage_20000010",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_lowhyd_storage_20000010",
   "taskId": "A-1",
   "difficulty": "medium",
   "stem": "Between uses, low‑hydrogen электродов (e.g., E7018) should be:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Stored open to shop air to cool"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Kept in a heated rod oven or sealed container per manufacturer"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Dipped in water to remove dust"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Left on the workbench"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Dry, heated storage предотвращает moisture pickup and hydrogen cracking."
+    "CHOICE-2": "Dry, heated storage предотвращает moisture pickup and hydrogen cracking."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_scribe_depth_v4_07_30000028",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_scribe_depth_v4_07_30000028",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "When using a scribe on finished surfaces, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Engrave deep lines for visibility"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Use light lines or alternatives to avoid damage"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Hammer the scribe to mark clearly"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Never use tape or paint markers"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Light marks or removable media avoid damaging finished surfaces."
+    "CHOICE-2": "Light marks or removable media avoid damaging finished surfaces."
   }
 }

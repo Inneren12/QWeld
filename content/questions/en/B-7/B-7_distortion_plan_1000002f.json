@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_distortion_plan_1000002f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_distortion_plan_1000002f",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "How should distortion be addressed during fabrication planning?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Assume shrinkage is random"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Plan fit and sequence to allow for predicted shrinkage"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Clamps cause distortion and should be avoided"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Heat input is unrelated to distortion"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Anticipating shrinkage lets you set counter‑measures like sequencing and fixturing."
+    "CHOICE-2": "Anticipating shrinkage lets you set counter‑measures like sequencing and fixturing."
   }
 }

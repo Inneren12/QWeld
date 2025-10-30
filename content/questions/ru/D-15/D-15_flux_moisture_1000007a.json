@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-15_flux_moisture_1000007a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-15_flux_moisture_1000007a",
   "taskId": "D-15",
   "difficulty": "medium",
   "stem": "Как следует SAW (под флюсом) флюс be handled to avoid пористости?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Store open to shop air"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Keep dry; bake per manufacturer if moisture-contaminated"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Mix with oil to bind dust"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Wash with water before use"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Moisture in флюс introduces водород and causes пористости; keep флюс dry."
+    "CHOICE-2": "Moisture in флюс introduces водород and causes пористости; keep флюс dry."
   }
 }

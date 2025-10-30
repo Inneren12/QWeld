@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_balanced_welds_v2_07_30000044",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_balanced_welds_v2_07_30000044",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Balancing welds on opposite sides helps to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase distortion"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Counteract shrinkage and reduce distortion"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Replace fixtures"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Increase residual stress"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Balanced welding reduces distortion."
+    "CHOICE-2": "Balanced welding reduces distortion."
   }
 }

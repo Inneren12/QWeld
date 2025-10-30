@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_cylinder_chain_storage_20000001",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_cylinder_chain_storage_20000001",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Как следует compressed gas баллонаs be stored when not in use?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Laid horizontally on the floor"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Upright and secured with a chain or strap"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Stacked in a corner"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Freestanding; the cap prevents tipping"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Cylinders must be upright and restrained to prevent tipping."
+    "CHOICE-2": "Cylinders must be upright and restrained to prevent tipping."
   }
 }

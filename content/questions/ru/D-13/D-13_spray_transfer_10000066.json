@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_spray_transfer_10000066",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_spray_transfer_10000066",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Какое transfer mode обеспечивает a continuous stream of metal droplets at high ток?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Short-circuit"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Крупнокапельный"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Струйный"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Импульсный"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Струйный transfer delivers fine droplets axially across the arc."
+    "CHOICE-3": "Струйный transfer delivers fine droplets axially across the arc."
   }
 }

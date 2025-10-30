@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_edge_prep_1000002e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_edge_prep_1000002e",
   "taskId": "B-7",
   "difficulty": "easy",
   "stem": "Зачем удалять burrs and oxides from prepared edges?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "It saves time but уменьшает strength"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "It — unnecessary on any material"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "It улучшает сплавление and уменьшает inclusions"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "It — только for aluminum"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Clean, smooth edges promote full сплавление and fewer inclusions."
+    "CHOICE-3": "Clean, smooth edges promote full сплавление and fewer inclusions."
   }
 }

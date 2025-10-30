@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_spray_transfer_10000066",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_spray_transfer_10000066",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Which transfer mode provides a continuous stream of metal droplets at high current?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Short‑circuit"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Globular"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Spray"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Pulsed"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Spray transfer delivers fine droplets axially across the arc."
+    "CHOICE-3": "Spray transfer delivers fine droplets axially across the arc."
   }
 }

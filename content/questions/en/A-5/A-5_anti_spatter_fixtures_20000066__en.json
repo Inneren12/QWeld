@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_anti_spatter_fixtures_20000066",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_anti_spatter_fixtures_20000066",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "Applying anti‑spatter to jigs/fixtures can:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase porosity"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Reduce spatter adhesion and cleanup time"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Replace ventilation"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminate the need for PPE"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Anti‑spatter on non‑weld surfaces reduces cleanup."
+    "CHOICE-2": "Anti‑spatter on non‑weld surfaces reduces cleanup."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-15_saw_positions_10000079",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-15_saw_positions_10000079",
   "taskId": "D-15",
   "difficulty": "easy",
   "stem": "Which positions are typical for submerged arc welding (SAW)?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "All positions"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Primarily flat and horizontal fillet/groove"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Vertical‑down only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Overhead only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "The granular flux and high deposition rate suit flat/horizontal welding."
+    "CHOICE-2": "The granular flux and high deposition rate suit flat/horizontal welding."
   }
 }

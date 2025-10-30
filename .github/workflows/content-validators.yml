@@ -1,4 +1,4 @@
-name: Policy Validation
+name: Content Validation
 
 on:
   pull_request:
@@ -7,12 +7,12 @@ on:
       - 'docs/**'
       - 'schemas/**'
       - 'scripts/**'
-      - '.github/workflows/policy.yml'
+      - '.github/workflows/content-validators.yml'
       - 'CODEOWNERS'
       - 'README.md'
 
 jobs:
-  policy:
+  content:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -35,9 +35,12 @@ jobs:
       - name: Validate questions
         run: bash scripts/validate-questions.sh
 
+      - name: Validate explanations
+        run: bash scripts/validate-explanations.sh
+
       - name: Upload validation logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: policy-logs
+          name: content-validation-logs
           path: logs

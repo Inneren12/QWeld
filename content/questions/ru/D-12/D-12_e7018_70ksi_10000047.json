@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_e7018_70ksi_10000047",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_e7018_70ksi_10000047",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "В обозначении E7018 что означает «70»?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Эффективность соединения 70%"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Рекомендуемый ток 70 А"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Минимальная прочность на растяжение 70 000 psi"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "70° included угла скоса кромок"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "The first two digits give the minimum tensile strength in ksi."
+    "CHOICE-3": "The first two digits give the minimum tensile strength in ksi."
   }
 }

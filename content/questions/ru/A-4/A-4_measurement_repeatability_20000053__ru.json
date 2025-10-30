@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_measurement_repeatability_20000053",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_measurement_repeatability_20000053",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "To improve measurement repeatability between operators, use:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Different tools and methods each time"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Standardized tools, fixtures, and methods"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Только visual estimates"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Fastest guess wins"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Standardized methods reduce variation among measurements."
+    "CHOICE-2": "Standardized methods reduce variation among measurements."
   }
 }

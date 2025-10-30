@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_lowhyd_storage_v1_05_40000005",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_lowhyd_storage_v1_05_40000005",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Почему should низководородное электроды be kept hot and dry between uses?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase флюса melting rate"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Prevent moisture pickup and hydrogen растрескивание"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Make шлака removal easier"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Reduce amperage needs"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Dry storage limits hydrogen pickup and растрескивание."
+    "CHOICE-2": "Dry storage limits hydrogen pickup and растрескивание."
   }
 }

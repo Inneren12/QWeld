@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_travel_speed_effect_v3_00_4000006e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_travel_speed_effect_v3_00_4000006e",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Increasing скорость перемещения (all else equal) results in:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Wider, deeper валик"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Narrower валик with less проплавление"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "No change"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminates distortion"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Higher speed reduces тепловложение and проплавление."
+    "CHOICE-2": "Higher speed reduces тепловложение and проплавление."
   }
 }

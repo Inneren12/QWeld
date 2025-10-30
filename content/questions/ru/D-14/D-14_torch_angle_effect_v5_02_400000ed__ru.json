@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_torch_angle_effect_v5_02_400000ed",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_torch_angle_effect_v5_02_400000ed",
   "taskId": "D-14",
   "difficulty": "medium",
   "stem": "Чрезмерный GTAW (TIG) горелка angle typically:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Improves защитного газа"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Reduces coverage and can cause contamination/undercut"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has no effect"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Increases ток"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Large angles expose the pool to air and narrow coverage."
+    "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
   }
 }

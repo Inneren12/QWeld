@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_hand_hoist_brake_20000026",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_hand_hoist_brake_20000026",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Before using a chain fall/lever hoist, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Oil the brake surfaces"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Check the brake/pawl function with a light test lift"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Remove the nameplate to reduce weight"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Use a cheater bar on the lever"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Verify the brake holds with a small test lift before proceeding."
+    "CHOICE-2": "Verify the brake holds with a small test lift before proceeding."
   }
 }

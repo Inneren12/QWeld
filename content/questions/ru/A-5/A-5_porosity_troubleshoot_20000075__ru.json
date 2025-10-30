@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_porosity_troubleshoot_20000075",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_porosity_troubleshoot_20000075",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "If unexpected пористости appears, a first troubleshooting step is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase voltage dramatically"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Check gas flow/coverage and surface cleanliness"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Change to the largest wire"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ignore unless undercut appears"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Verify защитного газа and cleanliness before changing parameters."
+    "CHOICE-2": "Verify защитного газа and cleanliness before changing parameters."
   }
 }

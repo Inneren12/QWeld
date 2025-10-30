@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_flammable_liquid_control_2000003e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_flammable_liquid_control_2000003e",
   "taskId": "A-3",
   "difficulty": "medium",
   "stem": "Before hot work near flammable liquids, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Ignore containers if closed"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Удалить or shield them and test the atmosphere if required"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Stack them behind a screen"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Move closer to finish faster"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Remove/cover combustibles and verify atmosphere per permit controls."
+    "CHOICE-2": "Remove/cover combustibles and verify atmosphere per permit controls."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_interpass_cleaning_v5_00_3000005e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_interpass_cleaning_v5_00_3000005e",
   "taskId": "B-7",
   "difficulty": "easy",
   "stem": "Between passes with flux-shielded processes you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Leave slag; it burns out"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Удалить slag and heavy spatter"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Только chip the cap"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Water quench the bead"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Cleaning предотвращает slag inclusions and lack of fusion."
+    "CHOICE-2": "Cleaning предотвращает slag inclusions and lack of fusion."
   }
 }

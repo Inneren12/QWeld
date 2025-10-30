@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-9_crack_valves_1000003b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-9_crack_valves_1000003b",
   "taskId": "C-9",
   "difficulty": "easy",
   "stem": "What is the purpose of 'cracking' cylinder valves briefly before attaching regulators?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To waste gas"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To blow dust/debris away from the outlet seat"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To cool the valve"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To test the regulator threads"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Cracking clears contaminants that could damage regulators."
+    "CHOICE-2": "Cracking clears contaminants that could damage regulators."
   }
 }

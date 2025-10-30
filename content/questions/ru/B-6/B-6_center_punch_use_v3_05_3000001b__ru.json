@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_center_punch_use_v3_05_3000001b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_center_punch_use_v3_05_3000001b",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "Почему is a center punch used before drilling?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To decorate the surface"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To keep the drill from wandering and preserve location"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To weaken the steel intentionally"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To remove coatings"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A punch mark помогает the drill start precisely at the mark."
+    "CHOICE-2": "A punch mark помогает the drill start precisely at the mark."
   }
 }

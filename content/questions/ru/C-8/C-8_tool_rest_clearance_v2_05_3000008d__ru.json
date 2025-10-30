@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-8_tool_rest_clearance_v2_05_3000008d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-8_tool_rest_clearance_v2_05_3000008d",
   "taskId": "C-8",
   "difficulty": "medium",
   "stem": "On a bench grinder, the tool rest should be kept:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "As far from the wheel as possible"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "As close as practical (about 3 mm / 1/8 дюйма) from the wheel"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Removed entirely"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Touching the wheel"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Small clearance уменьшает the chance of workpiece jamming."
+    "CHOICE-2": "Small clearance уменьшает the chance of workpiece jamming."
   }
 }

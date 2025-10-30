@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_holder_maintenance_10000003",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-1_holder_maintenance_10000003",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Which is correct for maintaining an electrode holder?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Minor cracks in insulation are acceptable"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Jaws should be oily to reduce sticking"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Insulation must be intact and jaws clean with no exposed conductors"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cool the holder in water after heavy use"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Sound insulation and clean jaws prevent shock and overheating."
+    "CHOICE-3": "Sound insulation and clean jaws prevent shock and overheating."
   }
 }

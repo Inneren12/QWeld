@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_restart_tiein_10000051",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_restart_tiein_10000051",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "What is a good practice when restarting a SMAW bead?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Strike on the weld face and continue"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Grind/feather the stop and restart slightly ahead to tie in"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Restart exactly in the crater"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Do nothing; the slag will float out"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Feathering and restarting ahead allow blending without defects."
+    "CHOICE-2": "Feathering and restarting ahead allow blending without defects."
   }
 }
