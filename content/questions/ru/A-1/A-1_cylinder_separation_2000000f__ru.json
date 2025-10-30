@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_cylinder_separation_2000000f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_cylinder_separation_2000000f",
   "taskId": "A-1",
   "difficulty": "medium",
   "stem": "Как следует кислородного and топливного газа баллонаs be stored relative to each other?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Together for convenience"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Separated by distance or a non-combustible barrier"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Mixed with oils to prevent corrosion"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Stacked with timber spacers"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Oxygen must be separated from топливного газаes to reduce fire risk."
+    "CHOICE-2": "Oxygen must be separated from топливного газаes to reduce fire risk."
   }
 }

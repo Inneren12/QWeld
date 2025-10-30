@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_gfci_use_20000008",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-1_gfci_use_20000008",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "When using portable electric tools in damp areas, what should be used?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Non‑grounded two‑prong adapters"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "A transformer for all tools"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "A GFCI‑protected supply"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A metal ladder as a ground"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "GFCI protection reduces shock risk in damp or outdoor locations."
+    "CHOICE-3": "GFCI protection reduces shock risk in damp or outdoor locations."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_slag_clean_between_2000005c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_slag_clean_between_2000005c",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "Между проходами with flux‑shielded processes you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Leave slag; it will burn out"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Remove slag and heavy брызг"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Add solvent"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Water-quench the joint"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Cleaning предотвращает slag inclusions and promotes fusion."
+    "CHOICE-2": "Cleaning предотвращает slag inclusions and promotes fusion."
   }
 }

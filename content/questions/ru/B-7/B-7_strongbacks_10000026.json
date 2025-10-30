@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_strongbacks_10000026",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_strongbacks_10000026",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Что — the function of стронгбеков (жёстких распорок) during fabrication?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "They увеличивает warpage"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "They предотвращает деформации and hold alignment while welding"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They — lifting devices"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They replace предварительного подогрева"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Strongbacks restrain parts to counteract weld shrinkage."
+    "CHOICE-2": "Strongbacks restrain parts to counteract weld shrinkage."
   }
 }

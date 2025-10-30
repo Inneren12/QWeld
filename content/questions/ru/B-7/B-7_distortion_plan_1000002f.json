@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_distortion_plan_1000002f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_distortion_plan_1000002f",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Как следует деформации be addressed during fabrication planning?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Assume shrinkage — random"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Plan fit and sequence to allow for predicted shrinkage"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Clamps cause деформации and should be avoided"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Heat input — unrelated to деформации"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Anticipating shrinkage lets you set counter-measures like sequencing and fixturing."
+    "CHOICE-2": "Anticipating shrinkage lets you set counter-measures like sequencing and fixturing."
   }
 }

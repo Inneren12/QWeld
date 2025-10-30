@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_machine_vent_clear_20000009",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_machine_vent_clear_20000009",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Какое is correct regarding сварочного источника power source ventilation?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Block vents to keep dust out"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Place the machine against a wall to save space"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Держать/сохранять inlet/outlet vents clear of obstructions"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cover the fan guard during сварки"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Adequate airflow is needed to cool internal components."
+    "CHOICE-3": "Adequate airflow is needed to cool internal components."
   }
 }

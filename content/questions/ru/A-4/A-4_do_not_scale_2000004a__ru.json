@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_do_not_scale_2000004a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_do_not_scale_2000004a",
   "taskId": "A-4",
   "difficulty": "easy",
   "stem": "'Do not scale drawing' means you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Measure distances with a ruler on the print"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Rely on stated dimensions and notes, not scaling"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Ignore dimensions and use feel"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Scan and stretch the image"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use listed dimensions; printed scale may distort."
+    "CHOICE-2": "Use listed dimensions; printed scale may distort."
   }
 }

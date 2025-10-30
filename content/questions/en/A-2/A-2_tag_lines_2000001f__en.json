@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_tag_lines_2000001f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_tag_lines_2000001f",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "What is the primary purpose of using tag lines on suspended loads?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To increase the load weight"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To steer and control load swing at a distance"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To tie off the crane hook"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To measure load temperature"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Tag lines let workers control rotation/swing while staying clear."
+    "CHOICE-2": "Tag lines let workers control rotation/swing while staying clear."
   }
 }

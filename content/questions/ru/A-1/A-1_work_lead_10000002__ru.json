@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_work_lead_10000002",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_work_lead_10000002",
   "taskId": "A-1",
   "difficulty": "medium",
   "stem": "Почему следует welding work leads and connections be tight and clean?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Loose leads улучшить arc stability"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Painted контактный surfaces уменьшить spatter"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They уменьшить напряжение drop and overheating at the connections"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Smaller cable always saves weight without consequences"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Good electrical контактный minimizes resistance, heat buildup, and erratic arc behavior."
+    "CHOICE-3": "Good electrical контактный minimizes resistance, heat buildup, and erratic arc behavior."
   }
 }

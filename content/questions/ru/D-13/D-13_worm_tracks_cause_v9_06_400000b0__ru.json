@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_worm_tracks_cause_v9_06_400000b0",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_worm_tracks_cause_v9_06_400000b0",
   "taskId": "D-13",
   "difficulty": "hard",
   "stem": "Что often causes 'червоточин' in FCAW (порошковая)-G welds?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Perfect защитного газа and low напряжение"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Excess heat/напряжение or contamination"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Too short вылета only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Using solid проволока"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Gas channels under шлака due to heat/contamination leave tracks."
+    "CHOICE-2": "Gas channels under шлака due to heat/contamination leave tracks."
   }
 }

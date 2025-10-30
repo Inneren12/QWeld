@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_tolerance_stack_v4_09_3000002a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_tolerance_stack_v4_09_3000002a",
   "taskId": "B-6",
   "difficulty": "hard",
   "stem": "Tolerance stack-up can be reduced by:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Measuring from multiple random references"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Measuring from a single datum and using controlled sequences"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Ignoring tolerances on non-critical features"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Scaling from prints instead of using stated dimensions"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use consistent datums and sequences to minimize accumulation."
+    "CHOICE-2": "Use consistent datums and sequences to minimize accumulation."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_nozzle_tip_clean_v8_01_400000a1",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_nozzle_tip_clean_v8_01_400000a1",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Why keep the nozzle and contact tip clean?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase spatter"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Maintain gas coverage and stable contact"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Reduce deposition rate"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cool the wire"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Spatter buildup disturbs shielding/electrical continuity."
+    "CHOICE-2": "Spatter buildup disturbs shielding/electrical continuity."
   }
 }

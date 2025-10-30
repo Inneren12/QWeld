@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_jha_risk_20000051",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-4_jha_risk_20000051",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "A Job Hazard Analysis (JHA) is used to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Assign overtime pay"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Identify hazards and controls for each task step"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Replace PPE"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminate documentation"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "JHAs break down tasks to identify hazards and define controls."
+    "CHOICE-2": "JHAs break down tasks to identify hazards and define controls."
   }
 }

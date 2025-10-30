@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_345_rule_10000018",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_345_rule_10000018",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "What is the 3‑4‑5 rule used for in layout?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Checking roundness"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Checking 90° squareness by measuring a 3‑4‑5 triangle"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Checking parallelism only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Pipe layout only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A 3‑4‑5 triangle forms a right angle, useful for verifying squareness."
+    "CHOICE-2": "A 3‑4‑5 triangle forms a right angle, useful for verifying squareness."
   }
 }

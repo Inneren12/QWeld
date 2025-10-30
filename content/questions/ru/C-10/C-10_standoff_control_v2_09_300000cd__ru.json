@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_standoff_control_v2_09_300000cd",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-10_standoff_control_v2_09_300000cd",
   "taskId": "C-10",
   "difficulty": "easy",
   "stem": "Как следует torch вылета/зазора be managed in plasma arc cutting (PAC (переменный ток))?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Всегда drag the сопла regardless of design"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Maintain the proper вылета/зазора/drag per torch design to protect расходников"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Closer is always better"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Farther is always better"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Correct вылета/зазора предотвращает nozzle damage and preserves cut quality."
+    "CHOICE-2": "Correct вылета/зазора предотвращает nozzle damage and preserves cut quality."
   }
 }

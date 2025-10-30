@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_drive_roll_type_v2_00_40000064",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_drive_roll_type_v2_00_40000064",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Which drive rolls are appropriate for FCAW‑S vs solid wire?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "V‑groove for FCAW‑S; knurled for solid"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Knurled for FCAW‑S; V‑groove for solid"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "U‑groove for solid only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Any roll type"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Knurled for tubular wire; V‑groove for solid steel wire."
+    "CHOICE-2": "Knurled for tubular wire; V‑groove for solid steel wire."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_arc_length_1000004c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_arc_length_1000004c",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "Что arc length — generally recommended for SMAW (ручная дуговая)?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Very long arc for better visibility"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "As short as practical, about the электрод diameter"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Exactly 1 inch"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "No effect on quality"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Short arcs улучшить shielding and уменьшить spatter and подрез."
+    "CHOICE-2": "Short arcs улучшить shielding and уменьшить spatter and подрез."
   }
 }

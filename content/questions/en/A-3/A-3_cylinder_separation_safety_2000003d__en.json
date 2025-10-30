@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_cylinder_separation_safety_2000003d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-3_cylinder_separation_safety_2000003d",
   "taskId": "A-3",
   "difficulty": "medium",
   "stem": "In storage areas, oxygen cylinders should be:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Stored together with fuel gas cylinders"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Separated from fuel gases by distance or a barrier"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Coated with grease to prevent rust"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Laid down to save space"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Separate oxygen from fuel gases to reduce fire/explosion risk."
+    "CHOICE-2": "Separate oxygen from fuel gases to reduce fire/explosion risk."
   }
 }

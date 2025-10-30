@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_datum_on_drawing_20000048",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-4_datum_on_drawing_20000048",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "When measuring from drawings, a good practice is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Use any convenient edge as a baseline"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Measure from the designated datum(s) shown"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Scale dimensions from a printout"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Guess from photos"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use the specified datums to control tolerance stack‑up."
+    "CHOICE-2": "Use the specified datums to control tolerance stack‑up."
   }
 }

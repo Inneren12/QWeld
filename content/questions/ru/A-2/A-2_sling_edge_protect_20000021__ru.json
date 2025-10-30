@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_sling_edge_protect_20000021",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_sling_edge_protect_20000021",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "Как следует текстильных строп be protected on sharp edges?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "No protection needed"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Использовать padding/edge protectors"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Wrap with tape only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Move faster to avoid cuts"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use corner pads/guards to prevent cutting of webbing."
+    "CHOICE-2": "Use corner pads/guards to prevent cutting of webbing."
   }
 }

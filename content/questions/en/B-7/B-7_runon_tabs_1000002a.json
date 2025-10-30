@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_runon_tabs_1000002a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_runon_tabs_1000002a",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Why install run‑on and run‑off tabs?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "They are cosmetic only"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To achieve full fusion at tie‑ins and protect part edges"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "For lifting points"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They make the weld weaker"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Tabs allow starting/ending outside the part for complete fusion."
+    "CHOICE-2": "Tabs allow starting/ending outside the part for complete fusion."
   }
 }

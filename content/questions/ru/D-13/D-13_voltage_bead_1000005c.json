@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_voltage_bead_1000005c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_voltage_bead_1000005c",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Increasing напряжение in CV GMAW (MIG/MAG) (at fixed WFS) tends to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Narrow and stiffen the arc with deeper проплавление"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Widen the bead and увеличивает wetting"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Lower heat input and widen the bead"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Have no effect"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Higher напряжение broadens the arc column, improving sidewall wetting."
+    "CHOICE-2": "Higher напряжение broadens the arc column, improving sidewall wetting."
   }
 }

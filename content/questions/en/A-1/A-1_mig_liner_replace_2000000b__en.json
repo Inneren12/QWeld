@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_mig_liner_replace_2000000b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-1_mig_liner_replace_2000000b",
   "taskId": "A-1",
   "difficulty": "medium",
   "stem": "A sign that a GMAW gun liner may need replacement is:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Exceptionally smooth wire feed"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Increased feeding resistance and birdnesting"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Higher gas flow"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Lower duty cycle"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Drag from a worn/dirty liner can cause feeding issues and birdnesting."
+    "CHOICE-2": "Drag from a worn/dirty liner can cause feeding issues and birdnesting."
   }
 }

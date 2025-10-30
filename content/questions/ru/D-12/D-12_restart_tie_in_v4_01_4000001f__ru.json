@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_restart_tie_in_v4_01_4000001f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_restart_tie_in_v4_01_4000001f",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Что is a good practice when restarting a валик?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Strike on the weld face and continue"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Feather the stop and restart slightly ahead to tie in"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Restart exactly in the crater"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Do nothing; шлака will float out"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Feathering and restarting ahead blend without defects."
+    "CHOICE-2": "Feathering and restarting ahead blend without defects."
   }
 }

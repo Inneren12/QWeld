@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_gas_flow_high_10000075",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_gas_flow_high_10000075",
   "taskId": "D-14",
   "difficulty": "medium",
   "stem": "К чему может привести чрезмерный GTAW (TIG) shielding gas flow cause?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Improved laminar flow"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Turbulence that draws in air and contamination"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "No effect on shielding"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Higher проплавление"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Too much flow creates turbulence and aspiration of air into the shield."
+    "CHOICE-2": "Too much flow creates turbulence and aspiration of air into the shield."
   }
 }

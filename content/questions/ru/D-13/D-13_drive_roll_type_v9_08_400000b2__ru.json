@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_drive_roll_type_v9_08_400000b2",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_drive_roll_type_v9_08_400000b2",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Какое drive rolls are appropriate for FCAW (порошковая)-S vs solid проволока?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "V-groove for FCAW (порошковая)-S; knurled for solid"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Knurled for FCAW (порошковая)-S; V-groove for solid"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "U-groove for solid only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Any roll type"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Knurled for tubular проволока; V-groove for solid steel проволока."
+    "CHOICE-2": "Knurled for tubular проволока; V-groove for solid steel проволока."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_fillet_angles_10000052",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_fillet_angles_10000052",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "What are typical angles for a flat fillet weld with SMAW?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Work angle ~45° with 5–15° travel angle"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Work angle 15° with 45° travel angle"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "90° to both pieces with zero travel angle"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Push 30° into the joint"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "A 45° work angle with a slight drag/push travel angle is common."
+    "CHOICE-1": "A 45° work angle with a slight drag/push travel angle is common."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_damaged_cord_10000001",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_damaged_cord_10000001",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Что следует сделать, если a электроинструмента’s cord insulation — damaged?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Wrap it with tape and continue working"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Use it только on GFCI-protected outlets"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Tag it out and remove it from service until repaired"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Flip the plug to restore the ground"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Defective tools must be removed from service and tagged until properly repaired."
+    "CHOICE-3": "Defective tools must be removed from service and tagged until properly repaired."
   }
 }

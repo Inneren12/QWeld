@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_tungsten_grind_long_v4_03_400000e4",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_tungsten_grind_long_v4_03_400000e4",
   "taskId": "D-14",
   "difficulty": "medium",
   "stem": "Как следует вольфрамовый электрод be ground for DC GTAW (TIG) on steel?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Circumferentially around the rod"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Longitudinally along the rod"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "No grinding needed"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "With a blunt chisel only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Longitudinal grinding minimizes arc wander."
+    "CHOICE-2": "Longitudinal grinding minimizes arc wander."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-9_neutral_flame_id_v2_09_300000aa",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-9_neutral_flame_id_v2_09_300000aa",
   "taskId": "C-9",
   "difficulty": "easy",
   "stem": "Which description matches a neutral oxy-fuel flame?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "A long fuel-rich (acetylene) feather"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "A balanced inner cone with no feather"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "An oxidizing feather on the inner cone"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A loud popping flame"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Neutral flame has a well-defined inner cone without an acetylene feather."
+    "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
   }
 }

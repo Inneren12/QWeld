@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_root_face_land_v5_07_30000065",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_root_face_land_v5_07_30000065",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "A small root face (land) on groove edges helps to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Prevent any penetration"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Control root penetration and support the root"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Increase arc length"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Remove the need for backing"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A land supports root control and bead shape."
+    "CHOICE-2": "A land supports root control and bead shape."
   }
 }

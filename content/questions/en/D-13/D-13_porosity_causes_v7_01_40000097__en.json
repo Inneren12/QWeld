@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_porosity_causes_v7_01_40000097",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_porosity_causes_v7_01_40000097",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Which can cause porosity in GMAW?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Drafts, improper gas flow, contamination"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Higher voltage only"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Small wire diameter"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Using a gas lens"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Shielding disruption and contaminants allow gas pores."
+    "CHOICE-1": "Shielding disruption and contaminants allow gas pores."
   }
 }

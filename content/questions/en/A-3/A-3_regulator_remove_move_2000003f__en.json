@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_regulator_remove_move_2000003f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-3_regulator_remove_move_2000003f",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Before moving a cylinder to another location, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Leave the regulator on for faster setup"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Remove the regulator and install the valve cap"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Open the valve fully for transport"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Lay the cylinder horizontally"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Remove regulators and install caps before transport."
+    "CHOICE-2": "Remove regulators and install caps before transport."
   }
 }

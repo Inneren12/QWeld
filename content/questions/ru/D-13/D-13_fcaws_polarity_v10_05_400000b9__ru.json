@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_fcaws_polarity_v10_05_400000b9",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_fcaws_polarity_v10_05_400000b9",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Most self-shielded FCAW (порошковая) проволокаs run on:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "DCEN (прямая полярность)"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "DCEP (обратная полярность)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "AC (переменный ток) only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Either polarity"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Common self-shielded types (e.g., E71T-8) use DCEN (прямая полярность)."
+    "CHOICE-1": "Common self-shielded types (e.g., E71T-8) use DCEN (прямая полярность)."
   }
 }

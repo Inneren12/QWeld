@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_edge_distance_v2_06_30000011",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_edge_distance_v2_06_30000011",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "Почему respect minimum edge distances for holes during layout?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To maximize distortion"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To prevent edge tearing and maintain strength"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To save drill bits"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To make holes look centered"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Minimum edge distances help keep material integrity."
+    "CHOICE-2": "Minimum edge distances help keep material integrity."
   }
 }

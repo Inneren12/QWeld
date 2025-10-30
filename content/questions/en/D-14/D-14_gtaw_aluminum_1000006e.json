@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_gtaw_aluminum_1000006e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-14_gtaw_aluminum_1000006e",
   "taskId": "D-14",
   "difficulty": "easy",
   "stem": "Which current type is commonly used for GTAW on aluminum?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "DCEN only"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "AC"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "DCEP only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "AC with water as shielding"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "AC provides electrode‑positive cleaning action to remove aluminum oxide."
+    "CHOICE-2": "AC provides electrode‑positive cleaning action to remove aluminum oxide."
   }
 }

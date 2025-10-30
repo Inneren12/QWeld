@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_gmaw_polarity_v11_04_400000c2",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_gmaw_polarity_v11_04_400000c2",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Какая полярность is standard for GMAW (MIG/MAG) and most газ-shielded FCAW (порошковая) проволокаs?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "DCEN (прямая полярность)"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "DCEP (обратная полярность)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "AC (переменный ток) only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Either, no difference"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Solid and газ-shielded флюса-cored проволокаs typically use DCEP (обратная полярность)."
+    "CHOICE-2": "Solid and газ-shielded флюса-cored проволокаs typically use DCEP (обратная полярность)."
   }
 }

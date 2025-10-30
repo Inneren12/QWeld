@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_lag_lines_v2_06_300000ca",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-10_lag_lines_v2_06_300000ca",
   "taskId": "C-10",
   "difficulty": "medium",
   "stem": "Prominent lag lines trailing far behind the torch usually indicate:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Correct speed and current"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Travel speed too fast"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Travel speed too slow"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Proper height only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Excess speed increases lag/drag lines; adjust speed or current."
+    "CHOICE-2": "Excess speed increases lag/drag lines; adjust speed or current."
   }
 }

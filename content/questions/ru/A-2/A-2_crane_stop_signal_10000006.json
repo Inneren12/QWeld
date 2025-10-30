@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_crane_stop_signal_10000006",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_crane_stop_signal_10000006",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "Какое утверждение о кран hand signals — верно?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Только the operator may signal a stop"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Anyone may give the universal emergency stop signal"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Two hands above head always means 'speed up'"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "There — no standard hand signals for cranes"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "The emergency stop — universal and may be given by any person observing danger."
+    "CHOICE-2": "The emergency stop — universal and may be given by any person observing danger."
   }
 }

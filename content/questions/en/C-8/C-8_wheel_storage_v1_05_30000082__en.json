@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-8_wheel_storage_v1_05_30000082",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-8_wheel_storage_v1_05_30000082",
   "taskId": "C-8",
   "difficulty": "easy",
   "stem": "What is a good way to bonded abrasive wheels be stored?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "In a damp area to keep cool"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Dry, flat, protected from impact"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Hanging by the arbor hole"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Under heavy weights"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Moisture/impacts damage wheels; keep them dry and supported."
+    "CHOICE-2": "Moisture/impacts damage wheels; keep them dry and supported."
   }
 }

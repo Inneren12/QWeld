@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_cog_estimate_20000024",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_cog_estimate_20000024",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Before lifting an irregular load, you should locate the center of gravity so that:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "The hook is below the COG"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "The hook is directly above or slightly past the COG toward the heavy end"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "The hook is far to one side"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "COG position is irrelevant"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Suspending above/just past the COG helps the load hang level without tipping."
+    "CHOICE-2": "Suspending above/just past the COG helps the load hang level without tipping."
   }
 }

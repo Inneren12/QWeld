@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_grinder_inspect_10000000",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_grinder_inspect_10000000",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Перед использованием переносной угловой шлифмашины, какое check — mandatory?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Remove the guard to access tight spots"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Use any wheel that fits the arbor"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Verify the guard — fitted and the wheel RPM rating meets or exceeds tool RPM"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Lubricate the wheel with oil for a smoother cut"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "A properly fitted guard and a wheel rated for the tool speed предотвращает wheel burst."
+    "CHOICE-3": "A properly fitted guard and a wheel rated for the tool speed предотвращает wheel burst."
   }
 }

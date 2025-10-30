@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_local_exhaust_20000029",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_local_exhaust_20000029",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Что такое an effective method to control сварки fume at the source?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Rely on general building ventilation only"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Использовать local exhaust/hoods positioned near the arc"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Turn off the extractor to reduce noise"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Использовать a desk fan to blow fumes away"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Capture at the source with local exhaust is most effective."
+    "CHOICE-2": "Capture at the source with local exhaust is most effective."
   }
 }

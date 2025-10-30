@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_runoff_tabs_use_2000005e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_runoff_tabs_use_2000005e",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Run-on/run-off tabs are installed to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Speed cooling"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Start/stop off the part and achieve full fusion at tie-ins"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Support clamps only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Replace предварительный подогрев"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Tabs allow full penetration and clean tie-ins without damaging part edges."
+    "CHOICE-2": "Tabs allow full penetration and clean tie-ins without damaging part edges."
   }
 }

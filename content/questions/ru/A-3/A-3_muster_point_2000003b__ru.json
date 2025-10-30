@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_muster_point_2000003b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_muster_point_2000003b",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "In case of an emergency evacuation, workers should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Run in different directions"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Go to the designated muster/assembly point"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Return to collect personal items"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Call friends first"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Assemble at the designated muster point for a headcount."
+    "CHOICE-2": "Assemble at the designated muster point for a headcount."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_interpass_control_20000056",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_interpass_control_20000056",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Controlling interpass temperature primarily helps to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase hydrogen cracking risk"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Control metallurgical properties and reduce cracking risk"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Improve arc visibility only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminate fit‑up checks"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Interpass control manages microstructure and cracking susceptibility."
+    "CHOICE-2": "Interpass control manages microstructure and cracking susceptibility."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_practice_bead_20000071",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_practice_bead_20000071",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "Before production welding on a new setup, a good approach is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Start immediately on the part"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Run practice beads on scrap of similar material and thickness"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Skip parameter checks"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Use random settings"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Practice beads help dial in parameters and technique."
+    "CHOICE-2": "Practice beads help dial in parameters and technique."
   }
 }

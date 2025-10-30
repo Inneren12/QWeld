@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_ac_balance_effect_v6_02_400000f7",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-14_ac_balance_effect_v6_02_400000f7",
   "taskId": "D-14",
   "difficulty": "hard",
   "stem": "Increasing the EP portion of AC balance in GTAW will:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase oxide cleaning but heat the tungsten more"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Reduce cleaning and cool the tungsten"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Not change cleaning"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Stop the arc"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "More EP enhances cathodic cleaning and tungsten heating."
+    "CHOICE-1": "More EP enhances cathodic cleaning and tungsten heating."
   }
 }

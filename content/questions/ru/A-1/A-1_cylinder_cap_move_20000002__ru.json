@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_cylinder_cap_move_20000002",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_cylinder_cap_move_20000002",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Перед перемещением a compressed gas баллона, what should you do?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Удалить the cap for better grip"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Leave the редуктора installed"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Install the protective cap and use a proper cart"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Roll it on the floor by hand"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Fit the protective cap and move баллонаs with approved carts-never by rolling."
+    "CHOICE-3": "Fit the protective cap and move баллонаs with approved carts-never by rolling."
   }
 }

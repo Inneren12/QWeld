@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_root_gap_consistency_v5_10_30000068",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_root_gap_consistency_v5_10_30000068",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Почему is a consistent корень шва opening important before welding a butt joint?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "It has no effect on penetration"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "It помогает control penetration and корень шва fusion"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "A completely closed gap is always best"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A very large gap предотвращает burn-through"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Uniform gaps help achieve consistent корень шва fusion without burn-through."
+    "CHOICE-2": "Uniform gaps help achieve consistent корень шва fusion without burn-through."
   }
 }

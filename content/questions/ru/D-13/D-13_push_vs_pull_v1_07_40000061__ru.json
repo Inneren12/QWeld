@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_push_vs_pull_v1_07_40000061",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_push_vs_pull_v1_07_40000061",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Pushing the GMAW (MIG/MAG) gun typically results in:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Deeper проплавление and narrow валик"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Wider, flatter валик with slightly less проплавление"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Identical results"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Lack of сплавление always"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Push angles broaden the валик and slightly reduce проплавление."
+    "CHOICE-2": "Push angles broaden the валик and slightly reduce проплавление."
   }
 }

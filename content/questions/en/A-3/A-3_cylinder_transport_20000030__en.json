@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_cylinder_transport_20000030",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-3_cylinder_transport_20000030",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "When transporting gas cylinders within the shop, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Roll them on the bottom rim"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Carry them horizontally with two people"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Use a proper cylinder cart with cap installed"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Drag them by the valve cap"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Use cylinder carts and keep protective caps on during transport."
+    "CHOICE-3": "Use cylinder carts and keep protective caps on during transport."
   }
 }

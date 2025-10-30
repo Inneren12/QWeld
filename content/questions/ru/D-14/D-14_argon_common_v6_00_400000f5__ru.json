@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_argon_common_v6_00_400000f5",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_argon_common_v6_00_400000f5",
   "taskId": "D-14",
   "difficulty": "easy",
   "stem": "Какой газ is commonly used for GTAW (TIG) защитного газа and purge?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Argon"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Carbon diоксида"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Oxygen"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Dry air"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Argon is inert and widely used."
+    "CHOICE-1": "Argon is inert and widely used."
   }
 }

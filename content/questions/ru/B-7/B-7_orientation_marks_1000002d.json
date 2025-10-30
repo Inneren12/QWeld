@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_orientation_marks_1000002d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_orientation_marks_1000002d",
   "taskId": "B-7",
   "difficulty": "easy",
   "stem": "Зачем метить part orientation before tacking/welding?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Such marks — graffiti"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "They help avoid assembly errors"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They weaken structural members"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They — not allowed on steel"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Orientation marks help ensure parts — positioned as designed."
+    "CHOICE-2": "Orientation marks help ensure parts — positioned as designed."
   }
 }

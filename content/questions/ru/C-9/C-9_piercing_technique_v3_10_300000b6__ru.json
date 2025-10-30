@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-9_piercing_technique_v3_10_300000b6",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-9_piercing_technique_v3_10_300000b6",
   "taskId": "C-9",
   "difficulty": "medium",
   "stem": "For piercing a plate with кислородно‑топливной, a good technique is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Place the сопла flat and go to full oxygen immediately"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Tilt the сопла, подогрева, then use the oxygen jet to pierce"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Только start from the edge"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Point straight down without подогрева"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Preheat and a slight tilt help prevent blowback and сопла damage."
+    "CHOICE-2": "Preheat and a slight tilt help prevent blowback and сопла damage."
   }
 }

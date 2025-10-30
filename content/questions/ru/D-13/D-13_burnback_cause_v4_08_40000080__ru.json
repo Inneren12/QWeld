@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_burnback_cause_v4_08_40000080",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_burnback_cause_v4_08_40000080",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Что typically causes 'burnback' (проволока fusing to the токоподводящего наконечника)?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Too long вылета"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Too short вылета or too slow проволока feed relative to напряжение"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "High газ flow"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Correct индуктивности"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "If burnoff exceeds feed, the arc retreats and fuses the tip."
+    "CHOICE-2": "If burnoff exceeds feed, the arc retreats and fuses the tip."
   }
 }

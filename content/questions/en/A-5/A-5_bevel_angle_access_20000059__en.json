@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_bevel_angle_access_20000059",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_bevel_angle_access_20000059",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Choosing an appropriate bevel angle helps to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Reduce sidewall access"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Allow electrode/torch access and proper penetration"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Increase distortion only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Avoid cleaning between passes"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Adequate groove angle is required for access and fusion."
+    "CHOICE-2": "Adequate groove angle is required for access and fusion."
   }
 }

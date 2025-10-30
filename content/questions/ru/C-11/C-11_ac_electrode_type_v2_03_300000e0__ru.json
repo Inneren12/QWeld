@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-11_ac_electrode_type_v2_03_300000e0",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-11_ac_electrode_type_v2_03_300000e0",
   "taskId": "C-11",
   "difficulty": "medium",
   "stem": "If CAC (переменный ток)-A must be performed on AC (переменный ток), you should use:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Standard DC gouging carbons"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "AC (переменный ток)-rated gouging electrodes designed for AC (переменный ток)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Any carbon rod available"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A wooden dowel"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Special AC (переменный ток)-rated carbons are required for stable AC (переменный ток) gouging."
+    "CHOICE-2": "Special AC (переменный ток)-rated carbons are required for stable AC (переменный ток) gouging."
   }
 }

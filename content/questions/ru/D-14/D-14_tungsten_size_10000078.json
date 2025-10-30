@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_tungsten_size_10000078",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_tungsten_size_10000078",
   "taskId": "D-14",
   "difficulty": "easy",
   "stem": "Почему choose a larger-diameter tungsten for higher currents?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To увеличивает spatter"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To handle higher heat without melting the наконечник"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To уменьшить shielding"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To avoid the need for filler"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Bigger электроды carry more ток without overheating."
+    "CHOICE-2": "Bigger электроды carry more ток without overheating."
   }
 }

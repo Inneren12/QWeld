@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_ctwd_long_1000005e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_ctwd_long_1000005e",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "What is the effect of excessive stickout/CTWD in GMAW/FCAW?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Higher current and deeper penetration"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Lower current and reduced penetration"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "No change"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cleaner arc starts"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Long stickout increases resistive heating of the wire, reducing current at the arc."
+    "CHOICE-2": "Long stickout increases resistive heating of the wire, reducing current at the arc."
   }
 }

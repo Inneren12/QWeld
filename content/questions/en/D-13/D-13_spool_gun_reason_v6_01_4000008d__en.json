@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_spool_gun_reason_v6_01_4000008d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_spool_gun_reason_v6_01_4000008d",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "Why use a spool gun with aluminum GMAW?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To increase stickout"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To keep soft wire feed path short, reducing birdnesting"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To eliminate shielding gas"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To run DCEN"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Short path in the gun reduces feeding issues."
+    "CHOICE-2": "Short path in the gun reduces feeding issues."
   }
 }

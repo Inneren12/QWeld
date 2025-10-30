@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_protect_hoses_hot_20000034",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-3_protect_hoses_hot_20000034",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Oxy‑fuel and welding hoses should be kept:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Across sharp edges and hot surfaces"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Away from hot/walking surfaces and protected from damage"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Tied in knots for storage"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Painted to prevent wear"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Protect hoses from cuts, heat, and traffic."
+    "CHOICE-2": "Protect hoses from cuts, heat, and traffic."
   }
 }

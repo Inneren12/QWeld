@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_galvanized_remove_20000067",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_galvanized_remove_20000067",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Before сварки galvanized steel, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Weld directly through the coating"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Удалить zinc coating locally and ensure ventilation"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Использовать water as shielding"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Switch to Только AC (переменный ток)"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Removing zinc and ventilating уменьшает fume hazards and defects."
+    "CHOICE-2": "Removing zinc and ventilating уменьшает fume hazards and defects."
   }
 }

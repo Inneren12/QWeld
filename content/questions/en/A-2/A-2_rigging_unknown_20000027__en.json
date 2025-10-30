@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_rigging_unknown_20000027",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_rigging_unknown_20000027",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "If rigging gear’s history or condition is unknown, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Use it for a light lift first"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Assume it’s fine if it looks clean"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Remove it from service and have it inspected"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Paint it and put it back"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Unknown or suspect gear must be inspected or discarded."
+    "CHOICE-3": "Unknown or suspect gear must be inspected or discarded."
   }
 }

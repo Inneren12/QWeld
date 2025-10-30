@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_ladder_3points_20000014",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_ladder_3points_20000014",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "When climbing a ladder, which practice is correct?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Carry tools in your hands"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Maintain three points of contact"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Lean far to the side to reach"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Stand on the top cap for better height"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Keep two hands and one foot or two feet and one hand in contact while climbing."
+    "CHOICE-2": "Keep two hands and one foot or two feet and one hand in contact while climbing."
   }
 }

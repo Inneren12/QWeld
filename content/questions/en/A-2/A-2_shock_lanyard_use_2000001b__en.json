@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_shock_lanyard_use_2000001b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_shock_lanyard_use_2000001b",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Why use a shock‑absorbing lanyard in fall arrest?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To increase arrest forces"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To reduce forces on the body during a fall"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To make the lanyard heavier"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To replace anchor points"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Energy‑absorbing devices limit peak forces transmitted to the user."
+    "CHOICE-2": "Energy‑absorbing devices limit peak forces transmitted to the user."
   }
 }

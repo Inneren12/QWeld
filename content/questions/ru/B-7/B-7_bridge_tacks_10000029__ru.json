@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_bridge_tacks_10000029",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_bridge_tacks_10000029",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Что — перемычек-прихваток used for?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Spanning gaps temporarily during fit-up"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Permanent structural members"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They — forbidden for any process"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They replace the root pass"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Bridge tacks hold edges where gaps exist until proper welding occurs."
+    "CHOICE-1": "Bridge tacks hold edges where gaps exist until proper welding occurs."
   }
 }

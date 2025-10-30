@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_radius_gauge_v2_09_30000014",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_radius_gauge_v2_09_30000014",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "A radius gauge is used to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Measure angular degrees"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Check concave/convex radii against a template"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Measure voltage"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Measure thickness only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Radius gauges compare edge radii to templates."
+    "CHOICE-2": "Radius gauges compare edge radii to templates."
   }
 }

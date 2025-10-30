@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_polarity_change_wps_2000006c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_polarity_change_wps_2000006c",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Changing welding polarity from what the WPS specifies may:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Have no effect"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Cause lack of fusion or instability"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Always improve penetration"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Only change bead color"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Incorrect polarity can reduce fusion and arc stability."
+    "CHOICE-2": "Incorrect polarity can reduce fusion and arc stability."
   }
 }
