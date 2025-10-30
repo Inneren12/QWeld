@@ -32,7 +32,7 @@ jobs:
           bash scripts/validate-blueprint.sh
 
       - name: Upload validation logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: blueprint-validation-logs
           path: logs/blueprint-validate.txt
