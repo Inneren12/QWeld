@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "content-tools"
+version = "0.1.0"
+description = "Utilities for maintaining localized QWeld content"
+authors = ["QWeld Content Team <content@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
+
+[build-system]
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
