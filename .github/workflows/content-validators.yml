@@ -38,9 +38,22 @@ jobs:
       - name: Validate explanations
         run: bash scripts/validate-explanations.sh
 
+      - name: Check question quotas
+        run: bash scripts/check-quotas.sh
+
+      - name: Build question banks
+        run: bash scripts/build-questions-dist.sh
+
       - name: Upload validation logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: content-validation-logs
           path: logs
+
+      - name: Upload question bank dist
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: questions-dist
+          path: dist/questions

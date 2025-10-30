@@ -13,6 +13,11 @@
 - Active blueprint: `content/blueprints/welder_ip_sk_202404.json` (blueprintVersion 1.0.0, policyVersion 1.0).
 - Run validators locally with `bash scripts/validate-blueprint.sh` and `bash scripts/validate-questions.sh`; both scripts emit logs in `logs/` used by CI (`.github/workflows/content-validators.yml`).
 
+## Question quotas & distribution banks
+- Verify the per-task quotas defined in the active blueprint with `bash scripts/check-quotas.sh`; the script writes locale-specific reports to `logs/quotas_en.txt` and `logs/quotas_ru.txt` and fails if any totals diverge.
+- Generate the flattened question banks consumed by the app with `bash scripts/build-questions-dist.sh`; the resulting bundles are stored under `dist/questions/{en,ru}/bank.v1.json` and the run metadata is logged in `logs/build_dist_{en,ru}.txt`.
+- CI publishes the quota logs and the dist outputs as artifacts via `.github/workflows/content-validators.yml` (`content-validation-logs` and `questions-dist`).
+
 ## Explanations schema & how to validate
 - Schema: `schemas/explanation.schema.json` defines the required structure for explanation articles (metadata, steps, incorrect choices, and optional references/media blocks).
 - Validate locally with `bash scripts/validate-explanations.sh`; the script will emit `logs/validate-explanations.txt` mirroring CI output and will fail if the linked question JSON is missing.
