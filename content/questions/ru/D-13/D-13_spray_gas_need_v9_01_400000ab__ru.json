@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_spray_gas_need_v9_01_400000ab",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_spray_gas_need_v9_01_400000ab",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "To achieve струйного переноса on carbon steel, generally required:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "CO₂-only защитного газа"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Argon-rich защитного газа газ"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Very low напряжение"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Short вылета"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Spray requires argon-dominant газ and sufficient ток/напряжение."
+    "CHOICE-2": "Spray requires argon-dominant газ and sufficient ток/напряжение."
   }
 }

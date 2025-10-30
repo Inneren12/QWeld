@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_compressor_drain_20000013",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-1_compressor_drain_20000013",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Why should a shop air receiver/compressor be drained regularly?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To increase humidity for welding"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To remove moisture that can damage tools and processes"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To cool the tank"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To reduce air pressure permanently"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Draining removes accumulated water that can harm tools and welding quality."
+    "CHOICE-2": "Draining removes accumulated water that can harm tools and welding quality."
   }
 }

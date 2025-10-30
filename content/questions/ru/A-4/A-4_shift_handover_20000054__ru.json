@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_shift_handover_20000054",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_shift_handover_20000054",
   "taskId": "A-4",
   "difficulty": "easy",
   "stem": "At shift handover, a good practice is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Держать/сохранять notes private"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Document status, issues, and next steps for continuity"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Leave with work in the machine"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Hide in-process parts"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Clear handover notes maintain continuity and quality."
+    "CHOICE-2": "Clear handover notes maintain continuity and quality."
   }
 }

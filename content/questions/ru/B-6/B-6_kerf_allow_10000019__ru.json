@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_kerf_allow_10000019",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_kerf_allow_10000019",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "Зачем учитывать cutting kerf in layout?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "It — negligible for all processes"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To maintain final dimensions after cutting"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To add weld reinforcement"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Всегда subtract a fixed 10 mm"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Kerf removes material; planning for it preserves required part size."
+    "CHOICE-2": "Kerf removes material; planning for it preserves required part size."
   }
 }

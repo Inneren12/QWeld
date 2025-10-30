@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_shackle_orientation_20000020",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_shackle_orientation_20000020",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "For a two‑leg sling connection using a shackle, a good practice is:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Load on the pin with side loading"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Place the bow on the sling side to reduce side‑loading the pin"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Use any random orientation"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Replace shackles with padlocks"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "The bow provides more space and reduces side loading on the pin."
+    "CHOICE-2": "The bow provides more space and reduces side loading on the pin."
   }
 }

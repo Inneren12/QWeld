@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_shim_uniform_gap_v1_10_3000003c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_shim_uniform_gap_v1_10_3000003c",
   "taskId": "B-7",
   "difficulty": "easy",
   "stem": "Why use shims during fit-up?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To hide defects"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To ensure a consistent root gap when parts vary"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To replace beveling"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Only for painting"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Shims help set uniform gaps before welding."
+    "CHOICE-2": "Shims help set uniform gaps before welding."
   }
 }

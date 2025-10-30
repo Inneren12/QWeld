@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-8_ring_test_v2_01_30000089",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-8_ring_test_v2_01_30000089",
   "taskId": "C-8",
   "difficulty": "medium",
   "stem": "Перед mounting a bonded grinding wheel, a recommended check is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Spin it up on the grinder first"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Perform a ring test and inspect for cracks"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Soak it in oil"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Strike it with a hammer forcefully"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A ring (sound) test помогает detect hidden cracks."
+    "CHOICE-2": "A ring (sound) test помогает detect hidden cracks."
   }
 }

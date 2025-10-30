@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_position_digit_10000048",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_position_digit_10000048",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "Что означает цифра «1» в E7018?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Только нижнее"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Только нижнее и горизонтальное"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Во всех положениях"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Только потолочное"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "The положение digit '1' means the электрод — usable in all положения."
+    "CHOICE-3": "The положение digit '1' means the электрод — usable in all положения."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_sling_angle_10000005",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_sling_angle_10000005",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Как влияет строп angle affect tension in a two-leg подъём?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Smaller angles уменьшить tension in each leg"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Smaller angles увеличивает tension in each leg"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Angle has no effect on leg tension"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Larger angles always увеличивает tension"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "As the angle from horizontal decreases, leg tension rises significantly."
+    "CHOICE-2": "As the angle from horizontal decreases, leg tension rises significantly."
   }
 }

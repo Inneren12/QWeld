@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_consumable_vs_wps_20000044",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-4_consumable_vs_wps_20000044",
   "taskId": "A-4",
   "difficulty": "easy",
   "stem": "Before starting, consumables should be checked to ensure they:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Match the WPS classification and size"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Are the cheapest available"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Were found on the nearest bench"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Have the longest storage time"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Confirm wire/rod classification and sizes match the WPS."
+    "CHOICE-1": "Confirm wire/rod classification and sizes match the WPS."
   }
 }

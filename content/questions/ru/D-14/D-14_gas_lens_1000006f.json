@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_gas_lens_1000006f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_gas_lens_1000006f",
   "taskId": "D-14",
   "difficulty": "medium",
   "stem": "Какова цель a gas lens on a GTAW (TIG) torch?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Увеличивает spatter"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Create laminar gas flow and extend shielding coverage"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Уменьшить tungsten life"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Allow higher ток on DCEN (прямая полярность) (прямая полярность)"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A gas lens straightens flow, improving shielding on joints with more вылет."
+    "CHOICE-2": "A gas lens straightens flow, improving shielding on joints with more вылет."
   }
 }

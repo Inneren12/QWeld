@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_datum_on_drawing_20000048",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_datum_on_drawing_20000048",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "Когда measuring from drawings, a good practice is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Использовать any convenient edge as a baseline"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Measure from the designated база отсчёта(s) shown"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Scale dimensions from a printout"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Guess from photos"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use the specified база отсчётаs to control накопление допусков."
+    "CHOICE-2": "Use the specified база отсчётаs to control накопление допусков."
   }
 }

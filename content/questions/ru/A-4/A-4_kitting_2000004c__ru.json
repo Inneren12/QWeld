@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_kitting_2000004c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_kitting_2000004c",
   "taskId": "A-4",
   "difficulty": "easy",
   "stem": "To reduce delays at the bench, parts and hardware should be:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Collected ad‑hoc during сварки"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Kitted and staged before setup"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Left on pallets unmarked"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Stored in a locked office"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Kitting/staging уменьшает lost time and missing parts."
+    "CHOICE-2": "Kitting/staging уменьшает lost time and missing parts."
   }
 }

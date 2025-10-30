@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_sequence_symmetry_v5_04_30000062",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_sequence_symmetry_v5_04_30000062",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "A symmetric welding sequence on a long seam помогает:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Concentrate heat"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Distribute heat and minimize bowing"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Add pores"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Increase магнитный срыв дуги"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Symmetry помогает control distortion on long joints."
+    "CHOICE-2": "Symmetry помогает control distortion on long joints."
   }
 }

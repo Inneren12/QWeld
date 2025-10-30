@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_polarity_change_wps_2000006c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_polarity_change_wps_2000006c",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Changing сварки polarity from what the WPS (спецификации сварочного процесса) specifies may:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Have no effect"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Cause недостаточного сплавления or instability"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Всегда improve penetration"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Только change bead color"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Incorrect polarity can reduce fusion and arc stability."
+    "CHOICE-2": "Incorrect polarity can reduce fusion and arc stability."
   }
 }

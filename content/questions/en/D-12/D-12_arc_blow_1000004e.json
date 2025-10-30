@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_arc_blow_1000004e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_arc_blow_1000004e",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "How can arc blow be reduced during SMAW?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Lengthen the arc and increase current"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Shorten the arc, move the work lead, or backstep"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Switch to a larger electrode only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Weld only in one direction"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Short arcs and better return lead placement reduce magnetic arc blow."
+    "CHOICE-2": "Short arcs and better return lead placement reduce magnetic arc blow."
   }
 }

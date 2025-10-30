@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_distortion_plan_2000004e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_distortion_plan_2000004e",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "Почему следует weld sequence and fixturing be planned before сварки?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To maximize distortion"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To minimize distortion and rework"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "So clamps are unnecessary"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To avoid reading drawings"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Sequencing/fixturing помогает control shrinkage and alignment."
+    "CHOICE-2": "Sequencing/fixturing помогает control shrinkage and alignment."
   }
 }

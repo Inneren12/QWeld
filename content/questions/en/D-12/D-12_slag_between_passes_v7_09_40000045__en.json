@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_slag_between_passes_v7_09_40000045",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_slag_between_passes_v7_09_40000045",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "Why remove slag between passes with E7018?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Optional; slag burns out"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To avoid slag inclusions and lack of fusion"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To cool the joint"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To increase arc length"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Slag can trap and prevent bonding on subsequent beads."
+    "CHOICE-2": "Slag can trap and prevent bonding on subsequent beads."
   }
 }

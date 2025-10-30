@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_burnback_10000064",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_burnback_10000064",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Что typically causes 'burnback' (wire fusing to the токоподводящего наконечника)?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Too long вылет"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Too short вылет or too slow wire feed relative to напряжение"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "High gas flow"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Верно индуктивность"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "If burnoff exceeds feed, the arc retreats and fuses the наконечник."
+    "CHOICE-2": "If burnoff exceeds feed, the arc retreats and fuses the наконечник."
   }
 }

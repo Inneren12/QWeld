@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_vertical_up_7018_10000056",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_vertical_up_7018_10000056",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Which technique helps control heat when welding vertical‑up with E7018?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Wide fast weave"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Stringer beads (or limited weave) with pauses at the toes"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Downhand travel with high current"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Hold a long arc"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Stringers with brief toe pauses help keep the puddle under control."
+    "CHOICE-2": "Stringers with brief toe pauses help keep the puddle under control."
   }
 }

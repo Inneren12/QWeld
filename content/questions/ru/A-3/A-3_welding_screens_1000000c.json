@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_welding_screens_1000000c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_welding_screens_1000000c",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Почему сварочных экранов used around a work area?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "They только улучшить the welder’s visibility"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "They protect others from arc flash and flying sparks"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They уменьшить fumes below limits by themselves"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They replace personal protective equipment"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Screens help shield bystanders from UV radiation and ejected particles."
+    "CHOICE-2": "Screens help shield bystanders from UV radiation and ejected particles."
   }
 }

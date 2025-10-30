@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_router_hold_points_20000046",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-4_router_hold_points_20000046",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "Job travelers/routers often include hold points meaning:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Optional stops to skip"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Required inspections/approvals before proceeding"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Coffee breaks"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "End of shift only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Hold points require inspection/approval prior to continuing work."
+    "CHOICE-2": "Hold points require inspection/approval prior to continuing work."
   }
 }

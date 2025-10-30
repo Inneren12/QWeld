@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_pedestrian_exclusion_2000001e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_pedestrian_exclusion_2000001e",
   "taskId": "A-2",
   "difficulty": "easy",
   "stem": "During a lift with a crane or hoist, посторонних should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Walk under the suspended load quickly"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Stand close to guide by hand"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Stay out of the fall zone and use barriers/оттяжек"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Ride on the hook for better view"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Keep people out of the fall zone; use оттяжек to control the load."
+    "CHOICE-3": "Keep people out of the fall zone; use оттяжек to control the load."
   }
 }

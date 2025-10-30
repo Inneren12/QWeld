@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_crater_fill_10000065",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_crater_fill_10000065",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Зачем использовать crater-fill or a back-step at the end of a GMAW (MIG/MAG) bead?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To save time"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To уменьшить crater растрескивание and underfill"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To увеличивает spatter"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To cool the torch"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Filling the crater avoids shrinkage cracks and underfill at the stop."
+    "CHOICE-2": "Filling the crater avoids shrinkage cracks and underfill at the stop."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_lowhyd_oven_1000004b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_lowhyd_oven_1000004b",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Почему следует E7018 электроды be kept in a heated rod oven between uses?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To увеличивает флюс melting rate"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To предотвращает moisture pickup and водород растрескивание"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To make шлак removal easier"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To уменьшить amperage requirements"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Dry storage limits водород pickup that can cause cold растрескивание."
+    "CHOICE-2": "Dry storage limits водород pickup that can cause cold растрескивание."
   }
 }

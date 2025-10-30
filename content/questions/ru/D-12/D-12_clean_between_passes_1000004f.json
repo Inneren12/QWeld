@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_clean_between_passes_1000004f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-12_clean_between_passes_1000004f",
   "taskId": "D-12",
   "difficulty": "easy",
   "stem": "Зачем удалять шлак between passes with E7018?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "It — optional; шлак burns out"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To avoid шлак inclusions and lack of сплавление"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To cool the joint"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "To увеличивает arc length"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Шлак can become trapped and предотвращает bonding on subsequent beads."
+    "CHOICE-2": "Шлак can become trapped and предотвращает bonding on subsequent beads."
   }
 }

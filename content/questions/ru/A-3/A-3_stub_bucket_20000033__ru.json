@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_stub_bucket_20000033",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_stub_bucket_20000033",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Where should SMAW электрода stubs be placed?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "On the floor near the сварочного источника"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "In a designated stub bucket or container"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "In the scrap bin with sharp edges exposed"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Left in pockets"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use a stub bucket to control sharp waste and keep floors clear."
+    "CHOICE-2": "Use a stub bucket to control sharp waste and keep floors clear."
   }
 }

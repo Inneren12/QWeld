@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_crater_fill_end_2000005d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_crater_fill_end_2000005d",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "В конце a weld bead, a good practice is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Stop abruptly"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Fill and blend the crater before stopping"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Strike off to the side and leave a crater"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Switch off защитного газа early"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Filling the crater помогает avoid cracking and underfill."
+    "CHOICE-2": "Filling the crater помогает avoid cracking and underfill."
   }
 }

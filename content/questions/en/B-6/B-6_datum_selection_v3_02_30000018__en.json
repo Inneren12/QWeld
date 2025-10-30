@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_datum_selection_v3_02_30000018",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_datum_selection_v3_02_30000018",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "Which practice is correct when choosing a layout datum?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Use several random edges as datums"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Select one clear datum to control accumulated error"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Ignore datums when measuring"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Always measure from part centerlines only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A single, consistent datum minimizes tolerance stack-up."
+    "CHOICE-2": "A single, consistent datum minimizes tolerance stack-up."
   }
 }

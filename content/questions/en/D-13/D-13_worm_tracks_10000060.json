@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_worm_tracks_10000060",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_worm_tracks_10000060",
   "taskId": "D-13",
   "difficulty": "hard",
   "stem": "What often causes 'worm tracks' in FCAW‑G deposits?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Perfect shielding and low voltage"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Excessive voltage/heat or surface contamination causing gas channels"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Too short stickout only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Using solid wire"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Gas bubbles under the slag can leave tracks when voltage/heat is high or surfaces are dirty."
+    "CHOICE-2": "Gas bubbles under the slag can leave tracks when voltage/heat is high or surfaces are dirty."
   }
 }

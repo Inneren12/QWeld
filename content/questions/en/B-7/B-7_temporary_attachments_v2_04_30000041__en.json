@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_temporary_attachments_v2_04_30000041",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-7_temporary_attachments_v2_04_30000041",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "For temporary strongbacks or tabs, a best practice is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Leave them on finished products"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Remove and finish per drawings/WPS after welding"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Ignore drawing requirements"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Paint over them if visible"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Temporary attachments should be removed and finished as specified."
+    "CHOICE-2": "Temporary attachments should be removed and finished as specified."
   }
 }

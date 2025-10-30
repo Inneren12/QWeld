@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_oxide_cleaning_al_10000077",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_oxide_cleaning_al_10000077",
   "taskId": "D-14",
   "difficulty": "medium",
   "stem": "On aluminum GTAW (TIG), что обеспечивает oxide cleaning action?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Электрод-negative (EN) portion"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Электрод-positive (EP) portion of AC (переменный ток)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Back purging"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Helium только"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "The EP half-cycle breaks the aluminum oxide film during AC (переменный ток) welding."
+    "CHOICE-2": "The EP half-cycle breaks the aluminum oxide film during AC (переменный ток) welding."
   }
 }

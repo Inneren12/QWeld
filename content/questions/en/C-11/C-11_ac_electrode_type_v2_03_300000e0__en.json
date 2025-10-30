@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-11_ac_electrode_type_v2_03_300000e0",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-11_ac_electrode_type_v2_03_300000e0",
   "taskId": "C-11",
   "difficulty": "medium",
   "stem": "If CAC-A must be performed on AC, you should use:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Standard DC gouging carbons"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "AC-rated gouging electrodes designed for AC"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Any carbon rod available"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "A wooden dowel"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Special AC-rated carbons are required for stable AC gouging."
+    "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
   }
 }

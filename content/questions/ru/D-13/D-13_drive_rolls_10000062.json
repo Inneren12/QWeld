@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_drive_rolls_10000062",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_drive_rolls_10000062",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Какое drive rolls — appropriate for FCAW (порошковая)-S vs solid wire?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "V-groove for FCAW (порошковая)-S; knurled for solid"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Knurled for FCAW (порошковая)-S; V-groove for solid"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "U-groove for solid только"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Подойдут любые ролики"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Knurled rolls grip tubular wire; V-groove rolls suit solid steel wire."
+    "CHOICE-2": "Knurled rolls grip tubular wire; V-groove rolls suit solid steel wire."
   }
 }

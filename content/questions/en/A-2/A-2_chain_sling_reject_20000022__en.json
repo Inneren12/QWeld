@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_chain_sling_reject_20000022",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-2_chain_sling_reject_20000022",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Which condition requires removing a chain sling from service?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Manufacturer’s tag present"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Links stretched or bent"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Paint markings intact"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Sling recently cleaned"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Deformation or stretch indicates overload—remove the sling from service."
+    "CHOICE-2": "Deformation or stretch indicates overload—remove the sling from service."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_units_consistency_2000004b",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-4_units_consistency_2000004b",
   "taskId": "A-4",
   "difficulty": "easy",
   "stem": "Когда drawings mix units (mm/in), the best practice is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Convert everything mentally on the fly"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Follow the units stated for each dimension and avoid mixing"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Всегда convert to inches"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Всегда convert to millimeters"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use the units indicated; avoid conversion mistakes."
+    "CHOICE-2": "Use the units indicated; avoid conversion mistakes."
   }
 }

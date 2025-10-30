@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_oxyfuel_leak_check_2000000e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_oxyfuel_leak_check_2000000e",
   "taskId": "A-1",
   "difficulty": "easy",
   "stem": "Как следует кислородно‑топливных connections be checked for leaks after assembly?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "With a match"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "By smell only"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "With a leak-detecting (soapy) solution"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "By touching the joints"
     }
   ],
-  "correctId": "C",
+  "correctId": "CHOICE-3",
   "rationales": {
-    "C": "Use a leak-detecting solution; never use flame to check for leaks."
+    "CHOICE-3": "Use a leak-detecting solution; never use flame to check for leaks."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_gas_lens_purpose_v4_02_400000e3",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-14_gas_lens_purpose_v4_02_400000e3",
   "taskId": "D-14",
   "difficulty": "medium",
   "stem": "What is the purpose of a gas lens on a GTAW torch?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase spatter"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Create laminar flow and extend shielding"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Reduce tungsten life"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Allow higher current on DCEN"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Gas lens straightens flow, improving coverage with stickout."
+    "CHOICE-2": "Gas lens straightens flow, improving coverage with stickout."
   }
 }

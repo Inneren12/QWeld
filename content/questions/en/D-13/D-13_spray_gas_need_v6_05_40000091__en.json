@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_spray_gas_need_v6_05_40000091",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_spray_gas_need_v6_05_40000091",
   "taskId": "D-13",
   "difficulty": "medium",
   "stem": "To achieve spray transfer on carbon steel, generally required:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "CO₂‑only shielding"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Argon‑rich shielding gas"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Very low voltage"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Short stickout"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Spray requires argon‑dominant gas and sufficient current/voltage."
+    "CHOICE-2": "Spray requires argon‑dominant gas and sufficient current/voltage."
   }
 }

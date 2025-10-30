@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_chipping_hammer_angle_2000006f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_chipping_hammer_angle_2000006f",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "To remove slag without damaging the base metal, a chipping hammer should be used at:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "A shallow angle with controlled blows"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "A steep angle with heavy blows"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Any angle; force is key"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Flat against the face"
     }
   ],
-  "correctId": "A",
+  "correctId": "CHOICE-1",
   "rationales": {
-    "A": "Use a shallow angle and controlled blows to avoid base-metal damage."
+    "CHOICE-1": "Use a shallow angle and controlled blows to avoid base-metal damage."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-1_extension_cord_gauge_20000007",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-1_extension_cord_gauge_20000007",
   "taskId": "A-1",
   "difficulty": "medium",
   "stem": "For a long extension cord feeding a сварочного источника, which practice is best?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Использовать the smallest gauge to save weight"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Use a larger (heavier) gauge to minimize падения напряжения"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Coil the cord tightly for neatness"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Run multiple lightweight cords in series"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Long runs need heavier‑gauge cords to limit падения напряжения and heating."
+    "CHOICE-2": "Long runs need heavier‑gauge cords to limit падения напряжения and heating."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_skip_backstep_reason_v1_06_30000038",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_skip_backstep_reason_v1_06_30000038",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "Зачем использовать skip or backstep welding sequences?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "To concentrate heat in one area"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "To distribute heat and reduce distortion"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "To weld straight through in one pass"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Because random order is best"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Sequencing spreads heat and limits distortion."
+    "CHOICE-2": "Sequencing spreads heat and limits distortion."
   }
 }

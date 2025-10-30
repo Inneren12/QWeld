@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-9_acetylene_limit_v2_05_300000a6",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-9_acetylene_limit_v2_05_300000a6",
   "taskId": "C-9",
   "difficulty": "easy",
   "stem": "Каково максимальное recommended working pressure for acetylene?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Above 30 psi (207 kPa) is safe"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Do not use acetylene above 15 psi (≈103 kPa)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Any pressure is fine with arrestors"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Всегда 5 psi or less"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Acetylene is unstable above ~15 psi; keep working pressure below this."
+    "CHOICE-2": "Acetylene is unstable above ~15 psi; keep working pressure below this."
   }
 }

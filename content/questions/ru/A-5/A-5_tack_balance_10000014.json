@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_tack_balance_10000014",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-5_tack_balance_10000014",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "Как следует tack welds be placed to control деформации?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "All tacks on one side of the joint"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Balanced around the joint to hold alignment"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Very large tacks предотвращает растрескивание"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Tacks — forbidden in fabrication"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Balanced, adequate tacks hold fit-up and уменьшить деформации during welding."
+    "CHOICE-2": "Balanced, adequate tacks hold fit-up and уменьшить деформации during welding."
   }
 }

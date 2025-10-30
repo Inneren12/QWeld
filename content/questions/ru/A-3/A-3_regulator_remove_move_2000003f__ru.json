@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-3_regulator_remove_move_2000003f",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-3_regulator_remove_move_2000003f",
   "taskId": "A-3",
   "difficulty": "easy",
   "stem": "Перед перемещением a баллона to another location, you should:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Leave the редуктора on for faster setup"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Remove the редуктора and install the valve cap"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Open the valve fully for transport"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Lay the баллона horizontally"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Remove редуктораs and install caps before transport."
+    "CHOICE-2": "Remove редуктораs and install caps before transport."
   }
 }

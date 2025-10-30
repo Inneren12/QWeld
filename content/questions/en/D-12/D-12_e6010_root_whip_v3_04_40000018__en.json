@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-12_e6010_root_whip_v3_04_40000018",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-12_e6010_root_whip_v3_04_40000018",
   "taskId": "D-12",
   "difficulty": "medium",
   "stem": "Which technique is typical for open‑root welding with E6010?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Steady drag with no motion"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Whip‑and‑pause to control the keyhole"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Fast wide weave"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Backhand push 45°"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Whipping controls the keyhole for root fusion."
+    "CHOICE-2": "Whipping controls the keyhole for root fusion."
   }
 }

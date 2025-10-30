@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_crater_fill_reason_v10_01_400000b5",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-13_crater_fill_reason_v10_01_400000b5",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "Why use crater‑fill or a back‑step at end of a GMAW bead?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Save time"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Reduce crater cracking and underfill"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Increase spatter"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cool the torch"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Filling the crater avoids shrinkage cracks/underfill."
+    "CHOICE-2": "Filling the crater avoids shrinkage cracks/underfill."
   }
 }

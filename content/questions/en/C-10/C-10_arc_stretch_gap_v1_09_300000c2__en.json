@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_arc_stretch_gap_v1_09_300000c2",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "C",
+  "id": "Q-C-10_arc_stretch_gap_v1_09_300000c2",
   "taskId": "C-10",
   "difficulty": "medium",
   "stem": "Excessive standoff/gap in PAC typically:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Improves cut quality"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Stretches the arc, increasing bevel and dross"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has no effect"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Cools the cut"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Too much gap increases bevel angle and slag."
+    "CHOICE-2": "Too much gap increases bevel angle and slag."
   }
 }

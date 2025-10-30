@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-4_symbol_arrow_side_20000042",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-4_symbol_arrow_side_20000042",
   "taskId": "A-4",
   "difficulty": "medium",
   "stem": "A weld symbol placed below the reference line typically indicates the weld is on the:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Other side of the joint"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Arrow side of the joint"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Both sides by default"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "It has no meaning"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Below the reference line = arrow side; above = other side (per common standards)."
+    "CHOICE-2": "Below the reference line = arrow side; above = other side (per common standards)."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_electrode_dia_position_2000006d",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_electrode_dia_position_2000006d",
   "taskId": "A-5",
   "difficulty": "medium",
   "stem": "For out‑of‑position welding, using a smaller electrode diameter often:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Makes control harder"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Improves puddle control"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Has no benefit"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Eliminates the need for backing"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Smaller electrodes help control the puddle overhead/vertical."
+    "CHOICE-2": "Smaller electrodes help control the puddle overhead/vertical."
   }
 }

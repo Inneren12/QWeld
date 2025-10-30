@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-2_scaffold_inspect_tag_20000018",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "A",
+  "id": "Q-A-2_scaffold_inspect_tag_20000018",
   "taskId": "A-2",
   "difficulty": "medium",
   "stem": "Before using a scaffold, a best practice is to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Assume it’s safe if present"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Check that it’s tagged/inspected by a competent person"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Jump to test deflection"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Удалить guardrails to work faster"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Use only inspected scaffolds with proper tags and guardrails in place."
+    "CHOICE-2": "Use only inspected scaffolds with proper tags and guardrails in place."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_tungsten_size_current_v5_01_400000ec",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "D",
+  "id": "Q-D-14_tungsten_size_current_v5_01_400000ec",
   "taskId": "D-14",
   "difficulty": "easy",
   "stem": "Why choose a larger‑diameter tungsten for higher currents?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase spatter"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Handle higher heat without melting the tip"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Reduce shielding"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Avoid filler metal"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Larger tungsten carries more current without overheating."
+    "CHOICE-2": "Larger tungsten carries more current without overheating."
   }
 }

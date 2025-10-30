@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_templates_10000020",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_templates_10000020",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "Зачем использовать templates or jigs for repeat parts?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "They — только for woodwork"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "They speed production and уменьшить measurement error"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "They waste time"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "They replace all drawings"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Templates produce consistent parts and уменьшить layout effort."
+    "CHOICE-2": "Templates produce consistent parts and уменьшить layout effort."
   }
 }

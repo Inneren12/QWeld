@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-7_root_face_land_v3_02_3000004a",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-7_root_face_land_v3_02_3000004a",
   "taskId": "B-7",
   "difficulty": "medium",
   "stem": "A small корень шва face (land) on разделка edges помогает to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Prevent any penetration"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Control корень шва penetration and support the корень шва"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Increase arc length"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Удалить the need for backing"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A land supports корень шва control and bead shape."
+    "CHOICE-2": "A land supports корень шва control and bead shape."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_datum_use_1000001c",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "B",
+  "id": "Q-B-6_datum_use_1000001c",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "Какой хороший приём for choosing a datum in layout?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Использовать multiple random baselines"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Select a single clear база отсчёта to control accumulated error"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Begin anywhere convenient"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Datums — только for machining"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "A single, consistent база отсчёта minimizes накопление допусков."
+    "CHOICE-2": "A single, consistent база отсчёта minimizes накопление допусков."
   }
 }

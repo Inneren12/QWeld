@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-11_ppe_heavy_v1_08_300000da",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-11_ppe_heavy_v1_08_300000da",
   "taskId": "C-11",
   "difficulty": "easy",
   "stem": "Какое PPE is most appropriate for CAC (переменный ток)-A?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Light gloves and safety glasses"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Heavy PPE: face shield, hearing protection, leathers"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "No hearing protection needed"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Sunglasses are sufficient"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "CAC (переменный ток)-A is loud and ejects hot metal; robust PPE is required."
+    "CHOICE-2": "CAC (переменный ток)-A is loud and ejects hot metal; robust PPE is required."
   }
 }

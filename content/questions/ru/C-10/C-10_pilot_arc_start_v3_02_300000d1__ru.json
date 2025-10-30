@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "C-10_pilot_arc_start_v3_02_300000d1",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "C",
+  "id": "Q-C-10_pilot_arc_start_v3_02_300000d1",
   "taskId": "C-10",
   "difficulty": "easy",
   "stem": "В чём преимущество пилотной дуги or ВЧ‑поджига in PAC (переменный ток)?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Requires scraping the nozzle on the work"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Initiates the arc without dragging the nozzle"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Reduces need for PPE"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Increases consumable wear"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Non-contact starts protect the nozzle and improve reliability."
+    "CHOICE-2": "Non-contact starts protect the nozzle and improve reliability."
   }
 }

@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-14_start_methods_v3_04_400000db",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-14_start_methods_v3_04_400000db",
   "taskId": "D-14",
   "difficulty": "easy",
   "stem": "Какое GTAW (TIG) start method avoids вольфрамовый электрод contamination?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Touch-start"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "High-frequency or lift-arc start"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Strike like a match"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Hit with a hammer"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "ВЧ or lift-arc allows non-contact starts."
+    "CHOICE-2": "ВЧ or lift-arc allows non-contact starts."
   }
 }

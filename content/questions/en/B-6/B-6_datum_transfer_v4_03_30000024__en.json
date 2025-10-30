@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_datum_transfer_v4_03_30000024",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_datum_transfer_v4_03_30000024",
   "taskId": "B-6",
   "difficulty": "medium",
   "stem": "To limit cumulative error across multiple features, you should measure:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "From changing local edges each time"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "From the same datum(s) each time"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "From the nearest scratch"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "From the midpoint only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Measuring from one datum avoids tolerance stack-up."
+    "CHOICE-2": "Measuring from one datum avoids tolerance stack-up."
   }
 }

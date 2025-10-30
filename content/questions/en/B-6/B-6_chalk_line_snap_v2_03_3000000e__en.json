@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "B-6_chalk_line_snap_v2_03_3000000e",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "B",
+  "id": "Q-B-6_chalk_line_snap_v2_03_3000000e",
   "taskId": "B-6",
   "difficulty": "easy",
   "stem": "For long straight layout lines on plate, a common tool is a:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Feeler gauge"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Chalk line (snap line)"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Depth micrometer"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Dial indicator"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Chalk lines snap long straight references across large surfaces."
+    "CHOICE-2": "Chalk lines snap long straight references across large surfaces."
   }
 }

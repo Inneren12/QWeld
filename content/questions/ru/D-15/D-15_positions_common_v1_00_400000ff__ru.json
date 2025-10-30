@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-15_positions_common_v1_00_400000ff",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-15_positions_common_v1_00_400000ff",
   "taskId": "D-15",
   "difficulty": "easy",
   "stem": "Какой из следующих положениеs are typical for submerged arc welding (SAW (под флюсом))?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "All положениеs"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Primarily flat and horizontal"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Vertical-down only"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Overhead only"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Flux and high deположение suit flat/horizontal welding."
+    "CHOICE-2": "Flux and high deположение suit flat/horizontal welding."
   }
 }

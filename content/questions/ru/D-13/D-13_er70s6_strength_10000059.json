@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "D-13_er70s6_strength_10000059",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "ru",
-  "blockId": "D",
+  "id": "Q-D-13_er70s6_strength_10000059",
   "taskId": "D-13",
   "difficulty": "easy",
   "stem": "In ER70S-6, что '70' indicate?",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "70% shielding efficiency"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Минимальная прочность на растяжение 70 000 psi"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "70 A wire feed"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "70° torch angle"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Like SMAW (ручная дуговая), the '70' refers to minimum tensile strength in ksi."
+    "CHOICE-2": "Like SMAW (ручная дуговая), the '70' refers to minimum tensile strength in ksi."
   }
 }

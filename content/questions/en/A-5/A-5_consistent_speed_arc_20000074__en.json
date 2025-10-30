@@ -1,33 +1,28 @@
 {
-  "schema": "qweld.question.v1",
-  "id": "A-5_consistent_speed_arc_20000074",
-  "version": "1.0.0",
-  "policyVersion": "1.0",
-  "locale": "en",
-  "blockId": "A",
+  "id": "Q-A-5_consistent_speed_arc_20000074",
   "taskId": "A-5",
   "difficulty": "easy",
   "stem": "Maintaining consistent travel speed and arc length helps to:",
   "choices": [
     {
-      "id": "A",
+      "id": "CHOICE-1",
       "text": "Increase porosity"
     },
     {
-      "id": "B",
+      "id": "CHOICE-2",
       "text": "Produce uniform bead shape and fusion"
     },
     {
-      "id": "C",
+      "id": "CHOICE-3",
       "text": "Warp the part"
     },
     {
-      "id": "D",
+      "id": "CHOICE-4",
       "text": "Overheat the torch"
     }
   ],
-  "correctId": "B",
+  "correctId": "CHOICE-2",
   "rationales": {
-    "B": "Consistency supports uniform fusion and appearance."
+    "CHOICE-2": "Consistency supports uniform fusion and appearance."
   }
 }
