@@ -23,4 +23,12 @@
 - Launching the app logs startup information via Timber using the unified format (`[app] start ...` and `[ui] screen=Main ...`).
 
 ### CI
-- GitHub Actions workflow `.github/workflows/android.yml` runs the same Gradle tasks (`spotlessCheck detekt test assembleDebug`) on every push/PR and uploads the debug APK artifact.
+- GitHub Actions workflow `.github/workflows/android.yml` provisions the Android SDK, runs `spotlessCheck detekt test assembleDebug --no-daemon --stacktrace`, and uploads the debug APK artifact on every push/PR.
+
+### Developer tooling
+- Configure Git hooks so Spotless runs automatically before each commit: `git config core.hooksPath .githooks`.
+- Copy `local.properties.sample` to `local.properties` and update `sdk.dir` with your Android SDK path.
+
+### Exam assembly (F3)
+Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted PRACTICE.
+
