@@ -128,6 +128,7 @@ class ResultViewModelTest {
       attempt = attempt,
       answers = answers,
       remaining = Duration.ZERO,
+      rationales = emptyMap(),
     )
   }
 

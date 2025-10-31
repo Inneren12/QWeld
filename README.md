@@ -53,6 +53,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Place the flattened exam banks under `app-android/src/main/assets/questions/{en,ru}/bank.v1.json`; copy them from `dist/questions/{en,ru}/bank.v1.json` after running the dist builder.
 - The Android app boots directly into the exam mode chooser powered by `:feature-exam`; it loads the localized bank on startup and shows a snackbar/toast if the asset is missing.
 
+### F5-D review & explain
+- Complete an exam attempt to unlock the Review screen, which lists every answered item with your selection, the correct choice, and the quick rationale from the bank.
+- Tapping **Explain** opens a bottom sheet that pulls structured content from `app-android/src/main/assets/explanations/<locale>/<taskId>/<id>__explain_<locale>.json`; the sheet falls back to the quick rationale if the asset is missing.
+- Run `./gradlew :feature-exam:test` to verify the asset repository parsing logic before shipping.
+
 ### Developer tooling
 - Configure Git hooks so Spotless runs automatically before each commit: `git config core.hooksPath .githooks`.
 - Copy `local.properties.sample` to `local.properties` and update `sdk.dir` with your Android SDK path.

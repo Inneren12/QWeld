@@ -1,0 +1,54 @@
+{
+  "schema": "qweld.explanation.v1",
+  "id": "A-1_gfci_use_20000008",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "questionRef": {
+    "taskId": "A-1"
+  },
+  "summary": "Use GFCI-protected power in damp/outdoor conditions.",
+  "steps": [
+    {
+      "title": "1) Identify the hazard",
+      "text": "Consider failure modes (bursting wheels, shock, fire, poor electrical return, etc.)."
+    },
+    {
+      "title": "2) Apply the standard",
+      "text": "Use manufacturer guidance and applicable standards (OSHA/ANSI/AWS)."
+    },
+    {
+      "title": "3) Perform the correct action",
+      "text": "A GFCI‑protected supply"
+    }
+  ],
+  "why_not": [
+    {
+      "choiceId": "A",
+      "text": "'Non‑grounded two‑prong adapters' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "B",
+      "text": "'A transformer for all tools' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "D",
+      "text": "'A metal ladder as a ground' is unsafe/incorrect for this scenario."
+    }
+  ],
+  "tips": [
+    "Memorize the key standard for the topic (e.g., ANSI B7.1 for wheels, OSHA 1910.253 for cylinders).",
+    "If in doubt, remove from service and consult the OEM manual."
+  ],
+  "references": [
+    {
+      "title": "Manufacturer's instructions",
+      "publisher": "OEM"
+    }
+  ],
+  "media": [],
+  "audit": {
+    "updatedAt": "2025-10-30T07:25:53Z",
+    "editor": "sme@qweld"
+  }
+}

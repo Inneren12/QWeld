@@ -1,0 +1,64 @@
+{
+  "schema": "qweld.explanation.v1",
+  "id": "A-1_ring_test_wheel_20000000",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "questionRef": {
+    "taskId": "A-1"
+  },
+  "summary": "Do a ring test and inspect bonded wheels; verify guard and RPM rating before use.",
+  "steps": [
+    {
+      "title": "1) Identify the hazard",
+      "text": "Consider failure modes (bursting wheels, shock, fire, poor electrical return, etc.)."
+    },
+    {
+      "title": "2) Apply the standard",
+      "text": "Use manufacturer guidance and applicable standards (OSHA/ANSI/AWS)."
+    },
+    {
+      "title": "3) Perform the correct action",
+      "text": "Perform a ring test and inspect for cracks"
+    }
+  ],
+  "why_not": [
+    {
+      "choiceId": "A",
+      "text": "'Spin it up on the grinder at full speed' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "C",
+      "text": "'Soak the wheel in oil for cooling' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "D",
+      "text": "'Tap the wheel with a metal hammer as hard as possible' is unsafe/incorrect for this scenario."
+    }
+  ],
+  "tips": [
+    "Memorize the key standard for the topic (e.g., ANSI B7.1 for wheels, OSHA 1910.253 for cylinders).",
+    "If in doubt, remove from service and consult the OEM manual."
+  ],
+  "references": [
+    {
+      "title": "ANSI B7.1",
+      "publisher": "ANSI",
+      "section": "Abrasive Wheels"
+    },
+    {
+      "title": "OSHA 1910.215",
+      "publisher": "OSHA",
+      "section": "Abrasive wheel machinery"
+    },
+    {
+      "title": "Manufacturer's grinder manual",
+      "publisher": "OEM"
+    }
+  ],
+  "media": [],
+  "audit": {
+    "updatedAt": "2025-10-30T07:25:53Z",
+    "editor": "sme@qweld"
+  }
+}

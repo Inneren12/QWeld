@@ -1,0 +1,64 @@
+{
+  "schema": "qweld.explanation.v1",
+  "id": "A-1_lowhyd_storage_20000010",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "questionRef": {
+    "taskId": "A-1"
+  },
+  "summary": "Keep low-hydrogen electrodes hot/dry to prevent hydrogen cracking.",
+  "steps": [
+    {
+      "title": "1) Identify the hazard",
+      "text": "Consider failure modes (bursting wheels, shock, fire, poor electrical return, etc.)."
+    },
+    {
+      "title": "2) Apply the standard",
+      "text": "Use manufacturer guidance and applicable standards (OSHA/ANSI/AWS)."
+    },
+    {
+      "title": "3) Perform the correct action",
+      "text": "Kept in a heated rod oven or sealed container per manufacturer"
+    }
+  ],
+  "why_not": [
+    {
+      "choiceId": "A",
+      "text": "'Stored open to shop air to cool' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "C",
+      "text": "'Dipped in water to remove dust' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "D",
+      "text": "'Left on the workbench' is unsafe/incorrect for this scenario."
+    }
+  ],
+  "tips": [
+    "Memorize the key standard for the topic (e.g., ANSI B7.1 for wheels, OSHA 1910.253 for cylinders).",
+    "If in doubt, remove from service and consult the OEM manual."
+  ],
+  "references": [
+    {
+      "title": "AWS A5.1/A5.1M",
+      "publisher": "AWS",
+      "section": "Low-hydrogen electrode care"
+    },
+    {
+      "title": "AWS D1.1/D1.1M",
+      "publisher": "AWS",
+      "section": "Preheat & hydrogen control"
+    },
+    {
+      "title": "Manufacturer's electrode handling guide",
+      "publisher": "OEM"
+    }
+  ],
+  "media": [],
+  "audit": {
+    "updatedAt": "2025-10-30T07:25:53Z",
+    "editor": "sme@qweld"
+  }
+}

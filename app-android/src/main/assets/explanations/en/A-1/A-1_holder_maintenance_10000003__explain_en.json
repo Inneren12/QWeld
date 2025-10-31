@@ -1,0 +1,54 @@
+{
+  "schema": "qweld.explanation.v1",
+  "id": "A-1_holder_maintenance_10000003",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "questionRef": {
+    "taskId": "A-1"
+  },
+  "summary": "Follow manufacturer and safety standards to maintain tools and equipment.",
+  "steps": [
+    {
+      "title": "1) Identify the hazard",
+      "text": "Consider failure modes (bursting wheels, shock, fire, poor electrical return, etc.)."
+    },
+    {
+      "title": "2) Apply the standard",
+      "text": "Use manufacturer guidance and applicable standards (OSHA/ANSI/AWS)."
+    },
+    {
+      "title": "3) Perform the correct action",
+      "text": "Insulation must be intact and jaws clean with no exposed conductors"
+    }
+  ],
+  "why_not": [
+    {
+      "choiceId": "A",
+      "text": "'Minor cracks in insulation are acceptable' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "B",
+      "text": "'Jaws should be oily to reduce sticking' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "D",
+      "text": "'Cool the holder in water after heavy use' is unsafe/incorrect for this scenario."
+    }
+  ],
+  "tips": [
+    "Memorize the key standard for the topic (e.g., ANSI B7.1 for wheels, OSHA 1910.253 for cylinders).",
+    "If in doubt, remove from service and consult the OEM manual."
+  ],
+  "references": [
+    {
+      "title": "Manufacturer's instructions",
+      "publisher": "OEM"
+    }
+  ],
+  "media": [],
+  "audit": {
+    "updatedAt": "2025-10-30T07:25:53Z",
+    "editor": "sme@qweld"
+  }
+}
