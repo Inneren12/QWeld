@@ -3,4 +3,12 @@
     <string name="mode_ip_mock">IP Mock</string>
     <string name="mode_practice">Практика</string>
     <string name="mode_bank_missing">Для локали %1$s нет банка вопросов. Скопируйте dist/questions/%1$s/bank.v1.json в app-android/src/main/assets/questions/%1$s/.</string>
+    <string name="exam_no_attempt">Выберите режим, чтобы начать попытку.</string>
+    <string name="exam_no_question">Нет доступных вопросов.</string>
+    <string name="exam_question_counter">%1$d / %2$d</string>
+    <string name="exam_previous">Назад</string>
+    <string name="exam_next">Далее</string>
+    <string name="exam_deficit_title">Недостаточно вопросов</string>
+    <string name="exam_deficit_message">Задача %1$s требует %2$d, доступно %3$d (не хватает %4$d)</string>
+    <string name="exam_deficit_confirm">Закрыть</string>
 </resources>

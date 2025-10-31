@@ -31,8 +31,8 @@ import timber.log.Timber
 fun ModeScreen(
   repository: AssetQuestionRepository,
   modifier: Modifier = Modifier,
-  onIpMockClick: () -> Unit = {},
-  onPracticeClick: () -> Unit = {},
+  onIpMockClick: (String) -> Unit = {},
+  onPracticeClick: (String) -> Unit = {},
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
   val context = LocalContext.current
@@ -64,10 +64,10 @@ fun ModeScreen(
         text = stringResource(id = R.string.mode_screen_title),
         style = MaterialTheme.typography.headlineMedium,
       )
-      Button(modifier = Modifier.fillMaxWidth(), onClick = onIpMockClick) {
+      Button(modifier = Modifier.fillMaxWidth(), onClick = { onIpMockClick(resolvedLanguage) }) {
         Text(text = stringResource(id = R.string.mode_ip_mock))
       }
-      Button(modifier = Modifier.fillMaxWidth(), onClick = onPracticeClick) {
+      Button(modifier = Modifier.fillMaxWidth(), onClick = { onPracticeClick(resolvedLanguage) }) {
         Text(text = stringResource(id = R.string.mode_practice))
       }
     }
