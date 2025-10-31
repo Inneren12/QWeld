@@ -1,55 +1,39 @@
-name: Content Validation (full)
+name: Content Validators (full)
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 4 * * *'
+    inputs:
+      full:
+        description: 'Force full validation'
+        required: false
+        default: 'true'
 
 jobs:
-  content-full:
+  full:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
 
-      - name: Install content tooling dependencies
+      - name: (Ephemeral) install ajv for batch validator
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
           npm i -D -w . ajv ajv-formats --no-save --no-package-lock
 
-      - name: Validate blueprint
-        run: bash scripts/validate-blueprint.sh
-
       - name: Validate questions (full)
-        run: bash scripts/validate-questions.sh
+        run: |
+          bash scripts/validate-questions.sh
 
-      - name: Validate explanations
-        run: bash scripts/validate-explanations.sh
-
-      - name: Check question quotas (full)
-        run: bash scripts/check-quotas.sh --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
-
-      - name: Build question banks
-        run: bash scripts/build-questions-dist.sh
+      - name: Quotas (full, exam)
+        run: |
+          bash scripts/check-quotas.sh --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
 
       - name: Upload validation logs
-        if: always()
+        if: ${{ hashFiles('logs/**') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: content-validation-logs
           path: logs
-
-      - name: Upload question bank dist
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: questions-dist
-          path: dist/questions

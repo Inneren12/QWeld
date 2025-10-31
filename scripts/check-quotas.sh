@@ -155,10 +155,10 @@ if ${CHANGED_ONLY}; then
     fi
   fi
 
-  mapfile -t DIFF_PATHS < <({
-    git diff --name-only --diff-filter=ACMRD "${base_commit}...${head_commit}"
-    git diff --name-only --diff-filter=ACMRD
-  } | sort -u)
+  export BASE_SHA="${base_commit}"
+  export HEAD_SHA="${head_commit}"
+
+  mapfile -t DIFF_PATHS < <(git diff --name-only --diff-filter=ACMR "${base_commit}...${head_commit}" || true)
 
   blueprint_changed=false
   for diff_path in "${DIFF_PATHS[@]}"; do
@@ -172,23 +172,27 @@ if ${CHANGED_ONLY}; then
     echo "[quotas] blueprint changed; running full check"
     CHANGED_ONLY=false
   else
-    for diff_path in "${DIFF_PATHS[@]}"; do
-      if [[ "${diff_path}" =~ ^content/questions/([^/]+)/([^/]+)/[^/]+\.json$ ]]; then
+    readarray -t CHANGED_FILES < <(bash scripts/changed-files.sh | sed '/^[[:space:]]*$/d')
+    for file_path in "${CHANGED_FILES[@]}"; do
+      if [[ "${file_path}" =~ ^content/questions/([^/]+)/([^/]+)/[^/]+\.json$ ]]; then
         locale="${BASH_REMATCH[1]}"
         task_id="${BASH_REMATCH[2]}"
         CHANGED_TASKS["${locale}:${task_id}"]=1
       fi
     done
-    changed_count=0
+
+    relevant=false
     for locale in "${LOCALES[@]}"; do
       for task in "${ALL_TASKS[@]}"; do
         key="${locale}:${task}"
         if [[ -n "${CHANGED_TASKS[$key]:-}" ]]; then
-          ((changed_count+=1))
+          relevant=true
+          break 2
         fi
       done
     done
-    if (( changed_count == 0 )); then
+
+    if ! ${relevant}; then
       echo "[quotas] no changed question tasks; skip"
       exit 0
     fi
@@ -202,35 +206,30 @@ for locale in "${LOCALES[@]}"; do
     exit 1
   fi
 
+  if ${CHANGED_ONLY}; then
+    tasks_to_check=()
+    for task in "${ALL_TASKS[@]}"; do
+      key="${locale}:${task}"
+      if [[ -n "${CHANGED_TASKS[$key]:-}" ]]; then
+        tasks_to_check+=("${task}")
+      fi
+    done
+  else
+    tasks_to_check=("${ALL_TASKS[@]}")
+  fi
+
   locale_log="${LOG_DIR}/quotas_${locale}.txt"
-  tmp_report="$(mktemp)"
 
   {
     echo "[quotas] locale=${locale}"
-    if ${CHANGED_ONLY}; then
-      tasks_to_check=()
-      for task in "${ALL_TASKS[@]}"; do
-        key="${locale}:${task}"
-        if [[ -n "${CHANGED_TASKS[$key]:-}" ]]; then
-          tasks_to_check+=("${task}")
-        fi
-      done
-    else
-      tasks_to_check=("${ALL_TASKS[@]}")
-    fi
-
     if [[ ${#tasks_to_check[@]} -eq 0 ]]; then
-      echo "[quotas] INFO: no tasks to check for locale=${locale}"
+      echo "[quota:${locale}] no tasks to check; skip"
     else
-      printf "%-6s %6s %6s %8s\n" "Task" "Need" "Have" "Missing"
-      printf '%-6s %6s %6s %8s\n' '-----' '----' '----' '-------'
-
       for task in "${tasks_to_check[@]}"; do
         quota="${QUOTAS["${task}"]:-}"
         if [[ -z "${quota}" ]]; then
-          echo "[quotas] ERROR: task ${task} missing in blueprint" >&2
+          echo "[quota:${locale}] ${task} expected=N/A got=N/A status=missing"
           status=1
-          printf "%-6s %6s %6s %8s\n" "${task}" "N/A" "N/A" "N/A"
           continue
         fi
 
@@ -241,28 +240,30 @@ for locale in "${LOCALES[@]}"; do
         else
           have=0
         fi
-        missing=$(( need > have ? need - have : 0 ))
 
-        if [[ "${MODE}" == "min" ]]; then
-          if (( have < need )); then
-            status=1
-          elif [[ "${ALLOW_EXTRA}" != "true" ]] && (( have > need )); then
-            status=1
-          fi
-        elif [[ "${MODE}" == "exact" ]]; then
-          if (( have != need )); then
+        status_label="ok"
+        if (( have < need )); then
+          status_label="missing"
+          status=1
+        elif (( have > need )); then
+          if [[ "${MODE}" == "exact" || "${ALLOW_EXTRA}" != "true" ]]; then
+            status_label="excess"
             status=1
           fi
         fi
 
-        printf "%-6s %6d %6d %8d\n" "${task}" "${need}" "${have}" "${missing}"
+        if [[ "${MODE}" == "exact" ]]; then
+          if (( have < need )); then
+            status_label="missing"
+          elif (( have > need )); then
+            status_label="excess"
+          fi
+        fi
+
+        echo "[quota:${locale}] ${task} expected=${need} got=${have} status=${status_label}"
       done
     fi
-  } > "${tmp_report}"
-
-  cat "${tmp_report}"
-  cp "${tmp_report}" "${locale_log}"
-  rm -f "${tmp_report}"
+  } | tee "${locale_log}"
 done
 
 if [[ ${status} -ne 0 ]]; then

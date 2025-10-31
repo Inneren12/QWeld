@@ -15,9 +15,27 @@ if [[ -z "${BASE:-}" || -z "${HEAD:-}" ]]; then
   fi
 fi
 
-{
-  git diff --name-only --diff-filter=ACMR "${BASE}...${HEAD}"
-  git diff --name-only --diff-filter=ACMR
-} \
-  | sort -u \
-  | grep -E '^content/questions/[^/]+/[^/]+/.*\.json$' || true
+echo "[changed] BASE_SHA=${BASE} HEAD_SHA=${HEAD}" >&2
+
+all_tmp="/tmp/changed-all.txt"
+questions_tmp="/tmp/changed-questions.txt"
+
+: > "${all_tmp}"
+: > "${questions_tmp}"
+
+git diff --name-only --diff-filter=ACMR "${BASE}...${HEAD}" | tee "${all_tmp}" | \
+  grep -E '^content/questions/[^/]+/[^/]+/.*\\.json$' | tee "${questions_tmp}" > /dev/null || true
+
+if [[ -s "${all_tmp}" ]]; then
+  echo "[changed] files captured:" >&2
+  sed 's/^/[changed]   /' "${all_tmp}" >&2
+fi
+
+if [[ -s "${questions_tmp}" ]]; then
+  echo "[changed] question files:" >&2
+  sed 's/^/[changed]   /' "${questions_tmp}" >&2
+else
+  echo "[changed] no question JSONs detected" >&2
+fi
+
+cat "${questions_tmp}" 2>/dev/null || true

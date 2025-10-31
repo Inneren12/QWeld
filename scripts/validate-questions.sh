@@ -65,30 +65,31 @@ if ${CHANGED_ONLY}; then
   export BASE_SHA="${base_commit}"
   export HEAD_SHA="${head_commit}"
 
-  mapfile -t CHANGED_FILES < <(bash scripts/changed-files.sh)
-  mapfile -t DIFF_PATHS < <({
-    git diff --name-only --diff-filter=ACMRD "${base_commit}...${head_commit}"
-    git diff --name-only --diff-filter=ACMRD
-  } | sort -u)
+  mapfile -t DIFF_PATHS < <(git diff --name-only --diff-filter=ACMR "${base_commit}...${head_commit}" || true)
 
   schema_changed=false
-  blueprints_changed=false
+  blueprint_changed=false
   for diff_path in "${DIFF_PATHS[@]}"; do
-    if [[ "${diff_path}" == content/blueprints/* ]]; then
-      blueprints_changed=true
-    fi
-    if [[ "${diff_path}" == schemas/* || "${diff_path}" == content/schema/* ]]; then
-      schema_changed=true
-    fi
+    case "${diff_path}" in
+      content/blueprints/*)
+        blueprint_changed=true
+        ;;
+      content/schema/*|schemas/*)
+        schema_changed=true
+        ;;
+    esac
   done
 
-  if ${schema_changed} || ${blueprints_changed}; then
+  readarray -t CHANGED_FILES < <(bash scripts/changed-files.sh | sed '/^[[:space:]]*$/d')
+
+  if ${schema_changed} || ${blueprint_changed}; then
     echo "[validate] schema or blueprint changed; running full validation"
     CHANGED_ONLY=false
   elif [[ ${#CHANGED_FILES[@]} -eq 0 ]]; then
     echo "[validate] no changed question files; skip"
     exit 0
   else
+    echo "[validate] validating ${#CHANGED_FILES[@]} changed question file(s)"
     tmp_list="$(mktemp)"
     trap 'rm -f "${tmp_list}"' EXIT
     printf '%s\n' "${CHANGED_FILES[@]}" > "${tmp_list}"
