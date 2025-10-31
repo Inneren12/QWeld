@@ -47,7 +47,8 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Launching the app logs startup information via Timber using the unified format (`[app] start ...` and `[ui] screen=Main ...`).
 
 ### CI
-- GitHub Actions workflow `.github/workflows/android.yml` provisions the Android SDK, runs `spotlessCheck detekt test assembleDebug --no-daemon --stacktrace`, and uploads the debug APK artifact on every push/PR.
+- `.github/workflows/ci-quick.yml` runs `spotlessCheck` and `detekt` automatically on pushes to `main` and pull requests targeting `main` or `develop`.
+- Run Android builds/tests on demand via `.github/workflows/ci-android-heavy.yml`: open *Actions → CI (Android heavy) → Run workflow* and optionally adjust the `suites` input (comma-separated `test`, `assemble`, or `all`).
 
 ### F5-A assets & nav
 - Place the flattened exam banks under `app-android/src/main/assets/questions/{en,ru}/bank.v1.json`; copy them from `dist/questions/{en,ru}/bank.v1.json` after running the dist builder.
