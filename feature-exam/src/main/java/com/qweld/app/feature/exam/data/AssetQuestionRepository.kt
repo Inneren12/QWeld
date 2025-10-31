@@ -40,6 +40,19 @@ class AssetQuestionRepository internal constructor(
       }
     }
 
+  fun clearLocaleCache(locale: String) {
+    val prefix = cacheKey(locale, "")
+    synchronized(cacheLock) {
+      val iterator = taskCache.keys.iterator()
+      while (iterator.hasNext()) {
+        val key = iterator.next()
+        if (key.startsWith(prefix)) {
+          iterator.remove()
+        }
+      }
+    }
+  }
+
   fun loadQuestions(locale: String? = null, tasks: Set<String>? = null): Result {
     val resolvedLocale = resolveLocale(locale)
     val normalizedTasks = tasks?.filter { it.isNotBlank() }?.toSet()?.takeIf { it.isNotEmpty() }
@@ -47,19 +60,27 @@ class AssetQuestionRepository internal constructor(
     if (normalizedTasks != null) {
       val orderedTasks = normalizedTasks.sorted()
       val tasksLog = orderedTasks.joinToString(prefix = "[", postfix = "]")
-      var questions: List<QuestionDTO>? = null
-      val elapsed = measureTimeMillis { questions = loadFromPerTask(resolvedLocale, orderedTasks) }
-      if (questions != null) {
-        val questionList = questions!!
+      var perTaskResult: PerTaskLoadResult? = null
+      val elapsed =
+        measureTimeMillis { perTaskResult = loadFromPerTask(resolvedLocale, orderedTasks) }
+      if (perTaskResult != null) {
+        val perTask = perTaskResult!!
+        val questionList = perTask.questions
         Timber.i(
-          "[repo_load] src=per-task tasks=%s count=%d elapsed=%dms",
+          "[repo_load] src=per-task tasks=%s count=%d elapsed=%dms (cacheHits=%d, locale=%s)",
           tasksLog,
           questionList.size,
           elapsed,
+          perTask.cacheHits,
+          resolvedLocale,
         )
         return Result.Success(locale = resolvedLocale, questions = questionList)
       } else {
-        Timber.w("[repo_load] src=per-task tasks=%s fallback=bank", tasksLog)
+        Timber.w(
+          "[repo_load] src=per-task tasks=%s fallback=bank locale=%s",
+          tasksLog,
+          resolvedLocale,
+        )
       }
     }
 
@@ -105,14 +126,16 @@ class AssetQuestionRepository internal constructor(
     }
   }
 
-  private fun loadFromPerTask(locale: String, tasks: List<String>): List<QuestionDTO>? {
+  private fun loadFromPerTask(locale: String, tasks: List<String>): PerTaskLoadResult? {
     val cached = mutableMapOf<String, List<QuestionDTO>>()
     val toLoad = mutableListOf<String>()
+    var cacheHits = 0
     synchronized(cacheLock) {
       for (task in tasks) {
-        val cachedQuestions = taskCache[task]
+        val cachedQuestions = taskCache[cacheKey(locale, task)]
         if (cachedQuestions != null) {
           cached[task] = cachedQuestions
+          cacheHits += 1
         } else {
           toLoad += task
         }
@@ -139,10 +162,13 @@ class AssetQuestionRepository internal constructor(
 
     synchronized(cacheLock) {
       for ((task, questions) in loaded) {
-        taskCache[task] = questions
+        taskCache[cacheKey(locale, task)] = questions
         cached[task] = questions
       }
-      return tasks.flatMap { task -> cached[task].orEmpty() }
+      return PerTaskLoadResult(
+        questions = tasks.flatMap { task -> cached[task].orEmpty() },
+        cacheHits = cacheHits,
+      )
     }
   }
 
@@ -214,6 +240,15 @@ class AssetQuestionRepository internal constructor(
     if (candidate.isBlank()) return DEFAULT_LOCALE
     return candidate.lowercase(Locale.US)
   }
+
+  private fun cacheKey(locale: String, taskId: String): String {
+    return "$locale::$taskId"
+  }
+
+  private data class PerTaskLoadResult(
+    val questions: List<QuestionDTO>,
+    val cacheHits: Int,
+  )
 
   class AssetReader(
     private val opener: (String) -> InputStream?,
