@@ -110,6 +110,11 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 - Locale mismatches offer a keep/switch toggle (`Switch to <device locale> & rebuild`), logging `[resume_mismatch]` and rerunning assembly in the chosen language before navigation.
 - Discarding marks the attempt as aborted (null score) and logs `[resume_discard]`, allowing a fresh start without manual cleanup.
 
+### Confirm Exit
+- IP Mock attempts now intercept system Back/Up and show a confirmation dialog so accidental taps do not end the session.
+- Choosing **Continue** keeps you in the exam; **Exit** returns to the Mode screen while preserving progress for a later resume.
+- Every dialog appearance logs `[confirm_exit] shown=true mode=IPMock`, and decisions emit `[confirm_exit] choice=continue|exit` for analytics parity.
+
 ### F6-C: Export attempt JSON
 - Use **Export JSON** from the Result or Review screens to launch the system "Save as…" dialog (`QWeld_Attempt_<id>.json`).
 - The exported payload follows `qweld.attempt.v1` with nested `qweld.answer.v1` entries, per-block/per-task summaries, and metadata stamped with the app version and export timestamp.
