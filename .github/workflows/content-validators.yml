@@ -34,9 +34,21 @@ jobs:
         uses: actions/setup-node@v4
         with: { node-version: '20' }
 
-      - name: (Ephemeral) install ajv for batch validator
+      - name: (Ephemeral) prepare Ajv (no workspace)
+        shell: bash
+        env:
+          npm_config_loglevel: error
         run: |
-          npm i -D -w . ajv ajv-formats --no-save --no-package-lock
+          set -euo pipefail
+          mkdir -p .ci-node
+          npm install ajv ajv-formats \
+            --no-save --no-audit --no-fund --no-package-lock \
+            --prefix ./.ci-node
+          node -e "console.log('ajv@'+require('./.ci-node/node_modules/ajv/package.json').version)"
+          echo "NODE_PATH=${{ github.workspace }}/.ci-node/node_modules" >> $GITHUB_ENV
+
+      - name: Verify Ajv modules
+        run: node -e "require('ajv'); require('ajv-formats'); console.log('Ajv modules OK')"
 
       - name: Validate questions (changed-only)
         run: |
