@@ -3,9 +3,16 @@ package com.qweld.app.navigation
 import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -34,9 +41,11 @@ import com.qweld.app.feature.auth.ui.SignInScreen
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
+import com.qweld.app.ui.AccountMenu
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppNavGraph(
@@ -66,6 +75,13 @@ fun AppNavGraph(
         .requestEmail()
         .build()
     GoogleSignIn.getClient(context, options)
+  }
+
+  val navigateToAuth: () -> Unit = {
+    navController.navigate(Routes.AUTH) {
+      popUpTo(navController.graph.startDestinationId) { inclusive = true }
+      launchSingleTop = true
+    }
   }
 
   val googleLauncher =
@@ -111,31 +127,49 @@ fun AppNavGraph(
   }
 
   LaunchedEffect(user) {
-    val target =
-      when {
-        user == null || user?.isAnonymous == true -> Routes.AUTH
-        else -> Routes.EXAM
-      }
     val currentRoute = navController.currentBackStackEntry?.destination?.route
-    if (currentRoute != target) {
-      navController.navigate(target) {
-        popUpTo(navController.graph.startDestinationId) { inclusive = true }
-        launchSingleTop = true
+    when {
+      user == null -> navigateToAuth()
+      user.isAnonymous -> navigateToAuth()
+      currentRoute == Routes.AUTH -> {
+        navController.navigate(Routes.EXAM) {
+          popUpTo(navController.graph.startDestinationId) { inclusive = true }
+          launchSingleTop = true
+        }
       }
     }
   }
 
-  NavHost(
-    navController = navController,
-    startDestination = Routes.AUTH,
+  Scaffold(
     modifier = modifier,
-  ) {
-    composable(Routes.AUTH) {
-      when {
-        user == null ->
-          SignInScreen(
-            isLoading = isLoading,
-            errorMessage = errorMessage,
+    topBar = {
+      AccountMenu(
+        user = user,
+        onNavigateToSync = {
+          Timber.i("[ui_nav] screen=Sync")
+          navController.navigate(Routes.SYNC) { launchSingleTop = true }
+        },
+        onSignOut = {
+          scope.launch {
+            runCatching { authService.signOut() }
+              .onSuccess { navigateToAuth() }
+              .onFailure { Timber.e(it, "Sign out failed") }
+          }
+        },
+      )
+    },
+  ) { innerPadding ->
+    NavHost(
+      navController = navController,
+      startDestination = Routes.AUTH,
+      modifier = Modifier.padding(innerPadding),
+    ) {
+      composable(Routes.AUTH) {
+        when {
+          user == null ->
+            SignInScreen(
+              isLoading = isLoading,
+              errorMessage = errorMessage,
             onContinueAsGuest = {
               runAuthAction(
                 scope = scope,
@@ -166,18 +200,35 @@ fun AppNavGraph(
           )
         else -> LoadingScreen()
       }
-    }
-    composable(Routes.EXAM) {
-      val examNavController = rememberNavController()
-      ExamNavGraph(
-        navController = examNavController,
-        repository = questionRepository,
-        explanationRepository = explanationRepository,
-        attemptsRepository = attemptsRepository,
-        answersRepository = answersRepository,
-        statsRepository = statsRepository,
-        appVersion = appVersion,
-      )
+      }
+      composable(Routes.EXAM) {
+        val examNavController = rememberNavController()
+        ExamNavGraph(
+          navController = examNavController,
+          repository = questionRepository,
+          explanationRepository = explanationRepository,
+          attemptsRepository = attemptsRepository,
+          answersRepository = answersRepository,
+          statsRepository = statsRepository,
+          appVersion = appVersion,
+        )
+      }
+      composable(Routes.SYNC) {
+        RequireNonAnonymous(
+          user = user,
+          onRequire = {
+            val reason = when {
+              user == null -> "no_user"
+              user.isAnonymous -> "anonymous"
+              else -> "unknown"
+            }
+            Timber.i("[auth_guard] route=/sync allowed=false reason=%s", reason)
+            navigateToAuth()
+          },
+        ) {
+          SyncScreen(onBack = { navController.popBackStack() })
+        }
+      }
     }
   }
 }
@@ -217,4 +268,24 @@ private fun <T> runAuthAction(
 private object Routes {
   const val AUTH = "auth"
   const val EXAM = "exam"
+  const val SYNC = "sync"
+}
+
+@Composable
+private fun SyncScreen(onBack: () -> Unit) {
+  Column(
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(24.dp),
+    verticalArrangement = Arrangement.Center,
+    horizontalAlignment = Alignment.CenterHorizontally,
+  ) {
+    Text(
+      text = stringResource(id = com.qweld.app.R.string.sync_coming_soon),
+      style = MaterialTheme.typography.headlineSmall,
+    )
+    Button(onClick = onBack, modifier = Modifier.padding(top = 16.dp)) {
+      Text(text = stringResource(id = com.qweld.app.R.string.sync_back_to_exam))
+    }
+  }
 }
