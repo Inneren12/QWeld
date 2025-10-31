@@ -11,12 +11,17 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.ui.ModeScreen
 import com.qweld.app.feature.exam.ui.ExamScreen
+import com.qweld.app.feature.exam.ui.ResultScreen
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.ExamViewModelFactory
+import com.qweld.app.feature.exam.vm.ResultViewModel
+import com.qweld.app.feature.exam.vm.ResultViewModelFactory
+import timber.log.Timber
 
 object ExamDestinations {
   const val MODE = "exam_mode"
   const val EXAM = "exam_take"
+  const val RESULT = "exam_result"
 }
 
 @Composable
@@ -55,7 +60,27 @@ fun ExamNavGraph(
     composable(route = ExamDestinations.EXAM) { backStackEntry ->
       val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
       val examViewModel: ExamViewModel = viewModel(parentEntry, factory = ExamViewModelFactory(repository))
-      ExamScreen(viewModel = examViewModel)
+      ExamScreen(
+        viewModel = examViewModel,
+        onNavigateToResult = {
+          Timber.i("[ui_nav] screen=Result")
+          navController.navigate(ExamDestinations.RESULT) { launchSingleTop = true }
+        },
+      )
+    }
+    composable(route = ExamDestinations.RESULT) { backStackEntry ->
+      val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
+      val examViewModel: ExamViewModel = viewModel(parentEntry, factory = ExamViewModelFactory(repository))
+      val resultViewModel: ResultViewModel = viewModel(
+        backStackEntry,
+        factory = ResultViewModelFactory { examViewModel.requireLatestResult() },
+      )
+      ResultScreen(
+        viewModel = resultViewModel,
+        onReview = {
+          navController.popBackStack(ExamDestinations.EXAM, inclusive = false)
+        },
+      )
     }
   }
 }

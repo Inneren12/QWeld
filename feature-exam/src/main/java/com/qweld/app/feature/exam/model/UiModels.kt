@@ -7,6 +7,7 @@ data class ExamUiState(
   val attempt: ExamAttemptUiState? = null,
   val deficitDialog: DeficitDialogUiModel? = null,
   val errorMessage: String? = null,
+  val timerLabel: String? = null,
 )
 
 data class ExamAttemptUiState(
