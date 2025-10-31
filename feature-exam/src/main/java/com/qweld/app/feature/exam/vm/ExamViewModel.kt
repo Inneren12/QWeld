@@ -102,12 +102,13 @@ class ExamViewModel(
     mode: ExamMode,
     locale: String,
     practiceSize: Int = DEFAULT_PRACTICE_SIZE,
+    blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
     val normalizedLocale = locale.lowercase(Locale.US)
     pendingResume = null
     manualTimerRemaining = null
     _uiState.value = _uiState.value.copy(resumeDialog = null)
-    val blueprint = blueprintProvider(mode, practiceSize)
+    val blueprint = blueprintOverride ?: blueprintProvider(mode, practiceSize)
     val requestedTasks =
       blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
     val result = repository.loadQuestions(normalizedLocale, tasks = requestedTasks)

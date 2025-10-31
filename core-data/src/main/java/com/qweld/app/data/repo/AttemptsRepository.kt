@@ -29,6 +29,8 @@ class AttemptsRepository(
 
   suspend fun getUnfinished(): AttemptEntity? = attemptDao.getUnfinished()
 
+  suspend fun getLastFinishedAttempt(): AttemptEntity? = attemptDao.getLastFinished()
+
   suspend fun clearAll() {
     attemptDao.clearAll()
     logger("[attempt_clear_all]")

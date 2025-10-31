@@ -16,6 +16,8 @@ class AnswersRepository(private val answerDao: AnswerDao) {
 
   suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = answerDao.listByAttempt(attemptId)
 
+  suspend fun listWrongByAttempt(attemptId: String): List<String> = answerDao.listWrongByAttempt(attemptId)
+
   suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? =
     answerDao.countByQuestion(questionId)
 

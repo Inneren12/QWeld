@@ -46,6 +46,17 @@ interface AttemptDao {
   )
   suspend fun getUnfinished(): AttemptEntity?
 
+  @Query(
+    """
+    SELECT *
+    FROM attempts
+    WHERE finished_at IS NOT NULL
+    ORDER BY finished_at DESC
+    LIMIT 1
+    """,
+  )
+  suspend fun getLastFinished(): AttemptEntity?
+
   @Query("DELETE FROM attempts")
   suspend fun clearAll()
 }

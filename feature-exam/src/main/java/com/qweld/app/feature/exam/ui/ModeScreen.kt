@@ -16,6 +16,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,9 +31,12 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import com.qweld.app.feature.exam.R
+import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository.Result
 import com.qweld.app.feature.exam.vm.ExamViewModel
+import com.qweld.app.feature.exam.vm.PracticeShortcuts
+import com.qweld.app.feature.exam.vm.RepeatMistakesAvailability
 import kotlinx.coroutines.flow.collectLatest
 import java.util.Locale
 import timber.log.Timber
@@ -41,9 +45,11 @@ import timber.log.Timber
 fun ModeScreen(
   repository: AssetQuestionRepository,
   viewModel: ExamViewModel,
+  practiceShortcuts: PracticeShortcuts,
   modifier: Modifier = Modifier,
   onIpMockClick: (String) -> Unit = {},
   onPracticeClick: (String) -> Unit = {},
+  onRepeatMistakes: (String, ExamBlueprint) -> Unit = { _, _ -> },
   onResumeAttempt: () -> Unit = {},
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
@@ -61,6 +67,7 @@ fun ModeScreen(
   }
 
   val resolvedLanguage = remember(configuration) { resolveLanguage(configuration) }
+  val repeatState by practiceShortcuts.repeatMistakes.collectAsState()
 
   LaunchedEffect(resolvedLanguage, repository) {
     when (val result = repository.loadQuestions(resolvedLanguage)) {
@@ -73,6 +80,8 @@ fun ModeScreen(
   LaunchedEffect(viewModel, resolvedLanguage) {
     viewModel.detectResume(resolvedLanguage)
   }
+
+  LaunchedEffect(practiceShortcuts) { practiceShortcuts.refresh() }
 
   LaunchedEffect(viewModel) {
     viewModel.events.collectLatest { event ->
@@ -167,6 +176,39 @@ fun ModeScreen(
         onClick = { onPracticeClick(resolvedLanguage) },
       ) {
         Text(text = stringResource(id = R.string.mode_practice))
+      }
+      val repeatCd = stringResource(id = R.string.mode_repeat_mistakes)
+      Button(
+        modifier = Modifier
+          .fillMaxWidth()
+          .heightIn(min = minHeight)
+          .semantics {
+            contentDescription = repeatCd
+            role = Role.Button
+          },
+        enabled = repeatState.isEnabled,
+        onClick = {
+          val blueprint = repeatState.blueprint ?: return@Button
+          onRepeatMistakes(resolvedLanguage, blueprint)
+        },
+      ) {
+        Text(text = stringResource(id = R.string.mode_repeat_mistakes))
+      }
+      if (!repeatState.isEnabled) {
+        val disabledMessage =
+          when (repeatState.availability) {
+            RepeatMistakesAvailability.NO_FINISHED_ATTEMPT -> R.string.mode_repeat_mistakes_empty
+            else -> null
+          }
+        if (disabledMessage != null) {
+          Text(
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(top = 4.dp),
+            text = stringResource(id = disabledMessage),
+            style = MaterialTheme.typography.bodySmall,
+          )
+        }
       }
     }
   }

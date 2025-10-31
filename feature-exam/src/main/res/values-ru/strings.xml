@@ -4,6 +4,8 @@
     <string name="mode_practice">Практика</string>
     <string name="mode_ip_mock_cd">Начать экзамен IP Mock</string>
     <string name="mode_practice_cd">Начать практический режим</string>
+    <string name="mode_repeat_mistakes">Повторить ошибки</string>
+    <string name="mode_repeat_mistakes_empty">Завершённых попыток ещё нет</string>
     <string name="mode_prewarm_preparing">Подготавливаем вопросы…</string>
     <string name="mode_prewarm_ready">Готово</string>
     <string name="mode_bank_missing">Для локали %1$s нет банка вопросов. Скопируйте dist/questions/%1$s/bank.v1.json в app-android/src/main/assets/questions/%1$s/.</string>
