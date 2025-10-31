@@ -42,6 +42,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -88,6 +89,8 @@ class ExamViewModel(
   private var latestResult: ExamResultData? = null
   private var questionRationales: Map<String, String> = emptyMap()
   private val questionSeenAt = mutableMapOf<String, Long>()
+  private var autosaveController: AutosaveController? = null
+  private var autosaveTickerJob: Job? = null
   private var pendingResume: AttemptEntity? = null
   private var manualTimerRemaining: Duration? = null
   private var prewarmJob: Job? = null
@@ -167,6 +170,7 @@ class ExamViewModel(
           startedAt = startedAt,
         )
       hasFinished = false
+      prepareAutosave(attemptId)
       latestResult = null
       questionSeenAt.clear()
       if (mode == ExamMode.IP_MOCK) {
@@ -311,6 +315,7 @@ class ExamViewModel(
             startedAt = pending.startedAt,
           )
         hasFinished = false
+        prepareAutosave(pending.id)
         latestResult = null
         pendingResume = null
         manualTimerRemaining = null
@@ -373,20 +378,32 @@ class ExamViewModel(
         ?: attemptResult.currentIndex
     val correct = assembledQuestion.question.correctChoiceId == choiceId
 
-    viewModelScope.launch(ioDispatcher) {
-      val entity =
-        AnswerEntity(
-          attemptId = attemptResult.attemptId,
-          displayIndex = displayIndex,
-          questionId = questionId,
-          selectedId = choiceId,
-          correctId = assembledQuestion.question.correctChoiceId,
-          isCorrect = correct,
-          timeSpentSec = timeSpentSec,
-          seenAt = seenAt,
-          answeredAt = answeredAt,
-        )
-      answersRepository.saveAll(listOf(entity))
+    val answerEntity =
+      AnswerEntity(
+        attemptId = attemptResult.attemptId,
+        displayIndex = displayIndex,
+        questionId = questionId,
+        selectedId = choiceId,
+        correctId = assembledQuestion.question.correctChoiceId,
+        isCorrect = correct,
+        timeSpentSec = timeSpentSec,
+        seenAt = seenAt,
+        answeredAt = answeredAt,
+      )
+    val controller = autosaveController
+    if (controller != null) {
+      controller.onAnswer(
+        questionId = answerEntity.questionId,
+        choiceId = answerEntity.selectedId,
+        correctChoiceId = answerEntity.correctId,
+        isCorrect = answerEntity.isCorrect,
+        displayIndex = answerEntity.displayIndex,
+        timeSpentSec = answerEntity.timeSpentSec,
+        seenAt = answerEntity.seenAt,
+        answeredAt = answerEntity.answeredAt,
+      )
+    } else {
+      viewModelScope.launch(ioDispatcher) { answersRepository.upsert(listOf(answerEntity)) }
     }
     Timber.i("[answer_write] attempt=%s qId=%s correct=%s", attemptResult.attemptId, questionId, correct)
 
@@ -421,6 +438,8 @@ class ExamViewModel(
     )
     stopTimer(clearLabel = false)
     hasFinished = true
+    autosaveController?.flush(force = true)
+    stopAutosaveTicker()
     val finishedAt = nowProvider()
     val durationSec = ((finishedAt - attemptResult.startedAt).coerceAtLeast(0L) / 1_000L).toInt()
     val passThreshold = if (attempt.mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
@@ -821,10 +840,54 @@ class ExamViewModel(
     }
   }
 
+
+  fun autosaveFlush(force: Boolean = true) {
+    autosaveController?.flush(force)
+  }
+
+  private fun prepareAutosave(attemptId: String) {
+    autosaveController?.flush(force = true)
+    stopAutosaveTicker()
+    val controller =
+      AutosaveController(
+        attemptId = attemptId,
+        answersRepository = answersRepository,
+        scope = viewModelScope,
+        ioDispatcher = ioDispatcher,
+      )
+    controller.configure(AUTOSAVE_INTERVAL_SEC)
+    autosaveController = controller
+    startAutosaveTicker()
+  }
+
+  private fun startAutosaveTicker() {
+    stopAutosaveTicker()
+    val controller = autosaveController ?: return
+    autosaveTickerJob =
+      viewModelScope.launch {
+        while (isActive) {
+          delay(controller.intervalMillis)
+          controller.onTick()
+        }
+      }
+  }
+
+  private fun stopAutosaveTicker() {
+    autosaveTickerJob?.cancel()
+    autosaveTickerJob = null
+  }
+
+  override fun onCleared() {
+    autosaveController?.flush(force = true)
+    stopAutosaveTicker()
+    super.onCleared()
+  }
+
   companion object {
     private const val DEFAULT_PRACTICE_SIZE = 20
     private const val DEFAULT_USER_ID = "local_user"
     private const val IP_MOCK_PASS_THRESHOLD = 70
+    private const val AUTOSAVE_INTERVAL_SEC = 10
 
     private fun defaultBlueprintForMode(mode: ExamMode, practiceSize: Int): ExamBlueprint {
       return when (mode) {

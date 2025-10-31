@@ -9,6 +9,11 @@ class AnswersRepository(private val answerDao: AnswerDao) {
     answerDao.insertAll(answers)
   }
 
+  suspend fun upsert(answers: List<AnswerEntity>) {
+    if (answers.isEmpty()) return
+    answerDao.insertAll(answers)
+  }
+
   suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = answerDao.listByAttempt(attemptId)
 
   suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? =

@@ -71,6 +71,29 @@ class DaoAnswerTest {
     assertEquals(1, aggregate?.correct)
     assertEquals(15_000L, aggregate?.lastAnsweredAt)
   }
+  @Test
+  fun upsertReplacesExistingAnswer() = runTest {
+    val initial =
+      answer(displayIndex = 0, questionId = "Q4", isCorrect = false, answeredAt = 30_000L)
+    val updated =
+      initial.copy(
+        selectedId = "selected-updated",
+        correctId = "correct-updated",
+        isCorrect = true,
+        timeSpentSec = 25,
+        answeredAt = 31_000L,
+      )
+    answerDao.insertAll(listOf(initial))
+    answerDao.insertAll(listOf(updated))
+
+    val stored = answerDao.listByAttempt("attempt-answers")
+    val replacement = stored.single { it.displayIndex == 0 }
+    assertEquals("selected-updated", replacement.selectedId)
+    assertEquals(true, replacement.isCorrect)
+    assertEquals(25, replacement.timeSpentSec)
+    assertEquals(31_000L, replacement.answeredAt)
+  }
+
 
   @Test
   fun bulkCountByQuestionsAggregatesById() = runTest {
