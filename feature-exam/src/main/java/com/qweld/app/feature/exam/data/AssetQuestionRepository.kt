@@ -57,6 +57,29 @@ class AssetQuestionRepository internal constructor(
     synchronized(cacheLock) { taskCache.clear() }
   }
 
+  suspend fun loadTaskIntoCache(locale: String, taskId: String) {
+    val resolvedLocale = resolveLocale(locale)
+    val cacheKey = cacheKey(resolvedLocale, taskId)
+    synchronized(cacheLock) {
+      if (taskCache.containsKey(cacheKey)) {
+        return
+      }
+    }
+
+    val path = "questions/$resolvedLocale/tasks/$taskId.json"
+    when (val payload = readArray(path)) {
+      is AssetPayload.Success -> {
+        synchronized(cacheLock) { taskCache[cacheKey] = payload.value }
+      }
+      AssetPayload.Missing -> {
+        throw MissingTaskException("Task $taskId is missing for $resolvedLocale")
+      }
+      is AssetPayload.Error -> {
+        throw payload.throwable
+      }
+    }
+  }
+
   fun loadQuestions(locale: String? = null, tasks: Set<String>? = null): Result {
     val resolvedLocale = resolveLocale(locale)
     val normalizedTasks = tasks?.filter { it.isNotBlank() }?.toSet()?.takeIf { it.isNotEmpty() }
@@ -261,6 +284,8 @@ class AssetQuestionRepository internal constructor(
     fun open(path: String): InputStream? = opener(path)
     fun list(path: String): List<String>? = lister(path)
   }
+
+  class MissingTaskException(message: String) : Exception(message)
 
   sealed interface Result {
     val locale: String

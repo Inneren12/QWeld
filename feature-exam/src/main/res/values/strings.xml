@@ -4,6 +4,8 @@
     <string name="mode_practice">Practice</string>
     <string name="mode_ip_mock_cd">Start an IP Mock exam</string>
     <string name="mode_practice_cd">Start a practice exam</string>
+    <string name="mode_prewarm_preparing">Preparing questions…</string>
+    <string name="mode_prewarm_ready">Ready</string>
     <string name="mode_bank_missing">Question bank for %1$s locale is missing. Copy dist/questions/%1$s/bank.v1.json into app-android/src/main/assets/questions/%1$s/.</string>
     <string name="exam_no_attempt">Choose a mode to start an attempt.</string>
     <string name="exam_no_question">No questions available.</string>

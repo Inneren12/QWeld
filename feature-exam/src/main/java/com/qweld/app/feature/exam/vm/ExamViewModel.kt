@@ -28,6 +28,8 @@ import com.qweld.app.feature.exam.model.ExamChoiceUiModel
 import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.vm.ResumeUseCase
+import com.qweld.app.feature.exam.model.PrewarmStatus
+import com.qweld.app.feature.exam.model.PrewarmUiState
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
@@ -64,6 +66,7 @@ class ExamViewModel(
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val timerController: TimerController = TimerController { message -> Timber.i(message) },
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+  private val prewarmUseCase: PrewarmUseCase = PrewarmUseCase(repository, ioDispatcher),
   private val resumeUseCase: ResumeUseCase =
     ResumeUseCase(
       repository = repository,
@@ -87,9 +90,48 @@ class ExamViewModel(
   private val questionSeenAt = mutableMapOf<String, Long>()
   private var pendingResume: AttemptEntity? = null
   private var manualTimerRemaining: Duration? = null
+  private var ipMockPrewarmJob: Job? = null
+  private var ipMockPrewarmLocale: String? = null
+  private var ipMockPrewarmReady: Boolean = false
+  private var ipMockPrewarmState: PrewarmUiState = PrewarmUiState()
 
   private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
   val events = _events.asSharedFlow()
+
+  fun startPrewarmForIpMock(locale: String) {
+    val normalizedLocale = locale.lowercase(Locale.US)
+    if (ipMockPrewarmReady && ipMockPrewarmLocale == normalizedLocale) {
+      _uiState.value = _uiState.value.copy(ipMockPrewarm = ipMockPrewarmState)
+      return
+    }
+    if (ipMockPrewarmJob?.isActive == true && ipMockPrewarmLocale == normalizedLocale) {
+      return
+    }
+
+    val blueprint = blueprintProvider(ExamMode.IP_MOCK, DEFAULT_PRACTICE_SIZE)
+    val tasks = blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
+    val totalSteps = tasks.size.takeIf { it > 0 } ?: 1
+
+    ipMockPrewarmJob?.cancel()
+    ipMockPrewarmLocale = normalizedLocale
+    ipMockPrewarmReady = false
+
+    val initialState = PrewarmUiState(status = PrewarmStatus.Running, loaded = 0, total = totalSteps)
+    ipMockPrewarmState = initialState
+    _uiState.value = _uiState.value.copy(ipMockPrewarm = ipMockPrewarmState)
+
+    ipMockPrewarmJob =
+      viewModelScope.launch {
+        prewarmUseCase.prewarm(normalizedLocale, tasks) { loaded, total ->
+          viewModelScope.launch {
+            val status = if (total > 0 && loaded >= total) PrewarmStatus.Ready else PrewarmStatus.Running
+            ipMockPrewarmReady = status == PrewarmStatus.Ready
+            ipMockPrewarmState = PrewarmUiState(status = status, loaded = loaded, total = total)
+            _uiState.value = _uiState.value.copy(ipMockPrewarm = ipMockPrewarmState)
+          }
+        }
+      }
+  }
 
   fun startAttempt(
     mode: ExamMode,
@@ -195,6 +237,7 @@ class ExamViewModel(
         attempt = null,
         deficitDialog = DeficitDialogUiModel(details),
         errorMessage = null,
+        ipMockPrewarm = ipMockPrewarmState,
       )
       false
     }
@@ -467,7 +510,7 @@ class ExamViewModel(
     val attemptResult = currentAttempt
     if (attemptResult == null) {
       latestTimerLabel = null
-      _uiState.value = ExamUiState()
+      _uiState.value = ExamUiState(ipMockPrewarm = ipMockPrewarmState)
       return
     }
     val attempt = attemptResult.attempt
@@ -495,6 +538,7 @@ class ExamViewModel(
       errorMessage = null,
       timerLabel = latestTimerLabel,
       resumeDialog = null,
+      ipMockPrewarm = ipMockPrewarmState,
     )
     currentAttempt = attemptResult.copy(currentIndex = index)
   }

@@ -3,11 +3,14 @@ package com.qweld.app.feature.exam.ui
 import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -72,6 +75,10 @@ fun ModeScreen(
     viewModel.detectResume(resolvedLanguage)
   }
 
+  LaunchedEffect(resolvedLanguage) {
+    viewModel.startPrewarmForIpMock(resolvedLanguage)
+  }
+
   LaunchedEffect(viewModel) {
     viewModel.events.collectLatest { event ->
       when (event) {
@@ -96,6 +103,8 @@ fun ModeScreen(
         style = MaterialTheme.typography.headlineMedium,
       )
       val minHeight = dimensionResource(id = R.dimen.min_touch_target)
+      val prewarmState = uiState.ipMockPrewarm
+      val isReady = prewarmState.isReady
       Button(
         modifier = Modifier
           .fillMaxWidth()
@@ -104,9 +113,31 @@ fun ModeScreen(
             contentDescription = stringResource(id = R.string.mode_ip_mock_cd)
             role = Role.Button
           },
+        enabled = isReady,
         onClick = { onIpMockClick(resolvedLanguage) },
       ) {
         Text(text = stringResource(id = R.string.mode_ip_mock))
+      }
+      if (prewarmState.isRunning) {
+        Spacer(modifier = Modifier.height(8.dp))
+        LinearProgressIndicator(
+          modifier = Modifier.fillMaxWidth(),
+          progress = { prewarmState.progress },
+        )
+        Text(
+          text = stringResource(id = R.string.mode_prewarm_preparing),
+          style = MaterialTheme.typography.bodyMedium,
+        )
+      } else if (prewarmState.isReady) {
+        Spacer(modifier = Modifier.height(8.dp))
+        LinearProgressIndicator(
+          modifier = Modifier.fillMaxWidth(),
+          progress = { 1f },
+        )
+        Text(
+          text = stringResource(id = R.string.mode_prewarm_ready),
+          style = MaterialTheme.typography.bodyMedium,
+        )
       }
       Button(
         modifier = Modifier

@@ -37,6 +37,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Copy the generated `tasks/` directories alongside the unified bank into `app-android/src/main/assets/questions/<locale>/` before assembling the app; the repository loads per-task bundles first, then falls back to the monolithic bank, and finally to raw question files for dev scenarios.
 - At runtime the repository lazily loads only the requested tasks (practice mode fetches 1–2 files, IP Mock primes all 15 once) and keeps the most recent six tasks in an in-memory LRU cache while logging the data source and timing via Timber.
 
+## Pre-warm per-task
+- `ExamViewModel.startPrewarmForIpMock(locale)` now invokes `PrewarmUseCase`, loading the 15 IP Mock task bundles on `Dispatchers.IO.limitedParallelism(3)` with a two-second timeout per read and `[prewarm_start|step|done]` logging.
+- `PrewarmUseCase` reports `(loaded, total)` progress so the Mode screen can animate a lightweight `LinearProgressIndicator` with the “Preparing questions…” label until every task is cached (or the unified bank fallback succeeds).
+- Once progress reaches 100%, the UI swaps the caption to “Ready” and enables the IP Mock **Start** button so the first question renders instantly when navigation occurs.
+
 ## Explanations schema & how to validate
 - Schema: `schemas/explanation.schema.json` defines the required structure for explanation articles (metadata, steps, incorrect choices, and optional references/media blocks).
 - Validate locally with `bash scripts/validate-explanations.sh`; the script will emit `logs/validate-explanations.txt` mirroring CI output and will fail if the linked question JSON is missing.

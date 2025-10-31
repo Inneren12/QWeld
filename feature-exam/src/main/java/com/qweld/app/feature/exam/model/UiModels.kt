@@ -10,6 +10,7 @@ data class ExamUiState(
   val errorMessage: String? = null,
   val timerLabel: String? = null,
   val resumeDialog: ResumeDialogUiModel? = null,
+  val ipMockPrewarm: PrewarmUiState = PrewarmUiState(),
 )
 
 data class ExamAttemptUiState(
@@ -70,4 +71,28 @@ data class ResumeDialogUiModel(
 enum class ResumeLocaleOption {
   KEEP_ORIGINAL,
   SWITCH_TO_DEVICE,
+}
+
+data class PrewarmUiState(
+  val status: PrewarmStatus = PrewarmStatus.Idle,
+  val loaded: Int = 0,
+  val total: Int = 0,
+) {
+  val progress: Float
+    get() =
+      if (total <= 0) {
+        0f
+      } else {
+        (loaded.coerceAtMost(total)).toFloat() / total
+      }
+
+  val isReady: Boolean get() = status == PrewarmStatus.Ready
+
+  val isRunning: Boolean get() = status == PrewarmStatus.Running
+}
+
+enum class PrewarmStatus {
+  Idle,
+  Running,
+  Ready,
 }
