@@ -3,6 +3,7 @@ package com.qweld.app.feature.exam.ui
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,12 +13,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -27,6 +32,10 @@ import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.model.PassStatus
 import com.qweld.app.feature.exam.model.ResultUiState
 import com.qweld.app.feature.exam.vm.ResultViewModel
+import com.qweld.app.data.logging.LogCollector
+import com.qweld.app.data.logging.LogExportFormat
+import com.qweld.app.data.logging.findLogCollector
+import com.qweld.app.data.logging.writeTo
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,11 +50,15 @@ fun ResultScreen(
 ) {
   val uiState by viewModel.uiState
   val onExport = rememberAttemptExportLauncher(viewModel)
+  val context = LocalContext.current
+  val logCollector: LogCollector? = remember(context.applicationContext) { context.findLogCollector() }
+  val logExportActions = rememberLogExportActions(logCollector)
   ResultScreenContent(
     state = uiState,
     scoreLabel = viewModel.scoreLabel(),
     onExport = onExport,
     onReview = onReview,
+    logExportActions = logExportActions,
     modifier = modifier,
   )
 }
@@ -56,6 +69,7 @@ private fun ResultScreenContent(
   scoreLabel: String,
   onExport: () -> Unit,
   onReview: () -> Unit,
+  logExportActions: LogExportActions?,
   modifier: Modifier = Modifier,
 ) {
   LazyColumn(
@@ -149,6 +163,11 @@ private fun ResultScreenContent(
         Text(text = stringResource(id = R.string.result_export_json))
       }
     }
+    logExportActions?.let { actions ->
+      item {
+        LogExportMenu(actions = actions)
+      }
+    }
     item {
       Button(
         modifier = Modifier.fillMaxWidth(),
@@ -196,8 +215,112 @@ internal fun rememberAttemptExportLauncher(viewModel: ResultViewModel): () -> Un
           )
         }
       }
-    }
+  }
   return remember(fileName, launcher) { { launcher.launch(fileName) } }
+}
+
+private data class LogExportActions(
+  val exportText: () -> Unit,
+  val exportJson: () -> Unit,
+)
+
+@Composable
+private fun rememberLogExportActions(logCollector: LogCollector?): LogExportActions? {
+  if (logCollector == null) return null
+  val context = LocalContext.current
+  val scope = rememberCoroutineScope()
+
+  val textLauncher =
+    rememberLauncherForActivityResult(
+      ActivityResultContracts.CreateDocument(LogExportFormat.TEXT.mimeType),
+    ) { uri ->
+      if (uri == null) return@rememberLauncherForActivityResult
+      scope.launch {
+        try {
+          val result = logCollector.writeTo(context, uri, LogExportFormat.TEXT)
+          val attrs =
+            "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
+          Timber.i(
+            "[export_logs] format=%s uri=%s | attrs=%s",
+            result.format.label,
+            uri,
+            attrs,
+          )
+        } catch (t: Throwable) {
+          val reason = t.message ?: t::class.java.simpleName
+          Timber.e(
+            t,
+            "[export_logs_error] format=%s reason=%s | attrs=%s",
+            LogExportFormat.TEXT.label,
+            reason,
+            "{}",
+          )
+        }
+      }
+    }
+  val jsonLauncher =
+    rememberLauncherForActivityResult(
+      ActivityResultContracts.CreateDocument(LogExportFormat.JSON.mimeType),
+    ) { uri ->
+      if (uri == null) return@rememberLauncherForActivityResult
+      scope.launch {
+        try {
+          val result = logCollector.writeTo(context, uri, LogExportFormat.JSON)
+          val attrs =
+            "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
+          Timber.i(
+            "[export_logs] format=%s uri=%s | attrs=%s",
+            result.format.label,
+            uri,
+            attrs,
+          )
+        } catch (t: Throwable) {
+          val reason = t.message ?: t::class.java.simpleName
+          Timber.e(
+            t,
+            "[export_logs_error] format=%s reason=%s | attrs=%s",
+            LogExportFormat.JSON.label,
+            reason,
+            "{}",
+          )
+        }
+      }
+    }
+  return remember(logCollector, textLauncher, jsonLauncher) {
+    LogExportActions(
+      exportText = { textLauncher.launch(logCollector.createDocumentName(LogExportFormat.TEXT)) },
+      exportJson = { jsonLauncher.launch(logCollector.createDocumentName(LogExportFormat.JSON)) },
+    )
+  }
+}
+
+@Composable
+private fun LogExportMenu(actions: LogExportActions) {
+  var expanded by remember { mutableStateOf(false) }
+  Box {
+    Button(
+      modifier = Modifier.fillMaxWidth(),
+      onClick = { expanded = true },
+    ) {
+      Text(text = stringResource(id = R.string.result_export_logs))
+    }
+    DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+      DropdownMenuItem(
+        text = { Text(text = stringResource(id = R.string.result_export_logs_txt)) },
+        onClick = {
+          expanded = false
+          actions.exportText()
+        },
+      )
+      DropdownMenuItem(
+        text = { Text(text = stringResource(id = R.string.result_export_logs_json)) },
+        onClick = {
+          expanded = false
+          actions.exportJson()
+        },
+      )
+    }
+  }
 }
 
 @Composable

@@ -103,3 +103,8 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 - The exported payload follows `qweld.attempt.v1` with nested `qweld.answer.v1` entries, per-block/per-task summaries, and metadata stamped with the app version and export timestamp.
 - The exporter reuses Room repositories, logs `[export_attempt]` / `[export_attempt_error]` markers, and is covered by `AttemptExporterTest` (`./gradlew :feature-exam:test`).
 
+### F6-D: In-app log export
+- **Export logs** is available from the Result screen and the account menu; it opens the Storage Access Framework so you can save the Timber buffer as TXT or JSON (`QWeld_Logs_<ts>.<ext>`).
+- The file is created wherever you point the SAF picker (e.g. Downloads, Drive, or device storage); open the Files app and navigate to that location to retrieve it.
+- TXT rows follow `[ts] [tag] message | attrs={...}` with an optional `| error=Type:reason` suffix, while the JSON variant wraps the same entries inside a `qweld.logs.v1` document.
+

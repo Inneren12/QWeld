@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">QWeld</string>
     <string name="hello_qweld">Hello QWeld</string>
+    <string name="menu_export_logs">Export logs</string>
     <string name="menu_sync">Sync</string>
     <string name="menu_sign_out">Sign out</string>
     <string name="sync_coming_soon">Coming soon</string>
     <string name="sync_back_to_exam">Back</string>
+    <string name="export_logs_title">Export logs</string>
+    <string name="export_logs_message">Choose a format for the exported log file.</string>
+    <string name="export_logs_txt">TXT</string>
+    <string name="export_logs_json">JSON</string>
 </resources>

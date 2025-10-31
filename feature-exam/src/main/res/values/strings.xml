@@ -24,6 +24,9 @@
     <string name="result_tasks_title">Tasks</string>
     <string name="result_task_item">Task %1$s (%2$s) — %3$d/%4$d (%5$.1f%%)</string>
     <string name="result_export_json">Export JSON</string>
+    <string name="result_export_logs">Export logs</string>
+    <string name="result_export_logs_txt">Export TXT</string>
+    <string name="result_export_logs_json">Export JSON</string>
     <string name="result_review">Review</string>
     <string name="review_title">Review</string>
     <string name="review_back">Back</string>

@@ -24,6 +24,7 @@ fun AccountMenu(
   user: AuthService.User?,
   onNavigateToSync: () -> Unit,
   onSignOut: () -> Unit,
+  onExportLogs: (() -> Unit)? = null,
 ) {
   TopAppBar(
     title = { Text(text = stringResource(id = R.string.app_name)) },
@@ -33,6 +34,15 @@ fun AccountMenu(
         Icon(imageVector = Icons.Outlined.AccountCircle, contentDescription = null)
       }
       DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+        onExportLogs?.let { exportLogs ->
+          DropdownMenuItem(
+            text = { Text(text = stringResource(id = R.string.menu_export_logs)) },
+            onClick = {
+              expanded = false
+              exportLogs()
+            },
+          )
+        }
         DropdownMenuItem(
           text = { Text(text = stringResource(id = R.string.menu_sync)) },
           onClick = {

@@ -3,11 +3,16 @@ package com.qweld.app
 import android.app.Application
 import android.util.Log
 import java.util.Locale
+import com.qweld.app.data.logging.LogCollector
+import com.qweld.app.data.logging.LogCollectorOwner
 import timber.log.Timber
 
-class QWeldApp : Application() {
+class QWeldApp : Application(), LogCollectorOwner {
+  override val logCollector: LogCollector by lazy { LogCollector() }
+
   override fun onCreate() {
     super.onCreate()
+    Timber.plant(logCollector.asTree())
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
     } else {
