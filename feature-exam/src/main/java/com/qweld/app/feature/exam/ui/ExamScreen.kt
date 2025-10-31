@@ -322,6 +322,9 @@ private fun ExamScreenContent(
                   choice.label,
                   choice.text,
                 )
+                // ВАЖНО: вычисляем строки вне semantics {}, чтобы не дергать @Composable внутри DSL
+                val stateSelected = stringResource(id = R.string.exam_choice_state_selected)
+                val stateUnselected = stringResource(id = R.string.exam_choice_state_unselected)
                 Card(
                   modifier = Modifier
                     .fillMaxWidth()
@@ -329,12 +332,7 @@ private fun ExamScreenContent(
                     .semantics(mergeDescendants = false) {
                       contentDescription = choiceDescription
                       role = Role.Button
-                      stateDescription =
-                        if (choice.isSelected) {
-                          stringResource(id = R.string.exam_choice_state_selected)
-                        } else {
-                          stringResource(id = R.string.exam_choice_state_unselected)
-                        }
+                      stateDescription = if (choice.isSelected) stateSelected else stateUnselected
                     },
                   onClick = { onChoiceSelected(choice.id) },
                   enabled = !question.isAnswered,
