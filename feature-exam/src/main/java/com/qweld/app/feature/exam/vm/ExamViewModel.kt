@@ -82,7 +82,10 @@ class ExamViewModel(
     practiceSize: Int = DEFAULT_PRACTICE_SIZE,
   ): Boolean {
     val normalizedLocale = locale.lowercase(Locale.US)
-    val result = repository.loadQuestions(normalizedLocale)
+    val blueprint = blueprintProvider(mode, practiceSize)
+    val requestedTasks =
+      blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
+    val result = repository.loadQuestions(normalizedLocale, tasks = requestedTasks)
     val questions = when (result) {
       is AssetQuestionRepository.Result.Success -> {
         questionRationales = result.questions.mapNotNull { dto ->
@@ -108,7 +111,6 @@ class ExamViewModel(
       statsRepository = statsRepository,
       logger = { message -> Timber.i(message) },
     )
-    val blueprint = blueprintProvider(mode, practiceSize)
     val attemptSeed = AttemptSeed(seedProvider())
     return try {
         val attempt = runBlocking(ioDispatcher) {

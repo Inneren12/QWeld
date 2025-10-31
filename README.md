@@ -32,6 +32,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Generate the flattened question banks consumed by the app with `bash scripts/build-questions-dist.sh`; the resulting bundles are stored under `dist/questions/{en,ru}/bank.v1.json` and the run metadata is logged in `logs/build_dist_{en,ru}.txt`.
 - CI publishes the quota logs and the dist outputs as artifacts via `.github/workflows/content-validators.yml` (`content-validation-logs` and `questions-dist`).
 
+## Per-task banks: when and how to use
+- Run `node scripts/build-questions-dist.mjs` (or `bash scripts/build-questions-dist.sh` if Node.js is unavailable) to produce both the unified `bank.v1.json` and the per-task bundles in `dist/questions/<locale>/tasks/<taskId>.json`.
+- Copy the generated `tasks/` directories alongside the unified bank into `app-android/src/main/assets/questions/<locale>/` before assembling the app; the repository loads per-task bundles first, then falls back to the monolithic bank, and finally to raw question files for dev scenarios.
+- At runtime the repository lazily loads only the requested tasks (practice mode fetches 1–2 files, IP Mock primes all 15 once) and keeps the most recent six tasks in an in-memory LRU cache while logging the data source and timing via Timber.
+
 ## Explanations schema & how to validate
 - Schema: `schemas/explanation.schema.json` defines the required structure for explanation articles (metadata, steps, incorrect choices, and optional references/media blocks).
 - Validate locally with `bash scripts/validate-explanations.sh`; the script will emit `logs/validate-explanations.txt` mirroring CI output and will fail if the linked question JSON is missing.
