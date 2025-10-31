@@ -68,3 +68,8 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 - Default config: halfLifeCorrect=2.0, noveltyBoost=2.0, minWeight=0.05, maxWeight=4.0, freshDays=14, antiClusterSwaps=10, allowFallbackToEN=false (always false for IP Mock).
 - Run the deterministic suite with `./gradlew :core-domain:test`.
 
+### F6-A DB & Stats
+- `:core-data` now ships a Room v1 schema (`AttemptEntity`, `AnswerEntity`) with DAOs, repositories, and a `UserStatsRepositoryRoom` implementation powering F3 weighted selection.
+- User preferences live in `UserPrefsDataStore` (practice size default 20, EN fallback opt-in) with flows + edit helpers.
+- Run `./gradlew :core-data:test` to verify DAO CRUD and stats aggregation behaviour end-to-end.
+
