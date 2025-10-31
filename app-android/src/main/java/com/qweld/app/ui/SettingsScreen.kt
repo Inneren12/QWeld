@@ -20,7 +20,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberSnackbarHostState
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -54,7 +54,7 @@ fun SettingsScreen(
   onExportLogs: (() -> Unit)?,
   onBack: () -> Unit,
 ) {
-  val snackbarHostState = rememberSnackbarHostState()
+  val snackbarHostState = remember { SnackbarHostState() }
   val scope = rememberCoroutineScope()
   val focusManager = LocalFocusManager.current
   val analyticsEnabled by userPrefs.analyticsEnabled.collectAsState(
