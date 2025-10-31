@@ -27,6 +27,8 @@ class AttemptsRepository(
 
   suspend fun listRecent(limit: Int): List<AttemptEntity> = attemptDao.listRecent(limit)
 
+  suspend fun getUnfinished(): AttemptEntity? = attemptDao.getUnfinished()
+
   suspend fun clearAll() {
     attemptDao.clearAll()
     logger("[attempt_clear_all]")

@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.model
 
 import com.qweld.app.domain.exam.ExamMode
+import java.time.Duration
 
 data class ExamUiState(
   val isLoading: Boolean = false,
@@ -8,6 +9,7 @@ data class ExamUiState(
   val deficitDialog: DeficitDialogUiModel? = null,
   val errorMessage: String? = null,
   val timerLabel: String? = null,
+  val resumeDialog: ResumeDialogUiModel? = null,
 )
 
 data class ExamAttemptUiState(
@@ -54,3 +56,18 @@ data class DeficitDetailUiModel(
   val have: Int,
   val missing: Int,
 )
+
+data class ResumeDialogUiModel(
+  val attemptId: String,
+  val mode: ExamMode,
+  val attemptLocale: String,
+  val deviceLocale: String,
+  val questionCount: Int,
+  val showLocaleMismatch: Boolean,
+  val remaining: Duration?,
+)
+
+enum class ResumeLocaleOption {
+  KEEP_ORIGINAL,
+  SWITCH_TO_DEVICE,
+}

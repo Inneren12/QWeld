@@ -14,6 +14,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,19 +25,25 @@ import androidx.compose.ui.unit.dp
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository.Result
+import com.qweld.app.feature.exam.vm.ExamViewModel
+import kotlinx.coroutines.flow.collectLatest
 import java.util.Locale
 import timber.log.Timber
 
 @Composable
 fun ModeScreen(
   repository: AssetQuestionRepository,
+  viewModel: ExamViewModel,
   modifier: Modifier = Modifier,
   onIpMockClick: (String) -> Unit = {},
   onPracticeClick: (String) -> Unit = {},
+  onResumeAttempt: () -> Unit = {},
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
   val context = LocalContext.current
   val configuration = LocalConfiguration.current
+  val uiState by viewModel.uiState
+  val resumeDialog = uiState.resumeDialog
 
   LaunchedEffect(Unit) { Timber.i("[ui_nav] screen=Mode") }
 
@@ -47,6 +54,19 @@ fun ModeScreen(
       is Result.Success -> Unit
       is Result.Missing -> showBankMissingMessage(snackbarHostState, context, result.locale)
       is Result.Error -> showBankMissingMessage(snackbarHostState, context, result.locale)
+    }
+  }
+
+  LaunchedEffect(viewModel, resolvedLanguage) {
+    viewModel.detectResume(resolvedLanguage)
+  }
+
+  LaunchedEffect(viewModel) {
+    viewModel.events.collectLatest { event ->
+      when (event) {
+        ExamViewModel.ExamEvent.ResumeReady -> onResumeAttempt()
+        ExamViewModel.ExamEvent.NavigateToResult -> Unit
+      }
     }
   }
 
@@ -71,6 +91,20 @@ fun ModeScreen(
         Text(text = stringResource(id = R.string.mode_practice))
       }
     }
+  }
+
+  if (resumeDialog != null) {
+    ResumeDialog(
+      state = resumeDialog,
+      onContinue = { option ->
+        viewModel.resumeAttempt(
+          attemptId = resumeDialog.attemptId,
+          localeOption = option,
+          deviceLocale = resolvedLanguage,
+        )
+      },
+      onDiscard = { viewModel.discardAttempt(resumeDialog.attemptId) },
+    )
   }
 }
 

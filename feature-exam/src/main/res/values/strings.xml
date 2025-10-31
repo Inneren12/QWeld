@@ -47,4 +47,12 @@
     <string name="explain_tips">Tips</string>
     <string name="explain_rationale_label">Quick rationale</string>
     <string name="explain_not_available">Explanation not available.</string>
+    <string name="resume_dialog_title">Resume unfinished attempt?</string>
+    <string name="resume_dialog_message">You have an unfinished %1$s attempt (%2$d questions).</string>
+    <string name="resume_dialog_continue">Continue</string>
+    <string name="resume_dialog_discard">Discard</string>
+    <string name="resume_dialog_locale_changed">Device language changed to %1$s.</string>
+    <string name="resume_dialog_keep">Keep original (%1$s)</string>
+    <string name="resume_dialog_switch">Switch to %1$s &amp; rebuild</string>
+    <string name="resume_dialog_remaining">Time left: %1$s</string>
 </resources>

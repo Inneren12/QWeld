@@ -147,6 +147,9 @@ class AttemptExporterTest {
 
     override suspend fun listRecent(limit: Int): List<AttemptEntity> =
       attempts.values.sortedByDescending { it.startedAt }.take(limit)
+
+    override suspend fun getUnfinished(): AttemptEntity? =
+      attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
   }
 
   private class InMemoryAnswerDao : AnswerDao {

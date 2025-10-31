@@ -109,6 +109,7 @@ fun ExamScreen(
           )
           onNavigateToResult()
         }
+        ExamViewModel.ExamEvent.ResumeReady -> Unit
       }
     }
   }
