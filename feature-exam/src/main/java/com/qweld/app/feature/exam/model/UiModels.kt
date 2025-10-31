@@ -10,7 +10,20 @@ data class ExamUiState(
   val errorMessage: String? = null,
   val timerLabel: String? = null,
   val resumeDialog: ResumeDialogUiModel? = null,
+  val prewarmState: PrewarmUiState = PrewarmUiState(),
 )
+
+data class PrewarmUiState(
+  val locale: String? = null,
+  val isRunning: Boolean = false,
+  val loaded: Int = 0,
+  val total: Int = 0,
+  val isReady: Boolean = false,
+) {
+  val progressFraction: Float
+    get() =
+      if (total <= 0) 0f else (loaded.toFloat() / total.toFloat()).coerceIn(0f, 1f)
+}
 
 data class ExamAttemptUiState(
   val attemptId: String,

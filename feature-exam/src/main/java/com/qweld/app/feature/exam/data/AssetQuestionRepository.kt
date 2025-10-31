@@ -39,6 +39,31 @@ class AssetQuestionRepository internal constructor(
       }
     }
 
+  suspend fun loadTaskIntoCache(
+    locale: String,
+    taskId: String,
+  ) {
+    val key = cacheKey(locale, taskId)
+    synchronized(cacheLock) {
+      if (taskCache.containsKey(key)) {
+        return
+      }
+    }
+
+    val path = "questions/$locale/tasks/$taskId.json"
+    when (val payload = readArray(path)) {
+      is AssetPayload.Success -> {
+        synchronized(cacheLock) { taskCache[key] = payload.value }
+      }
+      AssetPayload.Missing -> {
+        throw TaskAssetMissingException(taskId = taskId, path = path)
+      }
+      is AssetPayload.Error -> {
+        throw TaskAssetReadException(taskId = taskId, path = path, cause = payload.throwable)
+      }
+    }
+  }
+
   fun clearLocaleCache(locale: String) {
     val prefix = cacheKey(locale, "")
     synchronized(cacheLock) {
@@ -260,6 +285,22 @@ class AssetQuestionRepository internal constructor(
     fun open(path: String): InputStream? = opener(path)
     fun list(path: String): List<String>? = lister(path)
   }
+
+  sealed class TaskLoadException(message: String, cause: Throwable? = null) : Exception(message, cause) {
+    abstract val taskId: String
+    abstract val path: String
+  }
+
+  class TaskAssetMissingException(
+    override val taskId: String,
+    override val path: String,
+  ) : TaskLoadException("Task asset missing: $path")
+
+  class TaskAssetReadException(
+    override val taskId: String,
+    override val path: String,
+    cause: Throwable,
+  ) : TaskLoadException("Unable to read task asset: $path", cause)
 
   sealed interface Result {
     val locale: String

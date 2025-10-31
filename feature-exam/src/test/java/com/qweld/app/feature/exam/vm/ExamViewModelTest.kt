@@ -122,6 +122,7 @@ class ExamViewModelTest {
     val statsRepository = object : UserStatsRepository {
       override fun getUserItemStats(userId: String, ids: List<String>) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
     }
+    val dispatcher = StandardTestDispatcher()
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
@@ -131,7 +132,8 @@ class ExamViewModelTest {
       seedProvider = { 1L },
       nowProvider = { 0L },
       timerController = com.qweld.app.domain.exam.TimerController { },
-      ioDispatcher = StandardTestDispatcher(),
+      ioDispatcher = dispatcher,
+      prewarmUseCase = PrewarmUseCase(repository, ioDispatcher = dispatcher, nowProvider = { 0L }),
     )
   }
 

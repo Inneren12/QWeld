@@ -112,6 +112,12 @@ class ExamViewModelPersistTest {
       nowProvider = { currentTime },
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcherRule.dispatcher,
+      prewarmUseCase =
+        PrewarmUseCase(
+          repository = repository,
+          ioDispatcher = dispatcherRule.dispatcher,
+          nowProvider = { currentTime },
+        ),
     )
   }
 
