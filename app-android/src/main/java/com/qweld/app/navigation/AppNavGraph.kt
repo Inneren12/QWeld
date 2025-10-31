@@ -146,14 +146,15 @@ fun AppNavGraph(
 
   LaunchedEffect(user) {
     val currentRoute = navController.currentBackStackEntry?.destination?.route
-    when {
-      user == null -> navigateToAuth()
-      user.isAnonymous -> navigateToAuth()
-      currentRoute == Routes.AUTH -> {
-        navController.navigate(Routes.EXAM) {
-          popUpTo(navController.graph.startDestinationId) { inclusive = true }
-          launchSingleTop = true
-        }
+    val u = user
+    if (u == null) {
+      navigateToAuth()
+    } else if (u.isAnonymous) {
+      navigateToAuth()
+    } else if (currentRoute == Routes.AUTH) {
+      navController.navigate(Routes.EXAM) {
+        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+        launchSingleTop = true
       }
     }
   }
@@ -262,7 +263,7 @@ fun AppNavGraph(
           onRequire = {
             val reason = when {
               user == null -> "no_user"
-              user.isAnonymous -> "anonymous"
+              user?.isAnonymous == true -> "anonymous"
               else -> "unknown"
             }
             Timber.i("[auth_guard] route=/sync allowed=false reason=%s", reason)
