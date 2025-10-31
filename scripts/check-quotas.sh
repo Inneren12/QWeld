@@ -6,8 +6,10 @@ ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 LOG_DIR="${ROOT_DIR}/logs"
 mkdir -p "${LOG_DIR}" 
 
-BLUEPRINT_REL="content/blueprints/welder_ip_sk_202404.json"
-PROFILE_PATH="content/exam_profiles/welder_exam_2024.json"
+BLUEPRINT_REL=""
+PROFILE_PATH=""
+CLI_BLUEPRINT=false
+CLI_PROFILE=false
 LOCALES_STR="en,ru"
 MODE="min"
 MIN_MULTIPLE=1
@@ -37,10 +39,12 @@ while [[ $# -gt 0 ]]; do
       ;;
     --profile)
       PROFILE_PATH="$2"
+      CLI_PROFILE=true
       shift 2
       ;;
     --blueprint)
       BLUEPRINT_REL="$2"
+      CLI_BLUEPRINT=true
       shift 2
       ;;
     --locales)
@@ -78,6 +82,29 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+if ! ${CLI_BLUEPRINT} && ! ${CLI_PROFILE}; then
+  PROFILE_PATH="content/exam_profiles/welder_exam_2024.json"
+fi
+
+PROFILE_BLUEPRINT_REL=""
+if [[ -n "${PROFILE_PATH}" && -f "${PROFILE_PATH}" ]]; then
+  PROFILE_BLUEPRINT_REL=$(jq -r 'try .blueprintPath // .blueprint // .blueprintId // empty' "${PROFILE_PATH}" 2>/dev/null || true)
+  if [[ -n "${PROFILE_BLUEPRINT_REL}" && "${PROFILE_BLUEPRINT_REL}" != "null" ]]; then
+    if [[ -z "${BLUEPRINT_REL}" ]]; then
+      BLUEPRINT_REL="${PROFILE_BLUEPRINT_REL}"
+    elif ${CLI_BLUEPRINT}; then
+      echo "[quotas] --blueprint provided; ignoring blueprint from profile: ${PROFILE_PATH}"
+    fi
+  fi
+elif [[ -n "${PROFILE_PATH}" && ! -f "${PROFILE_PATH}" ]]; then
+  echo "[quotas] WARNING: profile not found: ${PROFILE_PATH}" >&2
+fi
+
+if [[ -z "${BLUEPRINT_REL}" ]]; then
+  BLUEPRINT_REL="content/blueprints/welder_ip_sk_202404.json"
+fi
+echo "[quotas] effective blueprint: ${BLUEPRINT_REL}"
+
 LOCALES_STR="${LOCALES_STR// /}"
 IFS=',' read -r -a LOCALES <<< "${LOCALES_STR}" || true
 if [[ ${#LOCALES[@]} -eq 0 ]]; then
@@ -103,22 +130,11 @@ BLUEPRINT_PATH="${BLUEPRINT_REL}"
 if [[ ! -f "${BLUEPRINT_PATH}" ]]; then
   if [[ -f "${ROOT_DIR}/${BLUEPRINT_REL}" ]]; then
     BLUEPRINT_PATH="${ROOT_DIR}/${BLUEPRINT_REL}"
+  elif [[ -f "${ROOT_DIR}/content/blueprints/${BLUEPRINT_REL}" ]]; then
+    BLUEPRINT_PATH="${ROOT_DIR}/content/blueprints/${BLUEPRINT_REL}"
+  elif [[ "${BLUEPRINT_REL}" != *.json && -f "${ROOT_DIR}/content/blueprints/${BLUEPRINT_REL}.json" ]]; then
+    BLUEPRINT_PATH="${ROOT_DIR}/content/blueprints/${BLUEPRINT_REL}.json"
   fi
-fi
-
-if [[ -n "${PROFILE_PATH}" && -f "${PROFILE_PATH}" ]]; then
-  blueprint_candidate=$(jq -r 'try .blueprintPath // .blueprint // .blueprintId // empty' "${PROFILE_PATH}")
-  if [[ -n "${blueprint_candidate}" && "${blueprint_candidate}" != "null" ]]; then
-    if [[ -f "${blueprint_candidate}" ]]; then
-      BLUEPRINT_PATH="${blueprint_candidate}"
-    elif [[ -f "${ROOT_DIR}/${blueprint_candidate}" ]]; then
-      BLUEPRINT_PATH="${ROOT_DIR}/${blueprint_candidate}"
-    elif [[ -f "${ROOT_DIR}/content/blueprints/${blueprint_candidate}.json" ]]; then
-      BLUEPRINT_PATH="${ROOT_DIR}/content/blueprints/${blueprint_candidate}.json"
-    fi
-  fi
-elif [[ -n "${PROFILE_PATH}" && ! -f "${PROFILE_PATH}" ]]; then
-  echo "[quotas] WARNING: profile not found: ${PROFILE_PATH}" >&2
 fi
 
 if [[ ! -f "${BLUEPRINT_PATH}" ]]; then
