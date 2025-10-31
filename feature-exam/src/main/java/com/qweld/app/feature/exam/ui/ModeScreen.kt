@@ -96,24 +96,26 @@ fun ModeScreen(
         style = MaterialTheme.typography.headlineMedium,
       )
       val minHeight = dimensionResource(id = R.dimen.min_touch_target)
+      val ipMockCd = stringResource(id = R.string.mode_ip_mock_cd)
       Button(
         modifier = Modifier
           .fillMaxWidth()
           .heightIn(min = minHeight)
           .semantics {
-            contentDescription = stringResource(id = R.string.mode_ip_mock_cd)
+            contentDescription = ipMockCd
             role = Role.Button
           },
         onClick = { onIpMockClick(resolvedLanguage) },
       ) {
         Text(text = stringResource(id = R.string.mode_ip_mock))
       }
+      val practiceCd = stringResource(id = R.string.mode_practice_cd)
       Button(
         modifier = Modifier
           .fillMaxWidth()
           .heightIn(min = minHeight)
           .semantics {
-            contentDescription = stringResource(id = R.string.mode_practice_cd)
+            contentDescription = practiceCd
             role = Role.Button
           },
         onClick = { onPracticeClick(resolvedLanguage) },

@@ -59,7 +59,6 @@ import com.qweld.app.feature.exam.vm.ReviewTotals
 import timber.log.Timber
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.hint
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -157,12 +156,13 @@ fun ReviewScreen(
       TopAppBar(
         title = { Text(text = stringResource(id = R.string.review_title)) },
         navigationIcon = {
+          val backCd = stringResource(id = R.string.review_back_cd)
           TextButton(
             modifier = Modifier
               .heightIn(min = minTouchTarget)
               .semantics {
                 role = Role.Button
-                contentDescription = stringResource(id = R.string.review_back_cd)
+                contentDescription = backCd
               },
             onClick = onBack,
           ) {
@@ -170,12 +170,13 @@ fun ReviewScreen(
           }
         },
         actions = {
+          val exportCd = stringResource(id = R.string.review_export_cd)
           TextButton(
             modifier = Modifier
               .heightIn(min = minTouchTarget)
               .semantics {
                 role = Role.Button
-                contentDescription = stringResource(id = R.string.review_export_cd)
+                contentDescription = exportCd
               },
             onClick = onExport,
           ) {
@@ -290,85 +291,63 @@ private fun ReviewFilterPanel(
     modifier = modifier.fillMaxWidth(),
     verticalArrangement = Arrangement.spacedBy(12.dp),
   ) {
-  FlowRow(
+    FlowRow(
       horizontalArrangement = Arrangement.spacedBy(12.dp),
       verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
       val isAllSelected = !filters.wrongOnly && !filters.flaggedOnly
+      val allCd = stringResource(id = R.string.review_filter_all_cd)
+      val stateOn = stringResource(id = R.string.review_filter_state_on)
+      val stateOff = stringResource(id = R.string.review_filter_state_off)
       FilterChip(
         modifier = Modifier
           .heightIn(min = minTouchTarget)
           .semantics {
             role = Role.Switch
-            contentDescription = stringResource(id = R.string.review_filter_all_cd)
-            stateDescription = stringResource(
-              id = if (isAllSelected) {
-                R.string.review_filter_state_on
-              } else {
-                R.string.review_filter_state_off
-              },
-            )
-            hint = stringResource(id = R.string.review_filter_toggle_hint)
+            contentDescription = allCd
+            stateDescription = if (isAllSelected) stateOn else stateOff
           },
         selected = isAllSelected,
         onClick = onShowAll,
         label = { Text(text = stringResource(id = R.string.review_filter_all)) },
         enabled = !isAllSelected,
       )
+      val wrongCd = stringResource(id = R.string.review_filter_wrong_only_cd)
       FilterChip(
         modifier = Modifier
           .heightIn(min = minTouchTarget)
           .semantics {
             role = Role.Switch
-            contentDescription = stringResource(id = R.string.review_filter_wrong_only_cd)
-            stateDescription = stringResource(
-              id = if (filters.wrongOnly) {
-                R.string.review_filter_state_on
-              } else {
-                R.string.review_filter_state_off
-              },
-            )
-            hint = stringResource(id = R.string.review_filter_toggle_hint)
+            contentDescription = wrongCd
+            stateDescription = if (filters.wrongOnly) stateOn else stateOff
           },
         selected = filters.wrongOnly,
         onClick = onToggleWrong,
         label = { Text(text = stringResource(id = R.string.review_filter_wrong_only)) },
         colors = FilterChipDefaults.filterChipColors(),
       )
+      val flaggedCd = stringResource(id = R.string.review_filter_flagged_only_cd)
       FilterChip(
         modifier = Modifier
           .heightIn(min = minTouchTarget)
           .semantics {
             role = Role.Switch
-            contentDescription = stringResource(id = R.string.review_filter_flagged_only_cd)
-            stateDescription = stringResource(
-              id = if (filters.flaggedOnly) {
-                R.string.review_filter_state_on
-              } else {
-                R.string.review_filter_state_off
-              },
-            )
-            hint = stringResource(id = R.string.review_filter_toggle_hint)
+            contentDescription = flaggedCd
+            stateDescription = if (filters.flaggedOnly) stateOn else stateOff
           },
         selected = filters.flaggedOnly,
         onClick = onToggleFlagged,
         label = { Text(text = stringResource(id = R.string.review_filter_flagged_only)) },
         colors = FilterChipDefaults.filterChipColors(),
       )
+      val byTaskCd = stringResource(id = R.string.review_filter_by_task_cd)
       FilterChip(
         modifier = Modifier
           .heightIn(min = minTouchTarget)
           .semantics {
             role = Role.Switch
-            contentDescription = stringResource(id = R.string.review_filter_by_task_cd)
-            stateDescription = stringResource(
-              id = if (filters.byTask) {
-                R.string.review_filter_state_on
-              } else {
-                R.string.review_filter_state_off
-              },
-            )
-            hint = stringResource(id = R.string.review_filter_toggle_hint)
+            contentDescription = byTaskCd
+            stateDescription = if (filters.byTask) stateOn else stateOff
           },
         selected = filters.byTask,
         onClick = onToggleByTask,
@@ -475,13 +454,13 @@ private fun ReviewQuestionCard(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.End,
       ) {
+        val explainCd = stringResource(id = R.string.review_explain_cd)
         Button(
           modifier = Modifier
             .heightIn(min = minTouchTarget)
             .semantics {
               role = Role.Button
-              contentDescription = stringResource(id = R.string.review_explain_cd)
-              hint = stringResource(id = R.string.review_explain_hint)
+              contentDescription = explainCd
             },
           onClick = onExplain,
         ) {

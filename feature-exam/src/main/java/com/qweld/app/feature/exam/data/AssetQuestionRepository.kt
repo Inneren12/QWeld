@@ -23,11 +23,10 @@ class AssetQuestionRepository internal constructor(
     context: Context,
     jsonCodec: Json = DEFAULT_JSON,
   ) : this(
-      assetReader =
-        AssetReader(
-          open = { path -> kotlin.runCatching { context.assets.open(path) }.getOrNull() },
-          list = { path -> kotlin.runCatching { context.assets.list(path)?.toList() }.getOrNull() },
-        ),
+      assetReader = AssetReader(
+        opener = { path -> kotlin.runCatching { context.assets.open(path) }.getOrNull() },
+        lister = { path -> kotlin.runCatching { context.assets.list(path)?.toList() }.getOrNull() },
+      ),
       localeResolver = { resolveLanguage(context.resources.configuration) },
       json = jsonCodec,
     )
