@@ -99,6 +99,10 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Tools provide one-tap log export (SAF), a combined "Clear local attempts" action (wipes Room attempts/answers), and "Clear per-task cache" for the asset repository—each posts a confirmation snackbar and logs `[settings_action]` markers with `result=ok|error`.
 - Tools now include an **Accessibility** sub-section with persistent toggles for haptics (enabled by default) and submit click sounds (opt-in) backed by `UserPrefsDataStore`.
 
+#### Clear per-locale cache
+- Use **Clear cache EN** / **Clear cache RU** in Settings → Tools to drop only the per-task bundles for the selected locale.
+- Successful actions show a "Cleared <locale> cache." snackbar and log `[settings_action] action=clear_cache locale=en|ru result=ok` so telemetry can confirm the flow.
+
 ### Haptics & sounds
 - Exam submissions fire a soft `HapticFeedbackType.LongPress` when the **Haptics feedback** toggle is on, logging `[ux_feedback] haptics=true|false sounds=true|false event=answer_submit` alongside analytics.
 - An optional system click (`View.playSoundEffect(SoundEffectConstants.CLICK)`) supplements the vibration when **Click sound on submit** is enabled.

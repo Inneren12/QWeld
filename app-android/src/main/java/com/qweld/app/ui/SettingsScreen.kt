@@ -79,6 +79,8 @@ fun SettingsScreen(
   val practiceRange = 5f..50f
   val practiceStep = 5
   val clearedMessage = stringResource(id = R.string.settings_cleared_message)
+  val clearedEnMessage = stringResource(id = R.string.settings_cleared_locale_message, "EN")
+  val clearedRuMessage = stringResource(id = R.string.settings_cleared_locale_message, "RU")
   val errorMessage = stringResource(id = R.string.settings_error_message)
 
   BackHandler(onBack = onBack)
@@ -216,6 +218,32 @@ fun SettingsScreen(
               }
           }
         },
+        onClearLocaleEn = {
+          scope.launch {
+            runCatching { questionRepository.clearLocaleCache("en") }
+              .onSuccess {
+                Timber.i("[settings_action] action=clear_cache locale=en result=ok")
+                snackbarHostState.showSnackbar(clearedEnMessage)
+              }
+              .onFailure { throwable ->
+                Timber.e(throwable, "[settings_action] action=clear_cache locale=en result=error")
+                snackbarHostState.showSnackbar(errorMessage)
+              }
+          }
+        },
+        onClearLocaleRu = {
+          scope.launch {
+            runCatching { questionRepository.clearLocaleCache("ru") }
+              .onSuccess {
+                Timber.i("[settings_action] action=clear_cache locale=ru result=ok")
+                snackbarHostState.showSnackbar(clearedRuMessage)
+              }
+              .onFailure { throwable ->
+                Timber.e(throwable, "[settings_action] action=clear_cache locale=ru result=error")
+                snackbarHostState.showSnackbar(errorMessage)
+              }
+          }
+        },
         onExportClickLogged = {
           Timber.i("[settings_action] action=export_logs result=ok")
         },
@@ -317,6 +345,8 @@ private fun SettingsToolsSection(
   onExportLogs: (() -> Unit)?,
   onClearAttempts: () -> Unit,
   onClearCache: () -> Unit,
+  onClearLocaleEn: () -> Unit,
+  onClearLocaleRu: () -> Unit,
   onExportClickLogged: () -> Unit,
 ) {
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -353,6 +383,12 @@ private fun SettingsToolsSection(
     }
     Button(onClick = onClearCache, modifier = Modifier.fillMaxWidth()) {
       Text(text = stringResource(id = R.string.settings_clear_cache))
+    }
+    Button(onClick = onClearLocaleEn, modifier = Modifier.fillMaxWidth()) {
+      Text(text = stringResource(id = R.string.settings_clear_cache_en))
+    }
+    Button(onClick = onClearLocaleRu, modifier = Modifier.fillMaxWidth()) {
+      Text(text = stringResource(id = R.string.settings_clear_cache_ru))
     }
   }
 }
