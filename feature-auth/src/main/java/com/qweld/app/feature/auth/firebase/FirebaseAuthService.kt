@@ -4,6 +4,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.data.analytics.logAuthLink
+import com.qweld.app.data.analytics.logAuthSignIn
+import com.qweld.app.data.analytics.logAuthSignOut
 import com.qweld.app.feature.auth.AuthService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +21,7 @@ import timber.log.Timber
 
 class FirebaseAuthService(
   private val firebaseAuth: FirebaseAuth,
+  private val analytics: Analytics,
   private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : AuthService {
 
@@ -31,7 +36,7 @@ class FirebaseAuthService(
     }.distinctUntilChanged()
 
   override suspend fun signInAnonymously(): AuthService.User =
-    performSignIn(provider = "guest") {
+    performSignIn(provider = "anonymous") {
       firebaseAuth.signInAnonymously().await().user.requireUser()
     }
 
@@ -42,7 +47,7 @@ class FirebaseAuthService(
     }
 
   override suspend fun signInWithEmail(email: String, password: String): AuthService.User =
-    performSignIn(provider = "email") {
+    performSignIn(provider = "password") {
       firebaseAuth.signInWithEmailAndPassword(email, password).await().user.requireUser()
     }
 
@@ -52,7 +57,7 @@ class FirebaseAuthService(
       return current.toUser()
     }
     val credential = GoogleAuthProvider.getCredential(idToken, null)
-    return performLink {
+    return performLink(method = "google") {
       current.linkWithCredential(credential).await().user.requireUser()
     }
   }
@@ -63,6 +68,7 @@ class FirebaseAuthService(
       firebaseAuth.signOut()
       val uidLabel = previous?.uid ?: "anon"
       Timber.i("[auth_signout] ok=true uid=%s", uidLabel)
+      analytics.logAuthSignOut("app_menu")
     }
   }
 
@@ -74,6 +80,7 @@ class FirebaseAuthService(
       try {
         val user = block()
         Timber.i("[auth_signin] provider=%s uid=%s", provider, user.uid)
+        analytics.logAuthSignIn(provider)
         user.toUser()
       } catch (exception: Exception) {
         logError(exception)
@@ -82,12 +89,14 @@ class FirebaseAuthService(
     }
 
   private suspend fun performLink(
+    method: String,
     block: suspend () -> FirebaseUser,
   ): AuthService.User =
     withContext(dispatcher) {
       try {
         val user = block()
         Timber.i("[auth_link] anon->uid=%s", user.uid)
+        analytics.logAuthLink(method)
         user.toUser()
       } catch (exception: Exception) {
         logError(exception)

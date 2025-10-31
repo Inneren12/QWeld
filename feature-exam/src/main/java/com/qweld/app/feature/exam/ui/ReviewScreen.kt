@@ -49,6 +49,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.data.analytics.logExplainFetch
+import com.qweld.app.data.analytics.logReviewOpen
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.model.ReviewChoiceUiModel
@@ -105,19 +107,13 @@ fun ReviewScreen(
     val correctCount = reviewQuestions.count { question ->
       question.choices.any { it.isCorrect && it.isSelected }
     }
-    val passThreshold = resultData.passThreshold
-    val passed = passThreshold?.let { resultData.scorePercent >= it }
-    analytics.log(
-      "review_open",
-      mapOf(
-        "attempt_id" to resultData.attemptId,
-        "mode" to resultData.attempt.mode.name.lowercase(Locale.US),
-        "total_questions" to totalQuestions,
-        "correct_count" to correctCount,
-        "score_pct" to resultData.scorePercent,
-        "pass_threshold" to passThreshold,
-        "passed" to passed,
-      ),
+    val flaggedTotal = reviewQuestions.count { it.isFlagged }
+    analytics.logReviewOpen(
+      mode = resultData.attempt.mode,
+      totalQuestions = totalQuestions,
+      correctTotal = correctCount,
+      scorePercent = resultData.scorePercent,
+      flaggedTotal = flaggedTotal,
     )
   }
 
@@ -139,21 +135,11 @@ fun ReviewScreen(
     explanation = loaded
     isLoadingExplanation = false
     reviewViewModel.onExplanationLoaded(question.id, loaded)
-    val index = reviewQuestions.indexOfFirst { it.id == question.id }
-    val position = if (index >= 0) index + 1 else null
-    analytics.log(
-      "explain_fetch",
-      mapOf(
-        "attempt_id" to resultData.attemptId,
-        "question_id" to question.id,
-        "task_id" to question.taskId,
-        "mode" to resultData.attempt.mode.name.lowercase(Locale.US),
-        "locale" to resultData.attempt.locale.uppercase(Locale.US),
-        "question_position" to position,
-        "total_questions" to reviewQuestions.size,
-        "found" to (loaded != null),
-        "rationale_available" to (question.rationale != null),
-      ),
+    analytics.logExplainFetch(
+      taskId = question.taskId,
+      locale = resultData.attempt.locale,
+      found = loaded != null,
+      rationaleAvailable = question.rationale != null,
     )
   }
 

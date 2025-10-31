@@ -132,12 +132,6 @@ fun AppNavGraph(
     }
 
   fun startGoogle(action: GoogleAction) {
-    when (action) {
-      GoogleAction.SignIn ->
-        analytics.log("auth_signin", mapOf("provider" to "google", "method" to "oauth"))
-      GoogleAction.Link ->
-        analytics.log("auth_link", mapOf("provider" to "google", "method" to "oauth"))
-    }
     pendingGoogleAction = action
     errorMessage = null
     isLoading = true
@@ -205,10 +199,6 @@ fun AppNavGraph(
               isLoading = isLoading,
               errorMessage = errorMessage,
               onContinueAsGuest = {
-                analytics.log(
-                  "auth_signin",
-                  mapOf("provider" to "anonymous", "method" to "anonymous"),
-                )
                 runAuthAction(
                   scope = scope,
                   setLoading = { isLoading = it },
@@ -220,10 +210,6 @@ fun AppNavGraph(
               },
               onSignInWithGoogle = { startGoogle(GoogleAction.SignIn) },
               onSignInWithEmail = { email, password ->
-                analytics.log(
-                  "auth_signin",
-                  mapOf("provider" to "password", "method" to "password"),
-                )
                 runAuthAction(
                   scope = scope,
                   setLoading = { isLoading = it },
