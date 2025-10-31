@@ -1,0 +1,39 @@
+name: Content Validators (full)
+
+on:
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Force full validation'
+        required: false
+        default: 'true'
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+
+      - name: (Ephemeral) install ajv for batch validator
+        run: |
+          npm i -D -w . ajv ajv-formats --no-save --no-package-lock
+
+      - name: Validate questions (full)
+        run: |
+          bash scripts/validate-questions.sh
+
+      - name: Quotas (full, exam)
+        run: |
+          bash scripts/check-quotas.sh --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
+
+      - name: Upload validation logs
+        if: ${{ hashFiles('logs/**') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-validation-logs
+          path: logs

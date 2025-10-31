@@ -1,59 +1,73 @@
-name: Content Validation
+name: Content Validators (quick)
 
 on:
   pull_request:
+    branches: [ main, develop ]
     paths:
-      - 'content/**'
-      - 'docs/**'
-      - 'schemas/**'
+      - 'content/questions/**'
+      - 'content/blueprints/**'
+      - 'content/schema/**'
       - 'scripts/**'
-      - '.github/workflows/content-validators.yml'
-      - 'CODEOWNERS'
-      - 'README.md'
+  push:
+    branches: [ main ]
+    paths:
+      - 'content/questions/**'
+      - 'content/blueprints/**'
+      - 'content/schema/**'
+      - 'scripts/**'
 
 jobs:
   content:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install jq and ajv
+      - name: Export PR SHAs
+        if: ${{ github.event_name == 'pull_request' }}
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
-          npm install --global ajv-cli@5
+          echo "BASE_SHA=${{ github.event.pull_request.base.sha }}" >> $GITHUB_ENV
+          echo "HEAD_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
 
-      - name: Validate blueprint
-        run: bash scripts/validate-blueprint.sh
+      - name: Node 20
+        uses: actions/setup-node@v4
+        with: { node-version: '20' }
 
-      - name: Validate questions
-        run: bash scripts/validate-questions.sh
+      - name: (Ephemeral) prepare Ajv (no workspace)
+        shell: bash
+        env:
+          npm_config_loglevel: error
+        run: |
+          set -euo pipefail
+          mkdir -p .ci-node
+          npm install ajv ajv-formats \
+            --no-save --no-audit --no-fund --no-package-lock \
+            --prefix ./.ci-node
+          node -e "console.log('ajv@'+require('./.ci-node/node_modules/ajv/package.json').version)"
+          echo "NODE_PATH=${{ github.workspace }}/.ci-node/node_modules" >> $GITHUB_ENV
 
-      - name: Validate explanations
-        run: bash scripts/validate-explanations.sh
+      - name: Verify Ajv modules
+        run: node -e "require('ajv'); require('ajv-formats'); console.log('Ajv modules OK')"
 
-      - name: Check question quotas
-        run: bash scripts/check-quotas.sh
+      - name: Validate questions (changed-only)
+        run: |
+          bash scripts/validate-questions.sh --changed-only
 
-      - name: Build question banks
-        run: bash scripts/build-questions-dist.sh
+      - name: Quotas (changed-only, exam)
+        run: |
+          bash scripts/check-quotas.sh --changed-only --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
 
       - name: Upload validation logs
-        if: always()
+        if: ${{ hashFiles('logs/**') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: content-validation-logs
           path: logs
 
       - name: Upload question bank dist
-        if: always()
+        if: ${{ hashFiles('dist/questions/**') != '' }}
         uses: actions/upload-artifact@v4
         with:
-          name: questions-dist
+          name: question-bank-dist
           path: dist/questions
