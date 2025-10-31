@@ -38,8 +38,9 @@ class ResultViewModel(
     val totalCorrect = questionResults.count { it.isCorrect }
     val totalQuestions = questionResults.size
     val scorePercent = percentage(totalCorrect, totalQuestions)
+    val threshold = resultData.passThreshold?.toDouble() ?: PASS_THRESHOLD
     val passStatus = when (attempt.mode) {
-      ExamMode.IP_MOCK -> if (scorePercent >= PASS_THRESHOLD) PassStatus.Passed else PassStatus.Failed
+      ExamMode.IP_MOCK -> if (scorePercent >= threshold) PassStatus.Passed else PassStatus.Failed
       else -> null
     }
     val blockSummaries = questionResults

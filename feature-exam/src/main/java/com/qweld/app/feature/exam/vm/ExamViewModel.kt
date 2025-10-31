@@ -5,6 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.qweld.app.data.db.entities.AnswerEntity
+import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssembler
@@ -25,9 +29,12 @@ import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
 import java.time.Duration
 import java.util.Locale
+import java.util.UUID
 import kotlin.math.min
 import kotlin.random.Random
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -41,11 +48,16 @@ import timber.log.Timber
 
 class ExamViewModel(
   private val repository: AssetQuestionRepository,
-  private val statsRepository: UserStatsRepository = EmptyUserStatsRepository,
+  private val attemptsRepository: AttemptsRepository,
+  private val answersRepository: AnswersRepository,
+  private val statsRepository: UserStatsRepository,
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = ::defaultBlueprintForMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
   private val userIdProvider: () -> String = { DEFAULT_USER_ID },
+  private val attemptIdProvider: () -> String = { UUID.randomUUID().toString() },
+  private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val timerController: TimerController = TimerController { message -> Timber.i(message) },
+  private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
 
   private val _uiState = mutableStateOf(ExamUiState())
@@ -58,6 +70,7 @@ class ExamViewModel(
   private var hasFinished: Boolean = false
   private var latestResult: ExamResultData? = null
   private var questionRationales: Map<String, String> = emptyMap()
+  private val questionSeenAt = mutableMapOf<String, Long>()
 
   private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
   val events = _events.asSharedFlow()
@@ -104,9 +117,32 @@ class ExamViewModel(
         seed = attemptSeed,
         blueprint = blueprint,
       )
-      currentAttempt = ExamAssemblerResult(attempt = attempt, answers = emptyMap(), currentIndex = 0)
+      val attemptId = attemptIdProvider()
+      val startedAt = nowProvider()
+      Timber.i("[attempt_create] id=%s mode=%s locale=%s", attemptId, attempt.mode.name, attempt.locale)
+      viewModelScope.launch(ioDispatcher) {
+        val entity =
+          AttemptEntity(
+            id = attemptId,
+            mode = attempt.mode.name,
+            locale = attempt.locale.uppercase(Locale.US),
+            seed = attempt.seed.value,
+            questionCount = attempt.questions.size,
+            startedAt = startedAt,
+          )
+        attemptsRepository.save(entity)
+      }
+      currentAttempt =
+        ExamAssemblerResult(
+          attempt = attempt,
+          answers = emptyMap(),
+          currentIndex = 0,
+          attemptId = attemptId,
+          startedAt = startedAt,
+        )
       hasFinished = false
       latestResult = null
+      questionSeenAt.clear()
       if (mode == ExamMode.IP_MOCK) {
         startTimer()
       } else {
@@ -148,10 +184,33 @@ class ExamViewModel(
     val questionId = assembledQuestion.question.id
     if (attemptResult.answers.containsKey(questionId)) return
 
-    val updatedAnswers = attemptResult.answers + (questionId to choiceId)
+    val answeredAt = nowProvider()
+    val seenAt = questionSeenAt.getOrPut(questionId) { attemptResult.startedAt }
+    val durationMillis = (answeredAt - seenAt).coerceAtLeast(0L)
+    val timeSpentSec = (durationMillis / 1_000L).toInt()
+    val displayIndex =
+      attemptResult.attempt.questions.indexOfFirst { it.question.id == questionId }.takeIf { it >= 0 }
+        ?: attemptResult.currentIndex
     val correct = assembledQuestion.question.correctChoiceId == choiceId
-    Timber.i("[answer_submit] qId=%s chosen=%s correct=%s", questionId, choiceId, correct)
 
+    viewModelScope.launch(ioDispatcher) {
+      val entity =
+        AnswerEntity(
+          attemptId = attemptResult.attemptId,
+          displayIndex = displayIndex,
+          questionId = questionId,
+          selectedId = choiceId,
+          correctId = assembledQuestion.question.correctChoiceId,
+          isCorrect = correct,
+          timeSpentSec = timeSpentSec,
+          seenAt = seenAt,
+          answeredAt = answeredAt,
+        )
+      answersRepository.saveAll(listOf(entity))
+    }
+    Timber.i("[answer_write] attempt=%s qId=%s correct=%s", attemptResult.attemptId, questionId, correct)
+
+    val updatedAnswers = attemptResult.answers + (questionId to choiceId)
     currentAttempt = attemptResult.copy(answers = updatedAnswers)
     refreshState()
   }
@@ -177,11 +236,27 @@ class ExamViewModel(
     )
     stopTimer(clearLabel = false)
     hasFinished = true
+    val finishedAt = nowProvider()
+    val durationSec = ((finishedAt - attemptResult.startedAt).coerceAtLeast(0L) / 1_000L).toInt()
+    val passThreshold = if (attempt.mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
+    Timber.i("[attempt_finish] id=%s scorePct=%.2f", attemptResult.attemptId, scorePercent)
+    viewModelScope.launch(ioDispatcher) {
+      attemptsRepository.markFinished(
+        attemptId = attemptResult.attemptId,
+        finishedAt = finishedAt,
+        durationSec = durationSec,
+        passThreshold = passThreshold,
+        scorePct = scorePercent,
+      )
+    }
     latestResult = ExamResultData(
+      attemptId = attemptResult.attemptId,
       attempt = attempt,
       answers = attemptResult.answers,
       remaining = if (attempt.mode == ExamMode.IP_MOCK) remaining else null,
       rationales = questionRationales,
+      scorePercent = scorePercent,
+      passThreshold = passThreshold,
     )
     _events.tryEmit(ExamEvent.NavigateToResult)
   }
@@ -224,6 +299,7 @@ class ExamViewModel(
       )
     }
     val index = attemptResult.currentIndex.coerceIn(0, uiQuestions.lastIndex.coerceAtLeast(0))
+    markQuestionSeen(attemptResult, index)
     val attemptState = ExamAttemptUiState(
       mode = attempt.mode,
       locale = attempt.locale,
@@ -262,6 +338,11 @@ class ExamViewModel(
       choices = choices,
       selectedChoiceId = selectedChoiceId,
     )
+  }
+
+  private fun markQuestionSeen(attemptResult: ExamAssemblerResult, index: Int) {
+    val questionId = attemptResult.attempt.questions.getOrNull(index)?.question?.id ?: return
+    questionSeenAt.putIfAbsent(questionId, nowProvider())
   }
 
   fun requireLatestResult(): ExamResultData {
@@ -314,10 +395,13 @@ class ExamViewModel(
   }
 
   data class ExamResultData(
+    val attemptId: String,
     val attempt: com.qweld.app.domain.exam.ExamAttempt,
     val answers: Map<String, String>,
     val remaining: Duration?,
     val rationales: Map<String, String>,
+    val scorePercent: Double,
+    val passThreshold: Int?,
   )
 
   private fun AssetQuestionRepository.QuestionDTO.toDomain(defaultLocale: String): Question {
@@ -355,6 +439,8 @@ class ExamViewModel(
     val attempt: com.qweld.app.domain.exam.ExamAttempt,
     val answers: Map<String, String>,
     val currentIndex: Int,
+    val attemptId: String,
+    val startedAt: Long,
   )
 
   private class InMemoryQuestionRepository(
@@ -374,13 +460,10 @@ class ExamViewModel(
     }
   }
 
-  private object EmptyUserStatsRepository : UserStatsRepository {
-    override fun getUserItemStats(userId: String, ids: List<String>) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
-  }
-
   companion object {
     private const val DEFAULT_PRACTICE_SIZE = 20
     private const val DEFAULT_USER_ID = "local_user"
+    private const val IP_MOCK_PASS_THRESHOLD = 70
 
     private fun defaultBlueprintForMode(mode: ExamMode, practiceSize: Int): ExamBlueprint {
       return when (mode) {
@@ -414,11 +497,19 @@ class ExamViewModel(
 
 class ExamViewModelFactory(
   private val repository: AssetQuestionRepository,
+  private val attemptsRepository: AttemptsRepository,
+  private val answersRepository: AnswersRepository,
+  private val statsRepository: UserStatsRepository,
 ) : ViewModelProvider.Factory {
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
     if (modelClass.isAssignableFrom(ExamViewModel::class.java)) {
       @Suppress("UNCHECKED_CAST")
-      return ExamViewModel(repository = repository) as T
+      return ExamViewModel(
+        repository = repository,
+        attemptsRepository = attemptsRepository,
+        answersRepository = answersRepository,
+        statsRepository = statsRepository,
+      ) as T
     }
     throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
   }
