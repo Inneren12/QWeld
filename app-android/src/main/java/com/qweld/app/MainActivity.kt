@@ -17,6 +17,8 @@ import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
+import com.qweld.app.data.logging.LogCollector
+import com.qweld.app.data.logging.LogCollectorOwner
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.auth.firebase.FirebaseAuthService
@@ -44,6 +46,9 @@ fun QWeldAppRoot(analytics: Analytics) {
   val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
   val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
   val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance()) }
+  val logCollector: LogCollector? = remember(appContext) {
+    (appContext as? LogCollectorOwner)?.logCollector
+  }
   MaterialTheme {
     AppNavGraph(
       authService = authService,
@@ -54,6 +59,7 @@ fun QWeldAppRoot(analytics: Analytics) {
       statsRepository = statsRepository,
       appVersion = BuildConfig.VERSION_NAME,
       analytics = analytics,
+      logCollector = logCollector,
     )
   }
 }

@@ -6,6 +6,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -13,6 +14,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -43,6 +46,9 @@ import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
 import com.qweld.app.ui.AccountMenu
+import com.qweld.app.data.logging.LogCollector
+import com.qweld.app.data.logging.LogExportFormat
+import com.qweld.app.data.logging.writeTo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -58,6 +64,7 @@ fun AppNavGraph(
   statsRepository: UserStatsRepository,
   appVersion: String,
   analytics: Analytics,
+  logCollector: LogCollector?,
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
@@ -148,6 +155,9 @@ fun AppNavGraph(
     }
   }
 
+  val logExportActions = rememberLogExportActions(logCollector)
+  var showLogDialog by remember { mutableStateOf(false) }
+
   Scaffold(
     modifier = modifier,
     topBar = {
@@ -164,6 +174,14 @@ fun AppNavGraph(
               .onFailure { Timber.e(it, "Sign out failed") }
           }
         },
+        onExportLogs =
+          if (logExportActions != null) {
+            {
+              showLogDialog = true
+            }
+          } else {
+            null
+          },
       )
     },
   ) { innerPadding ->
@@ -247,6 +265,19 @@ fun AppNavGraph(
         }
       }
     }
+    if (showLogDialog && logExportActions != null) {
+      LogExportDialog(
+        onDismiss = { showLogDialog = false },
+        onExportText = {
+          showLogDialog = false
+          logExportActions.exportText()
+        },
+        onExportJson = {
+          showLogDialog = false
+          logExportActions.exportJson()
+        },
+      )
+    }
   }
 }
 
@@ -260,6 +291,109 @@ private fun LoadingScreen() {
 private enum class GoogleAction {
   SignIn,
   Link,
+}
+
+private data class LogExportActions(
+  val exportText: () -> Unit,
+  val exportJson: () -> Unit,
+)
+
+@Composable
+private fun rememberLogExportActions(logCollector: LogCollector?): LogExportActions? {
+  if (logCollector == null) return null
+  val context = LocalContext.current
+  val scope = rememberCoroutineScope()
+
+  val textLauncher =
+    rememberLauncherForActivityResult(
+      ActivityResultContracts.CreateDocument(LogExportFormat.TEXT.mimeType),
+    ) { uri ->
+      if (uri == null) return@rememberLauncherForActivityResult
+      scope.launch {
+        try {
+          val result = logCollector.writeTo(context, uri, LogExportFormat.TEXT)
+          val attrs =
+            "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
+          Timber.i(
+            "[export_logs] format=%s uri=%s | attrs=%s",
+            result.format.label,
+            uri,
+            attrs,
+          )
+        } catch (t: Throwable) {
+          val reason = t.message ?: t::class.java.simpleName
+          Timber.e(
+            t,
+            "[export_logs_error] format=%s reason=%s | attrs=%s",
+            LogExportFormat.TEXT.label,
+            reason,
+            "{}",
+          )
+        }
+      }
+    }
+  val jsonLauncher =
+    rememberLauncherForActivityResult(
+      ActivityResultContracts.CreateDocument(LogExportFormat.JSON.mimeType),
+    ) { uri ->
+      if (uri == null) return@rememberLauncherForActivityResult
+      scope.launch {
+        try {
+          val result = logCollector.writeTo(context, uri, LogExportFormat.JSON)
+          val attrs =
+            "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
+          Timber.i(
+            "[export_logs] format=%s uri=%s | attrs=%s",
+            result.format.label,
+            uri,
+            attrs,
+          )
+        } catch (t: Throwable) {
+          val reason = t.message ?: t::class.java.simpleName
+          Timber.e(
+            t,
+            "[export_logs_error] format=%s reason=%s | attrs=%s",
+            LogExportFormat.JSON.label,
+            reason,
+            "{}",
+          )
+        }
+      }
+    }
+  return remember(logCollector, textLauncher, jsonLauncher) {
+    LogExportActions(
+      exportText = { textLauncher.launch(logCollector.createDocumentName(LogExportFormat.TEXT)) },
+      exportJson = { jsonLauncher.launch(logCollector.createDocumentName(LogExportFormat.JSON)) },
+    )
+  }
+}
+
+@Composable
+private fun LogExportDialog(
+  onDismiss: () -> Unit,
+  onExportText: () -> Unit,
+  onExportJson: () -> Unit,
+) {
+  AlertDialog(
+    onDismissRequest = onDismiss,
+    title = { Text(text = stringResource(id = com.qweld.app.R.string.export_logs_title)) },
+    text = { Text(text = stringResource(id = com.qweld.app.R.string.export_logs_message)) },
+    confirmButton = {
+      Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        TextButton(onClick = onExportText) {
+          Text(text = stringResource(id = com.qweld.app.R.string.export_logs_txt))
+        }
+        TextButton(onClick = onExportJson) {
+          Text(text = stringResource(id = com.qweld.app.R.string.export_logs_json))
+        }
+      }
+    },
+    dismissButton = {
+      TextButton(onClick = onDismiss) {
+        Text(text = stringResource(id = android.R.string.cancel))
+      }
+    },
+  )
 }
 
 private fun <T> runAuthAction(
