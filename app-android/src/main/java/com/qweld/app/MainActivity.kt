@@ -55,7 +55,7 @@ fun QWeldAppRoot(
   val attemptsRepository = remember(database) { AttemptsRepository(database.attemptDao()) }
   val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
   val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
-  val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance()) }
+  val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance(), analytics) }
   val logCollector: LogCollector? = remember(appContext) {
     (appContext as? LogCollectorOwner)?.logCollector
   }

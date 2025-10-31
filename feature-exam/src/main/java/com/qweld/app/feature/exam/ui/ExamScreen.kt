@@ -51,6 +51,11 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.data.analytics.AnalyticsDeficitDetail
+import com.qweld.app.data.analytics.logAnswerSubmit
+import com.qweld.app.data.analytics.logDeficitDialog
+import com.qweld.app.data.analytics.logExamFinish
+import com.qweld.app.data.analytics.logExamStart
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.feature.exam.R
@@ -132,29 +137,12 @@ fun ExamScreen(
     val attempt = uiState.attempt ?: return@LaunchedEffect
     if (loggedAttemptId == attempt.attemptId) return@LaunchedEffect
     loggedAttemptId = attempt.attemptId
-    analytics.log(
-      "exam_start",
-      mapOf(
-        "attempt_id" to attempt.attemptId,
-        "mode" to attempt.mode.name.lowercase(Locale.US),
-        "locale" to attempt.locale.uppercase(Locale.US),
-        "question_count" to attempt.totalQuestions,
-      ),
-    )
+    analytics.logExamStart(attempt.mode, attempt.locale, attempt.totalQuestions)
   }
 
   LaunchedEffect(uiState.deficitDialog) {
     val dialog = uiState.deficitDialog ?: return@LaunchedEffect
-    val taskIds = dialog.details.joinToString(",") { it.taskId }.takeIf { it.isNotBlank() }
-    val missingTotal = dialog.details.sumOf { it.missing }
-    analytics.log(
-      "deficit_dialog",
-      mapOf(
-        "task_ids" to taskIds,
-        "detail_count" to dialog.details.size,
-        "missing_total" to missingTotal,
-      ),
-    )
+    analytics.logDeficitDialog(dialog.details.map { AnalyticsDeficitDetail(taskId = it.taskId, missing = it.missing) })
   }
 
   LaunchedEffect(viewModel, analytics) {
@@ -170,21 +158,12 @@ fun ExamScreen(
               val selected = resultData.answers[questionId]
               selected != null && selected == assembled.question.correctChoiceId
             }
-          val passThreshold = resultData.passThreshold
-          val passed = passThreshold?.let { resultData.scorePercent >= it }
-          val remainingSeconds = resultData.remaining?.seconds?.coerceAtLeast(0)
-          analytics.log(
-            "exam_finish",
-            mapOf(
-              "attempt_id" to resultData.attemptId,
-              "mode" to attempt.mode.name.lowercase(Locale.US),
-              "total_questions" to totalQuestions,
-              "correct_count" to correctCount,
-              "score_pct" to resultData.scorePercent,
-              "pass_threshold" to passThreshold,
-              "passed" to passed,
-              "remaining_sec" to remainingSeconds,
-            ),
+          analytics.logExamFinish(
+            mode = attempt.mode,
+            locale = attempt.locale,
+            totalQuestions = totalQuestions,
+            correctTotal = correctCount,
+            scorePercent = resultData.scorePercent,
           )
           onNavigateToResult()
         }
@@ -202,16 +181,11 @@ fun ExamScreen(
         hapticFeedback = hapticFeedback,
         onPlaySound = { view.playSoundEffect(SoundEffectConstants.CLICK) },
       )
-      analytics.log(
-        "answer_submit",
-        mapOf(
-          "attempt_id" to attempt.attemptId,
-          "question_id" to question.id,
-          "choice_id" to choiceId,
-          "mode" to attempt.mode.name.lowercase(Locale.US),
-          "question_position" to attempt.currentIndex + 1,
-          "total_questions" to attempt.totalQuestions,
-        ),
+      analytics.logAnswerSubmit(
+        mode = attempt.mode,
+        locale = attempt.locale,
+        questionPosition = attempt.currentIndex + 1,
+        totalQuestions = attempt.totalQuestions,
       )
     }
     viewModel.submitAnswer(choiceId)

@@ -88,6 +88,10 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Debug builds disable both collectors by default, so no events or crashes leave the device unless you opt in.
 - To re-enable telemetry in debug (for DebugView, Crashlytics verification, etc.), pass `-PenableAnalyticsDebug=true` when invoking Gradle or add `enableAnalyticsDebug=true` to `local.properties` before running `./gradlew :app-android:assembleDebug`.
 
+### Analytics funnel & deficit
+- Use Firebase DebugView by running `adb shell setprop debug.firebase.analytics.app com.qweld.app` before launching a debug build (for example, via `./gradlew :app-android:assembleDebug`).
+- Users can opt out via **Settings → Analytics**; when disabled, Firebase dispatch is skipped while Timber records `[analytics] skipped=true reason=optout event=<name>`.
+
 ### Settings: privacy & tools
 - Open **Settings** from the top app bar overflow to review analytics and practice preferences alongside maintenance tools.
 - Privacy includes a single toggle that persists to `UserPrefsDataStore`; disabling analytics keeps Timber logs but stops Firebase event delivery until re-enabled.
