@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.crashlytics.ktx.crashlytics
@@ -14,6 +15,7 @@ import com.google.firebase.ktx.Firebase
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
 import com.qweld.app.data.db.QWeldDb
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
@@ -23,6 +25,7 @@ import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.auth.firebase.FirebaseAuthService
 import com.qweld.app.navigation.AppNavGraph
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
@@ -30,13 +33,20 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
     Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
     val analytics = FirebaseAnalyticsImpl(Firebase.analytics, BuildConfig.ENABLE_ANALYTICS)
+    val userPrefs = UserPrefsDataStore(applicationContext)
+    lifecycleScope.launch {
+      userPrefs.analyticsEnabled.collect { enabled -> analytics.setEnabled(enabled) }
+    }
     Firebase.crashlytics.setCrashlyticsCollectionEnabled(BuildConfig.ENABLE_ANALYTICS)
-    setContent { QWeldAppRoot(analytics = analytics) }
+    setContent { QWeldAppRoot(analytics = analytics, userPrefs = userPrefs) }
   }
 }
 
 @Composable
-fun QWeldAppRoot(analytics: Analytics) {
+fun QWeldAppRoot(
+  analytics: Analytics,
+  userPrefs: UserPrefsDataStore,
+) {
   val context = LocalContext.current
   val appContext = context.applicationContext
   val questionRepository = remember(appContext) { AssetQuestionRepository(appContext) }
@@ -60,6 +70,7 @@ fun QWeldAppRoot(analytics: Analytics) {
       appVersion = BuildConfig.VERSION_NAME,
       analytics = analytics,
       logCollector = logCollector,
+      userPrefs = userPrefs,
     )
   }
 }

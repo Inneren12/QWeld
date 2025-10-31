@@ -48,6 +48,9 @@ interface AnswerDao {
   )
   suspend fun bulkCountByQuestions(questionIds: List<String>): List<QuestionAggregate>
 
+  @Query("DELETE FROM answers")
+  suspend fun clearAll()
+
   data class QuestionAggregate(
     val questionId: String,
     val attempts: Int,

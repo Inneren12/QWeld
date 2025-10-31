@@ -27,6 +27,11 @@ class AttemptsRepository(
 
   suspend fun listRecent(limit: Int): List<AttemptEntity> = attemptDao.listRecent(limit)
 
+  suspend fun clearAll() {
+    attemptDao.clearAll()
+    logger("[attempt_clear_all]")
+  }
+
   private companion object {
     private const val TAG = "AttemptsRepository"
   }

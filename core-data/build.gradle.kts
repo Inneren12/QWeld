@@ -15,6 +15,13 @@ android {
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
+  buildFeatures { buildConfig = true }
+
+  buildTypes {
+    getByName("debug") { buildConfigField("Boolean", "ENABLE_ANALYTICS", "false") }
+    getByName("release") { buildConfigField("Boolean", "ENABLE_ANALYTICS", "true") }
+  }
+
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21

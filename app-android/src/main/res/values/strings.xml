@@ -4,10 +4,27 @@
     <string name="menu_export_logs">Export logs</string>
     <string name="menu_sync">Sync</string>
     <string name="menu_sign_out">Sign out</string>
+    <string name="menu_settings">Settings</string>
     <string name="sync_coming_soon">Coming soon</string>
     <string name="sync_back_to_exam">Back</string>
     <string name="export_logs_title">Export logs</string>
     <string name="export_logs_message">Choose a format for the exported log file.</string>
     <string name="export_logs_txt">TXT</string>
     <string name="export_logs_json">JSON</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_privacy">Privacy</string>
+    <string name="settings_analytics_label">Analytics</string>
+    <string name="settings_analytics_subtitle">Allow anonymous usage analytics (no PII)</string>
+    <string name="settings_section_practice">Practice</string>
+    <string name="settings_practice_size_label">Practice size</string>
+    <string name="settings_practice_size_summary">%1$d questions per session</string>
+    <string name="settings_apply">Apply</string>
+    <string name="settings_fallback_label">Fallback to English for missing RU (Practice only)</string>
+    <string name="settings_fallback_subtitle">When enabled, practice sessions use EN tasks if RU is missing.</string>
+    <string name="settings_section_tools">Tools</string>
+    <string name="settings_export_logs">Export logs</string>
+    <string name="settings_clear_attempts">Clear local attempts</string>
+    <string name="settings_clear_cache">Clear per-task cache</string>
+    <string name="settings_cleared_message">Cleared</string>
+    <string name="settings_error_message">Something went wrong</string>
 </resources>
