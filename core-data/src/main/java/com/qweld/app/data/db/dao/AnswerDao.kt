@@ -23,6 +23,16 @@ interface AnswerDao {
 
   @Query(
     """
+    SELECT question_id
+    FROM answers
+    WHERE attempt_id = :attemptId AND is_correct = 0
+    ORDER BY display_index ASC
+    """,
+  )
+  suspend fun listWrongByAttempt(attemptId: String): List<String>
+
+  @Query(
+    """
     SELECT question_id AS questionId,
            COUNT(*) AS attempts,
            SUM(CASE WHEN is_correct THEN 1 ELSE 0 END) AS correct,

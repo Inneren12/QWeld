@@ -22,6 +22,8 @@ import com.qweld.app.feature.exam.ui.ResultScreen
 import com.qweld.app.feature.exam.ui.ReviewScreen
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.ExamViewModelFactory
+import com.qweld.app.feature.exam.vm.PracticeShortcuts
+import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
 import timber.log.Timber
@@ -70,9 +72,19 @@ fun ExamNavGraph(
               statsRepository = statsRepository,
             ),
         )
+      val practiceShortcuts: PracticeShortcuts =
+        viewModel(
+          factory =
+            PracticeShortcutsFactory(
+              attemptsRepository = attemptsRepository,
+              answersRepository = answersRepository,
+              userPrefs = userPrefs,
+            ),
+        )
       ModeScreen(
         repository = repository,
         viewModel = examViewModel,
+        practiceShortcuts = practiceShortcuts,
         onIpMockClick = { locale ->
           val launched = examViewModel.startAttempt(ExamMode.IP_MOCK, locale)
           if (launched) {
@@ -84,6 +96,17 @@ fun ExamNavGraph(
             mode = ExamMode.PRACTICE,
             locale = locale,
             practiceSize = DEFAULT_PRACTICE_SIZE,
+          )
+          if (launched) {
+            navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
+          }
+        },
+        onRepeatMistakes = { locale, blueprint ->
+          val launched = examViewModel.startAttempt(
+            mode = ExamMode.PRACTICE,
+            locale = locale,
+            practiceSize = blueprint.totalQuestions,
+            blueprintOverride = blueprint,
           )
           if (launched) {
             navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
