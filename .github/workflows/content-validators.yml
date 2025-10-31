@@ -7,6 +7,8 @@ on:
       - 'content/questions/**'
       - 'content/blueprints/**'
       - 'content/schema/**'
+      - 'schemas/**'
+      - 'content/explanations/**'
       - 'scripts/**'
   push:
     branches: [ main ]
@@ -14,6 +16,8 @@ on:
       - 'content/questions/**'
       - 'content/blueprints/**'
       - 'content/schema/**'
+      - 'schemas/**'
+      - 'content/explanations/**'
       - 'scripts/**'
 
 jobs:

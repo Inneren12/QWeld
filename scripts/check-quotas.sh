@@ -7,7 +7,7 @@ LOG_DIR="${ROOT_DIR}/logs"
 mkdir -p "${LOG_DIR}" 
 
 BLUEPRINT_REL="content/blueprints/welder_ip_sk_202404.json"
-PROFILE_PATH=""
+PROFILE_PATH="content/exam_profiles/welder_exam_2024.json"
 LOCALES_STR="en,ru"
 MODE="min"
 MIN_MULTIPLE=1
@@ -160,6 +160,9 @@ if ${CHANGED_ONLY}; then
 
   mapfile -t DIFF_PATHS < <(git diff --name-only --diff-filter=ACMR "${base_commit}...${head_commit}" || true)
 
+  echo "[quotas] changed-only scope: base=${base_commit} head=${head_commit}"
+  echo "[quotas] profile=${PROFILE_PATH}"
+
   blueprint_changed=false
   for diff_path in "${DIFF_PATHS[@]}"; do
     if [[ "${diff_path}" == content/blueprints/* ]]; then
@@ -168,8 +171,16 @@ if ${CHANGED_ONLY}; then
     fi
   done
 
-  if ${blueprint_changed}; then
-    echo "[quotas] blueprint changed; running full check"
+  profile_changed=false
+  for diff_path in "${DIFF_PATHS[@]}"; do
+    if [[ "${diff_path}" == "${PROFILE_PATH}" ]] || [[ "${diff_path}" == content/exam_profiles/* ]]; then
+      profile_changed=true
+      break
+    fi
+  done
+
+  if ${blueprint_changed} || ${profile_changed}; then
+    echo "[quotas] blueprint/profile changed; running full check"
     CHANGED_ONLY=false
   else
     readarray -t CHANGED_FILES < <(bash scripts/changed-files.sh | sed '/^[[:space:]]*$/d')
