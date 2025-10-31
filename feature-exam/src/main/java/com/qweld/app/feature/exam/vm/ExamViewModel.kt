@@ -656,6 +656,7 @@ class ExamViewModel(
     val rationales: Map<String, String>,
     val scorePercent: Double,
     val passThreshold: Int?,
+    val flaggedQuestionIds: Set<String> = emptySet(),
   )
 
   private fun AssetQuestionRepository.QuestionDTO.toDomain(defaultLocale: String): Question {

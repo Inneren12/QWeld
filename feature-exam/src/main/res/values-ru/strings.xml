@@ -28,6 +28,12 @@
     <string name="review_choice_correct_selected">Правильно — вы выбрали это</string>
     <string name="review_choice_correct">Правильный ответ</string>
     <string name="review_choice_selected">Ваш выбор</string>
+    <string name="review_filter_wrong_only">Только неверные</string>
+    <string name="review_filter_flagged_only">Только помеченные</string>
+    <string name="review_filter_by_task">По заданиям</string>
+    <string name="review_filter_all">Все</string>
+    <string name="review_filter_wrong_count">Неверные: %1$d</string>
+    <string name="review_filter_flagged_count">Помеченные: %1$d</string>
     <string name="explain_summary">Итог</string>
     <string name="explain_steps">Шаги</string>
     <string name="explain_why_not">Почему другие варианты неверны</string>

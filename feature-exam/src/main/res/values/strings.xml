@@ -44,6 +44,12 @@
     <string name="review_choice_correct_selected">Correct — you chose this</string>
     <string name="review_choice_correct">Correct answer</string>
     <string name="review_choice_selected">Your choice</string>
+    <string name="review_filter_wrong_only">Wrong only</string>
+    <string name="review_filter_flagged_only">Flagged only</string>
+    <string name="review_filter_by_task">By task</string>
+    <string name="review_filter_all">All</string>
+    <string name="review_filter_wrong_count">Wrong: %1$d</string>
+    <string name="review_filter_flagged_count">Flagged: %1$d</string>
     <string name="explain_summary">Summary</string>
     <string name="explain_steps">Steps</string>
     <string name="explain_why_not">Why other choices are wrong</string>
