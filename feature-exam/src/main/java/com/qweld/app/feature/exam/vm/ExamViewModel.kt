@@ -1,0 +1,303 @@
+package com.qweld.app.feature.exam.vm
+
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.qweld.app.domain.exam.AssembledQuestion
+import com.qweld.app.domain.exam.AttemptSeed
+import com.qweld.app.domain.exam.ExamAssembler
+import com.qweld.app.domain.exam.ExamBlueprint
+import com.qweld.app.domain.exam.ExamMode
+import com.qweld.app.domain.exam.Question
+import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.domain.exam.errors.ExamAssemblyException
+import com.qweld.app.domain.exam.repo.QuestionRepository
+import com.qweld.app.domain.exam.repo.UserStatsRepository
+import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.model.DeficitDetailUiModel
+import com.qweld.app.feature.exam.model.DeficitDialogUiModel
+import com.qweld.app.feature.exam.model.ExamAttemptUiState
+import com.qweld.app.feature.exam.model.ExamChoiceUiModel
+import com.qweld.app.feature.exam.model.ExamQuestionUiModel
+import com.qweld.app.feature.exam.model.ExamUiState
+import java.util.Locale
+import kotlin.math.min
+import kotlin.random.Random
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonPrimitive
+import timber.log.Timber
+
+class ExamViewModel(
+  private val repository: AssetQuestionRepository,
+  private val statsRepository: UserStatsRepository = EmptyUserStatsRepository,
+  private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = ::defaultBlueprintForMode,
+  private val seedProvider: () -> Long = { Random.nextLong() },
+  private val userIdProvider: () -> String = { DEFAULT_USER_ID },
+) : ViewModel() {
+
+  private val _uiState = mutableStateOf(ExamUiState())
+  val uiState: State<ExamUiState> = _uiState
+
+  private var currentAttempt: ExamAssemblerResult? = null
+
+  fun startAttempt(
+    mode: ExamMode,
+    locale: String,
+    practiceSize: Int = DEFAULT_PRACTICE_SIZE,
+  ): Boolean {
+    val normalizedLocale = locale.lowercase(Locale.US)
+    val result = repository.loadQuestions(normalizedLocale)
+    val questions = when (result) {
+      is AssetQuestionRepository.Result.Success -> result.questions.map { it.toDomain(normalizedLocale) }
+      is AssetQuestionRepository.Result.Missing -> {
+        Timber.w("[exam_start] cancelled reason=missing locale=%s", result.locale)
+        return false
+      }
+      is AssetQuestionRepository.Result.Error -> {
+        Timber.e(result.cause, "[exam_start] cancelled reason=error locale=%s", result.locale)
+        return false
+      }
+    }
+
+    val assembler = ExamAssembler(
+      questionRepository = InMemoryQuestionRepository(questions),
+      statsRepository = statsRepository,
+      logger = { message -> Timber.i(message) },
+    )
+    val blueprint = blueprintProvider(mode, practiceSize)
+    val attemptSeed = AttemptSeed(seedProvider())
+    return try {
+      val attempt = assembler.assemble(
+        userId = userIdProvider(),
+        mode = mode,
+        locale = normalizedLocale,
+        seed = attemptSeed,
+        blueprint = blueprint,
+      )
+      currentAttempt = ExamAssemblerResult(attempt = attempt, answers = emptyMap(), currentIndex = 0)
+      refreshState()
+      true
+    } catch (deficit: ExamAssemblyException.Deficit) {
+      val details = deficit.details.map { detail ->
+        Timber.w(
+          "[deficit_dialog] shown=true taskId=%s need=%d have=%d missing=%d",
+          detail.taskId,
+          detail.need,
+          detail.have,
+          detail.missing,
+        )
+        DeficitDetailUiModel(
+          taskId = detail.taskId,
+          need = detail.need,
+          have = detail.have,
+          missing = detail.missing,
+        )
+      }
+      currentAttempt = null
+      _uiState.value = ExamUiState(
+        isLoading = false,
+        attempt = null,
+        deficitDialog = DeficitDialogUiModel(details),
+        errorMessage = null,
+      )
+      false
+    }
+  }
+
+  fun submitAnswer(choiceId: String) {
+    val attemptResult = currentAttempt ?: return
+    val assembledQuestion = attemptResult.attempt.questions.getOrNull(attemptResult.currentIndex) ?: return
+    val questionId = assembledQuestion.question.id
+    if (attemptResult.answers.containsKey(questionId)) return
+
+    val updatedAnswers = attemptResult.answers + (questionId to choiceId)
+    val correct = assembledQuestion.question.correctChoiceId == choiceId
+    Timber.i("[answer_submit] qId=%s chosen=%s correct=%s", questionId, choiceId, correct)
+
+    currentAttempt = attemptResult.copy(answers = updatedAnswers)
+    refreshState()
+  }
+
+  fun nextQuestion() {
+    val attemptResult = currentAttempt ?: return
+    val attempt = attemptResult.attempt
+    val nextIndex = (attemptResult.currentIndex + 1).coerceAtMost(attempt.questions.lastIndex)
+    if (nextIndex == attemptResult.currentIndex) return
+    currentAttempt = attemptResult.copy(currentIndex = nextIndex)
+    refreshState()
+  }
+
+  fun previousQuestion() {
+    val attemptResult = currentAttempt ?: return
+    if (attemptResult.attempt.mode == ExamMode.IP_MOCK) return
+    val prevIndex = (attemptResult.currentIndex - 1).coerceAtLeast(0)
+    if (prevIndex == attemptResult.currentIndex) return
+    currentAttempt = attemptResult.copy(currentIndex = prevIndex)
+    refreshState()
+  }
+
+  fun dismissDeficitDialog() {
+    _uiState.value = _uiState.value.copy(deficitDialog = null)
+  }
+
+  private fun refreshState() {
+    val attemptResult = currentAttempt
+    if (attemptResult == null) {
+      _uiState.value = ExamUiState()
+      return
+    }
+    val attempt = attemptResult.attempt
+    val uiQuestions = attempt.questions.map { assembled ->
+      toUiModel(
+        assembled = assembled,
+        selectedChoiceId = attemptResult.answers[assembled.question.id],
+        locale = attempt.locale,
+      )
+    }
+    val index = attemptResult.currentIndex.coerceIn(0, uiQuestions.lastIndex.coerceAtLeast(0))
+    val attemptState = ExamAttemptUiState(
+      mode = attempt.mode,
+      locale = attempt.locale,
+      questions = uiQuestions,
+      currentIndex = index,
+    )
+    _uiState.value = ExamUiState(
+      isLoading = false,
+      attempt = attemptState,
+      deficitDialog = null,
+      errorMessage = null,
+    )
+    currentAttempt = attemptResult.copy(currentIndex = index)
+  }
+
+  private fun toUiModel(
+    assembled: AssembledQuestion,
+    selectedChoiceId: String?,
+    locale: String,
+  ): ExamQuestionUiModel {
+    val stem = assembled.question.stem[locale] ?: assembled.question.stem.values.firstOrNull().orEmpty()
+    val choices = assembled.choices.mapIndexed { index, choice ->
+      val label = ('A'.code + index).toChar().toString()
+      val text = choice.text[locale] ?: choice.text.values.firstOrNull().orEmpty()
+      ExamChoiceUiModel(
+        id = choice.id,
+        label = label,
+        text = text,
+        isSelected = choice.id == selectedChoiceId,
+      )
+    }
+    return ExamQuestionUiModel(
+      id = assembled.question.id,
+      stem = stem,
+      choices = choices,
+      selectedChoiceId = selectedChoiceId,
+    )
+  }
+
+  private fun AssetQuestionRepository.QuestionDTO.toDomain(defaultLocale: String): Question {
+    val resolvedLocale = this.locale?.takeIf { it.isNotBlank() }?.lowercase(Locale.US) ?: defaultLocale
+    val stemMap = stem.toTextMap(resolvedLocale).takeIf { it.isNotEmpty() } ?: mapOf(resolvedLocale to "")
+    val choiceDomain = choices.map { dto ->
+      com.qweld.app.domain.exam.Choice(
+        id = dto.id,
+        text = dto.text.toTextMap(resolvedLocale),
+      )
+    }
+    val block = blockId ?: taskId.substringBefore("-", taskId)
+    return Question(
+      id = id,
+      taskId = taskId,
+      blockId = block,
+      locale = resolvedLocale,
+      stem = stemMap,
+      familyId = familyId,
+      choices = choiceDomain,
+      correctChoiceId = correctId,
+    )
+  }
+
+  private fun JsonElement.toTextMap(resolvedLocale: String): Map<String, String> {
+    return when (this) {
+      is JsonNull -> emptyMap()
+      is JsonObject -> this.mapValues { (_, element) -> element.jsonPrimitive.content }
+      is JsonPrimitive -> mapOf(resolvedLocale to this.content)
+      else -> mapOf(resolvedLocale to this.toString())
+    }
+  }
+
+  private data class ExamAssemblerResult(
+    val attempt: com.qweld.app.domain.exam.ExamAttempt,
+    val answers: Map<String, String>,
+    val currentIndex: Int,
+  )
+
+  private class InMemoryQuestionRepository(
+    private val questions: List<Question>,
+  ) : QuestionRepository {
+    override fun listByTaskAndLocale(
+      taskId: String,
+      locale: String,
+      allowFallbackToEnglish: Boolean,
+    ): List<Question> {
+      val normalizedLocale = locale.lowercase(Locale.US)
+      val primary = questions.filter { it.taskId == taskId && it.locale.equals(normalizedLocale, ignoreCase = true) }
+      if (primary.isNotEmpty() || !allowFallbackToEnglish) {
+        return primary
+      }
+      return questions.filter { it.taskId == taskId && it.locale.equals("en", ignoreCase = true) }
+    }
+  }
+
+  private object EmptyUserStatsRepository : UserStatsRepository {
+    override fun getUserItemStats(userId: String, ids: List<String>) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
+  }
+
+  companion object {
+    private const val DEFAULT_PRACTICE_SIZE = 20
+    private const val DEFAULT_USER_ID = "local_user"
+
+    private fun defaultBlueprintForMode(mode: ExamMode, practiceSize: Int): ExamBlueprint {
+      return when (mode) {
+        ExamMode.PRACTICE -> buildPracticeBlueprint(practiceSize)
+        else -> ExamBlueprint.default()
+      }
+    }
+
+    private fun buildPracticeBlueprint(practiceSize: Int): ExamBlueprint {
+      val sanitizedSize = practiceSize.coerceAtLeast(1)
+      val base = ExamBlueprint.default()
+      if (sanitizedSize >= base.totalQuestions) return base
+      var remaining = sanitizedSize
+      val quotas = mutableListOf<TaskQuota>()
+      for (quota in base.taskQuotas) {
+        if (remaining <= 0) break
+        val take = min(remaining, quota.required)
+        if (take > 0) {
+          quotas += TaskQuota(quota.taskId, quota.blockId, take)
+          remaining -= take
+        }
+      }
+      if (remaining > 0) {
+        val last = base.taskQuotas.last()
+        quotas += TaskQuota(last.taskId, last.blockId, remaining)
+      }
+      return ExamBlueprint(totalQuestions = sanitizedSize, taskQuotas = quotas)
+    }
+  }
+}
+
+class ExamViewModelFactory(
+  private val repository: AssetQuestionRepository,
+) : ViewModelProvider.Factory {
+  override fun <T : ViewModel> create(modelClass: Class<T>): T {
+    if (modelClass.isAssignableFrom(ExamViewModel::class.java)) {
+      @Suppress("UNCHECKED_CAST")
+      return ExamViewModel(repository = repository) as T
+    }
+    throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
+  }
+}
