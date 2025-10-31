@@ -14,6 +14,7 @@ pluginManagement {
     id("com.diffplug.spotless") version "6.25.0"
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
     id("com.google.gms.google-services") version "4.4.2"
+    id("com.google.firebase.crashlytics") version "2.9.9"
   }
 }
 

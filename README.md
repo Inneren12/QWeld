@@ -72,6 +72,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Place the debug `google-services.json` under `app-android/src/debug/` (kept out of source control) to enable Google Sign-In.
 - Launching the app now opens the auth flow first; successful sign-in or linking returns to the exam navigator and logs `[auth_signin]`, `[auth_link]`, and `[auth_error]` markers via Timber.
 
+### Firebase Analytics & Crashlytics
+- Analytics and crash reporting are wired through the app module with a shared feature flag: `BuildConfig.ENABLE_ANALYTICS`.
+- Debug builds disable both collectors by default, so no events or crashes leave the device unless you opt in.
+- To re-enable telemetry in debug (for DebugView, Crashlytics verification, etc.), pass `-PenableAnalyticsDebug=true` when invoking Gradle or add `enableAnalyticsDebug=true` to `local.properties` before running `./gradlew :app-android:assembleDebug`.
+
 ### F7-B: Sign out & guards
 - Top app bar exposes an account menu with **Sync** and **Sign out** actions (Sign out appears only for authenticated users).
 - Sign out clears the Firebase session via `AuthService.signOut()` and returns to the auth flow while logging `[auth_signout]`.
