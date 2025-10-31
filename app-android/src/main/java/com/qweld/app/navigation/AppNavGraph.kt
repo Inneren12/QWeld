@@ -45,14 +45,16 @@ import com.qweld.app.feature.auth.ui.SignInScreen
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
-import com.qweld.app.ui.AccountMenu
+import com.qweld.app.ui.TopBarMenus
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogExportFormat
 import com.qweld.app.data.logging.writeTo
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import androidx.compose.ui.unit.dp
+import com.qweld.app.ui.SettingsScreen
 
 @Composable
 fun AppNavGraph(
@@ -65,6 +67,7 @@ fun AppNavGraph(
   appVersion: String,
   analytics: Analytics,
   logCollector: LogCollector?,
+  userPrefs: UserPrefsDataStore,
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
@@ -161,11 +164,15 @@ fun AppNavGraph(
   Scaffold(
     modifier = modifier,
     topBar = {
-      AccountMenu(
+      TopBarMenus(
         user = user,
         onNavigateToSync = {
           Timber.i("[ui_nav] screen=Sync")
           navController.navigate(Routes.SYNC) { launchSingleTop = true }
+        },
+        onNavigateToSettings = {
+          Timber.i("[ui_nav] screen=Settings")
+          navController.navigate(Routes.SETTINGS) { launchSingleTop = true }
         },
         onSignOut = {
           scope.launch {
@@ -263,6 +270,23 @@ fun AppNavGraph(
         ) {
           SyncScreen(onBack = { navController.popBackStack() })
         }
+      }
+      composable(Routes.SETTINGS) {
+        SettingsScreen(
+          userPrefs = userPrefs,
+          attemptsRepository = attemptsRepository,
+          answersRepository = answersRepository,
+          questionRepository = questionRepository,
+          onExportLogs =
+            if (logExportActions != null) {
+              {
+                showLogDialog = true
+              }
+            } else {
+              null
+            },
+          onBack = { navController.popBackStack() },
+        )
       }
     }
     if (showLogDialog && logExportActions != null) {
@@ -420,6 +444,7 @@ private object Routes {
   const val AUTH = "auth"
   const val EXAM = "exam"
   const val SYNC = "sync"
+  const val SETTINGS = "settings"
 }
 
 @Composable

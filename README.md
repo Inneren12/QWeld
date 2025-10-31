@@ -77,6 +77,12 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Debug builds disable both collectors by default, so no events or crashes leave the device unless you opt in.
 - To re-enable telemetry in debug (for DebugView, Crashlytics verification, etc.), pass `-PenableAnalyticsDebug=true` when invoking Gradle or add `enableAnalyticsDebug=true` to `local.properties` before running `./gradlew :app-android:assembleDebug`.
 
+### Settings: privacy & tools
+- Open **Settings** from the top app bar overflow to review analytics and practice preferences alongside maintenance tools.
+- Privacy includes a single toggle that persists to `UserPrefsDataStore`; disabling analytics keeps Timber logs but stops Firebase event delivery until re-enabled.
+- Practice exposes a 5–50 slider/number field for the default question count plus an RU→EN fallback switch (practice only), both stored in the same DataStore.
+- Tools provide one-tap log export (SAF), a combined "Clear local attempts" action (wipes Room attempts/answers), and "Clear per-task cache" for the asset repository—each posts a confirmation snackbar and logs `[settings_action]` markers with `result=ok|error`.
+
 ### F7-B: Sign out & guards
 - Top app bar exposes an account menu with **Sync** and **Sign out** actions (Sign out appears only for authenticated users).
 - Sign out clears the Firebase session via `AuthService.signOut()` and returns to the auth flow while logging `[auth_signout]`.

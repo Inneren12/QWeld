@@ -53,6 +53,10 @@ class AssetQuestionRepository internal constructor(
     }
   }
 
+  fun clearAllCaches() {
+    synchronized(cacheLock) { taskCache.clear() }
+  }
+
   fun loadQuestions(locale: String? = null, tasks: Set<String>? = null): Result {
     val resolvedLocale = resolveLocale(locale)
     val normalizedTasks = tasks?.filter { it.isNotBlank() }?.toSet()?.takeIf { it.isNotEmpty() }

@@ -34,4 +34,7 @@ interface AttemptDao {
 
   @Query("SELECT * FROM attempts ORDER BY started_at DESC LIMIT :limit")
   suspend fun listRecent(limit: Int): List<AttemptEntity>
+
+  @Query("DELETE FROM attempts")
+  suspend fun clearAll()
 }

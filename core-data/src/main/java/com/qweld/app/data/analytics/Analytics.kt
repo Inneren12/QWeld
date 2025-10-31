@@ -3,6 +3,7 @@ package com.qweld.app.data.analytics
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import java.util.Locale
+import java.util.concurrent.atomic.AtomicBoolean
 import timber.log.Timber
 
 interface Analytics {
@@ -11,17 +12,25 @@ interface Analytics {
 
 class FirebaseAnalyticsImpl(
   private val firebaseAnalytics: FirebaseAnalytics,
-  private val isEnabled: Boolean,
+  isEnabled: Boolean,
 ) : Analytics {
 
-  init {
+  private val enabled = AtomicBoolean(isEnabled).also {
     firebaseAnalytics.setAnalyticsCollectionEnabled(isEnabled)
+  }
+
+  fun setEnabled(value: Boolean) {
+    enabled.set(value)
+    firebaseAnalytics.setAnalyticsCollectionEnabled(value)
   }
 
   override fun log(event: String, params: Map<String, Any?>) {
     val sanitized = params.filterValues { it != null }
     Timber.i("[analytics] event=%s params=%s", event, sanitized)
-    if (!isEnabled) return
+    if (!enabled.get()) {
+      Timber.i("[analytics] skipped event=%s reason=disabled", event)
+      return
+    }
     val bundle = Bundle()
     sanitized.forEach { (key, value) ->
       value?.let { bundle.putParam(key, it) }
