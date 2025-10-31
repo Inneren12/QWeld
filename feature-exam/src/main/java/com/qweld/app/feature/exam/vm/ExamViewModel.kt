@@ -4,11 +4,13 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssembler
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
+import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.errors.ExamAssemblyException
@@ -21,9 +23,15 @@ import com.qweld.app.feature.exam.model.ExamAttemptUiState
 import com.qweld.app.feature.exam.model.ExamChoiceUiModel
 import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
+import java.time.Duration
 import java.util.Locale
 import kotlin.math.min
 import kotlin.random.Random
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
@@ -37,12 +45,21 @@ class ExamViewModel(
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = ::defaultBlueprintForMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
   private val userIdProvider: () -> String = { DEFAULT_USER_ID },
+  private val timerController: TimerController = TimerController { message -> Timber.i(message) },
 ) : ViewModel() {
 
   private val _uiState = mutableStateOf(ExamUiState())
   val uiState: State<ExamUiState> = _uiState
 
   private var currentAttempt: ExamAssemblerResult? = null
+  private var latestTimerLabel: String? = null
+  private var timerJob: Job? = null
+  private var timerRunning: Boolean = false
+  private var hasFinished: Boolean = false
+  private var latestResult: ExamResultData? = null
+
+  private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
+  val events = _events.asSharedFlow()
 
   fun startAttempt(
     mode: ExamMode,
@@ -79,6 +96,13 @@ class ExamViewModel(
         blueprint = blueprint,
       )
       currentAttempt = ExamAssemblerResult(attempt = attempt, answers = emptyMap(), currentIndex = 0)
+      hasFinished = false
+      latestResult = null
+      if (mode == ExamMode.IP_MOCK) {
+        startTimer()
+      } else {
+        stopTimer(clearLabel = true)
+      }
       refreshState()
       true
     } catch (deficit: ExamAssemblyException.Deficit) {
@@ -122,6 +146,35 @@ class ExamViewModel(
     refreshState()
   }
 
+  fun finishExam() {
+    val attemptResult = currentAttempt ?: return
+    if (hasFinished) return
+    val attempt = attemptResult.attempt
+    val remaining = if (attempt.mode == ExamMode.IP_MOCK) timerController.remaining() else Duration.ZERO
+    val correct = attempt.questions.count { question ->
+      val answer = attemptResult.answers[question.question.id]
+      answer != null && question.question.correctChoiceId == answer
+    }
+    val total = attempt.questions.size
+    val scorePercent = if (total == 0) 0.0 else (correct.toDouble() / total.toDouble()) * 100.0
+    val timeLeftLabel = if (attempt.mode == ExamMode.IP_MOCK) TimerController.formatDuration(remaining) else null
+    Timber.i(
+      "[exam_finish] correct=%d/%d score=%.2f%% timeLeft=%s",
+      correct,
+      total,
+      scorePercent,
+      timeLeftLabel ?: "-",
+    )
+    stopTimer(clearLabel = false)
+    hasFinished = true
+    latestResult = ExamResultData(
+      attempt = attempt,
+      answers = attemptResult.answers,
+      remaining = if (attempt.mode == ExamMode.IP_MOCK) remaining else null,
+    )
+    _events.tryEmit(ExamEvent.NavigateToResult)
+  }
+
   fun nextQuestion() {
     val attemptResult = currentAttempt ?: return
     val attempt = attemptResult.attempt
@@ -147,6 +200,7 @@ class ExamViewModel(
   private fun refreshState() {
     val attemptResult = currentAttempt
     if (attemptResult == null) {
+      latestTimerLabel = null
       _uiState.value = ExamUiState()
       return
     }
@@ -170,6 +224,7 @@ class ExamViewModel(
       attempt = attemptState,
       deficitDialog = null,
       errorMessage = null,
+      timerLabel = latestTimerLabel,
     )
     currentAttempt = attemptResult.copy(currentIndex = index)
   }
@@ -197,6 +252,61 @@ class ExamViewModel(
       selectedChoiceId = selectedChoiceId,
     )
   }
+
+  fun requireLatestResult(): ExamResultData {
+    return checkNotNull(latestResult) { "Result is not available" }
+  }
+
+  private fun startTimer() {
+    stopTimer(clearLabel = true)
+    timerController.start()
+    timerRunning = true
+    val initialRemaining = TimerController.EXAM_DURATION
+    latestTimerLabel = TimerController.formatDuration(initialRemaining)
+    Timber.i(
+      "[exam_timer] started=4h remaining=%s",
+      latestTimerLabel,
+    )
+    _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
+    timerJob = viewModelScope.launch {
+      while (true) {
+        delay(1_000)
+        val remaining = timerController.remaining()
+        latestTimerLabel = TimerController.formatDuration(remaining)
+        _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
+        if (remaining.isZero) {
+          finishExam()
+          break
+        }
+      }
+    }
+  }
+
+  private fun stopTimer(clearLabel: Boolean) {
+    timerJob?.cancel()
+    timerJob = null
+    if (timerRunning) {
+      timerController.stop()
+      timerRunning = false
+    }
+    if (clearLabel) {
+      latestTimerLabel = null
+      _uiState.value = _uiState.value.copy(timerLabel = null)
+    } else if (latestTimerLabel != null) {
+      latestTimerLabel = null
+      _uiState.value = _uiState.value.copy(timerLabel = null)
+    }
+  }
+
+  sealed interface ExamEvent {
+    data object NavigateToResult : ExamEvent
+  }
+
+  data class ExamResultData(
+    val attempt: com.qweld.app.domain.exam.ExamAttempt,
+    val answers: Map<String, String>,
+    val remaining: Duration?,
+  )
 
   private fun AssetQuestionRepository.QuestionDTO.toDomain(defaultLocale: String): Question {
     val resolvedLocale = this.locale?.takeIf { it.isNotBlank() }?.lowercase(Locale.US) ?: defaultLocale
