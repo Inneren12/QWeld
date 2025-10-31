@@ -168,13 +168,14 @@ private fun ResultScreenContent(
       }
     }
     item {
+      val exportJsonCd = stringResource(id = R.string.result_export_json_cd)
       Button(
         modifier = Modifier
           .fillMaxWidth()
           .heightIn(min = minHeight)
           .semantics {
             role = Role.Button
-            contentDescription = stringResource(id = R.string.result_export_json_cd)
+            contentDescription = exportJsonCd
           },
         onClick = onExport,
       ) {
@@ -187,13 +188,14 @@ private fun ResultScreenContent(
       }
     }
     item {
+      val reviewCd = stringResource(id = R.string.result_review_cd)
       Button(
         modifier = Modifier
           .fillMaxWidth()
           .heightIn(min = minHeight)
           .semantics {
             role = Role.Button
-            contentDescription = stringResource(id = R.string.result_review_cd)
+            contentDescription = reviewCd
           },
         onClick = onReview,
       ) {
@@ -322,23 +324,25 @@ private fun rememberLogExportActions(logCollector: LogCollector?): LogExportActi
 private fun LogExportMenu(actions: LogExportActions) {
   var expanded by remember { mutableStateOf(false) }
   Box {
+    val exportLogsCd = stringResource(id = R.string.result_export_logs_cd)
     Button(
       modifier = Modifier
         .fillMaxWidth()
         .heightIn(min = dimensionResource(id = R.dimen.min_touch_target))
         .semantics {
           role = Role.Button
-          contentDescription = stringResource(id = R.string.result_export_logs_cd)
+          contentDescription = exportLogsCd
         },
       onClick = { expanded = true },
     ) {
       Text(text = stringResource(id = R.string.result_export_logs))
     }
     DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+      val logsTxtCd = stringResource(id = R.string.result_export_logs_txt_cd)
       DropdownMenuItem(
         modifier = Modifier.semantics {
           role = Role.Button
-          contentDescription = stringResource(id = R.string.result_export_logs_txt_cd)
+          contentDescription = logsTxtCd
         },
         text = { Text(text = stringResource(id = R.string.result_export_logs_txt)) },
         onClick = {
@@ -346,10 +350,11 @@ private fun LogExportMenu(actions: LogExportActions) {
           actions.exportText()
         },
       )
+      val logsJsonCd = stringResource(id = R.string.result_export_logs_json_cd)
       DropdownMenuItem(
         modifier = Modifier.semantics {
           role = Role.Button
-          contentDescription = stringResource(id = R.string.result_export_logs_json_cd)
+          contentDescription = logsJsonCd
         },
         text = { Text(text = stringResource(id = R.string.result_export_logs_json)) },
         onClick = {

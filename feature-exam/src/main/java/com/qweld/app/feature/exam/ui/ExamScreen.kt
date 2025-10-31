@@ -43,8 +43,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.hint
-import androidx.compose.ui.semantics.isMergingSemanticsOfDescendants
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -329,7 +327,6 @@ private fun ExamScreenContent(
                     .fillMaxWidth()
                     .heightIn(min = minHeight)
                     .semantics(mergeDescendants = false) {
-                      isMergingSemanticsOfDescendants = false
                       contentDescription = choiceDescription
                       role = Role.Button
                       stateDescription =
@@ -338,9 +335,6 @@ private fun ExamScreenContent(
                         } else {
                           stringResource(id = R.string.exam_choice_state_unselected)
                         }
-                      if (!question.isAnswered) {
-                        hint = stringResource(id = R.string.exam_choice_talkback_hint)
-                      }
                     },
                   onClick = { onChoiceSelected(choice.id) },
                   enabled = !question.isAnswered,
@@ -384,32 +378,35 @@ private fun ExamScreenContent(
           modifier = Modifier.fillMaxWidth(),
           horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+          val previousCd = stringResource(id = R.string.exam_previous_cd)
           Button(
             modifier = Modifier
               .weight(1f)
               .heightIn(min = minHeight)
-              .semantics { contentDescription = stringResource(id = R.string.exam_previous_cd) },
+              .semantics { contentDescription = previousCd },
             onClick = onPrevious,
             enabled = attempt.canGoPrevious(),
           ) {
             Text(text = stringResource(id = R.string.exam_previous))
           }
+          val nextCd = stringResource(id = R.string.exam_next_cd)
           Button(
             modifier = Modifier
               .weight(1f)
               .heightIn(min = minHeight)
-              .semantics { contentDescription = stringResource(id = R.string.exam_next_cd) },
+              .semantics { contentDescription = nextCd },
             onClick = onNext,
             enabled = attempt.canGoNext(),
           ) {
             Text(text = stringResource(id = R.string.exam_next))
           }
         }
+        val finishCd = stringResource(id = R.string.exam_finish_cd)
         Button(
           modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = minHeight)
-            .semantics { contentDescription = stringResource(id = R.string.exam_finish_cd) },
+            .semantics { contentDescription = finishCd },
           onClick = onFinish,
         ) {
           Text(text = stringResource(id = R.string.exam_finish))
