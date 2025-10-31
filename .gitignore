@@ -19,3 +19,4 @@ __pycache__/
 logs/
 .gradle/
 local.properties
+**/google-services.json

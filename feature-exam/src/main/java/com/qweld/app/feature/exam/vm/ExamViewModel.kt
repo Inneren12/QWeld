@@ -45,6 +45,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonPrimitive
 import timber.log.Timber
+import kotlinx.coroutines.runBlocking
 
 class ExamViewModel(
   private val repository: AssetQuestionRepository,
@@ -110,13 +111,14 @@ class ExamViewModel(
     val blueprint = blueprintProvider(mode, practiceSize)
     val attemptSeed = AttemptSeed(seedProvider())
     return try {
-      val attempt = assembler.assemble(
-        userId = userIdProvider(),
-        mode = mode,
-        locale = normalizedLocale,
-        seed = attemptSeed,
-        blueprint = blueprint,
-      )
+        val attempt = runBlocking(ioDispatcher) {
+            assembler.assemble(
+                userId = userIdProvider(),
+                mode = mode,
+                locale = normalizedLocale,
+                seed = attemptSeed,
+                blueprint = blueprint,)
+        }
       val attemptId = attemptIdProvider()
       val startedAt = nowProvider()
       Timber.i("[attempt_create] id=%s mode=%s locale=%s", attemptId, attempt.mode.name, attempt.locale)

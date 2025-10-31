@@ -38,7 +38,7 @@ dependencies {
   implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
   implementation("androidx.navigation:navigation-compose:2.8.3")
   implementation("com.jakewharton.timber:timber:5.0.1")
-  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
   debugImplementation("androidx.compose.ui:ui-tooling:1.7.1")
 

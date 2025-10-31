@@ -19,11 +19,11 @@ class AssetQuestionRepository internal constructor(
 ) {
   constructor(
     context: Context,
-    json: Json = DEFAULT_JSON,
+    jsonCodec: Json = DEFAULT_JSON,
   ) : this(
-    assetReader = AssetReader { path -> runCatching { context.assets.open(path) }.getOrNull() },
-    localeResolver = { resolveLanguage(context.resources.configuration) },
-    json = json,
+      assetReader = AssetReader { path -> kotlin.runCatching { context.assets.open(path) }.getOrNull() },
+      localeResolver = { resolveLanguage(context.resources.configuration) },
+      json = jsonCodec,
   )
 
   fun loadQuestions(locale: String? = null): Result {

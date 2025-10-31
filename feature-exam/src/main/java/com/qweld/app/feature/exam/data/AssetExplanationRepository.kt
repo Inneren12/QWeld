@@ -14,11 +14,10 @@ class AssetExplanationRepository internal constructor(
 ) {
   constructor(
     context: Context,
-    json: Json = DEFAULT_JSON,
+    jsonCodec: Json = DEFAULT_JSON,
   ) : this(
-    assetReader = AssetReader { path -> runCatching { context.assets.open(path) }.getOrNull() },
-    json = json,
-  )
+      assetReader = AssetReader { path -> kotlin.runCatching { context.assets.open(path) }.getOrNull() },
+      json = jsonCodec,)
 
   fun loadExplanation(
     locale: String,

@@ -25,7 +25,7 @@ class ExamAssembler(
   private val config: ExamAssemblyConfig = ExamAssemblyConfig(),
   private val logger: (String) -> Unit = ::println,
 ) {
-  fun assemble(
+    suspend fun assemble(
     userId: String,
     mode: ExamMode,
     locale: String,
