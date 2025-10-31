@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -50,6 +51,7 @@ fun ModeScreen(
   val configuration = LocalConfiguration.current
   val uiState by viewModel.uiState
   val resumeDialog = uiState.resumeDialog
+  val prewarmState = uiState.prewarmState
 
   LaunchedEffect(Unit) { Timber.i("[ui_nav] screen=Mode") }
 
@@ -97,6 +99,7 @@ fun ModeScreen(
       )
       val minHeight = dimensionResource(id = R.dimen.min_touch_target)
       val ipMockCd = stringResource(id = R.string.mode_ip_mock_cd)
+      val prewarmLocaleMatches = prewarmState.locale?.equals(resolvedLanguage, ignoreCase = true) ?: false
       Button(
         modifier = Modifier
           .fillMaxWidth()
@@ -105,9 +108,52 @@ fun ModeScreen(
             contentDescription = ipMockCd
             role = Role.Button
           },
-        onClick = { onIpMockClick(resolvedLanguage) },
+        enabled = !prewarmState.isRunning || (prewarmState.isReady && prewarmLocaleMatches),
+        onClick = {
+          if (prewarmState.isReady && prewarmLocaleMatches) {
+            onIpMockClick(resolvedLanguage)
+          } else {
+            viewModel.startPrewarmForIpMock(resolvedLanguage)
+          }
+        },
       ) {
         Text(text = stringResource(id = R.string.mode_ip_mock))
+      }
+      if (prewarmLocaleMatches && prewarmState.isRunning) {
+        LinearProgressIndicator(
+          progress = prewarmState.progressFraction,
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp),
+        )
+        Text(
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp),
+          text = stringResource(id = R.string.mode_prewarm_preparing),
+          style = MaterialTheme.typography.bodySmall,
+        )
+      } else if (prewarmLocaleMatches && prewarmState.isReady) {
+        Text(
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp),
+          text = stringResource(id = R.string.mode_prewarm_ready),
+          style = MaterialTheme.typography.bodySmall,
+        )
+      } else if (prewarmState.isRunning) {
+        LinearProgressIndicator(
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp),
+        )
+        Text(
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp),
+          text = stringResource(id = R.string.mode_prewarm_preparing),
+          style = MaterialTheme.typography.bodySmall,
+        )
       }
       val practiceCd = stringResource(id = R.string.mode_practice_cd)
       Button(

@@ -34,8 +34,10 @@ import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
 import java.time.Duration
 import java.util.Locale
 import java.util.UUID
+import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.Dispatchers
@@ -64,6 +66,7 @@ class ExamViewModel(
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val timerController: TimerController = TimerController { message -> Timber.i(message) },
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+  private val prewarmUseCase: PrewarmUseCase = PrewarmUseCase(repository, ioDispatcher),
   private val resumeUseCase: ResumeUseCase =
     ResumeUseCase(
       repository = repository,
@@ -87,6 +90,7 @@ class ExamViewModel(
   private val questionSeenAt = mutableMapOf<String, Long>()
   private var pendingResume: AttemptEntity? = null
   private var manualTimerRemaining: Duration? = null
+  private var prewarmJob: Job? = null
 
   private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
   val events = _events.asSharedFlow()
@@ -195,6 +199,7 @@ class ExamViewModel(
         attempt = null,
         deficitDialog = DeficitDialogUiModel(details),
         errorMessage = null,
+        prewarmState = _uiState.value.prewarmState,
       )
       false
     }
@@ -467,7 +472,7 @@ class ExamViewModel(
     val attemptResult = currentAttempt
     if (attemptResult == null) {
       latestTimerLabel = null
-      _uiState.value = ExamUiState()
+      _uiState.value = ExamUiState(prewarmState = _uiState.value.prewarmState)
       return
     }
     val attempt = attemptResult.attempt
@@ -488,15 +493,116 @@ class ExamViewModel(
         questions = uiQuestions,
         currentIndex = index,
       )
-    _uiState.value = ExamUiState(
-      isLoading = false,
-      attempt = attemptState,
-      deficitDialog = null,
-      errorMessage = null,
-      timerLabel = latestTimerLabel,
-      resumeDialog = null,
-    )
+    _uiState.value =
+      ExamUiState(
+        isLoading = false,
+        attempt = attemptState,
+        deficitDialog = null,
+        errorMessage = null,
+        timerLabel = latestTimerLabel,
+        resumeDialog = null,
+        prewarmState = _uiState.value.prewarmState,
+      )
     currentAttempt = attemptResult.copy(currentIndex = index)
+  }
+
+  fun startPrewarmForIpMock(locale: String) {
+    val normalizedLocale = locale.lowercase(Locale.US)
+    val current = _uiState.value.prewarmState
+    if (current.isRunning) return
+    if (current.isReady && current.locale.equals(normalizedLocale, ignoreCase = true)) return
+
+    val blueprint = blueprintProvider(ExamMode.IP_MOCK, DEFAULT_PRACTICE_SIZE)
+    val tasks = blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
+    val expectedTotal = tasks.size.takeIf { it > 0 } ?: 1
+    updatePrewarmState(
+      locale = normalizedLocale,
+      loaded = 0,
+      total = expectedTotal,
+      isRunning = true,
+      isReady = false,
+    )
+
+    prewarmJob?.cancel()
+    prewarmJob =
+      viewModelScope.launch(ioDispatcher) {
+        try {
+          prewarmUseCase.prewarm(normalizedLocale, tasks) { loaded, total ->
+            dispatchPrewarmProgress(normalizedLocale, loaded, total, expectedTotal)
+          }
+          finalizePrewarm(normalizedLocale, expectedTotal)
+        } catch (cancellation: CancellationException) {
+          throw cancellation
+        } catch (error: Throwable) {
+          Timber.e(error, "[prewarm_flow_error] locale=%s", normalizedLocale)
+          finalizePrewarm(normalizedLocale, expectedTotal)
+        }
+      }
+  }
+
+  private fun dispatchPrewarmProgress(
+    locale: String,
+    loaded: Int,
+    total: Int,
+    expectedTotal: Int,
+  ) {
+    val safeTotal = when {
+      total > 0 -> total
+      expectedTotal > 0 -> expectedTotal
+      else -> 1
+    }
+    val clampedLoaded = loaded.coerceIn(0, safeTotal)
+    val isReady = clampedLoaded >= safeTotal && safeTotal > 0
+    updatePrewarmState(
+      locale = locale,
+      loaded = clampedLoaded,
+      total = safeTotal,
+      isRunning = !isReady,
+      isReady = isReady,
+    )
+  }
+
+  private fun finalizePrewarm(locale: String, expectedTotal: Int) {
+    val current = _uiState.value.prewarmState
+    updatePrewarmState(
+      locale = locale,
+      loaded = max(current.loaded, current.total.takeIf { it > 0 } ?: expectedTotal),
+      total = current.total.takeIf { it > 0 } ?: expectedTotal,
+      isRunning = false,
+      isReady = true,
+    )
+  }
+
+  private fun updatePrewarmState(
+    locale: String,
+    loaded: Int,
+    total: Int,
+    isRunning: Boolean,
+    isReady: Boolean,
+  ) {
+    viewModelScope.launch {
+      val previous = _uiState.value.prewarmState
+      val clampedTotal = total.coerceAtLeast(0)
+      val resolvedTotal =
+        when {
+          clampedTotal > 0 -> clampedTotal
+          previous.total > 0 -> previous.total
+          else -> max(loaded, 1)
+        }
+      val clampedLoaded = loaded.coerceIn(0, resolvedTotal)
+      val readyState = isReady || (resolvedTotal > 0 && clampedLoaded >= resolvedTotal)
+      _uiState.value =
+        _uiState.value.copy(
+          prewarmState =
+            previous.copy(
+              locale = locale,
+              loaded = clampedLoaded,
+              total = resolvedTotal,
+              isRunning = isRunning && !readyState,
+              isReady = readyState,
+            ),
+        )
+    }
   }
 
   private fun toUiModel(
@@ -764,6 +870,7 @@ class ExamViewModelFactory(
         attemptsRepository = attemptsRepository,
         answersRepository = answersRepository,
         statsRepository = statsRepository,
+        prewarmUseCase = PrewarmUseCase(repository),
       ) as T
     }
     throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
