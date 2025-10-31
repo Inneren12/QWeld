@@ -3,7 +3,6 @@ package com.qweld.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -25,6 +24,7 @@ import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.auth.firebase.FirebaseAuthService
 import com.qweld.app.navigation.AppNavGraph
+import com.qweld.app.ui.theme.QWeldTheme
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -59,7 +59,7 @@ fun QWeldAppRoot(
   val logCollector: LogCollector? = remember(appContext) {
     (appContext as? LogCollectorOwner)?.logCollector
   }
-  MaterialTheme {
+  QWeldTheme {
     AppNavGraph(
       authService = authService,
       questionRepository = questionRepository,

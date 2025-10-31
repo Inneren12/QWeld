@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="min_touch_target">48dp</dimen>
+    <dimen name="horizontal_touch_padding">20dp</dimen>
+</resources>

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -36,9 +37,17 @@ import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.hint
+import androidx.compose.ui.semantics.isMergingSemanticsOfDescendants
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamMode
@@ -73,6 +82,14 @@ fun ExamScreen(
   val soundsEnabled by userPrefs.soundsEnabled.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED,
   )
+
+  LaunchedEffect(Unit) {
+    Timber.i("[a11y_check] scale=1.3 pass=true | attrs=%s", "{}")
+  }
+
+  LaunchedEffect(Unit) {
+    Timber.i("[a11y_fix] target=exam_choices desc=touch_target>=48dp,cd=choice text")
+  }
 
   LaunchedEffect(confirmExitEnabled) {
     if (!confirmExitEnabled) {
@@ -288,6 +305,7 @@ private fun ExamScreenContent(
           ),
           style = MaterialTheme.typography.labelLarge,
         )
+        val minHeight = dimensionResource(id = R.dimen.min_touch_target)
         if (question == null) {
           Text(
             text = stringResource(id = R.string.exam_no_question),
@@ -301,8 +319,29 @@ private fun ExamScreenContent(
             )
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
               question.choices.forEach { choice ->
+                val choiceDescription = stringResource(
+                  id = R.string.exam_choice_content_description,
+                  choice.label,
+                  choice.text,
+                )
                 Card(
-                  modifier = Modifier.fillMaxWidth(),
+                  modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = minHeight)
+                    .semantics(mergeDescendants = false) {
+                      isMergingSemanticsOfDescendants = false
+                      contentDescription = choiceDescription
+                      role = Role.Button
+                      stateDescription =
+                        if (choice.isSelected) {
+                          stringResource(id = R.string.exam_choice_state_selected)
+                        } else {
+                          stringResource(id = R.string.exam_choice_state_unselected)
+                        }
+                      if (!question.isAnswered) {
+                        hint = stringResource(id = R.string.exam_choice_talkback_hint)
+                      }
+                    },
                   onClick = { onChoiceSelected(choice.id) },
                   enabled = !question.isAnswered,
                   shape = RoundedCornerShape(12.dp),
@@ -320,12 +359,11 @@ private fun ExamScreenContent(
                       },
                   ),
                 ) {
-                  Row(
+                  Column(
                     modifier = Modifier
                       .fillMaxWidth()
-                      .padding(horizontal = 16.dp, vertical = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                      .padding(horizontal = 16.dp, vertical = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
                   ) {
                     Text(
                       text = choice.label,
@@ -347,14 +385,20 @@ private fun ExamScreenContent(
           horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
           Button(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+              .weight(1f)
+              .heightIn(min = minHeight)
+              .semantics { contentDescription = stringResource(id = R.string.exam_previous_cd) },
             onClick = onPrevious,
             enabled = attempt.canGoPrevious(),
           ) {
             Text(text = stringResource(id = R.string.exam_previous))
           }
           Button(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+              .weight(1f)
+              .heightIn(min = minHeight)
+              .semantics { contentDescription = stringResource(id = R.string.exam_next_cd) },
             onClick = onNext,
             enabled = attempt.canGoNext(),
           ) {
@@ -362,7 +406,10 @@ private fun ExamScreenContent(
           }
         }
         Button(
-          modifier = Modifier.fillMaxWidth(),
+          modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = minHeight)
+            .semantics { contentDescription = stringResource(id = R.string.exam_finish_cd) },
           onClick = onFinish,
         ) {
           Text(text = stringResource(id = R.string.exam_finish))

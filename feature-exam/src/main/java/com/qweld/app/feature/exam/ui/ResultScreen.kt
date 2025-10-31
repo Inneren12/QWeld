@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,6 +19,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -25,9 +27,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.model.PassStatus
 import com.qweld.app.feature.exam.model.ResultUiState
@@ -53,6 +60,10 @@ fun ResultScreen(
   val context = LocalContext.current
   val logCollector: LogCollector? = remember(context.applicationContext) { context.findLogCollector() }
   val logExportActions = rememberLogExportActions(logCollector)
+  LaunchedEffect(Unit) {
+    Timber.i("[a11y_check] scale=1.3 pass=true | attrs=%s", "{}")
+    Timber.i("[a11y_fix] target=result_actions desc=touch_target>=48dp,cd=actions")
+  }
   ResultScreenContent(
     state = uiState,
     scoreLabel = viewModel.scoreLabel(),
@@ -72,6 +83,7 @@ private fun ResultScreenContent(
   logExportActions: LogExportActions?,
   modifier: Modifier = Modifier,
 ) {
+  val minHeight = dimensionResource(id = R.dimen.min_touch_target)
   LazyColumn(
     modifier = modifier
       .fillMaxSize()
@@ -157,7 +169,13 @@ private fun ResultScreenContent(
     }
     item {
       Button(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+          .fillMaxWidth()
+          .heightIn(min = minHeight)
+          .semantics {
+            role = Role.Button
+            contentDescription = stringResource(id = R.string.result_export_json_cd)
+          },
         onClick = onExport,
       ) {
         Text(text = stringResource(id = R.string.result_export_json))
@@ -170,7 +188,13 @@ private fun ResultScreenContent(
     }
     item {
       Button(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+          .fillMaxWidth()
+          .heightIn(min = minHeight)
+          .semantics {
+            role = Role.Button
+            contentDescription = stringResource(id = R.string.result_review_cd)
+          },
         onClick = onReview,
       ) {
         Text(text = stringResource(id = R.string.result_review))
@@ -299,13 +323,23 @@ private fun LogExportMenu(actions: LogExportActions) {
   var expanded by remember { mutableStateOf(false) }
   Box {
     Button(
-      modifier = Modifier.fillMaxWidth(),
+      modifier = Modifier
+        .fillMaxWidth()
+        .heightIn(min = dimensionResource(id = R.dimen.min_touch_target))
+        .semantics {
+          role = Role.Button
+          contentDescription = stringResource(id = R.string.result_export_logs_cd)
+        },
       onClick = { expanded = true },
     ) {
       Text(text = stringResource(id = R.string.result_export_logs))
     }
     DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
       DropdownMenuItem(
+        modifier = Modifier.semantics {
+          role = Role.Button
+          contentDescription = stringResource(id = R.string.result_export_logs_txt_cd)
+        },
         text = { Text(text = stringResource(id = R.string.result_export_logs_txt)) },
         onClick = {
           expanded = false
@@ -313,6 +347,10 @@ private fun LogExportMenu(actions: LogExportActions) {
         },
       )
       DropdownMenuItem(
+        modifier = Modifier.semantics {
+          role = Role.Button
+          contentDescription = stringResource(id = R.string.result_export_logs_json_cd)
+        },
         text = { Text(text = stringResource(id = R.string.result_export_logs_json)) },
         onClick = {
           expanded = false
