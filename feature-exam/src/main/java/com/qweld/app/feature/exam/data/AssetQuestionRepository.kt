@@ -7,6 +7,9 @@ import java.io.InputStream
 import java.util.LinkedHashMap
 import java.util.Locale
 import kotlin.system.measureTimeMillis
+import com.qweld.app.feature.exam.data.Io
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
@@ -238,28 +241,32 @@ class AssetQuestionRepository internal constructor(
   }
 
   private fun readArray(path: String): AssetPayload<List<QuestionDTO>> {
-    val stream = assetReader.open(path) ?: return AssetPayload.Missing
-    return try {
-      val questions = stream.use { input ->
-        val payload = input.bufferedReader().use { reader -> reader.readText() }
-        json.decodeFromString(QUESTION_LIST_SERIALIZER, payload)
-      }
-      AssetPayload.Success(questions)
-    } catch (throwable: Throwable) {
-      AssetPayload.Error(throwable)
+    return readAsset(path) { input ->
+      val payload = input.bufferedReader().use { reader -> reader.readText() }
+      json.decodeFromString(QUESTION_LIST_SERIALIZER, payload)
     }
   }
 
   private fun readSingle(path: String): AssetPayload<QuestionDTO> {
-    val stream = assetReader.open(path) ?: return AssetPayload.Missing
-    return try {
-      val question = stream.use { input ->
-        val payload = input.bufferedReader().use { reader -> reader.readText() }
-        json.decodeFromString(QuestionDTO.serializer(), payload)
+    return readAsset(path) { input ->
+      val payload = input.bufferedReader().use { reader -> reader.readText() }
+      json.decodeFromString(QuestionDTO.serializer(), payload)
+    }
+  }
+
+  private fun <T> readAsset(
+    path: String,
+    reader: (InputStream) -> T,
+  ): AssetPayload<T> {
+    return runBlocking {
+      withContext(Io.pool) {
+        val stream = assetReader.open(path) ?: return@withContext AssetPayload.Missing
+        try {
+          stream.use { input -> AssetPayload.Success(reader(input)) }
+        } catch (throwable: Throwable) {
+          AssetPayload.Error(throwable)
+        }
       }
-      AssetPayload.Success(question)
-    } catch (throwable: Throwable) {
-      AssetPayload.Error(throwable)
     }
   }
 
