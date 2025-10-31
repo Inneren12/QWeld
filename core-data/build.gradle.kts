@@ -2,6 +2,7 @@ plugins {
   id("com.android.library")
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.kapt")
+  id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -30,6 +31,7 @@ dependencies {
   kapt("androidx.room:room-compiler:2.6.1")
 
   implementation("androidx.datastore:datastore-preferences:1.1.1")
+  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
   testImplementation(kotlin("test"))
   testImplementation(project(":core-domain"))

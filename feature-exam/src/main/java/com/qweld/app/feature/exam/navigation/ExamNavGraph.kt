@@ -3,10 +3,11 @@ package com.qweld.app.feature.exam.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.ExamMode
@@ -38,8 +39,17 @@ fun ExamNavGraph(
   attemptsRepository: AttemptsRepository,
   answersRepository: AnswersRepository,
   statsRepository: UserStatsRepository,
+  appVersion: String,
   modifier: Modifier = Modifier,
 ) {
+  val attemptExporter =
+    remember(attemptsRepository, answersRepository, appVersion) {
+      AttemptExporter(
+        attemptsRepository = attemptsRepository,
+        answersRepository = answersRepository,
+        versionProvider = { appVersion },
+      )
+    }
   NavHost(
     navController = navController,
     startDestination = ExamDestinations.MODE,
@@ -110,10 +120,15 @@ fun ExamNavGraph(
               statsRepository = statsRepository,
             ),
         )
-      val resultViewModel: ResultViewModel = viewModel(
-        backStackEntry,
-        factory = ResultViewModelFactory { examViewModel.requireLatestResult() },
-      )
+      val resultViewModel: ResultViewModel =
+        viewModel(
+          backStackEntry,
+          factory =
+            ResultViewModelFactory(
+              resultDataProvider = { examViewModel.requireLatestResult() },
+              attemptExporter = attemptExporter,
+            ),
+        )
       ResultScreen(
         viewModel = resultViewModel,
         onReview = {
@@ -135,10 +150,20 @@ fun ExamNavGraph(
               statsRepository = statsRepository,
             ),
         )
+      val resultViewModel: ResultViewModel =
+        viewModel(
+          backStackEntry,
+          factory =
+            ResultViewModelFactory(
+              resultDataProvider = { examViewModel.requireLatestResult() },
+              attemptExporter = attemptExporter,
+            ),
+        )
       ReviewScreen(
         resultData = examViewModel.requireLatestResult(),
         explanationRepository = explanationRepository,
         onBack = { navController.popBackStack() },
+        resultViewModel = resultViewModel,
       )
     }
   }

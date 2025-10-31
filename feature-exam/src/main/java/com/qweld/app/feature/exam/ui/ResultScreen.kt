@@ -1,5 +1,7 @@
 package com.qweld.app.feature.exam.ui
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +16,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -22,6 +27,11 @@ import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.model.PassStatus
 import com.qweld.app.feature.exam.model.ResultUiState
 import com.qweld.app.feature.exam.vm.ResultViewModel
+import java.util.Locale
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 @Composable
 fun ResultScreen(
@@ -30,9 +40,11 @@ fun ResultScreen(
   modifier: Modifier = Modifier,
 ) {
   val uiState by viewModel.uiState
+  val onExport = rememberAttemptExportLauncher(viewModel)
   ResultScreenContent(
     state = uiState,
     scoreLabel = viewModel.scoreLabel(),
+    onExport = onExport,
     onReview = onReview,
     modifier = modifier,
   )
@@ -42,6 +54,7 @@ fun ResultScreen(
 private fun ResultScreenContent(
   state: ResultUiState,
   scoreLabel: String,
+  onExport: () -> Unit,
   onReview: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
@@ -131,12 +144,60 @@ private fun ResultScreenContent(
     item {
       Button(
         modifier = Modifier.fillMaxWidth(),
+        onClick = onExport,
+      ) {
+        Text(text = stringResource(id = R.string.result_export_json))
+      }
+    }
+    item {
+      Button(
+        modifier = Modifier.fillMaxWidth(),
         onClick = onReview,
       ) {
         Text(text = stringResource(id = R.string.result_review))
       }
     }
   }
+}
+
+@Composable
+internal fun rememberAttemptExportLauncher(viewModel: ResultViewModel): () -> Unit {
+  val context = LocalContext.current
+  val scope = rememberCoroutineScope()
+  val fileName = remember(viewModel) { viewModel.exportFileName() }
+  val launcher =
+    rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+      if (uri == null) return@rememberLauncherForActivityResult
+      scope.launch {
+        try {
+          val json = viewModel.exportAttemptJson()
+          withContext(Dispatchers.IO) {
+            val stream = context.contentResolver.openOutputStream(uri)
+              ?: error("Unable to open output stream for $uri")
+            stream.use { output ->
+              output.writer(Charsets.UTF_8).use { writer -> writer.write(json) }
+            }
+          }
+          val pctLabel = String.format(Locale.US, "%.2f", viewModel.attemptScorePercent())
+          Timber.i(
+            "[export_attempt] id=%s items=%d pct=%s fileName=%s uri=%s",
+            viewModel.attemptId(),
+            viewModel.attemptQuestionCount(),
+            pctLabel,
+            fileName,
+            uri,
+          )
+        } catch (t: Throwable) {
+          Timber.e(
+            t,
+            "[export_attempt_error] id=%s reason=%s",
+            viewModel.attemptId(),
+            t.message ?: t::class.java.simpleName,
+          )
+        }
+      }
+    }
+  return remember(fileName, launcher) { { launcher.launch(fileName) } }
 }
 
 @Composable

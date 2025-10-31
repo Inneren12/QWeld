@@ -78,3 +78,8 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 - Finishing updates store duration, score, and IP Mock pass thresholds while PRACTICE assembly consumes Room-backed stats.
 - Run `./gradlew :feature-exam:test` and `./gradlew :app-android:assembleDebug` to validate the flow.
 
+### F6-C: Export attempt JSON
+- Use **Export JSON** from the Result or Review screens to launch the system "Save as…" dialog (`QWeld_Attempt_<id>.json`).
+- The exported payload follows `qweld.attempt.v1` with nested `qweld.answer.v1` entries, per-block/per-task summaries, and metadata stamped with the app version and export timestamp.
+- The exporter reuses Room repositories, logs `[export_attempt]` / `[export_attempt_error]` markers, and is covered by `AttemptExporterTest` (`./gradlew :feature-exam:test`).
+
