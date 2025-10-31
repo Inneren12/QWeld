@@ -35,6 +35,17 @@ interface AttemptDao {
   @Query("SELECT * FROM attempts ORDER BY started_at DESC LIMIT :limit")
   suspend fun listRecent(limit: Int): List<AttemptEntity>
 
+  @Query(
+    """
+    SELECT *
+    FROM attempts
+    WHERE finished_at IS NULL
+    ORDER BY started_at DESC
+    LIMIT 1
+    """,
+  )
+  suspend fun getUnfinished(): AttemptEntity?
+
   @Query("DELETE FROM attempts")
   suspend fun clearAll()
 }

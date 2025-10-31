@@ -27,6 +27,10 @@ import com.qweld.app.feature.exam.model.ExamAttemptUiState
 import com.qweld.app.feature.exam.model.ExamChoiceUiModel
 import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
+import com.qweld.app.feature.exam.vm.ResumeUseCase
+import com.qweld.app.feature.exam.model.ResumeDialogUiModel
+import com.qweld.app.feature.exam.model.ResumeLocaleOption
+import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
 import java.time.Duration
 import java.util.Locale
 import java.util.UUID
@@ -39,6 +43,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
@@ -59,6 +64,14 @@ class ExamViewModel(
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val timerController: TimerController = TimerController { message -> Timber.i(message) },
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+  private val resumeUseCase: ResumeUseCase =
+    ResumeUseCase(
+      repository = repository,
+      statsRepository = statsRepository,
+      blueprintProvider = blueprintProvider,
+      userIdProvider = userIdProvider,
+      ioDispatcher = ioDispatcher,
+    ),
 ) : ViewModel() {
 
   private val _uiState = mutableStateOf(ExamUiState())
@@ -72,6 +85,8 @@ class ExamViewModel(
   private var latestResult: ExamResultData? = null
   private var questionRationales: Map<String, String> = emptyMap()
   private val questionSeenAt = mutableMapOf<String, Long>()
+  private var pendingResume: AttemptEntity? = null
+  private var manualTimerRemaining: Duration? = null
 
   private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
   val events = _events.asSharedFlow()
@@ -82,6 +97,9 @@ class ExamViewModel(
     practiceSize: Int = DEFAULT_PRACTICE_SIZE,
   ): Boolean {
     val normalizedLocale = locale.lowercase(Locale.US)
+    pendingResume = null
+    manualTimerRemaining = null
+    _uiState.value = _uiState.value.copy(resumeDialog = null)
     val blueprint = blueprintProvider(mode, practiceSize)
     val requestedTasks =
       blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
@@ -182,6 +200,159 @@ class ExamViewModel(
     }
   }
 
+  fun detectResume(deviceLocale: String) {
+    viewModelScope.launch {
+      val unfinished = withContext(ioDispatcher) { attemptsRepository.getUnfinished() }
+      if (unfinished == null) {
+        pendingResume = null
+        _uiState.value = _uiState.value.copy(resumeDialog = null)
+        return@launch
+      }
+      if (currentAttempt?.attemptId == unfinished.id) {
+        pendingResume = null
+        _uiState.value = _uiState.value.copy(resumeDialog = null)
+        return@launch
+      }
+      val mode = runCatching { ExamMode.valueOf(unfinished.mode) }.getOrNull()
+      if (mode == null) {
+        Timber.w(
+          "[resume_detect] ignored attemptId=%s reason=unknown_mode mode=%s",
+          unfinished.id,
+          unfinished.mode,
+        )
+        return@launch
+      }
+      val elapsedSec =
+        ((nowProvider() - unfinished.startedAt).coerceAtLeast(0L) / 1_000L).toInt()
+      Timber.i(
+        "[resume_detect] attemptId=%s mode=%s locale=%s elapsedSec=%d",
+        unfinished.id,
+        mode.name,
+        unfinished.locale,
+        elapsedSec,
+      )
+      val nowMillis = nowProvider()
+      val remaining = resumeUseCase.remainingTime(unfinished, mode, nowMillis)
+      if (mode == ExamMode.IP_MOCK && remaining.isZero) {
+        withContext(ioDispatcher) { finalizeExpiredAttempt(unfinished, mode) }
+        pendingResume = null
+        _uiState.value = _uiState.value.copy(resumeDialog = null)
+        return@launch
+      }
+      val attemptLocale = unfinished.locale.lowercase(Locale.US)
+      val deviceNormalized = deviceLocale.lowercase(Locale.US)
+      val mismatch = !attemptLocale.equals(deviceNormalized, ignoreCase = true)
+      if (mismatch) {
+        Timber.w("[resume_mismatch] reason=locale_changed attemptId=%s", unfinished.id)
+      }
+      pendingResume = unfinished
+      _uiState.value =
+        _uiState.value.copy(
+          resumeDialog =
+            ResumeDialogUiModel(
+              attemptId = unfinished.id,
+              mode = mode,
+              attemptLocale = attemptLocale,
+              deviceLocale = deviceNormalized,
+              questionCount = unfinished.questionCount,
+              showLocaleMismatch = mismatch,
+              remaining = if (mode == ExamMode.IP_MOCK) remaining else null,
+            ),
+        )
+    }
+  }
+
+  fun resumeAttempt(
+    attemptId: String,
+    localeOption: ResumeLocaleOption,
+    deviceLocale: String,
+  ) {
+    val pending = pendingResume?.takeIf { it.id == attemptId } ?: return
+    val mode = runCatching { ExamMode.valueOf(pending.mode) }.getOrNull() ?: return
+    val targetLocale =
+      when (localeOption) {
+        ResumeLocaleOption.KEEP_ORIGINAL -> pending.locale.lowercase(Locale.US)
+        ResumeLocaleOption.SWITCH_TO_DEVICE -> deviceLocale.lowercase(Locale.US)
+      }
+    viewModelScope.launch {
+      try {
+        val remaining = resumeUseCase.remainingTime(pending, mode, nowProvider())
+        if (mode == ExamMode.IP_MOCK && remaining.isZero) {
+          withContext(ioDispatcher) { finalizeExpiredAttempt(pending, mode) }
+          pendingResume = null
+          _uiState.value = _uiState.value.copy(resumeDialog = null)
+          return@launch
+        }
+        val answers = withContext(ioDispatcher) { answersRepository.listByAttempt(attemptId) }
+        val reconstruction =
+          withContext(ioDispatcher) {
+            resumeUseCase.reconstructAttempt(
+              mode = mode,
+              seed = pending.seed,
+              locale = targetLocale,
+              questionCount = pending.questionCount,
+            )
+          }
+        val merged: MergeState = resumeUseCase.mergeAnswers(reconstruction.attempt.questions, answers)
+        questionRationales = reconstruction.rationales
+        questionSeenAt.clear()
+        answers.forEach { answer -> questionSeenAt[answer.questionId] = answer.seenAt }
+        currentAttempt =
+          ExamAssemblerResult(
+            attempt = reconstruction.attempt,
+            answers = merged.answers,
+            currentIndex = merged.currentIndex,
+            attemptId = pending.id,
+            startedAt = pending.startedAt,
+          )
+        hasFinished = false
+        latestResult = null
+        pendingResume = null
+        manualTimerRemaining = null
+        _uiState.value = _uiState.value.copy(resumeDialog = null, errorMessage = null)
+        if (mode == ExamMode.IP_MOCK) {
+          resumeTimer(remaining)
+        } else {
+          stopTimer(clearLabel = true)
+        }
+        Timber.i(
+          "[resume_continue] attemptId=%s remaining=%d questions=%d",
+          pending.id,
+          remaining.seconds,
+          reconstruction.attempt.questions.size,
+        )
+        refreshState()
+        _events.tryEmit(ExamEvent.ResumeReady)
+      } catch (error: Exception) {
+        Timber.e(error, "[resume_continue] failed attemptId=%s", attemptId)
+        pendingResume = null
+        _uiState.value =
+          _uiState.value.copy(
+            resumeDialog = null,
+            errorMessage = error.message ?: "Unable to resume attempt.",
+          )
+      }
+    }
+  }
+
+  fun discardAttempt(attemptId: String) {
+    val pending = pendingResume?.takeIf { it.id == attemptId } ?: return
+    Timber.i("[resume_discard] attemptId=%s", attemptId)
+    pendingResume = null
+    _uiState.value = _uiState.value.copy(resumeDialog = null)
+    viewModelScope.launch(ioDispatcher) {
+      val now = nowProvider()
+      val durationSec = ((now - pending.startedAt).coerceAtLeast(0L) / 1_000L).toInt()
+      attemptsRepository.markFinished(
+        attemptId = attemptId,
+        finishedAt = now,
+        durationSec = durationSec,
+        passThreshold = null,
+        scorePct = null,
+      )
+    }
+  }
+
   fun submitAnswer(choiceId: String) {
     val attemptResult = currentAttempt ?: return
     val assembledQuestion = attemptResult.attempt.questions.getOrNull(attemptResult.currentIndex) ?: return
@@ -223,7 +394,12 @@ class ExamViewModel(
     val attemptResult = currentAttempt ?: return
     if (hasFinished) return
     val attempt = attemptResult.attempt
-    val remaining = if (attempt.mode == ExamMode.IP_MOCK) timerController.remaining() else Duration.ZERO
+    val remaining =
+      if (attempt.mode == ExamMode.IP_MOCK) {
+        manualTimerRemaining ?: timerController.remaining()
+      } else {
+        Duration.ZERO
+      }
     val correct = attempt.questions.count { question ->
       val answer = attemptResult.answers[question.question.id]
       answer != null && question.question.correctChoiceId == answer
@@ -318,6 +494,7 @@ class ExamViewModel(
       deficitDialog = null,
       errorMessage = null,
       timerLabel = latestTimerLabel,
+      resumeDialog = null,
     )
     currentAttempt = attemptResult.copy(currentIndex = index)
   }
@@ -357,6 +534,7 @@ class ExamViewModel(
 
   private fun startTimer() {
     stopTimer(clearLabel = true)
+    manualTimerRemaining = null
     timerController.start()
     timerRunning = true
     val initialRemaining = TimerController.EXAM_DURATION
@@ -380,6 +558,35 @@ class ExamViewModel(
     }
   }
 
+  private fun resumeTimer(initialRemaining: Duration) {
+    stopTimer(clearLabel = true)
+    manualTimerRemaining = initialRemaining
+    timerRunning = true
+    latestTimerLabel = TimerController.formatDuration(initialRemaining)
+    Timber.i(
+      "[exam_timer] resumed remaining=%s",
+      latestTimerLabel,
+    )
+    _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
+    timerJob = viewModelScope.launch {
+      var remaining = initialRemaining
+      while (true) {
+        delay(1_000)
+        remaining = remaining.minusSeconds(1)
+        if (remaining.isNegative) {
+          remaining = Duration.ZERO
+        }
+        manualTimerRemaining = remaining
+        latestTimerLabel = TimerController.formatDuration(remaining)
+        _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
+        if (remaining.isZero) {
+          finishExam()
+          break
+        }
+      }
+    }
+  }
+
   private fun stopTimer(clearLabel: Boolean) {
     timerJob?.cancel()
     timerJob = null
@@ -387,6 +594,7 @@ class ExamViewModel(
       timerController.stop()
       timerRunning = false
     }
+    manualTimerRemaining = null
     if (clearLabel) {
       latestTimerLabel = null
       _uiState.value = _uiState.value.copy(timerLabel = null)
@@ -396,8 +604,48 @@ class ExamViewModel(
     }
   }
 
+  private suspend fun finalizeExpiredAttempt(
+    attempt: AttemptEntity,
+    mode: ExamMode,
+  ) {
+    val answers = answersRepository.listByAttempt(attempt.id)
+    val reconstruction =
+      resumeUseCase.reconstructAttempt(
+        mode = mode,
+        seed = attempt.seed,
+        locale = attempt.locale.lowercase(Locale.US),
+        questionCount = attempt.questionCount,
+      )
+    val merged = resumeUseCase.mergeAnswers(reconstruction.attempt.questions, answers)
+    val correct =
+      reconstruction.attempt.questions.count { assembled ->
+        val selected = merged.answers[assembled.question.id]
+        selected != null && selected == assembled.question.correctChoiceId
+      }
+    val total = reconstruction.attempt.questions.size
+    val scorePercent = if (total == 0) 0.0 else (correct.toDouble() / total.toDouble()) * 100.0
+    val finishedAt = nowProvider()
+    val durationSec = TimerController.EXAM_DURATION.seconds.toInt()
+    val passThreshold = if (mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
+    attemptsRepository.markFinished(
+      attemptId = attempt.id,
+      finishedAt = finishedAt,
+      durationSec = durationSec,
+      passThreshold = passThreshold,
+      scorePct = scorePercent,
+    )
+    Timber.i(
+      "[resume_timeout] attemptId=%s correct=%d/%d score=%.2f",
+      attempt.id,
+      correct,
+      total,
+      scorePercent,
+    )
+  }
+
   sealed interface ExamEvent {
     data object NavigateToResult : ExamEvent
+    data object ResumeReady : ExamEvent
   }
 
   data class ExamResultData(

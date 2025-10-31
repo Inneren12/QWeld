@@ -70,6 +70,7 @@ fun ExamNavGraph(
         )
       ModeScreen(
         repository = repository,
+        viewModel = examViewModel,
         onIpMockClick = { locale ->
           val launched = examViewModel.startAttempt(ExamMode.IP_MOCK, locale)
           if (launched) {
@@ -85,6 +86,9 @@ fun ExamNavGraph(
           if (launched) {
             navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
           }
+        },
+        onResumeAttempt = {
+          navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
         },
       )
     }

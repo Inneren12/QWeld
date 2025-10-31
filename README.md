@@ -104,6 +104,12 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 - Finishing updates store duration, score, and IP Mock pass thresholds while PRACTICE assembly consumes Room-backed stats.
 - Run `./gradlew :feature-exam:test` and `./gradlew :app-android:assembleDebug` to validate the flow.
 
+### Pause/Resume
+- On app launch, **Mode** and **Exam** screens query Room for the latest unfinished attempt and surface a "Resume" dialog with Continue/Discard actions.
+- Resuming replays the original seed through `ExamAssembler`, merges saved `AnswerEntity` rows, restores the first unanswered index, and restarts the IP Mock timer with the remaining four-hour budget; hitting zero auto-submits and stores the timed-out score.
+- Locale mismatches offer a keep/switch toggle (`Switch to <device locale> & rebuild`), logging `[resume_mismatch]` and rerunning assembly in the chosen language before navigation.
+- Discarding marks the attempt as aborted (null score) and logs `[resume_discard]`, allowing a fresh start without manual cleanup.
+
 ### F6-C: Export attempt JSON
 - Use **Export JSON** from the Result or Review screens to launch the system "Save as…" dialog (`QWeld_Attempt_<id>.json`).
 - The exported payload follows `qweld.attempt.v1` with nested `qweld.answer.v1` entries, per-block/per-task summaries, and metadata stamped with the app version and export timestamp.
