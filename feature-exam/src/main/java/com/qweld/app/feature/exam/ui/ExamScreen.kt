@@ -1,7 +1,9 @@
 package com.qweld.app.feature.exam.ui
 
+import android.view.SoundEffectConstants
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,16 +32,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.model.DeficitDialogUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import kotlinx.coroutines.flow.collectLatest
+import timber.log.Timber
 import java.util.Locale
 
 @Composable
@@ -46,6 +55,7 @@ fun ExamScreen(
   viewModel: ExamViewModel,
   onNavigateToResult: () -> Unit,
   analytics: Analytics,
+  userPrefs: UserPrefsDataStore,
   modifier: Modifier = Modifier,
 ) {
   val uiState by viewModel.uiState
@@ -55,6 +65,14 @@ fun ExamScreen(
   var showConfirmExitDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
   var allowExamExit by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
   val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+  val hapticFeedback = LocalHapticFeedback.current
+  val view = LocalView.current
+  val hapticsEnabled by userPrefs.hapticsEnabled.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_HAPTICS_ENABLED,
+  )
+  val soundsEnabled by userPrefs.soundsEnabled.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED,
+  )
 
   LaunchedEffect(confirmExitEnabled) {
     if (!confirmExitEnabled) {
@@ -147,6 +165,12 @@ fun ExamScreen(
     val attempt = uiState.attempt
     val question = attempt?.currentQuestion()
     if (attempt != null && question != null && !question.isAnswered) {
+      performSubmitFeedback(
+        hapticsEnabled = hapticsEnabled,
+        soundsEnabled = soundsEnabled,
+        hapticFeedback = hapticFeedback,
+        onPlaySound = { view.playSoundEffect(SoundEffectConstants.CLICK) },
+      )
       analytics.log(
         "answer_submit",
         mapOf(
@@ -197,6 +221,22 @@ fun ExamScreen(
       },
     )
   }
+}
+
+@VisibleForTesting
+internal fun performSubmitFeedback(
+  hapticsEnabled: Boolean,
+  soundsEnabled: Boolean,
+  hapticFeedback: HapticFeedback,
+  onPlaySound: () -> Unit,
+) {
+  if (hapticsEnabled) {
+    hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
+  }
+  if (soundsEnabled) {
+    onPlaySound()
+  }
+  Timber.d("[ux_feedback] haptics=%s sounds=%s event=answer_submit", hapticsEnabled, soundsEnabled)
 }
 
 @Composable

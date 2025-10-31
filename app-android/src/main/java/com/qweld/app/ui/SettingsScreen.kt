@@ -66,6 +66,12 @@ fun SettingsScreen(
   val fallbackToEN by userPrefs.fallbackToEN.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_FALLBACK_TO_EN,
   )
+  val hapticsEnabled by userPrefs.hapticsEnabled.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_HAPTICS_ENABLED,
+  )
+  val soundsEnabled by userPrefs.soundsEnabled.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED,
+  )
 
   var sliderValue by remember(practiceSize) { mutableStateOf(practiceSize.toFloat()) }
   var practiceInput by remember(practiceSize) { mutableStateOf(practiceSize.toString()) }
@@ -166,6 +172,20 @@ fun SettingsScreen(
       Divider()
 
       SettingsToolsSection(
+        hapticsEnabled = hapticsEnabled,
+        soundsEnabled = soundsEnabled,
+        onToggleHaptics = { enabled ->
+          scope.launch {
+            userPrefs.setHapticsEnabled(enabled)
+            Timber.i("[settings_update] key=hapticsEnabled value=%s", enabled)
+          }
+        },
+        onToggleSounds = { enabled ->
+          scope.launch {
+            userPrefs.setSoundsEnabled(enabled)
+            Timber.i("[settings_update] key=soundsEnabled value=%s", enabled)
+          }
+        },
         onExportLogs = onExportLogs,
         onClearAttempts = {
           scope.launch {
@@ -290,6 +310,10 @@ private fun SettingsPracticeSection(
 
 @Composable
 private fun SettingsToolsSection(
+  hapticsEnabled: Boolean,
+  soundsEnabled: Boolean,
+  onToggleHaptics: (Boolean) -> Unit,
+  onToggleSounds: (Boolean) -> Unit,
   onExportLogs: (() -> Unit)?,
   onClearAttempts: () -> Unit,
   onClearCache: () -> Unit,
@@ -297,6 +321,23 @@ private fun SettingsToolsSection(
 ) {
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
     Text(text = stringResource(id = R.string.settings_section_tools), style = MaterialTheme.typography.titleMedium)
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+      Text(
+        text = stringResource(id = R.string.settings_section_accessibility),
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+      SettingsToggleRow(
+        label = stringResource(id = R.string.settings_haptics_label),
+        checked = hapticsEnabled,
+        onCheckedChange = onToggleHaptics,
+      )
+      SettingsToggleRow(
+        label = stringResource(id = R.string.settings_sounds_label),
+        checked = soundsEnabled,
+        onCheckedChange = onToggleSounds,
+      )
+    }
     Button(
       onClick = {
         onExportClickLogged()
@@ -313,5 +354,21 @@ private fun SettingsToolsSection(
     Button(onClick = onClearCache, modifier = Modifier.fillMaxWidth()) {
       Text(text = stringResource(id = R.string.settings_clear_cache))
     }
+  }
+}
+
+@Composable
+private fun SettingsToggleRow(
+  label: String,
+  checked: Boolean,
+  onCheckedChange: (Boolean) -> Unit,
+) {
+  Row(
+    modifier = Modifier.fillMaxWidth(),
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.SpaceBetween,
+  ) {
+    Text(text = label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
+    Switch(checked = checked, onCheckedChange = onCheckedChange)
   }
 }

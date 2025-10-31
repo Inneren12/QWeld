@@ -253,6 +253,7 @@ fun AppNavGraph(
           statsRepository = statsRepository,
           appVersion = appVersion,
           analytics = analytics,
+          userPrefs = userPrefs,
         )
       }
       composable(Routes.SYNC) {
