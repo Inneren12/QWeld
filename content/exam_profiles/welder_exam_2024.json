@@ -1,0 +1,10 @@
+{
+  "id": "welder_exam_2024",
+  "name": "Welder Interprovincial Exam 2024",
+  "blueprintId": "welder_ip_sk_202404",
+  "blueprint": "content/blueprints/welder_ip_sk_202404.json",
+  "locales": ["en", "ru"],
+  "mode": "min",
+  "minMultiple": 1,
+  "allowExtra": true
+}

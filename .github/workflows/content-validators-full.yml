@@ -1,16 +1,12 @@
-name: Content Validation
+name: Content Validation (full)
 
 on:
-  pull_request:
-    paths:
-      - 'content/questions/**'
-      - 'content/blueprints/**'
-      - 'content/exam_profiles/**'
-      - 'scripts/**'
-      - '.github/workflows/content-validators.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'
 
 jobs:
-  content:
+  content-full:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -32,15 +28,14 @@ jobs:
       - name: Validate blueprint
         run: bash scripts/validate-blueprint.sh
 
-      - name: Validate changed questions
-        run: bash scripts/validate-questions.sh --changed-only
+      - name: Validate questions (full)
+        run: bash scripts/validate-questions.sh
 
       - name: Validate explanations
         run: bash scripts/validate-explanations.sh
 
-      - name: Quotas for changed tasks (exam)
-        run: |
-          bash scripts/check-quotas.sh --changed-only --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
+      - name: Check question quotas (full)
+        run: bash scripts/check-quotas.sh --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
 
       - name: Build question banks
         run: bash scripts/build-questions-dist.sh
