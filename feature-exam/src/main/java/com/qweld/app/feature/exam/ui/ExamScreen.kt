@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,6 +50,34 @@ fun ExamScreen(
 ) {
   val uiState by viewModel.uiState
   var loggedAttemptId by remember { mutableStateOf<String?>(null) }
+  val attempt = uiState.attempt
+  val confirmExitEnabled = shouldConfirmExit(attempt?.mode)
+  var showConfirmExitDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
+  var allowExamExit by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
+  val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
+  LaunchedEffect(confirmExitEnabled) {
+    if (!confirmExitEnabled) {
+      showConfirmExitDialog = false
+      allowExamExit = false
+    }
+  }
+
+  BackHandler(enabled = confirmExitEnabled && !allowExamExit) {
+    showConfirmExitDialog = true
+  }
+
+  LaunchedEffect(showConfirmExitDialog, attempt?.attemptId) {
+    if (showConfirmExitDialog && confirmExitEnabled) {
+      analytics.log(
+        "confirm_exit",
+        mapOf(
+          "shown" to true,
+          "mode" to "IPMock",
+        ),
+      )
+    }
+  }
 
   LaunchedEffect(uiState.attempt?.attemptId) {
     val attempt = uiState.attempt ?: return@LaunchedEffect
@@ -140,6 +170,33 @@ fun ExamScreen(
     onDismissDeficit = viewModel::dismissDeficitDialog,
     onFinish = viewModel::finishExam,
   )
+
+  if (showConfirmExitDialog && confirmExitEnabled) {
+    ConfirmExitDialog(
+      onContinue = {
+        analytics.log(
+          "confirm_exit",
+          mapOf("choice" to "continue"),
+        )
+        showConfirmExitDialog = false
+        allowExamExit = false
+      },
+      onExit = {
+        analytics.log(
+          "confirm_exit",
+          mapOf("choice" to "exit"),
+        )
+        showConfirmExitDialog = false
+        val dispatcher = backDispatcher
+        if (dispatcher != null) {
+          allowExamExit = true
+          dispatcher.onBackPressed()
+        } else {
+          allowExamExit = false
+        }
+      },
+    )
+  }
 }
 
 @Composable
@@ -168,7 +225,6 @@ private fun ExamScreenContent(
         )
       }
     } else {
-      BackHandler(enabled = attempt.mode == ExamMode.IP_MOCK) { }
       val question = attempt.currentQuestion()
       Column(
         modifier = modifier
@@ -311,3 +367,5 @@ private fun DeficitDialog(
     },
   )
 }
+
+internal fun shouldConfirmExit(mode: ExamMode?): Boolean = mode == ExamMode.IP_MOCK

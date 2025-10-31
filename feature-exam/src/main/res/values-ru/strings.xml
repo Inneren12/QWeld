@@ -11,6 +11,10 @@
     <string name="exam_deficit_title">Недостаточно вопросов</string>
     <string name="exam_deficit_message">Задача %1$s требует %2$d, доступно %3$d (не хватает %4$d)</string>
     <string name="exam_deficit_confirm">Закрыть</string>
+    <string name="confirm_exit_title">Выйти из экзамена?</string>
+    <string name="confirm_exit_message">Прогресс будет сохранён.</string>
+    <string name="confirm_exit_continue">Продолжить</string>
+    <string name="confirm_exit_exit">Выйти</string>
     <string name="result_review">Разбор</string>
     <string name="review_title">Разбор</string>
     <string name="review_back">Назад</string>
