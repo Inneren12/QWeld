@@ -3,17 +3,21 @@ package com.qweld.app.feature.exam.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
@@ -26,6 +30,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,11 +40,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
+import com.qweld.app.feature.exam.model.ReviewChoiceUiModel
+import com.qweld.app.feature.exam.model.ReviewQuestionUiModel
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModel
+import com.qweld.app.feature.exam.vm.ReviewListItem
+import com.qweld.app.feature.exam.vm.ReviewViewModel
+import com.qweld.app.feature.exam.vm.ReviewViewModelFactory
+import com.qweld.app.feature.exam.vm.ReviewFilters
+import com.qweld.app.feature.exam.vm.ReviewTotals
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -54,7 +67,10 @@ fun ReviewScreen(
   analytics: Analytics,
   modifier: Modifier = Modifier,
 ) {
-  val reviewQuestions = remember(resultData) { buildReviewQuestions(resultData) }
+  val reviewViewModel: ReviewViewModel =
+    viewModel(factory = ReviewViewModelFactory(resultDataProvider = { resultData }, analytics = analytics))
+  val uiState by reviewViewModel.uiState.collectAsState()
+  val reviewQuestions = uiState.allQuestions
   val locale = resultData.attempt.locale
   var sheetQuestion by remember { mutableStateOf<ReviewQuestionUiModel?>(null) }
   var explanation by remember { mutableStateOf<AssetExplanationRepository.Explanation?>(null) }
@@ -138,7 +154,7 @@ fun ReviewScreen(
       )
     },
   ) { paddingValues ->
-    if (reviewQuestions.isEmpty()) {
+    if (uiState.isEmpty) {
       Box(
         modifier = Modifier
           .fillMaxSize()
@@ -155,15 +171,52 @@ fun ReviewScreen(
           .padding(horizontal = 20.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
       ) {
-        itemsIndexed(reviewQuestions) { index, question ->
-          ReviewQuestionCard(
-            index = index,
-            total = reviewQuestions.size,
-            question = question,
-            onExplain = {
-              sheetQuestion = question
-            },
+        item {
+          ReviewFilterPanel(
+            filters = uiState.filters,
+            totals = uiState.totals,
+            onToggleWrong = reviewViewModel::toggleWrongOnly,
+            onToggleFlagged = reviewViewModel::toggleFlaggedOnly,
+            onToggleByTask = reviewViewModel::toggleByTask,
+            onShowAll = reviewViewModel::showAll,
           )
+        }
+        if (uiState.displayItems.isEmpty()) {
+          item {
+            Surface(
+              modifier = Modifier.fillMaxWidth(),
+              tonalElevation = 1.dp,
+              shape = RoundedCornerShape(16.dp),
+            ) {
+              Box(
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 24.dp),
+                contentAlignment = Alignment.Center,
+              ) {
+                Text(text = stringResource(id = R.string.review_empty))
+              }
+            }
+          }
+        } else {
+          items(uiState.displayItems) { item ->
+            when (item) {
+              is ReviewListItem.Section -> {
+                Text(
+                  text = item.title,
+                  style = MaterialTheme.typography.titleMedium,
+                  fontWeight = FontWeight.SemiBold,
+                )
+              }
+              is ReviewListItem.Question -> {
+                val question = item.question
+                ReviewQuestionCard(
+                  index = item.index,
+                  total = item.total,
+                  question = question,
+                  onExplain = { sheetQuestion = question },
+                )
+              }
+            }
+          }
         }
       }
     }
@@ -183,6 +236,72 @@ fun ReviewScreen(
           .fillMaxWidth()
           .verticalScroll(rememberScrollState())
           .padding(horizontal = 24.dp, vertical = 16.dp),
+      )
+    }
+  }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun ReviewFilterPanel(
+  filters: ReviewFilters,
+  totals: ReviewTotals,
+  onToggleWrong: () -> Unit,
+  onToggleFlagged: () -> Unit,
+  onToggleByTask: () -> Unit,
+  onShowAll: () -> Unit,
+  modifier: Modifier = Modifier,
+) {
+  Column(
+    modifier = modifier.fillMaxWidth(),
+    verticalArrangement = Arrangement.spacedBy(12.dp),
+  ) {
+    FlowRow(
+      horizontalArrangement = Arrangement.spacedBy(12.dp),
+      verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+      val isAllSelected = !filters.wrongOnly && !filters.flaggedOnly
+      FilterChip(
+        selected = isAllSelected,
+        onClick = onShowAll,
+        label = { Text(text = stringResource(id = R.string.review_filter_all)) },
+        enabled = !isAllSelected,
+      )
+      FilterChip(
+        selected = filters.wrongOnly,
+        onClick = onToggleWrong,
+        label = { Text(text = stringResource(id = R.string.review_filter_wrong_only)) },
+        colors = FilterChipDefaults.filterChipColors(),
+      )
+      FilterChip(
+        selected = filters.flaggedOnly,
+        onClick = onToggleFlagged,
+        label = { Text(text = stringResource(id = R.string.review_filter_flagged_only)) },
+        colors = FilterChipDefaults.filterChipColors(),
+      )
+      FilterChip(
+        selected = filters.byTask,
+        onClick = onToggleByTask,
+        label = { Text(text = stringResource(id = R.string.review_filter_by_task)) },
+        colors = FilterChipDefaults.filterChipColors(),
+      )
+    }
+    Row(
+      modifier = Modifier.fillMaxWidth(),
+      horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+      Text(
+        text = stringResource(id = R.string.review_filter_all) + " ${totals.all}",
+        style = MaterialTheme.typography.bodyMedium,
+        fontWeight = FontWeight.SemiBold,
+      )
+      Text(
+        text = stringResource(id = R.string.review_filter_wrong_count, totals.wrong),
+        style = MaterialTheme.typography.bodyMedium,
+      )
+      Text(
+        text = stringResource(id = R.string.review_filter_flagged_count, totals.flagged),
+        style = MaterialTheme.typography.bodyMedium,
       )
     }
   }
@@ -328,44 +447,3 @@ private fun ChoiceSummary(
   }
 }
 
-private fun buildReviewQuestions(resultData: ExamViewModel.ExamResultData): List<ReviewQuestionUiModel> {
-  val locale = resultData.attempt.locale.lowercase(Locale.US)
-  return resultData.attempt.questions.map { assembled ->
-    val question = assembled.question
-    val stem = question.stem[locale] ?: question.stem.values.firstOrNull().orEmpty()
-    val selectedId = resultData.answers[question.id]
-    val choices = assembled.choices.mapIndexed { index, choice ->
-      val text = choice.text[locale] ?: choice.text.values.firstOrNull().orEmpty()
-      ReviewChoiceUiModel(
-        id = choice.id,
-        label = ('A'.code + index).toChar().toString(),
-        text = text,
-        isCorrect = choice.id == question.correctChoiceId,
-        isSelected = choice.id == selectedId,
-      )
-    }
-    ReviewQuestionUiModel(
-      id = question.id,
-      taskId = question.taskId,
-      stem = stem,
-      choices = choices,
-      rationale = resultData.rationales[question.id],
-    )
-  }
-}
-
-data class ReviewQuestionUiModel(
-  val id: String,
-  val taskId: String,
-  val stem: String,
-  val choices: List<ReviewChoiceUiModel>,
-  val rationale: String?,
-)
-
-data class ReviewChoiceUiModel(
-  val id: String,
-  val label: String,
-  val text: String,
-  val isCorrect: Boolean,
-  val isSelected: Boolean,
-)

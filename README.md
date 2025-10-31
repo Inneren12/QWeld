@@ -63,6 +63,12 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Tapping **Explain** opens a bottom sheet that pulls structured content from `app-android/src/main/assets/explanations/<locale>/<taskId>/<id>__explain_<locale>.json`; the sheet falls back to the quick rationale if the asset is missing.
 - Run `./gradlew :feature-exam:test` to verify the asset repository parsing logic before shipping.
 
+### Review filters
+- Toggle **Wrong only**, **Flagged only**, or **By task** chips to refine the Review list; chips call into `ReviewViewModel` which recomputes the visible sections via a `StateFlow`.
+- Counters above the list display total, wrong, and flagged question counts, updating instantly as filters change.
+- Enabling **By task** groups questions under their `taskId` headers (e.g. `A-1`, `B-4`) while preserving the running index used by the cards.
+- Every toggle logs `[review_filter]` analytics with the active flags and totals so dashboards can track how the feature is used.
+
 ### Developer tooling
 - Configure Git hooks so Spotless runs automatically before each commit: `git config core.hooksPath .githooks`.
 - Copy `local.properties.sample` to `local.properties` and update `sdk.dir` with your Android SDK path.
