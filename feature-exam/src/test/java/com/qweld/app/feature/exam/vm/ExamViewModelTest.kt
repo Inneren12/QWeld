@@ -1,17 +1,29 @@
 package com.qweld.app.feature.exam.vm
 
+import com.qweld.app.data.db.dao.AnswerDao
+import com.qweld.app.data.db.dao.AttemptDao
+import com.qweld.app.data.db.entities.AnswerEntity
+import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class ExamViewModelTest {
+  @get:Rule val dispatcherRule = MainDispatcherRule()
 
   @Test
   fun startIpMockCreatesAttempt() {
@@ -103,10 +115,23 @@ class ExamViewModelTest {
       totalQuestions = 2,
       taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 2)),
     )
+    val attemptDao = FakeAttemptDao()
+    val answerDao = FakeAnswerDao()
+    val attemptsRepository = AttemptsRepository(attemptDao) { }
+    val answersRepository = AnswersRepository(answerDao)
+    val statsRepository = object : UserStatsRepository {
+      override fun getUserItemStats(userId: String, ids: List<String>) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
+    }
     return ExamViewModel(
       repository = repository,
+      attemptsRepository = attemptsRepository,
+      answersRepository = answersRepository,
+      statsRepository = statsRepository,
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 1L },
+      nowProvider = { 0L },
+      timerController = com.qweld.app.domain.exam.TimerController { },
+      ioDispatcher = StandardTestDispatcher(),
     )
   }
 
@@ -143,5 +168,74 @@ class ExamViewModelTest {
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )
+  }
+}
+
+private class FakeAttemptDao : AttemptDao {
+  private val attempts = mutableMapOf<String, AttemptEntity>()
+
+  override suspend fun insert(attempt: AttemptEntity) {
+    attempts[attempt.id] = attempt
+  }
+
+  override suspend fun updateFinish(
+    attemptId: String,
+    finishedAt: Long?,
+    durationSec: Int?,
+    passThreshold: Int?,
+    scorePct: Double?,
+  ) {
+    val current = attempts[attemptId] ?: return
+    attempts[attemptId] =
+      current.copy(
+        finishedAt = finishedAt,
+        durationSec = durationSec,
+        passThreshold = passThreshold,
+        scorePct = scorePct,
+      )
+  }
+
+  override suspend fun getById(id: String): AttemptEntity? = attempts[id]
+
+  override suspend fun listRecent(limit: Int): List<AttemptEntity> {
+    return attempts.values.sortedByDescending { it.startedAt }.take(limit)
+  }
+}
+
+private class FakeAnswerDao : AnswerDao {
+  private val answers = mutableListOf<AnswerEntity>()
+
+  override suspend fun insertAll(answers: List<AnswerEntity>) {
+    this.answers += answers
+  }
+
+  override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> {
+    return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
+  }
+
+  override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
+    val relevant = answers.filter { it.questionId == questionId }
+    if (relevant.isEmpty()) return null
+    return AnswerDao.QuestionAggregate(
+      questionId = questionId,
+      attempts = relevant.size,
+      correct = relevant.count { it.isCorrect },
+      lastAnsweredAt = relevant.maxOfOrNull { it.answeredAt },
+    )
+  }
+
+  override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
+    val interested = questionIds.toSet()
+    return answers
+      .filter { it.questionId in interested }
+      .groupBy { it.questionId }
+      .map { (questionId, entries) ->
+        AnswerDao.QuestionAggregate(
+          questionId = questionId,
+          attempts = entries.size,
+          correct = entries.count { it.isCorrect },
+          lastAnsweredAt = entries.maxOfOrNull { it.answeredAt },
+        )
+      }
   }
 }

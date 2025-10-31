@@ -73,3 +73,8 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 - User preferences live in `UserPrefsDataStore` (practice size default 20, EN fallback opt-in) with flows + edit helpers.
 - Run `./gradlew :core-data:test` to verify DAO CRUD and stats aggregation behaviour end-to-end.
 
+### F6-B integration
+- `ExamViewModel` persists attempts/answers through `AttemptsRepository` and `AnswersRepository`, logging lifecycle markers for analytics.
+- Finishing updates store duration, score, and IP Mock pass thresholds while PRACTICE assembly consumes Room-backed stats.
+- Run `./gradlew :feature-exam:test` and `./gradlew :app-android:assembleDebug` to validate the flow.
+

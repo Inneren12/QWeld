@@ -7,7 +7,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.ExamMode
+import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.ui.ModeScreen
@@ -32,6 +35,9 @@ fun ExamNavGraph(
   navController: NavHostController,
   repository: AssetQuestionRepository,
   explanationRepository: AssetExplanationRepository,
+  attemptsRepository: AttemptsRepository,
+  answersRepository: AnswersRepository,
+  statsRepository: UserStatsRepository,
   modifier: Modifier = Modifier,
 ) {
   NavHost(
@@ -40,7 +46,16 @@ fun ExamNavGraph(
     modifier = modifier,
   ) {
     composable(route = ExamDestinations.MODE) {
-      val examViewModel: ExamViewModel = viewModel(factory = ExamViewModelFactory(repository))
+      val examViewModel: ExamViewModel =
+        viewModel(
+          factory =
+            ExamViewModelFactory(
+              repository = repository,
+              attemptsRepository = attemptsRepository,
+              answersRepository = answersRepository,
+              statsRepository = statsRepository,
+            ),
+        )
       ModeScreen(
         repository = repository,
         onIpMockClick = { locale ->
@@ -63,7 +78,17 @@ fun ExamNavGraph(
     }
     composable(route = ExamDestinations.EXAM) { backStackEntry ->
       val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
-      val examViewModel: ExamViewModel = viewModel(parentEntry, factory = ExamViewModelFactory(repository))
+      val examViewModel: ExamViewModel =
+        viewModel(
+          parentEntry,
+          factory =
+            ExamViewModelFactory(
+              repository = repository,
+              attemptsRepository = attemptsRepository,
+              answersRepository = answersRepository,
+              statsRepository = statsRepository,
+            ),
+        )
       ExamScreen(
         viewModel = examViewModel,
         onNavigateToResult = {
@@ -74,7 +99,17 @@ fun ExamNavGraph(
     }
     composable(route = ExamDestinations.RESULT) { backStackEntry ->
       val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
-      val examViewModel: ExamViewModel = viewModel(parentEntry, factory = ExamViewModelFactory(repository))
+      val examViewModel: ExamViewModel =
+        viewModel(
+          parentEntry,
+          factory =
+            ExamViewModelFactory(
+              repository = repository,
+              attemptsRepository = attemptsRepository,
+              answersRepository = answersRepository,
+              statsRepository = statsRepository,
+            ),
+        )
       val resultViewModel: ResultViewModel = viewModel(
         backStackEntry,
         factory = ResultViewModelFactory { examViewModel.requireLatestResult() },
@@ -89,7 +124,17 @@ fun ExamNavGraph(
     }
     composable(route = ExamDestinations.REVIEW) { backStackEntry ->
       val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
-      val examViewModel: ExamViewModel = viewModel(parentEntry, factory = ExamViewModelFactory(repository))
+      val examViewModel: ExamViewModel =
+        viewModel(
+          parentEntry,
+          factory =
+            ExamViewModelFactory(
+              repository = repository,
+              attemptsRepository = attemptsRepository,
+              answersRepository = answersRepository,
+              statsRepository = statsRepository,
+            ),
+        )
       ReviewScreen(
         resultData = examViewModel.requireLatestResult(),
         explanationRepository = explanationRepository,
