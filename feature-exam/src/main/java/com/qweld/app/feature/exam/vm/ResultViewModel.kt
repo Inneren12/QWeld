@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.mapTaskToBlock
@@ -15,10 +16,16 @@ import java.util.Locale
 
 class ResultViewModel(
   resultData: ExamViewModel.ExamResultData,
+  private val attemptExporter: AttemptExporter,
   private val taskToBlock: (String) -> String? = ::mapTaskToBlock,
 ) : ViewModel() {
 
-  private val _uiState = mutableStateOf(createState(resultData))
+  private val initialResultData: ExamViewModel.ExamResultData = resultData
+  private val attemptId: String = initialResultData.attemptId
+  private val totalQuestions: Int = initialResultData.attempt.questions.size
+  private val scorePercentValue: Double = initialResultData.scorePercent
+
+  private val _uiState = mutableStateOf(createState(initialResultData))
   val uiState: State<ResultUiState> = _uiState
 
   private fun createState(resultData: ExamViewModel.ExamResultData): ResultUiState {
@@ -89,6 +96,16 @@ class ResultViewModel(
     return String.format(Locale.US, "%.1f%%", state.scorePercent)
   }
 
+  suspend fun exportAttemptJson(): String = attemptExporter.exportAttemptJson(attemptId)
+
+  fun exportFileName(): String = "QWeld_Attempt_${attemptId}.json"
+
+  fun attemptId(): String = attemptId
+
+  fun attemptQuestionCount(): Int = totalQuestions
+
+  fun attemptScorePercent(): Double = scorePercentValue
+
   private data class QuestionResult(
     val questionId: String,
     val taskId: String,
@@ -103,11 +120,12 @@ class ResultViewModel(
 
 class ResultViewModelFactory(
   private val resultDataProvider: () -> ExamViewModel.ExamResultData,
+  private val attemptExporter: AttemptExporter,
 ) : ViewModelProvider.Factory {
   @Suppress("UNCHECKED_CAST")
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
     if (modelClass.isAssignableFrom(ResultViewModel::class.java)) {
-      return ResultViewModel(resultDataProvider()) as T
+      return ResultViewModel(resultDataProvider(), attemptExporter) as T
     }
     throw IllegalArgumentException("Unknown ViewModel class")
   }

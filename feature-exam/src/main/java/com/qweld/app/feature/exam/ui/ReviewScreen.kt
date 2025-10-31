@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.vm.ExamViewModel
+import com.qweld.app.feature.exam.vm.ResultViewModel
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -48,6 +49,7 @@ fun ReviewScreen(
   resultData: ExamViewModel.ExamResultData,
   explanationRepository: AssetExplanationRepository,
   onBack: () -> Unit,
+  resultViewModel: ResultViewModel,
   modifier: Modifier = Modifier,
 ) {
   val reviewQuestions = remember(resultData) { buildReviewQuestions(resultData) }
@@ -76,6 +78,8 @@ fun ReviewScreen(
     isLoadingExplanation = false
   }
 
+  val onExport = rememberAttemptExportLauncher(resultViewModel)
+
   Scaffold(
     modifier = modifier,
     topBar = {
@@ -84,6 +88,11 @@ fun ReviewScreen(
         navigationIcon = {
           TextButton(onClick = onBack) {
             Text(text = stringResource(id = R.string.review_back))
+          }
+        },
+        actions = {
+          TextButton(onClick = onExport) {
+            Text(text = stringResource(id = R.string.result_export_json))
           }
         },
         colors = TopAppBarDefaults.topAppBarColors(),

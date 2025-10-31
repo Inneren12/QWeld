@@ -44,6 +44,7 @@ fun QWeldAppRoot() {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
+      appVersion = BuildConfig.VERSION_NAME,
     )
   }
 }
