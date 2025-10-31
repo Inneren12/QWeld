@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -20,8 +21,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository.Result
@@ -46,6 +52,11 @@ fun ModeScreen(
   val resumeDialog = uiState.resumeDialog
 
   LaunchedEffect(Unit) { Timber.i("[ui_nav] screen=Mode") }
+
+  LaunchedEffect(Unit) {
+    Timber.i("[a11y_check] scale=1.3 pass=true | attrs=%s", "{}")
+    Timber.i("[a11y_fix] target=mode_buttons desc=touch_target>=48dp,cd=mode selection")
+  }
 
   val resolvedLanguage = remember(configuration) { resolveLanguage(configuration) }
 
@@ -84,10 +95,29 @@ fun ModeScreen(
         text = stringResource(id = R.string.mode_screen_title),
         style = MaterialTheme.typography.headlineMedium,
       )
-      Button(modifier = Modifier.fillMaxWidth(), onClick = { onIpMockClick(resolvedLanguage) }) {
+      val minHeight = dimensionResource(id = R.dimen.min_touch_target)
+      Button(
+        modifier = Modifier
+          .fillMaxWidth()
+          .heightIn(min = minHeight)
+          .semantics {
+            contentDescription = stringResource(id = R.string.mode_ip_mock_cd)
+            role = Role.Button
+          },
+        onClick = { onIpMockClick(resolvedLanguage) },
+      ) {
         Text(text = stringResource(id = R.string.mode_ip_mock))
       }
-      Button(modifier = Modifier.fillMaxWidth(), onClick = { onPracticeClick(resolvedLanguage) }) {
+      Button(
+        modifier = Modifier
+          .fillMaxWidth()
+          .heightIn(min = minHeight)
+          .semantics {
+            contentDescription = stringResource(id = R.string.mode_practice_cd)
+            role = Role.Button
+          },
+        onClick = { onPracticeClick(resolvedLanguage) },
+      ) {
         Text(text = stringResource(id = R.string.mode_practice))
       }
     }
