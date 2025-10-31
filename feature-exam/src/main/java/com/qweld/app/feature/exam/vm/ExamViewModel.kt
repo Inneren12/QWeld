@@ -57,6 +57,7 @@ class ExamViewModel(
   private var timerRunning: Boolean = false
   private var hasFinished: Boolean = false
   private var latestResult: ExamResultData? = null
+  private var questionRationales: Map<String, String> = emptyMap()
 
   private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
   val events = _events.asSharedFlow()
@@ -69,12 +70,20 @@ class ExamViewModel(
     val normalizedLocale = locale.lowercase(Locale.US)
     val result = repository.loadQuestions(normalizedLocale)
     val questions = when (result) {
-      is AssetQuestionRepository.Result.Success -> result.questions.map { it.toDomain(normalizedLocale) }
+      is AssetQuestionRepository.Result.Success -> {
+        questionRationales = result.questions.mapNotNull { dto ->
+          val rationale = dto.rationales?.get(dto.correctId)?.takeIf { it.isNotBlank() }
+          rationale?.let { dto.id to it }
+        }.toMap()
+        result.questions.map { it.toDomain(normalizedLocale) }
+      }
       is AssetQuestionRepository.Result.Missing -> {
+        questionRationales = emptyMap()
         Timber.w("[exam_start] cancelled reason=missing locale=%s", result.locale)
         return false
       }
       is AssetQuestionRepository.Result.Error -> {
+        questionRationales = emptyMap()
         Timber.e(result.cause, "[exam_start] cancelled reason=error locale=%s", result.locale)
         return false
       }
@@ -106,6 +115,7 @@ class ExamViewModel(
       refreshState()
       true
     } catch (deficit: ExamAssemblyException.Deficit) {
+      questionRationales = emptyMap()
       val details = deficit.details.map { detail ->
         Timber.w(
           "[deficit_dialog] shown=true taskId=%s need=%d have=%d missing=%d",
@@ -171,6 +181,7 @@ class ExamViewModel(
       attempt = attempt,
       answers = attemptResult.answers,
       remaining = if (attempt.mode == ExamMode.IP_MOCK) remaining else null,
+      rationales = questionRationales,
     )
     _events.tryEmit(ExamEvent.NavigateToResult)
   }
@@ -306,6 +317,7 @@ class ExamViewModel(
     val attempt: com.qweld.app.domain.exam.ExamAttempt,
     val answers: Map<String, String>,
     val remaining: Duration?,
+    val rationales: Map<String, String>,
   )
 
   private fun AssetQuestionRepository.QuestionDTO.toDomain(defaultLocale: String): Question {

@@ -1,0 +1,58 @@
+{
+  "schema": "qweld.explanation.v1",
+  "id": "A-1_cable_lug_crimp_20000011",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "questionRef": {
+    "taskId": "A-1"
+  },
+  "summary": "Use proper lug crimp/solder per OEM and insulate connections.",
+  "steps": [
+    {
+      "title": "1) Identify the hazard",
+      "text": "Consider failure modes (bursting wheels, shock, fire, poor electrical return, etc.)."
+    },
+    {
+      "title": "2) Apply the standard",
+      "text": "Use manufacturer guidance and applicable standards (OSHA/ANSI/AWS)."
+    },
+    {
+      "title": "3) Perform the correct action",
+      "text": "Proper crimping/soldering per manufacturer with insulation"
+    }
+  ],
+  "why_not": [
+    {
+      "choiceId": "A",
+      "text": "Taping damaged cords does not restore insulation; remove from service until properly repaired."
+    },
+    {
+      "choiceId": "C",
+      "text": "'Twist and tie with wire' is unsafe/incorrect for this scenario."
+    },
+    {
+      "choiceId": "D",
+      "text": "'Bare copper strands under the lug without insulation' is unsafe/incorrect for this scenario."
+    }
+  ],
+  "tips": [
+    "Memorize the key standard for the topic (e.g., ANSI B7.1 for wheels, OSHA 1910.253 for cylinders).",
+    "If in doubt, remove from service and consult the OEM manual."
+  ],
+  "references": [
+    {
+      "title": "Manufacturer's manual",
+      "publisher": "OEM"
+    },
+    {
+      "title": "Best Practice: Welding Shop Safety",
+      "publisher": "Trade"
+    }
+  ],
+  "media": [],
+  "audit": {
+    "updatedAt": "2025-10-30T07:25:53Z",
+    "editor": "sme@qweld"
+  }
+}

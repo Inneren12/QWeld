@@ -11,4 +11,24 @@
     <string name="exam_deficit_title">Недостаточно вопросов</string>
     <string name="exam_deficit_message">Задача %1$s требует %2$d, доступно %3$d (не хватает %4$d)</string>
     <string name="exam_deficit_confirm">Закрыть</string>
+    <string name="result_review">Разбор</string>
+    <string name="review_title">Разбор</string>
+    <string name="review_back">Назад</string>
+    <string name="review_empty">Пока нечего разбирать.</string>
+    <string name="review_question_index">Вопрос %1$d из %2$d</string>
+    <string name="review_selected">Ваш ответ: %1$s — %2$s</string>
+    <string name="review_not_answered">Вы не ответили на этот вопрос.</string>
+    <string name="review_correct">Правильный ответ: %1$s — %2$s</string>
+    <string name="review_rationale_label">Краткое объяснение</string>
+    <string name="review_explain">Пояснение</string>
+    <string name="review_choice_correct_selected">Правильно — вы выбрали это</string>
+    <string name="review_choice_correct">Правильный ответ</string>
+    <string name="review_choice_selected">Ваш выбор</string>
+    <string name="explain_summary">Итог</string>
+    <string name="explain_steps">Шаги</string>
+    <string name="explain_why_not">Почему другие варианты неверны</string>
+    <string name="explain_why_not_item">Вариант %1$s</string>
+    <string name="explain_tips">Подсказки</string>
+    <string name="explain_rationale_label">Краткое объяснение</string>
+    <string name="explain_not_available">Подробное пояснение недоступно.</string>
 </resources>

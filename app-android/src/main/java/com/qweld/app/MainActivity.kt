@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
+import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
 import timber.log.Timber
@@ -26,7 +27,12 @@ fun QWeldAppRoot() {
   val appContext = context.applicationContext
   val navController = rememberNavController()
   val questionRepository = remember(appContext) { AssetQuestionRepository(appContext) }
+  val explanationRepository = remember(appContext) { AssetExplanationRepository(appContext) }
   MaterialTheme {
-    ExamNavGraph(navController = navController, repository = questionRepository)
+    ExamNavGraph(
+      navController = navController,
+      repository = questionRepository,
+      explanationRepository = explanationRepository,
+    )
   }
 }

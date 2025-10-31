@@ -1,0 +1,58 @@
+{
+  "schema": "qweld.explanation.v1",
+  "id": "A-1_work_clamp_surface_20000006",
+  "version": "1.0.0",
+  "policyVersion": "1.0",
+  "locale": "en",
+  "questionRef": {
+    "taskId": "A-1"
+  },
+  "summary": "Attach work clamp to clean bare metal near the weld to reduce resistance/arc blow.",
+  "steps": [
+    {
+      "title": "1) Identify the hazard",
+      "text": "Consider failure modes (bursting wheels, shock, fire, poor electrical return, etc.)."
+    },
+    {
+      "title": "2) Apply the standard",
+      "text": "Use manufacturer guidance and applicable standards (OSHA/ANSI/AWS)."
+    },
+    {
+      "title": "3) Perform the correct action",
+      "text": "Clean bare metal near the weld area"
+    }
+  ],
+  "why_not": [
+    {
+      "choiceId": "A",
+      "text": "Paint/rust increases resistance and arc instability; use clean bare metal."
+    },
+    {
+      "choiceId": "B",
+      "text": "Paint/rust increases resistance and arc instability; use clean bare metal."
+    },
+    {
+      "choiceId": "D",
+      "text": "'Any spot; current finds its way' is unsafe/incorrect for this scenario."
+    }
+  ],
+  "tips": [
+    "Memorize the key standard for the topic (e.g., ANSI B7.1 for wheels, OSHA 1910.253 for cylinders).",
+    "If in doubt, remove from service and consult the OEM manual."
+  ],
+  "references": [
+    {
+      "title": "Manufacturer's manual",
+      "publisher": "OEM"
+    },
+    {
+      "title": "Best Practice: Welding Shop Safety",
+      "publisher": "Trade"
+    }
+  ],
+  "media": [],
+  "audit": {
+    "updatedAt": "2025-10-30T07:25:53Z",
+    "editor": "sme@qweld"
+  }
+}
