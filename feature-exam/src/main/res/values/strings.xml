@@ -53,6 +53,17 @@
     <string name="review_correct">Correct answer: %1$s — %2$s</string>
     <string name="review_rationale_label">Quick rationale</string>
     <string name="review_explain">Explain</string>
+    <string name="review_search_placeholder">Search in review…</string>
+    <string name="review_search_hits">Found %1$d matches</string>
+    <string name="review_search_no_hits">No matches found.</string>
+    <string name="review_search_clear_cd">Clear search input</string>
+    <string name="review_search_match_explanation">Match found in explanation</string>
+    <string name="review_glossary">Glossary</string>
+    <string name="review_glossary_title">Glossary</string>
+    <string name="review_glossary_search_placeholder">Search glossary…</string>
+    <string name="review_glossary_empty">No glossary entries.</string>
+    <string name="review_glossary_error">Glossary unavailable.</string>
+    <string name="review_glossary_copied">%1$s — %2$s copied to clipboard</string>
     <string name="review_choice_correct_selected">Correct — you chose this</string>
     <string name="review_choice_correct">Correct answer</string>
     <string name="review_choice_selected">Your choice</string>

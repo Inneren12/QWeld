@@ -33,6 +33,17 @@
     <string name="review_correct">Правильный ответ: %1$s — %2$s</string>
     <string name="review_rationale_label">Краткое объяснение</string>
     <string name="review_explain">Пояснение</string>
+    <string name="review_search_placeholder">Поиск в разборе…</string>
+    <string name="review_search_hits">Найдено %1$d совпадений</string>
+    <string name="review_search_no_hits">Совпадений не найдено.</string>
+    <string name="review_search_clear_cd">Очистить поле поиска</string>
+    <string name="review_search_match_explanation">Совпадение в пояснении</string>
+    <string name="review_glossary">Глоссарий</string>
+    <string name="review_glossary_title">Глоссарий</string>
+    <string name="review_glossary_search_placeholder">Поиск по глоссарию…</string>
+    <string name="review_glossary_empty">Нет терминов.</string>
+    <string name="review_glossary_error">Глоссарий недоступен.</string>
+    <string name="review_glossary_copied">%1$s — %2$s скопировано</string>
     <string name="review_choice_correct_selected">Правильно — вы выбрали это</string>
     <string name="review_choice_correct">Правильный ответ</string>
     <string name="review_choice_selected">Ваш выбор</string>

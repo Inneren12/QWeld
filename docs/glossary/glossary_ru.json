@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {"en": "Shielded metal arc welding", "ru": "Ручная дуговая сварка"},
+    {"en": "Gas tungsten arc welding", "ru": "Аргонодуговая сварка"},
+    {"en": "Filler metal", "ru": "Присадочный металл"},
+    {"en": "Heat-affected zone", "ru": "Зона термического влияния"},
+    {"en": "Travel speed", "ru": "Скорость сварки"},
+    {"en": "Root pass", "ru": "Корневой проход"},
+    {"en": "Weld bead", "ru": "Валик шва"},
+    {"en": "Porosity", "ru": "Пористость"},
+    {"en": "Undercut", "ru": "Подрез"},
+    {"en": "Back gouging", "ru": "Обработка корня шва"},
+    {"en": "Interpass temperature", "ru": "Температура между проходами"},
+    {"en": "Welder qualification", "ru": "Аттестация сварщика"}
+  ]
+}
