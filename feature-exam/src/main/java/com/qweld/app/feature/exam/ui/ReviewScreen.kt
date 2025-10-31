@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.vm.ExamViewModel
@@ -50,6 +51,7 @@ fun ReviewScreen(
   explanationRepository: AssetExplanationRepository,
   onBack: () -> Unit,
   resultViewModel: ResultViewModel,
+  analytics: Analytics,
   modifier: Modifier = Modifier,
 ) {
   val reviewQuestions = remember(resultData) { buildReviewQuestions(resultData) }
@@ -58,6 +60,27 @@ fun ReviewScreen(
   var explanation by remember { mutableStateOf<AssetExplanationRepository.Explanation?>(null) }
   var isLoadingExplanation by remember { mutableStateOf(false) }
   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+
+  LaunchedEffect(resultData.attemptId) {
+    val totalQuestions = reviewQuestions.size
+    val correctCount = reviewQuestions.count { question ->
+      question.choices.any { it.isCorrect && it.isSelected }
+    }
+    val passThreshold = resultData.passThreshold
+    val passed = passThreshold?.let { resultData.scorePercent >= it }
+    analytics.log(
+      "review_open",
+      mapOf(
+        "attempt_id" to resultData.attemptId,
+        "mode" to resultData.attempt.mode.name.lowercase(Locale.US),
+        "total_questions" to totalQuestions,
+        "correct_count" to correctCount,
+        "score_pct" to resultData.scorePercent,
+        "pass_threshold" to passThreshold,
+        "passed" to passed,
+      ),
+    )
+  }
 
   LaunchedEffect(sheetQuestion?.id) {
     val question = sheetQuestion
@@ -76,6 +99,22 @@ fun ReviewScreen(
     }
     explanation = loaded
     isLoadingExplanation = false
+    val index = reviewQuestions.indexOfFirst { it.id == question.id }
+    val position = if (index >= 0) index + 1 else null
+    analytics.log(
+      "explain_fetch",
+      mapOf(
+        "attempt_id" to resultData.attemptId,
+        "question_id" to question.id,
+        "task_id" to question.taskId,
+        "mode" to resultData.attempt.mode.name.lowercase(Locale.US),
+        "locale" to resultData.attempt.locale.uppercase(Locale.US),
+        "question_position" to position,
+        "total_questions" to reviewQuestions.size,
+        "found" to (loaded != null),
+        "rationale_available" to (question.rationale != null),
+      ),
+    )
   }
 
   val onExport = rememberAttemptExportLauncher(resultViewModel)

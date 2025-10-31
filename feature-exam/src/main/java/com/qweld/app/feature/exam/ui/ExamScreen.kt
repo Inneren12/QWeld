@@ -22,36 +22,118 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.model.DeficitDialogUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import kotlinx.coroutines.flow.collectLatest
+import java.util.Locale
 
 @Composable
 fun ExamScreen(
   viewModel: ExamViewModel,
   onNavigateToResult: () -> Unit,
+  analytics: Analytics,
   modifier: Modifier = Modifier,
 ) {
   val uiState by viewModel.uiState
-  LaunchedEffect(viewModel) {
+  var loggedAttemptId by remember { mutableStateOf<String?>(null) }
+
+  LaunchedEffect(uiState.attempt?.attemptId) {
+    val attempt = uiState.attempt ?: return@LaunchedEffect
+    if (loggedAttemptId == attempt.attemptId) return@LaunchedEffect
+    loggedAttemptId = attempt.attemptId
+    analytics.log(
+      "exam_start",
+      mapOf(
+        "attempt_id" to attempt.attemptId,
+        "mode" to attempt.mode.name.lowercase(Locale.US),
+        "locale" to attempt.locale.uppercase(Locale.US),
+        "question_count" to attempt.totalQuestions,
+      ),
+    )
+  }
+
+  LaunchedEffect(uiState.deficitDialog) {
+    val dialog = uiState.deficitDialog ?: return@LaunchedEffect
+    val taskIds = dialog.details.joinToString(",") { it.taskId }.takeIf { it.isNotBlank() }
+    val missingTotal = dialog.details.sumOf { it.missing }
+    analytics.log(
+      "deficit_dialog",
+      mapOf(
+        "task_ids" to taskIds,
+        "detail_count" to dialog.details.size,
+        "missing_total" to missingTotal,
+      ),
+    )
+  }
+
+  LaunchedEffect(viewModel, analytics) {
     viewModel.events.collectLatest { event ->
       when (event) {
-        ExamViewModel.ExamEvent.NavigateToResult -> onNavigateToResult()
+        ExamViewModel.ExamEvent.NavigateToResult -> {
+          val resultData = viewModel.requireLatestResult()
+          val attempt = resultData.attempt
+          val totalQuestions = attempt.questions.size
+          val correctCount =
+            attempt.questions.count { assembled ->
+              val questionId = assembled.question.id
+              val selected = resultData.answers[questionId]
+              selected != null && selected == assembled.question.correctChoiceId
+            }
+          val passThreshold = resultData.passThreshold
+          val passed = passThreshold?.let { resultData.scorePercent >= it }
+          val remainingSeconds = resultData.remaining?.seconds?.coerceAtLeast(0)
+          analytics.log(
+            "exam_finish",
+            mapOf(
+              "attempt_id" to resultData.attemptId,
+              "mode" to attempt.mode.name.lowercase(Locale.US),
+              "total_questions" to totalQuestions,
+              "correct_count" to correctCount,
+              "score_pct" to resultData.scorePercent,
+              "pass_threshold" to passThreshold,
+              "passed" to passed,
+              "remaining_sec" to remainingSeconds,
+            ),
+          )
+          onNavigateToResult()
+        }
       }
     }
+  }
+  val handleChoiceSelected: (String) -> Unit = { choiceId ->
+    val attempt = uiState.attempt
+    val question = attempt?.currentQuestion()
+    if (attempt != null && question != null && !question.isAnswered) {
+      analytics.log(
+        "answer_submit",
+        mapOf(
+          "attempt_id" to attempt.attemptId,
+          "question_id" to question.id,
+          "choice_id" to choiceId,
+          "mode" to attempt.mode.name.lowercase(Locale.US),
+          "question_position" to attempt.currentIndex + 1,
+          "total_questions" to attempt.totalQuestions,
+        ),
+      )
+    }
+    viewModel.submitAnswer(choiceId)
   }
   ExamScreenContent(
     state = uiState,
     modifier = modifier,
-    onChoiceSelected = viewModel::submitAnswer,
+    onChoiceSelected = handleChoiceSelected,
     onNext = viewModel::nextQuestion,
     onPrevious = viewModel::previousQuestion,
     onDismissDeficit = viewModel::dismissDeficitDialog,

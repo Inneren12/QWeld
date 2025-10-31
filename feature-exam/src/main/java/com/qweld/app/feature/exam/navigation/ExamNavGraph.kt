@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -40,6 +41,7 @@ fun ExamNavGraph(
   answersRepository: AnswersRepository,
   statsRepository: UserStatsRepository,
   appVersion: String,
+  analytics: Analytics,
   modifier: Modifier = Modifier,
 ) {
   val attemptExporter =
@@ -105,6 +107,7 @@ fun ExamNavGraph(
           Timber.i("[ui_nav] screen=Result")
           navController.navigate(ExamDestinations.RESULT) { launchSingleTop = true }
         },
+        analytics = analytics,
       )
     }
     composable(route = ExamDestinations.RESULT) { backStackEntry ->
@@ -164,6 +167,7 @@ fun ExamNavGraph(
         explanationRepository = explanationRepository,
         onBack = { navController.popBackStack() },
         resultViewModel = resultViewModel,
+        analytics = analytics,
       )
     }
   }

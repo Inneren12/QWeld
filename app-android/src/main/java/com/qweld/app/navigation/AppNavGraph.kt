@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
@@ -56,6 +57,7 @@ fun AppNavGraph(
   answersRepository: AnswersRepository,
   statsRepository: UserStatsRepository,
   appVersion: String,
+  analytics: Analytics,
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
@@ -120,6 +122,12 @@ fun AppNavGraph(
     }
 
   fun startGoogle(action: GoogleAction) {
+    when (action) {
+      GoogleAction.SignIn ->
+        analytics.log("auth_signin", mapOf("provider" to "google", "method" to "oauth"))
+      GoogleAction.Link ->
+        analytics.log("auth_link", mapOf("provider" to "google", "method" to "oauth"))
+    }
     pendingGoogleAction = action
     errorMessage = null
     isLoading = true
@@ -170,23 +178,31 @@ fun AppNavGraph(
             SignInScreen(
               isLoading = isLoading,
               errorMessage = errorMessage,
-            onContinueAsGuest = {
-              runAuthAction(
-                scope = scope,
-                setLoading = { isLoading = it },
-                setError = { errorMessage = it },
-                defaultError = genericErrorText,
-              ) {
-                authService.signInAnonymously()
-              }
-            },
-            onSignInWithGoogle = { startGoogle(GoogleAction.SignIn) },
-            onSignInWithEmail = { email, password ->
-              runAuthAction(
-                scope = scope,
-                setLoading = { isLoading = it },
-                setError = { errorMessage = it },
-                defaultError = genericErrorText,
+              onContinueAsGuest = {
+                analytics.log(
+                  "auth_signin",
+                  mapOf("provider" to "anonymous", "method" to "anonymous"),
+                )
+                runAuthAction(
+                  scope = scope,
+                  setLoading = { isLoading = it },
+                  setError = { errorMessage = it },
+                  defaultError = genericErrorText,
+                ) {
+                  authService.signInAnonymously()
+                }
+              },
+              onSignInWithGoogle = { startGoogle(GoogleAction.SignIn) },
+              onSignInWithEmail = { email, password ->
+                analytics.log(
+                  "auth_signin",
+                  mapOf("provider" to "password", "method" to "password"),
+                )
+                runAuthAction(
+                  scope = scope,
+                  setLoading = { isLoading = it },
+                  setError = { errorMessage = it },
+                  defaultError = genericErrorText,
               ) {
                 authService.signInWithEmail(email, password)
               }
@@ -211,6 +227,7 @@ fun AppNavGraph(
           answersRepository = answersRepository,
           statsRepository = statsRepository,
           appVersion = appVersion,
+          analytics = analytics,
         )
       }
       composable(Routes.SYNC) {

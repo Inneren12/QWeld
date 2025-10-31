@@ -3,11 +3,15 @@ plugins {
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.plugin.compose")
   id("com.google.gms.google-services")
+  id("com.google.firebase.crashlytics")
 }
 
 android {
   namespace = "com.qweld.app"
   compileSdk = 36
+
+  val enableAnalyticsDebug =
+    providers.gradleProperty("enableAnalyticsDebug").map { it.toBoolean() }.getOrElse(false)
 
   defaultConfig {
     applicationId = "com.qweld.app"
@@ -20,9 +24,11 @@ android {
   }
 
   buildTypes {
+    debug { buildConfigField("Boolean", "ENABLE_ANALYTICS", enableAnalyticsDebug.toString()) }
     release {
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+      buildConfigField("Boolean", "ENABLE_ANALYTICS", "true")
     }
   }
 
@@ -66,6 +72,8 @@ dependencies {
   implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
   implementation("com.google.firebase:firebase-auth-ktx")
   implementation("com.google.android.gms:play-services-auth:21.2.0")
+  implementation("com.google.firebase:firebase-analytics-ktx")
+  implementation("com.google.firebase:firebase-crashlytics-ktx")
 
   debugImplementation("androidx.compose.ui:ui-tooling:1.7.1")
   debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.1")

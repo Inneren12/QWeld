@@ -7,6 +7,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
+import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
 import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -15,19 +21,20 @@ import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.auth.firebase.FirebaseAuthService
 import com.qweld.app.navigation.AppNavGraph
-import com.google.firebase.auth.FirebaseAuth
 import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
-    setContent { QWeldAppRoot() }
+    val analytics = FirebaseAnalyticsImpl(Firebase.analytics, BuildConfig.ENABLE_ANALYTICS)
+    Firebase.crashlytics.setCrashlyticsCollectionEnabled(BuildConfig.ENABLE_ANALYTICS)
+    setContent { QWeldAppRoot(analytics = analytics) }
   }
 }
 
 @Composable
-fun QWeldAppRoot() {
+fun QWeldAppRoot(analytics: Analytics) {
   val context = LocalContext.current
   val appContext = context.applicationContext
   val questionRepository = remember(appContext) { AssetQuestionRepository(appContext) }
@@ -46,6 +53,7 @@ fun QWeldAppRoot() {
       answersRepository = answersRepository,
       statsRepository = statsRepository,
       appVersion = BuildConfig.VERSION_NAME,
+      analytics = analytics,
     )
   }
 }

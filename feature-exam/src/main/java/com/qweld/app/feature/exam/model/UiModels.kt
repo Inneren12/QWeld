@@ -11,6 +11,7 @@ data class ExamUiState(
 )
 
 data class ExamAttemptUiState(
+  val attemptId: String,
   val mode: ExamMode,
   val locale: String,
   val questions: List<ExamQuestionUiModel>,

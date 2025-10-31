@@ -304,12 +304,14 @@ class ExamViewModel(
     }
     val index = attemptResult.currentIndex.coerceIn(0, uiQuestions.lastIndex.coerceAtLeast(0))
     markQuestionSeen(attemptResult, index)
-    val attemptState = ExamAttemptUiState(
-      mode = attempt.mode,
-      locale = attempt.locale,
-      questions = uiQuestions,
-      currentIndex = index,
-    )
+    val attemptState =
+      ExamAttemptUiState(
+        attemptId = attemptResult.attemptId,
+        mode = attempt.mode,
+        locale = attempt.locale,
+        questions = uiQuestions,
+        currentIndex = index,
+      )
     _uiState.value = ExamUiState(
       isLoading = false,
       attempt = attemptState,
