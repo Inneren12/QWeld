@@ -28,6 +28,9 @@
     <string name="settings_export_logs">Export logs</string>
     <string name="settings_clear_attempts">Clear local attempts</string>
     <string name="settings_clear_cache">Clear per-task cache</string>
+    <string name="settings_clear_cache_en">Clear cache EN</string>
+    <string name="settings_clear_cache_ru">Clear cache RU</string>
     <string name="settings_cleared_message">Cleared</string>
+    <string name="settings_cleared_locale_message">Cleared %1$s cache.</string>
     <string name="settings_error_message">Something went wrong</string>
 </resources>
