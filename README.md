@@ -62,6 +62,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Configure Git hooks so Spotless runs automatically before each commit: `git config core.hooksPath .githooks`.
 - Copy `local.properties.sample` to `local.properties` and update `sdk.dir` with your Android SDK path.
 
+### F7 Firebase Auth: setup & debug
+- Debug builds include Firebase Authentication with guest, Google, and email/password flows.
+- Place the debug `google-services.json` under `app-android/src/debug/` (kept out of source control) to enable Google Sign-In.
+- Launching the app now opens the auth flow first; successful sign-in or linking returns to the exam navigator and logs `[auth_signin]`, `[auth_link]`, and `[auth_error]` markers via Timber.
+
 ### Exam assembly (F3)
 Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted PRACTICE.
 

@@ -1,0 +1,14 @@
+<resources>
+    <string name="auth_sign_in_title">Sign in to QWeld</string>
+    <string name="auth_email_label">Email</string>
+    <string name="auth_password_label">Password</string>
+    <string name="auth_sign_in_email_action">Sign in with Email</string>
+    <string name="auth_sign_in_google_action">Sign in with Google</string>
+    <string name="auth_continue_as_guest">Continue as guest</string>
+    <string name="auth_link_title">Upgrade your account</string>
+    <string name="auth_link_message">Link your guest profile to keep progress across devices.</string>
+    <string name="auth_link_with_google">Link with Google</string>
+    <string name="auth_error_generic">Authentication failed. Please try again.</string>
+    <string name="auth_error_google_sign_in">Google sign-in was cancelled. Please try again.</string>
+    <string name="auth_error_missing_token">Unable to obtain Google token. Please retry.</string>
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="auth_sign_in_title">Войдите в QWeld</string>
+    <string name="auth_email_label">Эл. почта</string>
+    <string name="auth_password_label">Пароль</string>
+    <string name="auth_sign_in_email_action">Войти по email</string>
+    <string name="auth_sign_in_google_action">Войти через Google</string>
+    <string name="auth_continue_as_guest">Продолжить как гость</string>
+    <string name="auth_link_title">Сохраните прогресс</string>
+    <string name="auth_link_message">Привяжите гостевой профиль, чтобы сохранить результаты на всех устройствах.</string>
+    <string name="auth_link_with_google">Привязать к Google</string>
+    <string name="auth_error_generic">Не удалось войти. Попробуйте ещё раз.</string>
+    <string name="auth_error_google_sign_in">Вход через Google отменён. Попробуйте снова.</string>
+    <string name="auth_error_missing_token">Не удалось получить токен Google. Повторите попытку.</string>
+</resources>
