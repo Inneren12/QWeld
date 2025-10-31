@@ -11,6 +11,7 @@ import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
@@ -42,6 +43,7 @@ fun ExamNavGraph(
   statsRepository: UserStatsRepository,
   appVersion: String,
   analytics: Analytics,
+  userPrefs: UserPrefsDataStore,
   modifier: Modifier = Modifier,
 ) {
   val attemptExporter =
@@ -112,6 +114,7 @@ fun ExamNavGraph(
           navController.navigate(ExamDestinations.RESULT) { launchSingleTop = true }
         },
         analytics = analytics,
+        userPrefs = userPrefs,
       )
     }
     composable(route = ExamDestinations.RESULT) { backStackEntry ->

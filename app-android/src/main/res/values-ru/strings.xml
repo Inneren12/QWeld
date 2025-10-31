@@ -22,6 +22,9 @@
     <string name="settings_fallback_label">Подставлять английский при отсутствии RU (только практика)</string>
     <string name="settings_fallback_subtitle">Если включено, в практике используются задания EN, когда нет русской версии.</string>
     <string name="settings_section_tools">Инструменты</string>
+    <string name="settings_section_accessibility">Доступность</string>
+    <string name="settings_haptics_label">Haptics feedback</string>
+    <string name="settings_sounds_label">Click sound on submit</string>
     <string name="settings_export_logs">Экспорт логов</string>
     <string name="settings_clear_attempts">Очистить локальные попытки</string>
     <string name="settings_clear_cache">Очистить кэш заданий</string>

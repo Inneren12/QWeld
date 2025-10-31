@@ -42,6 +42,14 @@ class UserPrefsDataStore internal constructor(
     preferences[FALLBACK_TO_EN_KEY] ?: DEFAULT_FALLBACK_TO_EN
   }
 
+  val hapticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
+    preferences[HAPTICS_ENABLED_KEY] ?: DEFAULT_HAPTICS_ENABLED
+  }
+
+  val soundsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
+    preferences[SOUNDS_ENABLED_KEY] ?: DEFAULT_SOUNDS_ENABLED
+  }
+
   @Deprecated("Use fallbackToEN instead", replaceWith = ReplaceWith("fallbackToEN"))
   val allowFallbackToEN: Flow<Boolean> = fallbackToEN
 
@@ -61,6 +69,14 @@ class UserPrefsDataStore internal constructor(
     setFallbackToEN(value)
   }
 
+  suspend fun setHapticsEnabled(value: Boolean) {
+    dataStore.edit { preferences -> preferences[HAPTICS_ENABLED_KEY] = value }
+  }
+
+  suspend fun setSoundsEnabled(value: Boolean) {
+    dataStore.edit { preferences -> preferences[SOUNDS_ENABLED_KEY] = value }
+  }
+
   suspend fun clear() {
     dataStore.edit { it.clear() }
   }
@@ -69,10 +85,14 @@ class UserPrefsDataStore internal constructor(
     val DEFAULT_ANALYTICS_ENABLED: Boolean = BuildConfig.ENABLE_ANALYTICS
     const val DEFAULT_PRACTICE_SIZE: Int = 20
     const val DEFAULT_FALLBACK_TO_EN: Boolean = false
+    const val DEFAULT_HAPTICS_ENABLED: Boolean = true
+    const val DEFAULT_SOUNDS_ENABLED: Boolean = false
 
     private const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
     private val PRACTICE_SIZE_KEY = intPreferencesKey("practice_size")
     private val FALLBACK_TO_EN_KEY = booleanPreferencesKey("allow_fallback_en")
+    private val HAPTICS_ENABLED_KEY = booleanPreferencesKey("haptics_enabled")
+    private val SOUNDS_ENABLED_KEY = booleanPreferencesKey("sounds_enabled")
   }
 }

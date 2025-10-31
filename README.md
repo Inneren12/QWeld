@@ -88,6 +88,12 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Privacy includes a single toggle that persists to `UserPrefsDataStore`; disabling analytics keeps Timber logs but stops Firebase event delivery until re-enabled.
 - Practice exposes a 5–50 slider/number field for the default question count plus an RU→EN fallback switch (practice only), both stored in the same DataStore.
 - Tools provide one-tap log export (SAF), a combined "Clear local attempts" action (wipes Room attempts/answers), and "Clear per-task cache" for the asset repository—each posts a confirmation snackbar and logs `[settings_action]` markers with `result=ok|error`.
+- Tools now include an **Accessibility** sub-section with persistent toggles for haptics (enabled by default) and submit click sounds (opt-in) backed by `UserPrefsDataStore`.
+
+### Haptics & sounds
+- Exam submissions fire a soft `HapticFeedbackType.LongPress` when the **Haptics feedback** toggle is on, logging `[ux_feedback] haptics=true|false sounds=true|false event=answer_submit` alongside analytics.
+- An optional system click (`View.playSoundEffect(SoundEffectConstants.CLICK)`) supplements the vibration when **Click sound on submit** is enabled.
+- Both switches persist via `UserPrefsDataStore` (`hapticsEnabled` defaults to `true`, `soundsEnabled` defaults to `false`) and are consumed by `ExamScreen` before calling `submitAnswer`.
 
 ### F7-B: Sign out & guards
 - Top app bar exposes an account menu with **Sync** and **Sign out** actions (Sign out appears only for authenticated users).
@@ -102,7 +108,7 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 
 ### F6-A DB & Stats
 - `:core-data` now ships a Room v1 schema (`AttemptEntity`, `AnswerEntity`) with DAOs, repositories, and a `UserStatsRepositoryRoom` implementation powering F3 weighted selection.
-- User preferences live in `UserPrefsDataStore` (practice size default 20, EN fallback opt-in) with flows + edit helpers.
+- User preferences live in `UserPrefsDataStore` (practice size default 20, EN fallback opt-in, haptics on by default, submit sound opt-in) with flows + edit helpers.
 - Run `./gradlew :core-data:test` to verify DAO CRUD and stats aggregation behaviour end-to-end.
 
 ### F6-B integration

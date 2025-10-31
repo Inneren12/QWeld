@@ -22,6 +22,9 @@
     <string name="settings_fallback_label">Fallback to English for missing RU (Practice only)</string>
     <string name="settings_fallback_subtitle">When enabled, practice sessions use EN tasks if RU is missing.</string>
     <string name="settings_section_tools">Tools</string>
+    <string name="settings_section_accessibility">Accessibility</string>
+    <string name="settings_haptics_label">Haptics feedback</string>
+    <string name="settings_sounds_label">Click sound on submit</string>
     <string name="settings_export_logs">Export logs</string>
     <string name="settings_clear_attempts">Clear local attempts</string>
     <string name="settings_clear_cache">Clear per-task cache</string>
