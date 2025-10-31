@@ -2,7 +2,10 @@ package com.qweld.app.feature.exam.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.feature.exam.data.AssetExplanationRepository
+import com.qweld.app.feature.exam.explain.ExplanationRepositoryImpl
 import com.qweld.app.feature.exam.model.ReviewChoiceUiModel
 import com.qweld.app.feature.exam.model.ReviewQuestionUiModel
 import java.util.LinkedHashMap
@@ -10,6 +13,11 @@ import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ReviewViewModel(
   resultData: ExamViewModel.ExamResultData,
@@ -24,8 +32,25 @@ class ReviewViewModel(
   )
 
   private var currentFilters: ReviewFilters = ReviewFilters()
+  private var currentSearchInput: String = ""
+  private var appliedSearchQuery: String = ""
+  private var searchMatches: Map<String, ReviewSearchHighlights> = emptyMap()
+  private val explanationRepository = ExplanationRepositoryImpl()
+  private val searchQueries = MutableStateFlow("")
+
   private val _uiState = MutableStateFlow(createState(currentFilters))
   val uiState: StateFlow<ReviewUiState> = _uiState.asStateFlow()
+
+  init {
+    viewModelScope.launch {
+      searchQueries
+        .debounce(150)
+        .distinctUntilChanged()
+        .collect { query ->
+          applySearch(query)
+        }
+    }
+  }
 
   fun toggleWrongOnly() {
     updateFilters(currentFilters.copy(wrongOnly = !currentFilters.wrongOnly))
@@ -63,17 +88,119 @@ class ReviewViewModel(
     )
   }
 
+  fun onSearchInputChange(query: String) {
+    currentSearchInput = query
+    searchQueries.value = query
+    if (query.isBlank()) {
+      if (appliedSearchQuery.isBlank()) {
+        _uiState.update { state ->
+          state.copy(search = state.search.copy(input = query))
+        }
+      } else {
+        appliedSearchQuery = ""
+        searchMatches = emptyMap()
+        _uiState.value = createState(currentFilters)
+      }
+      return
+    }
+    _uiState.update { state ->
+      state.copy(search = state.search.copy(input = query))
+    }
+  }
+
+  fun onExplanationLoaded(questionId: String, explanation: AssetExplanationRepository.Explanation?) {
+    explanationRepository.put(questionId, explanation)
+    if (appliedSearchQuery.isBlank()) return
+    searchMatches = buildSearchMatches(appliedSearchQuery)
+    _uiState.value = createState(currentFilters)
+  }
+
+  private fun applySearch(raw: String) {
+    val query = raw.trim()
+    if (query == appliedSearchQuery) {
+      if (query.isBlank()) {
+        Timber.i("[review_search] q=\"\" hits=0")
+      }
+      return
+    }
+    appliedSearchQuery = query
+    searchMatches = if (query.isBlank()) emptyMap() else buildSearchMatches(query)
+    val state = createState(currentFilters)
+    if (query.isNotEmpty()) {
+      Timber.i("[review_search] q=\"%s\" hits=%d", query, state.search.hits)
+    } else {
+      Timber.i("[review_search] q=\"\" hits=0")
+    }
+    _uiState.value = state
+  }
+
+  private fun buildSearchMatches(query: String): Map<String, ReviewSearchHighlights> {
+    val explanationHits = explanationRepository.search(query)
+    val matches = mutableMapOf<String, ReviewSearchHighlights>()
+    for (question in allQuestions) {
+      val stemMatches = findMatches(question.stem, query)
+      val choiceMatches = mutableMapOf<String, List<IntRange>>()
+      for (choice in question.choices) {
+        val choiceMatch = findMatches(choice.text, query)
+        if (choiceMatch.isNotEmpty()) {
+          choiceMatches[choice.id] = choiceMatch
+        }
+      }
+      val rationaleMatches = question.rationale?.let { findMatches(it, query) }.orEmpty()
+      val explanationMatch = explanationHits.contains(question.id)
+      if (stemMatches.isNotEmpty() || choiceMatches.isNotEmpty() || rationaleMatches.isNotEmpty() || explanationMatch) {
+        matches[question.id] = ReviewSearchHighlights(
+          stem = stemMatches,
+          choices = choiceMatches,
+          rationale = rationaleMatches,
+          matchesExplanation = explanationMatch,
+        )
+      }
+    }
+    return matches
+  }
+
+  private fun findMatches(text: String, query: String): List<IntRange> {
+    if (text.isBlank() || query.isBlank()) return emptyList()
+    val lowerText = text.lowercase(Locale.getDefault())
+    val lowerQuery = query.lowercase(Locale.getDefault())
+    val ranges = mutableListOf<IntRange>()
+    var index = lowerText.indexOf(lowerQuery)
+    while (index >= 0) {
+      val endExclusive = index + lowerQuery.length
+      ranges += index until endExclusive
+      index = lowerText.indexOf(lowerQuery, startIndex = endExclusive)
+    }
+    return ranges
+  }
+
   private fun createState(filters: ReviewFilters): ReviewUiState {
     val filtered = allQuestions.filter { question ->
       (!filters.wrongOnly || !question.isCorrect) && (!filters.flaggedOnly || question.isFlagged)
     }
-    val displayItems = buildDisplayItems(filters, filtered)
+    val matchesForFiltered = if (appliedSearchQuery.isBlank()) {
+      emptyMap()
+    } else {
+      searchMatches.filterKeys { id -> filtered.any { it.id == id } }
+    }
+    val searched = if (appliedSearchQuery.isBlank()) {
+      filtered
+    } else {
+      filtered.filter { matchesForFiltered.containsKey(it.id) }
+    }
+    val displayItems = buildDisplayItems(filters, searched)
     return ReviewUiState(
       filters = filters,
       allQuestions = allQuestions,
       filteredQuestions = filtered,
       displayItems = displayItems,
       totals = totals,
+      search = ReviewSearchState(
+        input = currentSearchInput,
+        applied = appliedSearchQuery,
+        hits = if (appliedSearchQuery.isBlank()) 0 else searched.size,
+        matches = matchesForFiltered,
+      ),
     )
   }
 
@@ -153,9 +280,24 @@ data class ReviewUiState(
   val filteredQuestions: List<ReviewQuestionUiModel> = emptyList(),
   val displayItems: List<ReviewListItem> = emptyList(),
   val totals: ReviewTotals = ReviewTotals(all = 0, wrong = 0, flagged = 0),
+  val search: ReviewSearchState = ReviewSearchState(),
 ) {
   val isEmpty: Boolean get() = allQuestions.isEmpty()
 }
+
+data class ReviewSearchState(
+  val input: String = "",
+  val applied: String = "",
+  val hits: Int = 0,
+  val matches: Map<String, ReviewSearchHighlights> = emptyMap(),
+)
+
+data class ReviewSearchHighlights(
+  val stem: List<IntRange> = emptyList(),
+  val choices: Map<String, List<IntRange>> = emptyMap(),
+  val rationale: List<IntRange> = emptyList(),
+  val matchesExplanation: Boolean = false,
+)
 
 sealed interface ReviewListItem {
   data class Section(val title: String) : ReviewListItem

@@ -38,9 +38,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -49,6 +53,7 @@ import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.model.ReviewChoiceUiModel
 import com.qweld.app.feature.exam.model.ReviewQuestionUiModel
+import com.qweld.app.feature.exam.vm.ReviewSearchHighlights
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ReviewListItem
@@ -62,6 +67,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.platform.LocalContext
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -85,7 +91,14 @@ fun ReviewScreen(
   var explanation by remember { mutableStateOf<AssetExplanationRepository.Explanation?>(null) }
   var isLoadingExplanation by remember { mutableStateOf(false) }
   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+  val glossarySheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
   val minTouchTarget = dimensionResource(id = R.dimen.min_touch_target)
+  var isGlossaryOpen by remember { mutableStateOf(false) }
+  var glossaryEntries by remember { mutableStateOf<List<GlossaryEntry>>(emptyList()) }
+  var isGlossaryLoading by remember { mutableStateOf(false) }
+  var glossaryError by remember { mutableStateOf(false) }
+  val context = LocalContext.current
+  val glossaryLocale = remember(locale) { Locale(locale.ifBlank { Locale.getDefault().language }) }
 
   LaunchedEffect(resultData.attemptId) {
     val totalQuestions = reviewQuestions.size
@@ -125,6 +138,7 @@ fun ReviewScreen(
     }
     explanation = loaded
     isLoadingExplanation = false
+    reviewViewModel.onExplanationLoaded(question.id, loaded)
     val index = reviewQuestions.indexOfFirst { it.id == question.id }
     val position = if (index >= 0) index + 1 else null
     analytics.log(
@@ -148,6 +162,25 @@ fun ReviewScreen(
   LaunchedEffect(Unit) {
     Timber.i("[a11y_check] scale=1.3 pass=true | attrs=%s", "{}")
     Timber.i("[a11y_fix] target=review_screen desc=touch_target>=48dp,cd=filters")
+  }
+
+  LaunchedEffect(isGlossaryOpen) {
+    if (!isGlossaryOpen) return@LaunchedEffect
+    Timber.i("[glossary_open] locale=%s", glossaryLocale.language.uppercase(Locale.US))
+    if (glossaryEntries.isNotEmpty() || isGlossaryLoading) return@LaunchedEffect
+    isGlossaryLoading = true
+    val result = withContext(Dispatchers.IO) {
+      val outcome = runCatching { loadGlossaryFromAssets(context, glossaryLocale) }
+      glossaryError = outcome.isFailure
+      outcome.getOrElse { throwable ->
+        Timber.e(throwable, "Failed to load glossary for locale=%s", glossaryLocale.language)
+        emptyList()
+      }
+    }
+    if (result.isNotEmpty()) {
+      glossaryEntries = result
+    }
+    isGlossaryLoading = false
   }
 
   Scaffold(
@@ -205,6 +238,24 @@ fun ReviewScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp),
       ) {
         item {
+          ReviewSearchBar(
+            query = uiState.search.input,
+            hits = uiState.search.hits,
+            onQueryChange = reviewViewModel::onSearchInputChange,
+            onClear = { reviewViewModel.onSearchInputChange("") },
+          )
+        }
+        item {
+          Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End,
+          ) {
+            TextButton(onClick = { isGlossaryOpen = true }) {
+              Text(text = stringResource(id = R.string.review_glossary))
+            }
+          }
+        }
+        item {
           ReviewFilterPanel(
             filters = uiState.filters,
             totals = uiState.totals,
@@ -226,7 +277,12 @@ fun ReviewScreen(
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 24.dp),
                 contentAlignment = Alignment.Center,
               ) {
-                Text(text = stringResource(id = R.string.review_empty))
+                val emptyText = if (uiState.search.applied.isNotBlank()) {
+                  stringResource(id = R.string.review_search_no_hits)
+                } else {
+                  stringResource(id = R.string.review_empty)
+                }
+                Text(text = emptyText)
               }
             }
           }
@@ -242,11 +298,13 @@ fun ReviewScreen(
               }
               is ReviewListItem.Question -> {
                 val question = item.question
+                val highlight = uiState.search.matches[question.id]
                 ReviewQuestionCard(
                   index = item.index,
                   total = item.total,
                   question = question,
                   onExplain = { sheetQuestion = question },
+                  highlight = highlight,
                 )
               }
             }
@@ -269,6 +327,22 @@ fun ReviewScreen(
         modifier = Modifier
           .fillMaxWidth()
           .verticalScroll(rememberScrollState())
+          .padding(horizontal = 24.dp, vertical = 16.dp),
+      )
+    }
+  }
+
+  if (isGlossaryOpen) {
+    ModalBottomSheet(
+      onDismissRequest = { isGlossaryOpen = false },
+      sheetState = glossarySheetState,
+    ) {
+      GlossarySheet(
+        entries = glossaryEntries,
+        isLoading = isGlossaryLoading,
+        hasError = glossaryError,
+        modifier = Modifier
+          .fillMaxWidth()
           .padding(horizontal = 24.dp, vertical = 16.dp),
       )
     }
@@ -382,11 +456,14 @@ private fun ReviewQuestionCard(
   total: Int,
   question: ReviewQuestionUiModel,
   onExplain: () -> Unit,
+  highlight: ReviewSearchHighlights?,
   modifier: Modifier = Modifier,
 ) {
   val minTouchTarget = dimensionResource(id = R.dimen.min_touch_target)
   val selectedChoice = question.choices.firstOrNull { it.isSelected }
   val correctChoice = question.choices.firstOrNull { it.isCorrect }
+  val highlightColor = MaterialTheme.colorScheme.tertiaryContainer
+  val stemText = highlightAnnotatedText(question.stem, highlight?.stem.orEmpty(), highlightColor)
   Surface(
     modifier = modifier.fillMaxWidth(),
     shape = RoundedCornerShape(16.dp),
@@ -402,12 +479,17 @@ private fun ReviewQuestionCard(
         fontWeight = FontWeight.SemiBold,
       )
       Text(
-        text = question.stem,
+        text = stemText,
         style = MaterialTheme.typography.titleMedium,
       )
       Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         question.choices.forEach { choice ->
-          ChoiceSummary(choice = choice)
+          val choiceText = highlightAnnotatedText(
+            text = choice.text,
+            matches = highlight?.choices?.get(choice.id).orEmpty(),
+            highlightColor = highlightColor,
+          )
+          ChoiceSummary(choice = choice, highlightedText = choiceText)
         }
       }
       Divider()
@@ -444,11 +526,20 @@ private fun ReviewQuestionCard(
             text = stringResource(id = R.string.review_rationale_label),
             style = MaterialTheme.typography.titleSmall,
           )
-          Text(
+          val rationaleText = highlightAnnotatedText(
             text = rationale,
-            style = MaterialTheme.typography.bodyMedium,
+            matches = highlight?.rationale.orEmpty(),
+            highlightColor = highlightColor,
           )
+          Text(text = rationaleText, style = MaterialTheme.typography.bodyMedium)
         }
+      }
+      if (highlight?.matchesExplanation == true) {
+        Text(
+          text = stringResource(id = R.string.review_search_match_explanation),
+          style = MaterialTheme.typography.labelMedium,
+          color = MaterialTheme.colorScheme.tertiary,
+        )
       }
       Row(
         modifier = Modifier.fillMaxWidth(),
@@ -474,6 +565,7 @@ private fun ReviewQuestionCard(
 @Composable
 private fun ChoiceSummary(
   choice: ReviewChoiceUiModel,
+  highlightedText: androidx.compose.ui.text.AnnotatedString,
   modifier: Modifier = Modifier,
 ) {
   val (containerColor, contentColor) = when {
@@ -503,7 +595,7 @@ private fun ChoiceSummary(
           color = contentColor,
         )
         Text(
-          text = choice.text,
+          text = highlightedText,
           style = MaterialTheme.typography.bodyMedium,
           color = contentColor,
         )
@@ -522,6 +614,39 @@ private fun ChoiceSummary(
           fontWeight = FontWeight.SemiBold,
         )
       }
+    }
+  }
+}
+
+private fun highlightAnnotatedText(
+  text: String,
+  matches: List<IntRange>,
+  highlightColor: Color,
+): androidx.compose.ui.text.AnnotatedString {
+  if (matches.isEmpty() || text.isEmpty()) return androidx.compose.ui.text.AnnotatedString(text)
+  val sorted = matches.sortedBy { it.first }
+  val highlightStyle = SpanStyle(
+    background = highlightColor.copy(alpha = 0.45f),
+    color = MaterialTheme.colorScheme.onSurface,
+    fontWeight = FontWeight.SemiBold,
+  )
+  return buildAnnotatedString {
+    var currentIndex = 0
+    for (range in sorted) {
+      val start = range.first.coerceIn(0, text.length)
+      val endExclusive = (range.last + 1).coerceAtMost(text.length)
+      if (currentIndex < start) {
+        append(text.substring(currentIndex, start))
+      }
+      if (start < endExclusive) {
+        withStyle(highlightStyle) {
+          append(text.substring(start, endExclusive))
+        }
+      }
+      currentIndex = endExclusive
+    }
+    if (currentIndex < text.length) {
+      append(text.substring(currentIndex))
     }
   }
 }

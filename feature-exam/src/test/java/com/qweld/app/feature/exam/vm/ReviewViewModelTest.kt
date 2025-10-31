@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.Choice
@@ -15,9 +16,15 @@ import java.time.Duration
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
+import org.junit.Rule
 import org.junit.Test
 
 class ReviewViewModelTest {
+
+  @get:Rule val dispatcherRule = MainDispatcherRule()
 
   private val analytics = RecordingAnalytics()
 
@@ -150,7 +157,75 @@ class ReviewViewModelTest {
     assertEquals(1, totals["flagged"])
   }
 
-  private fun createResultData(vararg configs: QuestionConfig): ExamViewModel.ExamResultData {
+  @Test
+  fun searchFiltersQuestionsAndHighlightsStem() = runTest {
+    val resultData = createResultData(
+      QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = true, isFlagged = false),
+      QuestionConfig(taskId = "B-2", blockId = "B", isCorrect = false, isFlagged = false),
+    )
+    val viewModel = ReviewViewModel(resultData, analytics)
+
+    viewModel.onSearchInputChange("stem 0")
+    advanceTimeBy(200)
+    advanceUntilIdle()
+
+    val state = viewModel.uiState.value
+    assertEquals("stem 0", state.search.applied)
+    assertEquals(1, state.search.hits)
+    val match = state.search.matches[resultData.attempt.questions[0].question.id]
+    assertTrue(match?.stem?.isNotEmpty() == true)
+  }
+
+  @Test
+  fun searchMatchesRationaleText() = runTest {
+    val rationale = mapOf("q1" to "The weld pool must be monitored closely")
+    val resultData = createResultData(
+      QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = true, isFlagged = false),
+      QuestionConfig(taskId = "A-2", blockId = "A", isCorrect = false, isFlagged = false),
+      rationales = rationale,
+    )
+    val viewModel = ReviewViewModel(resultData, analytics)
+
+    viewModel.onSearchInputChange("weld pool")
+    advanceTimeBy(200)
+    advanceUntilIdle()
+
+    val state = viewModel.uiState.value
+    assertEquals(1, state.search.hits)
+    val match = state.search.matches["q1"]
+    assertTrue(match?.rationale?.isNotEmpty() == true)
+  }
+
+  @Test
+  fun searchIncludesLoadedExplanations() = runTest {
+    val resultData = createResultData(
+      QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = true, isFlagged = false),
+    )
+    val viewModel = ReviewViewModel(resultData, analytics)
+
+    val explanation = AssetExplanationRepository.Explanation(
+      id = "q0",
+      summary = "Always clean the base metal",
+      steps = emptyList(),
+      whyNot = emptyList(),
+      tips = emptyList(),
+    )
+    viewModel.onExplanationLoaded("q0", explanation)
+
+    viewModel.onSearchInputChange("base metal")
+    advanceTimeBy(200)
+    advanceUntilIdle()
+
+    val state = viewModel.uiState.value
+    assertEquals(1, state.search.hits)
+    val match = state.search.matches["q0"]
+    assertTrue(match?.matchesExplanation == true)
+  }
+
+  private fun createResultData(
+    vararg configs: QuestionConfig,
+    rationales: Map<String, String> = emptyMap(),
+  ): ExamViewModel.ExamResultData {
     val blueprint = ExamBlueprint(
       totalQuestions = configs.size,
       taskQuotas = configs.toList().groupBy { it.taskId }.map { (taskId, entries) ->
@@ -198,7 +273,7 @@ class ReviewViewModelTest {
       attempt = attempt,
       answers = answers,
       remaining = Duration.ZERO,
-      rationales = emptyMap(),
+      rationales = rationales,
       scorePercent = 0.0,
       passThreshold = null,
       flaggedQuestionIds = flagged,
