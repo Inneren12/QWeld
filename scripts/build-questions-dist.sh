@@ -7,6 +7,15 @@ LOG_DIR="${ROOT_DIR}/logs"
 DIST_ROOT="${ROOT_DIR}/dist/questions"
 mkdir -p "${LOG_DIR}" "${DIST_ROOT}"
 
+if command -v node >/dev/null 2>&1; then
+  node "${SCRIPT_DIR}/build-questions-dist.mjs"
+  exit 0
+fi
+
+cat <<'WARN' >&2
+[dist] WARN: Node.js is not available. Falling back to jq aggregator; per-task banks will NOT be generated.
+WARN
+
 for locale in en ru; do
   src_dir="${ROOT_DIR}/content/questions/${locale}"
   if [[ ! -d "${src_dir}" ]]; then

@@ -22,11 +22,12 @@ class AssetQuestionRepositoryTest {
       ]
     """.trimIndent()
 
-    val repository = AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader { _ -> payload.byteInputStream() },
-      localeResolver = { "en" },
-      json = Json { ignoreUnknownKeys = true },
-    )
+    val repository =
+      AssetQuestionRepository(
+        assetReader = AssetQuestionRepository.AssetReader(open = { payload.byteInputStream() }),
+        localeResolver = { "en" },
+        json = Json { ignoreUnknownKeys = true },
+      )
 
     val result = repository.loadQuestions("en")
     val success = assertIs<AssetQuestionRepository.Result.Success>(result)

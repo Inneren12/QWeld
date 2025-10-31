@@ -144,7 +144,7 @@ class ExamViewModelPersistTest {
       append("]")
     }
     return AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader { questions.byteInputStream() },
+      assetReader = AssetQuestionRepository.AssetReader(open = { questions.byteInputStream() }),
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )
