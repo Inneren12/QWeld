@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">QWeld</string>
     <string name="hello_qweld">Привет, QWeld</string>
+    <string name="menu_sync">Синхронизация</string>
+    <string name="menu_sign_out">Выйти</string>
+    <string name="sync_coming_soon">Скоро появится</string>
+    <string name="sync_back_to_exam">Назад</string>
 </resources>

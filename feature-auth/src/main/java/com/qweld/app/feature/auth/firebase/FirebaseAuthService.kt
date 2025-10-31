@@ -57,6 +57,15 @@ class FirebaseAuthService(
     }
   }
 
+  override suspend fun signOut() {
+    withContext(dispatcher) {
+      val previous = firebaseAuth.currentUser
+      firebaseAuth.signOut()
+      val uidLabel = previous?.uid ?: "anon"
+      Timber.i("[auth_signout] ok=true uid=%s", uidLabel)
+    }
+  }
+
   private suspend fun performSignIn(
     provider: String,
     block: suspend () -> FirebaseUser,

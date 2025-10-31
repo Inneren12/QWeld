@@ -18,4 +18,6 @@ interface AuthService {
   suspend fun signInWithEmail(email: String, password: String): User
 
   suspend fun linkAnonymousToGoogle(idToken: String): User
+
+  suspend fun signOut()
 }

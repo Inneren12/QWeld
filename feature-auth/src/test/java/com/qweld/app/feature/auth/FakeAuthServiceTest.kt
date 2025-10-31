@@ -44,6 +44,15 @@ class FakeAuthServiceTest {
     assertEquals("linkedToken@google.test", linked.email)
     assertEquals(linked, service.currentUser.filterNotNull().first())
   }
+
+  @Test
+  fun sign_out_clears_current_user() = runTest {
+    service.signInAnonymously()
+
+    service.signOut()
+
+    assertEquals(null, service.currentUser.first())
+  }
 }
 
 private class FakeAuthService : AuthService {
@@ -74,5 +83,9 @@ private class FakeAuthService : AuthService {
     val user = AuthService.User(uid = "google-${nextId++}", email = "$idToken@google.test", isAnonymous = false)
     state.value = user
     return user
+  }
+
+  override suspend fun signOut() {
+    state.value = null
   }
 }

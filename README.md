@@ -72,6 +72,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Place the debug `google-services.json` under `app-android/src/debug/` (kept out of source control) to enable Google Sign-In.
 - Launching the app now opens the auth flow first; successful sign-in or linking returns to the exam navigator and logs `[auth_signin]`, `[auth_link]`, and `[auth_error]` markers via Timber.
 
+### F7-B: Sign out & guards
+- Top app bar exposes an account menu with **Sync** and **Sign out** actions (Sign out appears only for authenticated users).
+- Sign out clears the Firebase session via `AuthService.signOut()` and returns to the auth flow while logging `[auth_signout]`.
+- `RequireUser` / `RequireNonAnonymous` composables guard routes; the `/sync` placeholder requires a non-anonymous user and logs `[auth_guard]` with the denial reason.
+
 ### Exam assembly (F3)
 Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted PRACTICE.
 
