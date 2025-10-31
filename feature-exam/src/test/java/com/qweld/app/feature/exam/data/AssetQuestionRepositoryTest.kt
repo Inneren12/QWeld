@@ -2,7 +2,7 @@ package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import kotlin.test.assertIs
 import org.junit.Test
 
 class AssetQuestionRepositoryTest {
@@ -29,9 +29,8 @@ class AssetQuestionRepositoryTest {
     )
 
     val result = repository.loadQuestions("en")
-
-    assertTrue(result is AssetQuestionRepository.Result.Success)
-    val questions = result.questions
+    val success = assertIs<AssetQuestionRepository.Result.Success>(result)
+    val questions = success.questions
     assertEquals(1, questions.size)
     assertEquals("Q-1", questions.first().id)
     assertEquals("C-1", questions.first().choices.first().id)
