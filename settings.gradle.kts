@@ -16,6 +16,8 @@ pluginManagement {
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
     id("com.google.gms.google-services") version "4.4.2"
     id("com.google.firebase.crashlytics") version "2.9.9"
+    id("app.cash.licensee") version "1.7.0"
+    id("org.cyclonedx.bom") version "1.9.0"
   }
 }
 

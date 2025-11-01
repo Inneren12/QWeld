@@ -1,9 +1,14 @@
+import org.cyclonedx.gradle.CycloneDxTask
+import org.gradle.api.attributes.Attribute
+
 plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.plugin.compose")
   id("com.google.gms.google-services")
   id("com.google.firebase.crashlytics")
+  id("app.cash.licensee")
+  id("org.cyclonedx.bom")
 }
 
 android {
@@ -49,6 +54,13 @@ android {
   kotlinOptions { jvmTarget = "21" }
 }
 
+afterEvaluate {
+  configurations.findByName("releaseCompileClasspath")?.attributes?.attribute(
+    Attribute.of("artifactType", String::class.java),
+    "android-classes-jar",
+  )
+}
+
 dependencies {
   implementation(project(":core-model"))
   implementation(project(":core-domain"))
@@ -83,4 +95,28 @@ dependencies {
   androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
   testImplementation("junit:junit:4.13.2")
+}
+
+licensee {
+  allow("Apache-2.0")
+  allow("MIT")
+  allow("BSD-2-Clause")
+  allow("BSD-3-Clause")
+  allow("ISC")
+  allow("MPL-2.0")
+
+  allowUrl("https://developer.android.com/studio/terms.html")
+  allowUrl("https://developer.android.com/guide/playcore/license")
+  allowUrl("https://developer.android.com/google/play/integrity/overview#tos")
+  allowUrl("https://source.android.com/license")
+}
+
+tasks.named<CycloneDxTask>("cyclonedxBom") {
+  includeConfigs.set(listOf("releaseCompileClasspath"))
+  outputFormat.set("json")
+  schemaVersion.set("1.5")
+  projectType.set("application")
+  destination.set(layout.buildDirectory.dir("reports/bom").map { it.asFile })
+  skipProjects.set(emptyList())
+  skipProjects.addAll("core-model", "core-data", "feature-exam", "feature-auth")
 }

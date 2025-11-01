@@ -71,6 +71,15 @@ jobs:
                   THRESH: '0.60'
               run: bash scripts/coverage-threshold.sh
 
+            - name: Verify OSS licenses
+              run: ./gradlew :app-android:licensee --no-daemon --stacktrace
+
+            - name: Generate third-party notices
+              run: ./gradlew generateThirdPartyNotices --no-daemon --stacktrace
+
+            - name: Generate CycloneDX SBOM
+              run: ./gradlew :app-android:cyclonedxBom --no-daemon --stacktrace
+
             - name: Upload coverage XML
               if: always()
               uses: actions/upload-artifact@v4
@@ -84,3 +93,13 @@ jobs:
               with:
                   name: qweld-debug-apk
                   path: app-android/build/outputs/apk/debug/app-android-debug.apk
+
+            - name: Upload compliance artifacts
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: oss-compliance
+                  path: |
+                      THIRD_PARTY_NOTICES.md
+                      **/build/reports/licensee/**
+                      **/build/reports/bom/**

@@ -72,6 +72,13 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Workflow `.github/workflows/dist-summary.yml` builds the flattened question banks, validates them when `scripts/validate-dist-banks.mjs` is present, and posts a Markdown summary comment to pull requests with locale totals and per-task counts.
 - Reproduce the comment locally with `node scripts/build-questions-dist.mjs && node scripts/print-dist-summary.mjs`.
 
+## License compliance & SBOM
+
+- Run `./gradlew :app-android:licensee` to enforce the allowed OSS license list (Apache-2.0, MIT, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0). The task fails the build on GPL, AGPL, or any LGPL variants.
+- Refresh the human-readable summary with `./gradlew generateThirdPartyNotices`; the task parses the licensee JSON report and rewrites `THIRD_PARTY_NOTICES.md` with a compact dependency → license table.
+- Produce a CycloneDX SBOM via `./gradlew :app-android:cyclonedxBom`; the CI workflow uploads the generated JSON alongside the raw licensee reports and notices for review.
+- GitHub Actions invokes all three tasks on every push/PR. Forbidden licenses break the pipeline, ensuring policy compliance before merge.
+
 ### F5-A assets & nav
 - Place the flattened exam banks under `app-android/src/main/assets/questions/{en,ru}/bank.v1.json`; copy them from `dist/questions/{en,ru}/bank.v1.json` after running the dist builder.
 - The Android app boots directly into the exam mode chooser powered by `:feature-exam`; it loads the localized bank on startup and shows a snackbar/toast if the asset is missing.
