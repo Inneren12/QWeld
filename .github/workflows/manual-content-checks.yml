@@ -36,15 +36,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ -x scripts/check-licenses.sh ]; then
-            echo "[licenses] run bash scripts/check-licenses.sh"
-            bash scripts/check-licenses.sh
-          elif [ -f scripts/check-licenses.mjs ]; then
-            echo "[licenses] run node scripts/check-licenses.mjs"
-            node scripts/check-licenses.mjs
-          else
-            echo "[licenses] no license checker found (scripts/check-licenses.sh or .mjs); skipping"
-          fi
+          echo "[licenses] running scripts/check-licenses.mjs"
+          node scripts/check-licenses.mjs --min-words 50
 
       - name: Plagiarism (full, sharded)
         if: ${{ inputs.run_plagiarism_full == 'true' }}
