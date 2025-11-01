@@ -54,22 +54,30 @@ jobs:
           set -euo pipefail
           mkdir -p gradle reports/sbom/deps
           cat > gradle/sbom.init.gradle <<'GRADLE_EOF'
-          allprojects {
-            afterEvaluate {
-              def targets = []
-              configurations.findAll { it.canBeResolved }.each { cfg ->
-                if (cfg.name ==~ /(?i).*(release|debug)?runtimeClasspath$/) {
-                  def taskName = "sbomCopy_${project.name}_${cfg.name}"
-                  tasks.register(taskName, Copy) {
+          // Register per-project copy tasks after all projects are evaluated,
+          // then create a single root aggregator that depends on them.
+          gradle.projectsEvaluated {
+            def rootDir = gradle.rootProject.projectDir
+            def providers = []
+            gradle.rootProject.allprojects.each { p ->
+              // collect resolvable runtime classpaths (Android/Java)
+              def cfgs = p.configurations.findAll { it.canBeResolved && it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ }
+              if (!cfgs.isEmpty()) {
+                // safe path for folder names like :app-android -> app-android
+                def safe = p.path.replace(':','_').replaceFirst('^_','')
+                cfgs.each { cfg ->
+                  def tn = "sbomCopy_${safe}_${cfg.name}"
+                  def tp = p.tasks.register(tn, Copy) {
                     from cfg
-                    into new File(rootProject.projectDir, "reports/sbom/deps/${project.name}/${cfg.name}")
+                    into new File(rootDir, "reports/sbom/deps/${safe}/${cfg.name}")
                   }
-                  targets << tasks.named(taskName)
+                  providers << tp
                 }
               }
-              if (!targets.isEmpty()) {
-                tasks.register("sbomCopyAll") { dependsOn targets }
-              }
+            }
+            // root aggregator
+            gradle.rootProject.tasks.register('sbomCopyAll') {
+              dependsOn providers
             }
           }
           GRADLE_EOF
@@ -79,8 +87,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ./gradlew -q -I gradle/sbom.init.gradle sbomCopyAll || true
+          ./gradlew -q -I gradle/sbom.init.gradle :sbomCopyAll
           echo "[sbom] deps dir size:"; du -sh reports/sbom/deps || true
+          echo "[sbom] jars copied:" $(find reports/sbom/deps -type f -name '*.jar' | wc -l || echo 0)
 
       - name: Install Syft (SBOM)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
