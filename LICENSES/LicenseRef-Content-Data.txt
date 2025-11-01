@@ -1,0 +1,6 @@
+LicenseRef-Content-Data
+========================
+
+Content assets stored under the `content/` directory are provided for internal
+training and evaluation only. Redistribution or reuse outside WelderQuiz
+projects requires prior written permission from Your Company (2023-2025).

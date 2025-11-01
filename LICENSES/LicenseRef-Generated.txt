@@ -1,0 +1,6 @@
+LicenseRef-Generated
+====================
+
+Artifacts tagged with `LicenseRef-Generated`, including `tools/codex.patch.txt`,
+are produced by automated tooling for temporary review. They do not convey
+additional usage rights and may be regenerated or discarded at any time.
