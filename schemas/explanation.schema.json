@@ -52,7 +52,8 @@
     },
     "summary": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "$comment": "Long quotes (>25 words) are flagged by scripts/check-plagiarism.mjs"
     },
     "steps": {
       "type": "array",
@@ -67,11 +68,13 @@
         "properties": {
           "title": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "$comment": "Long quotes (>25 words) are flagged by scripts/check-plagiarism.mjs"
           },
           "text": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "$comment": "Long quotes (>25 words) are flagged by scripts/check-plagiarism.mjs"
           }
         }
       }
@@ -98,7 +101,8 @@
           },
           "text": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "$comment": "Long quotes (>25 words) are flagged by scripts/check-plagiarism.mjs"
           }
         }
       }
@@ -136,11 +140,11 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "type",
-          "value"
-        ],
         "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
           "type": {
             "type": "string",
             "minLength": 1
@@ -149,11 +153,65 @@
             "type": "string",
             "minLength": 1
           },
+          "uri": {
+            "type": "string",
+            "minLength": 1
+          },
           "caption": {
             "type": "string",
             "minLength": 1
+          },
+          "license": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "license",
+                  "source",
+                  "author"
+                ],
+                "properties": {
+                  "license": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "source": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "author": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "author": {
+            "type": "string",
+            "minLength": 1
           }
-        }
+        },
+        "required": [
+          "type"
+        ],
+        "allOf": [
+          {
+            "anyOf": [
+              { "required": ["value"] },
+              { "required": ["uri"] }
+            ]
+          }
+        ]
       }
     },
     "tips": {
