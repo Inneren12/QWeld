@@ -114,7 +114,9 @@ jobs:
             def totalCounter = new AtomicInteger(0)
 
             root.allprojects.each { prj ->
-              def resolvables = prj.configurations.findAll { it.canBeResolved && it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ }
+              def resolvables = prj.configurations.findAll {
+                it.canBeResolved && it.name ==~ /(?i).*(release|debug)?(runtime|compile)Classpath$/
+              }
               resolvables.each { cfg ->
                 def safe = prj.path == ':' ? 'root' : prj.path.replace(':','_').replaceFirst('^_','')
                 def outDir = new File(rootDir, "reports/sbom/deps/${safe}/${cfg.name}")
@@ -145,7 +147,9 @@ jobs:
                 if (total == 0) {
                   println "[sbom] No artifacts copied. Known resolvable configs by module:"
                   root.allprojects.each { prj ->
-                    def cfgs = prj.configurations.findAll { it.canBeResolved && it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ }
+                    def cfgs = prj.configurations.findAll {
+                      it.canBeResolved && it.name ==~ /(?i).*(release|debug)?(runtime|compile)Classpath$/
+                    }
                     if (!cfgs.isEmpty()) {
                       println "  - ${prj.path}: " + (cfgs*.name.join(', '))
                     }
@@ -165,6 +169,14 @@ jobs:
           ./gradlew -q -I gradle/sbom.init.gradle :sbomCopyAll
           echo "[sbom] deps dir size:"; du -sh reports/sbom/deps || true
           echo "[sbom] files copied:" $(find reports/sbom/deps -type f \( -name '*.jar' -o -name '*.aar' -o -name '*.zip' \) | wc -l || echo 0)
+
+      - name: Gradle dependencies snapshot (diagnostic)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports
+          ./gradlew -q :app-android:dependencies --configuration releaseRuntimeClasspath > reports/gradle-deps.txt || true
 
       - name: Install Syft (SBOM)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
@@ -226,18 +238,20 @@ jobs:
             --output "reports/jscpd" | tee reports/jscpd/console.txt
         continue-on-error: ${{ inputs.fail_on_jscpd != 'true' }}
 
-      - name: Capture git diff summary
-        run: |
-          set -euo pipefail
-          mkdir -p reports
-          git status --short > reports/changed.txt
+      - name: Emit Markdown summary
+        run: node scripts/cc-summary.mjs
 
       - name: Upload compliance reports
         uses: actions/upload-artifact@v4
         with:
           name: code-compliance-reports
           path: |
-            reports/**
-            reports/jscpd/console.txt
-            reports/changed.txt
+            reports/gradle-deps.txt
+            reports/sbom-source.json
+            reports/sbom-deps.json
+            reports/sbom-cyclonedx.json
+            reports/deps-licenses.json
+            reports/deps-licenses-summary.json
+            reports/jscpd/**
+            reports/code-compliance-summary.md
           if-no-files-found: warn
