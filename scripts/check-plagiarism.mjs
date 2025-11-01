@@ -14,6 +14,8 @@ const REPORT_PATH = path.join(LOG_DIR, 'plagiarism-report.md');
 const THRESHOLD = Number.parseFloat(process.env.PLAG_THRESH || '0.85');
 const SHINGLE_SIZE = 5;
 const LONG_QUOTE_LIMIT = 25;
+const PROGRESS_LOG_INTERVAL = 25000;
+const skipSameIdFlag = process.argv.includes('--skip-same-id');
 
 const WORD_REGEX = /[\p{L}\p{N}][\p{L}\p{N}'’\-]*/gu;
 const QUOTE_PATTERNS = [/"([^"\\]*(?:\\.[^"\\]*)*)"/g, /“([^”]+)”/g, /«([^»]+)»/g];
@@ -341,6 +343,29 @@ function summarizeViolations(violations) {
 
 const longQuoteFailures = [];
 
+export function shouldCompareEntries(a, b, options, seenPairs) {
+  if (!a || !b) {
+    return false;
+  }
+
+  if (a.file === b.file) {
+    return false;
+  }
+
+  if (options?.skipSameId && a.id === b.id && a.type === b.type) {
+    return false;
+  }
+
+  const first = a.file <= b.file ? a.file : b.file;
+  const second = a.file <= b.file ? b.file : a.file;
+  const pairKey = `${first}::${second}`;
+  if (seenPairs.has(pairKey)) {
+    return false;
+  }
+  seenPairs.add(pairKey);
+  return true;
+}
+
 async function main() {
   const entries = [...await collectQuestions(), ...await collectExplanations()];
   const localeMap = new Map();
@@ -353,23 +378,43 @@ async function main() {
     localeMap.set(entry.locale, list);
   }
 
+  const options = { skipSameId: skipSameIdFlag };
+
   let pairsChecked = 0;
   let maxSim = 0;
   const pairResults = [];
   const failingPairs = [];
   const longQuotePairFailures = [];
 
-  for (const [locale, localeEntries] of localeMap.entries()) {
+  const totalPairs = Array.from(localeMap.values()).reduce((total, localeEntries) => {
+    const seen = new Set();
+    let count = 0;
     for (let i = 0; i < localeEntries.length; i += 1) {
       const a = localeEntries[i];
       for (let j = i + 1; j < localeEntries.length; j += 1) {
         const b = localeEntries[j];
-        if (a.file === b.file) {
+        if (shouldCompareEntries(a, b, options, seen)) {
+          count += 1;
+        }
+      }
+    }
+    return total + count;
+  }, 0);
+
+  let comparisonsDone = 0;
+
+  for (const [locale, localeEntries] of localeMap.entries()) {
+    const seenPairs = new Set();
+    for (let i = 0; i < localeEntries.length; i += 1) {
+      const a = localeEntries[i];
+      for (let j = i + 1; j < localeEntries.length; j += 1) {
+        const b = localeEntries[j];
+        if (!shouldCompareEntries(a, b, options, seenPairs)) {
           continue;
         }
-        if (a.id === b.id && a.type === b.type) {
-          // Same document variant inside locale; skip direct duplicate path matches only.
-          continue;
+        comparisonsDone += 1;
+        if (totalPairs > 0 && (comparisonsDone % PROGRESS_LOG_INTERVAL) === 0) {
+          console.log(`[plag] progress ${comparisonsDone}/${totalPairs} pairs`);
         }
         pairsChecked += 1;
         const sim = jaccardSimilarity(a.shingles, b.shingles);
@@ -400,6 +445,10 @@ async function main() {
         }
       }
     }
+  }
+
+  if (totalPairs > 0 && (comparisonsDone % PROGRESS_LOG_INTERVAL) !== 0) {
+    console.log(`[plag] progress ${comparisonsDone}/${totalPairs} pairs`);
   }
 
   for (const failure of longQuoteFailures) {
@@ -491,7 +540,9 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error('[plag_fail] fatal', err);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+  main().catch((err) => {
+    console.error('[plag_fail] fatal', err);
+    process.exitCode = 1;
+  });
+}
