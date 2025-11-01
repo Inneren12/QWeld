@@ -1,5 +1,9 @@
 name: Content Validators (quick)
 
+concurrency:
+  group: content-${{ github.ref }}
+  cancel-in-progress: false
+
 on:
   pull_request:
     branches: [ main, develop ]
@@ -23,7 +27,11 @@ on:
 jobs:
   content:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -75,3 +83,46 @@ jobs:
         with:
           name: question-bank-dist
           path: dist/questions
+
+      - name: Plagiarism (full, sharded)
+        env:
+          SHARD_INDEX: ${{ matrix.shard }}
+          SHARD_COUNT: 4
+        run: |
+          node scripts/check-plagiarism.mjs \
+            --locales en,ru \
+            --shard-index $SHARD_INDEX --shard-count $SHARD_COUNT \
+            --progress 20000 \
+            --time-budget 3300 \
+            --out "plag-shard-${SHARD_INDEX}.json"
+
+      - name: Upload shard artifact
+        if: ${{ hashFiles(format('plag-shard-{0}.json', matrix.shard)) != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plag-shard-${{ matrix.shard }}
+          path: plag-shard-${{ matrix.shard }}.json
+
+  aggregate:
+    runs-on: ubuntu-latest
+    needs: [content]
+    if: ${{ always() }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./plag
+          merge-multiple: true
+          if-no-files-found: ignore
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Merge plagiarism results
+        if: ${{ hashFiles('plag/**/*.json') != '' }}
+        run: node scripts/plagiarism-aggregate.mjs ./plag
+      - name: Upload merged report
+        if: ${{ hashFiles('plag-merged.json') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plag-merged
+          path: plag-merged.json

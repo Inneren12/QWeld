@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import crypto from 'node:crypto';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -14,6 +15,42 @@ const EXPLANATIONS_DIR = path.join(CONTENT_DIR, 'explanations');
 const N_GRAM_SIZE = 5;
 const DEFAULT_THRESHOLD = 0.7;
 const SIMILARITY_THRESHOLD = Number.parseFloat(process.env.QWELD_PLAGIARISM_THRESHOLD ?? `${DEFAULT_THRESHOLD}`);
+
+function parseArgs(argv) {
+  const result = {};
+  for (let index = 0; index < argv.length; index += 1) {
+    const entry = argv[index];
+    if (!entry.startsWith('--')) {
+      continue;
+    }
+
+    const [rawKey, rawValue] = entry.includes('=') ? entry.split(/=(.+)/u) : [entry, argv[index + 1]];
+    const key = rawKey.replace(/^--/u, '');
+    if (entry.includes('=')) {
+      result[key] = rawValue;
+    } else if (!rawValue || rawValue.startsWith('--')) {
+      result[key] = true;
+    } else {
+      result[key] = rawValue;
+      index += 1;
+    }
+  }
+  return result;
+}
+
+const args = parseArgs(process.argv.slice(2));
+const shardIndex = Number(args['shard-index'] ?? -1);
+const shardCount = Number(args['shard-count'] ?? -1);
+const timeBudgetSec = Number(args['time-budget'] ?? 0);
+const progressEvery = Number(args['progress'] ?? 0);
+const outputFile = args.out ? String(args.out) : null;
+const startedAt = Date.now();
+
+function stablePairShard(a, b, count) {
+  const key = a.file < b.file ? `${a.file}::${b.file}` : `${b.file}::${a.file}`;
+  const hash = crypto.createHash('sha1').update(key).digest().readUInt32BE(0);
+  return hash % count;
+}
 
 function normaliseWhitespace(value) {
   return value.replace(/\s+/gu, ' ').trim();
@@ -258,27 +295,37 @@ async function main() {
   }
 
   const matches = [];
-  const seenPairs = new Set();
+  const report = { duplicates: [] };
+  const entries = documents;
+  let compared = 0;
+  const totalPairs = (entries.length * (entries.length - 1)) / 2;
 
-  for (const a of documents) {
-    for (const b of documents) {
-      if (a === b) {
-        continue;
-      }
+  outer: for (let i = 0; i < entries.length; i += 1) {
+    const a = entries[i];
+    for (let j = i + 1; j < entries.length; j += 1) {
+      const b = entries[j];
 
-      // same file — нет смысла сравнивать
       if (a.file === b.file) {
         continue;
       }
 
-      const key = `${a.file}::${b.file}`;
-      const reverse = `${b.file}::${a.file}`;
-      // сравнение разных файлов даже при одинаковом id/type — разрешено
-      // защита от повторов пары
-      if (seenPairs.has(key) || seenPairs.has(reverse)) {
-        continue;
+      if (shardCount > 0 && shardIndex >= 0) {
+        if (stablePairShard(a, b, shardCount) !== shardIndex) {
+          continue;
+        }
       }
-      seenPairs.add(key);
+
+      if (timeBudgetSec > 0 && (Date.now() - startedAt) / 1000 > timeBudgetSec) {
+        console.log('[plag] time budget reached; partial results emitted');
+        break outer;
+      }
+
+      compared += 1;
+      if (progressEvery > 0 && compared % progressEvery === 0) {
+        console.log(
+          `[plag] progress ${compared}/${totalPairs} pairs (shard=${shardIndex}/${shardCount})`,
+        );
+      }
 
       const comparison = compareDocuments(a, b);
       if (!comparison) {
@@ -286,13 +333,19 @@ async function main() {
       }
 
       if (comparison.similarity >= SIMILARITY_THRESHOLD) {
-        matches.push({ a, b, ...comparison });
+        const match = { a, b, metric: '5gram', ...comparison };
+        matches.push(match);
+        report.duplicates.push(match);
       }
     }
   }
 
   matches.sort((left, right) => right.similarity - left.similarity);
   printResults(matches);
+
+  if (outputFile) {
+    await fs.writeFile(outputFile, JSON.stringify(report, null, 2));
+  }
 
   if (matches.length > 0) {
     process.exitCode = 1;
