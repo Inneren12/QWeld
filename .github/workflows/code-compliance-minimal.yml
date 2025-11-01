@@ -115,7 +115,9 @@ jobs:
 
             root.allprojects.each { prj ->
               def resolvables = prj.configurations.findAll {
-                it.canBeResolved && it.name ==~ /(?i).*(release|debug)?(runtime|compile)Classpath$/
+                it.canBeResolved &&
+                it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ &&
+                !it.name.toLowerCase().contains('test')
               }
               resolvables.each { cfg ->
                 def safe = prj.path == ':' ? 'root' : prj.path.replace(':','_').replaceFirst('^_','')
@@ -129,6 +131,8 @@ jobs:
                       prj.copy { spec ->
                         spec.from(existing)
                         spec.into(outDir)
+                        // важно: не падать на повторяющихся именах артефактов
+                        spec.duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
                       }
                     }
                     println "[sbom][${safe}:${cfg.name}] copied=" + existing.size()
@@ -148,7 +152,9 @@ jobs:
                   println "[sbom] No artifacts copied. Known resolvable configs by module:"
                   root.allprojects.each { prj ->
                     def cfgs = prj.configurations.findAll {
-                      it.canBeResolved && it.name ==~ /(?i).*(release|debug)?(runtime|compile)Classpath$/
+                      it.canBeResolved &&
+                      it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ &&
+                      !it.name.toLowerCase().contains('test')
                     }
                     if (!cfgs.isEmpty()) {
                       println "  - ${prj.path}: " + (cfgs*.name.join(', '))
@@ -168,7 +174,7 @@ jobs:
           set -euo pipefail
           ./gradlew -q -I gradle/sbom.init.gradle :sbomCopyAll
           echo "[sbom] deps dir size:"; du -sh reports/sbom/deps || true
-          echo "[sbom] files copied:" $(find reports/sbom/deps -type f \( -name '*.jar' -o -name '*.aar' -o -name '*.zip' \) | wc -l || echo 0)
+          echo "[sbom] files copied:" $(find reports/sbom/deps -type f \( -name '*.jar' -o -name '*.aar' \) | wc -l || echo 0)
 
       - name: Gradle dependencies snapshot (diagnostic)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
@@ -233,7 +239,7 @@ jobs:
             --exclude "**/build/**" \
             --exclude "**/test/**" \
             --exclude "**/.*/**" \
-            --min-tokens "${{ inputs.jscpd_min_tokens || '70' }}" \
+            --min-tokens "70" \
             --reporters "console,html,json" \
             --output "reports/jscpd" | tee reports/jscpd/console.txt
         continue-on-error: ${{ inputs.fail_on_jscpd != 'true' }}
