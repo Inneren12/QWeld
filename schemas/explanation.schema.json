@@ -137,10 +137,17 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "type",
-          "value"
+          "type"
+        ],
+        "anyOf": [
+          { "required": ["value"] },
+          { "required": ["uri"] }
         ],
         "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
           "type": {
             "type": "string",
             "minLength": 1
@@ -149,9 +156,44 @@
             "type": "string",
             "minLength": 1
           },
+          "uri": {
+            "type": "string",
+            "minLength": 1
+          },
           "caption": {
             "type": "string",
             "minLength": 1
+          },
+          "license": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "license",
+              "source",
+              "author"
+            ],
+            "properties": {
+              "license": {
+                "type": "string",
+                "minLength": 1,
+                "not": {
+                  "enum": [
+                    "unknown",
+                    "unspecified",
+                    "n/a",
+                    "none"
+                  ]
+                }
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "author": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
           }
         }
       }

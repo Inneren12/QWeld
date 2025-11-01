@@ -10,17 +10,24 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT_DIR, 'content');
 const QUESTIONS_DIR = path.join(CONTENT_DIR, 'questions');
 const EXPLANATIONS_DIR = path.join(CONTENT_DIR, 'explanations');
+const LOG_DIR = path.join(ROOT_DIR, 'logs');
 
-const N_GRAM_SIZE = 5;
-const DEFAULT_THRESHOLD = 0.7;
-const SIMILARITY_THRESHOLD = Number.parseFloat(process.env.QWELD_PLAGIARISM_THRESHOLD ?? `${DEFAULT_THRESHOLD}`);
+const FIVE_GRAM_SIZE = 5;
+const LONG_QUOTE_GRAM_SIZE = 25;
+const DEFAULT_THRESHOLD = 0.85;
 
-function normaliseWhitespace(value) {
-  return value.replace(/\s+/gu, ' ').trim();
+const SIMILARITY_THRESHOLD = Number.parseFloat(process.env.PLAG_THRESH ?? `${DEFAULT_THRESHOLD}`);
+
+if (Number.isNaN(SIMILARITY_THRESHOLD)) {
+  console.error('Invalid PLAG_THRESH value supplied. Expecting a number.');
+  process.exit(1);
 }
 
-function collectTextSegmentsFromQuestion(payload) {
+const normalizeWhitespace = (value) => value.replace(/\s+/gu, ' ').trim();
+
+function collectQuestionSegments(payload) {
   const segments = [];
+
   if (typeof payload.stem === 'string') {
     segments.push(payload.stem);
   }
@@ -48,7 +55,7 @@ function collectTextSegmentsFromQuestion(payload) {
   return segments;
 }
 
-function collectTextSegmentsFromExplanation(payload) {
+function collectExplanationSegments(payload) {
   const segments = [];
 
   if (typeof payload.summary === 'string') {
@@ -96,22 +103,30 @@ function collectTextSegmentsFromExplanation(payload) {
     }
   }
 
+  if (Array.isArray(payload.media)) {
+    for (const media of payload.media) {
+      if (media && typeof media.caption === 'string') {
+        segments.push(media.caption);
+      }
+    }
+  }
+
   return segments;
 }
 
-function collectTextSegments(type, payload) {
+function collectSegments(type, payload) {
   switch (type) {
     case 'question':
-      return collectTextSegmentsFromQuestion(payload);
+      return collectQuestionSegments(payload);
     case 'explanation':
-      return collectTextSegmentsFromExplanation(payload);
+      return collectExplanationSegments(payload);
     default:
       return [];
   }
 }
 
 function toTokens(text) {
-  const cleaned = normaliseWhitespace(String(text ?? '')
+  const cleaned = normalizeWhitespace(String(text ?? '')
     .toLowerCase()
     .replace(/[^\p{L}\p{N}]+/gu, ' '));
 
@@ -122,49 +137,39 @@ function toTokens(text) {
   return cleaned.split(' ');
 }
 
-function buildFiveGrams(tokens) {
+function buildNGrams(tokens, size) {
   const grams = new Set();
-  if (tokens.length < N_GRAM_SIZE) {
+
+  if (tokens.length < size) {
     return grams;
   }
 
-  for (let index = 0; index <= tokens.length - N_GRAM_SIZE; index += 1) {
-    const slice = tokens.slice(index, index + N_GRAM_SIZE);
+  for (let index = 0; index <= tokens.length - size; index += 1) {
+    const slice = tokens.slice(index, index + size);
     grams.add(slice.join(' '));
   }
 
   return grams;
 }
 
-function compareDocuments(docA, docB) {
-  if (docA.grams.size === 0 || docB.grams.size === 0) {
-    return null;
-  }
-
-  const [smaller, larger] =
-    docA.grams.size <= docB.grams.size ? [docA.grams, docB.grams] : [docB.grams, docA.grams];
-
-  let overlap = 0;
-  for (const gram of smaller) {
-    if (larger.has(gram)) {
-      overlap += 1;
-    }
-  }
-
-  if (overlap === 0) {
-    return null;
-  }
-
-  return {
-    overlap,
-    basis: smaller.size,
-    similarity: overlap / smaller.size,
-  };
-}
-
 async function readJson(filePath) {
   const payload = await fs.readFile(filePath, 'utf8');
   return JSON.parse(payload);
+}
+
+function inferLocaleFromPath(relativePath) {
+  const parts = relativePath.split(path.sep);
+  for (const directory of ['questions', 'explanations']) {
+    const index = parts.indexOf(directory);
+    if (index >= 0 && parts.length > index + 1) {
+      const candidate = parts[index + 1];
+      if (/^[a-z]{2}$/iu.test(candidate)) {
+        return candidate.toLowerCase();
+      }
+    }
+  }
+
+  return 'en';
 }
 
 async function collectDocumentsFromDir(dirPath, type, documents) {
@@ -189,43 +194,35 @@ async function collectDocumentsFromDir(dirPath, type, documents) {
       continue;
     }
 
-    const payload = await readJson(fullPath);
+    let payload;
+    try {
+      payload = await readJson(fullPath);
+    } catch (error) {
+      console.error(`[plag_error] file=${path.relative(ROOT_DIR, fullPath)} message="${error.message}"`);
+      continue;
+    }
+
     const relativePath = path.relative(ROOT_DIR, fullPath);
-    const id = typeof payload.id === 'string' ? payload.id : entry.name.replace(/\.json$/u, '');
-    const locale = typeof payload.locale === 'string' ? payload.locale : inferLocaleFromPath(relativePath);
-    const segments = collectTextSegments(type, payload);
+    const locale = typeof payload.locale === 'string'
+      ? payload.locale.toLowerCase()
+      : inferLocaleFromPath(relativePath);
+    const id = typeof payload.id === 'string'
+      ? payload.id
+      : entry.name.replace(/\.json$/u, '');
+
+    const segments = collectSegments(type, payload);
     const tokens = segments.flatMap((segment) => toTokens(segment));
-    const grams = buildFiveGrams(tokens);
 
     documents.push({
       id,
       type,
       locale,
       file: relativePath,
-      grams,
+      tokens,
+      fiveGrams: buildNGrams(tokens, FIVE_GRAM_SIZE),
+      longQuoteGrams: buildNGrams(tokens, LONG_QUOTE_GRAM_SIZE),
     });
   }
-}
-
-function inferLocaleFromPath(relativePath) {
-  const parts = relativePath.split(path.sep);
-  const localeIndex = parts.indexOf('questions');
-  if (localeIndex >= 0 && parts.length > localeIndex + 1) {
-    const candidate = parts[localeIndex + 1];
-    if (/^[a-z]{2}$/iu.test(candidate)) {
-      return candidate;
-    }
-  }
-
-  const explanationIndex = parts.indexOf('explanations');
-  if (explanationIndex >= 0 && parts.length > explanationIndex + 1) {
-    const candidate = parts[explanationIndex + 1];
-    if (/^[a-z]{2}$/iu.test(candidate)) {
-      return candidate;
-    }
-  }
-
-  return 'en';
 }
 
 async function loadDocuments() {
@@ -235,66 +232,225 @@ async function loadDocuments() {
   return documents;
 }
 
-function printResults(matches) {
-  if (matches.length === 0) {
-    console.log('✅ No potential plagiarism overlaps detected.');
-    return;
+function computeJaccard(gramsA, gramsB) {
+  if (gramsA.size === 0 && gramsB.size === 0) {
+    return null;
   }
 
-  console.log('⚠️ Potential plagiarism overlaps detected:');
-  for (const match of matches) {
-    const similarityPct = (match.similarity * 100).toFixed(1);
-    console.log(
-      `- ${match.a.file} ↔ ${match.b.file} :: ${similarityPct}% overlap (${match.overlap}/${match.basis} 5-grams)`,
-    );
+  const [smaller, larger] = gramsA.size <= gramsB.size ? [gramsA, gramsB] : [gramsB, gramsA];
+  let intersectionCount = 0;
+
+  for (const gram of smaller) {
+    if (larger.has(gram)) {
+      intersectionCount += 1;
+    }
   }
+
+  if (intersectionCount === 0) {
+    return {
+      similarity: 0,
+      intersectionCount,
+      unionCount: gramsA.size + gramsB.size,
+    };
+  }
+
+  const unionCount = gramsA.size + gramsB.size - intersectionCount;
+
+  if (unionCount === 0) {
+    return null;
+  }
+
+  return {
+    similarity: intersectionCount / unionCount,
+    intersectionCount,
+    unionCount,
+  };
 }
 
-async function main() {
-  const documents = await loadDocuments();
-  if (documents.length === 0) {
-    console.error('No documents found to analyse.');
-    return;
+function detectLongQuotes(docA, docB) {
+  if (docA.longQuoteGrams.size === 0 || docB.longQuoteGrams.size === 0) {
+    return [];
   }
 
+  const [smaller, larger] =
+    docA.longQuoteGrams.size <= docB.longQuoteGrams.size
+      ? [docA.longQuoteGrams, docB.longQuoteGrams]
+      : [docB.longQuoteGrams, docA.longQuoteGrams];
+
   const matches = [];
-  const seenPairs = new Set();
-
-  for (const a of documents) {
-    for (const b of documents) {
-      if (a === b) {
-        continue;
-      }
-
-      // same file — нет смысла сравнивать
-      if (a.file === b.file) {
-        continue;
-      }
-
-      const key = `${a.file}::${b.file}`;
-      const reverse = `${b.file}::${a.file}`;
-      // сравнение разных файлов даже при одинаковом id/type — разрешено
-      // защита от повторов пары
-      if (seenPairs.has(key) || seenPairs.has(reverse)) {
-        continue;
-      }
-      seenPairs.add(key);
-
-      const comparison = compareDocuments(a, b);
-      if (!comparison) {
-        continue;
-      }
-
-      if (comparison.similarity >= SIMILARITY_THRESHOLD) {
-        matches.push({ a, b, ...comparison });
+  for (const gram of smaller) {
+    if (larger.has(gram)) {
+      matches.push(gram);
+      if (matches.length >= 5) {
+        break;
       }
     }
   }
 
-  matches.sort((left, right) => right.similarity - left.similarity);
-  printResults(matches);
+  return matches;
+}
 
-  if (matches.length > 0) {
+function formatLongQuoteSnippet(gram) {
+  const tokens = gram.split(' ');
+  const snippetTokens = tokens.slice(0, 12);
+  return `${snippetTokens.join(' ')}${tokens.length > snippetTokens.length ? '…' : ''}`;
+}
+
+async function ensureLogDir() {
+  await fs.mkdir(LOG_DIR, { recursive: true });
+}
+
+async function writeReportMarkdown(reportPath, summary) {
+  await fs.writeFile(reportPath, `${summary}\n`, 'utf8');
+}
+
+async function writeReportCsv(reportPath, rows) {
+  await fs.writeFile(reportPath, `${rows}\n`, 'utf8');
+}
+
+function buildReports(results, filesCount, pairsChecked, maxSimilarity) {
+  const headerLines = [
+    '# Plagiarism Report',
+    '',
+    `- Files analysed: ${filesCount}`,
+    `- Pairs checked (same locale only): ${pairsChecked}`,
+    `- Threshold (Jaccard over 5-grams): ${SIMILARITY_THRESHOLD.toFixed(2)}`,
+    `- Maximum similarity observed: ${maxSimilarity.toFixed(4)}`,
+    '',
+  ];
+
+  let markdown = headerLines.join('\n');
+
+  if (results.length === 0) {
+    markdown += '✅ No high-similarity overlaps detected.\n';
+  } else {
+    markdown += '| Locale | File A | File B | Similarity | Long quote matches |\n';
+    markdown += '| --- | --- | --- | --- | --- |\n';
+    for (const result of results) {
+      const similarityPct = (result.similarity * 100).toFixed(2);
+      const longQuoteCell = result.longQuoteMatches.length === 0
+        ? '—'
+        : result.longQuoteMatches.map((match) => `“${formatLongQuoteSnippet(match)}”`).join('<br>');
+      markdown += `| ${result.locale} | ${result.a.file} | ${result.b.file} | ${similarityPct}% | ${longQuoteCell} |\n`;
+    }
+  }
+
+  const csvLines = ['locale,file_a,file_b,similarity,intersection_5gram,union_5gram,long_quote_count,long_quote_example'];
+  for (const result of results) {
+    const escapedSnippet = result.longQuoteMatches.length === 0
+      ? ''
+      : `"${formatLongQuoteSnippet(result.longQuoteMatches[0]).replace(/"/gu, '""')}"`;
+    csvLines.push([
+      result.locale,
+      `"${result.a.file.replace(/"/gu, '""')}"`,
+      `"${result.b.file.replace(/"/gu, '""')}"`,
+      result.similarity.toFixed(6),
+      result.intersectionCount,
+      result.unionCount,
+      result.longQuoteMatches.length,
+      escapedSnippet,
+    ].join(','));
+  }
+
+  return {
+    markdown,
+    csv: csvLines.join('\n'),
+  };
+}
+
+async function main() {
+  const documents = await loadDocuments();
+
+  if (documents.length === 0) {
+    console.warn('[plag] No documents found to analyse.');
+    return;
+  }
+
+  let pairsChecked = 0;
+  let maxSimilarity = 0;
+  const failingResults = [];
+  const analysedPairs = [];
+
+  const documentsByLocale = documents.reduce((acc, doc) => {
+    if (!acc.has(doc.locale)) {
+      acc.set(doc.locale, []);
+    }
+    acc.get(doc.locale).push(doc);
+    return acc;
+  }, new Map());
+
+  for (const [locale, docs] of documentsByLocale.entries()) {
+    for (let index = 0; index < docs.length; index += 1) {
+      for (let inner = index + 1; inner < docs.length; inner += 1) {
+        const a = docs[index];
+        const b = docs[inner];
+
+        if (a.id === b.id) {
+          continue;
+        }
+
+        pairsChecked += 1;
+
+        const jaccard = computeJaccard(a.fiveGrams, b.fiveGrams);
+
+        if (!jaccard) {
+          continue;
+        }
+
+        const longQuoteMatches = detectLongQuotes(a, b);
+        const similarity = jaccard.similarity;
+        maxSimilarity = Math.max(maxSimilarity, similarity);
+
+        const result = {
+          locale,
+          a,
+          b,
+          similarity,
+          intersectionCount: jaccard.intersectionCount,
+          unionCount: jaccard.unionCount,
+          longQuoteMatches,
+        };
+
+        analysedPairs.push(result);
+
+        const failsThreshold = similarity >= SIMILARITY_THRESHOLD;
+        const failsQuote = longQuoteMatches.length > 0;
+
+        if (failsThreshold || failsQuote) {
+          failingResults.push(result);
+
+          const similarityStr = similarity.toFixed(4);
+          if (failsThreshold) {
+            console.log(
+              `[plag_fail] fileA=${a.file} fileB=${b.file} locale=${locale} sim=${similarityStr} reason=threshold`,
+            );
+          }
+
+          if (failsQuote) {
+            console.log(
+              `[plag_fail] fileA=${a.file} fileB=${b.file} locale=${locale} longQuoteCount=${longQuoteMatches.length} reason=long_quote`,
+            );
+          }
+        }
+      }
+    }
+  }
+
+  const sortedResults = analysedPairs
+    .filter((item) => item.similarity > 0 || item.longQuoteMatches.length > 0)
+    .sort((left, right) => right.similarity - left.similarity)
+    .slice(0, 50);
+
+  console.log(
+    `[plag] files=${documents.length} pairsChecked=${pairsChecked} maxSim=${maxSimilarity.toFixed(4)}`,
+  );
+
+  await ensureLogDir();
+  const reports = buildReports(sortedResults, documents.length, pairsChecked, maxSimilarity);
+  await writeReportMarkdown(path.join(LOG_DIR, 'plagiarism-report.md'), reports.markdown);
+  await writeReportCsv(path.join(LOG_DIR, 'plagiarism-report.csv'), reports.csv);
+
+  if (failingResults.length > 0) {
     process.exitCode = 1;
   }
 }

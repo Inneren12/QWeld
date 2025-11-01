@@ -26,6 +26,12 @@ bash scripts/content-fix.sh --apply
 
 The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes the RU terminology linter `qw_ru_lint.py`, writing a detailed report to `logs/ru_lint.txt` with unified diffs stored under `logs/diffs/ru_lint/`.
 
+## Content originality & media licensing
+
+- Run `node scripts/check-plagiarism.mjs` to compute 5-gram Jaccard overlaps for stems, choices, rationales, and explanation text. The default fail threshold is `0.85` (override with `PLAG_THRESH=0.90 node …`). The script also flags any ≥25-word long quotes shared within the same locale and emits `[plag]` / `[plag_fail]` markers in the console.
+- Reports are written to `logs/plagiarism-report.md` (Markdown) and `logs/plagiarism-report.csv` (CSV, top 50 pairs). These files are uploaded from CI so reviewers can inspect the overlap context.
+- Validate asset licensing with `node scripts/check-media-licensing.mjs`. Every media entry must reference a sidecar `content/media/<id>.license.json` (for local assets) or embed a `license{}` block (for remote URLs). Empty or "unknown" values are rejected; the script logs `[media_lic]` summaries and writes a Markdown audit to `logs/media-licensing-report.md`.
+
 ## Policy v1.0 & Blueprint
 - Policy: see `docs/content-policy.md` (version 1.0) and blueprint rules in `docs/blueprint-rules.md`.
 - Active blueprint: `content/blueprints/welder_ip_sk_202404.json` (blueprintVersion 1.0.0, policyVersion 1.0).
