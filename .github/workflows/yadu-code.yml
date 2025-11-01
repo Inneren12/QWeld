@@ -3,8 +3,8 @@ name: Yadu Code
 on:
   workflow_dispatch:
     inputs:
-      run_tests:   { description: 'Run tests',   default: 'true' }
-      run_static:  { description: 'Run static checks', default: 'true' }
+      run_tests:  { description: 'Run tests',  default: 'true' }
+      run_static: { description: 'Run static checks', default: 'true' }
 
 jobs:
   yadu:
@@ -12,19 +12,13 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: '21' }
 
-      - name: Gradle checks (if module exists)
+      - name: Static checks (:yadu)
         if: ${{ inputs.run_static == 'true' }}
-        run: ./gradlew --console=plain :yadu:check || echo "[yadu] module :yadu not found, skipping"
+        run: ./gradlew --console=plain :yadu:check || echo "[yadu] :yadu not found, skipping"
 
-      - name: Gradle tests (if module exists)
+      - name: Tests (:yadu)
         if: ${{ inputs.run_tests == 'true' }}
-        run: ./gradlew --console=plain :yadu:test || echo "[yadu] module :yadu not found, skipping"
-
-      # Если это Node-проект — добавьте сюда альтернативные шаги:
-      # - uses: actions/setup-node@v4 ...
-      # - run: npm ci && npm test
+        run: ./gradlew --console=plain :yadu:test || echo "[yadu] :yadu not found, skipping"

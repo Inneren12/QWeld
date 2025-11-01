@@ -47,33 +47,75 @@ jobs:
           reuse lint | tee reports/reuse-lint.txt
           echo "Hint: для зависимостей Gradle рекомендуем отдельный PR с CashApp Licensee" | tee -a reports/reuse-lint.txt
 
+      - name: Prepare sbom Gradle init script
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p gradle reports/sbom/deps
+          cat > gradle/sbom.init.gradle <<'GRADLE_EOF'
+          allprojects {
+            afterEvaluate {
+              def targets = []
+              configurations.findAll { it.canBeResolved }.each { cfg ->
+                if (cfg.name ==~ /(?i).*(release|debug)?runtimeClasspath$/) {
+                  def taskName = "sbomCopy_${project.name}_${cfg.name}"
+                  tasks.register(taskName, Copy) {
+                    from cfg
+                    into new File(rootProject.projectDir, "reports/sbom/deps/${project.name}/${cfg.name}")
+                  }
+                  targets << tasks.named(taskName)
+                }
+              }
+              if (!targets.isEmpty()) {
+                tasks.register("sbomCopyAll") { dependsOn targets }
+              }
+            }
+          }
+          GRADLE_EOF
+
+      - name: Copy resolved Gradle dependencies (no build script changes)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew -q -I gradle/sbom.init.gradle sbomCopyAll || true
+          echo "[sbom] deps dir size:"; du -sh reports/sbom/deps || true
+
       - name: Install Syft (SBOM)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
         run: |
           curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
           ./syft version
 
-      - name: Generate SBOM (CycloneDX JSON)
+      - name: Generate SBOM (source tree)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
-        run: |
-          ./syft dir:. -o cyclonedx-json=reports/sbom-cyclonedx.json
+        run: ./syft dir:. -o cyclonedx-json=reports/sbom-source.json
 
-      - name: Extract dependency licenses (summary)
+      - name: Generate SBOM (resolved deps)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
         run: |
-          jq -r '
-            [ .components[]?
-              | { name, version, licenses: ( (.licenses // []) | map(.license.id // .expression) ) }
-            ]' reports/sbom-cyclonedx.json > reports/deps-licenses.json
-          jq -r '
-            [ .components[]? | (.licenses // [] | map(.license.id // .expression)[])? ]
-            | group_by(.) | map({license: .[0], count: length})
-          ' reports/sbom-cyclonedx.json > reports/deps-licenses-summary.json
+          ./syft dir:reports/sbom/deps -o cyclonedx-json=reports/sbom-deps.json || echo '{"components":[]}' > reports/sbom-deps.json
+
+      - name: Merge SBOM (source + deps) & license summaries
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          jq -s '{
+            bomFormat: "CycloneDX",
+            specVersion: "1.5",
+            version: 1,
+            components: (.[0].components + .[1].components) | unique_by(.name + ":" + (.version // "")),
+            metadata: (.[0].metadata // null)
+          }' reports/sbom-source.json reports/sbom-deps.json > reports/sbom-cyclonedx.json
+          jq -r '[ .components[]? | { name, version, licenses: ((.licenses // []) | map(.license.id // .expression)) } ]' \
+            reports/sbom-cyclonedx.json > reports/deps-licenses.json
+          jq -r '[ .components[]? | (.licenses // [] | map(.license.id // .expression)[])? ] | group_by(.) | map({license: .[0], count: length})' \
+            reports/sbom-cyclonedx.json > reports/deps-licenses-summary.json
           component_count=$(jq '(.components // []) | length' reports/sbom-cyclonedx.json)
+          echo "[sbom] components=$component_count"
           if [ "$component_count" -eq 0 ]; then
             echo "INFO: SBOM contains 0 components"
           fi
-          echo "components=$component_count"
           echo "Top licenses:" && jq -r '.[:10]' reports/deps-licenses-summary.json
           {
             echo "## Dependency license summary"
@@ -91,7 +133,9 @@ jobs:
           mkdir -p reports/jscpd
           npx -y jscpd@3.5.10 \
             --pattern "{app-android,feature-exam,core-*,scripts}/**/*.{kt,kts,java,js,ts,tsx,jsx,xml,md,py,sh}" \
-            --exclude "**/build/**" --exclude "**/test/**" --exclude "**/.*/**" \
+            --exclude "**/build/**" \
+            --exclude "**/test/**" \
+            --exclude "**/.*/**" \
             --min-tokens "${{ inputs.jscpd_min_tokens || '70' }}" \
             --reporters "console,html,json" \
             --output "reports/jscpd"
@@ -103,6 +147,8 @@ jobs:
           name: code-compliance-reports
           path: |
             reports/reuse-lint.txt
+            reports/sbom-source.json
+            reports/sbom-deps.json
             reports/sbom-cyclonedx.json
             reports/deps-licenses.json
             reports/deps-licenses-summary.json
