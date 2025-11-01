@@ -1,6 +1,7 @@
 package com.qweld.app.domain.exam
 
 import kotlin.test.assertTrue
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class PracticeWeightedPickTest {
@@ -36,13 +37,15 @@ class PracticeWeightedPickTest {
     val practiceCounts = mutableMapOf(novelId to 0, knownId to 0)
     repeat(40) { idx ->
       val attempt =
-        practiceAssembler.assemble(
-          userId = "user",
-          mode = ExamMode.PRACTICE,
-          locale = "EN",
-          seed = AttemptSeed(idx.toLong()),
-          blueprint = blueprint,
-        )
+        runBlocking {
+          practiceAssembler.assemble(
+            userId = "user",
+            mode = ExamMode.PRACTICE,
+            locale = "EN",
+            seed = AttemptSeed(idx.toLong()),
+            blueprint = blueprint,
+          )
+        }
       val picked = attempt.questions.single().question.id
       practiceCounts[picked] = practiceCounts.getValue(picked) + 1
     }
@@ -57,13 +60,15 @@ class PracticeWeightedPickTest {
     val ipCounts = mutableMapOf(novelId to 0, knownId to 0)
     repeat(40) { idx ->
       val attempt =
-        ipAssembler.assemble(
-          userId = "user",
-          mode = ExamMode.IP_MOCK,
-          locale = "EN",
-          seed = AttemptSeed(idx.toLong()),
-          blueprint = blueprint,
-        )
+        runBlocking {
+          ipAssembler.assemble(
+            userId = "user",
+            mode = ExamMode.IP_MOCK,
+            locale = "EN",
+            seed = AttemptSeed(idx.toLong()),
+            blueprint = blueprint,
+          )
+        }
       val picked = attempt.questions.single().question.id
       ipCounts[picked] = ipCounts.getValue(picked) + 1
     }

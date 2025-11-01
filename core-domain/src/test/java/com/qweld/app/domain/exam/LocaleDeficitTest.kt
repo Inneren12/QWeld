@@ -3,6 +3,7 @@ package com.qweld.app.domain.exam
 import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class LocaleDeficitTest {
@@ -30,13 +31,15 @@ class LocaleDeficitTest {
 
     val error =
       assertFailsWith<ExamAssemblyException.Deficit> {
-        assembler.assemble(
-          userId = "user",
-          mode = ExamMode.IP_MOCK,
-          locale = "RU",
-          seed = AttemptSeed(5L),
-          blueprint = blueprint,
-        )
+        runBlocking {
+          assembler.assemble(
+            userId = "user",
+            mode = ExamMode.IP_MOCK,
+            locale = "RU",
+            seed = AttemptSeed(5L),
+            blueprint = blueprint,
+          )
+        }
       }
 
     val detail = error.details.single { it.taskId == "B-1" }

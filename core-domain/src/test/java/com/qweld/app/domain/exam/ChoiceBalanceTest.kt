@@ -2,6 +2,7 @@ package com.qweld.app.domain.exam
 
 import kotlin.math.abs
 import kotlin.test.assertTrue
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class ChoiceBalanceTest {
@@ -20,13 +21,15 @@ class ChoiceBalanceTest {
   @Test
   fun `single attempt stays within 10 percent tolerance`() {
     val attempt =
-      assembler.assemble(
-        userId = "user",
-        mode = ExamMode.PRACTICE,
-        locale = "EN",
-        seed = AttemptSeed(1L),
-        blueprint = blueprint,
-      )
+      runBlocking {
+        assembler.assemble(
+          userId = "user",
+          mode = ExamMode.PRACTICE,
+          locale = "EN",
+          seed = AttemptSeed(1L),
+          blueprint = blueprint,
+        )
+      }
     val histogram = attempt.correctPositionHistogram()
     val total = attempt.questions.size
     histogram.values.forEach { count ->
@@ -41,13 +44,15 @@ class ChoiceBalanceTest {
     val aggregate = mutableMapOf("A" to 0, "B" to 0, "C" to 0, "D" to 0)
     repeat(attempts) { idx ->
       val attempt =
-        assembler.assemble(
-          userId = "user",
-          mode = ExamMode.PRACTICE,
-          locale = "EN",
-          seed = AttemptSeed(idx.toLong()),
-          blueprint = blueprint,
-        )
+        runBlocking {
+          assembler.assemble(
+            userId = "user",
+            mode = ExamMode.PRACTICE,
+            locale = "EN",
+            seed = AttemptSeed(idx.toLong()),
+            blueprint = blueprint,
+          )
+        }
       attempt.correctPositionHistogram().forEach { (key, value) ->
         aggregate[key] = aggregate.getValue(key) + value
       }

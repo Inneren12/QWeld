@@ -4,6 +4,7 @@ import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class QuotaStrictTest {
@@ -34,13 +35,15 @@ class QuotaStrictTest {
 
     val error =
       assertFailsWith<ExamAssemblyException.Deficit> {
-        assembler.assemble(
-          userId = "user",
-          mode = ExamMode.IP_MOCK,
-          locale = "RU",
-          seed = AttemptSeed(1L),
-          blueprint = blueprint,
-        )
+        runBlocking {
+          assembler.assemble(
+            userId = "user",
+            mode = ExamMode.IP_MOCK,
+            locale = "RU",
+            seed = AttemptSeed(1L),
+            blueprint = blueprint,
+          )
+        }
       }
 
     val detail = error.details.single { it.taskId == "B-1" }

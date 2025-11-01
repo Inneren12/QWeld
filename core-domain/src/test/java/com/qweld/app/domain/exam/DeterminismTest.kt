@@ -2,6 +2,7 @@ package com.qweld.app.domain.exam
 
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class DeterminismTest {
@@ -30,13 +31,15 @@ class DeterminismTest {
       )
     val seed = AttemptSeed(42L)
     val attempt1 =
-      assembler1.assemble(
-        userId = "user",
-        mode = ExamMode.PRACTICE,
-        locale = "EN",
-        seed = seed,
-        blueprint = blueprint,
-      )
+      runBlocking {
+        assembler1.assemble(
+          userId = "user",
+          mode = ExamMode.PRACTICE,
+          locale = "EN",
+          seed = seed,
+          blueprint = blueprint,
+        )
+      }
 
     val logs2 = mutableListOf<String>()
     val assembler2 =
@@ -47,13 +50,15 @@ class DeterminismTest {
         logger = logs2::add,
       )
     val attempt2 =
-      assembler2.assemble(
-        userId = "user",
-        mode = ExamMode.PRACTICE,
-        locale = "EN",
-        seed = seed,
-        blueprint = blueprint,
-      )
+      runBlocking {
+        assembler2.assemble(
+          userId = "user",
+          mode = ExamMode.PRACTICE,
+          locale = "EN",
+          seed = seed,
+          blueprint = blueprint,
+        )
+      }
 
     assertEquals(
       attempt1.questions.map { it.question.id },

@@ -25,7 +25,7 @@ class ExamAssembler(
   private val config: ExamAssemblyConfig = ExamAssemblyConfig(),
   private val logger: (String) -> Unit = ::println,
 ) {
-    suspend fun assemble(
+  suspend fun assemble(
     userId: String,
     mode: ExamMode,
     locale: String,
@@ -53,7 +53,7 @@ class ExamAssembler(
         when (mode) {
           ExamMode.IP_MOCK -> selectUniform(pool, stats, quota, seed, now, locale)
           ExamMode.PRACTICE,
-          ExamMode.ADAPTIVE -> selectWeighted(pool, stats, quota, seed, now, locale)
+          ExamMode.ADAPTIVE -> selectWeighted(pool, stats, quota, seed, now, locale, mode)
         }
       val selected = selectionResult.questions
       logger(
@@ -175,6 +175,7 @@ class ExamAssembler(
     seed: AttemptSeed,
     now: Instant,
     locale: String,
+    mode: ExamMode,
   ): TaskSelectionResult {
     if (pool.size < quota.required) {
       return TaskSelectionResult(
@@ -196,8 +197,22 @@ class ExamAssembler(
       "[weights] taskId=${quota.taskId} H=${config.halfLifeCorrect} w_min=${config.minWeight} w_max=${config.maxWeight}"
     )
     val sampler = WeightedSampler(Pcg32(Hash64.hash(seed.value, "${quota.taskId}:WEIGHT")))
+    var biasApplied = 0
     val entries: List<WeightedEntry<Question>> =
-      sampler.order(pool) { question -> computeWeight(stats[question.id], config, now) }
+      sampler.order(pool) { question ->
+        val statsForQuestion = stats[question.id]
+        val bias =
+          if (mode == ExamMode.PRACTICE && config.practiceWrongBiased && statsForQuestion?.lastAnswerCorrect == false) {
+            biasApplied += 1
+            config.weights.wrongBoost
+          } else {
+            1.0
+          }
+        computeWeight(statsForQuestion, config, now, bias)
+      }
+    if (mode == ExamMode.PRACTICE && config.practiceWrongBiased) {
+      logger("[weights.bias] wrongBoost=${config.weights.wrongBoost} applied=$biasApplied")
+    }
     val weights = entries.map { it.weight }
     logger("[weights.stats] ${formatWeightsStats(weights)}")
     val freshLookup =

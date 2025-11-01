@@ -18,7 +18,14 @@ class UserStatsRepositoryRoom(
     if (aggregates.isEmpty()) return emptyMap()
     return aggregates.associate { aggregate ->
       val lastAnswered = aggregate.lastAnsweredAt?.let(Instant::ofEpochMilli) ?: Instant.EPOCH
-      aggregate.questionId to ItemStats(aggregate.questionId, aggregate.attempts, aggregate.correct, lastAnswered)
+      aggregate.questionId to
+        ItemStats(
+          questionId = aggregate.questionId,
+          attempts = aggregate.attempts,
+          correct = aggregate.correct,
+          lastAnsweredAt = lastAnswered,
+          lastAnswerCorrect = aggregate.lastIsCorrect,
+        )
     }
   }
 

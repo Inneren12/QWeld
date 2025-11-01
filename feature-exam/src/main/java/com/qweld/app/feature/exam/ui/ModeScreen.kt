@@ -35,6 +35,7 @@ import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository.Result
 import com.qweld.app.feature.exam.vm.ExamViewModel
+import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.RepeatMistakesAvailability
 import kotlinx.coroutines.flow.collectLatest
@@ -46,10 +47,11 @@ fun ModeScreen(
   repository: AssetQuestionRepository,
   viewModel: ExamViewModel,
   practiceShortcuts: PracticeShortcuts,
+  practiceConfig: PracticeConfig = PracticeConfig(),
   modifier: Modifier = Modifier,
   onIpMockClick: (String) -> Unit = {},
-  onPracticeClick: (String) -> Unit = {},
-  onRepeatMistakes: (String, ExamBlueprint) -> Unit = { _, _ -> },
+  onPracticeClick: (String, PracticeConfig) -> Unit = { _, _ -> },
+  onRepeatMistakes: (String, ExamBlueprint, PracticeConfig) -> Unit = { _, _, _ -> },
   onResumeAttempt: () -> Unit = {},
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
@@ -173,7 +175,7 @@ fun ModeScreen(
             contentDescription = practiceCd
             role = Role.Button
           },
-        onClick = { onPracticeClick(resolvedLanguage) },
+        onClick = { onPracticeClick(resolvedLanguage, practiceConfig) },
       ) {
         Text(text = stringResource(id = R.string.mode_practice))
       }
@@ -189,7 +191,7 @@ fun ModeScreen(
         enabled = repeatState.isEnabled,
         onClick = {
           val blueprint = repeatState.blueprint ?: return@Button
-          onRepeatMistakes(resolvedLanguage, blueprint)
+          onRepeatMistakes(resolvedLanguage, blueprint, practiceConfig)
         },
       ) {
         Text(text = stringResource(id = R.string.mode_repeat_mistakes))

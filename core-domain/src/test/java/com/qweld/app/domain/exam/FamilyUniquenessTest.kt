@@ -3,6 +3,7 @@ package com.qweld.app.domain.exam
 import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class FamilyUniquenessTest {
@@ -29,13 +30,15 @@ class FamilyUniquenessTest {
       )
 
     val attempt =
-      assembler.assemble(
-        userId = "user",
-        mode = ExamMode.PRACTICE,
-        locale = "EN",
-        seed = AttemptSeed(7L),
-        blueprint = blueprint,
-      )
+      runBlocking {
+        assembler.assemble(
+          userId = "user",
+          mode = ExamMode.PRACTICE,
+          locale = "EN",
+          seed = AttemptSeed(7L),
+          blueprint = blueprint,
+        )
+      }
 
     val families = attempt.questions.mapNotNull { it.question.familyId }
     assertEquals(2, families.size)
@@ -59,13 +62,15 @@ class FamilyUniquenessTest {
 
     val error =
       assertFailsWith<ExamAssemblyException.Deficit> {
-        assembler.assemble(
-          userId = "user",
-          mode = ExamMode.PRACTICE,
-          locale = "EN",
-          seed = AttemptSeed(8L),
-          blueprint = blueprint,
-        )
+        runBlocking {
+          assembler.assemble(
+            userId = "user",
+            mode = ExamMode.PRACTICE,
+            locale = "EN",
+            seed = AttemptSeed(8L),
+            blueprint = blueprint,
+          )
+        }
       }
     val detail = error.details.single()
     assertEquals("A-1", detail.taskId)

@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.exam.util.WeightsConfig
 import java.time.Duration
 import java.time.Instant
 
@@ -77,6 +78,7 @@ data class ItemStats(
   val attempts: Int,
   val correct: Int,
   val lastAnsweredAt: Instant? = null,
+  val lastAnswerCorrect: Boolean? = null,
 ) {
   fun isFresh(now: Instant, freshDays: Long): Boolean {
     if (attempts == 0) return true
@@ -96,6 +98,8 @@ data class ExamAssemblyConfig(
   val freshDays: Long = 14,
   val antiClusterSwaps: Int = 10,
   val allowFallbackToEN: Boolean = false,
+  val weights: WeightsConfig = WeightsConfig(),
+  val practiceWrongBiased: Boolean = false,
 )
 
 data class AssembledQuestion(

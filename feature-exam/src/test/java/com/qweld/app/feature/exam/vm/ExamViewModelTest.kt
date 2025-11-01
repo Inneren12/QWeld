@@ -11,6 +11,7 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.vm.PracticeConfig
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlin.test.assertEquals
@@ -110,17 +111,50 @@ class ExamViewModelTest {
     assertEquals(1, detail.have)
   }
 
+  @Test
+  fun practiceUsesPresetSizeFromConfig() {
+    val repository = repositoryWithQuestions(count = 30)
+    var capturedSize: Int? = null
+    val viewModel =
+      createViewModel(
+        repository,
+        blueprintProvider = { mode, size ->
+          capturedSize = size
+          ExamBlueprint(
+            totalQuestions = size,
+            taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = size)),
+          )
+        },
+      )
+
+    val config = PracticeConfig(requestedSize = 10)
+    val launched = viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = config)
+
+    assertTrue(launched)
+    assertEquals(config.size, capturedSize)
+  }
+
   private fun createViewModel(repository: AssetQuestionRepository): ExamViewModel {
     val blueprint = ExamBlueprint(
       totalQuestions = 2,
       taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 2)),
     )
+    return createViewModel(repository, blueprintProvider = { _, _ -> blueprint })
+  }
+
+  private fun createViewModel(
+    repository: AssetQuestionRepository,
+    blueprintProvider: (ExamMode, Int) -> ExamBlueprint,
+  ): ExamViewModel {
     val attemptDao = FakeAttemptDao()
     val answerDao = FakeAnswerDao()
     val attemptsRepository = AttemptsRepository(attemptDao) { }
     val answersRepository = AnswersRepository(answerDao)
     val statsRepository = object : UserStatsRepository {
-      override fun getUserItemStats(userId: String, ids: List<String>) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
+      override suspend fun getUserItemStats(
+        userId: String,
+        ids: List<String>,
+      ) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
     }
     val dispatcher = StandardTestDispatcher()
     return ExamViewModel(
@@ -128,7 +162,7 @@ class ExamViewModelTest {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
-      blueprintProvider = { _, _ -> blueprint },
+      blueprintProvider = blueprintProvider,
       seedProvider = { 1L },
       nowProvider = { 0L },
       timerController = com.qweld.app.domain.exam.TimerController { },

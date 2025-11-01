@@ -12,6 +12,7 @@ import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssembler
+import com.qweld.app.domain.exam.ExamAssemblyConfig
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TimerController
@@ -101,14 +102,23 @@ class ExamViewModel(
   fun startAttempt(
     mode: ExamMode,
     locale: String,
-    practiceSize: Int = DEFAULT_PRACTICE_SIZE,
+    practiceConfig: PracticeConfig = PracticeConfig(),
     blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
     val normalizedLocale = locale.lowercase(Locale.US)
     pendingResume = null
     manualTimerRemaining = null
     _uiState.value = _uiState.value.copy(resumeDialog = null)
-    val blueprint = blueprintOverride ?: blueprintProvider(mode, practiceSize)
+    val resolvedPracticeSize =
+      if (mode == ExamMode.PRACTICE && blueprintOverride == null) {
+        practiceConfig.size
+      } else {
+        DEFAULT_PRACTICE_SIZE
+      }
+    val blueprint = blueprintOverride ?: blueprintProvider(mode, resolvedPracticeSize)
+    if (mode == ExamMode.PRACTICE) {
+      Timber.i("[practice_config] size=%d wrongBiased=%s", blueprint.totalQuestions, practiceConfig.wrongBiased)
+    }
     val requestedTasks =
       blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
     val result = repository.loadQuestions(normalizedLocale, tasks = requestedTasks)
@@ -135,17 +145,23 @@ class ExamViewModel(
     val assembler = ExamAssembler(
       questionRepository = InMemoryQuestionRepository(questions),
       statsRepository = statsRepository,
+      config =
+        ExamAssemblyConfig(
+          practiceWrongBiased = mode == ExamMode.PRACTICE && practiceConfig.wrongBiased,
+        ),
       logger = { message -> Timber.i(message) },
     )
     val attemptSeed = AttemptSeed(seedProvider())
     return try {
-        val attempt = runBlocking(ioDispatcher) {
-            assembler.assemble(
-                userId = userIdProvider(),
-                mode = mode,
-                locale = normalizedLocale,
-                seed = attemptSeed,
-                blueprint = blueprint,)
+      val attempt =
+        runBlocking(ioDispatcher) {
+          assembler.assemble(
+            userId = userIdProvider(),
+            mode = mode,
+            locale = normalizedLocale,
+            seed = attemptSeed,
+            blueprint = blueprint,
+          )
         }
       val attemptId = attemptIdProvider()
       val startedAt = nowProvider()
@@ -885,7 +901,7 @@ class ExamViewModel(
   }
 
   companion object {
-    private const val DEFAULT_PRACTICE_SIZE = 20
+    private const val DEFAULT_PRACTICE_SIZE = PracticeConfig.DEFAULT_SIZE
     private const val DEFAULT_USER_ID = "local_user"
     private const val IP_MOCK_PASS_THRESHOLD = 70
     private const val AUTOSAVE_INTERVAL_SEC = 10

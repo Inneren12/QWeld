@@ -33,20 +33,21 @@ class PracticeShortcuts(
     MutableStateFlow(
       RepeatMistakesState(
         availability = RepeatMistakesAvailability.NO_FINISHED_ATTEMPT,
-        practiceSize = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE,
+        practiceSize = PracticeConfig.DEFAULT_SIZE,
         wrongPool = 0,
         blueprint = null,
       ),
     )
   val repeatMistakes: StateFlow<RepeatMistakesState> = _repeatMistakes.asStateFlow()
 
-  private var latestPracticeSize: Int = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE
+  private var latestPracticeSize: Int = PracticeConfig.DEFAULT_SIZE
 
   init {
     viewModelScope.launch {
       userPrefs.practiceSize.collect { size ->
-        latestPracticeSize = size
-        loadRepeatMistakes(size)
+        val resolved = PracticeConfig(size).size
+        latestPracticeSize = resolved
+        loadRepeatMistakes(resolved)
       }
     }
   }

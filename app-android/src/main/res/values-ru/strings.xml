@@ -18,6 +18,8 @@
     <string name="settings_section_practice">Практика</string>
     <string name="settings_practice_size_label">Количество вопросов</string>
     <string name="settings_practice_size_summary">%1$d вопросов за сессию</string>
+    <string name="settings_wrong_biased_label">Фокус на ошибках</string>
+    <string name="settings_wrong_biased_subtitle">Чаще показывать вопросы, на которые вы ошиблись в прошлый раз.</string>
     <string name="settings_apply">Применить</string>
     <string name="settings_fallback_label">Подставлять английский при отсутствии RU (только практика)</string>
     <string name="settings_fallback_subtitle">Если включено, в практике используются задания EN, когда нет русской версии.</string>

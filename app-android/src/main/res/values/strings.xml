@@ -18,6 +18,8 @@
     <string name="settings_section_practice">Practice</string>
     <string name="settings_practice_size_label">Practice size</string>
     <string name="settings_practice_size_summary">%1$d questions per session</string>
+    <string name="settings_wrong_biased_label">Wrong-biased practice</string>
+    <string name="settings_wrong_biased_subtitle">Give extra weight to questions you answered incorrectly last time.</string>
     <string name="settings_apply">Apply</string>
     <string name="settings_fallback_label">Fallback to English for missing RU (Practice only)</string>
     <string name="settings_fallback_subtitle">When enabled, practice sessions use EN tasks if RU is missing.</string>

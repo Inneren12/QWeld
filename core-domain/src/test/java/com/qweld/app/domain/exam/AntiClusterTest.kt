@@ -1,6 +1,7 @@
 package com.qweld.app.domain.exam
 
 import kotlin.test.assertTrue
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 class AntiClusterTest {
@@ -32,13 +33,15 @@ class AntiClusterTest {
       )
 
     val attempt =
-      assembler.assemble(
-        userId = "user",
-        mode = ExamMode.IP_MOCK,
-        locale = "EN",
-        seed = AttemptSeed(99L),
-        blueprint = blueprint,
-      )
+      runBlocking {
+        assembler.assemble(
+          userId = "user",
+          mode = ExamMode.IP_MOCK,
+          locale = "EN",
+          seed = AttemptSeed(99L),
+          blueprint = blueprint,
+        )
+      }
 
     val taskIds = attempt.questions.map { it.question.taskId }
     val blocks = attempt.questions.map { it.question.blockId }
