@@ -54,30 +54,75 @@ jobs:
           set -euo pipefail
           mkdir -p gradle reports/sbom/deps
           cat > gradle/sbom.init.gradle <<'GRADLE_EOF'
-          // Register per-project copy tasks after all projects are evaluated,
-          // then create a single root aggregator that depends on them.
-          gradle.projectsEvaluated {
-            def rootDir = gradle.rootProject.projectDir
-            def providers = []
-            gradle.rootProject.allprojects.each { p ->
-              // collect resolvable runtime classpaths (Android/Java)
-              def cfgs = p.configurations.findAll { it.canBeResolved && it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ }
-              if (!cfgs.isEmpty()) {
-                // safe path for folder names like :app-android -> app-android
-                def safe = p.path.replace(':','_').replaceFirst('^_','')
-                cfgs.each { cfg ->
-                  def tn = "sbomCopy_${safe}_${cfg.name}"
-                  def tp = p.tasks.register(tn, Copy) {
-                    from cfg
-                    into new File(rootDir, "reports/sbom/deps/${safe}/${cfg.name}")
-                  }
-                  providers << tp
-                }
+          import org.gradle.api.Project
+          import org.gradle.api.artifacts.Configuration
+          import org.gradle.api.attributes.*
+
+          // Extract runtime artifacts using lenient artifact views to avoid variant selection errors.
+          static def copyArtifacts(Project p, Configuration cfg, File dest) {
+            def views = []
+            def artifactType = Attribute.of("artifactType", String)
+
+            views << cfg.incoming.artifactView { v ->
+              v.lenient true
+              v.attributes { a -> a.attribute(artifactType, "jar") }
+            }
+
+            views << cfg.incoming.artifactView { v ->
+              v.lenient true
+              v.attributes { a -> a.attribute(artifactType, "aar") }
+            }
+
+            views << cfg.incoming.artifactView { v ->
+              v.lenient true
+              v.attributes { a -> a.attribute(artifactType, "android-classes-jar") }
+            }
+
+            def files = [] as Set<File>
+            views.each { view ->
+              try {
+                files.addAll(view.artifacts.artifactFiles.files)
+              } catch (Throwable ignored) {
+                // keep collecting from the remaining views
               }
             }
-            // root aggregator
-            gradle.rootProject.tasks.register('sbomCopyAll') {
-              dependsOn providers
+
+            try {
+              files.addAll(cfg.files)
+            } catch (Throwable ignored) {
+              // ignore direct resolution failures from ambiguous variants
+            }
+
+            if (!files.isEmpty()) {
+              p.copy { spec ->
+                spec.from(files)
+                spec.into(dest)
+              }
+            }
+          }
+
+          gradle.projectsEvaluated {
+            def root = gradle.rootProject
+            def rootDir = root.projectDir
+            def allProviders = []
+
+            root.allprojects.each { prj ->
+              def resolvables = prj.configurations.findAll { it.canBeResolved && it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ }
+              resolvables.each { cfg ->
+                def safe = prj.path == ':' ? 'root' : prj.path.replace(':','_').replaceFirst('^_','')
+                def outDir = new File(rootDir, "reports/sbom/deps/${safe}/${cfg.name}")
+                def tn = "sbomCopy_${safe}_${cfg.name}"
+                def tp = prj.tasks.register(tn) {
+                  doLast {
+                    copyArtifacts(prj, cfg, outDir)
+                  }
+                }
+                allProviders << tp
+              }
+            }
+
+            root.tasks.register('sbomCopyAll') {
+              dependsOn allProviders
             }
           }
           GRADLE_EOF
@@ -89,7 +134,7 @@ jobs:
           set -euo pipefail
           ./gradlew -q -I gradle/sbom.init.gradle :sbomCopyAll
           echo "[sbom] deps dir size:"; du -sh reports/sbom/deps || true
-          echo "[sbom] jars copied:" $(find reports/sbom/deps -type f -name '*.jar' | wc -l || echo 0)
+          echo "[sbom] jars copied:" $(find reports/sbom/deps -type f \( -name '*.jar' -o -name '*.aar' \) | wc -l || echo 0)
 
       - name: Install Syft (SBOM)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
