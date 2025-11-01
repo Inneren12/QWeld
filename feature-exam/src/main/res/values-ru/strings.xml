@@ -8,6 +8,11 @@
     <string name="mode_repeat_mistakes_empty">Завершённых попыток ещё нет</string>
     <string name="mode_prewarm_preparing">Подготавливаем вопросы…</string>
     <string name="mode_prewarm_ready">Готово</string>
+    <string name="mode_start">Старт</string>
+    <string name="mode_status_preparing">Подготовка...</string>
+    <string name="mode_status_ready">Готово</string>
+    <string name="mode_exam_cannot_start">Не удалось начать экзамен</string>
+    <string name="mode_exam_details_label">Подробности</string>
     <string name="mode_bank_missing">Для локали %1$s нет банка вопросов. Скопируйте dist/questions/%1$s/bank.v1.json в app-android/src/main/assets/questions/%1$s/.</string>
     <string name="exam_no_attempt">Выберите режим, чтобы начать попытку.</string>
     <string name="exam_no_question">Нет доступных вопросов.</string>

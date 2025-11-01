@@ -100,12 +100,7 @@ fun ExamNavGraph(
         viewModel = examViewModel,
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
-        onIpMockClick = { locale ->
-          val launched = examViewModel.startAttempt(ExamMode.IP_MOCK, locale)
-          if (launched) {
-            navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
-          }
-        },
+        navController = navController,
         onPracticeClick = { locale, config ->
           val launched = examViewModel.startAttempt(
             mode = ExamMode.PRACTICE,
