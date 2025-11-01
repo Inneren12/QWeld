@@ -45,6 +45,7 @@ jobs:
         if: ${{ inputs.run_reuse == 'true' || github.event_name == 'pull_request' }}
         run: |
           reuse lint | tee reports/reuse-lint.txt
+          echo "Hint: для зависимостей Gradle рекомендуем отдельный PR с CashApp Licensee" | tee -a reports/reuse-lint.txt
 
       - name: Install Syft (SBOM)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
@@ -68,7 +69,17 @@ jobs:
             [ .components[]? | (.licenses // [] | map(.license.id // .expression)[])? ]
             | group_by(.) | map({license: .[0], count: length})
           ' reports/sbom-cyclonedx.json > reports/deps-licenses-summary.json
+          component_count=$(jq '(.components // []) | length' reports/sbom-cyclonedx.json)
+          if [ "$component_count" -eq 0 ]; then
+            echo "INFO: SBOM contains 0 components"
+          fi
           echo "Top licenses:" && jq -r '.[:10]' reports/deps-licenses-summary.json
+          {
+            echo "## Dependency license summary"
+            echo
+            echo "- Components discovered: $component_count"
+            echo "- Hint: для зависимостей Gradle рекомендуем отдельный PR с CashApp Licensee"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: jscpd (code duplication)
         if: ${{ inputs.run_jscpd == 'true' || github.event_name == 'pull_request' }}
@@ -76,6 +87,9 @@ jobs:
           npx -y jscpd@3.5.10 \
             --min-tokens "${{ inputs.jscpd_min_tokens || '100' }}" \
             --threshold "${{ inputs.jscpd_threshold || '2' }}" \
+            --exclude "**/build/**" \
+            --exclude "**/test/**" \
+            --exclude "**/*.generated.*" \
             --reporters "console,html,json" \
             --output "reports/jscpd" \
             ${{ inputs.jscpd_paths || 'app-android feature-exam core-* scripts' }}

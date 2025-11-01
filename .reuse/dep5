@@ -1,0 +1,19 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: WelderQuiz
+
+Files: *
+License: MIT
+Copyright: 2024 QWeld contributors
+
+Files: content/**
+License: LicenseRef-Content-Data
+Copyright: 2023-2025 Your Company
+
+Files: gradlew
+       gradlew.bat
+License: Apache-2.0
+Copyright: 2012-2024 Gradle Inc.
+
+Files: tools/codex.patch.txt
+License: LicenseRef-Generated
+Copyright: 2025 WelderQuiz contributors

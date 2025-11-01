@@ -19,7 +19,13 @@ All generated artifacts are bundled into the `code-compliance-reports` archive:
    ```kotlin
    // SPDX-License-Identifier: Apache-2.0
    ```
-3. For shell or Python scripts, prefer `# SPDX-License-Identifier: Apache-2.0`.
+3. For shell or Python scripts, prefer using:
+
+   ```
+   # SPDX-License-Identifier: Apache-2.0
+   ```
+
+   as the first line.
 4. Re-run the workflow (or `reuse lint`) to confirm compliance.
 
 For bulk updates, consider using the [`reuse addheader`](https://reuse.software/) command locally.
