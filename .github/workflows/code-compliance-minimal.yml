@@ -20,7 +20,7 @@ on:
       run_sbom_licenses: { description: 'Build SBOM and license summary', default: 'true' }
       run_jscpd:        { description: 'Run code duplication (jscpd)', default: 'true' }
       jscpd_paths:      { description: 'Paths to scan (space-separated)', default: 'app-android feature-exam core-* scripts' }
-      jscpd_min_tokens: { description: 'jscpd min tokens', default: '100' }
+      jscpd_min_tokens: { description: 'jscpd min tokens', default: '70' }
       jscpd_threshold:  { description: 'jscpd duplication % threshold (0-100)', default: '2' } # только для отчёта
       fail_on_jscpd:    { description: 'Fail job on duplication findings', default: 'false' }
 
@@ -73,26 +73,28 @@ jobs:
           if [ "$component_count" -eq 0 ]; then
             echo "INFO: SBOM contains 0 components"
           fi
+          echo "components=$component_count"
           echo "Top licenses:" && jq -r '.[:10]' reports/deps-licenses-summary.json
           {
             echo "## Dependency license summary"
             echo
+            echo "- components=$component_count"
             echo "- Components discovered: $component_count"
             echo "- Hint: для зависимостей Gradle рекомендуем отдельный PR с CashApp Licensee"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: jscpd (code duplication)
         if: ${{ inputs.run_jscpd == 'true' || github.event_name == 'pull_request' }}
+        shell: bash
         run: |
+          set -euo pipefail
+          mkdir -p reports/jscpd
           npx -y jscpd@3.5.10 \
-            --min-tokens "${{ inputs.jscpd_min_tokens || '100' }}" \
-            --threshold "${{ inputs.jscpd_threshold || '2' }}" \
-            --exclude "**/build/**" \
-            --exclude "**/test/**" \
-            --exclude "**/*.generated.*" \
+            --pattern "{app-android,feature-exam,core-*,scripts}/**/*.{kt,kts,java,js,ts,tsx,jsx,xml,md,py,sh}" \
+            --exclude "**/build/**" --exclude "**/test/**" --exclude "**/.*/**" \
+            --min-tokens "${{ inputs.jscpd_min_tokens || '70' }}" \
             --reporters "console,html,json" \
-            --output "reports/jscpd" \
-            ${{ inputs.jscpd_paths || 'app-android feature-exam core-* scripts' }}
+            --output "reports/jscpd"
         continue-on-error: ${{ inputs.fail_on_jscpd != 'true' }}
 
       - name: Upload compliance reports
