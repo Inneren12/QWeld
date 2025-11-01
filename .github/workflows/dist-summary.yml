@@ -1,0 +1,81 @@
+name: Dist Summary
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dist-summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build dist
+        run: node scripts/build-questions-dist.mjs
+
+      - name: Validate dist banks
+        if: ${{ hashFiles('scripts/validate-dist-banks.mjs') != '' }}
+        run: node scripts/validate-dist-banks.mjs
+
+      - name: Generate dist summary
+        id: dist_summary
+        run: |
+          node scripts/print-dist-summary.mjs > dist-summary.md
+          cat dist-summary.md
+          {
+            echo 'markdown<<EOF'
+            cat dist-summary.md
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Comment on PR
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/github-script@v7
+        env:
+          SUMMARY_MARKDOWN: ${{ steps.dist_summary.outputs.markdown }}
+        with:
+          script: |
+            const marker = '<!-- dist-summary -->';
+            const body = `${marker}\n${process.env.SUMMARY_MARKDOWN}`;
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+
+            const existingComments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+
+            const previous = existingComments.find((comment) => comment.body && comment.body.includes(marker));
+
+            if (previous) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: previous.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+            }
