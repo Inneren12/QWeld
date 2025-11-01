@@ -13,6 +13,7 @@ import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
+import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
@@ -51,6 +52,7 @@ fun QWeldAppRoot(
   val appContext = context.applicationContext
   val questionRepository = remember(appContext) { AssetQuestionRepository(appContext) }
   val explanationRepository = remember(appContext) { AssetExplanationRepository(appContext) }
+  val contentIndexReader = remember(appContext) { ContentIndexReader(appContext) }
   val database = remember(appContext) { QWeldDb.create(appContext) }
   val attemptsRepository = remember(database) { AttemptsRepository(database.attemptDao()) }
   val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
@@ -71,6 +73,7 @@ fun QWeldAppRoot(
       analytics = analytics,
       logCollector = logCollector,
       userPrefs = userPrefs,
+      contentIndexReader = contentIndexReader,
     )
   }
 }

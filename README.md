@@ -37,6 +37,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Copy the generated `tasks/` directories alongside the unified bank into `app-android/src/main/assets/questions/<locale>/` before assembling the app; the repository loads per-task bundles first, then falls back to the monolithic bank, and finally to raw question files for dev scenarios.
 - At runtime the repository lazily loads only the requested tasks (practice mode fetches 1–2 files, IP Mock primes all 15 once) and keeps the most recent six tasks in an in-memory LRU cache while logging the data source and timing via Timber.
 
+## Content Info & dist/index.json
+- `node scripts/build-questions-dist.mjs` now also emits `dist/questions/index.json` summarising locale totals, per-task counts, and SHA-256 hashes for the generated banks (see `[dist_index] written=…` in the log).
+- Copy the resulting `index.json` into `app-android/src/main/assets/questions/index.json` so the Android app can surface the totals inside **Settings → Content info**.
+- On device, the Settings screen shows the locale totals plus an A–D / 1–15 matrix and exposes a **Copy index JSON** button that places the raw document onto the clipboard for quick diagnostics.
+
 ## Pre-warm per-task
 - IP Mock mode now fires `PrewarmUseCase` from `ExamViewModel.startPrewarmForIpMock`, priming all requested tasks with a lightweight progress bar on the Mode screen before navigation.
 - The use case streams task-level progress via `onProgress`, caps parallelism with `Dispatchers.IO.limitedParallelism(3)`, and enforces a 2s timeout per asset while logging `[prewarm_start]`, `[prewarm_step]`, and `[prewarm_done]` markers.
