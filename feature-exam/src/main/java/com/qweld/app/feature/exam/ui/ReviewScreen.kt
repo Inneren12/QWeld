@@ -604,6 +604,7 @@ private fun ChoiceSummary(
   }
 }
 
+@Composable
 private fun highlightAnnotatedText(
   text: String,
   matches: List<IntRange>,

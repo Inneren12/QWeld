@@ -36,10 +36,11 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardOptions
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.qweld.app.feature.exam.R
 import java.util.Locale
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -166,7 +167,12 @@ private fun GlossaryRow(
   }
 }
 
-private fun highlightGlossaryText(text: String, query: String, highlightColor: Color): AnnotatedString {
+@Composable
+private fun highlightGlossaryText(
+  text: String,
+  query: String,
+  highlightColor: Color,
+): AnnotatedString {
   if (query.isBlank() || text.isEmpty()) return AnnotatedString(text)
   val lowerText = text.lowercase(Locale.getDefault())
   val lowerQuery = query.trim().lowercase(Locale.getDefault())
