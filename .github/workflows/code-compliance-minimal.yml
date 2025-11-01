@@ -57,33 +57,44 @@ jobs:
           import org.gradle.api.Project
           import org.gradle.api.artifacts.Configuration
           import org.gradle.api.attributes.*
+          import java.util.concurrent.atomic.AtomicInteger
 
           // Extract runtime artifacts using lenient artifact views to avoid variant selection errors.
-          static def copyArtifacts(Project p, Configuration cfg, File dest) {
-            def views = []
-            def artifactType = Attribute.of("artifactType", String)
-
-            views << cfg.incoming.artifactView { v ->
-              v.lenient true
-              v.attributes { a -> a.attribute(artifactType, "jar") }
-            }
-
-            views << cfg.incoming.artifactView { v ->
-              v.lenient true
-              v.attributes { a -> a.attribute(artifactType, "aar") }
-            }
-
-            views << cfg.incoming.artifactView { v ->
-              v.lenient true
-              v.attributes { a -> a.attribute(artifactType, "android-classes-jar") }
-            }
-
+          static Set<File> collectArtifacts(Project p, Configuration cfg) {
             def files = [] as Set<File>
-            views.each { view ->
+            def artifactTypeAttr = Attribute.of("artifactType", String)
+            def libraryElementsAttr = Attribute.of("libraryElements", LibraryElements)
+            def combos = [
+              [artifactType: "jar", library: "jar"],
+              [artifactType: "classes", library: "classes"],
+              [artifactType: "android-classes", library: "android-classes"],
+              [artifactType: "android-classes-jar", library: "android-classes-jar"],
+              [artifactType: "aar", library: "aar"],
+            ]
+
+            def addFromView = { Closure attrsConfigurer ->
+              def view = cfg.incoming.artifactView { v ->
+                v.lenient true
+                v.attributes { attrs -> attrsConfigurer.call(attrs) }
+              }
               try {
                 files.addAll(view.artifacts.artifactFiles.files)
               } catch (Throwable ignored) {
-                // keep collecting from the remaining views
+                // continue collecting
+              }
+            }
+
+            combos.each { combo ->
+              addFromView { a -> a.attribute(artifactTypeAttr, combo.artifactType) }
+              try {
+                def lib = p.objects.named(LibraryElements, combo.library)
+                addFromView { a -> a.attribute(libraryElementsAttr, lib) }
+                addFromView { a ->
+                  a.attribute(artifactTypeAttr, combo.artifactType)
+                  a.attribute(libraryElementsAttr, lib)
+                }
+              } catch (Throwable ignored) {
+                // libraryElements value may not exist; artifactType-only view already attempted
               }
             }
 
@@ -93,18 +104,14 @@ jobs:
               // ignore direct resolution failures from ambiguous variants
             }
 
-            if (!files.isEmpty()) {
-              p.copy { spec ->
-                spec.from(files)
-                spec.into(dest)
-              }
-            }
+            return files
           }
 
           gradle.projectsEvaluated {
             def root = gradle.rootProject
             def rootDir = root.projectDir
             def allProviders = []
+            def totalCounter = new AtomicInteger(0)
 
             root.allprojects.each { prj ->
               def resolvables = prj.configurations.findAll { it.canBeResolved && it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ }
@@ -114,7 +121,16 @@ jobs:
                 def tn = "sbomCopy_${safe}_${cfg.name}"
                 def tp = prj.tasks.register(tn) {
                   doLast {
-                    copyArtifacts(prj, cfg, outDir)
+                    def files = collectArtifacts(prj, cfg)
+                    def existing = files.findAll { it?.exists() }
+                    if (!existing.isEmpty()) {
+                      prj.copy { spec ->
+                        spec.from(existing)
+                        spec.into(outDir)
+                      }
+                    }
+                    println "[sbom][${safe}:${cfg.name}] copied=" + existing.size()
+                    totalCounter.addAndGet(existing.size())
                   }
                 }
                 allProviders << tp
@@ -123,6 +139,20 @@ jobs:
 
             root.tasks.register('sbomCopyAll') {
               dependsOn allProviders
+              doLast {
+                def total = totalCounter.get()
+                println "[sbom] TOTAL artifacts copied=" + total
+                if (total == 0) {
+                  println "[sbom] No artifacts copied. Known resolvable configs by module:"
+                  root.allprojects.each { prj ->
+                    def cfgs = prj.configurations.findAll { it.canBeResolved && it.name ==~ /(?i).*(release|debug)?runtimeClasspath$/ }
+                    if (!cfgs.isEmpty()) {
+                      println "  - ${prj.path}: " + (cfgs*.name.join(', '))
+                    }
+                  }
+                  throw new GradleException("SBOM: zero artifacts copied; check configuration filters")
+                }
+              }
             }
           }
           GRADLE_EOF
@@ -134,7 +164,7 @@ jobs:
           set -euo pipefail
           ./gradlew -q -I gradle/sbom.init.gradle :sbomCopyAll
           echo "[sbom] deps dir size:"; du -sh reports/sbom/deps || true
-          echo "[sbom] jars copied:" $(find reports/sbom/deps -type f \( -name '*.jar' -o -name '*.aar' \) | wc -l || echo 0)
+          echo "[sbom] files copied:" $(find reports/sbom/deps -type f \( -name '*.jar' -o -name '*.aar' -o -name '*.zip' \) | wc -l || echo 0)
 
       - name: Install Syft (SBOM)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
@@ -161,21 +191,22 @@ jobs:
             components: (.[0].components + .[1].components) | unique_by(.name + ":" + (.version // "")),
             metadata: (.[0].metadata // null)
           }' reports/sbom-source.json reports/sbom-deps.json > reports/sbom-cyclonedx.json
+          comps=$(jq '.components|length' reports/sbom-cyclonedx.json)
+          echo "[sbom] merged components=${comps}"
+          if [ "$comps" -eq 0 ]; then
+            echo "::error::SBOM merge produced zero components"
+            exit 1
+          fi
           jq -r '[ .components[]? | { name, version, licenses: ((.licenses // []) | map(.license.id // .expression)) } ]' \
             reports/sbom-cyclonedx.json > reports/deps-licenses.json
           jq -r '[ .components[]? | (.licenses // [] | map(.license.id // .expression)[])? ] | group_by(.) | map({license: .[0], count: length})' \
             reports/sbom-cyclonedx.json > reports/deps-licenses-summary.json
-          component_count=$(jq '(.components // []) | length' reports/sbom-cyclonedx.json)
-          echo "[sbom] components=$component_count"
-          if [ "$component_count" -eq 0 ]; then
-            echo "INFO: SBOM contains 0 components"
-          fi
           echo "Top licenses:" && jq -r '.[:10]' reports/deps-licenses-summary.json
           {
             echo "## Dependency license summary"
             echo
-            echo "- components=$component_count"
-            echo "- Components discovered: $component_count"
+            echo "- components=$comps"
+            echo "- Components discovered: $comps"
             echo "- Hint: для зависимостей Gradle рекомендуем отдельный PR с CashApp Licensee"
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -192,19 +223,21 @@ jobs:
             --exclude "**/.*/**" \
             --min-tokens "${{ inputs.jscpd_min_tokens || '70' }}" \
             --reporters "console,html,json" \
-            --output "reports/jscpd"
+            --output "reports/jscpd" | tee reports/jscpd/console.txt
         continue-on-error: ${{ inputs.fail_on_jscpd != 'true' }}
+
+      - name: Capture git diff summary
+        run: |
+          set -euo pipefail
+          mkdir -p reports
+          git status --short > reports/changed.txt
 
       - name: Upload compliance reports
         uses: actions/upload-artifact@v4
         with:
           name: code-compliance-reports
           path: |
-            reports/reuse-lint.txt
-            reports/sbom-source.json
-            reports/sbom-deps.json
-            reports/sbom-cyclonedx.json
-            reports/deps-licenses.json
-            reports/deps-licenses-summary.json
-            reports/jscpd/**
-          if-no-files-found: ignore
+            reports/**
+            reports/jscpd/console.txt
+            reports/changed.txt
+          if-no-files-found: warn
