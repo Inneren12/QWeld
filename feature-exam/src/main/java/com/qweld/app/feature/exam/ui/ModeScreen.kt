@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -14,11 +15,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -30,10 +34,13 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.navigation.NavHostController
 import com.qweld.app.feature.exam.R
 import com.qweld.app.domain.exam.ExamBlueprint
+import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository.Result
+import com.qweld.app.feature.exam.navigation.ExamDestinations
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
@@ -49,7 +56,7 @@ fun ModeScreen(
   practiceShortcuts: PracticeShortcuts,
   practiceConfig: PracticeConfig = PracticeConfig(),
   modifier: Modifier = Modifier,
-  onIpMockClick: (String) -> Unit = {},
+  navController: NavHostController,
   onPracticeClick: (String, PracticeConfig) -> Unit = { _, _ -> },
   onRepeatMistakes: (String, ExamBlueprint, PracticeConfig) -> Unit = { _, _, _ -> },
   onResumeAttempt: () -> Unit = {},
@@ -60,6 +67,8 @@ fun ModeScreen(
   val uiState by viewModel.uiState
   val resumeDialog = uiState.resumeDialog
   val prewarmState = uiState.prewarmState
+  val prewarmDisabled = viewModel.prewarmDisabled
+  var deficitDetail by remember { mutableStateOf<String?>(null) }
 
   LaunchedEffect(Unit) { Timber.i("[ui_nav] screen=Mode") }
 
@@ -79,6 +88,12 @@ fun ModeScreen(
     }
   }
 
+  LaunchedEffect(resolvedLanguage, prewarmDisabled) {
+    if (!prewarmDisabled) {
+      viewModel.startPrewarmForIpMock(resolvedLanguage)
+    }
+  }
+
   LaunchedEffect(viewModel, resolvedLanguage) {
     viewModel.detectResume(resolvedLanguage)
   }
@@ -90,6 +105,24 @@ fun ModeScreen(
       when (event) {
         ExamViewModel.ExamEvent.ResumeReady -> onResumeAttempt()
         ExamViewModel.ExamEvent.NavigateToResult -> Unit
+      }
+    }
+  }
+
+  LaunchedEffect(viewModel) {
+    viewModel.effects.collectLatest { effect ->
+      when (effect) {
+        ExamViewModel.ExamEffect.NavigateToExam -> {
+          navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
+        }
+        is ExamViewModel.ExamEffect.ShowDeficit -> {
+          deficitDetail = effect.detail
+        }
+        is ExamViewModel.ExamEffect.ShowError -> {
+          val baseMessage = context.getString(R.string.mode_exam_cannot_start)
+          val message = effect.msg.takeIf { it.isNotBlank() }?.let { "$baseMessage: $it" } ?: baseMessage
+          snackbarHostState.showSnackbar(message)
+        }
       }
     }
   }
@@ -109,8 +142,15 @@ fun ModeScreen(
         style = MaterialTheme.typography.headlineMedium,
       )
       val minHeight = dimensionResource(id = R.dimen.min_touch_target)
+      val ipMockTitle = stringResource(id = R.string.mode_ip_mock)
+      Text(
+        modifier = Modifier.fillMaxWidth(),
+        text = ipMockTitle,
+        style = MaterialTheme.typography.titleMedium,
+      )
       val ipMockCd = stringResource(id = R.string.mode_ip_mock_cd)
       val prewarmLocaleMatches = prewarmState.locale?.equals(resolvedLanguage, ignoreCase = true) ?: false
+      val startEnabled = (prewarmState.isReady && prewarmLocaleMatches) || prewarmDisabled
       Button(
         modifier = Modifier
           .fillMaxWidth()
@@ -119,50 +159,33 @@ fun ModeScreen(
             contentDescription = ipMockCd
             role = Role.Button
           },
-        enabled = !prewarmState.isRunning || (prewarmState.isReady && prewarmLocaleMatches),
-        onClick = {
-          if (prewarmState.isReady && prewarmLocaleMatches) {
-            onIpMockClick(resolvedLanguage)
-          } else {
-            viewModel.startPrewarmForIpMock(resolvedLanguage)
-          }
-        },
+        enabled = startEnabled,
+        onClick = { viewModel.startAttempt(ExamMode.IP_MOCK, resolvedLanguage) },
       ) {
-        Text(text = stringResource(id = R.string.mode_ip_mock))
+        Text(text = stringResource(id = R.string.mode_start))
       }
-      if (prewarmLocaleMatches && prewarmState.isRunning) {
+      val statusText =
+        when {
+          prewarmDisabled -> stringResource(id = R.string.mode_status_ready)
+          prewarmLocaleMatches && prewarmState.isRunning -> stringResource(id = R.string.mode_status_preparing)
+          prewarmLocaleMatches && prewarmState.isReady -> stringResource(id = R.string.mode_status_ready)
+          prewarmState.isRunning -> stringResource(id = R.string.mode_status_preparing)
+          else -> null
+        }
+      if (!prewarmDisabled && prewarmState.isRunning) {
         LinearProgressIndicator(
           progress = prewarmState.progressFraction,
           modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp),
         )
+      }
+      if (statusText != null) {
         Text(
           modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp),
-          text = stringResource(id = R.string.mode_prewarm_preparing),
-          style = MaterialTheme.typography.bodySmall,
-        )
-      } else if (prewarmLocaleMatches && prewarmState.isReady) {
-        Text(
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp),
-          text = stringResource(id = R.string.mode_prewarm_ready),
-          style = MaterialTheme.typography.bodySmall,
-        )
-      } else if (prewarmState.isRunning) {
-        LinearProgressIndicator(
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp),
-        )
-        Text(
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp),
-          text = stringResource(id = R.string.mode_prewarm_preparing),
+          text = statusText,
           style = MaterialTheme.typography.bodySmall,
         )
       }
@@ -226,6 +249,31 @@ fun ModeScreen(
         )
       },
       onDiscard = { viewModel.discardAttempt(resumeDialog.attemptId) },
+    )
+  }
+
+  if (deficitDetail != null) {
+    AlertDialog(
+      onDismissRequest = { deficitDetail = null },
+      title = { Text(text = stringResource(id = R.string.mode_exam_cannot_start)) },
+      text = {
+        Column(modifier = Modifier.fillMaxWidth()) {
+          Text(
+            text = stringResource(id = R.string.mode_exam_details_label),
+            style = MaterialTheme.typography.labelLarge,
+          )
+          Text(
+            modifier = Modifier.padding(top = 8.dp),
+            text = deficitDetail.orEmpty(),
+            style = MaterialTheme.typography.bodyMedium,
+          )
+        }
+      },
+      confirmButton = {
+        TextButton(onClick = { deficitDetail = null }) {
+          Text(text = stringResource(id = android.R.string.ok))
+        }
+      },
     )
   }
 }

@@ -44,6 +44,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -99,12 +100,20 @@ class ExamViewModel(
   private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
   val events = _events.asSharedFlow()
 
+  private val _effects = MutableSharedFlow<ExamEffect>(extraBufferCapacity = 1)
+  val effects: Flow<ExamEffect> = _effects.asSharedFlow()
+
+  val prewarmDisabled: Boolean = false
+
   fun startAttempt(
     mode: ExamMode,
     locale: String,
     practiceConfig: PracticeConfig = PracticeConfig(),
     blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
+    if (mode == ExamMode.IP_MOCK) {
+      Timber.i("[exam_start_req] mode=IPMock locale=%s", locale)
+    }
     val normalizedLocale = locale.lowercase(Locale.US)
     pendingResume = null
     manualTimerRemaining = null
@@ -196,23 +205,30 @@ class ExamViewModel(
         stopTimer(clearLabel = true)
       }
       refreshState()
+      if (mode == ExamMode.IP_MOCK) {
+        Timber.i("[exam_start] ready=125")
+        _effects.tryEmit(ExamEffect.NavigateToExam)
+      }
       true
     } catch (deficit: ExamAssemblyException.Deficit) {
       questionRationales = emptyMap()
       val details = deficit.details.map { detail ->
-        Timber.w(
-          "[deficit_dialog] shown=true taskId=%s need=%d have=%d missing=%d",
-          detail.taskId,
-          detail.need,
-          detail.have,
-          detail.missing,
-        )
+        val message =
+          "taskId=${detail.taskId} need=${detail.need} have=${detail.have} missing=${detail.missing}"
+        Timber.w("[deficit] %s", message)
         DeficitDetailUiModel(
           taskId = detail.taskId,
           need = detail.need,
           have = detail.have,
           missing = detail.missing,
         )
+      }
+      if (mode == ExamMode.IP_MOCK) {
+        val detailSummary =
+          details.joinToString(separator = "\n") { detail ->
+            "taskId=${detail.taskId} need=${detail.need} have=${detail.have} missing=${detail.missing}"
+          }
+        _effects.tryEmit(ExamEffect.ShowDeficit(detailSummary))
       }
       currentAttempt = null
       _uiState.value = ExamUiState(
@@ -222,6 +238,24 @@ class ExamViewModel(
         errorMessage = null,
         prewarmState = _uiState.value.prewarmState,
       )
+      false
+    } catch (error: Throwable) {
+      if (error is CancellationException) throw error
+      if (mode == ExamMode.IP_MOCK) {
+        Timber.e(error, "[exam_error]")
+        _effects.tryEmit(ExamEffect.ShowError(error.message ?: "unknown"))
+      } else {
+        Timber.e(error)
+      }
+      currentAttempt = null
+      _uiState.value =
+        ExamUiState(
+          isLoading = false,
+          attempt = null,
+          deficitDialog = null,
+          errorMessage = error.message ?: "Unable to start attempt.",
+          prewarmState = _uiState.value.prewarmState,
+        )
       false
     }
   }
@@ -543,6 +577,7 @@ class ExamViewModel(
   }
 
   fun startPrewarmForIpMock(locale: String) {
+    if (prewarmDisabled) return
     val normalizedLocale = locale.lowercase(Locale.US)
     val current = _uiState.value.prewarmState
     if (current.isRunning) return
@@ -788,6 +823,12 @@ class ExamViewModel(
   sealed interface ExamEvent {
     data object NavigateToResult : ExamEvent
     data object ResumeReady : ExamEvent
+  }
+
+  sealed class ExamEffect {
+    data object NavigateToExam : ExamEffect()
+    data class ShowDeficit(val detail: String) : ExamEffect()
+    data class ShowError(val msg: String) : ExamEffect()
   }
 
   data class ExamResultData(
