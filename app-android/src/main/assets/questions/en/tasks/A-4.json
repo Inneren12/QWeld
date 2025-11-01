@@ -1,0 +1,674 @@
+[
+  {
+    "id": "Q-A-4_5s_housekeeping_1000000f",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "Why apply 5S/housekeeping in a welding shop?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It adds non‑value work"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It reduces waste and improves safety"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It is only for offices"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It means sweeping at the end of the day only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Orderly workplaces cut search time, trip hazards, and defects."
+    }
+  },
+  {
+    "id": "Q-A-4_consumable_vs_wps_20000044",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "Before starting, consumables should be checked to ensure they:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Match the WPS classification and size"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Are the cheapest available"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Were found on the nearest bench"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Have the longest storage time"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Confirm wire/rod classification and sizes match the WPS."
+    }
+  },
+  {
+    "id": "Q-A-4_datum_on_drawing_20000048",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "When measuring from drawings, a good practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use any convenient edge as a baseline"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Measure from the designated datum(s) shown"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Scale dimensions from a printout"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Guess from photos"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use the specified datums to control tolerance stack‑up."
+    }
+  },
+  {
+    "id": "Q-A-4_distortion_plan_2000004e",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Why should weld sequence and fixturing be planned before welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To maximize distortion"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To minimize distortion and rework"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "So clamps are unnecessary"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To avoid reading drawings"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Sequencing/fixturing helps control shrinkage and alignment."
+    }
+  },
+  {
+    "id": "Q-A-4_do_not_scale_2000004a",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "'Do not scale drawing' means you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure distances with a ruler on the print"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Rely on stated dimensions and notes, not scaling"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore dimensions and use feel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Scan and stretch the image"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use listed dimensions; printed scale may distort."
+    }
+  },
+  {
+    "id": "Q-A-4_drawing_revision_1000000e",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "Which practice is correct when using fabrication drawings?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use any drawing you have"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use the latest revision listed in the title block"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Older revisions are safer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Let the shop choose per day"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Always confirm and work to the current drawing revision to avoid rework."
+    }
+  },
+  {
+    "id": "Q-A-4_gas_ready_check_20000050",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "Before production welding, a good readiness check is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Assume gas cylinders are full"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Verify gas type, pressure, regulators, and spares"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Start welding and check later"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use any gas available"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Confirm the correct gas type, pressure, and equipment before starting."
+    }
+  },
+  {
+    "id": "Q-A-4_jha_risk_20000051",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A Job Hazard Analysis (JHA) is used to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Assign overtime pay"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Identify hazards and controls for each task step"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace PPE"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminate documentation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "JHAs break down tasks to identify hazards and define controls."
+    }
+  },
+  {
+    "id": "Q-A-4_kitting_2000004c",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "To reduce delays at the bench, parts and hardware should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Collected ad‑hoc during welding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Kitted and staged before setup"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Left on pallets unmarked"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stored in a locked office"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Kitting/staging reduces lost time and missing parts."
+    }
+  },
+  {
+    "id": "Q-A-4_material_labeling_2000004f",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "To prevent mix‑ups between similar materials, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove all markings"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Label clearly and segregate storage locations"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Store everything in one bin"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use color only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Clear labels and segregation prevent material mix‑ups."
+    }
+  },
+  {
+    "id": "Q-A-4_measurement_repeatability_20000053",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "To improve measurement repeatability between operators, use:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Different tools and methods each time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Standardized tools, fixtures, and methods"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only visual estimates"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Fastest guess wins"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Standardized methods reduce variation among measurements."
+    }
+  },
+  {
+    "id": "Q-A-4_mtr_check_20000043",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Why are Mill Test Reports (MTRs) reviewed before fabrication?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To choose paint colors"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To verify material grade/heat meets specifications"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To estimate power costs"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To pick welding position"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "MTRs confirm grade and heat/chemistry meet the job requirements."
+    }
+  },
+  {
+    "id": "Q-A-4_plan_sequence_10000010",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Which is a sound sequence for organizing a welding job?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start welding, then look for parts"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Skip fit‑up to save time"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore distortion until final inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Planning with the current WPS/drawings and confirmed materials prevents delays and rework."
+    }
+  },
+  {
+    "id": "Q-A-4_quality_over_speed_20000052",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "If schedule pressure conflicts with WPS requirements, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Skip preheat to save time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Follow the WPS and escalate schedule concerns"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use any electrode available"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce inspections"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "WPS requirements take precedence; raise timing issues to supervision."
+    }
+  },
+  {
+    "id": "Q-A-4_router_hold_points_20000046",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Job travelers/routers often include hold points meaning:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Optional stops to skip"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Required inspections/approvals before proceeding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Coffee breaks"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "End of shift only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Hold points require inspection/approval prior to continuing work."
+    }
+  },
+  {
+    "id": "Q-A-4_shift_handover_20000054",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "At shift handover, a good practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Keep notes private"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Document status, issues, and next steps for continuity"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Leave with work in the machine"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hide in‑process parts"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Clear handover notes maintain continuity and quality."
+    }
+  },
+  {
+    "id": "Q-A-4_symbol_arrow_side_20000042",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A weld symbol placed below the reference line typically indicates the weld is on the:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Other side of the joint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Arrow side of the joint"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Both sides by default"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It has no meaning"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Below the reference line = arrow side; above = other side (per common standards)."
+    }
+  },
+  {
+    "id": "Q-A-4_symbol_fillet_basic_20000041",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "On welding drawings, the basic triangular weld symbol indicates a:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Plug weld"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fillet weld"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spot weld"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Surfacing overlay"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The triangular symbol denotes a fillet weld per common drafting standards."
+    }
+  },
+  {
+    "id": "Q-A-4_tolerance_basic_20000049",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "The symbol '±' on a dimension means:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Exact dimension only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Allowed variation around the nominal size"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Scrap the part"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Millimeters only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "± indicates the permitted deviation from nominal."
+    }
+  },
+  {
+    "id": "Q-A-4_tool_calibration_20000045",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Measuring tools used for acceptance should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Used regardless of calibration status"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Within calibration date and zeroed before use"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Calibrated once at purchase only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Shared without cases to save time"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use calibrated tools and verify zero to ensure valid measurements."
+    }
+  },
+  {
+    "id": "Q-A-4_toolbox_talk_2000004d",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "A short pre‑job briefing (toolbox talk) helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase paperwork only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Align the team on hazards, sequence, and responsibilities"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace permits"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Avoid using the WPS"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Briefings align safety and work plans before starting."
+    }
+  },
+  {
+    "id": "Q-A-4_traceability_transfer_20000047",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "When cutting a marked plate, you should maintain heat/lot traceability by:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Grinding off all markings"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Transferring heat numbers to each piece and documenting"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Painting over markings"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignoring until final inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Transfer and record heat numbers to preserve traceability."
+    }
+  },
+  {
+    "id": "Q-A-4_units_consistency_2000004b",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "When drawings mix units (mm/in), the best practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Convert everything mentally on the fly"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Follow the units stated for each dimension and avoid mixing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always convert to inches"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always convert to millimeters"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use the units indicated; avoid conversion mistakes."
+    }
+  },
+  {
+    "id": "Q-A-4_wps_purpose_1000000d",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "What is the primary purpose of a Welding Procedure Specification (WPS)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To replace the PQR entirely"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To define essential variables and parameters for production welds"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "For inspectors only; welders need not read it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Optional for code work"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as current, position, and preheat."
+    }
+  }
+]

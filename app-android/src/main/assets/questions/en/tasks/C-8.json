@@ -1,0 +1,842 @@
+[
+  {
+    "id": "Q-C-8_blotter_use_v1_03_30000080",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Why are paper blotters used between wheel flanges and the wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Decoration only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They distribute clamping force and protect the wheel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They increase vibration"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They trap oil for lubrication"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Blotters spread load and reduce stress concentrations."
+    }
+  },
+  {
+    "id": "Q-C-8_blotter_use_v2_02_3000008a",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Why are paper blotters used between wheel flanges and the wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Decoration only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They distribute clamping force and protect the wheel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They increase vibration"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They trap oil for lubrication"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Blotters spread load and reduce stress concentrations."
+    }
+  },
+  {
+    "id": "Q-C-8_blotter_use_v3_01_30000094",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Why are paper blotters used between wheel flanges and the wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Decoration only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They distribute clamping force and protect the wheel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They increase vibration"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They trap oil for lubrication"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Blotters spread load and reduce stress concentrations."
+    }
+  },
+  {
+    "id": "Q-C-8_blotters_10000032",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Why are paper blotters used between grinding wheel flanges and the wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Decoration only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They distribute clamping force and protect the wheel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They increase vibration"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They trap oil for lubrication"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Blotters cushion and spread load to reduce stress concentrations."
+    }
+  },
+  {
+    "id": "Q-C-8_cutoff_side_grind_10000031",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "What is the safe use rule for cut‑off wheels?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Side‑grind with heavy pressure for speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not side‑grind with cut‑off wheels"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use on stainless only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It is fine with the guard removed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cut‑off wheels are not designed for side loads and can shatter."
+    }
+  },
+  {
+    "id": "Q-C-8_cutoff_side_load_v1_00_3000007d",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "Which rule is correct for using cut-off wheels?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Side-grind with heavy pressure for speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not side-grind with cut-off wheels"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the guard for better visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lubricate the wheel with oil"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
+    }
+  },
+  {
+    "id": "Q-C-8_cutoff_side_load_v1_10_30000087",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "Which rule is correct for using cut-off wheels?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Side-grind with heavy pressure for speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not side-grind with cut-off wheels"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the guard for better visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lubricate the wheel with oil"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
+    }
+  },
+  {
+    "id": "Q-C-8_cutoff_side_load_v2_09_30000091",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "Which rule is correct for using cut-off wheels?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Side-grind with heavy pressure for speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not side-grind with cut-off wheels"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the guard for better visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lubricate the wheel with oil"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
+    }
+  },
+  {
+    "id": "Q-C-8_dress_wheel_v1_07_30000084",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Dressing a grinding wheel primarily:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Clogs the wheel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Restores shape and exposes sharp abrasive"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduces balance"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Is only cosmetic"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dressing trues the wheel and renews cutting action."
+    }
+  },
+  {
+    "id": "Q-C-8_dress_wheel_v2_06_3000008e",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Dressing a grinding wheel primarily:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Clogs the wheel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Restores shape and exposes sharp abrasive"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduces balance"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Is only cosmetic"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dressing trues the wheel and renews cutting action."
+    }
+  },
+  {
+    "id": "Q-C-8_guard_position_10000033",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should a grinder guard be positioned?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Aim sparks toward coworkers"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Place the guard between the wheel and the operator"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the guard for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Open the guard for cooling"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The guard should block fragments and direct debris away from the user."
+    }
+  },
+  {
+    "id": "Q-C-8_guard_positioning_v1_04_30000081",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should the grinder guard be positioned?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Aim sparks toward coworkers"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Place the guard between the wheel and the operator"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove it for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Open it for cooling"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Position the guard to block fragments and direct debris away."
+    }
+  },
+  {
+    "id": "Q-C-8_guard_positioning_v2_03_3000008b",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should the grinder guard be positioned?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Aim sparks toward coworkers"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Place the guard between the wheel and the operator"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove it for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Open it for cooling"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Position the guard to block fragments and direct debris away."
+    }
+  },
+  {
+    "id": "Q-C-8_guard_positioning_v3_02_30000095",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should the grinder guard be positioned?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Aim sparks toward coworkers"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Place the guard between the wheel and the operator"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove it for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Open it for cooling"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Position the guard to block fragments and direct debris away."
+    }
+  },
+  {
+    "id": "Q-C-8_ring_test_v1_02_3000007f",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Before mounting a bonded grinding wheel, a recommended check is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spin it up on the grinder first"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Perform a ring test and inspect for cracks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Soak it in oil"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike it with a hammer forcefully"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A ring (sound) test helps detect hidden cracks."
+    }
+  },
+  {
+    "id": "Q-C-8_ring_test_v2_01_30000089",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Before mounting a bonded grinding wheel, a recommended check is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spin it up on the grinder first"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Perform a ring test and inspect for cracks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Soak it in oil"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike it with a hammer forcefully"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A ring (sound) test helps detect hidden cracks."
+    }
+  },
+  {
+    "id": "Q-C-8_ring_test_v3_00_30000093",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Before mounting a bonded grinding wheel, a recommended check is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spin it up on the grinder first"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Perform a ring test and inspect for cracks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Soak it in oil"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike it with a hammer forcefully"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A ring (sound) test helps detect hidden cracks."
+    }
+  },
+  {
+    "id": "Q-C-8_rpm_rating_10000035",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should wheel RPM ratings relate to tool RPM?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wheel rating may be below tool speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "RPMs do not matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any mismatch is fine for brief use"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A wheel must be rated for at least the tool’s maximum rotational speed."
+    }
+  },
+  {
+    "id": "Q-C-8_rpm_rating_match_v1_01_3000007e",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should an abrasive wheel’s RPM rating relate to the tool?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wheel rating may be below tool speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "RPMs do not matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any mismatch is fine briefly"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The wheel must be rated for at least the tool’s speed."
+    }
+  },
+  {
+    "id": "Q-C-8_rpm_rating_match_v2_00_30000088",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should an abrasive wheel’s RPM rating relate to the tool?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wheel rating may be below tool speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "RPMs do not matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any mismatch is fine briefly"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The wheel must be rated for at least the tool’s speed."
+    }
+  },
+  {
+    "id": "Q-C-8_rpm_rating_match_v2_10_30000092",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should an abrasive wheel’s RPM rating relate to the tool?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wheel rating may be below tool speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "RPMs do not matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any mismatch is fine briefly"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The wheel must be rated for at least the tool’s speed."
+    }
+  },
+  {
+    "id": "Q-C-8_spark_test_v1_08_30000085",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "A quick spark test during grinding can help to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure voltage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Identify general steel type by spark pattern"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Check gas flow rate"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Calibrate the grinder"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Spark patterns give a rough indication of carbon/alloy content."
+    }
+  },
+  {
+    "id": "Q-C-8_spark_test_v2_07_3000008f",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "A quick spark test during grinding can help to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure voltage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Identify general steel type by spark pattern"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Check gas flow rate"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Calibrate the grinder"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Spark patterns give a rough indication of carbon/alloy content."
+    }
+  },
+  {
+    "id": "Q-C-8_tool_rest_clearance_v1_06_30000083",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "On a bench grinder, the tool rest should be kept:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "As far from the wheel as possible"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "As close as practical (about 3 mm / 1⁄8 in) from the wheel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Removed entirely"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Touching the wheel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Small clearance reduces the chance of workpiece jamming."
+    }
+  },
+  {
+    "id": "Q-C-8_tool_rest_clearance_v2_05_3000008d",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "On a bench grinder, the tool rest should be kept:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "As far from the wheel as possible"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "As close as practical (about 3 mm / 1⁄8 in) from the wheel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Removed entirely"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Touching the wheel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Small clearance reduces the chance of workpiece jamming."
+    }
+  },
+  {
+    "id": "Q-C-8_wheel_storage_10000034",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should bonded abrasive wheels be stored?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "In a damp area to keep cool"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry, flat, and protected from dropping"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hanging by the arbor hole"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stacked with heavy weights"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture and impacts damage wheels; keep them dry and supported."
+    }
+  },
+  {
+    "id": "Q-C-8_wheel_storage_v1_05_30000082",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "What is a good way to bonded abrasive wheels be stored?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "In a damp area to keep cool"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry, flat, protected from impact"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hanging by the arbor hole"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Under heavy weights"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture/impacts damage wheels; keep them dry and supported."
+    }
+  },
+  {
+    "id": "Q-C-8_wheel_storage_v2_04_3000008c",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "How should bonded abrasive wheels be stored?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "In a damp area to keep cool"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry, flat, protected from impact"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hanging by the arbor hole"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Under heavy weights"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture/impacts damage wheels; keep them dry and supported."
+    }
+  },
+  {
+    "id": "Q-C-8_wire_wheel_ppe_v1_09_30000086",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "What PPE is appropriate when using a powered wire wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No eye protection; bristles are soft"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safety glasses and a face shield"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Earplugs only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A dust mask only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Wire bristles can eject; use both glasses and a shield."
+    }
+  },
+  {
+    "id": "Q-C-8_wire_wheel_ppe_v2_08_30000090",
+    "taskId": "C-8",
+    "difficulty": "easy",
+    "stem": "What PPE is appropriate when using a powered wire wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No eye protection; bristles are soft"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safety glasses and a face shield"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Earplugs only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A dust mask only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Wire bristles can eject; use both glasses and a shield."
+    }
+  }
+]

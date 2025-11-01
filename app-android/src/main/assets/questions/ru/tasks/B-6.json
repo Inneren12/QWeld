@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "Q-B-6_345_rule_10000018",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Что — the 3-4-5 rule used for in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Checking roundness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking 90° squareness by measuring a 3-4-5 triangle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Checking parallelism только"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Pipe layout только"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A 3-4-5 triangle forms a right angle, useful for verifying squareness."
+    }
+  },
+  {
+    "id": "Q-B-6_345_rule_10000018",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Что — the 3-4-5 rule used for in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Checking roundness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking 90° squareness by measuring a 3-4-5 triangle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Checking parallelism только"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Pipe layout только"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A 3-4-5 triangle forms a right angle, useful for verifying squareness."
+    }
+  },
+  {
+    "id": "Q-B-6_angle_finder_v1_08_30000008",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Какова основная use of an угломера/транспортир/угломер in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring material thickness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking or setting angles against drawings"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Estimating weight"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Finding center of gravity"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Protractors verify/set angles to match specifications."
+    }
+  },
+  {
+    "id": "Q-B-6_angle_finder_v3_10_30000020",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Какова основная use of an угломера/транспортир/угломер in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring material thickness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking or setting angles against drawings"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Estimating weight"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Finding center of gravity"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Protractors verify/set angles to match specifications."
+    }
+  },
+  {
+    "id": "Q-B-6_bend_allowance_1000001d",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Зачем учитывать bend allowance когда laying out bent parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Metal not stretch during bending"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы получить the required finished lengths after bending"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always overbend 45° for springback"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "The K-factor — always zero"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Material stretches/compresses in bends; allowing for it preserves sizes."
+    }
+  },
+  {
+    "id": "Q-B-6_bend_allowance_1000001d",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Зачем учитывать bend allowance когда laying out bent parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Metal not stretch during bending"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы получить the required finished lengths after bending"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда overbend 45° for springback"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "The K-factor — always zero"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Material stretches/compresses in bends; allowing for it preserves sizes."
+    }
+  },
+  {
+    "id": "Q-B-6_bend_allowance_reason_v1_05_30000005",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Зачем учитывать bend allowance when laying out bent parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Material does not stretch during bending"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To reach the required finished lengths after bending"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce springback to zero"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate K-factor considerations"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Material stretches/compresses in the bend; allowance preserves sizes."
+    }
+  },
+  {
+    "id": "Q-B-6_bend_allowance_reason_v3_07_3000001d",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Зачем учитывать bend allowance when laying out bent parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Material does not stretch during bending"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To reach the required finished lengths after bending"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce springback to zero"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate K-factor considerations"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Material stretches/compresses in the bend; allowance preserves sizes."
+    }
+  },
+  {
+    "id": "Q-B-6_bolt_circle_layout_v2_00_3000000b",
+    "taskId": "B-6",
+    "difficulty": "hard",
+    "stem": "Когда laying out a bolt circle without a CNC, a good approach is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Guess equally spaced points"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать a rotary table/degree wheel or divide circumference mathematically"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Start holes anywhere and correct later"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Rely on eye-balling"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use angular division or fixtures to space holes accurately."
+    }
+  },
+  {
+    "id": "Q-B-6_bolt_circle_layout_v4_02_30000023",
+    "taskId": "B-6",
+    "difficulty": "hard",
+    "stem": "Когда laying out a bolt circle without a CNC, a good approach is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Guess equally spaced points"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать a rotary table/degree wheel or divide circumference mathematically"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Start holes anywhere and correct later"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Rely on eye-balling"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use angular division or fixtures to space holes accurately."
+    }
+  },
+  {
+    "id": "Q-B-6_center_punch_1000001a",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Зачем использовать a center punch during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To erase layout lines"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To preserve hole/mark location during cutting or drilling"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "For decoration только"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It significantly weakens the steel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Punch marks help keep locations visible and guide drill points."
+    }
+  },
+  {
+    "id": "Q-B-6_center_punch_1000001a",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Зачем использовать a center punch during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To erase layout lines"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To preserve hole/mark location during cutting or drilling"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "For decoration только"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It significantly weakens the steel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Punch marks help keep locations visible and guide drill points."
+    }
+  },
+  {
+    "id": "Q-B-6_center_punch_use_v1_03_30000003",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Почему is a center punch used before drilling?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To decorate the surface"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To keep the drill from wandering and preserve location"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To weaken the steel intentionally"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To remove coatings"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A punch mark помогает the drill start precisely at the mark."
+    }
+  },
+  {
+    "id": "Q-B-6_center_punch_use_v3_05_3000001b",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Почему is a center punch used before drilling?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To decorate the surface"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To keep the drill from wandering and preserve location"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To weaken the steel intentionally"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To remove coatings"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A punch mark помогает the drill start precisely at the mark."
+    }
+  },
+  {
+    "id": "Q-B-6_chalk_line_snap_v2_03_3000000e",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "For long straight layout lines on plate, a common tool is a:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Feeler gauge"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Chalk line (snap line)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Depth micrometer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Dial indicator"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Chalk lines snap long straight references across large surfaces."
+    }
+  },
+  {
+    "id": "Q-B-6_chalk_line_snap_v4_05_30000026",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "For long straight layout lines on plate, a common tool is a:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Feeler gauge"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Chalk line (snap line)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Depth micrometer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Dial indicator"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Chalk lines snap long straight references across large surfaces."
+    }
+  },
+  {
+    "id": "Q-B-6_combination_square_v2_10_30000015",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "A комбинированного угольника can be used to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Mix paints"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check 90°/45° and measure offsets"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Read amperage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Set spindle speeds"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Combination squares check squareness and setoffs quickly."
+    }
+  },
+  {
+    "id": "Q-B-6_combination_square_v5_01_3000002d",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "A комбинированного угольника can be used to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Mix paints"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check 90°/45° and measure offsets"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Read amperage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Set spindle speeds"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Combination squares check squareness and setoffs quickly."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_selection_v1_00_30000000",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Какой из следующих подходов верен when choosing a layout датум?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use several random edges as датумs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Выберите one clear датум to control accumulated error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore датумs when measuring"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Всегда measure from part centerlines only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A single, consistent датум minimizes накопление допусков."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_selection_v3_02_30000018",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Какой подход является верным when choosing a layout датум?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use several random edges as датумs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Выберите one clear датум to control accumulated error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore датумs when measuring"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Всегда measure from part centerlines only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A single, consistent датум minimizes накопление допусков."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_selection_v5_04_30000030",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Какой подход является верным when choosing a layout датум?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use several random edges as датумs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Выберите one clear датум to control accumulated error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore датумs when measuring"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Всегда measure from part centerlines only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A single, consistent датум minimizes накопление допусков."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_transfer_v2_01_3000000c",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "To limit cumulative error across mulсоплаle features, you should measure:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "From changing local edges each time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "From the same датум(s) each time"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "From the nearest scratch"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "From the midpoint only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Measuring from one датум avoids накопление допусков."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_transfer_v4_03_30000024",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "To limit cumulative error across mulсоплаle features, you should measure:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "From changing local edges each time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "From the same датум(s) each time"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "From the nearest scratch"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "From the midpoint only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Measuring from one датум avoids накопление допусков."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_use_1000001c",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Какой хороший приём for choosing a datum in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use multiple random baselines"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Select a single clear datum to control accumulated error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Begin anywhere convenient"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Datums — только for machining"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A single, consistent datum minimizes tolerance stack-up."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_use_1000001c",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Какой хороший приём for choosing a datum in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать multiple random baselines"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Select a single clear база отсчёта to control accumulated error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Begin anywhere convenient"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Datums — только for machining"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A single, consistent база отсчёта minimizes накопление допусков."
+    }
+  },
+  {
+    "id": "Q-B-6_edge_distance_v2_06_30000011",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Почему respect minimum edge distances for holes during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To maximize distortion"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To prevent edge tearing and maintain strength"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To save drill bits"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To make holes look centered"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Minimum edge distances help keep material integrity."
+    }
+  },
+  {
+    "id": "Q-B-6_edge_distance_v4_08_30000029",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Почему respect minimum edge distances for holes during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To maximize distortion"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To prevent edge tearing and maintain strength"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To save drill bits"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To make holes look centered"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Minimum edge distances help keep material integrity."
+    }
+  },
+  {
+    "id": "Q-B-6_kerf_allow_10000019",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Зачем учитывать cutting kerf in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It — negligible for all processes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To maintain final dimensions after cutting"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To add weld reinforcement"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always subtract a fixed 10 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Kerf removes material; planning for it preserves required part size."
+    }
+  },
+  {
+    "id": "Q-B-6_kerf_allow_10000019",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Зачем учитывать cutting kerf in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It — negligible for all processes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To maintain final dimensions after cutting"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To add weld reinforcement"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Всегда subtract a fixed 10 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Kerf removes material; planning for it preserves required part size."
+    }
+  },
+  {
+    "id": "Q-B-6_kerf_allowance_v1_01_30000001",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Почему важно cutting пропил (kerf) be accounted for in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Kerf adds material back to the part"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It удаляет material; planning preserves final dimensions"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It only matters for plasma cutting"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Layout lines are unaffected by пропил (kerf)"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The cut удаляет stock; offsetting cut lines maintains required size."
+    }
+  },
+  {
+    "id": "Q-B-6_kerf_allowance_v3_03_30000019",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Почему следует cutting пропил (kerf) be accounted for in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Kerf adds material back to the part"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It удаляет material; planning preserves final dimensions"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It only matters for plasma cutting"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Layout lines are unaffected by пропил (kerf)"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The cut удаляет stock; offsetting cut lines maintains required size."
+    }
+  },
+  {
+    "id": "Q-B-6_kerf_allowance_v5_05_30000031",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Почему следует cutting пропил (kerf) be accounted for in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Kerf adds material back to the part"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It удаляет material; planning preserves final dimensions"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It only matters for plasma cutting"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Layout lines are unaffected by пропил (kerf)"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The cut удаляет stock; offsetting cut lines maintains required size."
+    }
+  },
+  {
+    "id": "Q-B-6_layout_sequencing_v3_01_30000017",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Перед cutting parts from a plate, a good layout sequence is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cut first, then decide where features go"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Nest parts to minimize scrap, mark all, then cut"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Draw one part and cut immediately"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore grain/orientation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Nesting уменьшает scrap and errors before cutting."
+    }
+  },
+  {
+    "id": "Q-B-6_layout_sequencing_v5_03_3000002f",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Перед cutting parts from a plate, a good layout sequence is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cut first, then decide where features go"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Nest parts to minimize scrap, mark all, then cut"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Draw one part and cut immediately"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore grain/orientation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Nesting уменьшает scrap and errors before cutting."
+    }
+  },
+  {
+    "id": "Q-B-6_layout_visibility_v1_07_30000007",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как можно layout lines be kept visible through handling and fitting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Scratch very deep разделкаs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать contrasting markers/soapstone and refresh as needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rely on memory of dimensions"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint over the layout lines"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "High-contrast marks remain visible through light grinding/handling."
+    }
+  },
+  {
+    "id": "Q-B-6_layout_visibility_v3_09_3000001f",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как можно layout lines be kept visible through handling and fitting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Scratch very deep разделкаs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать contrasting markers/soapstone and refresh as needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rely on memory of dimensions"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint over the layout lines"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "High-contrast marks remain visible through light grinding/handling."
+    }
+  },
+  {
+    "id": "Q-B-6_level_plumb_v2_04_3000000f",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Какое tools help verify level and plumb during layout/fit-up?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Micrometers only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Spirit level, plumb bob, or laser level"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Feeler gauges only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Vernier calipers only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Levels/plumb bobs/lasers check horizontal and vertical alignment."
+    }
+  },
+  {
+    "id": "Q-B-6_level_plumb_v4_06_30000027",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Какое tools help verify level and plumb during layout/fit-up?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Micrometers only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Spirit level, plumb bob, or laser level"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Feeler gauges only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Vernier calipers only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Levels/plumb bobs/lasers check horizontal and vertical alignment."
+    }
+  },
+  {
+    "id": "Q-B-6_line_visibility_10000021",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как можно you keep layout lines visible during cutting/fitting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Always scratch very deeply"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use contrasting markers or soapstone and refresh as needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use permanent paint on all metals"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No indication — needed on stainless"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "High-contrast marks remain visible through handling and light grinding."
+    }
+  },
+  {
+    "id": "Q-B-6_line_visibility_10000021",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как можно you keep layout lines visible during cutting/fitting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Всегда scratch very deeply"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать contrasting markers or soapstone and refresh as needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Использовать permanent paint on all metals"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No indication — needed on stainless"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "High-contrast marks remain visible through handling and light grinding."
+    }
+  },
+  {
+    "id": "Q-B-6_mark_protection_v2_08_30000013",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Чтобы избежать losing layout marks during cutting/grinding, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать water to wash them off"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Protect or remark them after each step"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rely on the first mark only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch off ventilation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Protect/refresh marks to keep references intact."
+    }
+  },
+  {
+    "id": "Q-B-6_mark_protection_v4_10_3000002b",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Чтобы избежать losing layout marks during cutting/grinding, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать water to wash them off"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Protect or remark them after each step"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rely on the first mark only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch off ventilation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Protect/refresh marks to keep references intact."
+    }
+  },
+  {
+    "id": "Q-B-6_pipe_wrap_v2_02_3000000d",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Что tool помогает mark square lines around pipe for cutting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A magnetic base"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A разметочной ленты для трубы or flexible square"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A center punch only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A drill press"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flexible wraps allow marking circumferential cut lines square to axis."
+    }
+  },
+  {
+    "id": "Q-B-6_pipe_wrap_v4_04_30000025",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Что tool помогает mark square lines around pipe for cutting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A magnetic base"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A разметочной ленты для трубы or flexible square"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A center punch only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A drill press"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flexible wraps allow marking circumferential cut lines square to axis."
+    }
+  },
+  {
+    "id": "Q-B-6_radius_gauge_v2_09_30000014",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "A radius gauge используется для:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure angular degrees"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check concave/convex radii against a template"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Measure voltage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Measure thickness only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Radius gauges compare edge radii to templates."
+    }
+  },
+  {
+    "id": "Q-B-6_radius_gauge_v5_00_3000002c",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "A radius gauge используется для:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure angular degrees"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check concave/convex radii against a template"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Measure voltage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Measure thickness only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Radius gauges compare edge radii to templates."
+    }
+  },
+  {
+    "id": "Q-B-6_read_scale_1000001b",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как следует a steel rule be read for accuracy?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Estimate by eye только"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Read to the smallest graduation on the rule"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore the zero edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always round up"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Read the finest graduation available to уменьшить measurement error."
+    }
+  },
+  {
+    "id": "Q-B-6_read_scale_1000001b",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как следует a steel rule be read for accuracy?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Estimate by eye только"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Read to the smallest graduation on the rule"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore the zero edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Всегда round up"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Read the finest graduation available to уменьшить measurement error."
+    }
+  },
+  {
+    "id": "Q-B-6_scribe_depth_v2_05_30000010",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Когда using a scribe on finished surfaces, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Engrave deep lines for visibility"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать light lines or alternatives to avoid damage"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hammer the scribe to mark clearly"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Никогда use tape or paint markers"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Light marks or removable media avoid damaging finished surfaces."
+    }
+  },
+  {
+    "id": "Q-B-6_scribe_depth_v4_07_30000028",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Когда using a scribe on finished surfaces, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Engrave deep lines for visibility"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать light lines or alternatives to avoid damage"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hammer the scribe to mark clearly"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Никогда use tape or paint markers"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Light marks or removable media avoid damaging finished surfaces."
+    }
+  },
+  {
+    "id": "Q-B-6_scribe_tape_v3_00_30000016",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "A non-marring way to mark finished surfaces is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Scribe deeply"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Apply masking tape and mark on the tape"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Strike with a chisel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Использовать acid etch"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tape lets you mark without damaging the surface."
+    }
+  },
+  {
+    "id": "Q-B-6_scribe_tape_v5_02_3000002e",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "A non-marring way to mark finished surfaces is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Scribe deeply"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Apply masking tape and mark on the tape"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Strike with a chisel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Использовать acid etch"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tape lets you mark without damaging the surface."
+    }
+  },
+  {
+    "id": "Q-B-6_scribe_vs_marker_v1_10_3000000a",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "On oiled or scaled steel, which layout method is best?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать pencil only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать a scribe or paint marker that contrasts the surface"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Использовать chalk only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No marking is needed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Scribes/paint markers remain legible on rough or oily surfaces."
+    }
+  },
+  {
+    "id": "Q-B-6_scribe_vs_marker_v4_01_30000022",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "On oiled or scaled steel, which layout method is best?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать pencil only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать a scribe or paint marker that contrasts the surface"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Использовать chalk only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No marking is needed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Scribes/paint markers remain legible on rough or oily surfaces."
+    }
+  },
+  {
+    "id": "Q-B-6_steel_rule_read_v1_04_30000004",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Для точности, a steel rule should be read:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "By estimating to the nearest centimeter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To the smallest graduation on the rule"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда rounded up"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "From whichever end is convenient without zeroing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Reading to the smallest graduation уменьшает measurement error."
+    }
+  },
+  {
+    "id": "Q-B-6_steel_rule_read_v3_06_3000001c",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Для точности, a steel rule should be read:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "By estimating to the nearest centimeter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To the smallest graduation on the rule"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда rounded up"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "From whichever end is convenient without zeroing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Reading to the smallest graduation уменьшает measurement error."
+    }
+  },
+  {
+    "id": "Q-B-6_template_jig_v1_09_30000009",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Зачем использовать templates or jigs for repeat parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They slow down production"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They speed production and reduce measurement error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They replace drawings entirely"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They only apply to woodwork"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Templates produce consistency and reduce layout effort."
+    }
+  },
+  {
+    "id": "Q-B-6_template_jig_v4_00_30000021",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Зачем использовать templates or jigs for repeat parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They slow down production"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They speed production and reduce measurement error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They replace drawings entirely"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They only apply to woodwork"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Templates produce consistency and reduce layout effort."
+    }
+  },
+  {
+    "id": "Q-B-6_templates_10000020",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Зачем использовать templates or jigs for repeat parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They — только for woodwork"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They speed production and уменьшить measurement error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They waste time"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They replace all drawings"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Templates produce consistent parts and уменьшить layout effort."
+    }
+  },
+  {
+    "id": "Q-B-6_templates_10000020",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Зачем использовать templates or jigs for repeat parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They — только for woodwork"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They speed production and уменьшить measurement error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They waste time"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They replace all drawings"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Templates produce consistent parts and уменьшить layout effort."
+    }
+  },
+  {
+    "id": "Q-B-6_three_four_five_v1_02_30000002",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Для чего применяется правило 3‑4‑5 during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring thickness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking 90° squareness by forming a 3-4-5 triangle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Leveling a table"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Finding the center of a circle"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A 3-4-5 triangle forms a right angle and verifies squareness."
+    }
+  },
+  {
+    "id": "Q-B-6_three_four_five_v3_04_3000001a",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Для чего применяется правило 3‑4‑5 during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring thickness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking 90° squareness by forming a 3-4-5 triangle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Leveling a table"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Finding the center of a circle"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A 3-4-5 triangle forms a right angle and verifies squareness."
+    }
+  },
+  {
+    "id": "Q-B-6_tolerance_stack_v2_07_30000012",
+    "taskId": "B-6",
+    "difficulty": "hard",
+    "stem": "Tolerance stack-up can be reduced by:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring from mulсоплаle random references"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Measuring from a single датум and using controlled sequences"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignoring tolerances on non-critical features"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Scaling from prints instead of using stated dimensions"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use consistent датумs and sequences to minimize accumulation."
+    }
+  },
+  {
+    "id": "Q-B-6_tolerance_stack_v4_09_3000002a",
+    "taskId": "B-6",
+    "difficulty": "hard",
+    "stem": "Tolerance stack-up can be reduced by:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring from mulсоплаle random references"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Measuring from a single датум and using controlled sequences"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignoring tolerances on non-critical features"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Scaling from prints instead of using stated dimensions"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use consistent датумs and sequences to minimize accumulation."
+    }
+  },
+  {
+    "id": "Q-B-6_tool_storage_1000001f",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как следует precision layout tools be stored?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Keep scribes dull and toss squares in a bin"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Protect edges and faces to preserve accuracy"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stack tools to save space"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Oil ruins them permanently"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Protecting edges maintains the accuracy of rules, squares, and gauges."
+    }
+  },
+  {
+    "id": "Q-B-6_tool_storage_1000001f",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Как следует precision layout tools be stored?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Держать/сохранять scribes dull and toss squares in a bin"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Protect edges and faces to preserve accuracy"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stack tools to save space"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Oil ruins them permanently"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Protecting edges maintains the accuracy of rules, squares, and gauges."
+    }
+  },
+  {
+    "id": "Q-B-6_transfer_measure_1000001e",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Какой способ helps transfer equal measurements accurately?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use dividers or a combination square"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use chalk and estimate by eye"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wave a hand near the part"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Never mark on metal surfaces"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Dividers and squares allow precise transfer of repeated distances."
+    }
+  },
+  {
+    "id": "Q-B-6_transfer_measure_1000001e",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Какой способ helps transfer equal measurements accurately?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать dividers or a combination square"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать chalk and estimate by eye"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wave a hand near the part"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Никогда mark on metal surfaces"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Dividers and squares allow precise transfer of repeated distances."
+    }
+  },
+  {
+    "id": "Q-B-6_transfer_measure_dividers_v1_06_30000006",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Какой инструмент помогает transfer equal distances accurately during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Chalk stick"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dividers or a комбинированного угольника"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A gloved finger"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A pry bar"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dividers and squares transfer repeated distances precisely."
+    }
+  },
+  {
+    "id": "Q-B-6_transfer_measure_dividers_v3_08_3000001e",
+    "taskId": "B-6",
+    "difficulty": "easy",
+    "stem": "Какой инструмент помогает transfer equal distances accurately during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Chalk stick"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dividers or a комбинированного угольника"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A gloved finger"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A pry bar"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dividers and squares transfer repeated distances precisely."
+    }
+  }
+]

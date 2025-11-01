@@ -1,0 +1,674 @@
+[
+  {
+    "id": "Q-A-2_anchor_point_2000001c",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "An acceptable anchorage for a fall‑arrest system is typically:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A conduit or handrail"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "An engineered or structural anchorage point"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any pipe overhead"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "The nearest ladder rung"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use only engineered/structural anchor points rated for fall arrest."
+    }
+  },
+  {
+    "id": "Q-A-2_chain_sling_reject_20000022",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Which condition requires removing a chain sling from service?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Manufacturer’s tag present"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Links stretched or bent"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Paint markings intact"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sling recently cleaned"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Deformation or stretch indicates overload—remove the sling from service."
+    }
+  },
+  {
+    "id": "Q-A-2_choker_capacity_20000023",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Compared with a basket hitch, a choker hitch of the same sling typically:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Has higher capacity"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Has lower capacity"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has identical capacity"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cannot be used for lifting"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Choker hitches reduce capacity due to bending and friction at the choke."
+    }
+  },
+  {
+    "id": "Q-A-2_cog_estimate_20000024",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Before lifting an irregular load, you should locate the center of gravity so that:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "The hook is below the COG"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "The hook is directly above or slightly past the COG toward the heavy end"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "The hook is far to one side"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "COG position is irrelevant"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Suspending above/just past the COG helps the load hang level without tipping."
+    }
+  },
+  {
+    "id": "Q-A-2_crane_stop_signal_10000006",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "Which statement about crane hand signals is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Only the operator may signal a stop"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Anyone may give the universal emergency stop signal"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Two hands above head always means 'speed up'"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "There are no standard hand signals for cranes"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The emergency stop is universal and may be given by any person observing danger."
+    }
+  },
+  {
+    "id": "Q-A-2_forklift_carry_low_2000001d",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "When traveling with a load on a forklift, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Carry the load high for visibility"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Carry the load low and tilted back"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Travel fast to reduce time under load"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn on ramps with the load elevated"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Keep the load low and tilted back for stability and visibility."
+    }
+  },
+  {
+    "id": "Q-A-2_hand_hoist_brake_20000026",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Before using a chain fall/lever hoist, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Oil the brake surfaces"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check the brake/pawl function with a light test lift"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the nameplate to reduce weight"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use a cheater bar on the lever"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Verify the brake holds with a small test lift before proceeding."
+    }
+  },
+  {
+    "id": "Q-A-2_harness_inspect_2000001a",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Before using a full‑body harness, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ignore small cuts in webbing"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check webbing, stitching, and hardware; remove if damaged"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tie knots to shorten lanyards"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use any carabiner from the hardware store"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Inspect harness components and remove damaged gear from service."
+    }
+  },
+  {
+    "id": "Q-A-2_ladder_3points_20000014",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "When climbing a ladder, which practice is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Carry tools in your hands"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Maintain three points of contact"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lean far to the side to reach"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stand on the top cap for better height"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Keep two hands and one foot or two feet and one hand in contact while climbing."
+    }
+  },
+  {
+    "id": "Q-A-2_ladder_angle_10000004",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "What is the recommended setup angle for a straight ladder?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1:1 (about 45°) against the support"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "4:1 (about 75°) slope from the base to the support"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lean as steep as possible to save space"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lay it nearly horizontal for stability"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The 4:1 rule provides stable footing and proper contact with the support."
+    }
+  },
+  {
+    "id": "Q-A-2_ladder_extend_secure_20000015",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "When a portable ladder is used for access to a higher level, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stop it flush with the landing edge"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Extend above the landing and secure it to prevent movement"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Place it on boxes to gain height"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Grease the feet so it slides into position"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Extend above the landing and tie off/secure to prevent movement."
+    }
+  },
+  {
+    "id": "Q-A-2_metal_ladder_electric_20000017",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "Around electrical hazards, which ladder choice is safest?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Metal ladder"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wet wooden ladder"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Fiberglass ladder in good condition"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any ladder will do"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Non‑conductive fiberglass ladders reduce shock risk near electricity."
+    }
+  },
+  {
+    "id": "Q-A-2_no_ride_hook_20000025",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "Which statement about crane operations is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It is acceptable to ride the hook for short distances"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Only supervisors may ride the load"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "No one may ride the hook or suspended load"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Riding is permitted with a harness"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Riding hooks or loads is prohibited; use approved man‑lifts instead."
+    }
+  },
+  {
+    "id": "Q-A-2_pedestrian_exclusion_2000001e",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "During a lift with a crane or hoist, bystanders should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Walk under the suspended load quickly"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stand close to guide by hand"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stay out of the fall zone and use barriers/tag lines"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ride on the hook for better view"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Keep people out of the fall zone; use tag lines to control the load."
+    }
+  },
+  {
+    "id": "Q-A-2_rigging_unknown_20000027",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "If rigging gear’s history or condition is unknown, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use it for a light lift first"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Assume it’s fine if it looks clean"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove it from service and have it inspected"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint it and put it back"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Unknown or suspect gear must be inspected or discarded."
+    }
+  },
+  {
+    "id": "Q-A-2_scaffold_guardrails_20000019",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "On platforms at height, which protection is appropriate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No guardrails if you’re careful"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Guardrails and toeboards as required"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Loose ropes instead of rails"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Just caution tape"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Guardrails/toeboards help prevent falls and falling objects."
+    }
+  },
+  {
+    "id": "Q-A-2_scaffold_inspect_tag_20000018",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Before using a scaffold, a best practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Assume it’s safe if present"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check that it’s tagged/inspected by a competent person"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Jump to test deflection"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove guardrails to work faster"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use only inspected scaffolds with proper tags and guardrails in place."
+    }
+  },
+  {
+    "id": "Q-A-2_shackle_orientation_20000020",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "For a two‑leg sling connection using a shackle, a good practice is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Load on the pin with side loading"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Place the bow on the sling side to reduce side‑loading the pin"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use any random orientation"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Replace shackles with padlocks"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The bow provides more space and reduces side loading on the pin."
+    }
+  },
+  {
+    "id": "Q-A-2_shock_lanyard_use_2000001b",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Why use a shock‑absorbing lanyard in fall arrest?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To increase arrest forces"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To reduce forces on the body during a fall"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To make the lanyard heavier"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To replace anchor points"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Energy‑absorbing devices limit peak forces transmitted to the user."
+    }
+  },
+  {
+    "id": "Q-A-2_sling_angle_10000005",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "How does sling angle affect tension in a two-leg lift?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Smaller angles reduce tension in each leg"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Smaller angles increase tension in each leg"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Angle has no effect on leg tension"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Larger angles always increase tension"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "As the angle from horizontal decreases, leg tension rises significantly."
+    }
+  },
+  {
+    "id": "Q-A-2_sling_edge_protect_20000021",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "How should synthetic web slings be protected on sharp edges?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No protection needed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use padding/edge protectors"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wrap with tape only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Move faster to avoid cuts"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use corner pads/guards to prevent cutting of webbing."
+    }
+  },
+  {
+    "id": "Q-A-2_stepladder_top_step_20000016",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "Which statement about stepladders is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Standing on the top cap is allowed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use them closed like a straight ladder"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Do not stand on the top or top step unless designed for it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always lean them against walls"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Avoid the top/top step unless the ladder is specifically designed for standing there."
+    }
+  },
+  {
+    "id": "Q-A-2_tag_lines_2000001f",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "What is the primary purpose of using tag lines on suspended loads?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To increase the load weight"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To steer and control load swing at a distance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To tie off the crane hook"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To measure load temperature"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tag lines let workers control rotation/swing while staying clear."
+    }
+  },
+  {
+    "id": "Q-A-2_trial_lift_10000007",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "When the exact weight of a load is unknown, what is the safest approach?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Guess the weight by the size of the load"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use rated slings and perform a short, controlled trial lift"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lift quickly to avoid swinging"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ride on the load to watch clearances"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A brief trial lift lets you verify balance and capacity while staying within control."
+    }
+  }
+]

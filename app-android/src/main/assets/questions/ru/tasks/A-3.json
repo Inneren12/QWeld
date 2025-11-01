@@ -1,0 +1,982 @@
+[
+  {
+    "id": "Q-A-3_burn_first_aid_20000036",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "For a minor thermal burn, initial first aid usually involves:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Applying grease to seal the skin"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Cooling the area with cool running water and seeking care if needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Popping blisters to relieve pressure"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Applying strong solvent"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cool the burn with water; avoid ointments/grease initially."
+    }
+  },
+  {
+    "id": "Q-A-3_confined_space_o2_1000000a",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Какое кислород range — considered acceptable for entry into a замкнутого пространства?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "16–18% кислород"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "19.5–23.5% кислород"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Above 24% кислород"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any level if wearing a respirator"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Atmospheres between ~19.5% and 23.5% кислород — considered acceptable for entry."
+    }
+  },
+  {
+    "id": "Q-A-3_confined_space_o2_1000000a",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Какое кислород range — considered acceptable for entry into a замкнутого пространства?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "16–18% кислород"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "19.5–23.5% кислород"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Above 24% кислород"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any level if wearing a respirator"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Atmospheres between ~19.5% and 23.5% кислород — considered acceptable for entry."
+    }
+  },
+  {
+    "id": "Q-A-3_cylinder_separation_safety_2000003d",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "In storage areas, кислородного баллонаs should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stored together with топливного газа баллонаs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Separated from топливного газаes by distance or a barrier"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Coated with grease to prevent rust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Laid down to save space"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Separate кислородного from топливного газаes to reduce fire/explosion risk."
+    }
+  },
+  {
+    "id": "Q-A-3_cylinder_transport_20000030",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Когда transporting gas баллонаs within the shop, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Roll them on the bottom rim"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Carry them horizontally with two people"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use a proper баллона cart with cap installed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Drag them by the valve cap"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Use баллона carts and keep protective caps on during transport."
+    }
+  },
+  {
+    "id": "Q-A-3_extinguisher_class_20000037",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Какое statement about fire extinguishers is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать water on energized electrical fires"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Select an extinguisher rated for the fire class (e.g., ABC for many shop fires)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "CO₂ extinguishers are for wood only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any extinguisher works the same"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use extinguishers suitable for the fire class; do not use water on energized circuits."
+    }
+  },
+  {
+    "id": "Q-A-3_fire_watch_10000009",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Как долго следует a постового пожарного наблюдателя typically remain after hot work ends?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Not required if the area looks clean"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "At least 30 minutes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только while cutting — in progress"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A fire extinguisher replaces the постового пожарного наблюдателя"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A post-work постового пожарного наблюдателя of ~30 minutes — обычная практика to catch smoldering ignition."
+    }
+  },
+  {
+    "id": "Q-A-3_fire_watch_10000009",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Как долго следует a постового пожарного наблюдателя typically remain after hot work ends?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Not required if the area looks clean"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "At least 30 minutes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только while cutting — in progress"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A fire extinguisher replaces the постового пожарного наблюдателя"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A post-work постового пожарного наблюдателя of ~30 minutes — обычная практика to catch smoldering ignition."
+    }
+  },
+  {
+    "id": "Q-A-3_flammable_liquid_control_2000003e",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Before hot work near flammable liquids, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ignore containers if closed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Удалить or shield them and test the atmosphere if required"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stack them behind a screen"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Move closer to finish faster"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove/cover combustibles and verify atmosphere per permit controls."
+    }
+  },
+  {
+    "id": "Q-A-3_flashback_arrestors_20000031",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "What device helps prevent flame traveling back into кислородно‑топливных рукаваs?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A расходомера"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A check valve or огнепреградителя/клапана обратного удара"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A pressure gauge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A рукава reel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Check valves/огнепреградителя/клапана обратного удараs reduce flashback risk."
+    }
+  },
+  {
+    "id": "Q-A-3_fr_clothing_2000002e",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Какое clothing is most appropriate for сварки?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Synthetic athletic wear"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Flame-resistant cotton or leather"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Shorts and sandals"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Loose acrylic sweater"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "FR cotton or leather resists ignition and melting."
+    }
+  },
+  {
+    "id": "Q-A-3_glove_condition_2000002f",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Before сварки, gloves should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Oily to repel water"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry and free of holes or tears"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cut-off fingers for dexterity"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sprayed with solvent"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dry, intact gloves protect from heat and electrical hazards."
+    }
+  },
+  {
+    "id": "Q-A-3_grinding_ppe_10000008",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Что eye and face protection — appropriate for grinding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Safety glasses только"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Face shield только"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Safety glasses and a защитного щитка together"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No eye protection for quick touch-ups"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Use both защитных очков and a защитного щитка to protect against high-energy debris."
+    }
+  },
+  {
+    "id": "Q-A-3_grinding_ppe_10000008",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Что eye and face protection — appropriate for grinding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Safety glasses только"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Face shield только"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Safety glasses and a защитного щитка together"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No eye protection for quick touch-ups"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Use both защитных очков and a защитного щитка to protect against high-energy debris."
+    }
+  },
+  {
+    "id": "Q-A-3_hearing_protection_2000002c",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Когда noise levels are high during шлифования and gouging, workers should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ignore it for short tasks"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать hearing protection"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Использовать sunglasses"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn up the radio"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Hearing protection уменьшает risk of noise-induced hearing loss."
+    }
+  },
+  {
+    "id": "Q-A-3_hot_metal_mark_2000003c",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "After cutting/сварки, a good practice for newly heated parts is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave them unmarked"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Mark or tag them as 'HOT' and control the area"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cool them with oil"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Place them in walkways"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Marking hot parts помогает prevent contact burns to others."
+    }
+  },
+  {
+    "id": "Q-A-3_hot_work_permit_20000028",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "При использовании outside a designated сварки area, a common requirement is to obtain:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "An equipment calibration sheet"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A hot work permit"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A shipping manifest"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A purchase order"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A hot work permit controls ignition sources and verifies precautions."
+    }
+  },
+  {
+    "id": "Q-A-3_housekeeping_hoses_20000032",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Как можно trip hazards from leads and рукаваs be reduced?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Run them across walkways"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lift them overhead or cover/cross at protected points"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hide them under loose cardboard"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore if only a few people pass"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Route overhead or cover crossings to reduce tripping."
+    }
+  },
+  {
+    "id": "Q-A-3_local_exhaust_20000029",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Что такое an effective method to control сварки fume at the source?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Rely on general building ventilation only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать local exhaust/hoods positioned near the arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Turn off the extractor to reduce noise"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Использовать a desk fan to blow fumes away"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Capture at the source with local exhaust is most effective."
+    }
+  },
+  {
+    "id": "Q-A-3_lockout_verify_1000000b",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "After isolating and locking equipment, что should be done before starting work?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove the locks briefly to test"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Attempt a start to verify zero energy"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Trust только indicator lights"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ask a coworker to avoid touching controls"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Verification by attempting a start подтверждает all energy sources — neutralized."
+    }
+  },
+  {
+    "id": "Q-A-3_lockout_verify_1000000b",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "After isolating and locking equipment, что should be done before starting work?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Удалить the locks briefly to test"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Attempt a start to verify zero energy"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Trust только indicator lights"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ask a coworker to avoid touching controls"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Verification by attempting a start подтверждает all energy sources — neutralized."
+    }
+  },
+  {
+    "id": "Q-A-3_manganese_fume_2000002b",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Какое statement about сварки fumes is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They are harmless at normal levels"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They can contain manganese and other metal oxides that require control"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только TIG produces fumes"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Fumes are eliminated by higher amperage"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Many processes produce metal oxide fumes; control exposure with ventilation and PPE."
+    }
+  },
+  {
+    "id": "Q-A-3_muster_point_2000003b",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "In case of an emergency evacuation, workers should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Run in different directions"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Go to the designated muster/assembly point"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Return to collect personal items"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Call friends first"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Assemble at the designated muster point for a headcount."
+    }
+  },
+  {
+    "id": "Q-A-3_oxygen_backseated_20000038",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Как следует an кислородного баллона valve be opened for use?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Crack it slightly and leave it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Open it fully back-seated per manufacturer guidance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open it halfway only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Leave it closed and adjust pressure on the редуктора"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Oxygen valves are designed to be fully opened to seat the packing."
+    }
+  },
+  {
+    "id": "Q-A-3_ppe_face_shield_grind_20000040",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "For bench шлифования operations, appropriate eye/face protection is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No eye protection for quick jobs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safety glasses only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Safety glasses plus a face shield"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sunglasses"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Use both safety glasses and a face shield for шлифования tasks."
+    }
+  },
+  {
+    "id": "Q-A-3_protect_hoses_hot_20000034",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Oxy‑fuel and сварки рукаваs should be kept:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Across sharp edges and hot surfaces"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Away from hot/walking surfaces and protected from damage"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tied in knots for storage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Painted to prevent wear"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Protect рукаваs from cuts, heat, and traffic."
+    }
+  },
+  {
+    "id": "Q-A-3_regulator_remove_move_2000003f",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Перед перемещением a баллона to another location, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave the редуктора on for faster setup"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove the редуктора and install the valve cap"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open the valve fully for transport"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lay the баллона horizontally"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove редуктораs and install caps before transport."
+    }
+  },
+  {
+    "id": "Q-A-3_resp_fit_2000003a",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "For tight-fitting respirators to work properly, the user should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Have facial hair under the seal"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Skip fit testing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Be clean-shaven where the seal contacts the face"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wear the respirator loosely for comfort"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Facial hair interferes with the seal; fit testing and clean-shaven seals are required."
+    }
+  },
+  {
+    "id": "Q-A-3_shade_selection_2000002d",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "For eye protection during arc сварки, a safe practice is to choose a filter shade:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Based on sunglasses tint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "According to amperage and process tables"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда the darkest available"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No filter needed for short arcs"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Select shade per tables/guidance for the process and current."
+    }
+  },
+  {
+    "id": "Q-A-3_stainless_hexchrome_2000002a",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Welding on stainless steel can generate which specific hazard?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Helium gas exposure"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Hexavalent chromium in fumes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lead paint overspray only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ozone-free air"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stainless сварки can produce Cr(VI); use controls and PPE per requirements."
+    }
+  },
+  {
+    "id": "Q-A-3_stub_bucket_20000033",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Where should SMAW электрода stubs be placed?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On the floor near the сварочного источника"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "In a designated stub bucket or container"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "In the scrap bin with sharp edges exposed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Left in pockets"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use a stub bucket to control sharp waste and keep floors clear."
+    }
+  },
+  {
+    "id": "Q-A-3_welding_area_sign_20000035",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "What helps protect посторонних from arc flash in open areas?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Удалить PPE"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use сварки curtains/screens and post warning signs"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Point arc toward coworkers"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn off ventilation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Screens and signage warn and shield others from arc flash."
+    }
+  },
+  {
+    "id": "Q-A-3_welding_screens_1000000c",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Почему сварочных экранов used around a work area?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They только улучшить the welder’s visibility"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They protect others from arc flash and flying sparks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They уменьшить fumes below limits by themselves"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They replace personal protective equipment"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Screens help shield bystanders from UV radiation and ejected particles."
+    }
+  },
+  {
+    "id": "Q-A-3_welding_screens_1000000c",
+    "taskId": "A-3",
+    "difficulty": "easy",
+    "stem": "Почему сварочных экранов used around a work area?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They только улучшить the welder’s visibility"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They protect others from arc flash and flying sparks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They уменьшить fumes below limits by themselves"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They replace personal protective equipment"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Screens help shield bystanders from UV radiation and ejected particles."
+    }
+  },
+  {
+    "id": "Q-A-3_wet_conditions_20000039",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "If сварки must be performed in damp conditions, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stand in water for stability"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use УЗО (GFCI) protection, dry platforms, and extra insulation"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Удалить gloves to feel the heat"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore site rules for speed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use dry platforms, УЗО (GFCI), and insulation to reduce shock risk."
+    }
+  }
+]

@@ -1,0 +1,674 @@
+[
+  {
+    "id": "Q-D-15_ac_usage_reason_v1_03_40000102",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Why might AC be used for high‑current SAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To reduce arc blow and allow higher current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To increase arc blow"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Because DC cannot make quality welds"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate flux"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "AC reduces magnetic arc blow at high currents."
+    }
+  },
+  {
+    "id": "Q-D-15_ac_usage_reason_v2_01_4000010a",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Why might AC be used for high‑current SAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To reduce arc blow and allow higher current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To increase arc blow"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Because DC cannot make quality welds"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate flux"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "AC reduces magnetic arc blow at high currents."
+    }
+  },
+  {
+    "id": "Q-D-15_ac_usage_reason_v2_09_40000112",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Why might AC be used for high‑current SAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To reduce arc blow and allow higher current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To increase arc blow"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Because DC cannot make quality welds"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate flux"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "AC reduces magnetic arc blow at high currents."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_coverage_v1_06_40000105",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "During SAW, the arc should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fully covered by flux"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Barely covered by flux"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Exposed for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Alternatingly exposed"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Full flux coverage provides shielding and slag formation."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_coverage_v2_04_4000010d",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "During SAW, the arc should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fully covered by flux"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Barely covered by flux"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Exposed for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Alternatingly exposed"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Full flux coverage provides shielding and slag formation."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_function_1000007c",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "What does SAW flux primarily provide?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cooling water and lubrication"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Shielding and slag formation around the weld pool"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Electrical insulation only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Extra alloying only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Granular flux supplies shielding, slag, and sometimes alloying elements."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_function_v1_01_40000100",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "What does SAW flux primarily provide?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cooling water and lubrication"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Shielding and slag formation"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Electrical insulation only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Extra alloying only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Granular flux provides shielding/slag and sometimes alloying."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_function_v1_09_40000108",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "What does SAW flux primarily provide?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cooling water and lubrication"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Shielding and slag formation"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Electrical insulation only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Extra alloying only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Granular flux provides shielding/slag and sometimes alloying."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_function_v2_07_40000110",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "What does SAW flux primarily provide?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cooling water and lubrication"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Shielding and slag formation"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Electrical insulation only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Extra alloying only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Granular flux provides shielding/slag and sometimes alloying."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_moisture_1000007a",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "How should SAW flux be handled to avoid porosity?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Store open to shop air"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Keep dry; bake per manufacturer if moisture‑contaminated"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Mix with oil to bind dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wash with water before use"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture in flux introduces hydrogen and causes porosity; keep flux dry."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_moisture_care_v1_02_40000101",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "How should SAW flux be handled to avoid porosity?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Store open to shop air"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Keep dry; bake per manufacturer if wet"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Mix with oil to bind dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wash with water"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture introduces hydrogen; keep flux dry."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_moisture_care_v2_00_40000109",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "How should SAW flux be handled to avoid porosity?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Store open to shop air"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Keep dry; bake per manufacturer if wet"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Mix with oil to bind dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wash with water"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture introduces hydrogen; keep flux dry."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_moisture_care_v2_08_40000111",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "How should SAW flux be handled to avoid porosity?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Store open to shop air"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Keep dry; bake per manufacturer if wet"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Mix with oil to bind dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wash with water"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture introduces hydrogen; keep flux dry."
+    }
+  },
+  {
+    "id": "Q-D-15_multi_wire_saw_v1_05_40000104",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "A benefit of multi‑wire SAW systems is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lower deposition rate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Higher deposition rate and productivity"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Elimination of flux"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "All‑position capability"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Multiple wires increase deposition/productivity."
+    }
+  },
+  {
+    "id": "Q-D-15_multi_wire_saw_v2_03_4000010c",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "A benefit of multi‑wire SAW systems is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lower deposition rate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Higher deposition rate and productivity"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Elimination of flux"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "All‑position capability"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Multiple wires increase deposition/productivity."
+    }
+  },
+  {
+    "id": "Q-D-15_positions_common_v1_00_400000ff",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "Which of the following positions are typical for submerged arc welding (SAW)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "All positions"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Primarily flat and horizontal"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Vertical‑down only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Overhead only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flux and high deposition suit flat/horizontal welding."
+    }
+  },
+  {
+    "id": "Q-D-15_positions_common_v1_08_40000107",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "Which positions are typical for submerged arc welding (SAW)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "All positions"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Primarily flat and horizontal"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Vertical‑down only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Overhead only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flux and high deposition suit flat/horizontal welding."
+    }
+  },
+  {
+    "id": "Q-D-15_positions_common_v2_06_4000010f",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "Which positions are typical for submerged arc welding (SAW)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "All positions"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Primarily flat and horizontal"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Vertical‑down only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Overhead only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flux and high deposition suit flat/horizontal welding."
+    }
+  },
+  {
+    "id": "Q-D-15_saw_ac_dc_1000007b",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Why might AC be used for high‑current SAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To reduce arc blow and allow higher currents"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To increase arc blow"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Because DC cannot make quality welds"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate the need for flux"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Alternating current reduces magnetic arc blow and supports very high currents."
+    }
+  },
+  {
+    "id": "Q-D-15_saw_positions_10000079",
+    "taskId": "D-15",
+    "difficulty": "easy",
+    "stem": "Which positions are typical for submerged arc welding (SAW)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "All positions"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Primarily flat and horizontal fillet/groove"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Vertical‑down only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Overhead only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The granular flux and high deposition rate suit flat/horizontal welding."
+    }
+  },
+  {
+    "id": "Q-D-15_travel_speed_effect_v1_07_40000106",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Increasing travel speed in SAW typically:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Widens the bead"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Narrows the bead and reduces penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminates distortion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Higher speed lowers heat input and penetration."
+    }
+  },
+  {
+    "id": "Q-D-15_travel_speed_effect_v2_05_4000010e",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Increasing travel speed in SAW typically:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Widens the bead"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Narrows the bead and reduces penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminates distortion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Higher speed lowers heat input and penetration."
+    }
+  },
+  {
+    "id": "Q-D-15_wire_stickout_v1_04_40000103",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Excessive SAW wire stickout generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increases current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduces current and penetration due to resistive heating"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Improves bead shape"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Long stickout heats wire, lowering current at the arc."
+    }
+  },
+  {
+    "id": "Q-D-15_wire_stickout_v2_02_4000010b",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Excessive SAW wire stickout generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increases current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduces current and penetration due to resistive heating"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Improves bead shape"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Long stickout heats wire, lowering current at the arc."
+    }
+  }
+]

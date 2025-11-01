@@ -1,0 +1,1178 @@
+[
+  {
+    "id": "Q-C-9_acetylene_limit_v1_06_3000009c",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the maximum recommended working pressure for acetylene?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Above 30 psi (207 kPa) is safe"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not use acetylene above 15 psi (≈103 kPa)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any pressure is fine with arrestors"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always 5 psi or less"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Acetylene is unstable above ~15 psi; keep working pressure below this."
+    }
+  },
+  {
+    "id": "Q-C-9_acetylene_limit_v2_05_300000a6",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the maximum recommended working pressure for acetylene?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Above 30 psi (207 kPa) is safe"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not use acetylene above 15 psi (≈103 kPa)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any pressure is fine with arrestors"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always 5 psi or less"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Acetylene is unstable above ~15 psi; keep working pressure below this."
+    }
+  },
+  {
+    "id": "Q-C-9_acetylene_limit_v3_04_300000b0",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the maximum recommended working pressure for acetylene?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Above 30 psi (207 kPa) is safe"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not use acetylene above 15 psi (≈103 kPa)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any pressure is fine with arrestors"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always 5 psi or less"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Acetylene is unstable above ~15 psi; keep working pressure below this."
+    }
+  },
+  {
+    "id": "Q-C-9_acetylene_pressure_1000003c",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the maximum recommended working pressure for acetylene?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Above 30 psi (207 kPa) is safe"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not use acetylene above 15 psi (≈103 kPa)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any pressure is fine with arrestors"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always use 5 psi or less"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Acetylene becomes unstable above ~15 psi; keep working pressure below this limit."
+    }
+  },
+  {
+    "id": "Q-C-9_crack_valves_1000003b",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the purpose of 'cracking' cylinder valves briefly before attaching regulators?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To waste gas"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To blow dust/debris away from the outlet seat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To cool the valve"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To test the regulator threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cracking clears contaminants that could damage regulators."
+    }
+  },
+  {
+    "id": "Q-C-9_flashback_backfire_10000037",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Which statement about backfire vs flashback is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Backfire means flame travels into the hoses"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Flashback is flame burning into the torch/hose; backfire is a momentary pop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "There is no difference"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Backfire is preferred and safer"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Backfire is a brief pop at the tip; flashback sustains into the torch/hose and is hazardous."
+    }
+  },
+  {
+    "id": "Q-C-9_flashback_vs_backfire_v1_01_30000097",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Which statement about backfire vs flashback is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Backfire means flame travels into the hoses"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Flashback is flame burning into the torch/hose; backfire is a momentary pop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "There is no difference"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Backfire is preferred and safer"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Backfire is a brief pop; flashback sustains into torch/hose and is hazardous."
+    }
+  },
+  {
+    "id": "Q-C-9_flashback_vs_backfire_v2_00_300000a1",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Which statement about backfire vs flashback is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Backfire means flame travels into the hoses"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Flashback is flame burning into the torch/hose; backfire is a momentary pop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "There is no difference"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Backfire is preferred and safer"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Backfire is a brief pop; flashback sustains into torch/hose and is hazardous."
+    }
+  },
+  {
+    "id": "Q-C-9_flashback_vs_backfire_v2_10_300000ab",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Which statement about backfire vs flashback is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Backfire means flame travels into the hoses"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Flashback is flame burning into the torch/hose; backfire is a momentary pop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "There is no difference"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Backfire is preferred and safer"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Backfire is a brief pop; flashback sustains into torch/hose and is hazardous."
+    }
+  },
+  {
+    "id": "Q-C-9_flashback_vs_backfire_v3_09_300000b5",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Which statement about backfire vs flashback is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Backfire means flame travels into the hoses"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Flashback is flame burning into the torch/hose; backfire is a momentary pop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "There is no difference"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Backfire is preferred and safer"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Backfire is a brief pop; flashback sustains into torch/hose and is hazardous."
+    }
+  },
+  {
+    "id": "Q-C-9_fuel_threads_10000039",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which statement about oxy‑fuel hose/torch threads is true?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fuel gas fittings use right‑hand threads"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fuel gas fittings use left‑hand threads with notches"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oxygen uses left‑hand threads"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Both use tapered pipe threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Fuel gas fittings are left‑hand (often with notches); oxygen is right‑hand to prevent mixups."
+    }
+  },
+  {
+    "id": "Q-C-9_fuel_threads_left_v1_03_30000099",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which statement about oxy-fuel fittings is true?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fuel gas fittings use right-hand threads"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oxygen uses left-hand threads"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Both use tapered pipe threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
+    }
+  },
+  {
+    "id": "Q-C-9_fuel_threads_left_v2_02_300000a3",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which statement about oxy-fuel fittings is true?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fuel gas fittings use right-hand threads"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oxygen uses left-hand threads"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Both use tapered pipe threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
+    }
+  },
+  {
+    "id": "Q-C-9_fuel_threads_left_v3_01_300000ad",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which statement about oxy-fuel fittings is true?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fuel gas fittings use right-hand threads"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oxygen uses left-hand threads"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Both use tapered pipe threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
+    }
+  },
+  {
+    "id": "Q-C-9_fuel_threads_left_v4_00_300000b7",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which statement about oxy-fuel fittings is true?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fuel gas fittings use right-hand threads"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oxygen uses left-hand threads"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Both use tapered pipe threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
+    }
+  },
+  {
+    "id": "Q-C-9_neutral_flame_10000036",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which description matches a neutral oxy‑fuel flame?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A long carburizing (acetylene) feather"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A balanced inner cone with no feather"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "An oxidizing feather on the inner cone"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A loud, popping flame with backfire"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Neutral flame has a well‑defined cone and no acetylene feather."
+    }
+  },
+  {
+    "id": "Q-C-9_neutral_flame_id_v1_00_30000096",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which description matches a neutral oxy-fuel flame?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A long fuel-rich (acetylene) feather"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A balanced inner cone with no feather"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "An oxidizing feather on the inner cone"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A loud popping flame"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
+    }
+  },
+  {
+    "id": "Q-C-9_neutral_flame_id_v1_10_300000a0",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which description matches a neutral oxy-fuel flame?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A long fuel-rich (acetylene) feather"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A balanced inner cone with no feather"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "An oxidizing feather on the inner cone"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A loud popping flame"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
+    }
+  },
+  {
+    "id": "Q-C-9_neutral_flame_id_v2_09_300000aa",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which description matches a neutral oxy-fuel flame?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A long fuel-rich (acetylene) feather"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A balanced inner cone with no feather"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "An oxidizing feather on the inner cone"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A loud popping flame"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
+    }
+  },
+  {
+    "id": "Q-C-9_neutral_flame_id_v3_08_300000b4",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Which description matches a neutral oxy-fuel flame?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A long fuel-rich (acetylene) feather"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A balanced inner cone with no feather"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "An oxidizing feather on the inner cone"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A loud popping flame"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
+    }
+  },
+  {
+    "id": "Q-C-9_oxygen_no_oil_v1_04_3000009a",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the correct practice regarding oxygen equipment?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use oil/grease to stop leaks"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Never use oil/grease on oxygen equipment"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open acetylene valves fully back-seated"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do not crack cylinder valves before attaching regulators"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
+    }
+  },
+  {
+    "id": "Q-C-9_oxygen_no_oil_v2_03_300000a4",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the correct practice regarding oxygen equipment?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use oil/grease to stop leaks"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Never use oil/grease on oxygen equipment"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open acetylene valves fully back-seated"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do not crack cylinder valves before attaching regulators"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
+    }
+  },
+  {
+    "id": "Q-C-9_oxygen_no_oil_v3_02_300000ae",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the correct practice regarding oxygen equipment?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use oil/grease to stop leaks"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Never use oil/grease on oxygen equipment"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open acetylene valves fully back-seated"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do not crack cylinder valves before attaching regulators"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
+    }
+  },
+  {
+    "id": "Q-C-9_oxygen_no_oil_v4_01_300000b8",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the correct practice regarding oxygen equipment?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use oil/grease to stop leaks"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Never use oil/grease on oxygen equipment"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open acetylene valves fully back-seated"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do not crack cylinder valves before attaching regulators"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
+    }
+  },
+  {
+    "id": "Q-C-9_oxygen_oil_1000003a",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "What is the correct practice regarding oxygen equipment?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use oil or grease to prevent leaks"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Never use oil or grease on oxygen equipment"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open acetylene valves fully back‑seated"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do not crack cylinder valves before attaching regulators"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Oil/grease can ignite violently in pure oxygen."
+    }
+  },
+  {
+    "id": "Q-C-9_pierce_technique_10000038",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "What is a good technique for piercing a plate with oxy‑fuel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Place the tip flat and go to full oxygen immediately"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Tilt the tip, preheat, then use the oxygen jet to pierce"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only start on the edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Point straight down without preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preheating and a slight tilt help prevent blowback and tip damage."
+    }
+  },
+  {
+    "id": "Q-C-9_piercing_technique_v1_02_30000098",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "For piercing a plate with oxy-fuel, a good technique is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Place the tip flat and go to full oxygen immediately"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Tilt the tip, preheat, then use the oxygen jet to pierce"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only start from the edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Point straight down without preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and tip damage."
+    }
+  },
+  {
+    "id": "Q-C-9_piercing_technique_v2_01_300000a2",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "For piercing a plate with oxy-fuel, a good technique is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Place the tip flat and go to full oxygen immediately"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Tilt the tip, preheat, then use the oxygen jet to pierce"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only start from the edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Point straight down without preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and tip damage."
+    }
+  },
+  {
+    "id": "Q-C-9_piercing_technique_v3_00_300000ac",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "For piercing a plate with oxy-fuel, a good technique is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Place the tip flat and go to full oxygen immediately"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Tilt the tip, preheat, then use the oxygen jet to pierce"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only start from the edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Point straight down without preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and tip damage."
+    }
+  },
+  {
+    "id": "Q-C-9_piercing_technique_v3_10_300000b6",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "For piercing a plate with oxy-fuel, a good technique is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Place the tip flat and go to full oxygen immediately"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Tilt the tip, preheat, then use the oxygen jet to pierce"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only start from the edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Point straight down without preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and tip damage."
+    }
+  },
+  {
+    "id": "Q-C-9_preheat_setting_v1_08_3000009e",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Insufficient preheat during cutting often causes:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Smooth, slag-free cuts"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Excess slag and slow starts"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Narrow kerf and square edges"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No change"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Too little preheat leads to slagging and poor starts."
+    }
+  },
+  {
+    "id": "Q-C-9_preheat_setting_v2_07_300000a8",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Insufficient preheat during cutting often causes:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Smooth, slag-free cuts"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Excess slag and slow starts"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Narrow kerf and square edges"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No change"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Too little preheat leads to slagging and poor starts."
+    }
+  },
+  {
+    "id": "Q-C-9_preheat_setting_v3_06_300000b2",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Insufficient preheat during cutting often causes:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Smooth, slag-free cuts"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Excess slag and slow starts"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Narrow kerf and square edges"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No change"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Too little preheat leads to slagging and poor starts."
+    }
+  },
+  {
+    "id": "Q-C-9_tip_cleaning_v1_07_3000009d",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Why clean oxy-fuel cutting tips with correct tip cleaners?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To enlarge the orifices for more flow"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To maintain proper orifice size/shape and cut quality"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce preheat"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To scratch off plating"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Proper cleaners keep orifices correct, preserving flame shape and quality."
+    }
+  },
+  {
+    "id": "Q-C-9_tip_cleaning_v2_06_300000a7",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Why clean oxy-fuel cutting tips with correct tip cleaners?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To enlarge the orifices for more flow"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To maintain proper orifice size/shape and cut quality"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce preheat"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To scratch off plating"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Proper cleaners keep orifices correct, preserving flame shape and quality."
+    }
+  },
+  {
+    "id": "Q-C-9_tip_cleaning_v3_05_300000b1",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Why clean oxy-fuel cutting tips with correct tip cleaners?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To enlarge the orifices for more flow"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To maintain proper orifice size/shape and cut quality"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce preheat"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To scratch off plating"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Proper cleaners keep orifices correct, preserving flame shape and quality."
+    }
+  },
+  {
+    "id": "Q-C-9_travel_speed_effect_v1_09_3000009f",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "If travel speed is too fast in oxy-fuel cutting, the cut will:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Have heavy bottom slag"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lag and drag lines will trail far behind the tip"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Track straight with no change"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Harden the steel surface"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Excessive speed increases lag lines; too slow causes heavy slag."
+    }
+  },
+  {
+    "id": "Q-C-9_travel_speed_effect_v2_08_300000a9",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "If travel speed is too fast in oxy-fuel cutting, the cut will:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Have heavy bottom slag"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lag and drag lines will trail far behind the tip"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Track straight with no change"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Harden the steel surface"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Excessive speed increases lag lines; too slow causes heavy slag."
+    }
+  },
+  {
+    "id": "Q-C-9_travel_speed_effect_v3_07_300000b3",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "If travel speed is too fast in oxy-fuel cutting, the cut will:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Have heavy bottom slag"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lag and drag lines will trail far behind the tip"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Track straight with no change"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Harden the steel surface"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Excessive speed increases lag lines; too slow causes heavy slag."
+    }
+  },
+  {
+    "id": "Q-C-9_valve_cracking_v1_05_3000009b",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Cracking a cylinder valve briefly before attaching a regulator helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Waste gas"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Blow dust/debris away from the outlet seat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cool the valve"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Test the regulator threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cracking clears contaminants that could damage regulators."
+    }
+  },
+  {
+    "id": "Q-C-9_valve_cracking_v2_04_300000a5",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Cracking a cylinder valve briefly before attaching a regulator helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Waste gas"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Blow dust/debris away from the outlet seat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cool the valve"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Test the regulator threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cracking clears contaminants that could damage regulators."
+    }
+  },
+  {
+    "id": "Q-C-9_valve_cracking_v3_03_300000af",
+    "taskId": "C-9",
+    "difficulty": "easy",
+    "stem": "Cracking a cylinder valve briefly before attaching a regulator helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Waste gas"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Blow dust/debris away from the outlet seat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cool the valve"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Test the regulator threads"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cracking clears contaminants that could damage regulators."
+    }
+  }
+]
