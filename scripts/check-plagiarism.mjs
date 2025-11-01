@@ -1,7 +1,12 @@
 #!/usr/bin/env node
-import { promises as fs } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import crypto from 'node:crypto';
+import { execFile } from 'node:child_process';
+import { parseArgs, promisify } from 'node:util';
+
+const execFileAsync = promisify(execFile);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +19,81 @@ const EXPLANATIONS_DIR = path.join(CONTENT_DIR, 'explanations');
 const N_GRAM_SIZE = 5;
 const DEFAULT_THRESHOLD = 0.7;
 const SIMILARITY_THRESHOLD = Number.parseFloat(process.env.QWELD_PLAGIARISM_THRESHOLD ?? `${DEFAULT_THRESHOLD}`);
+
+const { values: cliArgs } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    locales: { type: 'string' },
+    'shard-index': { type: 'string' },
+    'shard-count': { type: 'string' },
+    'time-budget': { type: 'string' },
+    progress: { type: 'string' },
+    out: { type: 'string' },
+  },
+});
+
+const shardIndex = cliArgs['shard-index'] !== undefined ? Number(cliArgs['shard-index']) : -1;
+const shardCount = cliArgs['shard-count'] !== undefined ? Number(cliArgs['shard-count']) : -1;
+const timeBudgetSec = cliArgs['time-budget'] !== undefined ? Number(cliArgs['time-budget']) : 0;
+const progressEvery = cliArgs.progress !== undefined ? Number(cliArgs.progress) : 0;
+const outPath = cliArgs.out ? String(cliArgs.out) : '';
+const startedAt = Date.now();
+
+const localesArg = cliArgs.locales ? String(cliArgs.locales) : '';
+const allowedLocales = new Set(
+  localesArg
+    .split(',')
+    .map((value) => value.trim().toLowerCase())
+    .filter((value) => value.length > 0),
+);
+
+function stablePairShard(a, b, count) {
+  if (count <= 0) {
+    return 0;
+  }
+
+  const key = a.file < b.file ? `${a.file}::${b.file}` : `${b.file}::${a.file}`;
+  const hash = crypto.createHash('sha1').update(key).digest().readUInt32BE(0);
+  return hash % count;
+}
+
+function shouldConsiderLocale(locale) {
+  if (allowedLocales.size === 0) {
+    return true;
+  }
+  return allowedLocales.has(String(locale ?? '').toLowerCase());
+}
+
+async function shouldRunFullScan() {
+  const base = process.env.BASE_SHA ?? process.env.GITHUB_BASE_SHA ?? '';
+  const head = process.env.HEAD_SHA ?? process.env.GITHUB_SHA ?? '';
+
+  if (!base || !head || base === head) {
+    return true;
+  }
+
+  try {
+    const { stdout } = await execFileAsync('git', ['diff', '--name-only', `${base}...${head}`]);
+    const files = stdout
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0);
+
+    const fullScan = files.some((file) =>
+      file.startsWith('content/blueprints/') || file.startsWith('content/exam_profiles/'),
+    );
+
+    if (!fullScan) {
+      console.log('[plag] no blueprint/profile changes detected; skipping full scan');
+    }
+
+    return fullScan;
+  } catch (error) {
+    console.warn('[plag] unable to determine diff; assuming full scan');
+    console.warn(error);
+    return true;
+  }
+}
 
 function normaliseWhitespace(value) {
   return value.replace(/\s+/gu, ' ').trim();
@@ -193,6 +273,11 @@ async function collectDocumentsFromDir(dirPath, type, documents) {
     const relativePath = path.relative(ROOT_DIR, fullPath);
     const id = typeof payload.id === 'string' ? payload.id : entry.name.replace(/\.json$/u, '');
     const locale = typeof payload.locale === 'string' ? payload.locale : inferLocaleFromPath(relativePath);
+
+    if (!shouldConsiderLocale(locale)) {
+      continue;
+    }
+
     const segments = collectTextSegments(type, payload);
     const tokens = segments.flatMap((segment) => toTokens(segment));
     const grams = buildFiveGrams(tokens);
@@ -251,6 +336,31 @@ function printResults(matches) {
 }
 
 async function main() {
+  if (Number.isNaN(shardIndex) || Number.isNaN(shardCount) || Number.isNaN(timeBudgetSec) || Number.isNaN(progressEvery)) {
+    console.error('[plag] invalid numeric CLI arguments');
+    process.exitCode = 1;
+    return;
+  }
+
+  if (shardCount > 0 && (shardIndex < 0 || shardIndex >= shardCount)) {
+    console.error(`[plag] shard-index ${shardIndex} is out of bounds for shard-count ${shardCount}`);
+    process.exitCode = 1;
+    return;
+  }
+
+  if (shardCount <= 0 && shardIndex >= 0) {
+    console.error('[plag] shard-index provided without shard-count');
+    process.exitCode = 1;
+    return;
+  }
+
+  const requiresFull = await shouldRunFullScan();
+  if (!requiresFull) {
+    const shardLabel = shardCount > 0 && shardIndex >= 0 ? `${shardIndex}/${shardCount}` : 'all';
+    console.log(`[plag] shard ${shardLabel} skipping: full scan not required`);
+    return;
+  }
+
   const documents = await loadDocuments();
   if (documents.length === 0) {
     console.error('No documents found to analyse.');
@@ -258,27 +368,42 @@ async function main() {
   }
 
   const matches = [];
-  const seenPairs = new Set();
+  const totalPairs = (documents.length * (documents.length - 1)) / 2;
+  let compared = 0;
+  let aborted = false;
 
-  for (const a of documents) {
-    for (const b of documents) {
-      if (a === b) {
-        continue;
-      }
+  const shardLabel = shardCount > 0 && shardIndex >= 0 ? `${shardIndex}/${shardCount}` : 'all';
 
-      // same file — нет смысла сравнивать
+  outer: for (let i = 0; i < documents.length; i += 1) {
+    for (let j = i + 1; j < documents.length; j += 1) {
+      const a = documents[i];
+      const b = documents[j];
+
       if (a.file === b.file) {
         continue;
       }
 
-      const key = `${a.file}::${b.file}`;
-      const reverse = `${b.file}::${a.file}`;
-      // сравнение разных файлов даже при одинаковом id/type — разрешено
-      // защита от повторов пары
-      if (seenPairs.has(key) || seenPairs.has(reverse)) {
-        continue;
+      if (shardCount > 0 && shardIndex >= 0) {
+        const shard = stablePairShard(a, b, shardCount);
+        if (shard !== shardIndex) {
+          continue;
+        }
       }
-      seenPairs.add(key);
+
+      if (timeBudgetSec > 0) {
+        const elapsed = (Date.now() - startedAt) / 1000;
+        if (elapsed > timeBudgetSec) {
+          console.log('[plag] time budget reached; producing partial results');
+          aborted = true;
+          break outer;
+        }
+      }
+
+      compared += 1;
+
+      if (progressEvery > 0 && compared % progressEvery === 0) {
+        console.log(`[plag] progress ${compared}/${totalPairs} pairs (shard=${shardLabel})`);
+      }
 
       const comparison = compareDocuments(a, b);
       if (!comparison) {
@@ -294,7 +419,23 @@ async function main() {
   matches.sort((left, right) => right.similarity - left.similarity);
   printResults(matches);
 
-  if (matches.length > 0) {
+  if (outPath) {
+    const report = {
+      duplicates: matches,
+      meta: {
+        compared,
+        totalPairs,
+        shardIndex: shardIndex >= 0 ? shardIndex : null,
+        shardCount: shardCount > 0 ? shardCount : null,
+        timeBudgetSec,
+        aborted,
+        locales: allowedLocales.size > 0 ? Array.from(allowedLocales) : null,
+      },
+    };
+    await fs.writeFile(outPath, `${JSON.stringify(report, null, 2)}\n`);
+  }
+
+  if (!aborted && matches.length > 0) {
     process.exitCode = 1;
   }
 }

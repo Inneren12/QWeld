@@ -20,10 +20,18 @@ on:
       - 'content/explanations/**'
       - 'scripts/**'
 
+concurrency:
+  group: content-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   content:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -34,11 +42,11 @@ jobs:
           echo "BASE_SHA=${{ github.event.pull_request.base.sha }}" >> $GITHUB_ENV
           echo "HEAD_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
 
-      - name: Node 20
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with: { node-version: '20' }
 
       - name: (Ephemeral) prepare Ajv (no workspace)
+        if: ${{ matrix.shard == 0 }}
         shell: bash
         env:
           npm_config_loglevel: error
@@ -52,26 +60,80 @@ jobs:
           echo "NODE_PATH=${{ github.workspace }}/.ci-node/node_modules" >> $GITHUB_ENV
 
       - name: Verify Ajv modules
+        if: ${{ matrix.shard == 0 }}
         run: node -e "require('ajv'); require('ajv-formats'); console.log('Ajv modules OK')"
 
       - name: Validate questions (changed-only)
+        if: ${{ matrix.shard == 0 }}
         run: |
           bash scripts/validate-questions.sh --changed-only
 
       - name: Quotas (changed-only, exam)
+        if: ${{ matrix.shard == 0 }}
         run: |
           bash scripts/check-quotas.sh --changed-only --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
 
+      - name: Plagiarism (full, sharded)
+        env:
+          SHARD_INDEX: ${{ matrix.shard }}
+          SHARD_COUNT: 4
+        run: |
+          node scripts/check-plagiarism.mjs \
+            --locales en,ru \
+            --shard-index $SHARD_INDEX --shard-count $SHARD_COUNT \
+            --progress 20000 \
+            --time-budget 780 \
+            --out "plag-shard-${SHARD_INDEX}.json"
+
+      - name: Upload shard artifact
+        if: ${{ hashFiles(format('plag-shard-{0}.json', matrix.shard)) != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plag-shard-${{ matrix.shard }}
+          path: plag-shard-${{ matrix.shard }}.json
+
       - name: Upload validation logs
-        if: ${{ hashFiles('logs/**') != '' }}
+        if: ${{ matrix.shard == 0 && hashFiles('logs/**') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: content-validation-logs
           path: logs
 
       - name: Upload question bank dist
-        if: ${{ hashFiles('dist/questions/**') != '' }}
+        if: ${{ matrix.shard == 0 && hashFiles('dist/questions/**') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: question-bank-dist
           path: dist/questions
+
+  aggregate:
+    runs-on: ubuntu-latest
+    needs: [content]
+    if: ${{ always() }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./plag
+          pattern: plag-shard-*
+          merge-multiple: true
+          if-no-artifact-found: ignore
+
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+
+      - name: Merge plagiarism results
+        id: merge
+        run: node scripts/plagiarism-aggregate.mjs ./plag
+
+      - name: Upload merged report
+        if: ${{ hashFiles('plag-merged.json') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plag-merged
+          path: plag-merged.json
+
+      - name: Fail on plagiarism findings
+        if: ${{ steps.merge.outputs.duplicates != '' && steps.merge.outputs.duplicates != '0' }}
+        run: |
+          echo "[plag] duplicates detected: ${{ steps.merge.outputs.duplicates }}"
+          exit 1
