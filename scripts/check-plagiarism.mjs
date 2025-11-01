@@ -1,10 +1,14 @@
 #!/usr/bin/env node
-import { promises as fs } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const fsp = fs.promises;
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT_DIR, 'content');
@@ -14,6 +18,38 @@ const EXPLANATIONS_DIR = path.join(CONTENT_DIR, 'explanations');
 const N_GRAM_SIZE = 5;
 const DEFAULT_THRESHOLD = 0.7;
 const SIMILARITY_THRESHOLD = Number.parseFloat(process.env.QWELD_PLAGIARISM_THRESHOLD ?? `${DEFAULT_THRESHOLD}`);
+const args = parseArgs({
+  options: {
+    locales: { type: 'string' },
+    'shard-index': { type: 'string' },
+    'shard-count': { type: 'string' },
+    'time-budget': { type: 'string' },
+    progress: { type: 'string' },
+    out: { type: 'string' },
+    'soft-fail': { type: 'boolean' },
+  },
+  allowPositionals: false,
+});
+
+const locales = typeof args.values.locales === 'string' && args.values.locales.length > 0
+  ? args.values.locales.split(',').map((value) => value.trim()).filter(Boolean)
+  : null;
+const localeFilter = locales && locales.length > 0 ? new Set(locales) : null;
+const shardIndex = args.values['shard-index'] !== undefined ? Number(args.values['shard-index']) : -1;
+const shardCount = args.values['shard-count'] !== undefined ? Number(args.values['shard-count']) : -1;
+const timeBudgetSec = args.values['time-budget'] !== undefined ? Number(args.values['time-budget']) : 0;
+const progressEvery = args.values.progress !== undefined ? Number(args.values.progress) : 0;
+const outPath = args.values.out ? String(args.values.out) : null;
+const softFail = Boolean(args.values['soft-fail']);
+const startedAt = Date.now();
+
+if ((shardIndex >= 0 && shardCount <= 0) || (shardIndex < 0 && shardCount > 0)) {
+  throw new Error('Both --shard-index and --shard-count must be provided together.');
+}
+
+if (Number.isNaN(shardIndex) || Number.isNaN(shardCount) || Number.isNaN(timeBudgetSec) || Number.isNaN(progressEvery)) {
+  throw new Error('Invalid numeric argument provided.');
+}
 
 function normaliseWhitespace(value) {
   return value.replace(/\s+/gu, ' ').trim();
@@ -163,14 +199,14 @@ function compareDocuments(docA, docB) {
 }
 
 async function readJson(filePath) {
-  const payload = await fs.readFile(filePath, 'utf8');
+  const payload = await fsp.readFile(filePath, 'utf8');
   return JSON.parse(payload);
 }
 
 async function collectDocumentsFromDir(dirPath, type, documents) {
   let entries = [];
   try {
-    entries = await fs.readdir(dirPath, { withFileTypes: true });
+    entries = await fsp.readdir(dirPath, { withFileTypes: true });
   } catch (error) {
     if (error.code === 'ENOENT') {
       return;
@@ -228,11 +264,21 @@ function inferLocaleFromPath(relativePath) {
   return 'en';
 }
 
-async function loadDocuments() {
+async function loadDocuments(filterLocales) {
   const documents = [];
   await collectDocumentsFromDir(QUESTIONS_DIR, 'question', documents);
   await collectDocumentsFromDir(EXPLANATIONS_DIR, 'explanation', documents);
-  return documents;
+  if (!filterLocales || filterLocales.size === 0) {
+    return documents;
+  }
+
+  return documents.filter((document) => filterLocales.has(document.locale));
+}
+
+function stablePairShard(a, b, count) {
+  const key = a.file < b.file ? `${a.file}::${b.file}` : `${b.file}::${a.file}`;
+  const hash = crypto.createHash('sha1').update(key).digest().readUInt32BE(0);
+  return hash % count;
 }
 
 function printResults(matches) {
@@ -251,34 +297,53 @@ function printResults(matches) {
 }
 
 async function main() {
-  const documents = await loadDocuments();
+  const documents = await loadDocuments(localeFilter);
   if (documents.length === 0) {
     console.error('No documents found to analyse.');
-    return;
+    return {
+      documents: 0,
+      duplicates: [],
+      comparedPairs: 0,
+      shardIndex,
+      shardCount,
+      locales: locales ?? [],
+      timeBudgetSec,
+      timedOut: false,
+      generatedAt: new Date().toISOString(),
+    };
   }
 
   const matches = [];
-  const seenPairs = new Set();
+  let comparisons = 0;
+  let timedOut = false;
 
-  for (const a of documents) {
-    for (const b of documents) {
-      if (a === b) {
-        continue;
+  outer: for (let leftIndex = 0; leftIndex < documents.length; leftIndex += 1) {
+    const a = documents[leftIndex];
+    for (let rightIndex = leftIndex + 1; rightIndex < documents.length; rightIndex += 1) {
+      const b = documents[rightIndex];
+
+      if (timeBudgetSec > 0) {
+        const elapsedSec = (Date.now() - startedAt) / 1000;
+        if (elapsedSec >= timeBudgetSec) {
+          if (!timedOut) {
+            console.warn('⏱️ Time budget reached; stopping comparisons early.');
+          }
+          timedOut = true;
+          break outer;
+        }
       }
 
-      // same file — нет смысла сравнивать
-      if (a.file === b.file) {
-        continue;
+      if (shardCount > 0 && shardIndex >= 0) {
+        const shard = stablePairShard(a, b, shardCount);
+        if (shard !== shardIndex) {
+          continue;
+        }
       }
 
-      const key = `${a.file}::${b.file}`;
-      const reverse = `${b.file}::${a.file}`;
-      // сравнение разных файлов даже при одинаковом id/type — разрешено
-      // защита от повторов пары
-      if (seenPairs.has(key) || seenPairs.has(reverse)) {
-        continue;
+      comparisons += 1;
+      if (progressEvery > 0 && comparisons % progressEvery === 0) {
+        console.log(`Progress: compared ${comparisons} pairs.`);
       }
-      seenPairs.add(key);
 
       const comparison = compareDocuments(a, b);
       if (!comparison) {
@@ -294,12 +359,33 @@ async function main() {
   matches.sort((left, right) => right.similarity - left.similarity);
   printResults(matches);
 
-  if (matches.length > 0) {
-    process.exitCode = 1;
-  }
+  return {
+    documents: documents.length,
+    duplicates: matches,
+    comparedPairs: comparisons,
+    shardIndex,
+    shardCount,
+    locales: locales ?? [],
+    timeBudgetSec,
+    timedOut,
+    generatedAt: new Date().toISOString(),
+  };
 }
 
-await main().catch((error) => {
+let report;
+try {
+  report = await main();
+} catch (error) {
   console.error(error);
-  process.exitCode = 1;
-});
+  process.exit(1);
+}
+
+if (outPath && report) {
+  await fsp.writeFile(outPath, JSON.stringify(report, null, 2));
+}
+
+if (report?.duplicates?.length && !softFail) {
+  process.exit(1);
+}
+
+process.exit(0);
