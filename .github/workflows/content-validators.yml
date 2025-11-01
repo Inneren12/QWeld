@@ -37,20 +37,34 @@ jobs:
 
       - name: Detect content-affecting changes
         id: diff
+        shell: bash
         run: |
           set -euo pipefail
-          git fetch --no-tags --prune origin +refs/heads/${{ github.base_ref || 'main' }}:refs/remotes/origin/base
+          # 1) Определяем BASE/HEAD надёжно
+          BASE_REF="${{ github.base_ref || 'main' }}"
+          git fetch --no-tags --prune origin +refs/heads/${BASE_REF}:refs/remotes/origin/base
           BASE="$(git merge-base HEAD origin/base)"
           HEAD="$(git rev-parse HEAD)"
           echo "base=$BASE head=$HEAD"
-          CHANGED=$(git diff --name-only --diff-filter=ACMRD "$BASE...$HEAD")
-          echo "$CHANGED" > changed.txt
-          # Флаги для гейтов
-          bp=false; prof=false
-          echo "$CHANGED" | grep -E '^content/blueprints/' && bp=true || true
-          echo "$CHANGED" | grep -E '^content/exam_profiles/' && prof=true || true
-          echo "blueprint=$bp"   >> $GITHUB_OUTPUT
-          echo "exam_profile=$prof" >> $GITHUB_OUTPUT
+
+          # 2) Безаварийно получаем список изменённых файлов
+          #    (git diff может вернуть код !=0; нормализуем)
+          CHANGED="$(git diff --name-only --diff-filter=ACMRD "$BASE...$HEAD" || true)"
+          printf '%s\n' "$CHANGED" > changed.txt
+
+          # 3) Выставляем гейты: blueprint/profile/any
+          bp=false
+          prof=false
+          if grep -E '^content/blueprints/' changed.txt >/dev/null 2>&1; then bp=true; fi
+          if grep -E '^content/exam_profiles/' changed.txt >/dev/null 2>&1; then prof=true; fi
+          any=false
+          if [ -s changed.txt ]; then any=true; fi
+
+          {
+            echo "blueprint=$bp"
+            echo "exam_profile=$prof"
+            echo "changed_any=$any"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Export PR SHAs
         if: ${{ github.event_name == 'pull_request' }}
