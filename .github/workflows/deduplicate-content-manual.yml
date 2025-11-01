@@ -1,0 +1,25 @@
+name: Deduplicate content (manual)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  dedupe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Deduplicate and validate content
+        env:
+          QWELD_PLAG_DEDUPE_REPORT_DIR: dedupe-report
+        run: bash scripts/plag-dedupe-and-validate.sh
+      - name: Upload dedupe reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: dedupe-report
+          path: dedupe-report
+          if-no-files-found: warn

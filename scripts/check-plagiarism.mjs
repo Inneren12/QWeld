@@ -27,6 +27,7 @@ const args = parseArgs({
     progress: { type: 'string' },
     out: { type: 'string' },
     'soft-fail': { type: 'boolean' },
+    'ignore-cross-locale': { type: 'boolean', default: true },
   },
   allowPositionals: false,
 });
@@ -41,6 +42,7 @@ const timeBudgetSec = args.values['time-budget'] !== undefined ? Number(args.val
 const progressEvery = args.values.progress !== undefined ? Number(args.values.progress) : 0;
 const outPath = args.values.out ? String(args.values.out) : null;
 const softFail = Boolean(args.values['soft-fail']);
+const ignoreCrossLocale = args.values['ignore-cross-locale'] !== false;
 const startedAt = Date.now();
 
 if ((shardIndex >= 0 && shardCount <= 0) || (shardIndex < 0 && shardCount > 0)) {
@@ -338,6 +340,10 @@ async function main() {
         if (shard !== shardIndex) {
           continue;
         }
+      }
+
+      if (ignoreCrossLocale && a.locale !== b.locale) {
+        continue;
       }
 
       comparisons += 1;
