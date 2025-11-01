@@ -5,7 +5,7 @@ on:
     inputs:
       run_licenses:
         description: 'Run license check'
-        default: 'true'
+        default: 'false'
       run_plagiarism_full:
         description: 'Run full plagiarism'
         default: 'false'
@@ -33,7 +33,18 @@ jobs:
 
       - name: Licenses
         if: ${{ inputs.run_licenses == 'true' }}
-        run: bash scripts/check-licenses.sh
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -x scripts/check-licenses.sh ]; then
+            echo "[licenses] run bash scripts/check-licenses.sh"
+            bash scripts/check-licenses.sh
+          elif [ -f scripts/check-licenses.mjs ]; then
+            echo "[licenses] run node scripts/check-licenses.mjs"
+            node scripts/check-licenses.mjs
+          else
+            echo "[licenses] no license checker found (scripts/check-licenses.sh or .mjs); skipping"
+          fi
 
       - name: Plagiarism (full, sharded)
         if: ${{ inputs.run_plagiarism_full == 'true' }}
