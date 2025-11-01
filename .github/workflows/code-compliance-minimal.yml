@@ -1,0 +1,94 @@
+name: Code Compliance (minimal)
+
+on:
+  pull_request:
+    paths:
+      - '**/*.kt'
+      - '**/*.kts'
+      - '**/*.java'
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.jsx'
+      - '**/*.py'
+      - '**/*.sh'
+      - 'scripts/**'
+      - '.github/workflows/code-compliance-minimal.yml'
+  workflow_dispatch:
+    inputs:
+      run_reuse:         { description: 'Run REUSE (SPDX headers)', default: 'true' }
+      run_sbom_licenses: { description: 'Build SBOM and license summary', default: 'true' }
+      run_jscpd:        { description: 'Run code duplication (jscpd)', default: 'true' }
+      jscpd_paths:      { description: 'Paths to scan (space-separated)', default: 'app-android feature-exam core-* scripts' }
+      jscpd_min_tokens: { description: 'jscpd min tokens', default: '100' }
+      jscpd_threshold:  { description: 'jscpd duplication % threshold (0-100)', default: '2' } # только для отчёта
+      fail_on_jscpd:    { description: 'Fail job on duplication findings', default: 'false' }
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare reports dir
+        run: mkdir -p reports
+
+      - name: Install REUSE
+        if: ${{ inputs.run_reuse == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          python3 -m pip install --user reuse
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          reuse --version
+
+      - name: REUSE lint (SPDX headers & LICENSE)
+        if: ${{ inputs.run_reuse == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          reuse lint | tee reports/reuse-lint.txt
+
+      - name: Install Syft (SBOM)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
+          ./syft version
+
+      - name: Generate SBOM (CycloneDX JSON)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          ./syft dir:. -o cyclonedx-json=reports/sbom-cyclonedx.json
+
+      - name: Extract dependency licenses (summary)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          jq -r '
+            [ .components[]?
+              | { name, version, licenses: ( (.licenses // []) | map(.license.id // .expression) ) }
+            ]' reports/sbom-cyclonedx.json > reports/deps-licenses.json
+          jq -r '
+            [ .components[]? | (.licenses // [] | map(.license.id // .expression)[])? ]
+            | group_by(.) | map({license: .[0], count: length})
+          ' reports/sbom-cyclonedx.json > reports/deps-licenses-summary.json
+          echo "Top licenses:" && jq -r '.[:10]' reports/deps-licenses-summary.json
+
+      - name: jscpd (code duplication)
+        if: ${{ inputs.run_jscpd == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          npx -y jscpd@3.5.10 \
+            --min-tokens "${{ inputs.jscpd_min_tokens || '100' }}" \
+            --threshold "${{ inputs.jscpd_threshold || '2' }}" \
+            --reporters "console,html,json" \
+            --output "reports/jscpd" \
+            ${{ inputs.jscpd_paths || 'app-android feature-exam core-* scripts' }}
+        continue-on-error: ${{ inputs.fail_on_jscpd != 'true' }}
+
+      - name: Upload compliance reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-compliance-reports
+          path: |
+            reports/reuse-lint.txt
+            reports/sbom-cyclonedx.json
+            reports/deps-licenses.json
+            reports/deps-licenses-summary.json
+            reports/jscpd/**
+          if-no-files-found: ignore
