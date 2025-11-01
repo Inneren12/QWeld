@@ -1,0 +1,79 @@
+name: Manual Content Checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_licenses:
+        description: 'Run license check'
+        default: 'true'
+      run_plagiarism_full:
+        description: 'Run full plagiarism'
+        default: 'false'
+      locales:
+        description: 'Locales'
+        default: 'en,ru'
+
+concurrency:
+  group: manual-content-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Licenses
+        if: ${{ inputs.run_licenses == 'true' }}
+        run: bash scripts/check-licenses.sh
+
+      - name: Plagiarism (full, sharded)
+        if: ${{ inputs.run_plagiarism_full == 'true' }}
+        env:
+          SHARD_INDEX: ${{ matrix.shard }}
+          SHARD_COUNT: 4
+        run: |
+          node scripts/check-plagiarism.mjs \
+            --locales "${{ inputs.locales }}" \
+            --shard-index $SHARD_INDEX --shard-count $SHARD_COUNT \
+            --progress 20000 --time-budget 3300 --soft-fail \
+            --out "plag-shard-${SHARD_INDEX}.json"
+
+      - name: Upload shard artifacts
+        if: ${{ inputs.run_plagiarism_full == 'true' && hashFiles(format('plag-shard-{0}.json', matrix.shard)) != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plag-shard-${{ matrix.shard }}
+          path: plag-shard-${{ matrix.shard }}.json
+
+  aggregate:
+    runs-on: ubuntu-latest
+    needs: [checks]
+    if: ${{ always() }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./plag
+          merge-multiple: true
+          if-no-files-found: ignore
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Merge plagiarism results
+        if: ${{ hashFiles('plag/**/*.json') != '' }}
+        run: node scripts/plagiarism-aggregate.mjs ./plag
+      - name: Upload merged
+        if: ${{ hashFiles('plag-merged.json') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plag-merged
+          path: plag-merged.json
