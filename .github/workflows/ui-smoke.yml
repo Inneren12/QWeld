@@ -1,17 +1,20 @@
-name: Android CI
+name: Android UI smoke
 
 on:
     push:
         branches:
-            - feature/android-skeleton
             - main
+            - feature/android-skeleton
+            - feature/f8-hardening
     pull_request:
         branches:
             - '*'
 
 jobs:
-    build:
+    ui-smoke:
         runs-on: ubuntu-latest
+        continue-on-error: true
+        timeout-minutes: 45
         env:
             ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
 
@@ -43,12 +46,9 @@ jobs:
                   export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
                   echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
                   echo "$ANDROID_SDK_ROOT/platform-tools" >> "$GITHUB_PATH"
-                  COMPILE_SDK=$(grep -Rho "compileSdk *[0-9][0-9]" . | tail -n1 | grep -o "[0-9]*")
-                  BUILD_TOOLS=$(grep -Rho "buildToolsVersion *\"[0-9.]*\"" . | head -n1 | grep -o "[0-9.]*" || true)
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "platforms;android-${COMPILE_SDK}"
-                  if [ -n "$BUILD_TOOLS" ]; then
-                      yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "build-tools;${BUILD_TOOLS}"
-                  fi
+                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools"
+                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platforms;android-34" "system-images;android-34;google_apis;x86_64"
+                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "build-tools;34.0.0"
                   yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" --licenses
                   cd "$GITHUB_WORKSPACE"
 
@@ -58,29 +58,14 @@ jobs:
             - name: Grant execute permission for gradlew
               run: chmod +x gradlew
 
-            - name: Run checks and unit tests
-              run: >-
-                  ./gradlew spotlessCheck detekt :core-domain:test :core-data:test :feature-exam:test
-                  test assembleDebug --no-daemon --stacktrace
+            - name: Assemble debug and androidTest APKs
+              run: ./gradlew :app-android:assembleDebug :app-android:assembleDebugAndroidTest --no-daemon --stacktrace
 
-            - name: Generate coverage report
-              run: ./gradlew koverXmlReport --no-daemon --stacktrace
-
-            - name: Enforce coverage threshold
-              env:
-                  THRESH: '0.60'
-              run: bash scripts/coverage-threshold.sh
-
-            - name: Upload coverage XML
-              if: always()
-              uses: actions/upload-artifact@v4
+            - name: Run UI smoke tests (connectedDebugAndroidTest)
+              uses: ReactiveCircus/android-emulator-runner@v2
               with:
-                  name: kover-coverage-xml
-                  path: build/reports/kover/xml/report.xml
-
-            - name: Upload debug APK
-              if: always()
-              uses: actions/upload-artifact@v4
-              with:
-                  name: qweld-debug-apk
-                  path: app-android/build/outputs/apk/debug/app-android-debug.apk
+                  api-level: 34
+                  target: google_apis
+                  arch: x86_64
+                  profile: pixel_6
+                  script: ./gradlew connectedDebugAndroidTest --no-daemon --stacktrace

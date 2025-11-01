@@ -1,5 +1,9 @@
 # QWeld
 
+[![Android CI](https://github.com/Inneren12/QWeld/actions/workflows/android.yml/badge.svg?branch=main)](https://github.com/Inneren12/QWeld/actions/workflows/android.yml)
+[![Content validators](https://github.com/Inneren12/QWeld/actions/workflows/content-validators.yml/badge.svg?branch=main)](https://github.com/Inneren12/QWeld/actions/workflows/content-validators.yml)
+[![Coverage ≥60%](https://img.shields.io/badge/coverage-%E2%89%A560%25-brightgreen)](https://github.com/Inneren12/QWeld/actions/workflows/android.yml)
+
 ## Structure & scripts
 
 - Monorepo modules: `app-android`, `core-model`, `core-data`, `core-domain`, feature modules (`feature-exam`, `feature-practice`, `feature-auth`).
@@ -158,4 +162,12 @@ Exam assembly (F3): deterministic seed, anti-cluster, choice balance, weighted P
 - **Export logs** is available from the Result screen and the account menu; it opens the Storage Access Framework so you can save the Timber buffer as TXT or JSON (`QWeld_Logs_<ts>.<ext>`).
 - The file is created wherever you point the SAF picker (e.g. Downloads, Drive, or device storage); open the Files app and navigate to that location to retrieve it.
 - TXT rows follow `[ts] [tag] message | attrs={...}` with an optional `| error=Type:reason` suffix, while the JSON variant wraps the same entries inside a `qweld.logs.v1` document.
+
+## F8 hardening: Required checks & coverage
+
+- **Android CI / build** — runs Spotless, Detekt, the module unit tests (`:core-domain:test`, `:core-data:test`, `:feature-exam:test`), aggregates coverage via `koverXmlReport`, and enforces a minimum 60% line coverage with `scripts/coverage-threshold.sh`.
+- **Content Validators (quick) / content** — validates blueprints, quotas, and question banks for every change in `content/`.
+- **Android UI smoke / ui-smoke** *(optional, non-blocking)* — boots an API 34 emulator and runs `connectedDebugAndroidTest` if the hosted runner exposes an AVD.
+
+Configure these jobs as required checks for the `main` branch in **Settings → Branches → Branch protection rules** after the workflows are merged; see `docs/ci/required-checks.md` for a step-by-step guide.
 
