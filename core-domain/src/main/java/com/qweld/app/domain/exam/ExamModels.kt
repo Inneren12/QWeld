@@ -36,21 +36,21 @@ data class ExamBlueprint(
     fun default(): ExamBlueprint {
       val quotas =
         listOf(
-          TaskQuota(taskId = "A-1", blockId = "A", required = 9),
-          TaskQuota(taskId = "A-2", blockId = "A", required = 8),
-          TaskQuota(taskId = "A-3", blockId = "A", required = 8),
-          TaskQuota(taskId = "A-4", blockId = "A", required = 8),
-          TaskQuota(taskId = "B-1", blockId = "B", required = 9),
-          TaskQuota(taskId = "B-2", blockId = "B", required = 8),
-          TaskQuota(taskId = "B-3", blockId = "B", required = 8),
-          TaskQuota(taskId = "B-4", blockId = "B", required = 8),
-          TaskQuota(taskId = "C-1", blockId = "C", required = 9),
-          TaskQuota(taskId = "C-2", blockId = "C", required = 8),
-          TaskQuota(taskId = "C-3", blockId = "C", required = 8),
-          TaskQuota(taskId = "C-4", blockId = "C", required = 8),
-          TaskQuota(taskId = "D-1", blockId = "D", required = 9),
-          TaskQuota(taskId = "D-2", blockId = "D", required = 8),
-          TaskQuota(taskId = "D-3", blockId = "D", required = 9),
+          TaskQuota(taskId = "A-1", blockId = "A", required = 4),
+          TaskQuota(taskId = "A-2", blockId = "A", required = 4),
+          TaskQuota(taskId = "A-3", blockId = "A", required = 5),
+          TaskQuota(taskId = "A-4", blockId = "A", required = 4),
+          TaskQuota(taskId = "A-5", blockId = "A", required = 7),
+          TaskQuota(taskId = "B-6", blockId = "B", required = 10),
+          TaskQuota(taskId = "B-7", blockId = "B", required = 15),
+          TaskQuota(taskId = "C-8", blockId = "C", required = 5),
+          TaskQuota(taskId = "C-9", blockId = "C", required = 7),
+          TaskQuota(taskId = "C-10", blockId = "C", required = 5),
+          TaskQuota(taskId = "C-11", blockId = "C", required = 4),
+          TaskQuota(taskId = "D-12", blockId = "D", required = 18),
+          TaskQuota(taskId = "D-13", blockId = "D", required = 21),
+          TaskQuota(taskId = "D-14", blockId = "D", required = 12),
+          TaskQuota(taskId = "D-15", blockId = "D", required = 4),
         )
       return ExamBlueprint(totalQuestions = 125, taskQuotas = quotas)
     }

@@ -32,6 +32,10 @@ class ExamAssembler(
     seed: AttemptSeed,
     blueprint: ExamBlueprint = ExamBlueprint.default(),
   ): ExamAttempt {
+    logger(
+      "[blueprint_source] type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
+        "tasks=${blueprint.taskCount}"
+    )
     logger("[exam_start] mode=${mode.name} seed=${seed.value} locale=$locale tasks=${blueprint.taskCount}")
     val timer = TimerController(clock, logger)
     timer.start()
