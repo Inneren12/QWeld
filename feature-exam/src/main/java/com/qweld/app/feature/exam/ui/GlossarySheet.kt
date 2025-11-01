@@ -28,7 +28,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -38,7 +37,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.qweld.app.feature.exam.R
 import java.util.Locale
@@ -144,11 +142,19 @@ private fun GlossaryRow(
   modifier: Modifier = Modifier,
 ) {
   val highlightColor = MaterialTheme.colorScheme.secondaryContainer
-  val termText = remember(entry.term, query) {
-    highlightGlossaryText(entry.term, query, highlightColor)
+  val onSurface = MaterialTheme.colorScheme.onSurface
+  val highlightStyle = remember(onSurface, highlightColor) {
+    SpanStyle(
+      background = highlightColor.copy(alpha = 0.4f),
+      fontWeight = FontWeight.SemiBold,
+      color = onSurface,
+    )
   }
-  val translationText = remember(entry.translation, query) {
-    highlightGlossaryText(entry.translation, query, highlightColor)
+  val termText = remember(entry.term, query, highlightStyle) {
+    highlightGlossaryText(entry.term, query, highlightStyle)
+  }
+  val translationText = remember(entry.translation, query, highlightStyle) {
+    highlightGlossaryText(entry.translation, query, highlightStyle)
   }
   Surface(
     modifier = modifier
@@ -167,43 +173,29 @@ private fun GlossaryRow(
   }
 }
 
-@Composable
 private fun highlightGlossaryText(
   text: String,
   query: String,
-  highlightColor: Color,
+  highlightStyle: SpanStyle,
 ): AnnotatedString {
   if (query.isBlank() || text.isEmpty()) return AnnotatedString(text)
   val lowerText = text.lowercase(Locale.getDefault())
   val lowerQuery = query.trim().lowercase(Locale.getDefault())
-  val highlightStyle = SpanStyle(
-    background = highlightColor.copy(alpha = 0.4f),
-    fontWeight = FontWeight.SemiBold,
-    color = MaterialTheme.colorScheme.onSurface,
-  )
-  var index = lowerText.indexOf(lowerQuery)
-  if (index < 0) return AnnotatedString(text)
-  val ranges = mutableListOf<Pair<Int, Int>>()
-  while (index >= 0) {
-    val endExclusive = (index + lowerQuery.length).coerceAtMost(text.length)
-    ranges += index to endExclusive
-    index = lowerText.indexOf(lowerQuery, startIndex = endExclusive)
-  }
-  return buildAnnotatedString {
-    var current = 0
-    for ((start, endExclusive) in ranges) {
-      if (current < start) {
-        append(text.substring(current, start))
-      }
-      if (start < endExclusive) {
-        withStyle(highlightStyle) {
-          append(text.substring(start, endExclusive))
-        }
-      }
-      current = endExclusive
+  // Стиль передаётся снаружи, внутри нет обращения к MaterialTheme
+  val ranges = buildList {
+    var start = 0
+    while (true) {
+      val idx = lowerText.indexOf(lowerQuery, startIndex = start)
+      if (idx < 0) break
+      add(idx until (idx + lowerQuery.length))
+      start = idx + lowerQuery.length
     }
-    if (current < text.length) {
-      append(text.substring(current))
+  }
+  if (ranges.isEmpty()) return AnnotatedString(text)
+  return buildAnnotatedString {
+    append(text)
+    for (r in ranges) {
+      addStyle(highlightStyle, r.first, r.last + 1)
     }
   }
 }

@@ -38,13 +38,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -64,12 +69,6 @@ import com.qweld.app.feature.exam.vm.ReviewViewModelFactory
 import com.qweld.app.feature.exam.vm.ReviewFilters
 import com.qweld.app.feature.exam.vm.ReviewTotals
 import timber.log.Timber
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.role
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.platform.LocalContext
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -449,7 +448,16 @@ private fun ReviewQuestionCard(
   val selectedChoice = question.choices.firstOrNull { it.isSelected }
   val correctChoice = question.choices.firstOrNull { it.isCorrect }
   val highlightColor = MaterialTheme.colorScheme.tertiaryContainer
-  val stemText = highlightAnnotatedText(question.stem, highlight?.stem.orEmpty(), highlightColor)
+  // Считаем стиль один раз и прокидываем в хелперы
+  val onSurface = MaterialTheme.colorScheme.onSurface
+  val highlightStyle = remember(onSurface, highlightColor) {
+    SpanStyle(
+      background = highlightColor.copy(alpha = 0.45f),
+      color = onSurface,
+      fontWeight = FontWeight.SemiBold,
+    )
+  }
+  val stemText = highlightAnnotatedText(question.stem, highlight?.stem.orEmpty(), highlightStyle)
   Surface(
     modifier = modifier.fillMaxWidth(),
     shape = RoundedCornerShape(16.dp),
@@ -473,7 +481,7 @@ private fun ReviewQuestionCard(
           val choiceText = highlightAnnotatedText(
             text = choice.text,
             matches = highlight?.choices?.get(choice.id).orEmpty(),
-            highlightColor = highlightColor,
+            highlightStyle = highlightStyle,
           )
           ChoiceSummary(choice = choice, highlightedText = choiceText)
         }
@@ -515,7 +523,7 @@ private fun ReviewQuestionCard(
           val rationaleText = highlightAnnotatedText(
             text = rationale,
             matches = highlight?.rationale.orEmpty(),
-            highlightColor = highlightColor,
+            highlightStyle = highlightStyle,
           )
           Text(text = rationaleText, style = MaterialTheme.typography.bodyMedium)
         }
@@ -551,7 +559,7 @@ private fun ReviewQuestionCard(
 @Composable
 private fun ChoiceSummary(
   choice: ReviewChoiceUiModel,
-  highlightedText: androidx.compose.ui.text.AnnotatedString,
+  highlightedText: AnnotatedString,
   modifier: Modifier = Modifier,
 ) {
   val (containerColor, contentColor) = when {
@@ -604,36 +612,22 @@ private fun ChoiceSummary(
   }
 }
 
-@Composable
 private fun highlightAnnotatedText(
   text: String,
   matches: List<IntRange>,
-  highlightColor: Color,
-): androidx.compose.ui.text.AnnotatedString {
-  if (matches.isEmpty() || text.isEmpty()) return androidx.compose.ui.text.AnnotatedString(text)
+  highlightStyle: SpanStyle,
+): AnnotatedString {
+  if (matches.isEmpty() || text.isEmpty()) return AnnotatedString(text)
   val sorted = matches.sortedBy { it.first }
-  val highlightStyle = SpanStyle(
-    background = highlightColor.copy(alpha = 0.45f),
-    color = MaterialTheme.colorScheme.onSurface,
-    fontWeight = FontWeight.SemiBold,
-  )
+  // Стиль приходит снаружи, нет обращений к MaterialTheme внутри хелпера
   return buildAnnotatedString {
-    var currentIndex = 0
+    append(text)
     for (range in sorted) {
       val start = range.first.coerceIn(0, text.length)
       val endExclusive = (range.last + 1).coerceAtMost(text.length)
-      if (currentIndex < start) {
-        append(text.substring(currentIndex, start))
-      }
       if (start < endExclusive) {
-        withStyle(highlightStyle) {
-          append(text.substring(start, endExclusive))
-        }
+        addStyle(highlightStyle, start, endExclusive)
       }
-      currentIndex = endExclusive
-    }
-    if (currentIndex < text.length) {
-      append(text.substring(currentIndex))
     }
   }
 }
