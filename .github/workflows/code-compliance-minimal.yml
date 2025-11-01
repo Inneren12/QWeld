@@ -20,7 +20,7 @@ on:
       run_sbom_licenses: { description: 'Build SBOM and license summary', default: 'true' }
       run_jscpd:        { description: 'Run code duplication (jscpd)', default: 'true' }
       jscpd_paths:      { description: 'Paths to scan (space-separated)', default: 'app-android feature-exam core-* scripts' }
-      jscpd_min_tokens: { description: 'jscpd min tokens', default: '100' }
+      jscpd_min_tokens: { description: 'jscpd min tokens', default: '70' }
       jscpd_threshold:  { description: 'jscpd duplication % threshold (0-100)', default: '2' } # только для отчёта
       fail_on_jscpd:    { description: 'Fail job on duplication findings', default: 'false' }
 
@@ -47,28 +47,85 @@ jobs:
           reuse lint | tee reports/reuse-lint.txt
           echo "Hint: для зависимостей Gradle рекомендуем отдельный PR с CashApp Licensee" | tee -a reports/reuse-lint.txt
 
+      - name: Prepare sbom Gradle init script
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p gradle reports/sbom/deps
+          cat > gradle/sbom.init.gradle <<'GRADLE_EOF'
+          allprojects {
+            afterEvaluate {
+              def targets = []
+              configurations.findAll { it.canBeResolved }.each { cfg ->
+                if (cfg.name ==~ /(?i).*(release|debug)?runtimeClasspath$/) {
+                  def taskName = "sbomCopy_${project.name}_${cfg.name}"
+                  tasks.register(taskName, Copy) {
+                    from cfg
+                    into new File(rootProject.projectDir, "reports/sbom/deps/${project.name}/${cfg.name}")
+                  }
+                  targets << tasks.named(taskName)
+                }
+              }
+              if (!targets.isEmpty()) {
+                tasks.register("sbomCopyAll") {
+                  dependsOn targets
+                }
+              }
+            }
+          }
+          GRADLE_EOF
+
+      - name: Copy resolved Gradle dependencies (no build script changes)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew -q -I gradle/sbom.init.gradle sbomCopyAll || true
+          echo "[sbom] deps dir size:"
+          du -sh reports/sbom/deps || true
+
       - name: Install Syft (SBOM)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
         run: |
           curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
           ./syft version
 
-      - name: Generate SBOM (CycloneDX JSON)
+      - name: Generate SBOM (source tree)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
         run: |
-          ./syft dir:. -o cyclonedx-json=reports/sbom-cyclonedx.json
+          ./syft dir:. -o cyclonedx-json=reports/sbom-source.json
+
+      - name: Generate SBOM (resolved deps)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          # Если deps пуст — Syft просто создаст пустую модель; это ок
+          ./syft dir:reports/sbom/deps -o cyclonedx-json=reports/sbom-deps.json || echo '{"components":[]}' > reports/sbom-deps.json
+
+      - name: Merge SBOM (source + deps)
+        if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
+        run: |
+          set -euo pipefail
+          jq -s '{
+            bomFormat: "CycloneDX",
+            specVersion: "1.5",
+            version: 1,
+            components: ((.[0].components // []) + (.[1].components // []))
+              | unique_by(.name + ":" + (.version // "")),
+            metadata: (.[0].metadata // null)
+          }' reports/sbom-source.json reports/sbom-deps.json > reports/sbom-cyclonedx.json
+          jq -r '[ .components[]? 
+                   | { name, version, licenses: ((.licenses // []) | map(.license.id // .expression)) } ]' \
+             reports/sbom-cyclonedx.json > reports/deps-licenses.json
+          jq -r '[ .components[]? 
+                   | (.licenses // [] | map(.license.id // .expression)[])? ]
+                  | group_by(.) | map({license: .[0], count: length})' \
+             reports/sbom-cyclonedx.json > reports/deps-licenses-summary.json
+          echo "[sbom] components=$(jq '.components|length' reports/sbom-cyclonedx.json)"
 
       - name: Extract dependency licenses (summary)
         if: ${{ inputs.run_sbom_licenses == 'true' || github.event_name == 'pull_request' }}
         run: |
-          jq -r '
-            [ .components[]?
-              | { name, version, licenses: ( (.licenses // []) | map(.license.id // .expression) ) }
-            ]' reports/sbom-cyclonedx.json > reports/deps-licenses.json
-          jq -r '
-            [ .components[]? | (.licenses // [] | map(.license.id // .expression)[])? ]
-            | group_by(.) | map({license: .[0], count: length})
-          ' reports/sbom-cyclonedx.json > reports/deps-licenses-summary.json
           component_count=$(jq '(.components // []) | length' reports/sbom-cyclonedx.json)
           if [ "$component_count" -eq 0 ]; then
             echo "INFO: SBOM contains 0 components"
@@ -83,16 +140,19 @@ jobs:
 
       - name: jscpd (code duplication)
         if: ${{ inputs.run_jscpd == 'true' || github.event_name == 'pull_request' }}
+        shell: bash
         run: |
+          set -euo pipefail
+          mkdir -p reports/jscpd
           npx -y jscpd@3.5.10 \
-            --min-tokens "${{ inputs.jscpd_min_tokens || '100' }}" \
-            --threshold "${{ inputs.jscpd_threshold || '2' }}" \
+            --languages "kotlin,java,js,ts,tsx,jsx,xml,markdown,python,shell" \
+            --pattern "{app-android,feature-exam,core-*,scripts}/**/*.{kt,kts,java,js,ts,tsx,jsx,xml,md,py,sh}" \
             --exclude "**/build/**" \
             --exclude "**/test/**" \
-            --exclude "**/*.generated.*" \
+            --exclude "**/.*/**" \
+            --min-tokens "${{ inputs.jscpd_min_tokens || '70' }}" \
             --reporters "console,html,json" \
-            --output "reports/jscpd" \
-            ${{ inputs.jscpd_paths || 'app-android feature-exam core-* scripts' }}
+            --output "reports/jscpd"
         continue-on-error: ${{ inputs.fail_on_jscpd != 'true' }}
 
       - name: Upload compliance reports
@@ -101,6 +161,8 @@ jobs:
           name: code-compliance-reports
           path: |
             reports/reuse-lint.txt
+            reports/sbom-source.json
+            reports/sbom-deps.json
             reports/sbom-cyclonedx.json
             reports/deps-licenses.json
             reports/deps-licenses-summary.json
