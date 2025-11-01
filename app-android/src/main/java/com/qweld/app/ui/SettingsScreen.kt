@@ -1,13 +1,16 @@
 package com.qweld.app.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -16,27 +19,35 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.qweld.app.R
+import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.vm.PracticeConfig
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.util.Locale
 
 @Composable
 fun SettingsScreen(
@@ -44,6 +55,7 @@ fun SettingsScreen(
   attemptsRepository: AttemptsRepository,
   answersRepository: AnswersRepository,
   questionRepository: AssetQuestionRepository,
+  contentIndexReader: ContentIndexReader,
   onExportLogs: (() -> Unit)?,
   onBack: () -> Unit,
 ) {
@@ -67,6 +79,8 @@ fun SettingsScreen(
   val soundsEnabled by userPrefs.soundsEnabled.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED,
   )
+  var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
+  val clipboardManager = LocalClipboardManager.current
 
   val resolvedPracticeConfig = PracticeConfig(practiceSize, wrongBiased)
   val practiceSummary = stringResource(id = R.string.settings_practice_size_summary, resolvedPracticeConfig.size)
@@ -75,10 +89,24 @@ fun SettingsScreen(
   val clearedEnMessage = stringResource(id = R.string.settings_cleared_locale_message, "EN")
   val clearedRuMessage = stringResource(id = R.string.settings_cleared_locale_message, "RU")
   val errorMessage = stringResource(id = R.string.settings_error_message)
+  val copySuccessMessage = stringResource(id = R.string.settings_content_copy_success)
 
   BackHandler(onBack = onBack)
 
   LaunchedEffect(Unit) { Timber.i("[settings_open]") }
+  LaunchedEffect(contentIndexReader) {
+    contentIndex = withContext(Dispatchers.IO) { contentIndexReader.read() }
+  }
+  LaunchedEffect(contentIndex) {
+    contentIndex?.index?.locales?.toSortedMap()?.forEach { (locale, info) ->
+      val tasksLog =
+        CONTENT_TASK_IDS.joinToString(separator = " ") { taskId ->
+          val count = info.tasks[taskId] ?: 0
+          "$taskId=$count"
+        }
+      Timber.i("[content_info] locale=%s total=%d %s", locale, info.total, tasksLog)
+    }
+  }
 
   Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { innerPadding ->
     Column(
@@ -131,6 +159,18 @@ fun SettingsScreen(
           scope.launch {
             userPrefs.setWrongBiased(enabled)
             Timber.i("[settings_update] key=wrongBiased value=%s", enabled)
+          }
+        },
+      )
+
+      Divider()
+
+      SettingsContentInfoSection(
+        contentIndex = contentIndex,
+        onCopyIndex = {
+          contentIndex?.let { result ->
+            clipboardManager.setText(AnnotatedString(result.rawJson))
+            scope.launch { snackbarHostState.showSnackbar(copySuccessMessage) }
           }
         },
       )
@@ -304,6 +344,80 @@ private fun SettingsPracticeSection(
 }
 
 @Composable
+private fun SettingsContentInfoSection(
+  contentIndex: ContentIndexReader.Result?,
+  onCopyIndex: () -> Unit,
+) {
+  Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Text(text = stringResource(id = R.string.settings_section_content_info), style = MaterialTheme.typography.titleMedium)
+    if (contentIndex == null) {
+      Text(
+        text = stringResource(id = R.string.settings_content_not_available),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    } else {
+      contentIndex.index.locales.entries.sortedBy { it.key }.forEach { (localeCode, localeInfo) ->
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+          Text(
+            text = stringResource(
+              id = R.string.settings_content_total,
+              localeCode.uppercase(Locale.ROOT),
+              localeInfo.total,
+            ),
+            style = MaterialTheme.typography.bodyLarge,
+          )
+          ContentInfoTable(tasks = localeInfo.tasks)
+        }
+      }
+      Text(
+        text = stringResource(id = R.string.settings_content_generated_at, contentIndex.index.generatedAt),
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    }
+    Button(onClick = onCopyIndex, enabled = contentIndex != null, modifier = Modifier.fillMaxWidth()) {
+      Text(text = stringResource(id = R.string.settings_content_copy_json))
+    }
+  }
+}
+
+@Composable
+private fun ContentInfoTable(tasks: Map<String, Int>) {
+  val columnWidth = 56.dp
+  val headerHeight = 32.dp
+  val cellHeight = 36.dp
+  val scrollState = rememberScrollState()
+  Row(
+    modifier = Modifier.horizontalScroll(scrollState),
+    horizontalArrangement = Arrangement.spacedBy(4.dp),
+  ) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+      Box(modifier = Modifier.size(columnWidth, headerHeight))
+      CONTENT_TASK_LETTERS.forEach { letter ->
+        Box(modifier = Modifier.size(columnWidth, cellHeight), contentAlignment = Alignment.Center) {
+          Text(text = letter, style = MaterialTheme.typography.labelMedium)
+        }
+      }
+    }
+    CONTENT_TASK_NUMBERS.forEach { number ->
+      Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Box(modifier = Modifier.size(columnWidth, headerHeight), contentAlignment = Alignment.Center) {
+          Text(text = number.toString(), style = MaterialTheme.typography.labelMedium)
+        }
+        CONTENT_TASK_LETTERS.forEach { letter ->
+          val taskId = "$letter-$number"
+          val value = tasks[taskId] ?: 0
+          Box(modifier = Modifier.size(columnWidth, cellHeight), contentAlignment = Alignment.Center) {
+            Text(text = value.toString(), style = MaterialTheme.typography.bodySmall)
+          }
+        }
+      }
+    }
+  }
+}
+
+@Composable
 private fun SettingsToolsSection(
   hapticsEnabled: Boolean,
   soundsEnabled: Boolean,
@@ -375,3 +489,8 @@ private fun SettingsToggleRow(
     Switch(checked = checked, onCheckedChange = onCheckedChange)
   }
 }
+
+private val CONTENT_TASK_LETTERS = listOf("A", "B", "C", "D")
+private val CONTENT_TASK_NUMBERS = (1..15).toList()
+private val CONTENT_TASK_IDS =
+  CONTENT_TASK_LETTERS.flatMap { letter -> CONTENT_TASK_NUMBERS.map { number -> "$letter-$number" } }

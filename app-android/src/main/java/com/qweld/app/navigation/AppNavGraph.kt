@@ -35,6 +35,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.qweld.app.data.analytics.Analytics
+import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
@@ -68,6 +69,7 @@ fun AppNavGraph(
   analytics: Analytics,
   logCollector: LogCollector?,
   userPrefs: UserPrefsDataStore,
+  contentIndexReader: ContentIndexReader,
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
@@ -265,6 +267,7 @@ fun AppNavGraph(
           attemptsRepository = attemptsRepository,
           answersRepository = answersRepository,
           questionRepository = questionRepository,
+          contentIndexReader = contentIndexReader,
           onExportLogs =
             if (logExportActions != null) {
               {

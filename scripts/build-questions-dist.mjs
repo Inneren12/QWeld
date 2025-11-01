@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -41,6 +42,10 @@ async function collectTaskQuestions(localeDir, taskId) {
   return questions;
 }
 
+function hashPayload(payload) {
+  return crypto.createHash('sha256').update(payload, 'utf8').digest('hex');
+}
+
 async function buildForLocale(locale) {
   const localeDir = path.join(CONTENT_ROOT, locale);
   const distLocaleDir = path.join(DIST_ROOT, locale);
@@ -56,6 +61,9 @@ async function buildForLocale(locale) {
 
   const allQuestions = [];
 
+  const taskCounts = {};
+  const taskHashes = {};
+
   for (const taskId of taskDirs) {
     const taskQuestions = await collectTaskQuestions(localeDir, taskId);
     allQuestions.push(...taskQuestions);
@@ -63,21 +71,47 @@ async function buildForLocale(locale) {
     const taskFilePath = path.join(distTasksDir, `${taskId}.json`);
     const taskPayload = `${JSON.stringify(taskQuestions, null, 2)}\n`;
     await fs.writeFile(taskFilePath, taskPayload, 'utf8');
+
+    taskCounts[taskId] = taskQuestions.length;
+    taskHashes[taskId] = hashPayload(taskPayload);
   }
 
   allQuestions.sort(sortById);
   const bankPayload = `${JSON.stringify(allQuestions, null, 2)}\n`;
-  await fs.writeFile(path.join(distLocaleDir, 'bank.v1.json'), bankPayload, 'utf8');
+  const bankPath = path.join(distLocaleDir, 'bank.v1.json');
+  await fs.writeFile(bankPath, bankPayload, 'utf8');
 
   console.log(`[dist-node] ${locale} tasks=${taskDirs.length} total=${allQuestions.length}`);
+
+  return {
+    total: allQuestions.length,
+    tasks: taskCounts,
+    sha256: {
+      bank: hashPayload(bankPayload),
+      tasks: taskHashes,
+    },
+  };
 }
 
 async function main() {
   await ensureDir(DIST_ROOT);
 
+  const indexLocales = {};
   for (const locale of LOCALES) {
-    await buildForLocale(locale);
+    indexLocales[locale] = await buildForLocale(locale);
   }
+
+  const indexPayload = {
+    schema: 'qweld.dist.index.v1',
+    locales: indexLocales,
+    generatedAt: new Date().toISOString(),
+  };
+
+  const indexPath = path.join(DIST_ROOT, 'index.json');
+  const indexJson = `${JSON.stringify(indexPayload, null, 2)}\n`;
+  await fs.writeFile(indexPath, indexJson, 'utf8');
+
+  console.log(`[dist_index] written=${path.relative(ROOT_DIR, indexPath)}`);
 }
 
 main().catch((error) => {

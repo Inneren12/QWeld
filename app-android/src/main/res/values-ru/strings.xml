@@ -35,4 +35,10 @@
     <string name="settings_cleared_message">Очищено</string>
     <string name="settings_cleared_locale_message">Кэш %1$s очищен.</string>
     <string name="settings_error_message">Ошибка</string>
+    <string name="settings_section_content_info">Инфо о контенте</string>
+    <string name="settings_content_not_available">Недоступно</string>
+    <string name="settings_content_total">%1$s: %2$d вопросов</string>
+    <string name="settings_content_generated_at">Сгенерировано %1$s</string>
+    <string name="settings_content_copy_json">Скопировать index JSON</string>
+    <string name="settings_content_copy_success">Индекс скопирован в буфер обмена</string>
 </resources>
