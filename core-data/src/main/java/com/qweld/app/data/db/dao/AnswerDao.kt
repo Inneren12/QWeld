@@ -33,13 +33,20 @@ interface AnswerDao {
 
   @Query(
     """
-    SELECT question_id AS questionId,
+    SELECT a.question_id AS questionId,
            COUNT(*) AS attempts,
-           SUM(CASE WHEN is_correct THEN 1 ELSE 0 END) AS correct,
-           MAX(answered_at) AS lastAnsweredAt
-    FROM answers
-    WHERE question_id = :questionId
-    GROUP BY question_id
+           SUM(CASE WHEN a.is_correct THEN 1 ELSE 0 END) AS correct,
+           MAX(a.answered_at) AS lastAnsweredAt,
+           (
+             SELECT CASE WHEN last.is_correct THEN 1 ELSE 0 END
+             FROM answers AS last
+             WHERE last.question_id = a.question_id
+             ORDER BY last.answered_at DESC
+             LIMIT 1
+           ) AS lastIsCorrect
+    FROM answers AS a
+    WHERE a.question_id = :questionId
+    GROUP BY a.question_id
     LIMIT 1
     """
   )
@@ -47,13 +54,20 @@ interface AnswerDao {
 
   @Query(
     """
-    SELECT question_id AS questionId,
+    SELECT a.question_id AS questionId,
            COUNT(*) AS attempts,
-           SUM(CASE WHEN is_correct THEN 1 ELSE 0 END) AS correct,
-           MAX(answered_at) AS lastAnsweredAt
-    FROM answers
-    WHERE question_id IN (:questionIds)
-    GROUP BY question_id
+           SUM(CASE WHEN a.is_correct THEN 1 ELSE 0 END) AS correct,
+           MAX(a.answered_at) AS lastAnsweredAt,
+           (
+             SELECT CASE WHEN last.is_correct THEN 1 ELSE 0 END
+             FROM answers AS last
+             WHERE last.question_id = a.question_id
+             ORDER BY last.answered_at DESC
+             LIMIT 1
+           ) AS lastIsCorrect
+    FROM answers AS a
+    WHERE a.question_id IN (:questionIds)
+    GROUP BY a.question_id
     """
   )
   suspend fun bulkCountByQuestions(questionIds: List<String>): List<QuestionAggregate>
@@ -66,5 +80,6 @@ interface AnswerDao {
     val attempts: Int,
     val correct: Int,
     val lastAnsweredAt: Long?,
+    val lastIsCorrect: Boolean?,
   )
 }

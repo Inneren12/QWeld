@@ -21,7 +21,7 @@ class ResumeUseCaseTest {
   @get:Rule val dispatcherRule = MainDispatcherRule()
 
   private val statsRepository = object : UserStatsRepository {
-    override fun getUserItemStats(
+    override suspend fun getUserItemStats(
       userId: String,
       ids: List<String>,
     ) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()

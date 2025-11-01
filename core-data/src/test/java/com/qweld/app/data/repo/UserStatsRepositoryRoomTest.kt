@@ -62,11 +62,13 @@ class UserStatsRepositoryRoomTest {
     assertEquals(2, q1?.attempts)
     assertEquals(1, q1?.correct)
     assertEquals(61_000L, q1?.lastAnsweredAt?.toEpochMilli())
+    assertEquals(false, q1?.lastAnswerCorrect)
 
     val q2 = stats["Q2"]
     assertEquals(1, q2?.attempts)
     assertEquals(1, q2?.correct)
     assertEquals(62_000L, q2?.lastAnsweredAt?.toEpochMilli())
+    assertEquals(true, q2?.lastAnswerCorrect)
 
     assertTrue("Q3" !in stats)
   }

@@ -28,7 +28,7 @@ class FakeQuestionRepository(
 class FakeUserStatsRepository(
   private val stats: Map<String, ItemStats> = emptyMap(),
 ) : UserStatsRepository {
-  override fun getUserItemStats(
+  override suspend fun getUserItemStats(
     userId: String,
     ids: List<String>,
   ): Map<String, ItemStats> {

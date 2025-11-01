@@ -1,6 +1,8 @@
 package com.qweld.app.feature.exam.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,6 +24,7 @@ import com.qweld.app.feature.exam.ui.ResultScreen
 import com.qweld.app.feature.exam.ui.ReviewScreen
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.ExamViewModelFactory
+import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
 import com.qweld.app.feature.exam.vm.ResultViewModel
@@ -81,31 +84,43 @@ fun ExamNavGraph(
               userPrefs = userPrefs,
             ),
         )
+      val practiceSize by
+        userPrefs.practiceSize.collectAsState(
+          initial = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE,
+        )
+      val wrongBiased by
+        userPrefs.wrongBiased.collectAsState(
+          initial = UserPrefsDataStore.DEFAULT_WRONG_BIASED,
+        )
+      val practiceConfig = remember(practiceSize, wrongBiased) {
+        PracticeConfig(practiceSize, wrongBiased)
+      }
       ModeScreen(
         repository = repository,
         viewModel = examViewModel,
         practiceShortcuts = practiceShortcuts,
+        practiceConfig = practiceConfig,
         onIpMockClick = { locale ->
           val launched = examViewModel.startAttempt(ExamMode.IP_MOCK, locale)
           if (launched) {
             navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
           }
         },
-        onPracticeClick = { locale ->
+        onPracticeClick = { locale, config ->
           val launched = examViewModel.startAttempt(
             mode = ExamMode.PRACTICE,
             locale = locale,
-            practiceSize = DEFAULT_PRACTICE_SIZE,
+            practiceConfig = config,
           )
           if (launched) {
             navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
           }
         },
-        onRepeatMistakes = { locale, blueprint ->
+        onRepeatMistakes = { locale, blueprint, config ->
           val launched = examViewModel.startAttempt(
             mode = ExamMode.PRACTICE,
             locale = locale,
-            practiceSize = blueprint.totalQuestions,
+            practiceConfig = config,
             blueprintOverride = blueprint,
           )
           if (launched) {
@@ -202,5 +217,3 @@ fun ExamNavGraph(
     }
   }
 }
-
-private const val DEFAULT_PRACTICE_SIZE = 20

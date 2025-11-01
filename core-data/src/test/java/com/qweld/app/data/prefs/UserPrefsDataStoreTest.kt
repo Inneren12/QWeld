@@ -33,6 +33,7 @@ class UserPrefsDataStoreTest {
 
     assertEquals(UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED, prefs.analyticsEnabled.first())
     assertEquals(UserPrefsDataStore.DEFAULT_PRACTICE_SIZE, prefs.practiceSize.first())
+    assertEquals(UserPrefsDataStore.DEFAULT_WRONG_BIASED, prefs.wrongBiased.first())
     assertEquals(UserPrefsDataStore.DEFAULT_FALLBACK_TO_EN, prefs.fallbackToEN.first())
     assertEquals(UserPrefsDataStore.DEFAULT_HAPTICS_ENABLED, prefs.hapticsEnabled.first())
     assertEquals(UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED, prefs.soundsEnabled.first())
@@ -47,12 +48,14 @@ class UserPrefsDataStoreTest {
     prefs.setFallbackToEN(true)
     prefs.setHapticsEnabled(false)
     prefs.setSoundsEnabled(true)
+    prefs.setWrongBiased(true)
 
     assertFalse(prefs.analyticsEnabled.first())
-    assertEquals(35, prefs.practiceSize.first())
+    assertEquals(UserPrefsDataStore.DEFAULT_PRACTICE_SIZE, prefs.practiceSize.first())
     assertTrue(prefs.fallbackToEN.first())
     assertFalse(prefs.hapticsEnabled.first())
     assertTrue(prefs.soundsEnabled.first())
+    assertTrue(prefs.wrongBiased.first())
   }
 
   private fun TestScope.newDataStore(): UserPrefsDataStore {

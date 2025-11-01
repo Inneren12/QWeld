@@ -3,45 +3,38 @@ package com.qweld.app.ui
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.qweld.app.R
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
-import kotlin.math.roundToInt
+import com.qweld.app.feature.exam.vm.PracticeConfig
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -56,12 +49,14 @@ fun SettingsScreen(
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
   val scope = rememberCoroutineScope()
-  val focusManager = LocalFocusManager.current
   val analyticsEnabled by userPrefs.analyticsEnabled.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED,
   )
   val practiceSize by userPrefs.practiceSize.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE,
+  )
+  val wrongBiased by userPrefs.wrongBiased.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_WRONG_BIASED,
   )
   val fallbackToEN by userPrefs.fallbackToEN.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_FALLBACK_TO_EN,
@@ -73,11 +68,9 @@ fun SettingsScreen(
     initial = UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED,
   )
 
-  var sliderValue by remember(practiceSize) { mutableStateOf(practiceSize.toFloat()) }
-  var practiceInput by remember(practiceSize) { mutableStateOf(practiceSize.toString()) }
-  val practiceLabel = stringResource(id = R.string.settings_practice_size_label)
-  val practiceRange = 5f..50f
-  val practiceStep = 5
+  val resolvedPracticeConfig = PracticeConfig(practiceSize, wrongBiased)
+  val practiceSummary = stringResource(id = R.string.settings_practice_size_summary, resolvedPracticeConfig.size)
+  val practicePresets = PracticeConfig.PRESETS
   val clearedMessage = stringResource(id = R.string.settings_cleared_message)
   val clearedEnMessage = stringResource(id = R.string.settings_cleared_locale_message, "EN")
   val clearedRuMessage = stringResource(id = R.string.settings_cleared_locale_message, "RU")
@@ -115,19 +108,18 @@ fun SettingsScreen(
       Divider()
 
       SettingsPracticeSection(
-        sliderValue = sliderValue,
-        practiceInput = practiceInput,
+        practiceSize = resolvedPracticeConfig.size,
+        practicePresets = practicePresets,
+        practiceSummary = practiceSummary,
         fallbackToEN = fallbackToEN,
-        practiceLabel = practiceLabel,
-        practiceRange = practiceRange,
-        practiceStep = practiceStep,
-        onSliderChange = { value ->
-          val snapped = (value / practiceStep).roundToInt() * practiceStep
-          sliderValue = snapped.toFloat().coerceIn(practiceRange.start, practiceRange.endInclusive)
-          practiceInput = snapped.coerceIn(practiceRange.start.toInt(), practiceRange.endInclusive.toInt()).toString()
+        wrongBiased = wrongBiased,
+        onFallbackToggle = { enabled ->
+          scope.launch {
+            userPrefs.setFallbackToEN(enabled)
+            Timber.i("[settings_update] key=fallbackToEN value=%s", enabled)
+          }
         },
-        onSliderCommit = {
-          val size = sliderValue.roundToInt().coerceIn(5, 50)
+        onPracticeSizeSelected = { size ->
           scope.launch {
             if (size != practiceSize) {
               userPrefs.setPracticeSize(size)
@@ -135,38 +127,10 @@ fun SettingsScreen(
             }
           }
         },
-        onPracticeInputChange = { value ->
-          val digits = value.filter { it.isDigit() }
-          practiceInput = digits
-          val parsed = digits.toIntOrNull()
-          if (parsed != null) {
-            val snapped = (parsed / practiceStep.toFloat()).roundToInt() * practiceStep
-            sliderValue = snapped.toFloat().coerceIn(practiceRange.start, practiceRange.endInclusive)
-          }
-        },
-        onPracticeInputCommit = {
-          val parsed = practiceInput.toIntOrNull()
-          if (parsed != null) {
-            val snapped = (parsed / practiceStep.toFloat()).roundToInt() * practiceStep
-            val size = snapped.coerceIn(practiceRange.start.toInt(), practiceRange.endInclusive.toInt())
-            practiceInput = size.toString()
-            sliderValue = size.toFloat()
-            scope.launch {
-              if (size != practiceSize) {
-                userPrefs.setPracticeSize(size)
-                Timber.i("[settings_update] key=practiceSize value=%d", size)
-              }
-            }
-          } else {
-            practiceInput = practiceSize.toString()
-            sliderValue = practiceSize.toFloat()
-          }
-          focusManager.clearFocus()
-        },
-        onFallbackToggle = { enabled ->
+        onWrongBiasedToggle = { enabled ->
           scope.launch {
-            userPrefs.setFallbackToEN(enabled)
-            Timber.i("[settings_update] key=fallbackToEN value=%s", enabled)
+            userPrefs.setWrongBiased(enabled)
+            Timber.i("[settings_update] key=wrongBiased value=%s", enabled)
           }
         },
       )
@@ -279,55 +243,58 @@ private fun SettingsPrivacySection(
 
 @Composable
 private fun SettingsPracticeSection(
-  sliderValue: Float,
-  practiceInput: String,
+  practiceSize: Int,
+  practicePresets: List<Int>,
+  practiceSummary: String,
   fallbackToEN: Boolean,
-  practiceLabel: String,
-  practiceRange: ClosedFloatingPointRange<Float>,
-  practiceStep: Int,
-  onSliderChange: (Float) -> Unit,
-  onSliderCommit: () -> Unit,
-  onPracticeInputChange: (String) -> Unit,
-  onPracticeInputCommit: () -> Unit,
+  wrongBiased: Boolean,
   onFallbackToggle: (Boolean) -> Unit,
+  onPracticeSizeSelected: (Int) -> Unit,
+  onWrongBiasedToggle: (Boolean) -> Unit,
 ) {
   Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
     Text(text = stringResource(id = R.string.settings_section_practice), style = MaterialTheme.typography.titleMedium)
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-      Text(text = practiceLabel, style = MaterialTheme.typography.bodyLarge)
-      Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        OutlinedTextField(
-          value = practiceInput,
-          onValueChange = onPracticeInputChange,
-          modifier = Modifier.weight(1f),
-          label = { Text(text = practiceLabel) },
-          singleLine = true,
-          keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
-          keyboardActions = KeyboardActions(onDone = { onPracticeInputCommit() }),
-        )
-        TextButton(onClick = onPracticeInputCommit) { Text(text = stringResource(id = R.string.settings_apply)) }
+      Text(text = stringResource(id = R.string.settings_practice_size_label), style = MaterialTheme.typography.bodyLarge)
+      FlowRow(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+      ) {
+        practicePresets.forEach { preset ->
+          Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+          ) {
+            RadioButton(
+              selected = practiceSize == preset,
+              onClick = { onPracticeSizeSelected(preset) },
+            )
+            Text(text = preset.toString(), style = MaterialTheme.typography.bodyLarge)
+          }
+        }
       }
-      androidx.compose.material3.Slider(
-        value = sliderValue,
-        onValueChange = onSliderChange,
-        valueRange = practiceRange,
-        steps = ((practiceRange.endInclusive - practiceRange.start) / practiceStep - 1).toInt(),
-        onValueChangeFinished = onSliderCommit,
-      )
-      Text(text = stringResource(id = R.string.settings_practice_size_summary, sliderValue.roundToInt()))
-    }
-    Row(
-      modifier = Modifier.fillMaxWidth(),
-      verticalAlignment = Alignment.CenterVertically,
-      horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
       Text(
-        text = stringResource(id = R.string.settings_fallback_label),
-        style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier.weight(1f),
+        text = practiceSummary,
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
-      Switch(checked = fallbackToEN, onCheckedChange = onFallbackToggle)
     }
+    SettingsToggleRow(
+      label = stringResource(id = R.string.settings_wrong_biased_label),
+      checked = wrongBiased,
+      onCheckedChange = onWrongBiasedToggle,
+    )
+    Text(
+      text = stringResource(id = R.string.settings_wrong_biased_subtitle),
+      style = MaterialTheme.typography.bodyMedium,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
+    SettingsToggleRow(
+      label = stringResource(id = R.string.settings_fallback_label),
+      checked = fallbackToEN,
+      onCheckedChange = onFallbackToggle,
+    )
     Text(
       text = stringResource(id = R.string.settings_fallback_subtitle),
       style = MaterialTheme.typography.bodyMedium,

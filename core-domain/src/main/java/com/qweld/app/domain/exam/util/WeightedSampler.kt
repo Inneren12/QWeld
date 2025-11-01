@@ -12,6 +12,7 @@ fun computeWeight(
   stats: ItemStats?,
   config: ExamAssemblyConfig,
   now: Instant,
+  bias: Double = 1.0,
 ): Double {
   val attempts = stats?.attempts ?: 0
   val correct = stats?.correct ?: 0
@@ -27,7 +28,7 @@ fun computeWeight(
         1.0
       }
     }
-  val weight = novelty * 2.0.pow(-correct / config.halfLifeCorrect)
+  val weight = novelty * 2.0.pow(-correct / config.halfLifeCorrect) * bias
   return weight.coerceIn(config.minWeight, config.maxWeight)
 }
 

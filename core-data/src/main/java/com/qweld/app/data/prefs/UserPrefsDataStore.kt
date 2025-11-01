@@ -35,7 +35,7 @@ class UserPrefsDataStore internal constructor(
   }
 
   val practiceSize: Flow<Int> = dataStore.data.map { preferences ->
-    preferences[PRACTICE_SIZE_KEY] ?: DEFAULT_PRACTICE_SIZE
+    sanitizePracticeSize(preferences[PRACTICE_SIZE_KEY] ?: DEFAULT_PRACTICE_SIZE)
   }
 
   val fallbackToEN: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -50,6 +50,10 @@ class UserPrefsDataStore internal constructor(
     preferences[SOUNDS_ENABLED_KEY] ?: DEFAULT_SOUNDS_ENABLED
   }
 
+  val wrongBiased: Flow<Boolean> = dataStore.data.map { preferences ->
+    preferences[WRONG_BIASED_KEY] ?: DEFAULT_WRONG_BIASED
+  }
+
   @Deprecated("Use fallbackToEN instead", replaceWith = ReplaceWith("fallbackToEN"))
   val allowFallbackToEN: Flow<Boolean> = fallbackToEN
 
@@ -58,7 +62,8 @@ class UserPrefsDataStore internal constructor(
   }
 
   suspend fun setPracticeSize(value: Int) {
-    dataStore.edit { preferences -> preferences[PRACTICE_SIZE_KEY] = value }
+    val sanitized = sanitizePracticeSize(value)
+    dataStore.edit { preferences -> preferences[PRACTICE_SIZE_KEY] = sanitized }
   }
 
   suspend fun setFallbackToEN(value: Boolean) {
@@ -77,6 +82,10 @@ class UserPrefsDataStore internal constructor(
     dataStore.edit { preferences -> preferences[SOUNDS_ENABLED_KEY] = value }
   }
 
+  suspend fun setWrongBiased(value: Boolean) {
+    dataStore.edit { preferences -> preferences[WRONG_BIASED_KEY] = value }
+  }
+
   suspend fun clear() {
     dataStore.edit { it.clear() }
   }
@@ -84,9 +93,12 @@ class UserPrefsDataStore internal constructor(
   companion object {
     val DEFAULT_ANALYTICS_ENABLED: Boolean = BuildConfig.ENABLE_ANALYTICS
     const val DEFAULT_PRACTICE_SIZE: Int = 20
+    const val DEFAULT_WRONG_BIASED: Boolean = false
     const val DEFAULT_FALLBACK_TO_EN: Boolean = false
     const val DEFAULT_HAPTICS_ENABLED: Boolean = true
     const val DEFAULT_SOUNDS_ENABLED: Boolean = false
+
+    val PRACTICE_SIZE_PRESETS: Set<Int> = setOf(10, 20, 30)
 
     private const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
@@ -94,5 +106,10 @@ class UserPrefsDataStore internal constructor(
     private val FALLBACK_TO_EN_KEY = booleanPreferencesKey("allow_fallback_en")
     private val HAPTICS_ENABLED_KEY = booleanPreferencesKey("haptics_enabled")
     private val SOUNDS_ENABLED_KEY = booleanPreferencesKey("sounds_enabled")
+    private val WRONG_BIASED_KEY = booleanPreferencesKey("wrong_biased")
+
+    private fun sanitizePracticeSize(value: Int): Int {
+      return if (value in PRACTICE_SIZE_PRESETS) value else DEFAULT_PRACTICE_SIZE
+    }
   }
 }
