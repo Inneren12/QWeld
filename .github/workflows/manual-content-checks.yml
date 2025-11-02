@@ -27,6 +27,8 @@ jobs:
         shard: [0, 1, 2, 3]
     steps:
       - uses: actions/checkout@v4
+      - name: Verify no bidi chars in workflows
+        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -64,6 +66,8 @@ jobs:
     if: ${{ always() }}
     steps:
       - uses: actions/checkout@v4
+      - name: Verify no bidi chars in workflows
+        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
       - uses: actions/download-artifact@v4
         with:
           path: ./plag

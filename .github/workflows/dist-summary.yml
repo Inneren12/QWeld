@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Verify no bidi chars in workflows
+        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
