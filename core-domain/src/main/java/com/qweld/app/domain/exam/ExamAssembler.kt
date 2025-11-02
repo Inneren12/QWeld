@@ -5,8 +5,9 @@ import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.domain.exam.util.ChoiceBalanceResult
 import com.qweld.app.domain.exam.util.Hash64
+import com.qweld.app.domain.exam.util.DefaultRandomProvider
 import com.qweld.app.domain.exam.util.MutableQuestionState
-import com.qweld.app.domain.exam.util.Pcg32
+import com.qweld.app.domain.exam.util.RandomProvider
 import com.qweld.app.domain.exam.util.WeightedEntry
 import com.qweld.app.domain.exam.util.WeightedSampler
 import com.qweld.app.domain.exam.util.balanceCorrectPositions
@@ -16,6 +17,9 @@ import com.qweld.app.domain.exam.util.fisherYatesShuffle
 import com.qweld.app.domain.exam.util.formatWeightsStats
 import java.time.Clock
 import java.time.Instant
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ExamAssembler(
   private val questionRepository: QuestionRepository,
@@ -23,6 +27,8 @@ class ExamAssembler(
   private val clock: Clock = Clock.systemUTC(),
   private val config: ExamAssemblyConfig = ExamAssemblyConfig(),
   private val logger: (String) -> Unit = ::println,
+  private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
+  private val randomProvider: RandomProvider = DefaultRandomProvider,
 ) {
   sealed class AssemblyResult {
     data class Ok(val exam: ExamAttempt, val seed: Long) : AssemblyResult()
@@ -43,128 +49,129 @@ class ExamAssembler(
     locale: String,
     seed: AttemptSeed,
     blueprint: ExamBlueprint = ExamBlueprint.default(),
-  ): AssemblyResult {
-    logger(
-      "[blueprint_load] source type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
-        "tasks=${blueprint.taskCount}"
-    )
-    val allowFallback =
-      when (mode) {
-        ExamMode.IP_MOCK -> false
-        ExamMode.PRACTICE,
-        ExamMode.ADAPTIVE -> config.allowFallbackToEN
-      }
-
-    val questionSource = if (allowFallback) "fallback" else "asset"
-    logger(
-      "[exam_start] mode=${mode.name} seed=${seed.value} locale=$locale " +
-        "blueprintTasks=${blueprint.taskCount} source=$questionSource",
-    )
-    val timer = TimerController(clock, logger)
-    timer.start()
-
-    val now = clock.instant()
-    val allSelected = mutableListOf<Question>()
-    val deficits = mutableListOf<DeficitDetail>()
-    for (quota in blueprint.taskQuotas) {
-      val pool = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)
-      val stats = statsRepository.getUserItemStats(userId, pool.map { it.id })
-      val selectionResult =
-        when (mode) {
-          ExamMode.IP_MOCK -> selectUniform(pool, stats, quota, seed, now, locale)
-          ExamMode.PRACTICE,
-          ExamMode.ADAPTIVE -> selectWeighted(pool, stats, quota, seed, now, locale, mode)
-        }
-      val selected = selectionResult.questions
+  ): AssemblyResult =
+    withContext(dispatcher) {
       logger(
-        "[exam_pick] taskId=${quota.taskId} need=${quota.required} pool=${pool.size} " +
-          "selected=${selected.size} fresh=${selectionResult.fresh} reused=${selectionResult.reused}"
+        "[blueprint_load] source type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
+          "tasks=${blueprint.taskCount}"
       )
-      if (selectionResult.deficitDetail != null) {
-        val detail = selectionResult.deficitDetail
-        logger("[deficit] taskId=${detail.taskId} required=${detail.required} have=${detail.have} seed=${seed.value}")
-        deficits += detail
-      } else {
-        allSelected += selected
-      }
-    }
+      val allowFallback =
+        when (mode) {
+          ExamMode.IP_MOCK -> false
+          ExamMode.PRACTICE,
+          ExamMode.ADAPTIVE -> config.allowFallbackToEN
+        }
 
-    if (deficits.isNotEmpty()) {
-      val first = deficits.first()
-      return AssemblyResult.Deficit(
-        taskId = first.taskId,
-        required = first.required,
-        have = first.have,
+      val questionSource = if (allowFallback) "fallback" else "asset"
+      logger(
+        "[exam_start] mode=${mode.name} seed=${seed.value} locale=$locale " +
+          "blueprintTasks=${blueprint.taskCount} source=$questionSource",
+      )
+      val timer = TimerController(clock, logger)
+      timer.start()
+
+      val now = clock.instant()
+      val allSelected = mutableListOf<Question>()
+      val deficits = mutableListOf<DeficitDetail>()
+      for (quota in blueprint.taskQuotas) {
+        val pool = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)
+        val stats = statsRepository.getUserItemStats(userId, pool.map { it.id })
+        val selectionResult =
+          when (mode) {
+            ExamMode.IP_MOCK -> selectUniform(pool, stats, quota, seed, now, locale)
+            ExamMode.PRACTICE,
+            ExamMode.ADAPTIVE -> selectWeighted(pool, stats, quota, seed, now, locale, mode)
+          }
+        val selected = selectionResult.questions
+        logger(
+          "[exam_pick] taskId=${quota.taskId} need=${quota.required} pool=${pool.size} " +
+            "selected=${selected.size} fresh=${selectionResult.fresh} reused=${selectionResult.reused}"
+        )
+        if (selectionResult.deficitDetail != null) {
+          val detail = selectionResult.deficitDetail
+          logger("[deficit] taskId=${detail.taskId} required=${detail.required} have=${detail.have} seed=${seed.value}")
+          deficits += detail
+        } else {
+          allSelected += selected
+        }
+      }
+
+      if (deficits.isNotEmpty()) {
+        val first = deficits.first()
+        return@withContext AssemblyResult.Deficit(
+          taskId = first.taskId,
+          required = first.required,
+          have = first.have,
+          seed = seed.value,
+        )
+      }
+
+      val orderSeed = Hash64.hash(seed.value, "ORDER")
+      val orderRng = randomProvider.pcg32(orderSeed)
+      val ordered = allSelected.toMutableList()
+      fisherYatesShuffle(ordered, orderRng)
+      val antiClusterRng = randomProvider.pcg32(Hash64.hash(seed.value, "ANTI_CLUSTER"))
+      val swaps =
+        enforceAntiCluster(
+          questions = ordered,
+          maxTaskRun = 3,
+          maxBlockRun = 5,
+          rng = antiClusterRng,
+          maxSwaps = config.antiClusterSwaps,
+        )
+      logger("[order_shuffle] antiCluster_swaps=$swaps")
+
+      val mutableStates =
+        ordered
+          .map { question ->
+            val choiceSeed = Hash64.hash(seed.value, question.id)
+            val choiceRng = randomProvider.pcg32(choiceSeed)
+            val choices = question.choices.toMutableList()
+            fisherYatesShuffle(choices, choiceRng)
+            val correctIndex = choices.indexOfFirst { it.id == question.correctChoiceId }
+            require(correctIndex >= 0) { "Correct choice not found for question ${question.id}" }
+            MutableQuestionState(question, choices, correctIndex)
+          }
+          .toMutableList()
+
+      val balanceResult: ChoiceBalanceResult =
+        if (mutableStates.isNotEmpty()) {
+          val balanceRng = randomProvider.pcg32(Hash64.hash(seed.value, "CHOICE_BALANCE"))
+          balanceCorrectPositions(mutableStates, balanceRng)
+        } else {
+          ChoiceBalanceResult(adjusted = false, histogram = emptyMap())
+        }
+      val histogramJson =
+        if (balanceResult.histogram.isEmpty()) {
+          "{}"
+        } else {
+          balanceResult.histogram.entries.joinToString(prefix = "{", postfix = "}") { (k, v) ->
+            "\"$k\":$v"
+          }
+        }
+      logger("[choice_shuffle] posDist=$histogramJson adjusted=${balanceResult.adjusted}")
+
+      val assembledQuestions =
+        mutableStates.map { state ->
+          AssembledQuestion(state.question, state.choices.toList(), state.correctIndex)
+        }
+
+      val timeLeftDuration = timer.remaining()
+      val formattedTimeLeft = TimerController.formatDuration(timeLeftDuration)
+      logger("[exam_finish] correct=0/${blueprint.totalQuestions} score=0 timeLeft=$formattedTimeLeft")
+
+      AssemblyResult.Ok(
+        exam =
+          ExamAttempt(
+            mode = mode,
+            locale = locale,
+            seed = seed,
+            questions = assembledQuestions,
+            blueprint = blueprint,
+          ),
         seed = seed.value,
       )
     }
-
-    val orderSeed = Hash64.hash(seed.value, "ORDER")
-    val orderRng = Pcg32(orderSeed)
-    val ordered = allSelected.toMutableList()
-    fisherYatesShuffle(ordered, orderRng)
-    val antiClusterRng = Pcg32(Hash64.hash(seed.value, "ANTI_CLUSTER"))
-    val swaps =
-      enforceAntiCluster(
-        questions = ordered,
-        maxTaskRun = 3,
-        maxBlockRun = 5,
-        rng = antiClusterRng,
-        maxSwaps = config.antiClusterSwaps,
-      )
-    logger("[order_shuffle] antiCluster_swaps=$swaps")
-
-    val mutableStates =
-      ordered
-        .map { question ->
-          val choiceSeed = Hash64.hash(seed.value, question.id)
-          val choiceRng = Pcg32(choiceSeed)
-          val choices = question.choices.toMutableList()
-          fisherYatesShuffle(choices, choiceRng)
-          val correctIndex = choices.indexOfFirst { it.id == question.correctChoiceId }
-          require(correctIndex >= 0) { "Correct choice not found for question ${question.id}" }
-          MutableQuestionState(question, choices, correctIndex)
-        }
-        .toMutableList()
-
-    val balanceResult: ChoiceBalanceResult =
-      if (mutableStates.isNotEmpty()) {
-        val balanceRng = Pcg32(Hash64.hash(seed.value, "CHOICE_BALANCE"))
-        balanceCorrectPositions(mutableStates, balanceRng)
-      } else {
-        ChoiceBalanceResult(adjusted = false, histogram = emptyMap())
-      }
-    val histogramJson =
-      if (balanceResult.histogram.isEmpty()) {
-        "{}"
-      } else {
-        balanceResult.histogram.entries.joinToString(prefix = "{", postfix = "}") { (k, v) ->
-          "\"$k\":$v"
-        }
-      }
-    logger("[choice_shuffle] posDist=$histogramJson adjusted=${balanceResult.adjusted}")
-
-    val assembledQuestions =
-      mutableStates.map { state ->
-        AssembledQuestion(state.question, state.choices.toList(), state.correctIndex)
-      }
-
-    val timeLeftDuration = timer.remaining()
-    val formattedTimeLeft = TimerController.formatDuration(timeLeftDuration)
-    logger("[exam_finish] correct=0/${blueprint.totalQuestions} score=0 timeLeft=$formattedTimeLeft")
-
-    return AssemblyResult.Ok(
-      exam =
-        ExamAttempt(
-          mode = mode,
-          locale = locale,
-          seed = seed,
-          questions = assembledQuestions,
-          blueprint = blueprint,
-        ),
-      seed = seed.value,
-    )
-  }
 
   private fun selectUniform(
     pool: List<Question>,
@@ -190,7 +197,7 @@ class ExamAssembler(
           ),
       )
     }
-    val sampler = WeightedSampler(Pcg32(Hash64.hash(seed.value, "${quota.taskId}:UNIFORM")))
+    val sampler = WeightedSampler(randomProvider.pcg32(Hash64.hash(seed.value, "${quota.taskId}:UNIFORM")))
     val ordered = sampler.order(pool) { 1.0 }.map { it.item }
     return selectByFamily(ordered, stats, quota, now, locale)
   }
@@ -223,7 +230,7 @@ class ExamAssembler(
     logger(
       "[weights] taskId=${quota.taskId} H=${config.halfLifeCorrect} w_min=${config.minWeight} w_max=${config.maxWeight}"
     )
-    val sampler = WeightedSampler(Pcg32(Hash64.hash(seed.value, "${quota.taskId}:WEIGHT")))
+    val sampler = WeightedSampler(randomProvider.pcg32(Hash64.hash(seed.value, "${quota.taskId}:WEIGHT")))
     var biasApplied = 0
     val entries: List<WeightedEntry<Question>> =
       sampler.order(pool) { question ->
