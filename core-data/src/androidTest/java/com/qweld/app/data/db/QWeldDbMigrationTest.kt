@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.testing.MigrationTestHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
+import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -11,6 +12,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -73,7 +75,7 @@ class QWeldDbMigrationTest {
       close()
     }
 
-    helper.runMigrationsAndValidate(TEST_DB_NAME, QWELD_DB_VERSION, true).close()
+    helper.runMigrationsAndValidate(TEST_DB_NAME, QWELD_DB_VERSION, true, *QWELD_MIGRATIONS).close()
 
     val context = ApplicationProvider.getApplicationContext<Context>()
     val roomDb = Room.databaseBuilder(context, QWeldDb::class.java, TEST_DB_NAME)
@@ -99,6 +101,18 @@ class QWeldDbMigrationTest {
       assertEquals(1, aggregate!!.attempts)
       assertEquals(1, aggregate.correct)
       assertEquals(true, aggregate.lastIsCorrect)
+
+      roomDb.query(SimpleSQLiteQuery("PRAGMA index_list('attempts')")).use { cursor ->
+        val nameIndex = cursor.getColumnIndexOrThrow("name")
+        var hasStartedAtIndex = false
+        while (cursor.moveToNext()) {
+          if (cursor.getString(nameIndex) == "idx_attempts_started_at") {
+            hasStartedAtIndex = true
+            break
+          }
+        }
+        assertTrue(hasStartedAtIndex)
+      }
     }
 
     roomDb.close()
