@@ -45,7 +45,7 @@ class PracticeShortcuts(
   init {
     viewModelScope.launch {
       userPrefs.practiceSize.collect { size ->
-        val resolved = PracticeConfig(size).size
+        val resolved = PracticeConfig.sanitizeSize(size)
         latestPracticeSize = resolved
         loadRepeatMistakes(resolved)
       }

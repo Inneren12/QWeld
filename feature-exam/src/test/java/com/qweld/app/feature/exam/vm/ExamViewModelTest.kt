@@ -127,7 +127,7 @@ class ExamViewModelTest {
         },
       )
 
-    val config = PracticeConfig(requestedSize = 10)
+    val config = PracticeConfig(size = 10)
     val launched = viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = config)
 
     assertTrue(launched)

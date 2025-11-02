@@ -22,6 +22,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,6 +47,7 @@ import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.RepeatMistakesAvailability
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.util.Locale
 import timber.log.Timber
 
@@ -57,7 +59,6 @@ fun ModeScreen(
   practiceConfig: PracticeConfig = PracticeConfig(),
   modifier: Modifier = Modifier,
   navController: NavHostController,
-  onPracticeClick: (String, PracticeConfig) -> Unit = { _, _ -> },
   onRepeatMistakes: (String, ExamBlueprint, PracticeConfig) -> Unit = { _, _, _ -> },
   onResumeAttempt: () -> Unit = {},
 ) {
@@ -69,6 +70,18 @@ fun ModeScreen(
   val prewarmState = uiState.prewarmState
   val prewarmDisabled = viewModel.prewarmDisabled
   var deficitDetail by remember { mutableStateOf<String?>(null) }
+  val coroutineScope = rememberCoroutineScope()
+  var showPracticeScope by remember { mutableStateOf(false) }
+  var practiceScope by remember { mutableStateOf(practiceConfig.scope) }
+  val practiceBlueprint = remember(viewModel) { viewModel.practiceBlueprint() }
+  val tasksByBlock = remember(practiceBlueprint) {
+    val grouped = practiceBlueprint.taskQuotas.groupBy { it.blockId }
+    val blocks = listOf("A", "B", "C", "D")
+    blocks.associateWith { block -> grouped[block].orEmpty().map { it.taskId } }
+  }
+  val noTasksMessage = stringResource(id = R.string.practice_scope_error_no_tasks)
+
+  LaunchedEffect(practiceConfig.scope) { practiceScope = practiceConfig.scope }
 
   LaunchedEffect(Unit) { Timber.i("[ui_nav] screen=Mode") }
 
@@ -198,7 +211,7 @@ fun ModeScreen(
             contentDescription = practiceCd
             role = Role.Button
           },
-        onClick = { onPracticeClick(resolvedLanguage, practiceConfig) },
+        onClick = { showPracticeScope = true },
       ) {
         Text(text = stringResource(id = R.string.mode_practice))
       }
@@ -236,6 +249,32 @@ fun ModeScreen(
         }
       }
     }
+  }
+
+  if (showPracticeScope) {
+    PracticeScopeSheet(
+      size = practiceConfig.size,
+      tasksByBlock = tasksByBlock,
+      scope = practiceScope,
+      onDismiss = { showPracticeScope = false },
+      onConfirm = { scope ->
+        val selected = ExamViewModel.resolvePracticeTasks(practiceBlueprint, scope)
+        if (selected.isEmpty()) {
+          coroutineScope.launch { snackbarHostState.showSnackbar(noTasksMessage) }
+          false
+        } else {
+          val launched =
+            viewModel.startPractice(
+              locale = resolvedLanguage,
+              config = practiceConfig.copy(scope = scope),
+            )
+          if (launched) {
+            practiceScope = scope
+          }
+          launched
+        }
+      },
+    )
   }
 
   if (resumeDialog != null) {

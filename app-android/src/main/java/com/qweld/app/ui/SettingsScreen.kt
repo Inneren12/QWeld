@@ -83,7 +83,11 @@ fun SettingsScreen(
   var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
   val clipboardManager = LocalClipboardManager.current
 
-  val resolvedPracticeConfig = PracticeConfig(practiceSize, wrongBiased)
+  val resolvedPracticeConfig =
+    PracticeConfig(
+      size = PracticeConfig.sanitizeSize(practiceSize),
+      wrongBiased = wrongBiased,
+    )
   val practiceSummary = stringResource(id = R.string.settings_practice_size_summary, resolvedPracticeConfig.size)
   val practicePresets = PracticeConfig.PRESETS
   val clearedMessage = stringResource(id = R.string.settings_cleared_message)

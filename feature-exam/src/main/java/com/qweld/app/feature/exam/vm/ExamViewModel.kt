@@ -1,5 +1,6 @@
 package com.qweld.app.feature.exam.vm
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,7 @@ import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.Question
+import com.qweld.app.domain.exam.QuotaDistributor
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import com.qweld.app.domain.exam.repo.QuestionRepository
@@ -28,6 +30,8 @@ import com.qweld.app.feature.exam.model.ExamAttemptUiState
 import com.qweld.app.feature.exam.model.ExamChoiceUiModel
 import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
+import com.qweld.app.feature.exam.vm.Distribution
+import com.qweld.app.feature.exam.vm.PracticeScope
 import com.qweld.app.feature.exam.vm.ResumeUseCase
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
@@ -111,6 +115,12 @@ class ExamViewModel(
     practiceConfig: PracticeConfig = PracticeConfig(),
     blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
+    val normalizedPracticeConfig =
+      if (mode == ExamMode.PRACTICE) {
+        practiceConfig.copy(size = PracticeConfig.sanitizeSize(practiceConfig.size))
+      } else {
+        practiceConfig
+      }
     if (mode == ExamMode.IP_MOCK) {
       Timber.i("[exam_start_req] mode=IPMock locale=%s", locale)
     }
@@ -120,13 +130,17 @@ class ExamViewModel(
     _uiState.value = _uiState.value.copy(resumeDialog = null)
     val resolvedPracticeSize =
       if (mode == ExamMode.PRACTICE && blueprintOverride == null) {
-        practiceConfig.size
+        normalizedPracticeConfig.size
       } else {
         DEFAULT_PRACTICE_SIZE
       }
     val blueprint = blueprintOverride ?: blueprintProvider(mode, resolvedPracticeSize)
     if (mode == ExamMode.PRACTICE) {
-      Timber.i("[practice_config] size=%d wrongBiased=%s", blueprint.totalQuestions, practiceConfig.wrongBiased)
+      Timber.i(
+        "[practice_config] size=%d wrongBiased=%s",
+        blueprint.totalQuestions,
+        normalizedPracticeConfig.wrongBiased,
+      )
     }
     val requestedTasks =
       blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
@@ -156,7 +170,8 @@ class ExamViewModel(
       statsRepository = statsRepository,
       config =
         ExamAssemblyConfig(
-          practiceWrongBiased = mode == ExamMode.PRACTICE && practiceConfig.wrongBiased,
+          practiceWrongBiased =
+            mode == ExamMode.PRACTICE && normalizedPracticeConfig.wrongBiased,
         ),
       logger = { message -> Timber.i(message) },
     )
@@ -873,6 +888,79 @@ class ExamViewModel(
     }
   }
 
+  fun practiceBlueprint(): ExamBlueprint {
+    return blueprintProvider(ExamMode.IP_MOCK, DEFAULT_PRACTICE_SIZE)
+  }
+
+  fun startPractice(
+    locale: String,
+    config: PracticeConfig,
+  ): Boolean {
+    val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
+    val baseBlueprint = practiceBlueprint()
+    val selectedTasks = resolvePracticeTasks(baseBlueprint, resolvedConfig.scope)
+    val blocksLog =
+      resolvedConfig.scope.blocks.sorted().joinToString(prefix = "[", postfix = "]")
+    val tasksLog = selectedTasks.joinToString(prefix = "[", postfix = "]")
+    if (selectedTasks.isEmpty()) {
+      Timber.w(
+        "[practice_scope] blocks=%s tasks=%s size=%d dist=%s wrongBiased=%s | reason=empty",
+        blocksLog,
+        tasksLog,
+        resolvedConfig.size,
+        resolvedConfig.scope.distribution.name,
+        resolvedConfig.wrongBiased,
+      )
+      return false
+    }
+
+    val quotas = resolvePracticeQuotas(baseBlueprint, resolvedConfig.scope, resolvedConfig.size)
+    if (quotas.isEmpty()) {
+      Timber.w("[practice_quota] total=%d reason=empty", resolvedConfig.size)
+      return false
+    }
+
+    Timber.i(
+      "[practice_scope] blocks=%s tasks=%s size=%d dist=%s wrongBiased=%s",
+      blocksLog,
+      tasksLog,
+      resolvedConfig.size,
+      resolvedConfig.scope.distribution.name,
+      resolvedConfig.wrongBiased,
+    )
+
+    val quotaLog = quotas.entries.joinToString(separator = " ") { "${it.key}=${it.value}" }
+    val total = quotas.values.sum()
+    Timber.i("[practice_quota] %s total=%d", quotaLog, total)
+
+    if (total <= 0) {
+      return false
+    }
+
+    val blockByTask = baseBlueprint.taskQuotas.associate { it.taskId to it.blockId }
+    val taskQuotas =
+      quotas.mapNotNull { (taskId, required) ->
+        val blockId = blockByTask[taskId]
+        blockId?.let { TaskQuota(taskId = taskId, blockId = it, required = required) }
+      }
+    if (taskQuotas.isEmpty()) {
+      return false
+    }
+
+    val blueprint = ExamBlueprint(totalQuestions = total, taskQuotas = taskQuotas)
+    val launched =
+      startAttempt(
+        mode = ExamMode.PRACTICE,
+        locale = locale,
+        practiceConfig = resolvedConfig,
+        blueprintOverride = blueprint,
+      )
+    if (launched) {
+      _effects.tryEmit(ExamEffect.NavigateToExam)
+    }
+    return launched
+  }
+
   private data class ExamAssemblerResult(
     val attempt: com.qweld.app.domain.exam.ExamAttempt,
     val answers: Map<String, String>,
@@ -946,6 +1034,65 @@ class ExamViewModel(
     private const val DEFAULT_USER_ID = "local_user"
     private const val IP_MOCK_PASS_THRESHOLD = 70
     private const val AUTOSAVE_INTERVAL_SEC = 10
+
+    @VisibleForTesting
+    internal fun resolvePracticeTasks(
+      blueprint: ExamBlueprint,
+      scope: PracticeScope,
+    ): LinkedHashSet<String> {
+      val ordered = LinkedHashSet<String>()
+      val normalizedTasks = scope.taskIds.map { it.uppercase(Locale.US) }.toSet()
+      if (normalizedTasks.isNotEmpty()) {
+        for (quota in blueprint.taskQuotas) {
+          val taskId = quota.taskId
+          if (normalizedTasks.contains(taskId.uppercase(Locale.US))) {
+            ordered += taskId
+          }
+        }
+        return ordered
+      }
+
+      val normalizedBlocks = scope.blocks.map { it.uppercase(Locale.US) }.toSet()
+      if (normalizedBlocks.isEmpty()) {
+        return ordered
+      }
+      for (quota in blueprint.taskQuotas) {
+        if (normalizedBlocks.contains(quota.blockId.uppercase(Locale.US))) {
+          ordered += quota.taskId
+        }
+      }
+      return ordered
+    }
+
+    @VisibleForTesting
+    internal fun resolvePracticeQuotas(
+      blueprint: ExamBlueprint,
+      scope: PracticeScope,
+      total: Int,
+    ): Map<String, Int> {
+      val sanitizedTotal = total.coerceAtLeast(0)
+      if (sanitizedTotal == 0) return emptyMap()
+      val selected = resolvePracticeTasks(blueprint, scope)
+      if (selected.isEmpty()) return emptyMap()
+      val blueprintQuotas = blueprint.taskQuotas.associate { it.taskId to it.required }
+      val chosen = LinkedHashSet<String>()
+      chosen.addAll(selected)
+      val raw =
+        when (scope.distribution) {
+          Distribution.Proportional ->
+            QuotaDistributor.proportional(blueprintQuotas, chosen, sanitizedTotal)
+          Distribution.Even -> QuotaDistributor.even(chosen, sanitizedTotal)
+        }
+      if (raw.isEmpty()) return emptyMap()
+      val ordered = LinkedHashMap<String, Int>()
+      for (taskId in selected) {
+        val value = raw[taskId] ?: 0
+        if (value > 0) {
+          ordered[taskId] = value
+        }
+      }
+      return ordered
+    }
 
     private fun defaultBlueprintForMode(mode: ExamMode, practiceSize: Int): ExamBlueprint {
       return when (mode) {

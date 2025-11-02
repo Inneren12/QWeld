@@ -93,7 +93,10 @@ fun ExamNavGraph(
           initial = UserPrefsDataStore.DEFAULT_WRONG_BIASED,
         )
       val practiceConfig = remember(practiceSize, wrongBiased) {
-        PracticeConfig(practiceSize, wrongBiased)
+        PracticeConfig(
+          size = PracticeConfig.sanitizeSize(practiceSize),
+          wrongBiased = wrongBiased,
+        )
       }
       ModeScreen(
         repository = repository,
@@ -101,16 +104,6 @@ fun ExamNavGraph(
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
         navController = navController,
-        onPracticeClick = { locale, config ->
-          val launched = examViewModel.startAttempt(
-            mode = ExamMode.PRACTICE,
-            locale = locale,
-            practiceConfig = config,
-          )
-          if (launched) {
-            navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
-          }
-        },
         onRepeatMistakes = { locale, blueprint, config ->
           val launched = examViewModel.startAttempt(
             mode = ExamMode.PRACTICE,
