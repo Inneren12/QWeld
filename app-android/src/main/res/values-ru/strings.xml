@@ -45,6 +45,15 @@
     <string name="settings_content_generated_at">Сгенерировано %1$s</string>
     <string name="settings_content_copy_json">Скопировать index JSON</string>
     <string name="settings_content_copy_success">Индекс скопирован в буфер обмена</string>
+    <string name="settings_section_integrity">Целостность</string>
+    <string name="settings_integrity_checking">Проверка ассетов…</string>
+    <string name="settings_integrity_ok">Целостность подтверждена</string>
+    <string name="settings_integrity_warning">Найдены проблемы с целостностью: %1$d</string>
+    <string name="settings_integrity_issue_index">Отсутствует индексный ассет: %1$s</string>
+    <string name="settings_integrity_issue_missing">Отсутствует ассет: %1$s (ожидаемый хеш %2$s)</string>
+    <string name="settings_integrity_issue_hash">Несовпадение хеша: %1$s (ожидалось %2$s, фактически %3$s)</string>
+    <string name="settings_integrity_missing">отсутствует</string>
+    <string name="settings_integrity_unknown">неизвестно</string>
     <string name="start_exam">Старт экзамена</string>
     <string name="practice_scope_title">Охват практики</string>
     <string name="practice_scope_presets">Пресеты</string>
