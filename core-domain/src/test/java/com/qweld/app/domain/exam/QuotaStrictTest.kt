@@ -1,8 +1,6 @@
 package com.qweld.app.domain.exam
 
-import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
@@ -33,24 +31,22 @@ class QuotaStrictTest {
         logger = logs::add,
       )
 
-    val error =
-      assertFailsWith<ExamAssemblyException.Deficit> {
-        runBlocking {
-          assembler.assemble(
-            userId = "user",
-            mode = ExamMode.IP_MOCK,
-            locale = "RU",
-            seed = AttemptSeed(1L),
-            blueprint = blueprint,
-          )
-        }
+    val result =
+      runBlocking {
+        assembler.assemble(
+          userId = "user",
+          mode = ExamMode.IP_MOCK,
+          locale = "RU",
+          seed = AttemptSeed(1L),
+          blueprint = blueprint,
+        )
       }
 
-    val detail = error.details.single { it.taskId == "B-1" }
-    assertEquals(2, detail.need)
-    assertEquals(1, detail.have)
-    assertEquals(1, detail.missing)
-    assertEquals("RU", detail.locale)
-    assertTrue(logs.any { it.startsWith("[deficit] taskId=B-1") })
+    require(result is ExamAssembler.AssemblyResult.Deficit)
+    assertEquals("B-1", result.taskId)
+    assertEquals(2, result.required)
+    assertEquals(1, result.have)
+    assertEquals(1, result.missing)
+    assertTrue(logs.any { it == "[deficit] taskId=B-1 required=2 have=1 seed=1" })
   }
 }

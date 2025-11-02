@@ -21,7 +21,6 @@ import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.QuotaDistributor
 import com.qweld.app.domain.exam.TaskQuota
-import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -219,93 +218,110 @@ class ExamViewModel(
           practiceWrongBiased =
             mode == ExamMode.PRACTICE && normalizedPracticeConfig.wrongBiased,
         ),
-      logger = { message -> Timber.i(message) },
+      logger = { message -> if (!message.startsWith("[deficit]")) Timber.i(message) },
     )
     val attemptSeed = AttemptSeed(seedProvider())
     return try {
-      val attempt =
-        runBlocking(ioDispatcher) {
-          assembler.assemble(
-            userId = userIdProvider(),
-            mode = mode,
-            locale = normalizedLocale,
-            seed = attemptSeed,
-            blueprint = blueprint,
-          )
-        }
-      val attemptId = attemptIdProvider()
-      val startedAt = nowProvider()
-      Timber.i("[attempt_create] id=%s mode=%s locale=%s", attemptId, attempt.mode.name, attempt.locale)
-      viewModelScope.launch(ioDispatcher) {
-        val entity =
-          AttemptEntity(
-            id = attemptId,
-            mode = attempt.mode.name,
-            locale = attempt.locale.uppercase(Locale.US),
-            seed = attempt.seed.value,
-            questionCount = attempt.questions.size,
-            startedAt = startedAt,
-          )
-        attemptsRepository.save(entity)
-      }
-      currentAttempt =
-        ExamAssemblerResult(
-          attempt = attempt,
-          answers = emptyMap(),
-          currentIndex = 0,
-          attemptId = attemptId,
-          startedAt = startedAt,
-        )
-      recordLastSession(
-        mode = mode,
-        locale = attempt.locale,
-        practiceConfig = if (mode == ExamMode.PRACTICE) normalizedPracticeConfig else null,
-      )
-      hasFinished = false
-      prepareAutosave(attemptId)
-      latestResult = null
-      questionSeenAt.clear()
-      if (mode == ExamMode.IP_MOCK) {
-        startTimer()
-      } else {
-        stopTimer(clearLabel = true)
-      }
-      refreshState()
-      if (mode == ExamMode.IP_MOCK) {
-        Timber.i("[exam_start] ready=125")
-        _effects.tryEmit(ExamEffect.NavigateToExam)
-      }
-      true
-    } catch (deficit: ExamAssemblyException.Deficit) {
-      questionRationales = emptyMap()
-      val details = deficit.details.map { detail ->
-        val message =
-          "taskId=${detail.taskId} need=${detail.need} have=${detail.have} missing=${detail.missing}"
-        Timber.w("[deficit] %s", message)
-        DeficitDetailUiModel(
-          taskId = detail.taskId,
-          need = detail.need,
-          have = detail.have,
-          missing = detail.missing,
-        )
-      }
-      if (mode == ExamMode.IP_MOCK) {
-        val detailSummary =
-          details.joinToString(separator = "\n") { detail ->
-            "taskId=${detail.taskId} need=${detail.need} have=${detail.have} missing=${detail.missing}"
+      when (
+        val assembly =
+          runBlocking(ioDispatcher) {
+            assembler.assemble(
+              userId = userIdProvider(),
+              mode = mode,
+              locale = normalizedLocale,
+              seed = attemptSeed,
+              blueprint = blueprint,
+            )
           }
-        _effects.tryEmit(ExamEffect.ShowDeficit(detailSummary))
+      ) {
+        is ExamAssembler.AssemblyResult.Ok -> {
+          val attempt = assembly.exam
+          val attemptId = attemptIdProvider()
+          val startedAt = nowProvider()
+          Timber.i(
+            "[attempt_create] id=%s mode=%s locale=%s",
+            attemptId,
+            attempt.mode.name,
+            attempt.locale,
+          )
+          viewModelScope.launch(ioDispatcher) {
+            val entity =
+              AttemptEntity(
+                id = attemptId,
+                mode = attempt.mode.name,
+                locale = attempt.locale.uppercase(Locale.US),
+                seed = attempt.seed.value,
+                questionCount = attempt.questions.size,
+                startedAt = startedAt,
+              )
+            attemptsRepository.save(entity)
+          }
+          currentAttempt =
+            ExamAssemblerResult(
+              attempt = attempt,
+              answers = emptyMap(),
+              currentIndex = 0,
+              attemptId = attemptId,
+              startedAt = startedAt,
+            )
+          recordLastSession(
+            mode = mode,
+            locale = attempt.locale,
+            practiceConfig = if (mode == ExamMode.PRACTICE) normalizedPracticeConfig else null,
+          )
+          hasFinished = false
+          prepareAutosave(attemptId)
+          latestResult = null
+          questionSeenAt.clear()
+          if (mode == ExamMode.IP_MOCK) {
+            startTimer()
+          } else {
+            stopTimer(clearLabel = true)
+          }
+          refreshState()
+          if (mode == ExamMode.IP_MOCK) {
+            Timber.i("[exam_start] ready=125")
+            _effects.tryEmit(ExamEffect.NavigateToExam)
+          }
+          true
+        }
+        is ExamAssembler.AssemblyResult.Deficit -> {
+          questionRationales = emptyMap()
+          Timber.w(
+            "[deficit] taskId=%s required=%d have=%d seed=%d",
+            assembly.taskId,
+            assembly.required,
+            assembly.have,
+            assembly.seed,
+          )
+          val details =
+            listOf(
+              DeficitDetailUiModel(
+                taskId = assembly.taskId,
+                need = assembly.required,
+                have = assembly.have,
+                missing = assembly.missing,
+              )
+            )
+          if (mode == ExamMode.IP_MOCK) {
+            val detailSummary =
+              details.joinToString(separator = "\n") { detail ->
+                "taskId=${detail.taskId} need=${detail.need} have=${detail.have} missing=${detail.missing}"
+              }
+            _effects.tryEmit(ExamEffect.ShowDeficit(detailSummary))
+          }
+          currentAttempt = null
+          val previous = _uiState.value
+          _uiState.value =
+            previous.copy(
+              isLoading = false,
+              attempt = null,
+              deficitDialog = DeficitDialogUiModel(details),
+              errorMessage = null,
+            )
+          false
+        }
       }
-      currentAttempt = null
-      val previous = _uiState.value
-      _uiState.value =
-        previous.copy(
-          isLoading = false,
-          attempt = null,
-          deficitDialog = DeficitDialogUiModel(details),
-          errorMessage = null,
-        )
-      false
     } catch (error: Throwable) {
       if (error is CancellationException) throw error
       if (mode == ExamMode.IP_MOCK) {
@@ -411,7 +427,7 @@ class ExamViewModel(
           return@launch
         }
         val answers = withContext(ioDispatcher) { answersRepository.listByAttempt(attemptId) }
-        val reconstruction =
+        val reconstructionResult =
           withContext(ioDispatcher) {
             resumeUseCase.reconstructAttempt(
               mode = mode,
@@ -420,6 +436,23 @@ class ExamViewModel(
               questionCount = pending.questionCount,
             )
           }
+        if (reconstructionResult is ResumeUseCase.ReconstructionResult.Deficit) {
+          Timber.w(
+            "[deficit] taskId=%s required=%d have=%d seed=%d",
+            reconstructionResult.taskId,
+            reconstructionResult.required,
+            reconstructionResult.have,
+            reconstructionResult.seed,
+          )
+          pendingResume = null
+          _uiState.value =
+            _uiState.value.copy(
+              resumeDialog = null,
+              errorMessage = "Unable to resume attempt.",
+            )
+          return@launch
+        }
+        val reconstruction = reconstructionResult as ResumeUseCase.ReconstructionResult.Success
         val merged: MergeState = resumeUseCase.mergeAnswers(reconstruction.attempt.questions, answers)
         questionRationales = reconstruction.rationales
         questionSeenAt.clear()
@@ -921,13 +954,41 @@ class ExamViewModel(
     mode: ExamMode,
   ) {
     val answers = answersRepository.listByAttempt(attempt.id)
-    val reconstruction =
+    val reconstructionResult =
       resumeUseCase.reconstructAttempt(
         mode = mode,
         seed = attempt.seed,
         locale = attempt.locale.lowercase(Locale.US),
         questionCount = attempt.questionCount,
       )
+    if (reconstructionResult is ResumeUseCase.ReconstructionResult.Deficit) {
+      Timber.w(
+        "[deficit] taskId=%s required=%d have=%d seed=%d",
+        reconstructionResult.taskId,
+        reconstructionResult.required,
+        reconstructionResult.have,
+        reconstructionResult.seed,
+      )
+      val finishedAt = nowProvider()
+      val durationSec = TimerController.EXAM_DURATION.seconds.toInt()
+      val passThreshold = if (mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
+      attemptsRepository.markFinished(
+        attemptId = attempt.id,
+        finishedAt = finishedAt,
+        durationSec = durationSec,
+        passThreshold = passThreshold,
+        scorePct = 0.0,
+      )
+      Timber.i(
+        "[resume_timeout] attemptId=%s correct=%d/%d score=%.2f",
+        attempt.id,
+        0,
+        attempt.questionCount,
+        0.0,
+      )
+      return
+    }
+    val reconstruction = reconstructionResult as ResumeUseCase.ReconstructionResult.Success
     val merged = resumeUseCase.mergeAnswers(reconstruction.attempt.questions, answers)
     val correct =
       reconstruction.attempt.questions.count { assembled ->

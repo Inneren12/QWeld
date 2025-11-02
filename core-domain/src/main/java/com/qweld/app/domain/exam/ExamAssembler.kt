@@ -1,7 +1,6 @@
 package com.qweld.app.domain.exam
 
 import com.qweld.app.domain.exam.ItemStats
-import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.domain.exam.util.ChoiceBalanceResult
@@ -25,13 +24,26 @@ class ExamAssembler(
   private val config: ExamAssemblyConfig = ExamAssemblyConfig(),
   private val logger: (String) -> Unit = ::println,
 ) {
+  sealed class AssemblyResult {
+    data class Ok(val exam: ExamAttempt, val seed: Long) : AssemblyResult()
+
+    data class Deficit(
+      val taskId: String,
+      val required: Int,
+      val have: Int,
+      val seed: Long,
+    ) : AssemblyResult() {
+      val missing: Int get() = required - have
+    }
+  }
+
   suspend fun assemble(
     userId: String,
     mode: ExamMode,
     locale: String,
     seed: AttemptSeed,
     blueprint: ExamBlueprint = ExamBlueprint.default(),
-  ): ExamAttempt {
+  ): AssemblyResult {
     logger(
       "[blueprint_source] type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
         "tasks=${blueprint.taskCount}"
@@ -53,7 +65,7 @@ class ExamAssembler(
 
     val now = clock.instant()
     val allSelected = mutableListOf<Question>()
-    val deficits = mutableListOf<ExamAssemblyException.DeficitDetail>()
+    val deficits = mutableListOf<DeficitDetail>()
     for (quota in blueprint.taskQuotas) {
       val pool = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)
       val stats = statsRepository.getUserItemStats(userId, pool.map { it.id })
@@ -70,10 +82,7 @@ class ExamAssembler(
       )
       if (selectionResult.deficitDetail != null) {
         val detail = selectionResult.deficitDetail
-        logger(
-          "[deficit] taskId=${detail.taskId} need=${detail.need} have=${detail.have} " +
-            "locale=${detail.locale} famDup=${detail.familyDuplicates} action=block"
-        )
+        logger("[deficit] taskId=${detail.taskId} required=${detail.required} have=${detail.have} seed=${seed.value}")
         deficits += detail
       } else {
         allSelected += selected
@@ -81,7 +90,13 @@ class ExamAssembler(
     }
 
     if (deficits.isNotEmpty()) {
-      throw ExamAssemblyException.Deficit(deficits)
+      val first = deficits.first()
+      return AssemblyResult.Deficit(
+        taskId = first.taskId,
+        required = first.required,
+        have = first.have,
+        seed = seed.value,
+      )
     }
 
     val orderSeed = Hash64.hash(seed.value, "ORDER")
@@ -138,12 +153,16 @@ class ExamAssembler(
     val formattedTimeLeft = TimerController.formatDuration(timeLeftDuration)
     logger("[exam_finish] correct=0/${blueprint.totalQuestions} score=0 timeLeft=$formattedTimeLeft")
 
-    return ExamAttempt(
-      mode = mode,
-      locale = locale,
-      seed = seed,
-      questions = assembledQuestions,
-      blueprint = blueprint,
+    return AssemblyResult.Ok(
+      exam =
+        ExamAttempt(
+          mode = mode,
+          locale = locale,
+          seed = seed,
+          questions = assembledQuestions,
+          blueprint = blueprint,
+        ),
+      seed = seed.value,
     )
   }
 
@@ -161,9 +180,9 @@ class ExamAssembler(
         fresh = 0,
         reused = 0,
         deficitDetail =
-          ExamAssemblyException.DeficitDetail(
+          DeficitDetail(
             taskId = quota.taskId,
-            need = quota.required,
+            required = quota.required,
             have = pool.size,
             missing = quota.required - pool.size,
             locale = locale,
@@ -191,9 +210,9 @@ class ExamAssembler(
         fresh = 0,
         reused = 0,
         deficitDetail =
-          ExamAssemblyException.DeficitDetail(
+          DeficitDetail(
             taskId = quota.taskId,
-            need = quota.required,
+            required = quota.required,
             have = pool.size,
             missing = quota.required - pool.size,
             locale = locale,
@@ -281,9 +300,9 @@ class ExamAssembler(
         fresh = fresh,
         reused = reused,
         deficitDetail =
-          ExamAssemblyException.DeficitDetail(
+          DeficitDetail(
             taskId = quota.taskId,
-            need = quota.required,
+            required = quota.required,
             have = selected.size,
             missing = quota.required - selected.size,
             locale = locale,
@@ -297,6 +316,15 @@ class ExamAssembler(
     val questions: List<Question>,
     val fresh: Int,
     val reused: Int,
-    val deficitDetail: ExamAssemblyException.DeficitDetail?,
+    val deficitDetail: DeficitDetail?,
+  )
+
+  private data class DeficitDetail(
+    val taskId: String,
+    val required: Int,
+    val have: Int,
+    val missing: Int,
+    val locale: String,
+    val familyDuplicates: Int,
   )
 }

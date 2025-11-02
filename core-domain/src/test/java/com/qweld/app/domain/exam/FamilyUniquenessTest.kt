@@ -1,8 +1,6 @@
 package com.qweld.app.domain.exam
 
-import com.qweld.app.domain.exam.errors.ExamAssemblyException
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
@@ -29,7 +27,7 @@ class FamilyUniquenessTest {
         clock = fixedClock(),
       )
 
-    val attempt =
+    val result =
       runBlocking {
         assembler.assemble(
           userId = "user",
@@ -39,6 +37,9 @@ class FamilyUniquenessTest {
           blueprint = blueprint,
         )
       }
+
+    require(result is ExamAssembler.AssemblyResult.Ok)
+    val attempt = result.exam
 
     val families = attempt.questions.mapNotNull { it.question.familyId }
     assertEquals(2, families.size)
@@ -60,22 +61,20 @@ class FamilyUniquenessTest {
         clock = fixedClock(),
       )
 
-    val error =
-      assertFailsWith<ExamAssemblyException.Deficit> {
-        runBlocking {
-          assembler.assemble(
-            userId = "user",
-            mode = ExamMode.PRACTICE,
-            locale = "EN",
-            seed = AttemptSeed(8L),
-            blueprint = blueprint,
-          )
-        }
+    val result =
+      runBlocking {
+        assembler.assemble(
+          userId = "user",
+          mode = ExamMode.PRACTICE,
+          locale = "EN",
+          seed = AttemptSeed(8L),
+          blueprint = blueprint,
+        )
       }
-    val detail = error.details.single()
-    assertEquals("A-1", detail.taskId)
-    assertEquals(1, detail.familyDuplicates)
-    assertEquals(1, detail.have)
-    assertEquals(1, detail.missing)
+    require(result is ExamAssembler.AssemblyResult.Deficit)
+    assertEquals("A-1", result.taskId)
+    assertEquals(2, blueprint.quotaFor("A-1").required)
+    assertEquals(1, result.have)
+    assertEquals(1, result.missing)
   }
 }

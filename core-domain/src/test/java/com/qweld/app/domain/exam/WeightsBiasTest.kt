@@ -51,7 +51,7 @@ class WeightsBiasTest {
     var biasedWrongSelections = 0
     repeat(200) { index ->
       val seed = AttemptSeed(index.toLong() + 1)
-      val neutralAttempt =
+      val neutralResult =
         runBlocking {
           neutralAssembler.assemble(
             userId = "user",
@@ -61,7 +61,7 @@ class WeightsBiasTest {
             blueprint = blueprint,
           )
         }
-      val biasedAttempt =
+      val biasedResult =
         runBlocking {
           biasedAssembler.assemble(
             userId = "user",
@@ -71,6 +71,8 @@ class WeightsBiasTest {
             blueprint = blueprint,
           )
         }
+      val neutralAttempt = (neutralResult as ExamAssembler.AssemblyResult.Ok).exam
+      val biasedAttempt = (biasedResult as ExamAssembler.AssemblyResult.Ok).exam
       if (neutralAttempt.questions.first().question.id == wrongQuestion.id) {
         neutralWrongSelections++
       }

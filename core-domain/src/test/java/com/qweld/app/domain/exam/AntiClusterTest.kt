@@ -32,7 +32,7 @@ class AntiClusterTest {
         clock = fixedClock(),
       )
 
-    val attempt =
+    val result =
       runBlocking {
         assembler.assemble(
           userId = "user",
@@ -42,6 +42,8 @@ class AntiClusterTest {
           blueprint = blueprint,
         )
       }
+
+    val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
 
     val taskIds = attempt.questions.map { it.question.taskId }
     val blocks = attempt.questions.map { it.question.blockId }
