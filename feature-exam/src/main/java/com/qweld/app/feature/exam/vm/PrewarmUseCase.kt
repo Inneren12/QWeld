@@ -23,14 +23,25 @@ class PrewarmUseCase(
   private val prewarmDisabled: Flow<Boolean> = kotlinx.coroutines.flow.flowOf(false),
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
+  private val config: PrewarmConfig = PrewarmConfig(),
 ) {
   suspend fun prewarm(
     locale: String,
     tasks: Set<String>,
     onProgress: (loaded: Int, total: Int) -> Unit,
-  ) {
+  ): RunResult {
     val normalizedLocale = locale.lowercase(Locale.US)
     val sanitizedTasks = tasks.filter { it.isNotBlank() }.toSet()
+    if (!config.enabled) {
+      Logx.i(
+        LogTag.PREWARM,
+        "skip",
+        "src" to "per-task",
+        "locale" to normalizedLocale,
+        "reason" to "config_disabled",
+      )
+      return RunResult.Skipped(normalizedLocale, RunResult.SkipReason.ConfigDisabled)
+    }
     val totalTasks = sanitizedTasks.size
     val disabled = prewarmDisabled.first()
     if (disabled) {
@@ -39,9 +50,9 @@ class PrewarmUseCase(
         "skip",
         "src" to "per-task",
         "locale" to normalizedLocale,
-        "reason" to "disabled",
+        "reason" to "user_disabled",
       )
-      return
+      return RunResult.Skipped(normalizedLocale, RunResult.SkipReason.UserDisabled)
     }
     Logx.i(
       LogTag.PREWARM,
@@ -71,8 +82,17 @@ class PrewarmUseCase(
         "locale" to normalizedLocale,
         "ok" to ok,
         "fallback" to "bank",
+        "elapsedMs" to elapsed,
       )
-      return
+      return RunResult.Completed(
+        locale = normalizedLocale,
+        requestedTasks = emptySet(),
+        tasksLoaded = if (ok) 1 else 0,
+        fallbackToBank = true,
+        hadError = !ok,
+        elapsedMs = elapsed,
+        usedQuestionBank = true,
+      )
     }
 
     val sortedTasks = sanitizedTasks.sorted()
@@ -82,7 +102,8 @@ class PrewarmUseCase(
     val fallbackToBank = AtomicBoolean(false)
     onProgress(0, totalTasks)
 
-    val dispatcher = ioDispatcher.limitedParallelism(totalTasks.coerceAtMost(MAX_PARALLELISM))
+    val dispatcher =
+      ioDispatcher.limitedParallelism(totalTasks.coerceAtMost(config.sanitizedMaxConcurrency))
     withContext(dispatcher) {
       supervisorScope {
         for (taskId in sortedTasks) {
@@ -135,6 +156,15 @@ class PrewarmUseCase(
         "reason" to fallbackResult.reason,
       )
     }
+    return RunResult.Completed(
+      locale = normalizedLocale,
+      requestedTasks = sanitizedTasks,
+      tasksLoaded = loadedCount.get().coerceAtMost(totalTasks),
+      fallbackToBank = fallbackToBank.get(),
+      hadError = hadError.get(),
+      elapsedMs = overallElapsed,
+      usedQuestionBank = fallbackToBank.get(),
+    )
   }
 
   private fun CoroutineScope.launchTask(
@@ -148,7 +178,7 @@ class PrewarmUseCase(
     onProgress: (loaded: Int, total: Int) -> Unit,
   ) = launch {
     try {
-      withTimeout(TASK_TIMEOUT_MS) { repository.loadTaskIntoCache(locale, taskId) }
+      withTimeout(config.sanitizedTimeoutMs) { repository.loadTaskIntoCache(locale, taskId) }
     } catch (missing: AssetQuestionRepository.TaskAssetMissingException) {
       fallbackToBank.set(true)
       hadError.set(true)
@@ -204,8 +234,19 @@ class PrewarmUseCase(
     return nowProvider() - start to result
   }
 
-  companion object {
-    private const val TASK_TIMEOUT_MS = 2_000L
-    private const val MAX_PARALLELISM = 3
+  sealed class RunResult {
+    data class Completed(
+      val locale: String,
+      val requestedTasks: Set<String>,
+      val tasksLoaded: Int,
+      val fallbackToBank: Boolean,
+      val hadError: Boolean,
+      val elapsedMs: Long,
+      val usedQuestionBank: Boolean,
+    ) : RunResult()
+
+    data class Skipped(val locale: String, val reason: SkipReason) : RunResult()
+
+    enum class SkipReason { ConfigDisabled, UserDisabled }
   }
 }

@@ -87,6 +87,10 @@
     <string name="about_privacy_policy">Privacy policy</string>
     <string name="about_content_policy">Content policy</string>
     <string name="about_contact">Contact support</string>
+    <string name="about_diagnostics_title">Diagnostics</string>
+    <string name="about_diagnostics_summary">Prewarm metrics are logged locally so you can review cold/warm timings, cache size, and task counts when troubleshooting.</string>
+    <string name="about_export_diagnostics">Export diagnostics</string>
+    <string name="about_diagnostics_unavailable">Diagnostics export is unavailable.</string>
     <string name="privacy_url">https://www.qweld.app/privacy</string>
     <string name="content_policy_url">https://www.qweld.app/content-policy</string>
     <string name="contact_email">support@qweld.app</string>

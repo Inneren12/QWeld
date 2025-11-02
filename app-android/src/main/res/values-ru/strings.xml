@@ -92,4 +92,8 @@
     <string name="about_privacy_policy">Политика конфиденциальности</string>
     <string name="about_content_policy">Контент-политика</string>
     <string name="about_contact">Связаться с нами</string>
+    <string name="about_diagnostics_title">Диагностика</string>
+    <string name="about_diagnostics_summary">Метрики прогрева записываются локально — можно посмотреть время холодного/тёплого запуска, размер кэша и число прогретых задач.</string>
+    <string name="about_export_diagnostics">Экспорт диагностики</string>
+    <string name="about_diagnostics_unavailable">Экспорт диагностики недоступен.</string>
 </resources>
