@@ -28,6 +28,12 @@
 - **About screen** — the overflow menu now links to an About page that surfaces the app name, semantic version, UTC build time, optional commit SHA, and quick actions for Privacy Policy, Content Policy, and support email with `[about_open]` analytics.
 - **Blueprint logging** — startup rules loading logs `[rules_load]` for `rules/welder_exam_2024.json` and delegates to `BlueprintJsonLoader` which reports `[blueprint_source] type=asset …` with totals/tasks when reading blueprint assets.
 
+## RL-B: Locale & listing strings
+
+- **App label** — `@string/app_name` stays `QWeld` for EN and expands to `QWeld Экзамен сварщика` for RU to satisfy Play listing copy.
+- **Exam CTA** — the mode selector button reads `@string/start_exam`, localized to “Start exam” / “Старт экзамена”.
+- **Locale config** — `@xml/locale_config` advertises `en` and `ru`, wired via `android:localeConfig` with RTL mirroring enabled.
+
 ### Troubleshooting verifyAssets
 
 - **Missing locale bundle** — ensure `dist/questions/<locale>/bank.v1.json` exists and was copied into `app-android/src/main/assets/questions/<locale>/` before running the Gradle task.
