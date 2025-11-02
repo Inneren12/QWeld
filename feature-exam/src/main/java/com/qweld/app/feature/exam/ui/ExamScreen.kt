@@ -4,6 +4,7 @@ import android.view.SoundEffectConstants
 import androidx.activity.compose.BackHandler
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.gestures.rememberNestedScrollInteropConnection
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,7 +23,6 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -317,7 +317,9 @@ internal fun ExamScreenContent(
       }
     } else {
       val question = attempt.currentQuestion()
-      val scrollState = rememberScrollState()
+      val questionKey = attempt.currentIndex
+      val scrollState = remember(questionKey) { ScrollState(initial = 0) }
+      LaunchedEffect(questionKey) { scrollState.scrollTo(0) }
       Column(
         modifier = Modifier
           .fillMaxSize()
