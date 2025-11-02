@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QWeld</string>
+    <string name="app_name">QWeld Экзамен сварщика</string>
     <string name="hello_qweld">Привет, QWeld</string>
     <string name="menu_export_logs">Экспорт логов</string>
     <string name="menu_sync">Синхронизация</string>
