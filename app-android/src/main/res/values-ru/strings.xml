@@ -17,6 +17,7 @@
     <string name="action_exit">Выйти</string>
     <string name="menu_about_ru">О приложении</string>
     <string name="language">Язык</string>
+    <string name="go_home">В начало</string>
     <string name="language_system">Системный</string>
     <string name="language_en">Английский</string>
     <string name="language_ru">Русский</string>

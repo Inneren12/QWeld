@@ -16,8 +16,8 @@ class ExamScreenTest {
   }
 
   @Test
-  fun confirmExitNotRequiredForPractice() {
-    assertFalse(shouldConfirmExit(ExamMode.PRACTICE))
+  fun confirmExitRequiredForPractice() {
+    assertTrue(shouldConfirmExit(ExamMode.PRACTICE))
   }
 
   @Test

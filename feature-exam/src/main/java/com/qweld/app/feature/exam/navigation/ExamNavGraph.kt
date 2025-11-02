@@ -213,6 +213,13 @@ fun ExamNavGraph(
           Timber.i("[ui_nav] screen=Review")
           navController.navigate(ExamDestinations.REVIEW) { launchSingleTop = true }
         },
+        onExit = {
+          Timber.i("[ui_nav] screen=Mode (from Result)")
+          navController.navigate(ExamDestinations.MODE) {
+            popUpTo(ExamDestinations.MODE) { inclusive = false }
+            launchSingleTop = true
+          }
+        },
       )
     }
     composable(route = ExamDestinations.REVIEW) { backStackEntry ->

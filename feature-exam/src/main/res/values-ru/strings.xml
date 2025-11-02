@@ -62,12 +62,15 @@
     <string name="menu_exit">Выход</string>
     <string name="dialog_restart_title">Начать заново?</string>
     <string name="dialog_restart_msg">Текущий прогресс будет сброшен. Будет запущена новая сессия с теми же настройками.</string>
-    <string name="dialog_exit_title">Выйти?</string>
-    <string name="dialog_exit_msg">Текущая попытка будет сохранена как прерванная.</string>
+    <string name="dialog_exit_exam_title">Выйти из экзамена?</string>
+    <string name="dialog_exit_exam_msg">Текущая попытка будет сохранена как прерванная.</string>
+    <string name="dialog_exit_practice_title">Выйти из практики?</string>
+    <string name="dialog_exit_practice_msg">Прогресс не сохранится.</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_restart">Начать заново</string>
     <string name="action_exit">Выйти</string>
     <string name="exit">Выход</string>
+    <string name="go_home">В начало</string>
     <string name="exam_overflow_cd">Открыть меню экзамена</string>
     <string name="result_review">Разбор</string>
     <string name="review_title">Разбор</string>
