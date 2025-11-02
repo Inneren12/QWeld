@@ -11,10 +11,12 @@ import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 
+internal const val QWELD_DB_VERSION = 1
+
 @Database(
   entities = [AttemptEntity::class, AnswerEntity::class],
-  version = 1,
-  exportSchema = false,
+  version = QWELD_DB_VERSION,
+  exportSchema = true,
 )
 abstract class QWeldDb : RoomDatabase() {
   abstract fun attemptDao(): AttemptDao
