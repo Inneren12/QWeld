@@ -27,16 +27,22 @@ class PrewarmUseCaseTest {
         ioDispatcher = dispatcherRule.dispatcher,
         nowProvider = { 0L },
       )
-    val tasks = setOf("A-1", "A-2", "A-3")
     val progress = mutableListOf<Pair<Int, Int>>()
 
-    useCase.prewarm(locale = "en", tasks = tasks) { loaded, total -> progress += loaded to total }
+    val result =
+      useCase.prewarm(locale = "en", tasks = tasks) { loaded, total ->
+        progress += loaded to total
+      }
 
     val taskPaths = openedPaths.filter { it.contains("/tasks/") }.toSet()
     val expectedPaths = tasks.map { "questions/en/tasks/$it.json" }.toSet()
     assertEquals(expectedPaths, taskPaths)
     assertTrue(progress.first() == (0 to tasks.size))
     assertEquals(tasks.size to tasks.size, progress.last())
+    assertTrue(result is PrewarmUseCase.RunResult.Completed)
+    val completed = result as PrewarmUseCase.RunResult.Completed
+    assertEquals(tasks, completed.requestedTasks)
+    assertEquals(tasks.size, completed.tasksLoaded)
   }
 
   @Test
@@ -58,10 +64,16 @@ class PrewarmUseCaseTest {
       )
     val progress = mutableListOf<Pair<Int, Int>>()
 
-    useCase.prewarm(locale = "en", tasks = setOf("A-1")) { loaded, total -> progress += loaded to total }
+    val result =
+      useCase.prewarm(locale = "en", tasks = setOf("A-1")) { loaded, total ->
+        progress += loaded to total
+      }
 
     assertEquals(1 to 1, progress.last())
     assertTrue(openedPaths.any { it == "questions/en/bank.v1.json" })
+    assertTrue(result is PrewarmUseCase.RunResult.Completed)
+    val completed = result as PrewarmUseCase.RunResult.Completed
+    assertTrue(completed.fallbackToBank)
   }
 
   private fun repositoryWithTasks(

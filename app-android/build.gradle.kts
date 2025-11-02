@@ -45,6 +45,9 @@ android {
     resourceConfigurations += setOf("en", "ru")
     buildConfigField("String", "BUILD_TIME", "\"$buildTimestamp\"")
     buildConfigField("String", "GIT_SHA", "\"${gitShaProvider.get()}\"")
+    buildConfigField("Boolean", "PREWARM_ENABLED", "true")
+    buildConfigField("Int", "PREWARM_MAX_CONCURRENCY", "3")
+    buildConfigField("Long", "PREWARM_TIMEOUT_MS", "2000L")
   }
 
   buildTypes {

@@ -138,7 +138,17 @@ class ExamViewModelAbortRestartTest {
       nowProvider = { 1_000L },
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcher,
-      prewarmUseCase = PrewarmUseCase(repository, flowOf(true), ioDispatcher = dispatcher, nowProvider = { 0L }),
+      prewarmController =
+        PrewarmController(
+          repository = repository,
+          prewarmUseCase =
+            PrewarmUseCase(
+              repository,
+              flowOf(true),
+              ioDispatcher = dispatcher,
+              nowProvider = { 0L },
+            ),
+        ),
     )
   }
 

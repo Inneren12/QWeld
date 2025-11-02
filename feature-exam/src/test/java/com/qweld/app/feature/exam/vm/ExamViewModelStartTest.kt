@@ -163,12 +163,16 @@ class ExamViewModelStartTest {
       nowProvider = { 0L },
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcher,
-      prewarmUseCase =
-        PrewarmUseCase(
-          repository,
-          prewarmDisabled = flowOf(false),
-          ioDispatcher = dispatcher,
-          nowProvider = { 0L },
+      prewarmController =
+        PrewarmController(
+          repository = repository,
+          prewarmUseCase =
+            PrewarmUseCase(
+              repository,
+              prewarmDisabled = flowOf(false),
+              ioDispatcher = dispatcher,
+              nowProvider = { 0L },
+            ),
         ),
     )
   }

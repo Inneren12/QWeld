@@ -35,6 +35,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.qweld.app.BuildConfig
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.repo.AnswersRepository
@@ -51,6 +52,7 @@ import com.qweld.app.feature.auth.ui.SignInScreen
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
+import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.i18n.LocaleController
 import com.qweld.app.ui.AboutScreen
 import com.qweld.app.ui.SettingsScreen
@@ -265,6 +267,12 @@ fun AppNavGraph(
           appVersion = appVersion,
           analytics = analytics,
           userPrefs = userPrefs,
+          prewarmConfig =
+            PrewarmConfig(
+              enabled = BuildConfig.PREWARM_ENABLED,
+              maxConcurrency = BuildConfig.PREWARM_MAX_CONCURRENCY,
+              taskTimeoutMs = BuildConfig.PREWARM_TIMEOUT_MS,
+            ),
         )
       }
       composable(Routes.SYNC) {
@@ -304,7 +312,14 @@ fun AppNavGraph(
         )
       }
       composable(Routes.ABOUT) {
-        AboutScreen()
+        AboutScreen(
+          onExportDiagnostics =
+            if (logExportActions != null) {
+              { showLogDialog = true }
+            } else {
+              null
+            },
+        )
       }
     }
     if (showLogDialog && logExportActions != null) {

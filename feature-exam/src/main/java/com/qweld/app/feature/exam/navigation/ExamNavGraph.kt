@@ -29,6 +29,7 @@ import com.qweld.app.feature.exam.vm.ExamViewModelFactory
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
+import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
 import java.util.Locale
@@ -54,6 +55,7 @@ fun ExamNavGraph(
   appVersion: String,
   analytics: Analytics,
   userPrefs: UserPrefsDataStore,
+  prewarmConfig: PrewarmConfig = PrewarmConfig(),
   modifier: Modifier = Modifier,
 ) {
   val attemptExporter =
@@ -79,6 +81,7 @@ fun ExamNavGraph(
               answersRepository = answersRepository,
               statsRepository = statsRepository,
               userPrefs = userPrefs,
+              prewarmConfig = prewarmConfig,
             ),
         )
       val practiceShortcuts: PracticeShortcuts =
@@ -142,6 +145,7 @@ fun ExamNavGraph(
               answersRepository = answersRepository,
               statsRepository = statsRepository,
               userPrefs = userPrefs,
+              prewarmConfig = prewarmConfig,
             ),
         )
       LaunchedEffect(examViewModel, navController) {
@@ -196,6 +200,7 @@ fun ExamNavGraph(
               answersRepository = answersRepository,
               statsRepository = statsRepository,
               userPrefs = userPrefs,
+              prewarmConfig = prewarmConfig,
             ),
         )
       val resultViewModel: ResultViewModel =
@@ -234,6 +239,7 @@ fun ExamNavGraph(
               answersRepository = answersRepository,
               statsRepository = statsRepository,
               userPrefs = userPrefs,
+              prewarmConfig = prewarmConfig,
             ),
         )
       val resultViewModel: ResultViewModel =

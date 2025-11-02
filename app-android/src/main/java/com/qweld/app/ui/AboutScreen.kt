@@ -18,7 +18,10 @@ import androidx.compose.ui.unit.dp
 import com.qweld.app.R
 
 @Composable
-fun AboutScreen(modifier: Modifier = Modifier) {
+fun AboutScreen(
+  modifier: Modifier = Modifier,
+  onExportDiagnostics: (() -> Unit)? = null,
+) {
   val uriHandler = LocalUriHandler.current
 
   Column(
@@ -44,6 +47,26 @@ fun AboutScreen(modifier: Modifier = Modifier) {
       }
       TextButton(onClick = { uriHandler.openUri("mailto:$contactEmail") }) {
         Text(text = stringResource(id = R.string.about_contact))
+      }
+    }
+    Divider()
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+      Text(text = stringResource(R.string.about_diagnostics_title), style = MaterialTheme.typography.titleMedium)
+      Text(
+        text = stringResource(R.string.about_diagnostics_summary),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+      if (onExportDiagnostics != null) {
+        TextButton(onClick = onExportDiagnostics) {
+          Text(text = stringResource(R.string.about_export_diagnostics))
+        }
+      } else {
+        Text(
+          text = stringResource(R.string.about_diagnostics_unavailable),
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
       }
     }
   }

@@ -99,6 +99,19 @@ class AssetQuestionRepository internal constructor(
     synchronized(cacheLock) { taskCache.clear() }
   }
 
+  fun cacheEntryCount(): Int = synchronized(cacheLock) { taskCache.size }
+
+  fun cachedTasks(locale: String): Set<String> {
+    val prefix = cacheKey(locale, "")
+    return synchronized(cacheLock) {
+      taskCache.keys
+        .asSequence()
+        .filter { it.startsWith(prefix) }
+        .map { key -> key.substringAfter("::") }
+        .toSet()
+    }
+  }
+
   fun loadTaskLabels(locale: String): TaskLabelSet {
     val path = "questions/$locale/meta/$TASK_LABELS_FILE"
     return when (val result = readTaskLabels(path)) {

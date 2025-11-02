@@ -79,11 +79,16 @@ class ExamViewModel(
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val timerController: TimerController = TimerController { message -> Timber.i(message) },
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-  private val prewarmUseCase: PrewarmUseCase =
-    PrewarmUseCase(
+  private val prewarmController: PrewarmController =
+    PrewarmController(
       repository = repository,
-      prewarmDisabled = userPrefs.prewarmDisabled,
-      ioDispatcher = ioDispatcher,
+      prewarmUseCase =
+        PrewarmUseCase(
+          repository = repository,
+          prewarmDisabled = userPrefs.prewarmDisabled,
+          ioDispatcher = ioDispatcher,
+          nowProvider = nowProvider,
+        ),
     ),
   private val resumeUseCase: ResumeUseCase =
     ResumeUseCase(
@@ -785,7 +790,7 @@ class ExamViewModel(
     prewarmJob =
       viewModelScope.launch(ioDispatcher) {
         try {
-          prewarmUseCase.prewarm(normalizedLocale, tasks) { loaded, total ->
+          prewarmController.prewarm(normalizedLocale, tasks) { loaded, total ->
             dispatchPrewarmProgress(normalizedLocale, loaded, total, expectedTotal)
           }
           finalizePrewarm(normalizedLocale, expectedTotal)
@@ -1447,9 +1452,17 @@ class ExamViewModelFactory(
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
   private val userPrefs: UserPrefsDataStore,
+  private val prewarmConfig: PrewarmConfig = PrewarmConfig(),
 ) : ViewModelProvider.Factory {
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
     if (modelClass.isAssignableFrom(ExamViewModel::class.java)) {
+      val prewarmUseCase =
+        PrewarmUseCase(
+          repository = repository,
+          prewarmDisabled = userPrefs.prewarmDisabled,
+          config = prewarmConfig,
+        )
+      val prewarmController = PrewarmController(repository = repository, prewarmUseCase = prewarmUseCase)
       @Suppress("UNCHECKED_CAST")
       return ExamViewModel(
         repository = repository,
@@ -1457,7 +1470,7 @@ class ExamViewModelFactory(
         answersRepository = answersRepository,
         statsRepository = statsRepository,
         userPrefs = userPrefs,
-        prewarmUseCase = PrewarmUseCase(repository, userPrefs.prewarmDisabled),
+        prewarmController = prewarmController,
       ) as T
     }
     throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
