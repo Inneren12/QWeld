@@ -71,9 +71,9 @@
     <string name="practice_scope_preset_c_d">C+D</string>
     <string name="practice_scope_preset_all">Все</string>
     <string name="practice_scope_preset_last_used">Последний выбор</string>
-    <string name="privacy_url">https://your-domain.example/privacy.html</string>
-    <string name="content_policy_url">https://your-domain.example/content-policy.html</string>
-    <string name="contact_email">support@example.com</string>
+    <string name="privacy_url">https://raw.githubusercontent.com/Inneren12/QWeld/main/docs/PRIVACY.md</string>
+    <string name="content_policy_url">https://raw.githubusercontent.com/Inneren12/QWeld/main/docs/CONTENT_POLICY.md</string>
+    <string name="contact_email">support@qweld.app</string>
     <string name="about_title">О приложении</string>
     <string name="about_version_value">Версия %1$s (код %2$d)</string>
     <string name="about_build_time_value">Сборка от %1$s</string>

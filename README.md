@@ -12,13 +12,18 @@
 - Bootstrap with `scripts/bootstrap.sh` and validate with `scripts/verify-structure.sh` or `scripts/tests/test_verify.sh`.
 - Run `bash scripts/validate-blueprint.sh` to lint blueprints against the JSON schema and quota totals.
 
-## Release checklist
+## Publishing to Google Play (Internal → Production)
 
-1. **build-dist** — run `node scripts/build-questions-dist.mjs` (or `bash scripts/build-questions-dist.sh`) to regenerate `dist/questions/<locale>` bundles and the global `dist/questions/index.json` summary.
-2. **copy assets** — sync the refreshed `dist/questions/{en,ru}/bank.v1.json`, `dist/questions/{en,ru}/tasks/`, and `dist/questions/index.json` into `app-android/src/main/assets/questions/`.
-3. **verifyAssets** — execute `./gradlew :app-android:verifyAssets` to ensure locale banks, per-task bundles, and the index manifest are present and hashed as expected.
-4. **bundleRelease** — assemble the Play-ready artifact with `./gradlew bundleRelease` and confirm the generated AAB under `app-android/build/outputs/bundle/release/`.
-5. **Play Console** — upload the AAB to the Play Console and roll it through **Internal → Closed → Production**, validating release notes and staged percentages at each track.
+Follow the [Android release checklist](./docs/RELEASE_CHECKLIST.md) for the detailed runbook that covers build prep, asset sync, QA, Google Play submission, and post-release follow-up.
+
+Key milestones:
+
+1. **Rebuild content** — run `./gradlew :tools:buildDist` and `./gradlew :tools:syncToAssets` to refresh question banks before verifying with `./gradlew :app-android:verifyAssets`.
+2. **Assemble bundle** — execute `./gradlew :app-android:bundleRelease` and confirm signing via `apksigner verify`.
+3. **Review policies** — ensure the [Privacy Policy](./docs/PRIVACY.md) and [Content Policy](./docs/CONTENT_POLICY.md) URLs are live in About and Play Console listings.
+4. **Play Console rollout** — upload to Internal testing, promote to Closed/Production once QA passes, and complete the Data Safety form using the draft answers in the checklist.
+
+Attach screenshots, release notes, and updated policy dates before promoting a build to a wider track.
 
 ## RL-A: Technical Release (AAB, verifyAssets, About)
 
