@@ -1,13 +1,16 @@
 package com.qweld.app.data.prefs
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.preferencesOf
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.qweld.core.data.BuildConfig
 import kotlinx.coroutines.CoroutineScope
@@ -26,10 +29,16 @@ class UserPrefsDataStore internal constructor(
   constructor(
     context: Context,
     scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
+    storeName: String = DATA_STORE_NAME,
   ) : this(
       PreferenceDataStoreFactory.create(
+        corruptionHandler =
+          ReplaceFileCorruptionHandler { throwable ->
+            Log.w(TAG, "[datastore_recover] store=$storeName cause=corruption", throwable)
+            defaultPreferences()
+          },
         scope = scope,
-        produceFile = { context.preferencesDataStoreFile(DATA_STORE_NAME) },
+        produceFile = { context.preferencesDataStoreFile(storeName) },
       ),
     )
 
@@ -153,6 +162,7 @@ class UserPrefsDataStore internal constructor(
   }
 
   companion object {
+    private const val TAG = "UserPrefsDataStore"
     val DEFAULT_ANALYTICS_ENABLED: Boolean = BuildConfig.ENABLE_ANALYTICS
     const val DEFAULT_PRACTICE_SIZE: Int = 20
     const val MIN_PRACTICE_SIZE: Int = 5
@@ -182,6 +192,23 @@ class UserPrefsDataStore internal constructor(
     private val LAST_SCOPE_BLOCKS_KEY = stringPreferencesKey("last_scope_blocks")
     private val LAST_SCOPE_TASKS_KEY = stringPreferencesKey("last_scope_tasks")
     private val LAST_SCOPE_DISTRIBUTION_KEY = stringPreferencesKey("last_scope_distribution")
+
+    internal fun defaultPreferences(): Preferences {
+      return preferencesOf(
+        ANALYTICS_ENABLED_KEY to DEFAULT_ANALYTICS_ENABLED,
+        PREWARM_DISABLED_KEY to DEFAULT_PREWARM_DISABLED,
+        PRACTICE_SIZE_KEY to DEFAULT_PRACTICE_SIZE,
+        LRU_CACHE_SIZE_KEY to DEFAULT_LRU_CACHE_SIZE,
+        FALLBACK_TO_EN_KEY to DEFAULT_FALLBACK_TO_EN,
+        HAPTICS_ENABLED_KEY to DEFAULT_HAPTICS_ENABLED,
+        SOUNDS_ENABLED_KEY to DEFAULT_SOUNDS_ENABLED,
+        APP_LOCALE_KEY to DEFAULT_APP_LOCALE,
+        WRONG_BIASED_KEY to DEFAULT_WRONG_BIASED,
+        LAST_SCOPE_BLOCKS_KEY to "",
+        LAST_SCOPE_TASKS_KEY to "",
+        LAST_SCOPE_DISTRIBUTION_KEY to "",
+      )
+    }
 
     internal fun sanitizePracticeSize(value: Int): Int {
       return value.coerceIn(MIN_PRACTICE_SIZE, MAX_PRACTICE_SIZE)
