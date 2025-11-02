@@ -6,6 +6,15 @@
     <string name="mode_practice_cd">Start a practice exam</string>
     <string name="practice_scope_title">Practice scope</string>
     <string name="practice_scope_blocks">Blocks</string>
+    <string name="practice_scope_presets">Presets</string>
+    <string name="practice_scope_preset_a_only">A-only</string>
+    <string name="practice_scope_preset_b_only">B-only</string>
+    <string name="practice_scope_preset_c_only">C-only</string>
+    <string name="practice_scope_preset_d_only">D-only</string>
+    <string name="practice_scope_preset_a_b">A+B</string>
+    <string name="practice_scope_preset_c_d">C+D</string>
+    <string name="practice_scope_preset_all">All</string>
+    <string name="practice_scope_preset_last_used">Last used</string>
     <string name="practice_scope_custom_tasks">Custom tasks…</string>
     <string name="practice_scope_select_tasks">Select tasks</string>
     <string name="practice_scope_distribution">Distribution</string>

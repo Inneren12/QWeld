@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.RadioButton
@@ -23,15 +26,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.qweld.app.data.prefs.UserPrefsDataStore
+import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.feature.exam.R
+import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.Distribution
 import com.qweld.app.feature.exam.vm.PracticeScope
+import com.qweld.app.feature.exam.vm.PracticeConfig
+import com.qweld.app.feature.exam.vm.PracticeScopePresetName
+import com.qweld.app.feature.exam.vm.detectPresetForScope
+import com.qweld.app.feature.exam.vm.toScope
+import java.util.LinkedHashSet
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,20 +52,73 @@ fun PracticeScopeSheet(
   size: Int,
   tasksByBlock: Map<String, List<String>>,
   scope: PracticeScope,
+  blueprint: ExamBlueprint,
+  lastScope: UserPrefsDataStore.LastScope?,
   onDismiss: () -> Unit,
-  onConfirm: (PracticeScope) -> Boolean,
+  onConfirm: (PracticeScope, PracticeScopePresetName?) -> Boolean,
 ) {
   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-  var selectedBlocks by remember { mutableStateOf(scope.blocks.toSet()) }
-  var selectedTasks by remember { mutableStateOf(scope.taskIds.toSet()) }
+  val sanitizedSize = remember(size) { PracticeConfig.sanitizeSize(size) }
+
+  fun normalizeSet(values: Set<String>): Set<String> {
+    return values
+      .asSequence()
+      .map { it.trim().uppercase(Locale.US) }
+      .filter { it.isNotBlank() }
+      .toCollection(LinkedHashSet())
+  }
+
+  fun normalizeValue(value: String): String {
+    return value.trim().uppercase(Locale.US)
+  }
+
+  var selectedBlocks by remember { mutableStateOf(normalizeSet(scope.blocks)) }
+  var selectedTasks by remember { mutableStateOf(normalizeSet(scope.taskIds)) }
   var distribution by remember { mutableStateOf(scope.distribution) }
   var showCustom by remember { mutableStateOf(scope.taskIds.isNotEmpty()) }
+  var selectedPreset by remember { mutableStateOf(detectPresetForScope(scope, lastScope)) }
 
-  LaunchedEffect(scope) {
-    selectedBlocks = scope.blocks.toSet()
-    selectedTasks = scope.taskIds.toSet()
-    distribution = scope.distribution
-    showCustom = scope.taskIds.isNotEmpty()
+  LaunchedEffect(scope, lastScope) {
+    val initial =
+      if (lastScope != null) {
+        PracticeScopePresetName.LAST_USED.toScope(scope.distribution, lastScope) ?: scope
+      } else {
+        scope
+      }
+    val normalizedBlocks = normalizeSet(initial.blocks)
+    val normalizedTasks = normalizeSet(initial.taskIds)
+    selectedBlocks = normalizedBlocks
+    selectedTasks = normalizedTasks
+    distribution = initial.distribution
+    showCustom = normalizedTasks.isNotEmpty()
+    selectedPreset =
+      if (lastScope != null) PracticeScopePresetName.LAST_USED else detectPresetForScope(initial, lastScope)
+  }
+
+  val previewSize by remember {
+    derivedStateOf {
+      val previewScope =
+        PracticeScope(
+          blocks = selectedBlocks,
+          taskIds = selectedTasks,
+          distribution = distribution,
+        )
+      ExamViewModel.resolvePracticeQuotas(
+        blueprint = blueprint,
+        scope = previewScope,
+        total = sanitizedSize,
+      ).values.sum()
+    }
+  }
+
+  fun updatePresetFromSelection() {
+    val currentScope =
+      PracticeScope(
+        blocks = selectedBlocks,
+        taskIds = selectedTasks,
+        distribution = distribution,
+      )
+    selectedPreset = detectPresetForScope(currentScope, lastScope)
   }
 
   ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheetState) {
@@ -70,6 +136,59 @@ fun PracticeScopeSheet(
       )
       Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(
+          text = stringResource(id = R.string.practice_scope_presets),
+          style = MaterialTheme.typography.titleMedium,
+        )
+        val presets =
+          listOf(
+            PracticeScopePresetName.A_ONLY,
+            PracticeScopePresetName.B_ONLY,
+            PracticeScopePresetName.C_ONLY,
+            PracticeScopePresetName.D_ONLY,
+            PracticeScopePresetName.A_B,
+            PracticeScopePresetName.C_D,
+            PracticeScopePresetName.ALL,
+            PracticeScopePresetName.LAST_USED,
+          )
+        FlowRow(
+          horizontalArrangement = Arrangement.spacedBy(8.dp),
+          verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+          for (preset in presets) {
+            val labelRes =
+              when (preset) {
+                PracticeScopePresetName.A_ONLY -> R.string.practice_scope_preset_a_only
+                PracticeScopePresetName.B_ONLY -> R.string.practice_scope_preset_b_only
+                PracticeScopePresetName.C_ONLY -> R.string.practice_scope_preset_c_only
+                PracticeScopePresetName.D_ONLY -> R.string.practice_scope_preset_d_only
+                PracticeScopePresetName.A_B -> R.string.practice_scope_preset_a_b
+                PracticeScopePresetName.C_D -> R.string.practice_scope_preset_c_d
+                PracticeScopePresetName.ALL -> R.string.practice_scope_preset_all
+                PracticeScopePresetName.LAST_USED -> R.string.practice_scope_preset_last_used
+              }
+            val enabled = preset != PracticeScopePresetName.LAST_USED || lastScope != null
+            FilterChip(
+              selected = selectedPreset == preset,
+              onClick = {
+                if (!enabled) return@FilterChip
+                val applied = preset.toScope(distribution, lastScope) ?: return@FilterChip
+                val blocks = normalizeSet(applied.blocks)
+                val tasks = normalizeSet(applied.taskIds)
+                selectedBlocks = blocks
+                selectedTasks = tasks
+                distribution = applied.distribution
+                showCustom = tasks.isNotEmpty()
+                selectedPreset = preset
+              },
+              label = { Text(text = stringResource(id = labelRes)) },
+              enabled = enabled,
+              colors = FilterChipDefaults.filterChipColors(),
+            )
+          }
+        }
+      }
+      Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(
           text = stringResource(id = R.string.practice_scope_blocks),
           style = MaterialTheme.typography.titleMedium,
         )
@@ -81,15 +200,16 @@ fun PracticeScopeSheet(
             verticalAlignment = Alignment.CenterVertically,
           ) {
             Checkbox(
-              checked = selectedBlocks.contains(blockId),
+              checked = selectedBlocks.contains(normalizeValue(blockId)),
               onCheckedChange = { checked ->
-                val updated = selectedBlocks.toMutableSet()
+                val updated = LinkedHashSet(selectedBlocks)
                 if (checked) {
-                  updated += blockId
+                  updated += normalizeValue(blockId)
                 } else {
-                  updated -= blockId
+                  updated -= normalizeValue(blockId)
                 }
-                selectedBlocks = updated
+                selectedBlocks = normalizeSet(updated)
+                updatePresetFromSelection()
               },
               enabled = hasTasks,
             )
@@ -132,9 +252,11 @@ fun PracticeScopeSheet(
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                   TextButton(
                     onClick = {
-                      val updated = selectedTasks.toMutableSet()
-                      updated.addAll(tasks)
-                      selectedTasks = updated
+                      val updated = LinkedHashSet(selectedTasks)
+                      updated.addAll(tasks.map(::normalizeValue))
+                      selectedTasks = normalizeSet(updated)
+                      showCustom = true
+                      updatePresetFromSelection()
                     },
                     contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
                   ) {
@@ -142,9 +264,12 @@ fun PracticeScopeSheet(
                   }
                   TextButton(
                     onClick = {
-                      val updated = selectedTasks.toMutableSet()
-                      updated.removeAll(tasks.toSet())
-                      selectedTasks = updated
+                      val updated = LinkedHashSet(selectedTasks)
+                      val normalized = tasks.map(::normalizeValue).toSet()
+                      updated.removeAll(normalized)
+                      selectedTasks = normalizeSet(updated)
+                      showCustom = true
+                      updatePresetFromSelection()
                     },
                     contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
                   ) {
@@ -157,16 +282,19 @@ fun PracticeScopeSheet(
                   modifier = Modifier.fillMaxWidth(),
                   verticalAlignment = Alignment.CenterVertically,
                 ) {
+                  val normalizedTask = normalizeValue(taskId)
                   Checkbox(
-                    checked = selectedTasks.contains(taskId),
+                    checked = selectedTasks.contains(normalizedTask),
                     onCheckedChange = { checked ->
-                      val updated = selectedTasks.toMutableSet()
+                      val updated = LinkedHashSet(selectedTasks)
                       if (checked) {
-                        updated += taskId
+                        updated += normalizedTask
                       } else {
-                        updated -= taskId
+                        updated -= normalizedTask
                       }
-                      selectedTasks = updated
+                      selectedTasks = normalizeSet(updated)
+                      showCustom = true
+                      updatePresetFromSelection()
                     },
                   )
                   Text(text = taskId, style = MaterialTheme.typography.bodyLarge)
@@ -187,7 +315,13 @@ fun PracticeScopeSheet(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
           ) {
-            RadioButton(selected = distribution == option, onClick = { distribution = option })
+            RadioButton(
+              selected = distribution == option,
+              onClick = {
+                distribution = option
+                updatePresetFromSelection()
+              },
+            )
             val label =
               when (option) {
                 Distribution.Proportional -> stringResource(id = R.string.practice_scope_distribution_proportional)
@@ -198,7 +332,7 @@ fun PracticeScopeSheet(
         }
       }
       Text(
-        text = stringResource(id = R.string.practice_scope_result_size, size),
+        text = stringResource(id = R.string.practice_scope_result_size, previewSize),
         style = MaterialTheme.typography.bodyMedium,
       )
       Row(
@@ -220,7 +354,7 @@ fun PracticeScopeSheet(
                 taskIds = normalizedTasks,
                 distribution = distribution,
               )
-            if (onConfirm(scopeToSubmit)) {
+            if (onConfirm(scopeToSubmit, selectedPreset)) {
               onDismiss()
             }
           },

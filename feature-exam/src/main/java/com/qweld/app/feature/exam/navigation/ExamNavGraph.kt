@@ -73,6 +73,7 @@ fun ExamNavGraph(
               attemptsRepository = attemptsRepository,
               answersRepository = answersRepository,
               statsRepository = statsRepository,
+              userPrefs = userPrefs,
             ),
         )
       val practiceShortcuts: PracticeShortcuts =
@@ -131,6 +132,7 @@ fun ExamNavGraph(
               attemptsRepository = attemptsRepository,
               answersRepository = answersRepository,
               statsRepository = statsRepository,
+              userPrefs = userPrefs,
             ),
         )
       ExamScreen(
@@ -154,6 +156,7 @@ fun ExamNavGraph(
               attemptsRepository = attemptsRepository,
               answersRepository = answersRepository,
               statsRepository = statsRepository,
+              userPrefs = userPrefs,
             ),
         )
       val resultViewModel: ResultViewModel =
@@ -184,6 +187,7 @@ fun ExamNavGraph(
               attemptsRepository = attemptsRepository,
               answersRepository = answersRepository,
               statsRepository = statsRepository,
+              userPrefs = userPrefs,
             ),
         )
       val resultViewModel: ResultViewModel =
