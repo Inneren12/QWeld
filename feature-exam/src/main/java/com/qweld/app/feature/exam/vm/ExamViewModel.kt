@@ -1008,7 +1008,7 @@ class ExamViewModel(
       when (mode) {
         ExamMode.IP_MOCK -> "IPMock"
         ExamMode.PRACTICE -> "Practice"
-        else -> mode.name,
+        else -> mode.name
       },
       resolvedSize,
       scopeLog,
