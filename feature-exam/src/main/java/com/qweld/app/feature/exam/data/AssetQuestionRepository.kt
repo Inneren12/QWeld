@@ -3,16 +3,18 @@ package com.qweld.app.feature.exam.data
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
+import com.qweld.app.data.content.questions.AssetIntegrityGuard
+import com.qweld.app.data.content.questions.IndexParser
+import com.qweld.app.data.content.questions.IntegrityMismatchException
+import com.qweld.app.feature.exam.data.Io
+import com.qweld.core.common.logging.LogTag
+import com.qweld.core.common.logging.Logx
 import java.io.FileNotFoundException
 import java.io.InputStream
 import java.util.LinkedHashMap
 import java.util.Locale
 import kotlin.system.measureTimeMillis
 import kotlin.text.Charsets
-import com.qweld.app.data.content.questions.AssetIntegrityGuard
-import com.qweld.app.data.content.questions.IndexParser
-import com.qweld.app.data.content.questions.IntegrityMismatchException
-import com.qweld.app.feature.exam.data.Io
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName
@@ -20,7 +22,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
-import timber.log.Timber
 
 class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
@@ -104,7 +105,13 @@ class AssetQuestionRepository internal constructor(
       is AssetPayload.Success -> result.value
       AssetPayload.Missing -> TaskLabelSet.EMPTY
       is AssetPayload.Error -> {
-        Timber.w(result.throwable, "[repo_labels] locale=%s path=%s error", locale, path)
+        Logx.w(
+          LogTag.LOAD,
+          "labels_error",
+          result.throwable,
+          "locale" to locale,
+          "path" to path,
+        )
         TaskLabelSet.EMPTY
       }
     }
@@ -116,27 +123,30 @@ class AssetQuestionRepository internal constructor(
 
     if (normalizedTasks != null) {
       val orderedTasks = normalizedTasks.sorted()
-      val tasksLog = orderedTasks.joinToString(prefix = "[", postfix = "]")
+      val tasksLog = orderedTasks.joinToString(separator = ",", prefix = "[", postfix = "]")
       var perTaskResult: PerTaskLoadResult? = null
       val elapsed =
         measureTimeMillis { perTaskResult = loadFromPerTask(resolvedLocale, orderedTasks) }
       if (perTaskResult != null) {
         val perTask = perTaskResult!!
         val questionList = perTask.questions
-        Timber.i(
-          "[repo_load] src=per-task locale=%s task=%s count=%d elapsedMs=%d cacheHits=%d",
-          resolvedLocale,
-          tasksLog,
-          questionList.size,
-          elapsed,
-          perTask.cacheHits,
+        Logx.i(
+          LogTag.LOAD,
+          "per_task_success",
+          "locale" to resolvedLocale,
+          "task" to tasksLog,
+          "count" to questionList.size,
+          "elapsedMs" to elapsed,
+          "cacheHits" to perTask.cacheHits,
         )
         return LoadResult.Success(locale = resolvedLocale, questions = questionList)
       } else {
-        Timber.w(
-          "[repo_load] src=per-task locale=%s task=%s fallback=bank",
-          resolvedLocale,
-          tasksLog,
+        Logx.w(
+          LogTag.LOAD,
+          "per_task_fallback",
+          "locale" to resolvedLocale,
+          "task" to tasksLog,
+          "fallback" to "bank",
         )
       }
     }
@@ -145,24 +155,33 @@ class AssetQuestionRepository internal constructor(
     val bankElapsed = measureTimeMillis { bankOutcome = loadFromBank(resolvedLocale) }
     when (val outcome = bankOutcome) {
       is AssetPayload.Success -> {
-        Timber.i(
-          "[repo_load] src=bank locale=%s task=* count=%d elapsedMs=%d",
-          resolvedLocale,
-          outcome.value.size,
-          bankElapsed,
+        Logx.i(
+          LogTag.LOAD,
+          "bank_success",
+          "locale" to resolvedLocale,
+          "task" to "*",
+          "count" to outcome.value.size,
+          "elapsedMs" to bankElapsed,
         )
         return LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
-        Timber.w("[repo_load] src=bank locale=%s task=* missing", resolvedLocale)
+        Logx.w(
+          LogTag.LOAD,
+          "bank_missing",
+          "locale" to resolvedLocale,
+          "task" to "*",
+        )
       }
       is AssetPayload.Error -> {
         val reason = outcome.throwable.toReason(prefix = "bank_asset_error")
-        Timber.e(
+        Logx.e(
+          LogTag.LOAD,
+          "bank_error",
           outcome.throwable,
-          "[repo_load] src=bank locale=%s task=* error reason=%s",
-          resolvedLocale,
-          reason,
+          "locale" to resolvedLocale,
+          "task" to "*",
+          "reason" to reason,
         )
         return LoadResult.Corrupt(reason)
       }
@@ -172,25 +191,34 @@ class AssetQuestionRepository internal constructor(
     val singlesElapsed = measureTimeMillis { singlesOutcome = loadFromSingleFiles(resolvedLocale) }
     return when (val outcome = singlesOutcome) {
       is AssetPayload.Success -> {
-        Timber.i(
-          "[repo_load] src=raw locale=%s task=* count=%d elapsedMs=%d",
-          resolvedLocale,
-          outcome.value.size,
-          singlesElapsed,
+        Logx.i(
+          LogTag.LOAD,
+          "raw_success",
+          "locale" to resolvedLocale,
+          "task" to "*",
+          "count" to outcome.value.size,
+          "elapsedMs" to singlesElapsed,
         )
         LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
-        Timber.w("[repo_load] src=raw locale=%s task=* missing", resolvedLocale)
+        Logx.w(
+          LogTag.LOAD,
+          "raw_missing",
+          "locale" to resolvedLocale,
+          "task" to "*",
+        )
         LoadResult.Missing
       }
       is AssetPayload.Error -> {
         val reason = outcome.throwable.toReason(prefix = "raw_asset_error")
-        Timber.e(
+        Logx.e(
+          LogTag.LOAD,
+          "raw_error",
           outcome.throwable,
-          "[repo_load] src=raw locale=%s task=* error reason=%s",
-          resolvedLocale,
-          reason,
+          "locale" to resolvedLocale,
+          "task" to "*",
+          "reason" to reason,
         )
         LoadResult.Corrupt(reason)
       }
@@ -221,16 +249,23 @@ class AssetQuestionRepository internal constructor(
           loaded[task] = result.value
         }
         AssetPayload.Missing -> {
-          Timber.w("[repo_load] src=per-task locale=%s task=%s missing path=%s", locale, task, path)
+          Logx.w(
+            LogTag.LOAD,
+            "per_task_missing",
+            "locale" to locale,
+            "task" to task,
+            "path" to path,
+          )
           return null
         }
         is AssetPayload.Error -> {
-          Timber.e(
+          Logx.e(
+            LogTag.LOAD,
+            "per_task_error",
             result.throwable,
-            "[repo_load] src=per-task locale=%s task=%s error path=%s",
-            locale,
-            task,
-            path,
+            "locale" to locale,
+            "task" to task,
+            "path" to path,
           )
           return null
         }
@@ -272,7 +307,14 @@ class AssetQuestionRepository internal constructor(
         val path = "$taskPath/$file"
         when (val result = readSingle(path)) {
           is AssetPayload.Success -> aggregated += result.value
-          AssetPayload.Missing -> Timber.w("[repo_load] src=raw locale=%s task=%s missing path=%s", locale, task, path)
+          AssetPayload.Missing ->
+            Logx.w(
+              LogTag.LOAD,
+              "raw_missing",
+              "locale" to locale,
+              "task" to task,
+              "path" to path,
+            )
           is AssetPayload.Error -> return result
         }
       }
@@ -379,12 +421,13 @@ class AssetQuestionRepository internal constructor(
           manifest = manifest,
           opener = { path -> assetReader.open(path) ?: throw FileNotFoundException(path) },
         )
-      Timber.i(
-        "[integrity_index] locale=%s blueprint=%s bankVersion=%s files=%d",
-        locale,
-        manifest.blueprintId ?: "unknown",
-        manifest.bankVersion ?: "unknown",
-        manifest.paths().size,
+      Logx.i(
+        LogTag.INTEGRITY,
+        "index",
+        "locale" to locale,
+        "blueprint" to (manifest.blueprintId ?: "unknown"),
+        "bankVersion" to (manifest.bankVersion ?: "unknown"),
+        "files" to manifest.paths().size,
       )
       return LocaleIntegrity(manifest = manifest, guard = guard).also { integrityByLocale[locale] = it }
     }

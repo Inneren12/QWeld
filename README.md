@@ -37,7 +37,7 @@ Attach screenshots, release notes, and updated policy dates before promoting a b
 - **Asset gate** — the new `verifyAssets` Gradle task enforces the presence of the canonical question banks (`bank.v1.json`), sentinel per-task bundles (`A-1.json`, `D-15.json` for EN/RU), and `index.json` before any build by hooking into `preBuild`.
 - **Release automation** — workflow `.github/workflows/android-internal.yml` provisions Java 21, caches Gradle, runs `./gradlew :app-android:bundleRelease :app-android:assembleRelease`, and publishes the AAB plus ProGuard mapping as artifacts on pushes to `main` and manual dispatch.
 - **About screen** — the overflow menu now links to an About page that surfaces the app name, semantic version, UTC build time, optional commit SHA, and quick actions for Privacy Policy, Content Policy, and support email with `[about_open]` analytics.
-- **Blueprint logging** — startup rules loading logs `[rules_load]` for `rules/welder_exam_2024.json` and delegates to `BlueprintJsonLoader` which reports `[blueprint_source] type=asset …` with totals/tasks when reading blueprint assets.
+- **Blueprint logging** — startup rules loading logs `[load] rules path=rules/welder_exam_2024.json …` and delegates to `BlueprintJsonLoader` which reports `[blueprint_load] asset path=… total=… tasks=…` when reading blueprint assets.
 
 ## RL-B: Locale & listing strings
 
@@ -94,7 +94,7 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 
 ## Pre-warm per-task
 - IP Mock mode now fires `PrewarmUseCase` from `ExamViewModel.startPrewarmForIpMock`, priming all requested tasks with a lightweight progress bar on the Mode screen before navigation.
-- The use case streams task-level progress via `onProgress`, caps parallelism with `Dispatchers.IO.limitedParallelism(3)`, and enforces a 2s timeout per asset while logging `[prewarm_start]`, `[prewarm_step]`, and `[prewarm_done]` markers.
+- The use case streams task-level progress via `onProgress`, caps parallelism with `Dispatchers.IO.limitedParallelism(3)`, and enforces a 2s timeout per asset while logging `[prewarm] start/step/done` markers.
 - Missing task bundles trigger a graceful fallback to the unified bank (`bank.v1.json`) without blocking the start button—progress still reaches 100% and the bank is warmed into memory for the upcoming attempt.
 
 ## Explanations schema & how to validate

@@ -1,13 +1,14 @@
 package com.qweld.app.feature.exam.data
 
 import android.content.Context
+import com.qweld.app.domain.exam.ExamBlueprint
+import com.qweld.core.common.logging.LogTag
+import com.qweld.core.common.logging.Logx
 import java.io.InputStream
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import timber.log.Timber
-import com.qweld.app.domain.exam.ExamBlueprint
 
 class AppRulesLoader(
   private val assetOpener: (String) -> InputStream?,
@@ -26,7 +27,13 @@ class AppRulesLoader(
       } ?: throw IllegalArgumentException("Rules asset not found: $path")
 
     val dto = json.decodeFromString(RulesDto.serializer(), payload)
-    Timber.i("[rules_load] path=%s id=%s version=%s", path, dto.id, dto.version ?: "unknown")
+    Logx.i(
+      LogTag.LOAD,
+      "rules",
+      "path" to path,
+      "id" to dto.id,
+      "version" to (dto.version ?: "unknown"),
+    )
     val blueprintPath = normalizeBlueprintPath(dto.blueprintPath ?: dto.blueprint)
       ?: throw IllegalArgumentException("Rules missing blueprint reference")
     val blueprint = blueprintLoader.loadFromAssets(assetOpener, blueprintPath)

@@ -5,7 +5,8 @@ import java.io.InputStream
 import java.security.MessageDigest
 import java.util.LinkedHashMap
 import java.util.Locale
-import timber.log.Timber
+import com.qweld.core.common.logging.LogTag
+import com.qweld.core.common.logging.Logx
 
 class IntegrityMismatchException(
   val path: String,
@@ -87,18 +88,35 @@ class AssetIntegrityGuard(
       else -> "miss"
     }
     val sha = result.actual ?: result.expected ?: "unknown"
-    Timber.i("[integrity_check] path=%s status=%s sha=%s", result.path, status, sha)
+    Logx.i(
+      LogTag.INTEGRITY,
+      "check",
+      "path" to result.path,
+      "status" to status,
+      "sha" to sha,
+    )
   }
 
   private fun logMiss(result: VerificationResult) {
     val expectedValue = result.expected ?: "unknown"
     val actualValue = result.actual ?: "missing"
-    Timber.w("[integrity_miss] path=%s expected=%s actual=%s", result.path, expectedValue, actualValue)
+    Logx.w(
+      LogTag.INTEGRITY,
+      "miss",
+      "path" to result.path,
+      "expected" to expectedValue,
+      "actual" to actualValue,
+    )
   }
 
   private fun logFailure(result: VerificationResult) {
     val sha = result.actual ?: "missing"
-    Timber.w("[integrity_check] path=%s status=fail sha=%s", result.path, sha)
+    Logx.w(
+      LogTag.INTEGRITY,
+      "fail",
+      "path" to result.path,
+      "sha" to sha,
+    )
   }
 
   private fun verify(path: String): VerificationResult {
@@ -139,7 +157,12 @@ class AssetIntegrityGuard(
     } catch (error: FileNotFoundException) {
       null
     } catch (error: Exception) {
-      Timber.e(error, "[integrity_check] failed to read asset path=%s", path)
+      Logx.e(
+        LogTag.INTEGRITY,
+        "read_error",
+        error,
+        "path" to path,
+      )
       null
     }
   }
