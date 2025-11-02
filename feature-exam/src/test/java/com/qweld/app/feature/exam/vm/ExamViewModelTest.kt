@@ -238,6 +238,17 @@ private class FakeAttemptDao : AttemptDao {
       )
   }
 
+  override suspend fun markAborted(id: String, finishedAt: Long) {
+    val current = attempts[id] ?: return
+    attempts[id] =
+      current.copy(
+        finishedAt = finishedAt,
+        durationSec = null,
+        passThreshold = null,
+        scorePct = null,
+      )
+  }
+
   override suspend fun getById(id: String): AttemptEntity? = attempts[id]
 
   override suspend fun listRecent(limit: Int): List<AttemptEntity> {

@@ -136,6 +136,8 @@ fun ModeScreen(
         ExamViewModel.ExamEffect.NavigateToExam -> {
           navController.navigate(ExamDestinations.EXAM) { launchSingleTop = true }
         }
+        ExamViewModel.ExamEffect.NavigateToMode -> Unit
+        ExamViewModel.ExamEffect.RestartWithSameConfig -> Unit
         is ExamViewModel.ExamEffect.ShowDeficit -> {
           deficitDetail = effect.detail
         }

@@ -2,7 +2,6 @@ package com.qweld.app.feature.exam.ui
 
 import android.view.SoundEffectConstants
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,6 +63,7 @@ import com.qweld.app.feature.exam.model.DeficitDialogUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.Locale
 
@@ -79,11 +80,11 @@ fun ExamScreen(
   val attempt = uiState.attempt
   val confirmExitEnabled = shouldConfirmExit(attempt?.mode)
   var showConfirmExitDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
-  var allowExamExit by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
-  val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+  var showConfirmRestartDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
   val hapticFeedback = LocalHapticFeedback.current
   val view = LocalView.current
   val lifecycleOwner = LocalLifecycleOwner.current
+  val coroutineScope = rememberCoroutineScope()
 
   DisposableEffect(lifecycleOwner, viewModel) {
     val observer =
@@ -113,21 +114,20 @@ fun ExamScreen(
   LaunchedEffect(confirmExitEnabled) {
     if (!confirmExitEnabled) {
       showConfirmExitDialog = false
-      allowExamExit = false
     }
   }
 
-  BackHandler(enabled = confirmExitEnabled && !allowExamExit) {
+  BackHandler(enabled = confirmExitEnabled) {
     showConfirmExitDialog = true
   }
 
   LaunchedEffect(showConfirmExitDialog, attempt?.attemptId) {
-    if (showConfirmExitDialog && confirmExitEnabled) {
+    if (showConfirmExitDialog) {
       analytics.log(
         "confirm_exit",
         mapOf(
           "shown" to true,
-          "mode" to "IPMock",
+          "mode" to (attempt?.mode?.name ?: "unknown"),
         ),
       )
     }
@@ -198,17 +198,18 @@ fun ExamScreen(
     onPrevious = viewModel::previousQuestion,
     onDismissDeficit = viewModel::dismissDeficitDialog,
     onFinish = viewModel::finishExam,
+    onShowRestart = { showConfirmRestartDialog = true },
+    onShowExit = { showConfirmExitDialog = true },
   )
 
-  if (showConfirmExitDialog && confirmExitEnabled) {
+  if (showConfirmExitDialog) {
     ConfirmExitDialog(
-      onContinue = {
+      onCancel = {
         analytics.log(
           "confirm_exit",
           mapOf("choice" to "continue"),
         )
         showConfirmExitDialog = false
-        allowExamExit = false
       },
       onExit = {
         analytics.log(
@@ -216,13 +217,16 @@ fun ExamScreen(
           mapOf("choice" to "exit"),
         )
         showConfirmExitDialog = false
-        val dispatcher = backDispatcher
-        if (dispatcher != null) {
-          allowExamExit = true
-          dispatcher.onBackPressed()
-        } else {
-          allowExamExit = false
-        }
+        coroutineScope.launch { viewModel.abortAttempt() }
+      },
+    )
+  }
+  if (showConfirmRestartDialog) {
+    ConfirmRestartDialog(
+      onCancel = { showConfirmRestartDialog = false },
+      onRestart = {
+        showConfirmRestartDialog = false
+        viewModel.restartAttempt()
       },
     )
   }
@@ -253,8 +257,19 @@ private fun ExamScreenContent(
   onPrevious: () -> Unit,
   onDismissDeficit: () -> Unit,
   onFinish: () -> Unit,
+  onShowRestart: () -> Unit,
+  onShowExit: () -> Unit,
 ) {
-  Scaffold { paddingValues ->
+  Scaffold(
+    topBar = {
+      if (state.attempt != null) {
+        ExamTopBarMenu(
+          onStartOver = onShowRestart,
+          onExit = onShowExit,
+        )
+      }
+    },
+  ) { paddingValues ->
     val attempt = state.attempt
     if (attempt == null) {
       Box(

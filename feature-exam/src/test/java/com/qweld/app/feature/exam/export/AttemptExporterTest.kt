@@ -143,6 +143,17 @@ class AttemptExporterTest {
         )
     }
 
+    override suspend fun markAborted(id: String, finishedAt: Long) {
+      val existing = attempts[id] ?: return
+      attempts[id] =
+        existing.copy(
+          finishedAt = finishedAt,
+          durationSec = null,
+          passThreshold = null,
+          scorePct = null,
+        )
+    }
+
     override suspend fun getById(id: String): AttemptEntity? = attempts[id]
 
     override suspend fun listRecent(limit: Int): List<AttemptEntity> =

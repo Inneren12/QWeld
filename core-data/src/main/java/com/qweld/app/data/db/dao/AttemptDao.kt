@@ -29,6 +29,18 @@ interface AttemptDao {
     scorePct: Double?,
   )
 
+  @Query(
+    """
+    UPDATE attempts
+    SET finished_at = :finishedAt,
+        duration_sec = NULL,
+        pass_threshold = NULL,
+        score_pct = NULL
+    WHERE id = :id
+    """
+  )
+  suspend fun markAborted(id: String, finishedAt: Long)
+
   @Query("SELECT * FROM attempts WHERE id = :id LIMIT 1")
   suspend fun getById(id: String): AttemptEntity?
 

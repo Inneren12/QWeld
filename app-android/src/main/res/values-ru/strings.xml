@@ -6,6 +6,15 @@
     <string name="menu_sign_out">Выйти</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_about">О приложении</string>
+    <string name="menu_start_over">Начать заново</string>
+    <string name="menu_exit">Выход</string>
+    <string name="dialog_restart_title">Начать заново?</string>
+    <string name="dialog_restart_msg">Текущий прогресс будет сброшен. Будет запущена новая сессия с теми же настройками.</string>
+    <string name="dialog_exit_title">Выйти?</string>
+    <string name="dialog_exit_msg">Текущая попытка будет сохранена как прерванная.</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_restart">Начать заново</string>
+    <string name="action_exit">Выйти</string>
     <string name="menu_about_ru">О приложении</string>
     <string name="language">Язык</string>
     <string name="language_system">Системный</string>

@@ -12,6 +12,12 @@
 - Bootstrap with `scripts/bootstrap.sh` and validate with `scripts/verify-structure.sh` or `scripts/tests/test_verify.sh`.
 - Run `bash scripts/validate-blueprint.sh` to lint blueprints against the JSON schema and quota totals.
 
+## Exit & Start over in Exam/Practice
+
+- Overflow menu on the exam screen now exposes **Start over** and **Exit**.
+- Exiting marks the current attempt as aborted before navigating back to the mode selector.
+- Starting over restarts practice with the same configuration or rebuilds an IP Mock session with a new seed.
+
 ## Publishing to Google Play (Internal → Production)
 
 Follow the [Android release checklist](./docs/RELEASE_CHECKLIST.md) for the detailed runbook that covers build prep, asset sync, QA, Google Play submission, and post-release follow-up.
