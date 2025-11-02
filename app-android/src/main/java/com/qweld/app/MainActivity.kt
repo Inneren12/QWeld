@@ -23,6 +23,7 @@ import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
+import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.auth.firebase.FirebaseAuthService
@@ -36,9 +37,15 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
+  companion object {
+    private const val RULES_ASSET_PATH = "rules/welder_exam_2024.json"
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
+    runCatching { AppRulesLoader(applicationContext).load(RULES_ASSET_PATH) }
+      .onFailure { Timber.e(it, "[rules_load_error] path=%s", RULES_ASSET_PATH) }
     val analytics = FirebaseAnalyticsImpl(Firebase.analytics, BuildConfig.ENABLE_ANALYTICS)
     val userPrefs = UserPrefsDataStore(applicationContext)
     userPrefs

@@ -2,9 +2,11 @@ package com.qweld.app.feature.exam.data
 
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.TaskQuota
+import java.io.InputStream
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import timber.log.Timber
 
 class BlueprintJsonLoader(
   private val json: Json = DEFAULT_JSON,
@@ -60,6 +62,21 @@ class BlueprintJsonLoader(
       totalQuestions = dto.questionCount,
       taskQuotas = quotas,
     )
+  }
+
+  fun loadFromAssets(assetOpener: (String) -> InputStream?, path: String): ExamBlueprint {
+    val payload =
+      assetOpener(path)?.use { stream ->
+        stream.bufferedReader().use { it.readText() }
+      } ?: throw IllegalArgumentException("Blueprint asset not found: $path")
+    val blueprint = decode(payload)
+    Timber.i(
+      "[blueprint_source] type=asset path=%s total=%d tasks=%d",
+      path,
+      blueprint.totalQuestions,
+      blueprint.taskQuotas.size,
+    )
+    return blueprint
   }
 
   @Serializable

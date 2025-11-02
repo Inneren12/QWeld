@@ -52,13 +52,13 @@ import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
 import com.qweld.app.i18n.LocaleController
+import com.qweld.app.ui.AboutScreen
 import com.qweld.app.ui.SettingsScreen
 import com.qweld.app.ui.TopBarMenus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import androidx.compose.ui.unit.dp
-import com.qweld.app.ui.SettingsScreen
 
 @Composable
 fun AppNavGraph(
@@ -187,6 +187,10 @@ fun AppNavGraph(
           Timber.i("[ui_nav] screen=Settings")
           navController.navigate(Routes.SETTINGS) { launchSingleTop = true }
         },
+        onNavigateToAbout = {
+          Timber.i("[ui_nav] screen=About")
+          navController.navigate(Routes.ABOUT) { launchSingleTop = true }
+        },
         onSignOut = {
           scope.launch {
             runCatching { authService.signOut() }
@@ -298,6 +302,9 @@ fun AppNavGraph(
             },
           onBack = { navController.popBackStack() },
         )
+      }
+      composable(Routes.ABOUT) {
+        AboutScreen(onBack = { navController.popBackStack() })
       }
     }
     if (showLogDialog && logExportActions != null) {
@@ -456,6 +463,7 @@ private object Routes {
   const val EXAM = "exam"
   const val SYNC = "sync"
   const val SETTINGS = "settings"
+  const val ABOUT = "about"
 }
 
 @Composable

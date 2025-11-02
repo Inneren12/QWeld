@@ -1,0 +1,3 @@
+-keep class kotlinx.serialization.** { *; }
+-keep class kotlinx.coroutines.** { *; }
+-dontwarn kotlinx.**

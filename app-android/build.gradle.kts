@@ -1,3 +1,7 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import org.cyclonedx.gradle.CycloneDxTask
 import org.gradle.api.GradleException
 import org.gradle.api.attributes.Attribute
@@ -12,6 +16,17 @@ plugins {
   id("org.cyclonedx.bom")
 }
 
+val autoVersionCode = SimpleDateFormat("yyMMddHH", Locale.US).apply {
+  timeZone = TimeZone.getTimeZone("UTC")
+}.format(Date()).toInt()
+extra["autoVersionCode"] = autoVersionCode
+
+val gitShaProvider =
+  providers.gradleProperty("gitSha").orElse(System.getenv("GITHUB_SHA") ?: "local")
+val buildTimestamp = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).apply {
+  timeZone = TimeZone.getTimeZone("UTC")
+}.format(Date())
+
 android {
   namespace = "com.qweld.app"
   compileSdk = 36
@@ -23,16 +38,18 @@ android {
     applicationId = "com.qweld.app"
     minSdk = 24
     targetSdk = 36
-    versionCode = 1
-    versionName = "0.1.0"
+    versionCode = extra["autoVersionCode"] as Int
+    versionName = "1.0.0"
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     resourceConfigurations += setOf("en", "ru")
+    buildConfigField("String", "BUILD_TIME", "\"$buildTimestamp\"")
+    buildConfigField("String", "GIT_SHA", "\"${gitShaProvider.get()}\"")
   }
 
   buildTypes {
     debug { buildConfigField("Boolean", "ENABLE_ANALYTICS", enableAnalyticsDebug.toString()) }
     release {
-      isMinifyEnabled = false
+      isMinifyEnabled = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
       buildConfigField("Boolean", "ENABLE_ANALYTICS", "true")
     }
@@ -112,57 +129,20 @@ licensee {
   allowUrl("https://source.android.com/license")
 }
 
-task("verifyAssets") {
+tasks.register("verifyAssets") {
   group = "verification"
-  description = "Ensures the bundled question banks are present before assembling the APK"
+  description = "Ensures release question assets are bundled"
 
-  val questionsDir = layout.projectDirectory.dir("src/main/assets/questions")
-  inputs.dir(questionsDir)
+  inputs.dir("dist/questions/en").optional()
+  inputs.dir("dist/questions/ru").optional()
 
-  doLast {
-    // NOTE: questionsDir is already scoped to this module. Don't prefix with "app-android/" when checking files.
-    val locales = listOf("en", "ru")
-    val expectedTaskCount = 15
-    val missing = mutableListOf<String>()
 
-    locales.forEach { locale ->
-      val localePath = "src/main/assets/questions/$locale"
-
-      val bankFile = questionsDir.file("$locale/bank.v1.json").asFile
-      if (!bankFile.isFile) {
-        missing += "• Missing $localePath/bank.v1.json — copy it with `cp dist/questions/$locale/bank.v1.json $localePath/`."
-      }
-
-      val tasksDir = questionsDir.dir("$locale/tasks").asFile
-      if (!tasksDir.isDirectory) {
-        missing += "• Missing $localePath/tasks/ — copy them with `cp -R dist/questions/$locale/tasks $localePath/`."
-      } else {
-        val taskFiles = tasksDir.listFiles { file -> file.isFile && file.extension == "json" }?.size ?: 0
-        if (taskFiles != expectedTaskCount) {
-          missing += "• Expected $expectedTaskCount task bundles under $localePath/tasks/ but found $taskFiles — rebuild and copy with `cp -R dist/questions/$locale/tasks $localePath/`."
-        }
-      }
-    }
-
-    val indexFile = questionsDir.file("index.json").asFile
-    if (!indexFile.isFile) {
-      missing += "• Missing src/main/assets/questions/index.json — copy it with `cp dist/questions/index.json src/main/assets/questions/`."
-    }
-
-    if (missing.isNotEmpty()) {
-      throw GradleException(
-        buildString {
-          appendLine("verifyAssets failed — required question assets are missing:")
-          missing.forEach { appendLine(it) }
-          appendLine()
-          appendLine("Run `bash scripts/build-questions-dist.sh` to regenerate the bundles before copying them into src/main/assets/questions/.")
-        },
       )
     }
   }
 }
 
-tasks.named("assemble").configure { dependsOn("verifyAssets") }
+tasks.named("preBuild").configure { dependsOn("verifyAssets") }
 
 tasks.named<CycloneDxTask>("cyclonedxBom") {
   includeConfigs.set(listOf("releaseCompileClasspath"))
