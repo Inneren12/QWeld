@@ -1,0 +1,23 @@
+{
+  "blueprintId": "welder_ip_sk_202404",
+  "bankVersion": "v1",
+  "files": {
+    "questions/en/bank.v1.json": { "sha256": "7a1318256d3a1682be9652a71775f84bd861664a30d3aa8c0680674ed9b2b83b" },
+    "questions/en/meta/task_labels.json": { "sha256": "18078312dfe8e6b981f873613c9b694c911e233a85e23172f3818025213e2367" },
+    "questions/en/tasks/A-1.json": { "sha256": "ee4d384f5c9ec116fbc7ea8eb09d5699c1c942f0919f268134bb6bd2fc67fb4b" },
+    "questions/en/tasks/A-2.json": { "sha256": "55d37f0a1aca78110d6dbac7381af8eef5824574112f0dc842ac807afd6db5f1" },
+    "questions/en/tasks/A-3.json": { "sha256": "ceabbd8e2267227a08a0225dad0b27458e308f0ba9d5fa21ad552ecbcca01f8a" },
+    "questions/en/tasks/A-4.json": { "sha256": "07946016bdd8e08fa1d78bd5607157e188c360dabe606cf7e4cfcf86d3b3ebd0" },
+    "questions/en/tasks/A-5.json": { "sha256": "aaa993976a084ddd7e5a0e197d88eaf3ef5aa33a9d4b8716d3a3b202e0b749c1" },
+    "questions/en/tasks/B-6.json": { "sha256": "65e70ce33cf2c9f41191e0bd6cab526e501b4605fd66ad71ceeb44fdfcd2a8d1" },
+    "questions/en/tasks/B-7.json": { "sha256": "922f45b26629f4d616379f27de80d855dcb2948e55ce9501e771714413e6655b" },
+    "questions/en/tasks/C-8.json": { "sha256": "d82707779c950b178392baa921775d6b24500507e3533b49bf4f1a3ce77cb84c" },
+    "questions/en/tasks/C-9.json": { "sha256": "15afdcf2464ee9800a2ee5e91e2b824635af2e49da06139c80349e19e09b9287" },
+    "questions/en/tasks/C-10.json": { "sha256": "d4c0ee4248e02990f9bd03345d1ef31936058807960c8b1b208ff4d0c75ed371" },
+    "questions/en/tasks/C-11.json": { "sha256": "4a4ea58ea473a2de960ef4d31f24477db10eb3086fa39403c6ac2b18a93a6f04" },
+    "questions/en/tasks/D-12.json": { "sha256": "7fb3b0fd814a6ec0fef56de3a637e22f4afef85a0e93a91d415a90ffa9baf1f7" },
+    "questions/en/tasks/D-13.json": { "sha256": "da77f612eb064b820f99ecfe391105a8fb102ea5e5c39c46569257e4fe5dfef0" },
+    "questions/en/tasks/D-14.json": { "sha256": "e0fe57f306e6a38ed2d01e0b66a17406984801369d0fd9ba35714219446ae3b9" },
+    "questions/en/tasks/D-15.json": { "sha256": "a09781c7993c399dcb337e8251615f6e5402bbd5b47f06bd0e4e5846b7a0c3ba" }
+  }
+}

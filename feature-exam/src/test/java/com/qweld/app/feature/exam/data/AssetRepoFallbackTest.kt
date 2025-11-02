@@ -6,6 +6,7 @@ import kotlin.test.assertIs
 import kotlin.test.assertTrue
 import org.junit.Test
 import kotlinx.serialization.json.Json
+import com.qweld.app.feature.exam.data.TestIntegrity
 
 class AssetRepoFallbackTest {
   @Test
@@ -137,7 +138,9 @@ class AssetRepoFallbackTest {
     localeResolver: () -> String = { "en" },
     cacheCapacity: Int = 8,
   ): Pair<AssetQuestionRepository, CallRecorder> {
-    val recorder = CallRecorder(payloads, listings)
+    val bytes = payloads.mapValues { it.value.toByteArray() }
+    val assets = TestIntegrity.addIndexes(bytes)
+    val recorder = CallRecorder(assets, listings)
     val assetReader =
       AssetQuestionRepository.AssetReader(
         opener = recorder::open,
@@ -154,14 +157,14 @@ class AssetRepoFallbackTest {
   }
 
   private class CallRecorder(
-    private val payloads: Map<String, String>,
+    private val payloads: Map<String, ByteArray>,
     private val listings: Map<String, List<String>>,
   ) {
     val openCounts = mutableMapOf<String, Int>()
     private val listCounts = mutableMapOf<String, Int>()
 
     fun open(path: String) =
-      payloads[path]?.byteInputStream()?.also {
+      payloads[path]?.inputStream()?.also {
         openCounts[path] = openCounts.getOrDefault(path, 0) + 1
       }
 

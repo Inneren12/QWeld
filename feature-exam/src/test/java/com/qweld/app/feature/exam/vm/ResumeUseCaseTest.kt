@@ -7,6 +7,7 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.TestIntegrity
 import java.time.Duration
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -158,8 +159,12 @@ class ResumeUseCaseTest {
       }
       append("]")
     }
+    val assets =
+      TestIntegrity.addIndexes(
+        mapOf("questions/en/bank.v1.json" to questions.toByteArray()),
+      )
     return AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader(open = { questions.byteInputStream() }),
+      assetReader = AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )

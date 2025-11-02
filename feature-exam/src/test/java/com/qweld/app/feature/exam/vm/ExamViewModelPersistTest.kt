@@ -10,6 +10,7 @@ import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.TestIntegrity
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -151,8 +152,12 @@ class ExamViewModelPersistTest {
       }
       append("]")
     }
+    val assets =
+      TestIntegrity.addIndexes(
+        mapOf("questions/en/bank.v1.json" to questions.toByteArray()),
+      )
     return AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader(open = { questions.byteInputStream() }),
+      assetReader = AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )

@@ -11,6 +11,7 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.TestIntegrity
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
@@ -97,8 +98,9 @@ class ExamViewModelStartTest {
       val json = questionArray(taskId, count, locale)
       "questions/$locale/tasks/$taskId.json" to json
     }
+    val assets = TestIntegrity.addIndexes(payloads.mapValues { it.value.toByteArray() })
     return AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader(opener = { path -> payloads[path]?.byteInputStream() }),
+      assetReader = AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
       localeResolver = { locale },
       json = Json { ignoreUnknownKeys = true },
     )
