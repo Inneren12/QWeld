@@ -36,7 +36,7 @@ class PracticeWeightedPickTest {
       )
     val practiceCounts = mutableMapOf(novelId to 0, knownId to 0)
     repeat(40) { idx ->
-      val attempt =
+      val result =
         runBlocking {
           practiceAssembler.assemble(
             userId = "user",
@@ -46,6 +46,7 @@ class PracticeWeightedPickTest {
             blueprint = blueprint,
           )
         }
+      val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
       val picked = attempt.questions.single().question.id
       practiceCounts[picked] = practiceCounts.getValue(picked) + 1
     }
@@ -59,7 +60,7 @@ class PracticeWeightedPickTest {
       )
     val ipCounts = mutableMapOf(novelId to 0, knownId to 0)
     repeat(40) { idx ->
-      val attempt =
+      val result =
         runBlocking {
           ipAssembler.assemble(
             userId = "user",
@@ -69,6 +70,7 @@ class PracticeWeightedPickTest {
             blueprint = blueprint,
           )
         }
+      val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
       val picked = attempt.questions.single().question.id
       ipCounts[picked] = ipCounts.getValue(picked) + 1
     }

@@ -30,7 +30,7 @@ class DeterminismTest {
         logger = logs1::add,
       )
     val seed = AttemptSeed(42L)
-    val attempt1 =
+    val result1 =
       runBlocking {
         assembler1.assemble(
           userId = "user",
@@ -40,6 +40,7 @@ class DeterminismTest {
           blueprint = blueprint,
         )
       }
+    val attempt1 = (result1 as ExamAssembler.AssemblyResult.Ok).exam
 
     val logs2 = mutableListOf<String>()
     val assembler2 =
@@ -49,7 +50,7 @@ class DeterminismTest {
         clock = fixedClock(),
         logger = logs2::add,
       )
-    val attempt2 =
+    val result2 =
       runBlocking {
         assembler2.assemble(
           userId = "user",
@@ -59,6 +60,7 @@ class DeterminismTest {
           blueprint = blueprint,
         )
       }
+    val attempt2 = (result2 as ExamAssembler.AssemblyResult.Ok).exam
 
     assertEquals(
       attempt1.questions.map { it.question.id },

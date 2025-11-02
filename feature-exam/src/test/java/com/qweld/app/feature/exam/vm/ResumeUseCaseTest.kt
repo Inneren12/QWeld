@@ -31,14 +31,14 @@ class ResumeUseCaseTest {
   fun reconstructAttemptProducesDeterministicOrder() = runTest {
     val useCase = createUseCase()
 
-    val first =
+    val firstResult =
       useCase.reconstructAttempt(
         mode = ExamMode.PRACTICE,
         seed = 42L,
         locale = "en",
         questionCount = 2,
       )
-    val second =
+    val secondResult =
       useCase.reconstructAttempt(
         mode = ExamMode.PRACTICE,
         seed = 42L,
@@ -46,24 +46,27 @@ class ResumeUseCaseTest {
         questionCount = 2,
       )
 
-    val firstIds = first.attempt.questions.map { it.question.id }
-    val secondIds = second.attempt.questions.map { it.question.id }
+    require(firstResult is ResumeUseCase.ReconstructionResult.Success)
+    require(secondResult is ResumeUseCase.ReconstructionResult.Success)
+    val firstIds = firstResult.attempt.questions.map { it.question.id }
+    val secondIds = secondResult.attempt.questions.map { it.question.id }
     assertEquals(firstIds, secondIds)
     assertFalse(firstIds.isEmpty())
-    assertTrue(first.rationales.isNotEmpty())
+    assertTrue(firstResult.rationales.isNotEmpty())
   }
 
   @Test
   fun mergeAnswersReturnsFirstUnansweredIndex() = runTest {
     val useCase = createUseCase()
-    val reconstruction =
+    val reconstructionResult =
       useCase.reconstructAttempt(
         mode = ExamMode.PRACTICE,
         seed = 1L,
         locale = "en",
         questionCount = 3,
       )
-    val questions = reconstruction.attempt.questions
+    require(reconstructionResult is ResumeUseCase.ReconstructionResult.Success)
+    val questions = reconstructionResult.attempt.questions
     val first = questions.first()
     val answers =
       listOf(

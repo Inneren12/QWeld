@@ -30,10 +30,21 @@ class ResumeUseCase(
   private val ioDispatcher: CoroutineDispatcher,
 ) {
 
-  data class Reconstruction(
-    val attempt: com.qweld.app.domain.exam.ExamAttempt,
-    val rationales: Map<String, String>,
-  )
+  sealed class ReconstructionResult {
+    data class Success(
+      val attempt: com.qweld.app.domain.exam.ExamAttempt,
+      val rationales: Map<String, String>,
+    ) : ReconstructionResult()
+
+    data class Deficit(
+      val taskId: String,
+      val required: Int,
+      val have: Int,
+      val seed: Long,
+    ) : ReconstructionResult() {
+      val missing: Int get() = required - have
+    }
+  }
 
   data class MergeState(
     val answers: Map<String, String>,
@@ -45,7 +56,7 @@ class ResumeUseCase(
     seed: Long,
     locale: String,
     questionCount: Int,
-  ): Reconstruction {
+  ): ReconstructionResult {
     val normalizedLocale = locale.lowercase(Locale.US)
     val blueprint = blueprintProvider(mode, questionCount)
     val requestedTasks =
@@ -76,7 +87,7 @@ class ResumeUseCase(
         logger = { },
       )
 
-    val attempt =
+    val assembly =
       withContext(ioDispatcher) {
         assembler.assemble(
           userId = userIdProvider(),
@@ -87,7 +98,16 @@ class ResumeUseCase(
         )
       }
 
-    return Reconstruction(attempt = attempt, rationales = rationales)
+    return when (assembly) {
+      is ExamAssembler.AssemblyResult.Ok -> ReconstructionResult.Success(assembly.exam, rationales)
+      is ExamAssembler.AssemblyResult.Deficit ->
+        ReconstructionResult.Deficit(
+          taskId = assembly.taskId,
+          required = assembly.required,
+          have = assembly.have,
+          seed = assembly.seed,
+        )
+    }
   }
 
   fun mergeAnswers(

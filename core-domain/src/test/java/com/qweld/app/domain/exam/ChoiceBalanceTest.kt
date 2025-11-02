@@ -20,7 +20,7 @@ class ChoiceBalanceTest {
 
   @Test
   fun `single attempt stays within 10 percent tolerance`() {
-    val attempt =
+    val result =
       runBlocking {
         assembler.assemble(
           userId = "user",
@@ -30,6 +30,7 @@ class ChoiceBalanceTest {
           blueprint = blueprint,
         )
       }
+    val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
     val histogram = attempt.correctPositionHistogram()
     val total = attempt.questions.size
     histogram.values.forEach { count ->
@@ -43,7 +44,7 @@ class ChoiceBalanceTest {
     val attempts = 100
     val aggregate = mutableMapOf("A" to 0, "B" to 0, "C" to 0, "D" to 0)
     repeat(attempts) { idx ->
-      val attempt =
+      val result =
         runBlocking {
           assembler.assemble(
             userId = "user",
@@ -53,6 +54,7 @@ class ChoiceBalanceTest {
             blueprint = blueprint,
           )
         }
+      val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
       attempt.correctPositionHistogram().forEach { (key, value) ->
         aggregate[key] = aggregate.getValue(key) + value
       }
