@@ -12,59 +12,18 @@ exec > >(tee -a "${LOG_FILE}") 2>&1
 
 echo "[policy] start"
 
-if [[ -d "${REPO_ROOT}/.ci-node/node_modules" ]]; then
-  if [[ -z "${NODE_PATH:-}" ]]; then
-    export NODE_PATH="${REPO_ROOT}/.ci-node/node_modules"
-  else
-    export NODE_PATH="${NODE_PATH}:${REPO_ROOT}/.ci-node/node_modules"
-  fi
-fi
-
-SCHEMA="${SCRIPT_DIR}/schemas/blueprint.schema.json"
+SCHEMA_REL="schemas/welder_blueprint.schema.json"
+BLUEPRINT_REL="../../content/blueprints/welder_ip_sk_202404.json"
 BLUEPRINT="${REPO_ROOT}/content/blueprints/welder_ip_sk_202404.json"
 
-if node - "${SCHEMA}" "${BLUEPRINT}" <<'NODE'
-const fs = require('fs');
-const path = require('path');
-
-let Ajv;
-try {
-  Ajv = require('ajv');
-} catch (error) {
-  console.error('[blueprint] ERROR: ajv module is not available');
-  process.exit(1);
-}
-
-let addFormats = () => {};
-try {
-  addFormats = require('ajv-formats');
-} catch (error) {
-  // ajv-formats is optional; continue without it when not present
-}
-
-const [, , schemaPath, dataPath] = process.argv;
-
-const loadJson = (filePath) => {
-  const absolute = path.resolve(filePath);
-  return JSON.parse(fs.readFileSync(absolute, 'utf8'));
-};
-
-const schema = loadJson(schemaPath);
-const data = loadJson(dataPath);
-
-const ajv = new Ajv({ allErrors: true, strict: false });
-addFormats(ajv);
-
-const validate = ajv.compile(schema);
-const valid = validate(data);
-
-if (!valid) {
-  console.error('[blueprint] schema validation errors:');
-  console.error(JSON.stringify(validate.errors, null, 2));
-  process.exit(1);
-}
-NODE
-then
+if (
+  cd "${REPO_ROOT}/tools/schema-validation"
+  npx ajv validate \
+    -s "${SCHEMA_REL}" \
+    -d "${BLUEPRINT_REL}" \
+    -c ajv-formats \
+    --strict=false --all-errors --spec=draft7
+); then
   echo "[blueprint] schema validation=ok"
 else
   echo "[blueprint] ERROR: schema validation failed"

@@ -117,23 +117,16 @@ jobs:
         uses: actions/setup-node@v4
         with: { node-version: '20' }
 
-      - name: (Ephemeral) prepare Ajv (no workspace)
+      - name: Install schema validation deps
         if: ${{ matrix.shard == 0 }}
-        shell: bash
+        working-directory: tools/schema-validation
         env:
           npm_config_loglevel: error
-        run: |
-          set -euo pipefail
-          mkdir -p .ci-node
-          npm install ajv ajv-formats \
-            --no-save --no-audit --no-fund --no-package-lock \
-            --prefix ./.ci-node
-          node -e "console.log('ajv@'+require('./.ci-node/node_modules/ajv/package.json').version)"
-          echo "NODE_PATH=${{ github.workspace }}/.ci-node/node_modules" >> $GITHUB_ENV
+        run: npm ci
 
-      - name: Verify Ajv modules
+      - name: Validate schema bundles
         if: ${{ matrix.shard == 0 }}
-        run: node -e "require('ajv'); require('ajv-formats'); console.log('Ajv modules OK')"
+        run: bash tools/schema-validation/run.sh
 
       - name: Validate blueprint schema
         if: ${{ matrix.shard == 0 && steps.diff.outputs.blueprint == 'true' }}
