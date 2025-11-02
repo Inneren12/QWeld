@@ -5,6 +5,7 @@ import java.util.TimeZone
 import org.cyclonedx.gradle.CycloneDxTask
 import org.gradle.api.GradleException
 import org.gradle.api.attributes.Attribute
+import org.gradle.language.base.plugins.LifecycleBasePlugin
 
 plugins {
   id("com.android.application")
@@ -129,21 +130,6 @@ licensee {
   allowUrl("https://source.android.com/license")
 }
 
-tasks.register("verifyAssets") {
-  group = "verification"
-  description = "Ensures release question assets are bundled"
-
-  inputs.dir("dist/questions/en").optional()
-  inputs.dir("dist/questions/ru").optional()
-
-
-      )
-    }
-  }
-}
-
-tasks.named("preBuild").configure { dependsOn("verifyAssets") }
-
 tasks.named<CycloneDxTask>("cyclonedxBom") {
   includeConfigs.set(listOf("releaseCompileClasspath"))
   outputFormat.set("json")
@@ -152,4 +138,61 @@ tasks.named<CycloneDxTask>("cyclonedxBom") {
   destination.set(layout.buildDirectory.dir("reports/bom").map { it.asFile })
   skipProjects.set(emptyList())
   skipProjects.addAll("core-model", "core-data", "feature-exam", "feature-auth")
+}
+
+val verifyAssets by tasks.registering {
+  group = LifecycleBasePlugin.VERIFICATION_GROUP
+  description = "Verify presence of question bank and per-task bundles in module assets"
+
+  doLast {
+    val locales = listOf("en", "ru")
+    val expectedTaskCount = 15
+    val problems = mutableListOf<String>()
+
+    fun exists(rel: String) = project.file(rel).exists()
+
+    locales.forEach { locale ->
+      val base = "src/main/assets/questions/$locale"
+
+      if (!exists("$base/bank.v1.json")) {
+        problems += "• Missing $base/bank.v1.json — copy via:  cp dist/questions/$locale/bank.v1.json $base/"
+      }
+
+      val tasksDir = project.file("$base/tasks")
+      if (!tasksDir.isDirectory) {
+        problems += "• Missing $base/tasks/ — copy via:  cp -R dist/questions/$locale/tasks $base/"
+      } else {
+        val count = tasksDir.listFiles { f -> f.isFile && f.extension == "json" }?.size ?: 0
+        if (count != expectedTaskCount) {
+          problems += "• Expected $expectedTaskCount task bundles under $base/tasks/ but found $count — rebuild & copy from dist."
+        }
+      }
+    }
+
+    if (!exists("src/main/assets/questions/index.json")) {
+      problems += "• Missing src/main/assets/questions/index.json — copy via:  cp dist/questions/index.json src/main/assets/questions/"
+    }
+
+    if (problems.isNotEmpty()) {
+      throw GradleException(
+        buildString {
+          appendLine("❌ verifyAssets failed — required question assets are missing:")
+          problems.forEach { appendLine(it) }
+          appendLine()
+          appendLine("Run `bash scripts/build-questions-dist.sh` then copy `dist/questions/**` into `src/main/assets/questions/`.")
+        }
+      )
+    } else {
+      println("✅ Questions assets verified.")
+    }
+  }
+}
+
+plugins.withId("com.android.application") {
+  val skip = (project.findProperty("skipVerifyAssets")?.toString()?.toBoolean() == true)
+  if (!skip) {
+    tasks.named("preBuild").configure { dependsOn(verifyAssets) }
+  } else {
+    logger.lifecycle("⚠️  skipVerifyAssets=true — verifyAssets is skipped for :app-android")
+  }
 }
