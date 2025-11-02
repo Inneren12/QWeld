@@ -83,6 +83,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Place the flattened exam banks under `app-android/src/main/assets/questions/{en,ru}/bank.v1.json`; copy them from `dist/questions/{en,ru}/bank.v1.json` after running the dist builder.
 - The Android app boots directly into the exam mode chooser powered by `:feature-exam`; it loads the localized bank on startup and shows a snackbar/toast if the asset is missing.
 
+### Practice scope: blocks & custom tasks (mix)
+- Tapping **Practice** now opens a bottom sheet where you can keep the default A–D selection or toggle **Custom tasks…** to cherry-pick specific tasks with handy per-block **Select all** / **Clear** actions.
+- Pick the distribution strategy — **Proportional (by exam blueprint)** scales quotas via largest remainder, while **Even** gives every chosen task an equal share — and the app keeps the total aligned with the saved practice size.
+- The sheet previews the final question count, rejects empty selections with a **No tasks selected** snackbar, and immediately launches the weighted, wrong-biased sampler on confirmation.
+
 ### F5-D review & explain
 - Complete an exam attempt to unlock the Review screen, which lists every answered item with your selection, the correct choice, and the quick rationale from the bank.
 - Tapping **Explain** opens a bottom sheet that pulls structured content from `app-android/src/main/assets/explanations/<locale>/<taskId>/<id>__explain_<locale>.json`; the sheet falls back to the quick rationale if the asset is missing.
