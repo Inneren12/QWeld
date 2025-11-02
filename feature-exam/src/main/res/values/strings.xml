@@ -51,6 +51,7 @@
     <string name="exam_previous">Previous</string>
     <string name="exam_next">Next</string>
     <string name="exam_finish">Finish</string>
+    <string name="finish_exam">Finish exam</string>
     <string name="exam_previous_cd">Go to the previous question</string>
     <string name="exam_next_cd">Go to the next question</string>
     <string name="exam_finish_cd">Submit answers and finish the exam</string>
@@ -67,6 +68,7 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_restart">Restart</string>
     <string name="action_exit">Exit</string>
+    <string name="exit">Exit</string>
     <string name="exam_overflow_cd">Open exam menu</string>
     <string name="result_title">Exam results</string>
     <string name="result_score">Score: %1$s (%2$d / %3$d)</string>
