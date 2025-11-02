@@ -89,6 +89,18 @@ class AssetQuestionRepository internal constructor(
     synchronized(cacheLock) { taskCache.clear() }
   }
 
+  fun loadTaskLabels(locale: String): TaskLabelSet {
+    val path = "questions/$locale/meta/$TASK_LABELS_FILE"
+    return when (val result = readTaskLabels(path)) {
+      is AssetPayload.Success -> result.value
+      AssetPayload.Missing -> TaskLabelSet.EMPTY
+      is AssetPayload.Error -> {
+        Timber.w(result.throwable, "[repo_labels] locale=%s path=%s error", locale, path)
+        TaskLabelSet.EMPTY
+      }
+    }
+  }
+
   fun loadQuestions(locale: String? = null, tasks: Set<String>? = null): LoadResult {
     val resolvedLocale = resolveLocale(locale)
     val normalizedTasks = tasks?.filter { it.isNotBlank() }?.toSet()?.takeIf { it.isNotEmpty() }
@@ -279,6 +291,28 @@ class AssetQuestionRepository internal constructor(
     }
   }
 
+  private fun readTaskLabels(path: String): AssetPayload<TaskLabelSet> {
+    return readAsset(path) { input ->
+      val payload = input.bufferedReader().use { reader -> reader.readText() }
+      val dto = json.decodeFromString(TaskLabelsPayload.serializer(), payload)
+      TaskLabelSet(
+        blocks = dto.blocks.normalizeLabels(),
+        tasks = dto.tasks.normalizeLabels(),
+      )
+    }
+  }
+
+  private fun Map<String, String>?.normalizeLabels(): Map<String, String> {
+    if (this.isNullOrEmpty()) return emptyMap()
+    return entries
+      .mapNotNull { entry ->
+        val key = entry.key.trim().uppercase(Locale.US)
+        val value = entry.value.trim()
+        if (key.isEmpty() || value.isEmpty()) null else key to value
+      }
+      .toMap()
+  }
+
   private fun <T> readAsset(
     path: String,
     reader: (InputStream) -> T,
@@ -386,6 +420,21 @@ class AssetQuestionRepository internal constructor(
     data class Error(val throwable: Throwable) : AssetPayload<Nothing>
   }
 
+  @Serializable
+  private data class TaskLabelsPayload(
+    val blocks: Map<String, String>? = null,
+    val tasks: Map<String, String>? = null,
+  )
+
+  data class TaskLabelSet(
+    val blocks: Map<String, String>,
+    val tasks: Map<String, String>,
+  ) {
+    companion object {
+      val EMPTY = TaskLabelSet(emptyMap(), emptyMap())
+    }
+  }
+
   companion object {
     private val DEFAULT_JSON = Json { ignoreUnknownKeys = true }
     private const val DEFAULT_LOCALE = "en"
@@ -393,6 +442,7 @@ class AssetQuestionRepository internal constructor(
     private const val MIN_CACHE_CAPACITY = 4
     private const val MAX_CACHE_CAPACITY = 32
     private const val TASKS_DIR = "tasks"
+    private const val TASK_LABELS_FILE = "task_labels.json"
     private val QUESTION_LIST_SERIALIZER = ListSerializer(QuestionDTO.serializer())
 
     private fun resolveLanguage(configuration: Configuration): String {

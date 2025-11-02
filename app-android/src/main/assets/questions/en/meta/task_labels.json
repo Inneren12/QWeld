@@ -1,0 +1,25 @@
+{
+  "blocks": {
+    "A": "Block A — Safety & Tools",
+    "B": "Block B — Drawings & Measurement",
+    "C": "Block C — Materials & Metallurgy",
+    "D": "Block D — Welding processes"
+  },
+  "tasks": {
+    "A-1": "Shop safety",
+    "A-2": "Electrical hazards",
+    "A-3": "Ventilation & fumes",
+    "A-4": "Fire watch",
+    "A-5": "Finishing tools",
+    "B-6": "Blueprint basics",
+    "B-7": "Weld symbols",
+    "C-8": "Material identification",
+    "C-9": "Metal properties",
+    "C-10": "Thermal cutting",
+    "C-11": "Gouging",
+    "D-12": "Process fundamentals",
+    "D-13": "WPS & parameters",
+    "D-14": "Inspection & QA",
+    "D-15": "Discontinuities"
+  }
+}

@@ -2,17 +2,16 @@ package com.qweld.app.feature.exam.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
@@ -34,8 +33,8 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -63,11 +62,13 @@ import java.util.LinkedHashSet
 import java.util.Locale
 import kotlin.math.roundToInt
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PracticeScopeSheet(
   size: Int,
   tasksByBlock: Map<String, List<String>>,
+  blockLabels: Map<String, String> = emptyMap(),
+  taskLabels: Map<String, String> = emptyMap(),
   scope: PracticeScope,
   blueprint: ExamBlueprint,
   lastScope: UserPrefsDataStore.LastScope?,
@@ -116,7 +117,11 @@ fun PracticeScopeSheet(
   var selectedTasks by remember { mutableStateOf(normalizeSet(scope.taskIds)) }
   var distribution by remember { mutableStateOf(scope.distribution) }
   var showCustom by remember { mutableStateOf(scope.taskIds.isNotEmpty()) }
-  var selectedPreset by remember { mutableStateOf(detectPresetForScope(scope, lastScope)) }
+  var selectedPreset by remember {
+    mutableStateOf(
+      detectPresetForScope(scope, lastScope).takeIf { it == PracticeScopePresetName.LAST_USED },
+    )
+  }
 
   LaunchedEffect(scope, lastScope) {
     val initial =
@@ -131,8 +136,9 @@ fun PracticeScopeSheet(
     selectedTasks = normalizedTasks
     distribution = initial.distribution
     showCustom = normalizedTasks.isNotEmpty()
-    selectedPreset =
-      if (lastScope != null) PracticeScopePresetName.LAST_USED else detectPresetForScope(initial, lastScope)
+    selectedPreset = detectPresetForScope(initial, lastScope).takeIf {
+      it == PracticeScopePresetName.LAST_USED
+    }
   }
 
   val previewSize by remember(selectedBlocks, selectedTasks, distribution, effectiveSize, blueprint) {
@@ -158,321 +164,346 @@ fun PracticeScopeSheet(
         taskIds = selectedTasks,
         distribution = distribution,
       )
-    selectedPreset = detectPresetForScope(currentScope, lastScope)
+    selectedPreset = detectPresetForScope(currentScope, lastScope).takeIf {
+      it == PracticeScopePresetName.LAST_USED
+    }
   }
 
+  val blockOrder = listOf("A", "B", "C", "D")
+
   ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheetState) {
-    val scrollState = rememberScrollState()
     Column(
       modifier = Modifier
         .fillMaxWidth()
-        .verticalScroll(scrollState)
-        .padding(horizontal = 24.dp, vertical = 16.dp),
-      verticalArrangement = Arrangement.spacedBy(16.dp),
+        .navigationBarsPadding()
+        .imePadding(),
     ) {
-      Text(
-        text = stringResource(id = R.string.practice_scope_title),
-        style = MaterialTheme.typography.titleLarge,
-      )
-      Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(
-          text = stringResource(id = R.string.practice_scope_presets),
-          style = MaterialTheme.typography.titleMedium,
-        )
-        val presets =
-          listOf(
-            PracticeScopePresetName.A_ONLY,
-            PracticeScopePresetName.B_ONLY,
-            PracticeScopePresetName.C_ONLY,
-            PracticeScopePresetName.D_ONLY,
-            PracticeScopePresetName.A_B,
-            PracticeScopePresetName.C_D,
-            PracticeScopePresetName.ALL,
-            PracticeScopePresetName.LAST_USED,
+      LazyColumn(
+        modifier = Modifier
+          .fillMaxWidth()
+          .weight(1f, fill = true),
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+      ) {
+        item {
+          Text(
+            text = stringResource(id = R.string.practice_scope_title),
+            style = MaterialTheme.typography.titleLarge,
           )
-        FlowRow(
-          horizontalArrangement = Arrangement.spacedBy(8.dp),
-          verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-          for (preset in presets) {
-            val labelRes =
-              when (preset) {
-                PracticeScopePresetName.A_ONLY -> R.string.practice_scope_preset_a_only
-                PracticeScopePresetName.B_ONLY -> R.string.practice_scope_preset_b_only
-                PracticeScopePresetName.C_ONLY -> R.string.practice_scope_preset_c_only
-                PracticeScopePresetName.D_ONLY -> R.string.practice_scope_preset_d_only
-                PracticeScopePresetName.A_B -> R.string.practice_scope_preset_a_b
-                PracticeScopePresetName.C_D -> R.string.practice_scope_preset_c_d
-                PracticeScopePresetName.ALL -> R.string.practice_scope_preset_all
-                PracticeScopePresetName.LAST_USED -> R.string.practice_scope_preset_last_used
-              }
-            val enabled = preset != PracticeScopePresetName.LAST_USED || lastScope != null
-            FilterChip(
-              selected = selectedPreset == preset,
-              onClick = {
-                if (!enabled) return@FilterChip
-                val applied = preset.toScope(distribution, lastScope) ?: return@FilterChip
-                val blocks = normalizeSet(applied.blocks)
-                val tasks = normalizeSet(applied.taskIds)
-                selectedBlocks = blocks
-                selectedTasks = tasks
-                distribution = applied.distribution
-                showCustom = tasks.isNotEmpty()
-                selectedPreset = preset
-              },
-              label = { Text(text = stringResource(id = labelRes)) },
-              enabled = enabled,
-              colors = FilterChipDefaults.filterChipColors(),
-            )
-          }
         }
-      }
-
-      Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(
-          text = stringResource(id = R.string.practice_scope_questions_label),
-          style = MaterialTheme.typography.titleMedium,
-        )
-        val supportingText =
-          if (showInvalidSize) {
-            stringResource(id = R.string.practice_scope_questions_invalid)
-          } else {
-            stringResource(
-              id = R.string.practice_scope_questions_hint,
-              PracticeConfig.MIN_SIZE,
-              PracticeConfig.MAX_SIZE,
-            )
-          }
-        val supportingColor =
-          if (showInvalidSize || isOutOfRange) {
-            MaterialTheme.colorScheme.error
-          } else {
-            MaterialTheme.colorScheme.onSurfaceVariant
-          }
-        val minusEnabled = effectiveSize > PracticeConfig.MIN_SIZE
-        val plusEnabled = effectiveSize < PracticeConfig.MAX_SIZE
-        Row(
-          modifier = Modifier.fillMaxWidth(),
-          horizontalArrangement = Arrangement.spacedBy(12.dp),
-          verticalAlignment = Alignment.CenterVertically,
-        ) {
-          IconButton(onClick = { adjustSize(-1) }, enabled = minusEnabled) {
-            Icon(
-              imageVector = Icons.Filled.Remove,
-              contentDescription = stringResource(id = R.string.practice_scope_questions_decrease),
-            )
-          }
-          TextField(
-            modifier =
-              Modifier
-                .weight(1f)
-                .onPreviewKeyEvent { event ->
-                  if (event.type != KeyEventType.KeyDown || !event.isCtrlPressed) {
-                    return@onPreviewKeyEvent false
-                  }
-                  when (event.key) {
-                    Key.DirectionUp, Key.DirectionRight -> {
-                      adjustSize(+1)
-                      true
-                    }
-                    Key.DirectionDown, Key.DirectionLeft -> {
-                      adjustSize(-1)
-                      true
-                    }
-                    else -> false
-                  }
-                },
-            value = sizeText,
-            onValueChange = { newValue ->
-              val digits = newValue.filter { it.isDigit() }
-              sizeText = digits.take(3)
-              showInvalidSize = false
-            },
-            singleLine = true,
-            textStyle = MaterialTheme.typography.bodyLarge,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            supportingText = {
-              Text(text = supportingText, color = supportingColor, style = MaterialTheme.typography.bodySmall)
-            },
-            isError = showInvalidSize || isOutOfRange,
-          )
-          IconButton(onClick = { adjustSize(+1) }, enabled = plusEnabled) {
-            Icon(
-              imageVector = Icons.Filled.Add,
-              contentDescription = stringResource(id = R.string.practice_scope_questions_increase),
-            )
-          }
-        }
-        val sliderSteps = (PracticeConfig.MAX_SIZE - PracticeConfig.MIN_SIZE).coerceAtLeast(1) - 1
-        Slider(
-          modifier = Modifier.fillMaxWidth(),
-          value = effectiveSize.toFloat(),
-          onValueChange = { updated -> setSize(updated.roundToInt()) },
-          valueRange = PracticeConfig.MIN_SIZE.toFloat()..PracticeConfig.MAX_SIZE.toFloat(),
-          steps = sliderSteps,
-        )
-        Row(
-          modifier = Modifier.fillMaxWidth(),
-          horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-          TextButton(onClick = { setSize(PracticeConfig.MIN_SIZE) }, enabled = effectiveSize != PracticeConfig.MIN_SIZE) {
-            Text(text = stringResource(id = R.string.practice_scope_questions_min, PracticeConfig.MIN_SIZE))
-          }
-          TextButton(onClick = { setSize(PracticeConfig.MAX_SIZE) }, enabled = effectiveSize != PracticeConfig.MAX_SIZE) {
-            Text(text = stringResource(id = R.string.practice_scope_questions_max, PracticeConfig.MAX_SIZE))
-          }
-        }
-      }
-      Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(
-          text = stringResource(id = R.string.practice_scope_blocks),
-          style = MaterialTheme.typography.titleMedium,
-        )
-        val blockOrder = listOf("A", "B", "C", "D")
-        for (blockId in blockOrder) {
-          val hasTasks = tasksByBlock[blockId].orEmpty().isNotEmpty()
-          Row(
+        item {
+          Column(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
           ) {
-            Checkbox(
-              checked = selectedBlocks.contains(normalizeValue(blockId)),
-              onCheckedChange = { checked ->
-                val updated = LinkedHashSet(selectedBlocks)
-                if (checked) {
-                  updated += normalizeValue(blockId)
-                } else {
-                  updated -= normalizeValue(blockId)
-                }
-                selectedBlocks = normalizeSet(updated)
-                updatePresetFromSelection()
-              },
-              enabled = hasTasks,
-            )
             Text(
-              text = stringResource(id = R.string.practice_scope_block_label, blockId),
-              style = MaterialTheme.typography.bodyLarge,
+              text = stringResource(id = R.string.practice_scope_presets),
+              style = MaterialTheme.typography.titleMedium,
             )
+            val preset = PracticeScopePresetName.LAST_USED
+            val enabled = lastScope != null
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+              FilterChip(
+                selected = selectedPreset == preset,
+                onClick = {
+                  if (!enabled) return@FilterChip
+                  val applied = preset.toScope(distribution, lastScope) ?: return@FilterChip
+                  val blocks = normalizeSet(applied.blocks)
+                  val tasks = normalizeSet(applied.taskIds)
+                  selectedBlocks = blocks
+                  selectedTasks = tasks
+                  distribution = applied.distribution
+                  showCustom = tasks.isNotEmpty()
+                  selectedPreset = preset
+                },
+                label = { Text(text = stringResource(id = R.string.practice_scope_preset_last_used)) },
+                enabled = enabled,
+                colors = FilterChipDefaults.filterChipColors(),
+              )
+            }
           }
         }
-        val hasSelection = selectedTasks.isNotEmpty() || selectedBlocks.isNotEmpty()
-        if (!hasSelection) {
-          Text(
-            text = stringResource(id = R.string.practice_scope_selection_hint),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.error,
-          )
+        item {
+          Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+          ) {
+            Text(
+              text = stringResource(id = R.string.practice_scope_questions_label),
+              style = MaterialTheme.typography.titleMedium,
+            )
+            val supportingText =
+              if (showInvalidSize) {
+                stringResource(id = R.string.practice_scope_questions_invalid)
+              } else {
+                stringResource(
+                  id = R.string.practice_scope_questions_hint,
+                  PracticeConfig.MIN_SIZE,
+                  PracticeConfig.MAX_SIZE,
+                )
+              }
+            val supportingColor =
+              if (showInvalidSize || isOutOfRange) {
+                MaterialTheme.colorScheme.error
+              } else {
+                MaterialTheme.colorScheme.onSurfaceVariant
+              }
+            val minusEnabled = effectiveSize > PracticeConfig.MIN_SIZE
+            val plusEnabled = effectiveSize < PracticeConfig.MAX_SIZE
+            Row(
+              modifier = Modifier.fillMaxWidth(),
+              horizontalArrangement = Arrangement.spacedBy(12.dp),
+              verticalAlignment = Alignment.CenterVertically,
+            ) {
+              IconButton(onClick = { adjustSize(-1) }, enabled = minusEnabled) {
+                Icon(
+                  imageVector = Icons.Filled.Remove,
+                  contentDescription = stringResource(id = R.string.practice_scope_questions_decrease),
+                )
+              }
+              TextField(
+                modifier =
+                  Modifier
+                    .weight(1f)
+                    .onPreviewKeyEvent { event ->
+                      if (event.type != KeyEventType.KeyDown || !event.isCtrlPressed) {
+                        return@onPreviewKeyEvent false
+                      }
+                      when (event.key) {
+                        Key.DirectionUp, Key.DirectionRight -> {
+                          adjustSize(+1)
+                          true
+                        }
+                        Key.DirectionDown, Key.DirectionLeft -> {
+                          adjustSize(-1)
+                          true
+                        }
+                        else -> false
+                      }
+                    },
+                value = sizeText,
+                onValueChange = { newValue ->
+                  val digits = newValue.filter { it.isDigit() }
+                  sizeText = digits.take(3)
+                  showInvalidSize = false
+                },
+                singleLine = true,
+                textStyle = MaterialTheme.typography.bodyLarge,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                supportingText = {
+                  Text(
+                    text = supportingText,
+                    color = supportingColor,
+                    style = MaterialTheme.typography.bodySmall,
+                  )
+                },
+                isError = showInvalidSize || isOutOfRange,
+              )
+              IconButton(onClick = { adjustSize(+1) }, enabled = plusEnabled) {
+                Icon(
+                  imageVector = Icons.Filled.Add,
+                  contentDescription = stringResource(id = R.string.practice_scope_questions_increase),
+                )
+              }
+            }
+            val sliderSteps = (PracticeConfig.MAX_SIZE - PracticeConfig.MIN_SIZE).coerceAtLeast(1) - 1
+            Slider(
+              modifier = Modifier.fillMaxWidth(),
+              value = effectiveSize.toFloat(),
+              onValueChange = { updated -> setSize(updated.roundToInt()) },
+              valueRange = PracticeConfig.MIN_SIZE.toFloat()..PracticeConfig.MAX_SIZE.toFloat(),
+              steps = sliderSteps,
+            )
+            Row(
+              modifier = Modifier.fillMaxWidth(),
+              horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+              TextButton(onClick = { setSize(PracticeConfig.MIN_SIZE) }, enabled = effectiveSize != PracticeConfig.MIN_SIZE) {
+                Text(text = stringResource(id = R.string.practice_scope_questions_min, PracticeConfig.MIN_SIZE))
+              }
+              TextButton(onClick = { setSize(PracticeConfig.MAX_SIZE) }, enabled = effectiveSize != PracticeConfig.MAX_SIZE) {
+                Text(text = stringResource(id = R.string.practice_scope_questions_max, PracticeConfig.MAX_SIZE))
+              }
+            }
+          }
         }
-      }
-      TextButton(onClick = { showCustom = !showCustom }) {
-        Text(text = stringResource(id = R.string.practice_scope_custom_tasks))
-      }
-      if (showCustom) {
-        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-          Text(
-            text = stringResource(id = R.string.practice_scope_select_tasks),
-            style = MaterialTheme.typography.titleMedium,
-          )
-          for ((blockId, tasks) in tasksByBlock) {
-            if (tasks.isEmpty()) continue
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        item {
+          Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+          ) {
+            Text(
+              text = stringResource(id = R.string.practice_scope_blocks),
+              style = MaterialTheme.typography.titleMedium,
+            )
+            for (blockId in blockOrder) {
+              val hasTasks = tasksByBlock[blockId].orEmpty().isNotEmpty()
+              val blockTitle =
+                blockLabels[normalizeValue(blockId)]?.takeIf { it.isNotBlank() }
+                  ?: stringResource(id = R.string.practice_scope_block_label, blockId)
               Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
               ) {
-                Text(
-                  text = stringResource(id = R.string.practice_scope_block_label, blockId),
-                  style = MaterialTheme.typography.titleSmall,
+                Checkbox(
+                  checked = selectedBlocks.contains(normalizeValue(blockId)),
+                  onCheckedChange = { checked ->
+                    val updated = LinkedHashSet(selectedBlocks)
+                    if (checked) {
+                      updated += normalizeValue(blockId)
+                    } else {
+                      updated -= normalizeValue(blockId)
+                    }
+                    selectedBlocks = normalizeSet(updated)
+                    updatePresetFromSelection()
+                  },
+                  enabled = hasTasks,
                 )
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                  TextButton(
-                    onClick = {
-                      val updated = LinkedHashSet(selectedTasks)
-                      updated.addAll(tasks.map(::normalizeValue))
-                      selectedTasks = normalizeSet(updated)
-                      showCustom = true
-                      updatePresetFromSelection()
-                    },
-                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
-                  ) {
-                    Text(text = stringResource(id = R.string.practice_scope_select_all_block))
-                  }
-                  TextButton(
-                    onClick = {
-                      val updated = LinkedHashSet(selectedTasks)
-                      val normalized = tasks.map(::normalizeValue).toSet()
-                      updated.removeAll(normalized)
-                      selectedTasks = normalizeSet(updated)
-                      showCustom = true
-                      updatePresetFromSelection()
-                    },
-                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
-                  ) {
-                    Text(text = stringResource(id = R.string.practice_scope_clear_block))
-                  }
-                }
+                Text(text = blockTitle, style = MaterialTheme.typography.bodyLarge)
               }
-              for (taskId in tasks) {
-                Row(
-                  modifier = Modifier.fillMaxWidth(),
-                  verticalAlignment = Alignment.CenterVertically,
-                ) {
-                  val normalizedTask = normalizeValue(taskId)
-                  Checkbox(
-                    checked = selectedTasks.contains(normalizedTask),
-                    onCheckedChange = { checked ->
-                      val updated = LinkedHashSet(selectedTasks)
-                      if (checked) {
-                        updated += normalizedTask
-                      } else {
-                        updated -= normalizedTask
+            }
+            val hasSelection = selectedTasks.isNotEmpty() || selectedBlocks.isNotEmpty()
+            if (!hasSelection) {
+              Text(
+                text = stringResource(id = R.string.practice_scope_selection_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error,
+              )
+            }
+          }
+        }
+        item {
+          TextButton(onClick = { showCustom = !showCustom }) {
+            Text(text = stringResource(id = R.string.practice_scope_custom_tasks))
+          }
+        }
+        if (showCustom) {
+          item {
+            Column(
+              modifier = Modifier.fillMaxWidth(),
+              verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+              Text(
+                text = stringResource(id = R.string.practice_scope_select_tasks),
+                style = MaterialTheme.typography.titleMedium,
+              )
+              for (blockId in blockOrder) {
+                val tasks = tasksByBlock[blockId].orEmpty()
+                if (tasks.isEmpty()) continue
+                val blockTitle =
+                  blockLabels[normalizeValue(blockId)]?.takeIf { it.isNotBlank() }
+                    ?: stringResource(id = R.string.practice_scope_block_label, blockId)
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                  Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                  ) {
+                    Text(text = blockTitle, style = MaterialTheme.typography.titleSmall)
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                      TextButton(
+                        onClick = {
+                          val updated = LinkedHashSet(selectedTasks)
+                          updated.addAll(tasks.map(::normalizeValue))
+                          selectedTasks = normalizeSet(updated)
+                          showCustom = true
+                          updatePresetFromSelection()
+                        },
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+                      ) {
+                        Text(text = stringResource(id = R.string.practice_scope_select_all_block))
                       }
-                      selectedTasks = normalizeSet(updated)
-                      showCustom = true
-                      updatePresetFromSelection()
-                    },
-                  )
-                  Text(text = taskId, style = MaterialTheme.typography.bodyLarge)
+                      TextButton(
+                        onClick = {
+                          val updated = LinkedHashSet(selectedTasks)
+                          val normalized = tasks.map(::normalizeValue).toSet()
+                          updated.removeAll(normalized)
+                          selectedTasks = normalizeSet(updated)
+                          showCustom = true
+                          updatePresetFromSelection()
+                        },
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+                      ) {
+                        Text(text = stringResource(id = R.string.practice_scope_clear_block))
+                      }
+                    }
+                  }
+                  for (taskId in tasks) {
+                    Row(
+                      modifier = Modifier.fillMaxWidth(),
+                      verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                      val normalizedTask = normalizeValue(taskId)
+                      Checkbox(
+                        checked = selectedTasks.contains(normalizedTask),
+                        onCheckedChange = { checked ->
+                          val updated = LinkedHashSet(selectedTasks)
+                          if (checked) {
+                            updated += normalizedTask
+                          } else {
+                            updated -= normalizedTask
+                          }
+                          selectedTasks = normalizeSet(updated)
+                          showCustom = true
+                          updatePresetFromSelection()
+                        },
+                      )
+                      val taskTitle =
+                        taskLabels[normalizedTask]?.takeIf { it.isNotBlank() }?.let { label ->
+                          "$taskId — $label"
+                        } ?: taskId
+                      Text(text = taskTitle, style = MaterialTheme.typography.bodyLarge)
+                    }
+                  }
                 }
               }
             }
           }
         }
-      }
-      Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(
-          text = stringResource(id = R.string.practice_scope_distribution),
-          style = MaterialTheme.typography.titleMedium,
-        )
-        val options = listOf(Distribution.Proportional, Distribution.Even)
-        for (option in options) {
-          Row(
+        item {
+          Column(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
           ) {
-            RadioButton(
-              selected = distribution == option,
-              onClick = {
-                distribution = option
-                updatePresetFromSelection()
-              },
+            Text(
+              text = stringResource(id = R.string.practice_scope_distribution),
+              style = MaterialTheme.typography.titleMedium,
             )
-            val label =
-              when (option) {
-                Distribution.Proportional -> stringResource(id = R.string.practice_scope_distribution_proportional)
-                Distribution.Even -> stringResource(id = R.string.practice_scope_distribution_even)
+            val options = listOf(Distribution.Proportional, Distribution.Even)
+            for (option in options) {
+              Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+              ) {
+                RadioButton(
+                  selected = distribution == option,
+                  onClick = {
+                    distribution = option
+                    updatePresetFromSelection()
+                  },
+                )
+                val label =
+                  when (option) {
+                    Distribution.Proportional -> stringResource(id = R.string.practice_scope_distribution_proportional)
+                    Distribution.Even -> stringResource(id = R.string.practice_scope_distribution_even)
+                  }
+                Text(text = label, style = MaterialTheme.typography.bodyLarge)
               }
-            Text(text = label, style = MaterialTheme.typography.bodyLarge)
+            }
           }
         }
+        item {
+          Text(
+            text = stringResource(id = R.string.practice_scope_result_size, previewSize),
+            style = MaterialTheme.typography.bodyMedium,
+          )
+        }
       }
-      Text(
-        text = stringResource(id = R.string.practice_scope_result_size, previewSize),
-        style = MaterialTheme.typography.bodyMedium,
-      )
       Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(horizontal = 24.dp)
+          .padding(top = 8.dp, bottom = 24.dp),
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
       ) {
