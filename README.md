@@ -104,6 +104,14 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Place the flattened exam banks under `app-android/src/main/assets/questions/{en,ru}/bank.v1.json`; copy them from `dist/questions/{en,ru}/bank.v1.json` after running the dist builder.
 - The Android app boots directly into the exam mode chooser powered by `:feature-exam`; it loads the localized bank on startup and shows a snackbar/toast if the asset is missing.
 
+#### verifyAssets guard
+
+```bash
+./gradlew :app-android:verifyAssets
+```
+
+This task runs automatically before `assemble*` and fails the build when `bank.v1.json`, any of the 15 per-task bundles, or `index.json` are missing. Rebuild the questions with `bash scripts/build-questions-dist.sh` and copy the outputs from `dist/questions/` into `app-android/src/main/assets/questions/` to resolve the failure.
+
 ### Practice scope: blocks & custom tasks (mix)
 - Tapping **Practice** now opens a bottom sheet where you can keep the default A–D selection or toggle **Custom tasks…** to cherry-pick specific tasks with handy per-block **Select all** / **Clear** actions.
 - Pick the distribution strategy — **Proportional (by exam blueprint)** scales quotas via largest remainder, while **Even** gives every chosen task an equal share — and the app keeps the total aligned with the saved practice size.
