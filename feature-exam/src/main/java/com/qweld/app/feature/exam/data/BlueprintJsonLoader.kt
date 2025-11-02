@@ -11,11 +11,42 @@ class BlueprintJsonLoader(
 ) {
   fun decode(payload: String): ExamBlueprint {
     val dto = json.decodeFromString(BlueprintDTO.serializer(), payload)
-    val allTasks = dto.blocks.flatMap { it.tasks }
+    val blocks = dto.blocks
+    val allTasks = blocks.flatMap { it.tasks }
+
+    require(allTasks.size == EXPECTED_TASK_COUNT) {
+      "Blueprint must contain exactly $EXPECTED_TASK_COUNT tasks (found ${allTasks.size})"
+    }
+
+    require(blocks.none { it.id.isBlank() }) { "Block ids must be non-blank" }
+
+    val invalidTaskIds = mutableListOf<String>()
+    val duplicateTaskIds = mutableListOf<String>()
+    val seenTaskIds = mutableSetOf<String>()
+    for (block in blocks) {
+      val prefix = "${block.id}-"
+      for (task in block.tasks) {
+        if (!task.id.startsWith(prefix)) {
+          invalidTaskIds += task.id
+        }
+        if (!seenTaskIds.add(task.id)) {
+          duplicateTaskIds += task.id
+        }
+      }
+    }
+
+    require(duplicateTaskIds.isEmpty()) {
+      "Duplicate task ids detected: ${duplicateTaskIds.sorted()}"
+    }
+
+    require(invalidTaskIds.isEmpty()) {
+      "Task ids must match their block prefix: ${invalidTaskIds.sorted()}"
+    }
+
     val invalid = allTasks.filter { it.quota <= 0 }.map { it.id }
     require(invalid.isEmpty()) { "Each task quota must be positive: ${invalid.sorted()}" }
 
-    val quotas = dto.blocks.flatMap { block ->
+    val quotas = blocks.flatMap { block ->
       block.tasks.map { task ->
         TaskQuota(
           taskId = task.id,
@@ -51,5 +82,6 @@ class BlueprintJsonLoader(
 
   companion object {
     val DEFAULT_JSON: Json = Json { ignoreUnknownKeys = true }
+    private const val EXPECTED_TASK_COUNT = 15
   }
 }
