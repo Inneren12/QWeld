@@ -30,7 +30,7 @@ class AssetQuestionRepositoryTest {
       )
 
     val result = repository.loadQuestions("en")
-    val success = assertIs<AssetQuestionRepository.Result.Success>(result)
+    val success = assertIs<AssetQuestionRepository.LoadResult.Success>(result)
     val questions = success.questions
     assertEquals(1, questions.size)
     assertEquals("Q-1", questions.first().id)

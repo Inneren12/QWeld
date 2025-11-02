@@ -41,7 +41,7 @@ import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
-import com.qweld.app.feature.exam.data.AssetQuestionRepository.Result
+import com.qweld.app.feature.exam.data.AssetQuestionRepository.LoadResult
 import com.qweld.app.feature.exam.navigation.ExamDestinations
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.PracticeConfig
@@ -100,9 +100,12 @@ fun ModeScreen(
 
   LaunchedEffect(resolvedLanguage, repository) {
     when (val result = repository.loadQuestions(resolvedLanguage)) {
-      is Result.Success -> Unit
-      is Result.Missing -> showBankMissingMessage(snackbarHostState, context, result.locale)
-      is Result.Error -> showBankMissingMessage(snackbarHostState, context, result.locale)
+      is LoadResult.Success -> Unit
+      LoadResult.Missing -> showBankMissingMessage(snackbarHostState, context, resolvedLanguage)
+      is LoadResult.Corrupt -> {
+        Timber.w("[mode_bank_corrupt] locale=%s reason=%s", resolvedLanguage, result.reason)
+        showBankMissingMessage(snackbarHostState, context, resolvedLanguage)
+      }
     }
   }
 

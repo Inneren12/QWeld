@@ -89,7 +89,7 @@ class AssetQuestionRepository internal constructor(
     synchronized(cacheLock) { taskCache.clear() }
   }
 
-  fun loadQuestions(locale: String? = null, tasks: Set<String>? = null): Result {
+  fun loadQuestions(locale: String? = null, tasks: Set<String>? = null): LoadResult {
     val resolvedLocale = resolveLocale(locale)
     val normalizedTasks = tasks?.filter { it.isNotBlank() }?.toSet()?.takeIf { it.isNotEmpty() }
 
@@ -110,7 +110,7 @@ class AssetQuestionRepository internal constructor(
           elapsed,
           perTask.cacheHits,
         )
-        return Result.Success(locale = resolvedLocale, questions = questionList)
+        return LoadResult.Success(locale = resolvedLocale, questions = questionList)
       } else {
         Timber.w(
           "[repo_load] src=per-task locale=%s task=%s fallback=bank",
@@ -130,14 +130,20 @@ class AssetQuestionRepository internal constructor(
           outcome.value.size,
           bankElapsed,
         )
-        return Result.Success(locale = resolvedLocale, questions = outcome.value)
+        return LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
         Timber.w("[repo_load] src=bank locale=%s task=* missing", resolvedLocale)
       }
       is AssetPayload.Error -> {
-        Timber.e(outcome.throwable, "[repo_load] src=bank locale=%s task=* error", resolvedLocale)
-        return Result.Error(locale = resolvedLocale, cause = outcome.throwable)
+        val reason = outcome.throwable.toReason(prefix = "bank_asset_error")
+        Timber.e(
+          outcome.throwable,
+          "[repo_load] src=bank locale=%s task=* error reason=%s",
+          resolvedLocale,
+          reason,
+        )
+        return LoadResult.Corrupt(reason)
       }
     }
 
@@ -151,15 +157,21 @@ class AssetQuestionRepository internal constructor(
           outcome.value.size,
           singlesElapsed,
         )
-        Result.Success(locale = resolvedLocale, questions = outcome.value)
+        LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
         Timber.w("[repo_load] src=raw locale=%s task=* missing", resolvedLocale)
-        Result.Missing(resolvedLocale)
+        LoadResult.Missing
       }
       is AssetPayload.Error -> {
-        Timber.e(outcome.throwable, "[repo_load] src=raw locale=%s task=* error", resolvedLocale)
-        Result.Error(locale = resolvedLocale, cause = outcome.throwable)
+        val reason = outcome.throwable.toReason(prefix = "raw_asset_error")
+        Timber.e(
+          outcome.throwable,
+          "[repo_load] src=raw locale=%s task=* error reason=%s",
+          resolvedLocale,
+          reason,
+        )
+        LoadResult.Corrupt(reason)
       }
     }
   }
@@ -322,20 +334,28 @@ class AssetQuestionRepository internal constructor(
     cause: Throwable,
   ) : TaskLoadException("Unable to read task asset: $path", cause)
 
-  sealed interface Result {
-    val locale: String
-
+  sealed class LoadResult {
     data class Success(
-      override val locale: String,
+      val locale: String,
       val questions: List<QuestionDTO>,
-    ) : Result
+    ) : LoadResult()
 
-    data class Missing(override val locale: String) : Result
+    object Missing : LoadResult()
 
-    data class Error(
-      override val locale: String,
-      val cause: Throwable,
-    ) : Result
+    data class Corrupt(val reason: String) : LoadResult()
+  }
+
+  private fun Throwable.toReason(prefix: String): String {
+    val sanitized = message?.trim()?.replace(Regex("\\s+"), " ")
+    return buildString {
+      append(prefix)
+      append(':')
+      append(javaClass.simpleName)
+      if (!sanitized.isNullOrEmpty()) {
+        append(':')
+        append(sanitized)
+      }
+    }
   }
 
   @Serializable

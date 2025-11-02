@@ -47,7 +47,7 @@ class PrewarmUseCase(
         normalizedLocale,
         elapsed,
       )
-      val ok = result is AssetQuestionRepository.Result.Success
+      val ok = result is AssetQuestionRepository.LoadResult.Success
       Timber.i(
         "[prewarm_done] src=bank locale=%s ok=%s fallback=bank",
         normalizedLocale,
@@ -81,7 +81,7 @@ class PrewarmUseCase(
       }
     }
 
-    var fallbackResult: AssetQuestionRepository.Result? = null
+    var fallbackResult: AssetQuestionRepository.LoadResult? = null
     if (fallbackToBank.get()) {
       val (elapsed, result) = measureWithElapsed { repository.loadQuestions(normalizedLocale) }
       Timber.i(
@@ -103,11 +103,11 @@ class PrewarmUseCase(
       if (fallbackToBank.get()) "bank" else "none",
       overallElapsed,
     )
-    if (fallbackResult is AssetQuestionRepository.Result.Error) {
+    if (fallbackResult is AssetQuestionRepository.LoadResult.Corrupt) {
       Timber.w(
-        fallbackResult.cause,
-        "[prewarm_bank_error] src=bank locale=%s",
+        "[prewarm_bank_corrupt] src=bank locale=%s reason=%s",
         normalizedLocale,
+        fallbackResult.reason,
       )
     }
   }
@@ -156,8 +156,8 @@ class PrewarmUseCase(
   }
 
   private suspend fun measureWithElapsed(
-    block: suspend () -> AssetQuestionRepository.Result,
-  ): Pair<Long, AssetQuestionRepository.Result> {
+    block: suspend () -> AssetQuestionRepository.LoadResult,
+  ): Pair<Long, AssetQuestionRepository.LoadResult> {
     val start = nowProvider()
     val result = withContext(ioDispatcher) { block() }
     return nowProvider() - start to result

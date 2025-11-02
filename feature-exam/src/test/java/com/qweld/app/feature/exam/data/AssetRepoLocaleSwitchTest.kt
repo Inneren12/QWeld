@@ -26,12 +26,12 @@ class AssetRepoLocaleSwitchTest {
       )
 
     val enResult = repository.loadQuestions(locale = "en", tasks = setOf("D-13"))
-    val enSuccess = assertIs<AssetQuestionRepository.Result.Success>(enResult)
+    val enSuccess = assertIs<AssetQuestionRepository.LoadResult.Success>(enResult)
     assertEquals("en", enSuccess.questions.first().locale)
     assertEquals("\"Stem EN\"", enSuccess.questions.first().stem.toString())
 
     val ruResult = repository.loadQuestions(locale = "ru", tasks = setOf("D-13"))
-    val ruSuccess = assertIs<AssetQuestionRepository.Result.Success>(ruResult)
+    val ruSuccess = assertIs<AssetQuestionRepository.LoadResult.Success>(ruResult)
     assertEquals("ru", ruSuccess.questions.first().locale)
     assertEquals("\"Stem RU\"", ruSuccess.questions.first().stem.toString())
   }

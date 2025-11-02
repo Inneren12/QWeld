@@ -30,7 +30,7 @@ class AssetRepoPerTaskTest {
       )
 
     val result = repository.loadQuestions(locale = "en", tasks = setOf("D-13", "D-14"))
-    val success = assertIs<AssetQuestionRepository.Result.Success>(result)
+    val success = assertIs<AssetQuestionRepository.LoadResult.Success>(result)
     assertEquals(2, success.questions.size)
     assertEquals(setOf("questions/en/tasks/D-13.json", "questions/en/tasks/D-14.json"), opened.toSet())
   }
@@ -67,7 +67,7 @@ class AssetRepoPerTaskTest {
       )
 
     val result = repository.loadQuestions(locale = "en", tasks = setOf("D-13"))
-    val success = assertIs<AssetQuestionRepository.Result.Success>(result)
+    val success = assertIs<AssetQuestionRepository.LoadResult.Success>(result)
     assertEquals(1, success.questions.size)
     assertTrue(opened.contains("questions/en/tasks/D-13.json"))
     assertTrue(opened.contains("questions/en/bank.v1.json"))
