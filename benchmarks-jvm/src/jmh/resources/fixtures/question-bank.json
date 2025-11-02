@@ -1,0 +1,20 @@
+{
+  "locale": "en",
+  "tasks": [
+    { "taskId": "A-1", "count": 4 },
+    { "taskId": "A-2", "count": 4 },
+    { "taskId": "A-3", "count": 5 },
+    { "taskId": "A-4", "count": 4 },
+    { "taskId": "A-5", "count": 7 },
+    { "taskId": "B-6", "count": 10 },
+    { "taskId": "B-7", "count": 15 },
+    { "taskId": "C-8", "count": 5 },
+    { "taskId": "C-9", "count": 7 },
+    { "taskId": "C-10", "count": 5 },
+    { "taskId": "C-11", "count": 4 },
+    { "taskId": "D-12", "count": 18 },
+    { "taskId": "D-13", "count": 21 },
+    { "taskId": "D-14", "count": 12 },
+    { "taskId": "D-15", "count": 4 }
+  ]
+}

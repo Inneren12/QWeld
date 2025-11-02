@@ -18,6 +18,7 @@ pluginManagement {
     id("com.google.firebase.crashlytics") version "2.9.9"
     id("app.cash.licensee") version "1.7.0"
     id("org.cyclonedx.bom") version "1.9.0"
+    id("me.champeau.jmh") version "0.7.3"
   }
 }
 
@@ -39,4 +40,5 @@ include(
   ":core-data",
   ":feature-exam",
   ":feature-auth",
+  ":benchmarks-jvm",
 )
