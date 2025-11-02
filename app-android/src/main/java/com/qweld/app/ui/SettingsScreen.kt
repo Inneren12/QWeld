@@ -1,9 +1,7 @@
 package com.qweld.app.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -11,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -38,9 +35,11 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.qweld.app.R
@@ -133,13 +132,14 @@ fun SettingsScreen(
     contentIntegrity = mismatches
   }
   LaunchedEffect(contentIndex) {
-    contentIndex?.index?.locales?.toSortedMap()?.forEach { (locale, info) ->
-      val tasksLog =
-        CONTENT_TASK_IDS.joinToString(separator = " ") { taskId ->
-          val count = info.tasks[taskId] ?: 0
-          "$taskId=$count"
-        }
-      Timber.i("[content_info] locale=%s total=%d %s", locale, info.total, tasksLog)
+    contentIndex?.locales?.toSortedMap()?.forEach { (locale, info) ->
+      Timber.i(
+        "[content_info] locale=%s blueprint=%s bankVersion=%s files=%d",
+        locale,
+        info.blueprintId ?: "unknown",
+        info.bankVersion ?: "unknown",
+        info.files.size,
+      )
     }
   }
 
@@ -449,67 +449,63 @@ private fun SettingsContentInfoSection(
 ) {
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
     Text(text = stringResource(id = R.string.settings_section_content_info), style = MaterialTheme.typography.titleMedium)
-    if (contentIndex == null) {
+    val locales = contentIndex?.locales?.toSortedMap()
+    if (locales.isNullOrEmpty()) {
       Text(
         text = stringResource(id = R.string.settings_content_not_available),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
     } else {
-      contentIndex.index.locales.entries.sortedBy { it.key }.forEach { (localeCode, localeInfo) ->
+      locales.forEach { (localeCode, localeInfo) ->
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
           Text(
-            text = stringResource(
-              id = R.string.settings_content_total,
-              localeCode.uppercase(Locale.ROOT),
-              localeInfo.total,
-            ),
+            text = stringResource(id = R.string.settings_content_locale_title, localeCode.uppercase(Locale.ROOT)),
             style = MaterialTheme.typography.bodyLarge,
           )
-          ContentInfoTable(tasks = localeInfo.tasks)
+          localeInfo.blueprintId?.let { blueprint ->
+            Text(
+              text = stringResource(id = R.string.settings_content_blueprint, blueprint),
+              style = MaterialTheme.typography.bodyMedium,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+          }
+          localeInfo.bankVersion?.let { version ->
+            Text(
+              text = stringResource(id = R.string.settings_content_bank_version, version),
+              style = MaterialTheme.typography.bodyMedium,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+          }
+          ContentInfoFileList(files = localeInfo.files)
         }
       }
-      Text(
-        text = stringResource(id = R.string.settings_content_generated_at, contentIndex.index.generatedAt),
-        style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-      )
     }
-    Button(onClick = onCopyIndex, enabled = contentIndex != null, modifier = Modifier.fillMaxWidth()) {
+    Button(onClick = onCopyIndex, enabled = !locales.isNullOrEmpty(), modifier = Modifier.fillMaxWidth()) {
       Text(text = stringResource(id = R.string.settings_content_copy_json))
     }
   }
 }
 
 @Composable
-private fun ContentInfoTable(tasks: Map<String, Int>) {
-  val columnWidth = 56.dp
-  val headerHeight = 32.dp
-  val cellHeight = 36.dp
-  val scrollState = rememberScrollState()
-  Row(
-    modifier = Modifier.horizontalScroll(scrollState),
-    horizontalArrangement = Arrangement.spacedBy(4.dp),
-  ) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-      Box(modifier = Modifier.size(columnWidth, headerHeight))
-      CONTENT_TASK_LETTERS.forEach { letter ->
-        Box(modifier = Modifier.size(columnWidth, cellHeight), contentAlignment = Alignment.Center) {
-          Text(text = letter, style = MaterialTheme.typography.labelMedium)
-        }
-      }
-    }
-    CONTENT_TASK_NUMBERS.forEach { number ->
+private fun ContentInfoFileList(files: List<ContentIndexReader.FileEntry>) {
+  if (files.isEmpty()) return
+  Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    Text(
+      text = stringResource(id = R.string.settings_content_files_title),
+      style = MaterialTheme.typography.labelMedium,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
+    SelectionContainer {
       Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Box(modifier = Modifier.size(columnWidth, headerHeight), contentAlignment = Alignment.Center) {
-          Text(text = number.toString(), style = MaterialTheme.typography.labelMedium)
-        }
-        CONTENT_TASK_LETTERS.forEach { letter ->
-          val taskId = "$letter-$number"
-          val value = tasks[taskId] ?: 0
-          Box(modifier = Modifier.size(columnWidth, cellHeight), contentAlignment = Alignment.Center) {
-            Text(text = value.toString(), style = MaterialTheme.typography.bodySmall)
-          }
+        files.forEach { entry ->
+          val relativePath = entry.path.removePrefix("questions/")
+          Text(
+            text = stringResource(id = R.string.settings_content_file_entry, relativePath, entry.sha256),
+            style = MaterialTheme.typography.bodySmall,
+            fontFamily = FontFamily.Monospace,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+          )
         }
       }
     }
@@ -541,20 +537,24 @@ private fun SettingsIntegritySection(contentIntegrity: List<ContentIndexReader.M
         )
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
           contentIntegrity.forEach { mismatch ->
+            val label =
+              mismatch.locale?.let { locale ->
+                "[${locale.uppercase(Locale.ROOT)}] ${mismatch.path}"
+              } ?: mismatch.path
             val message =
               when (mismatch.reason) {
                 ContentIndexReader.Mismatch.Reason.INDEX_MISSING ->
-                  stringResource(id = R.string.settings_integrity_issue_index, mismatch.path)
+                  stringResource(id = R.string.settings_integrity_issue_index, label)
                 ContentIndexReader.Mismatch.Reason.FILE_MISSING ->
                   stringResource(
                     id = R.string.settings_integrity_issue_missing,
-                    mismatch.path,
+                    label,
                     mismatch.expectedHash ?: stringResource(id = R.string.settings_integrity_unknown),
                   )
                 ContentIndexReader.Mismatch.Reason.HASH_MISMATCH ->
                   stringResource(
                     id = R.string.settings_integrity_issue_hash,
-                    mismatch.path,
+                    label,
                     mismatch.expectedHash ?: stringResource(id = R.string.settings_integrity_unknown),
                     mismatch.actualHash ?: stringResource(id = R.string.settings_integrity_missing),
                   )
@@ -677,8 +677,3 @@ private fun SettingsToggleRow(
     Switch(checked = checked, onCheckedChange = onCheckedChange)
   }
 }
-
-private val CONTENT_TASK_LETTERS = listOf("A", "B", "C", "D")
-private val CONTENT_TASK_NUMBERS = (1..15).toList()
-private val CONTENT_TASK_IDS =
-  CONTENT_TASK_LETTERS.flatMap { letter -> CONTENT_TASK_NUMBERS.map { number -> "$letter-$number" } }

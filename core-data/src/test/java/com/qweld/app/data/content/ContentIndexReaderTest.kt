@@ -8,53 +8,71 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.parseToJsonElement
 
 class ContentIndexReaderTest {
 
-  private class FakeAssetLoader(private val assets: Map<String, String>) : ContentIndexReader.AssetLoader {
+  private class FakeAssetLoader(
+    private val assets: Map<String, String>,
+    private val listings: Map<String, List<String>> = emptyMap(),
+  ) : ContentIndexReader.AssetLoader {
     override fun open(path: String) =
       assets[path]?.let { ByteArrayInputStream(it.toByteArray()) } ?: throw FileNotFoundException(path)
+
+    override fun list(path: String): List<String> = listings[path] ?: emptyList()
   }
 
   private val json = Json { ignoreUnknownKeys = false }
 
   @Test
-  fun `read parses index payload`() {
+  fun `read parses locale manifest`() {
     val payload =
       """
       {
-        "schema": "qweld.dist.index.v1",
-        "generatedAt": "2024-10-10T12:00:00Z",
-        "locales": {
-          "en": {
-            "total": 3,
-            "tasks": {"A-1": 2, "B-4": 1},
-            "sha256": {
-              "bank": "abc",
-              "tasks": {"A-1": "def", "B-4": "ghi"}
-            }
-          }
+        "blueprintId": "welder_bp",
+        "bankVersion": "v1",
+        "files": {
+          "questions/en/bank.v1.json": {"sha256": "abc"},
+          "questions/en/tasks/A-1.json": {"sha256": "def"}
         }
       }
       """
         .trimIndent()
-    val reader = ContentIndexReader(FakeAssetLoader(mapOf("questions/index.json" to payload)), json)
+    val listings = mapOf("questions" to listOf("en"))
+    val assets = mapOf("questions/en/index.json" to payload)
+    val reader = ContentIndexReader(FakeAssetLoader(assets, listings), json)
 
     val result = reader.read()
 
     assertNotNull(result)
-    assertEquals(payload, result.rawJson.trim())
-    assertEquals("qweld.dist.index.v1", result.index.schema)
-    assertEquals("2024-10-10T12:00:00Z", result.index.generatedAt)
-    val enLocale = result.index.locales.getValue("en")
-    assertEquals(3, enLocale.total)
-    assertEquals(2, enLocale.tasks.getValue("A-1"))
-    assertEquals("abc", enLocale.sha256.bank)
+    val locale = result.locales.getValue("en")
+    assertEquals("welder_bp", locale.blueprintId)
+    assertEquals("v1", locale.bankVersion)
+    assertEquals(2, locale.files.size)
+    assertEquals("questions/en/bank.v1.json", locale.files.first().path)
+    assertEquals("abc", locale.files.first().sha256)
+    val expectedJson =
+      json.parseToJsonElement(
+        """
+        {
+          "en": {
+            "blueprintId": "welder_bp",
+            "bankVersion": "v1",
+            "files": {
+              "questions/en/bank.v1.json": {"sha256": "abc"},
+              "questions/en/tasks/A-1.json": {"sha256": "def"}
+            }
+          }
+        }
+        """
+          .trimIndent()
+      )
+    assertEquals(expectedJson, json.parseToJsonElement(result.rawJson))
   }
 
   @Test
-  fun `read returns null when asset missing`() {
-    val reader = ContentIndexReader(FakeAssetLoader(emptyMap()), json)
+  fun `read returns null when locale list empty`() {
+    val reader = ContentIndexReader(FakeAssetLoader(emptyMap(), emptyMap()), json)
 
     val result = reader.read()
 
@@ -68,17 +86,11 @@ class ContentIndexReaderTest {
     val indexPayload =
       """
       {
-        "schema": "qweld.dist.index.v1",
-        "generatedAt": "2024-10-10T12:00:00Z",
-        "locales": {
-          "en": {
-            "total": 1,
-            "tasks": {"A-1": 1},
-            "sha256": {
-              "bank": "${sha256(bankContent)}",
-              "tasks": {"A-1": "${sha256(taskContent)}"}
-            }
-          }
+        "blueprintId": "welder_bp",
+        "bankVersion": "v1",
+        "files": {
+          "questions/en/bank.v1.json": {"sha256": "${sha256(bankContent)}"},
+          "questions/en/tasks/A-1.json": {"sha256": "${sha256(taskContent)}"}
         }
       }
       """
@@ -86,11 +98,12 @@ class ContentIndexReaderTest {
 
     val assets =
       mapOf(
-        "questions/index.json" to indexPayload,
+        "questions/en/index.json" to indexPayload,
         "questions/en/bank.v1.json" to bankContent,
         "questions/en/tasks/A-1.json" to taskContent,
       )
-    val reader = ContentIndexReader(FakeAssetLoader(assets), json)
+    val listings = mapOf("questions" to listOf("en"))
+    val reader = ContentIndexReader(FakeAssetLoader(assets, listings), json)
 
     val result = reader.read()
     val mismatches = reader.verify(result)
@@ -106,17 +119,11 @@ class ContentIndexReaderTest {
     val indexPayload =
       """
       {
-        "schema": "qweld.dist.index.v1",
-        "generatedAt": "2024-10-10T12:00:00Z",
-        "locales": {
-          "en": {
-            "total": 1,
-            "tasks": {"A-1": 1},
-            "sha256": {
-              "bank": "${sha256(bankContent)}",
-              "tasks": {"A-1": "${sha256(taskContent)}"}
-            }
-          }
+        "blueprintId": "welder_bp",
+        "bankVersion": "v1",
+        "files": {
+          "questions/en/bank.v1.json": {"sha256": "${sha256(bankContent)}"},
+          "questions/en/tasks/A-1.json": {"sha256": "${sha256(taskContent)}"}
         }
       }
       """
@@ -124,10 +131,11 @@ class ContentIndexReaderTest {
 
     val assets =
       mapOf(
-        "questions/index.json" to indexPayload,
+        "questions/en/index.json" to indexPayload,
         "questions/en/bank.v1.json" to "other",
       )
-    val reader = ContentIndexReader(FakeAssetLoader(assets), json)
+    val listings = mapOf("questions" to listOf("en"))
+    val reader = ContentIndexReader(FakeAssetLoader(assets, listings), json)
 
     val mismatches = reader.verify(reader.read())
 
@@ -139,14 +147,15 @@ class ContentIndexReaderTest {
   }
 
   @Test
-  fun `verify reports missing index`() {
-    val reader = ContentIndexReader(FakeAssetLoader(emptyMap()), json)
+  fun `verify reports missing manifest`() {
+    val listings = mapOf("questions" to listOf("en"))
+    val reader = ContentIndexReader(FakeAssetLoader(emptyMap(), listings), json)
 
     val mismatches = reader.verify()
 
     assertEquals(1, mismatches.size)
     val mismatch = mismatches.single()
-    assertEquals("questions/index.json", mismatch.path)
+    assertEquals("questions/en/index.json", mismatch.path)
     assertEquals(ContentIndexReader.Mismatch.Reason.INDEX_MISSING, mismatch.reason)
   }
 
