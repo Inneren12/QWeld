@@ -1,4 +1,5 @@
 import org.cyclonedx.gradle.CycloneDxTask
+import org.gradle.api.GradleException
 import org.gradle.api.attributes.Attribute
 
 plugins {
@@ -110,6 +111,58 @@ licensee {
   allowUrl("https://developer.android.com/google/play/integrity/overview#tos")
   allowUrl("https://source.android.com/license")
 }
+
+task("verifyAssets") {
+  group = "verification"
+  description = "Ensures the bundled question banks are present before assembling the APK"
+
+  val questionsDir = layout.projectDirectory.dir("src/main/assets/questions")
+  inputs.dir(questionsDir)
+
+  doLast {
+    val locales = listOf("en", "ru")
+    val expectedTaskCount = 15
+    val missing = mutableListOf<String>()
+
+    locales.forEach { locale ->
+      val localeDir = questionsDir.dir(locale).asFile
+      val localePath = "app-android/src/main/assets/questions/$locale"
+
+      val bankFile = localeDir.resolve("bank.v1.json")
+      if (!bankFile.isFile) {
+        missing += "• Missing $localePath/bank.v1.json — copy it with `cp dist/questions/$locale/bank.v1.json $localePath/`."
+      }
+
+      val tasksDir = localeDir.resolve("tasks")
+      if (!tasksDir.isDirectory) {
+        missing += "• Missing $localePath/tasks/ — copy them with `cp -R dist/questions/$locale/tasks $localePath/`."
+      } else {
+        val taskFiles = tasksDir.listFiles { file -> file.isFile }?.size ?: 0
+        if (taskFiles != expectedTaskCount) {
+          missing += "• Expected $expectedTaskCount task bundles under $localePath/tasks/ but found $taskFiles — rebuild and copy with `cp -R dist/questions/$locale/tasks $localePath/`."
+        }
+      }
+    }
+
+    val indexFile = questionsDir.file("index.json").asFile
+    if (!indexFile.isFile) {
+      missing += "• Missing app-android/src/main/assets/questions/index.json — copy it with `cp dist/questions/index.json app-android/src/main/assets/questions/`."
+    }
+
+    if (missing.isNotEmpty()) {
+      throw GradleException(
+        buildString {
+          appendLine("verifyAssets failed — required question assets are missing:")
+          missing.forEach { appendLine(it) }
+          appendLine()
+          appendLine("Run `bash scripts/build-questions-dist.sh` to regenerate the bundles before copying them into app-android/src/main/assets/questions/.")
+        },
+      )
+    }
+  }
+}
+
+tasks.named("assemble").configure { dependsOn("verifyAssets") }
 
 tasks.named<CycloneDxTask>("cyclonedxBom") {
   includeConfigs.set(listOf("releaseCompileClasspath"))
