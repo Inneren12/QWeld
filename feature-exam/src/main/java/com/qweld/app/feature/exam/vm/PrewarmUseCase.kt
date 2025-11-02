@@ -33,18 +33,26 @@ class PrewarmUseCase(
     val totalTasks = sanitizedTasks.size
     val disabled = prewarmDisabled.first()
     if (disabled) {
-      Timber.i("[prewarm_skip] locale=%s reason=disabled", normalizedLocale)
+      Timber.i("[prewarm_skip] src=per-task locale=%s reason=disabled", normalizedLocale)
       return
     }
-    Timber.i("[prewarm_start] locale=%s tasks=%d", normalizedLocale, totalTasks)
+    Timber.i("[prewarm_start] src=per-task locale=%s tasks=%d", normalizedLocale, totalTasks)
 
     if (totalTasks == 0) {
       onProgress(0, 1)
       val (elapsed, result) = measureWithElapsed { repository.loadQuestions(normalizedLocale) }
       onProgress(1, 1)
-      Timber.i("[prewarm_step] loaded=1/1 elapsed=%dms", elapsed)
+      Timber.i(
+        "[prewarm_step] src=bank locale=%s loaded=1/1 elapsedMs=%d",
+        normalizedLocale,
+        elapsed,
+      )
       val ok = result is AssetQuestionRepository.Result.Success
-      Timber.i("[prewarm_done] ok=%s fallback=bank", ok)
+      Timber.i(
+        "[prewarm_done] src=bank locale=%s ok=%s fallback=bank",
+        normalizedLocale,
+        ok,
+      )
       return
     }
 
@@ -76,20 +84,31 @@ class PrewarmUseCase(
     var fallbackResult: AssetQuestionRepository.Result? = null
     if (fallbackToBank.get()) {
       val (elapsed, result) = measureWithElapsed { repository.loadQuestions(normalizedLocale) }
-      Timber.i("[prewarm_step] loaded=1/1 elapsed=%dms", elapsed)
+      Timber.i(
+        "[prewarm_step] src=bank locale=%s loaded=1/1 elapsedMs=%d",
+        normalizedLocale,
+        elapsed,
+      )
       fallbackResult = result
     }
 
     val overallElapsed = nowProvider() - startTimestamp
     val ok = !hadError.get() && !fallbackToBank.get()
+    val finalSource = if (fallbackToBank.get()) "bank" else "per-task"
     Timber.i(
-      "[prewarm_done] ok=%s fallback=%s elapsed=%dms",
+      "[prewarm_done] src=%s locale=%s ok=%s fallback=%s elapsedMs=%d",
+      finalSource,
+      normalizedLocale,
       ok,
       if (fallbackToBank.get()) "bank" else "none",
       overallElapsed,
     )
     if (fallbackResult is AssetQuestionRepository.Result.Error) {
-      Timber.w(fallbackResult.cause, "[prewarm_bank_error] locale=%s", normalizedLocale)
+      Timber.w(
+        fallbackResult.cause,
+        "[prewarm_bank_error] src=bank locale=%s",
+        normalizedLocale,
+      )
     }
   }
 
@@ -109,24 +128,30 @@ class PrewarmUseCase(
       fallbackToBank.set(true)
       hadError.set(true)
       Timber.w(
-        "[prewarm_missing] task=%s locale=%s path=%s",
-        missing.taskId,
+        "[prewarm_missing] src=per-task locale=%s task=%s path=%s",
         locale,
+        missing.taskId,
         missing.path,
       )
     } catch (timeout: TimeoutCancellationException) {
       hadError.set(true)
-      Timber.w("[prewarm_timeout] task=%s locale=%s", taskId, locale)
+      Timber.w("[prewarm_timeout] src=per-task locale=%s task=%s", locale, taskId)
     } catch (cancellation: CancellationException) {
       throw cancellation
     } catch (error: Throwable) {
       hadError.set(true)
-      Timber.e(error, "[prewarm_error] task=%s locale=%s", taskId, locale)
+      Timber.e(error, "[prewarm_error] src=per-task locale=%s task=%s", locale, taskId)
     } finally {
       val loaded = loadedCount.incrementAndGet().coerceAtMost(totalTasks)
       val elapsed = nowProvider() - startTimestamp
       onProgress(loaded, totalTasks)
-      Timber.i("[prewarm_step] loaded=%d/%d elapsed=%dms", loaded, totalTasks, elapsed)
+      Timber.i(
+        "[prewarm_step] src=per-task locale=%s loaded=%d/%d elapsedMs=%d",
+        locale,
+        loaded,
+        totalTasks,
+        elapsed,
+      )
     }
   }
 
