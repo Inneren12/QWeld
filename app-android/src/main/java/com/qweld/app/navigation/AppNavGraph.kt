@@ -304,7 +304,7 @@ fun AppNavGraph(
         )
       }
       composable(Routes.ABOUT) {
-        AboutScreen(onBack = { navController.popBackStack() })
+        AboutScreen()
       }
     }
     if (showLogDialog && logExportActions != null) {
