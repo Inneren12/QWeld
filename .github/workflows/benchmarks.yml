@@ -1,0 +1,35 @@
+name: JVM Benchmarks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  run:
+    name: Run JMH benchmarks
+    if: >-
+      (github.event_name == 'push' && contains(github.event.head_commit.message, 'bench:')) ||
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.title, 'bench:'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Run JMH suite
+        run: ./gradlew --no-daemon :benchmarks-jvm:jmh
+
+      - name: Upload JMH artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmh-results
+          path: |
+            benchmarks-jvm/build/reports/jmh/jmh-result.json
+            benchmarks-jvm/build/reports/jmh/jmh-result.csv
+          if-no-files-found: error
