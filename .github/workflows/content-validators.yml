@@ -71,9 +71,27 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p .github
-          git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main >/dev/null 2>&1 || true
-          git diff --name-only origin/main...HEAD > .github/changed.txt || true
-          echo "[plagiarism] captured $(wc -l < .github/changed.txt) changed paths"
+          : > .github/changed.txt
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # Для PR используем точные SHA базовой и head-ветки
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+            BASE_REF="${{ github.event.pull_request.base.ref }}"
+            echo "[changed] PR base=${BASE_REF} base_sha=${BASE_SHA} head_sha=${HEAD_SHA}"
+            git fetch --no-tags --prune origin +refs/heads/${BASE_REF}:refs/remotes/origin/base >/dev/null 2>&1 || true
+            git diff --name-only "${BASE_SHA}...${HEAD_SHA}" > .github/changed.txt || true
+          else
+            # Для push берём предыдущий commit на той же ветке
+            BASE_SHA="${{ github.event.before }}"
+            HEAD_SHA="${{ github.sha }}"
+            CUR_REF="${{ github.ref_name }}"
+            echo "[changed] Push ref=${CUR_REF} before=${BASE_SHA} head=${HEAD_SHA}"
+            git fetch --no-tags --prune origin +refs/heads/${CUR_REF}:refs/remotes/origin/current >/dev/null 2>&1 || true
+            git diff --name-only "${BASE_SHA}...${HEAD_SHA}" > .github/changed.txt || true
+          fi
+
+          echo "[changed] paths: $(wc -l < .github/changed.txt)"
 
       - name: Export PR SHAs
         if: ${{ github.event_name == 'pull_request' }}
