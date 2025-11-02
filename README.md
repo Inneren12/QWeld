@@ -88,6 +88,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Pick the distribution strategy — **Proportional (by exam blueprint)** scales quotas via largest remainder, while **Even** gives every chosen task an equal share — and the app keeps the total aligned with the saved practice size.
 - The sheet previews the final question count, rejects empty selections with a **No tasks selected** snackbar, and immediately launches the weighted, wrong-biased sampler on confirmation.
 
+### Practice scope presets & last used
+- Quick presets (A-only, B-only, C-only, D-only, A+B, C+D, All) sit above the block list as filter chips; tapping one rewrites the selection, keeps your current distribution, and recomputes the preview size instantly.
+- Once you finish a practice session, a **Last used** preset appears; choosing it restores the previously saved blocks, explicit tasks, and distribution while logging `[practice_preset] name=LastUsed … dist=<mode>`.
+- Starting practice now persists the chosen scope via `UserPrefsDataStore`, logging `[practice_scope_saved]` with the normalized blocks/tasks so the next sheet opening preselects the remembered scope and highlights **Last used**.
+
 ### F5-D review & explain
 - Complete an exam attempt to unlock the Review screen, which lists every answered item with your selection, the correct choice, and the quick rationale from the bank.
 - Tapping **Explain** opens a bottom sheet that pulls structured content from `app-android/src/main/assets/explanations/<locale>/<taskId>/<id>__explain_<locale>.json`; the sheet falls back to the quick rationale if the asset is missing.

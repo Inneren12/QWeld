@@ -80,6 +80,7 @@ fun ModeScreen(
     blocks.associateWith { block -> grouped[block].orEmpty().map { it.taskId } }
   }
   val noTasksMessage = stringResource(id = R.string.practice_scope_error_no_tasks)
+  val lastScope by viewModel.lastPracticeScope.collectAsState(initial = null)
 
   LaunchedEffect(practiceConfig.scope) { practiceScope = practiceConfig.scope }
 
@@ -256,8 +257,10 @@ fun ModeScreen(
       size = practiceConfig.size,
       tasksByBlock = tasksByBlock,
       scope = practiceScope,
+      blueprint = practiceBlueprint,
+      lastScope = lastScope,
       onDismiss = { showPracticeScope = false },
-      onConfirm = { scope ->
+      onConfirm = { scope, preset ->
         val selected = ExamViewModel.resolvePracticeTasks(practiceBlueprint, scope)
         if (selected.isEmpty()) {
           coroutineScope.launch { snackbarHostState.showSnackbar(noTasksMessage) }
@@ -267,6 +270,7 @@ fun ModeScreen(
             viewModel.startPractice(
               locale = resolvedLanguage,
               config = practiceConfig.copy(scope = scope),
+              preset = preset,
             )
           if (launched) {
             practiceScope = scope

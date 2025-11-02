@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
@@ -66,6 +67,7 @@ class ExamViewModel(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
+  private val userPrefs: UserPrefsDataStore,
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = ::defaultBlueprintForMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
   private val userIdProvider: () -> String = { DEFAULT_USER_ID },
@@ -108,6 +110,8 @@ class ExamViewModel(
   val effects: Flow<ExamEffect> = _effects.asSharedFlow()
 
   val prewarmDisabled: Boolean = false
+
+  val lastPracticeScope = userPrefs.readLastPracticeScope()
 
   fun startAttempt(
     mode: ExamMode,
@@ -895,23 +899,55 @@ class ExamViewModel(
   fun startPractice(
     locale: String,
     config: PracticeConfig,
+    preset: PracticeScopePresetName? = null,
   ): Boolean {
     val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
     val baseBlueprint = practiceBlueprint()
     val selectedTasks = resolvePracticeTasks(baseBlueprint, resolvedConfig.scope)
-    val blocksLog =
-      resolvedConfig.scope.blocks.sorted().joinToString(prefix = "[", postfix = "]")
-    val tasksLog = selectedTasks.joinToString(prefix = "[", postfix = "]")
+    val scopeBlocksLog =
+      resolvedConfig.scope.blocks
+        .map { it.uppercase(Locale.US) }
+        .sorted()
+        .joinToString(separator = ",", prefix = "[", postfix = "]")
+    val scopeTasksLog =
+      resolvedConfig.scope.taskIds
+        .map { it.uppercase(Locale.US) }
+        .sorted()
+        .joinToString(separator = ",", prefix = "[", postfix = "]")
+    val resolvedTasksLog =
+      selectedTasks
+        .map { it.uppercase(Locale.US) }
+        .sorted()
+        .joinToString(separator = ",", prefix = "[", postfix = "]")
     if (selectedTasks.isEmpty()) {
       Timber.w(
         "[practice_scope] blocks=%s tasks=%s size=%d dist=%s wrongBiased=%s | reason=empty",
-        blocksLog,
-        tasksLog,
+        scopeBlocksLog,
+        resolvedTasksLog,
         resolvedConfig.size,
         resolvedConfig.scope.distribution.name,
         resolvedConfig.wrongBiased,
       )
       return false
+    }
+
+    if (preset != null) {
+      if (preset == PracticeScopePresetName.LAST_USED) {
+        Timber.i(
+          "[practice_preset] name=%s blocks=%s tasks=%s dist=%s",
+          preset.logName,
+          scopeBlocksLog,
+          scopeTasksLog,
+          resolvedConfig.scope.distribution.name,
+        )
+      } else {
+        Timber.i(
+          "[practice_preset] name=%s blocks=%s tasks=%s",
+          preset.logName,
+          scopeBlocksLog,
+          scopeTasksLog,
+        )
+      }
     }
 
     val quotas = resolvePracticeQuotas(baseBlueprint, resolvedConfig.scope, resolvedConfig.size)
@@ -922,8 +958,8 @@ class ExamViewModel(
 
     Timber.i(
       "[practice_scope] blocks=%s tasks=%s size=%d dist=%s wrongBiased=%s",
-      blocksLog,
-      tasksLog,
+      scopeBlocksLog,
+      resolvedTasksLog,
       resolvedConfig.size,
       resolvedConfig.scope.distribution.name,
       resolvedConfig.wrongBiased,
@@ -956,6 +992,19 @@ class ExamViewModel(
         blueprintOverride = blueprint,
       )
     if (launched) {
+      viewModelScope.launch(ioDispatcher) {
+        userPrefs.saveLastPracticeScope(
+          blocks = resolvedConfig.scope.blocks,
+          tasks = resolvedConfig.scope.taskIds,
+          distribution = resolvedConfig.scope.distribution.name,
+        )
+      }
+      Timber.i(
+        "[practice_scope_saved] blocks=%s tasks=%s dist=%s",
+        scopeBlocksLog,
+        scopeTasksLog,
+        resolvedConfig.scope.distribution.name,
+      )
       _effects.tryEmit(ExamEffect.NavigateToExam)
     }
     return launched
@@ -1129,6 +1178,7 @@ class ExamViewModelFactory(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
+  private val userPrefs: UserPrefsDataStore,
 ) : ViewModelProvider.Factory {
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
     if (modelClass.isAssignableFrom(ExamViewModel::class.java)) {
@@ -1138,6 +1188,7 @@ class ExamViewModelFactory(
         attemptsRepository = attemptsRepository,
         answersRepository = answersRepository,
         statsRepository = statsRepository,
+        userPrefs = userPrefs,
         prewarmUseCase = PrewarmUseCase(repository),
       ) as T
     }
