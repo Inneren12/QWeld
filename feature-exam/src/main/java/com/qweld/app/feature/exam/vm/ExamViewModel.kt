@@ -36,6 +36,8 @@ import com.qweld.app.feature.exam.vm.ResumeUseCase
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
+import com.qweld.core.common.logging.LogTag
+import com.qweld.core.common.logging.Logx
 import java.time.Duration
 import java.util.Locale
 import java.util.UUID
@@ -218,7 +220,22 @@ class ExamViewModel(
           practiceWrongBiased =
             mode == ExamMode.PRACTICE && normalizedPracticeConfig.wrongBiased,
         ),
-      logger = { message -> if (!message.startsWith("[deficit]")) Timber.i(message) },
+      logger = { message ->
+        if (message.startsWith("[deficit]")) {
+          val payload = message.removePrefix("[deficit]").trim()
+          val kv =
+            payload
+              .split(' ')
+              .mapNotNull { entry ->
+                val delimiter = entry.indexOf('=')
+                if (delimiter <= 0) return@mapNotNull null
+                entry.substring(0, delimiter) to entry.substring(delimiter + 1)
+              }
+          Logx.w(LogTag.DEFICIT, "detail", *kv.toTypedArray())
+        } else {
+          Timber.i(message)
+        }
+      },
     )
     val attemptSeed = AttemptSeed(seedProvider())
     return try {
@@ -287,12 +304,13 @@ class ExamViewModel(
         }
         is ExamAssembler.AssemblyResult.Deficit -> {
           questionRationales = emptyMap()
-          Timber.w(
-            "[deficit] taskId=%s required=%d have=%d seed=%d",
-            assembly.taskId,
-            assembly.required,
-            assembly.have,
-            assembly.seed,
+          Logx.w(
+            LogTag.DEFICIT,
+            "assembly",
+            "taskId" to assembly.taskId,
+            "required" to assembly.required,
+            "have" to assembly.have,
+            "seed" to assembly.seed,
           )
           val details =
             listOf(
@@ -437,12 +455,13 @@ class ExamViewModel(
             )
           }
         if (reconstructionResult is ResumeUseCase.ReconstructionResult.Deficit) {
-          Timber.w(
-            "[deficit] taskId=%s required=%d have=%d seed=%d",
-            reconstructionResult.taskId,
-            reconstructionResult.required,
-            reconstructionResult.have,
-            reconstructionResult.seed,
+          Logx.w(
+            LogTag.DEFICIT,
+            "resume",
+            "taskId" to reconstructionResult.taskId,
+            "required" to reconstructionResult.required,
+            "have" to reconstructionResult.have,
+            "seed" to reconstructionResult.seed,
           )
           pendingResume = null
           _uiState.value =
@@ -773,7 +792,12 @@ class ExamViewModel(
         } catch (cancellation: CancellationException) {
           throw cancellation
         } catch (error: Throwable) {
-          Timber.e(error, "[prewarm_flow_error] locale=%s", normalizedLocale)
+          Logx.e(
+            LogTag.PREWARM,
+            "flow_error",
+            error,
+            "locale" to normalizedLocale,
+          )
           finalizePrewarm(normalizedLocale, expectedTotal)
         }
       }
@@ -962,12 +986,13 @@ class ExamViewModel(
         questionCount = attempt.questionCount,
       )
     if (reconstructionResult is ResumeUseCase.ReconstructionResult.Deficit) {
-      Timber.w(
-        "[deficit] taskId=%s required=%d have=%d seed=%d",
-        reconstructionResult.taskId,
-        reconstructionResult.required,
-        reconstructionResult.have,
-        reconstructionResult.seed,
+      Logx.w(
+        LogTag.DEFICIT,
+        "expire",
+        "taskId" to reconstructionResult.taskId,
+        "required" to reconstructionResult.required,
+        "have" to reconstructionResult.have,
+        "seed" to reconstructionResult.seed,
       )
       val finishedAt = nowProvider()
       val durationSec = TimerController.EXAM_DURATION.seconds.toInt()

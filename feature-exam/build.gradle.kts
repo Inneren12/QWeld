@@ -28,6 +28,7 @@ android {
 dependencies {
   implementation(project(":core-domain"))
   implementation(project(":core-data"))
+  implementation(project(":core-common"))
   implementation("androidx.core:core-ktx:1.13.1")
   implementation("androidx.activity:activity-compose:1.9.3")
   implementation("androidx.compose.foundation:foundation:1.7.1")

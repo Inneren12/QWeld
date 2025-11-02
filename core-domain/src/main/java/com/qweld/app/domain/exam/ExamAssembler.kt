@@ -45,7 +45,7 @@ class ExamAssembler(
     blueprint: ExamBlueprint = ExamBlueprint.default(),
   ): AssemblyResult {
     logger(
-      "[blueprint_source] type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
+      "[blueprint_load] source type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
         "tasks=${blueprint.taskCount}"
     )
     val allowFallback =

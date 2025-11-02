@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 rootProject.name = "QWeld"
 
 include(
+  ":core-common",
   ":app-android",
   ":core-model",
   ":core-domain",

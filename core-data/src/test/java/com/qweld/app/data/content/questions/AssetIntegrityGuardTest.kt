@@ -113,8 +113,8 @@ class AssetIntegrityGuardTest {
       guard.readVerified("questions/en/bank.v1.json")
     }
     assertEquals(1, guard.metrics.fail)
-    val missLog = logs.firstOrNull { it.startsWith("[integrity_miss]") }
-    check(missLog?.contains("expected") == true)
+    val missLog = logs.firstOrNull { it.startsWith("[integrity] miss") }
+    check(missLog?.contains("expected=") == true)
   }
 
   private fun sha256(bytes: ByteArray): String {

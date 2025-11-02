@@ -1,6 +1,8 @@
 package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.core.common.logging.LogTag
+import com.qweld.core.common.logging.Logx
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
@@ -15,7 +17,6 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import timber.log.Timber
 
 class PrewarmUseCase(
   private val repository: AssetQuestionRepository,
@@ -33,25 +34,43 @@ class PrewarmUseCase(
     val totalTasks = sanitizedTasks.size
     val disabled = prewarmDisabled.first()
     if (disabled) {
-      Timber.i("[prewarm_skip] src=per-task locale=%s reason=disabled", normalizedLocale)
+      Logx.i(
+        LogTag.PREWARM,
+        "skip",
+        "src" to "per-task",
+        "locale" to normalizedLocale,
+        "reason" to "disabled",
+      )
       return
     }
-    Timber.i("[prewarm_start] src=per-task locale=%s tasks=%d", normalizedLocale, totalTasks)
+    Logx.i(
+      LogTag.PREWARM,
+      "start",
+      "src" to "per-task",
+      "locale" to normalizedLocale,
+      "tasks" to totalTasks,
+    )
 
     if (totalTasks == 0) {
       onProgress(0, 1)
       val (elapsed, result) = measureWithElapsed { repository.loadQuestions(normalizedLocale) }
       onProgress(1, 1)
-      Timber.i(
-        "[prewarm_step] src=bank locale=%s loaded=1/1 elapsedMs=%d",
-        normalizedLocale,
-        elapsed,
+      Logx.i(
+        LogTag.PREWARM,
+        "step",
+        "src" to "bank",
+        "locale" to normalizedLocale,
+        "loaded" to "1/1",
+        "elapsedMs" to elapsed,
       )
       val ok = result is AssetQuestionRepository.LoadResult.Success
-      Timber.i(
-        "[prewarm_done] src=bank locale=%s ok=%s fallback=bank",
-        normalizedLocale,
-        ok,
+      Logx.i(
+        LogTag.PREWARM,
+        "done",
+        "src" to "bank",
+        "locale" to normalizedLocale,
+        "ok" to ok,
+        "fallback" to "bank",
       )
       return
     }
@@ -84,10 +103,13 @@ class PrewarmUseCase(
     var fallbackResult: AssetQuestionRepository.LoadResult? = null
     if (fallbackToBank.get()) {
       val (elapsed, result) = measureWithElapsed { repository.loadQuestions(normalizedLocale) }
-      Timber.i(
-        "[prewarm_step] src=bank locale=%s loaded=1/1 elapsedMs=%d",
-        normalizedLocale,
-        elapsed,
+      Logx.i(
+        LogTag.PREWARM,
+        "step",
+        "src" to "bank",
+        "locale" to normalizedLocale,
+        "loaded" to "1/1",
+        "elapsedMs" to elapsed,
       )
       fallbackResult = result
     }
@@ -95,19 +117,22 @@ class PrewarmUseCase(
     val overallElapsed = nowProvider() - startTimestamp
     val ok = !hadError.get() && !fallbackToBank.get()
     val finalSource = if (fallbackToBank.get()) "bank" else "per-task"
-    Timber.i(
-      "[prewarm_done] src=%s locale=%s ok=%s fallback=%s elapsedMs=%d",
-      finalSource,
-      normalizedLocale,
-      ok,
-      if (fallbackToBank.get()) "bank" else "none",
-      overallElapsed,
+    Logx.i(
+      LogTag.PREWARM,
+      "done",
+      "src" to finalSource,
+      "locale" to normalizedLocale,
+      "ok" to ok,
+      "fallback" to if (fallbackToBank.get()) "bank" else "none",
+      "elapsedMs" to overallElapsed,
     )
     if (fallbackResult is AssetQuestionRepository.LoadResult.Corrupt) {
-      Timber.w(
-        "[prewarm_bank_corrupt] src=bank locale=%s reason=%s",
-        normalizedLocale,
-        fallbackResult.reason,
+      Logx.w(
+        LogTag.PREWARM,
+        "bank_corrupt",
+        "src" to "bank",
+        "locale" to normalizedLocale,
+        "reason" to fallbackResult.reason,
       )
     }
   }
@@ -127,30 +152,46 @@ class PrewarmUseCase(
     } catch (missing: AssetQuestionRepository.TaskAssetMissingException) {
       fallbackToBank.set(true)
       hadError.set(true)
-      Timber.w(
-        "[prewarm_missing] src=per-task locale=%s task=%s path=%s",
-        locale,
-        missing.taskId,
-        missing.path,
+      Logx.w(
+        LogTag.PREWARM,
+        "missing",
+        "src" to "per-task",
+        "locale" to locale,
+        "task" to missing.taskId,
+        "path" to missing.path,
       )
     } catch (timeout: TimeoutCancellationException) {
       hadError.set(true)
-      Timber.w("[prewarm_timeout] src=per-task locale=%s task=%s", locale, taskId)
+      Logx.w(
+        LogTag.PREWARM,
+        "timeout",
+        "src" to "per-task",
+        "locale" to locale,
+        "task" to taskId,
+      )
     } catch (cancellation: CancellationException) {
       throw cancellation
     } catch (error: Throwable) {
       hadError.set(true)
-      Timber.e(error, "[prewarm_error] src=per-task locale=%s task=%s", locale, taskId)
+      Logx.e(
+        LogTag.PREWARM,
+        "error",
+        error,
+        "src" to "per-task",
+        "locale" to locale,
+        "task" to taskId,
+      )
     } finally {
       val loaded = loadedCount.incrementAndGet().coerceAtMost(totalTasks)
       val elapsed = nowProvider() - startTimestamp
       onProgress(loaded, totalTasks)
-      Timber.i(
-        "[prewarm_step] src=per-task locale=%s loaded=%d/%d elapsedMs=%d",
-        locale,
-        loaded,
-        totalTasks,
-        elapsed,
+      Logx.i(
+        LogTag.PREWARM,
+        "step",
+        "src" to "per-task",
+        "locale" to locale,
+        "loaded" to "$loaded/$totalTasks",
+        "elapsedMs" to elapsed,
       )
     }
   }
