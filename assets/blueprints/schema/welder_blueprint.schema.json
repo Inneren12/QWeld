@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inneren12.github.io/qweld/welder_blueprint.schema.json",
+  "title": "Welder blueprint assets index",
+  "type": "object",
+  "oneOf": [
+    {
+      "title": "Root questions index",
+      "additionalProperties": false,
+      "required": ["schema", "generatedAt", "locales"],
+      "properties": {
+        "schema": {
+          "type": "string",
+          "const": "questions-index-v1"
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "locales": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/localeSummary" }
+        }
+      }
+    },
+    {
+      "title": "Locale bundle index",
+      "additionalProperties": false,
+      "required": ["blueprintId", "bankVersion", "files"],
+      "properties": {
+        "blueprintId": {
+          "type": "string",
+          "pattern": "^welder_ip_[a-z]{2}_[0-9]{6}$"
+        },
+        "bankVersion": {
+          "type": "string",
+          "pattern": "^v[0-9]+$"
+        },
+        "files": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/fileEntry" }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "localeSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "tasks", "sha256"],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tasks": {
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            "^[A-D]-\\d+$": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "sha256": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bank", "tasks"],
+          "properties": {
+            "bank": { "$ref": "#/$defs/sha256" },
+            "tasks": {
+              "type": "object",
+              "minProperties": 1,
+              "patternProperties": {
+                "^[A-D]-\\d+$": { "$ref": "#/$defs/sha256" }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    "fileEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256"],
+      "properties": {
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

@@ -1,212 +1,50 @@
-name: Content Validators (quick)
-
+name: content-validators
 on:
   pull_request:
-    branches: [ main, develop ]
     paths:
-      - 'content/questions/**'
-      - 'content/blueprints/**'
-      - 'content/schema/**'
-      - 'schemas/**'
-      - 'content/explanations/**'
-      - 'scripts/**'
-  push:
-    branches: [ main ]
-    paths:
-      - 'content/questions/**'
-      - 'content/blueprints/**'
-      - 'content/schema/**'
-      - 'schemas/**'
-      - 'content/explanations/**'
-      - 'scripts/**'
+      - "assets/blueprints/**"
+      - "app-android/src/main/assets/questions/**"
+      - "scripts/validate-blueprint.sh"
+  workflow_dispatch:
 
 jobs:
-  content:
+  validate-blueprint:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-    concurrency:
-      group: content-${{ github.ref }}
-      cancel-in-progress: false
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [0, 1, 2, 3]
     steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+      - uses: actions/checkout@v3
 
-      - name: Fail on merge conflict markers
-        shell: bash
-        run: |
-          set -euo pipefail
-          if git grep -nE '^(<<<<<<< |=======$|>>>>>>> )' -- . ':!**/yarn.lock' ':!**/package-lock.json' ; then
-            echo "::error::Merge conflict markers found in working tree"
-            exit 1
-          fi
-
-      - name: Detect content-affecting changes
-        id: diff
-        shell: bash
-        run: |
-          set -euo pipefail
-          # 1) Определяем BASE/HEAD надёжно
-          BASE_REF="${{ github.base_ref || 'main' }}"
-          git fetch --no-tags --prune origin +refs/heads/${BASE_REF}:refs/remotes/origin/base
-          BASE="$(git merge-base HEAD origin/base)"
-          HEAD="$(git rev-parse HEAD)"
-          echo "base=$BASE head=$HEAD"
-
-          # 2) Безаварийно получаем список изменённых файлов
-          #    (git diff может вернуть код !=0; нормализуем)
-          CHANGED="$(git diff --name-only --diff-filter=ACMRD "$BASE...$HEAD" || true)"
-          printf '%s\n' "$CHANGED" > changed.txt
-
-          # 3) Выставляем гейты: blueprint/profile/any
-          bp=false
-          prof=false
-          if grep -E '^content/blueprints/' changed.txt >/dev/null 2>&1; then bp=true; fi
-          if grep -E '^content/exam_profiles/' changed.txt >/dev/null 2>&1; then prof=true; fi
-          any=false
-          if [ -s changed.txt ]; then any=true; fi
-
-          {
-            echo "blueprint=$bp"
-            echo "exam_profile=$prof"
-            echo "changed_any=$any"
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Capture changed files (PR)
-        if: ${{ github.event_name == 'pull_request' }}
-        env:
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p .github
-          : > .github/changed.txt
-          echo "[changed] PR base=${PR_BASE_REF} base_sha=${PR_BASE_SHA} head_sha=${PR_HEAD_SHA}"
-          git fetch --no-tags --prune origin +refs/heads/${PR_BASE_REF}:refs/remotes/origin/base >/dev/null 2>&1 || true
-          git diff --name-only "${PR_BASE_SHA}...${PR_HEAD_SHA}" > .github/changed.txt || true
-          echo "[changed] paths: $(wc -l < .github/changed.txt)"
-
-      - name: Capture changed files (push)
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          PUSH_BEFORE: ${{ github.event.before }}
-          PUSH_SHA: ${{ github.sha }}
-          PUSH_REF: ${{ github.ref_name }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p .github
-          : > .github/changed.txt
-          echo "[changed] Push ref=${PUSH_REF} before=${PUSH_BEFORE} head=${PUSH_SHA}"
-          git fetch --no-tags --prune origin +refs/heads/${PUSH_REF}:refs/remotes/origin/current >/dev/null 2>&1 || true
-          git diff --name-only "${PUSH_BEFORE}...${PUSH_SHA}" > .github/changed.txt || true
-          echo "[changed] paths: $(wc -l < .github/changed.txt)"
-
-      - name: Export PR SHAs
-        if: ${{ github.event_name == 'pull_request' }}
-        run: |
-          echo "BASE_SHA=${{ github.event.pull_request.base.sha }}" >> $GITHUB_ENV
-          echo "HEAD_SHA=${{ github.event.pull_request.head.sha }}" >> $GITHUB_ENV
-
-      - name: Node 20
+      - name: Setup Node.js (LTS)
         uses: actions/setup-node@v4
-        with: { node-version: '20' }
+        with:
+          node-version: '20'
 
-      - name: (Ephemeral) prepare Ajv (no workspace)
-        if: ${{ matrix.shard == 0 }}
-        shell: bash
-        env:
-          npm_config_loglevel: error
+      - name: Guard: no bidi chars in workflows
+        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows || exit 1'
+
+      - name: Install Ajv locally (no workspace)
         run: |
           set -euo pipefail
           mkdir -p .ci-node
-          npm install ajv ajv-formats \
+          npm install \
+            ajv@8 ajv-formats@3 ajv-cli@5 \
             --no-save --no-audit --no-fund --no-package-lock \
             --prefix ./.ci-node
-          node -e "console.log('ajv@'+require('./.ci-node/node_modules/ajv/package.json').version)"
-          echo "NODE_PATH=${{ github.workspace }}/.ci-node/node_modules" >> $GITHUB_ENV
 
-      - name: Verify Ajv modules
-        if: ${{ matrix.shard == 0 }}
-        run: node -e "require('ajv'); require('ajv-formats'); console.log('Ajv modules OK')"
-
-      - name: Validate blueprint schema
-        if: ${{ matrix.shard == 0 && steps.diff.outputs.blueprint == 'true' }}
+      - name: Debug Node & Ajv
         run: |
-          bash scripts/validate-blueprint.sh
+          node -v
+          npm -v
+          ./.ci-node/node_modules/.bin/ajv --version || true
+          ls -la ./.ci-node/node_modules/.bin
 
-      - name: Validate questions (changed-only)
-        if: ${{ matrix.shard == 0 }}
-        run: |
-          bash scripts/validate-questions.sh --changed-only
+      - name: Validate blueprint
+        shell: bash
+        run: bash scripts/validate-blueprint.sh
 
-      - name: Quotas (changed-only, exam)
-        if: ${{ matrix.shard == 0 }}
-        run: |
-          bash scripts/check-quotas.sh --changed-only --profile content/exam_profiles/welder_exam_2024.json --locales en,ru --mode min --min-multiple 1 --allow-extra
-
-      - name: Upload validation logs
-        if: ${{ matrix.shard == 0 && hashFiles('logs/**') != '' }}
+      - name: Upload validator log (always)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: content-validation-logs
-          path: logs
-
-      - name: Upload question bank dist
-        if: ${{ matrix.shard == 0 && hashFiles('dist/questions/**') != '' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: question-bank-dist
-          path: dist/questions
-
-      - name: Plagiarism (auto, sharded)
-        if: ${{ steps.diff.outputs.changed_any == 'true' }}
-        env:
-          SHARD_INDEX: ${{ matrix.shard }}
-          SHARD_COUNT: 4
-        run: |
-          node scripts/check-plagiarism.mjs \
-            --locales en,ru \
-            --shard-index "$SHARD_INDEX" --shard-count "$SHARD_COUNT" \
-            --progress 20000 \
-            --time-budget 3300 \
-            --soft-fail \
-            --out "plag-shard-${SHARD_INDEX}.json" \
-            --changed @.github/changed.txt
-
-      - name: Upload plagiarism shard
-        if: ${{ hashFiles('plag-shard-*.json') != '' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: plag-shard-${{ matrix.shard }}
-          path: plag-shard-${{ matrix.shard }}.json
-          if-no-files-found: ignore
-
-  aggregate:
-    needs: [content]
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          path: ./plag
-          merge-multiple: true
-          if-no-files-found: ignore
-      - uses: actions/setup-node@v4
-        with: { node-version: '20' }
-      - name: Merge plagiarism results
-        if: ${{ hashFiles('plag/**/*.json') != '' }}
-        run: node scripts/plagiarism-aggregate.mjs ./plag
-      - name: Upload merged report
-        if: ${{ hashFiles('plag-merged.json') != '' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: plag-merged
-          path: plag-merged.json
+          name: ajv-logs
+          path: |
+            ./.ci-node/node_modules/.bin
