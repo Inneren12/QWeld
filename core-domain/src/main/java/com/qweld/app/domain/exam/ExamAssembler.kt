@@ -36,16 +36,20 @@ class ExamAssembler(
       "[blueprint_source] type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
         "tasks=${blueprint.taskCount}"
     )
-    logger("[exam_start] mode=${mode.name} seed=${seed.value} locale=$locale tasks=${blueprint.taskCount}")
-    val timer = TimerController(clock, logger)
-    timer.start()
-
     val allowFallback =
       when (mode) {
         ExamMode.IP_MOCK -> false
         ExamMode.PRACTICE,
         ExamMode.ADAPTIVE -> config.allowFallbackToEN
       }
+
+    val questionSource = if (allowFallback) "fallback" else "asset"
+    logger(
+      "[exam_start] mode=${mode.name} seed=${seed.value} locale=$locale " +
+        "blueprintTasks=${blueprint.taskCount} source=$questionSource",
+    )
+    val timer = TimerController(clock, logger)
+    timer.start()
 
     val now = clock.instant()
     val allSelected = mutableListOf<Question>()

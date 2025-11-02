@@ -103,19 +103,19 @@ class AssetQuestionRepository internal constructor(
         val perTask = perTaskResult!!
         val questionList = perTask.questions
         Timber.i(
-          "[repo_load] src=per-task tasks=%s count=%d elapsed=%dms (cacheHits=%d, locale=%s)",
+          "[repo_load] src=per-task locale=%s task=%s count=%d elapsedMs=%d cacheHits=%d",
+          resolvedLocale,
           tasksLog,
           questionList.size,
           elapsed,
           perTask.cacheHits,
-          resolvedLocale,
         )
         return Result.Success(locale = resolvedLocale, questions = questionList)
       } else {
         Timber.w(
-          "[repo_load] src=per-task tasks=%s fallback=bank locale=%s",
-          tasksLog,
+          "[repo_load] src=per-task locale=%s task=%s fallback=bank",
           resolvedLocale,
+          tasksLog,
         )
       }
     }
@@ -125,17 +125,18 @@ class AssetQuestionRepository internal constructor(
     when (val outcome = bankOutcome) {
       is AssetPayload.Success -> {
         Timber.i(
-          "[repo_load] src=bank tasks=null count=%d elapsed=%dms",
+          "[repo_load] src=bank locale=%s task=* count=%d elapsedMs=%d",
+          resolvedLocale,
           outcome.value.size,
           bankElapsed,
         )
         return Result.Success(locale = resolvedLocale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
-        Timber.w("[repo_load] src=bank tasks=null missing locale=%s", resolvedLocale)
+        Timber.w("[repo_load] src=bank locale=%s task=* missing", resolvedLocale)
       }
       is AssetPayload.Error -> {
-        Timber.e(outcome.throwable, "[repo_load] src=bank tasks=null error locale=%s", resolvedLocale)
+        Timber.e(outcome.throwable, "[repo_load] src=bank locale=%s task=* error", resolvedLocale)
         return Result.Error(locale = resolvedLocale, cause = outcome.throwable)
       }
     }
@@ -145,18 +146,19 @@ class AssetQuestionRepository internal constructor(
     return when (val outcome = singlesOutcome) {
       is AssetPayload.Success -> {
         Timber.i(
-          "[repo_load] src=single tasks=null count=%d elapsed=%dms",
+          "[repo_load] src=raw locale=%s task=* count=%d elapsedMs=%d",
+          resolvedLocale,
           outcome.value.size,
           singlesElapsed,
         )
         Result.Success(locale = resolvedLocale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
-        Timber.w("[repo_load] src=single tasks=null missing locale=%s", resolvedLocale)
+        Timber.w("[repo_load] src=raw locale=%s task=* missing", resolvedLocale)
         Result.Missing(resolvedLocale)
       }
       is AssetPayload.Error -> {
-        Timber.e(outcome.throwable, "[repo_load] src=single tasks=null error locale=%s", resolvedLocale)
+        Timber.e(outcome.throwable, "[repo_load] src=raw locale=%s task=* error", resolvedLocale)
         Result.Error(locale = resolvedLocale, cause = outcome.throwable)
       }
     }
@@ -186,11 +188,17 @@ class AssetQuestionRepository internal constructor(
           loaded[task] = result.value
         }
         AssetPayload.Missing -> {
-          Timber.w("[repo_load] per-task missing task=%s path=%s", task, path)
+          Timber.w("[repo_load] src=per-task locale=%s task=%s missing path=%s", locale, task, path)
           return null
         }
         is AssetPayload.Error -> {
-          Timber.e(result.throwable, "[repo_load] per-task error task=%s path=%s", task, path)
+          Timber.e(
+            result.throwable,
+            "[repo_load] src=per-task locale=%s task=%s error path=%s",
+            locale,
+            task,
+            path,
+          )
           return null
         }
       }
@@ -231,7 +239,7 @@ class AssetQuestionRepository internal constructor(
         val path = "$taskPath/$file"
         when (val result = readSingle(path)) {
           is AssetPayload.Success -> aggregated += result.value
-          AssetPayload.Missing -> Timber.w("[repo_load] single missing path=%s", path)
+          AssetPayload.Missing -> Timber.w("[repo_load] src=raw locale=%s task=%s missing path=%s", locale, task, path)
           is AssetPayload.Error -> return result
         }
       }
