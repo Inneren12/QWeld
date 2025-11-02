@@ -15,6 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Sanity: verify plugin repository resolution
+        run: |
+          grep -n "gradlePluginPortal" settings.gradle.kts || (echo "gradlePluginPortal missing" && exit 1)
+          ./gradlew --version
+          ./gradlew help -q
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:

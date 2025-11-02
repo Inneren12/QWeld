@@ -1,8 +1,8 @@
 pluginManagement {
   repositories {
+    gradlePluginPortal()
     google()
     mavenCentral()
-    gradlePluginPortal()
   }
   plugins {
     id("com.android.application") version "8.5.2"
@@ -19,6 +19,13 @@ pluginManagement {
     id("app.cash.licensee") version "1.7.0"
     id("org.cyclonedx.bom") version "1.9.0"
     id("me.champeau.jmh") version "0.7.3"
+  }
+  resolutionStrategy {
+    eachPlugin {
+      if (requested.id.id == "me.champeau.jmh" && requested.version != null) {
+        useModule("me.champeau.jmh:me.champeau.jmh.gradle.plugin:${requested.version}")
+      }
+    }
   }
 }
 

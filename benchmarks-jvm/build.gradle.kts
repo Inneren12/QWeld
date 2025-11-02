@@ -2,6 +2,7 @@ import groovy.json.JsonSlurper
 import org.gradle.api.GradleException
 
 plugins {
+  id("java")
   kotlin("jvm")
   id("org.jetbrains.kotlin.plugin.serialization")
   id("me.champeau.jmh")
@@ -27,6 +28,7 @@ jmh {
   iterations.set(5)
   timeOnIteration.set("1s")
   fork.set(1)
+  includes.set(listOf(".*"))
   resultFormat.set("JSON")
   resultsFile.set(jmhJson)
   humanOutputFile.set(jmhText)
