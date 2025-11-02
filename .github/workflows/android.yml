@@ -13,11 +13,16 @@ jobs:
     build:
         runs-on: ubuntu-latest
         env:
-            ANDROID_SDK_ROOT: ${{ env.RUNNER_TEMP }}/android-sdk
+            ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
 
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+            - name: Guard ANDROID_SDK_ROOT is resolvable
+              run: |
+                  echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+                  test -n "$ANDROID_SDK_ROOT"
+                  test "$ANDROID_SDK_ROOT" != "/android-sdk"
             - name: Verify no bidi chars in workflows
               run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
 
