@@ -2,6 +2,7 @@ package com.qweld.app.feature.exam.ui
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,25 +17,28 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.model.PassStatus
 import com.qweld.app.feature.exam.model.ResultUiState
@@ -53,6 +57,7 @@ import timber.log.Timber
 fun ResultScreen(
   viewModel: ResultViewModel,
   onReview: () -> Unit,
+  onExit: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
   val uiState by viewModel.uiState
@@ -64,13 +69,57 @@ fun ResultScreen(
     Timber.i("[a11y_check] scale=1.3 pass=true | attrs=%s", "{}")
     Timber.i("[a11y_fix] target=result_actions desc=touch_target>=48dp,cd=actions")
   }
-  ResultScreenContent(
+  ResultScreenLayout(
     state = uiState,
     scoreLabel = viewModel.scoreLabel(),
     onExport = onExport,
     onReview = onReview,
     logExportActions = logExportActions,
+    onExit = onExit,
     modifier = modifier,
+  )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+@VisibleForTesting
+internal fun ResultScreenLayout(
+  state: ResultUiState,
+  scoreLabel: String,
+  onExport: () -> Unit,
+  onReview: () -> Unit,
+  logExportActions: LogExportActions?,
+  onExit: () -> Unit,
+  modifier: Modifier = Modifier,
+) {
+  Scaffold(
+    modifier = modifier,
+    topBar = { ResultTopBar(onExit = onExit) },
+  ) { paddingValues ->
+    ResultScreenContent(
+      state = state,
+      scoreLabel = scoreLabel,
+      onExport = onExport,
+      onReview = onReview,
+      logExportActions = logExportActions,
+      modifier = Modifier.padding(paddingValues),
+    )
+  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ResultTopBar(onExit: () -> Unit) {
+  TopAppBar(
+    title = { },
+    actions = {
+      val goHome = stringResource(id = R.string.go_home)
+      ExitTopBarAction(
+        label = goHome,
+        onClick = onExit,
+        modifier = Modifier.semantics { contentDescription = goHome },
+      )
+    },
   )
 }
 

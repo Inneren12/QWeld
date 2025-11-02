@@ -63,12 +63,15 @@
     <string name="menu_exit">Exit</string>
     <string name="dialog_restart_title">Restart session?</string>
     <string name="dialog_restart_msg">This will discard current progress and start a new session with the same settings.</string>
-    <string name="dialog_exit_title">Exit?</string>
-    <string name="dialog_exit_msg">Your current attempt will be saved as aborted.</string>
+    <string name="dialog_exit_exam_title">Exit exam?</string>
+    <string name="dialog_exit_exam_msg">Your current attempt will be saved as aborted.</string>
+    <string name="dialog_exit_practice_title">Exit practice?</string>
+    <string name="dialog_exit_practice_msg">Unsaved progress will be lost.</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_restart">Restart</string>
     <string name="action_exit">Exit</string>
     <string name="exit">Exit</string>
+    <string name="go_home">Back to Start</string>
     <string name="exam_overflow_cd">Open exam menu</string>
     <string name="result_title">Exam results</string>
     <string name="result_score">Score: %1$s (%2$d / %3$d)</string>

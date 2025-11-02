@@ -34,6 +34,13 @@ fun ExamTopBarMenu(
     modifier = modifier,
     title = { },
     actions = {
+      val exitLabel = stringResource(id = R.string.exit)
+      val exitCd = stringResource(id = R.string.menu_exit)
+      ExitTopBarAction(
+        label = exitLabel,
+        onClick = onExit,
+        modifier = Modifier.semantics { contentDescription = exitCd },
+      )
       val menuCd = stringResource(id = R.string.exam_overflow_cd)
       IconButton(
         onClick = { expanded = true },
@@ -55,18 +62,6 @@ fun ExamTopBarMenu(
           modifier = Modifier.semantics {
             role = Role.Button
             contentDescription = restartCd
-          },
-        )
-        val exitCd = stringResource(id = R.string.menu_exit)
-        DropdownMenuItem(
-          text = { Text(text = stringResource(id = R.string.menu_exit)) },
-          onClick = {
-            expanded = false
-            onExit()
-          },
-          modifier = Modifier.semantics {
-            role = Role.Button
-            contentDescription = exitCd
           },
         )
       }

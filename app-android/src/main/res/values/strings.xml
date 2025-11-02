@@ -16,6 +16,7 @@
     <string name="action_restart">Restart</string>
     <string name="action_exit">Exit</string>
     <string name="language">Language</string>
+    <string name="go_home">Back to Start</string>
     <string name="language_system">System default</string>
     <string name="language_en">English</string>
     <string name="language_ru">Russian</string>

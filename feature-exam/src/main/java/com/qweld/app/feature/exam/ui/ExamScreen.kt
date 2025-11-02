@@ -216,6 +216,7 @@ fun ExamScreen(
 
   if (showConfirmExitDialog) {
     ConfirmExitDialog(
+      mode = attempt?.mode,
       onCancel = {
         analytics.log(
           "confirm_exit",
@@ -509,4 +510,8 @@ private fun DeficitDialog(
   )
 }
 
-internal fun shouldConfirmExit(mode: ExamMode?): Boolean = mode == ExamMode.IP_MOCK
+internal fun shouldConfirmExit(mode: ExamMode?): Boolean =
+  when (mode) {
+    ExamMode.IP_MOCK, ExamMode.PRACTICE -> true
+    else -> false
+  }
