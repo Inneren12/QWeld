@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -30,6 +31,8 @@ import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
+import java.util.Locale
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -141,6 +144,36 @@ fun ExamNavGraph(
               userPrefs = userPrefs,
             ),
         )
+      LaunchedEffect(examViewModel, navController) {
+        examViewModel.effects.collectLatest { effect ->
+          when (effect) {
+            ExamViewModel.ExamEffect.NavigateToMode -> {
+              Timber.i("[ui_nav] screen=Mode")
+              val popped = navController.popBackStack(ExamDestinations.MODE, inclusive = false)
+              if (!popped) {
+                navController.navigate(ExamDestinations.MODE) {
+                  popUpTo(navController.graph.startDestinationId) { inclusive = false }
+                  launchSingleTop = true
+                }
+              }
+            }
+            ExamViewModel.ExamEffect.RestartWithSameConfig -> {
+              val config = examViewModel.uiState.value.lastPracticeConfig
+              val locale = examViewModel.uiState.value.lastLocale
+                ?: Locale.getDefault().language.lowercase(Locale.US)
+              if (config == null) {
+                examViewModel.notifyRestartFailure("Missing practice configuration.")
+                return@collectLatest
+              }
+              val launched = examViewModel.startPractice(locale, config)
+              if (!launched) {
+                examViewModel.notifyRestartFailure("Unable to restart practice.")
+              }
+            }
+            else -> Unit
+          }
+        }
+      }
       ExamScreen(
         viewModel = examViewModel,
         onNavigateToResult = {

@@ -36,6 +36,8 @@ class ResultViewModelTest {
           scorePct: Double?,
         ) = throw UnsupportedOperationException()
 
+        override suspend fun markAborted(id: String, finishedAt: Long) = throw UnsupportedOperationException()
+
         override suspend fun getById(id: String): AttemptEntity? = throw UnsupportedOperationException()
 
         override suspend fun listRecent(limit: Int): List<AttemptEntity> = emptyList()

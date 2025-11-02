@@ -23,6 +23,10 @@ class AttemptsRepository(
     attemptDao.updateFinish(attemptId, finishedAt, durationSec, passThreshold, scorePct)
   }
 
+  suspend fun abortAttempt(id: String) {
+    attemptDao.markAborted(id, System.currentTimeMillis())
+  }
+
   suspend fun getById(id: String): AttemptEntity? = attemptDao.getById(id)
 
   suspend fun listRecent(limit: Int): List<AttemptEntity> = attemptDao.listRecent(limit)

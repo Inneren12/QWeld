@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.model
 
 import com.qweld.app.domain.exam.ExamMode
+import com.qweld.app.feature.exam.vm.PracticeConfig
 import java.time.Duration
 
 data class ExamUiState(
@@ -11,6 +12,9 @@ data class ExamUiState(
   val timerLabel: String? = null,
   val resumeDialog: ResumeDialogUiModel? = null,
   val prewarmState: PrewarmUiState = PrewarmUiState(),
+  val lastMode: ExamMode? = null,
+  val lastPracticeConfig: PracticeConfig? = null,
+  val lastLocale: String? = null,
 )
 
 data class PrewarmUiState(

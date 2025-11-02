@@ -122,6 +122,22 @@ class ExamViewModel(
 
   val lastPracticeScope = userPrefs.readLastPracticeScope()
 
+  private fun recordLastSession(
+    mode: ExamMode,
+    locale: String,
+    practiceConfig: PracticeConfig? = _uiState.value.lastPracticeConfig,
+  ) {
+    val previous = _uiState.value
+    val resolvedConfig =
+      if (mode == ExamMode.PRACTICE) practiceConfig ?: previous.lastPracticeConfig else previous.lastPracticeConfig
+    _uiState.value =
+      previous.copy(
+        lastMode = mode,
+        lastLocale = locale,
+        lastPracticeConfig = resolvedConfig,
+      )
+  }
+
   init {
     viewModelScope.launch {
       userPrefs.prewarmDisabled.collect { disabled ->
@@ -240,6 +256,11 @@ class ExamViewModel(
           attemptId = attemptId,
           startedAt = startedAt,
         )
+      recordLastSession(
+        mode = mode,
+        locale = attempt.locale,
+        practiceConfig = if (mode == ExamMode.PRACTICE) normalizedPracticeConfig else null,
+      )
       hasFinished = false
       prepareAutosave(attemptId)
       latestResult = null
@@ -276,13 +297,14 @@ class ExamViewModel(
         _effects.tryEmit(ExamEffect.ShowDeficit(detailSummary))
       }
       currentAttempt = null
-      _uiState.value = ExamUiState(
-        isLoading = false,
-        attempt = null,
-        deficitDialog = DeficitDialogUiModel(details),
-        errorMessage = null,
-        prewarmState = _uiState.value.prewarmState,
-      )
+      val previous = _uiState.value
+      _uiState.value =
+        previous.copy(
+          isLoading = false,
+          attempt = null,
+          deficitDialog = DeficitDialogUiModel(details),
+          errorMessage = null,
+        )
       false
     } catch (error: Throwable) {
       if (error is CancellationException) throw error
@@ -293,13 +315,13 @@ class ExamViewModel(
         Timber.e(error)
       }
       currentAttempt = null
+      val previous = _uiState.value
       _uiState.value =
-        ExamUiState(
+        previous.copy(
           isLoading = false,
           attempt = null,
           deficitDialog = null,
           errorMessage = error.message ?: "Unable to start attempt.",
-          prewarmState = _uiState.value.prewarmState,
         )
       false
     }
@@ -410,6 +432,7 @@ class ExamViewModel(
             attemptId = pending.id,
             startedAt = pending.startedAt,
           )
+        recordLastSession(mode, reconstruction.attempt.locale)
         hasFinished = false
         prepareAutosave(pending.id)
         latestResult = null
@@ -583,13 +606,81 @@ class ExamViewModel(
     _uiState.value = _uiState.value.copy(deficitDialog = null)
   }
 
+  suspend fun abortAttempt(reason: String = "user_exit") {
+    val aborted = closeCurrentAttemptAsAborted(reason)
+    if (!aborted) {
+      Timber.i("[attempt_abort] id=none reason=%s", reason)
+    }
+    _effects.emit(ExamEffect.NavigateToMode)
+  }
+
+  fun restartAttempt() {
+    val attemptResult = currentAttempt
+    if (attemptResult == null) {
+      Timber.w("[attempt_restart] skipped reason=no_attempt")
+      viewModelScope.launch { _effects.emit(ExamEffect.ShowError("Unable to restart.")) }
+      return
+    }
+    val attempt = attemptResult.attempt
+    val questionCount = attempt.questions.size
+    when (attempt.mode) {
+      ExamMode.PRACTICE -> {
+        val storedConfig = _uiState.value.lastPracticeConfig
+        if (storedConfig == null) {
+          Timber.w("[attempt_restart] mode=Practice size=%d scope=[] dist=%s wrongBiased=%s | reason=no_config", questionCount, Distribution.Proportional.name, false)
+          viewModelScope.launch { _effects.emit(ExamEffect.ShowError("Unable to restart practice.")) }
+          return
+        }
+        val sanitized = storedConfig.copy(size = PracticeConfig.sanitizeSize(storedConfig.size))
+        val locale = attempt.locale
+        viewModelScope.launch {
+          logRestart(ExamMode.PRACTICE, sanitized, questionCount)
+          val aborted = closeCurrentAttemptAsAborted(reason = "user_restart")
+          if (!aborted) return@launch
+          recordLastSession(ExamMode.PRACTICE, locale, sanitized)
+          _effects.emit(ExamEffect.RestartWithSameConfig)
+        }
+      }
+      ExamMode.IP_MOCK -> {
+        val locale = attempt.locale
+        viewModelScope.launch {
+          logRestart(ExamMode.IP_MOCK, null, questionCount)
+          val aborted = closeCurrentAttemptAsAborted(reason = "user_restart")
+          if (!aborted) return@launch
+          val launched = startAttempt(ExamMode.IP_MOCK, locale)
+          if (!launched) {
+            _effects.emit(ExamEffect.ShowError("Unable to restart exam."))
+          }
+        }
+      }
+      else -> {
+        Timber.w("[attempt_restart] skipped reason=unsupported_mode mode=%s", attempt.mode.name)
+        viewModelScope.launch { _effects.emit(ExamEffect.ShowError("Unable to restart.")) }
+      }
+    }
+  }
+
+  fun notifyRestartFailure(message: String) {
+    _effects.tryEmit(ExamEffect.ShowError(message))
+  }
+
   private fun refreshState() {
     val attemptResult = currentAttempt
     if (attemptResult == null) {
       latestTimerLabel = null
-      _uiState.value = ExamUiState(prewarmState = _uiState.value.prewarmState)
+      val previous = _uiState.value
+      _uiState.value =
+        previous.copy(
+          isLoading = false,
+          attempt = null,
+          deficitDialog = null,
+          errorMessage = null,
+          timerLabel = null,
+          resumeDialog = null,
+        )
       return
     }
+    val previous = _uiState.value
     val attempt = attemptResult.attempt
     val uiQuestions = attempt.questions.map { assembled ->
       toUiModel(
@@ -609,14 +700,13 @@ class ExamViewModel(
         currentIndex = index,
       )
     _uiState.value =
-      ExamUiState(
+      previous.copy(
         isLoading = false,
         attempt = attemptState,
         deficitDialog = null,
         errorMessage = null,
         timerLabel = latestTimerLabel,
         resumeDialog = null,
-        prewarmState = _uiState.value.prewarmState,
       )
     currentAttempt = attemptResult.copy(currentIndex = index)
   }
@@ -865,6 +955,68 @@ class ExamViewModel(
     )
   }
 
+  private suspend fun closeCurrentAttemptAsAborted(reason: String): Boolean {
+    val attemptResult = currentAttempt ?: return false
+    val attempt = attemptResult.attempt
+    Timber.i("[attempt_abort] id=%s reason=%s", attemptResult.attemptId, reason)
+    autosaveController?.flush(force = true)
+    autosaveController = null
+    stopAutosaveTicker()
+    stopTimer(clearLabel = true)
+    withContext(ioDispatcher) { attemptsRepository.abortAttempt(attemptResult.attemptId) }
+    currentAttempt = null
+    latestResult = null
+    hasFinished = false
+    questionSeenAt.clear()
+    manualTimerRemaining = null
+    recordLastSession(attempt.mode, attempt.locale)
+    val previous = _uiState.value
+    _uiState.value =
+      previous.copy(
+        attempt = null,
+        deficitDialog = null,
+        errorMessage = null,
+        timerLabel = null,
+        resumeDialog = null,
+      )
+    return true
+  }
+
+  private fun logRestart(
+    mode: ExamMode,
+    practiceConfig: PracticeConfig?,
+    questionCount: Int,
+  ) {
+    val scopeValues =
+      if (practiceConfig == null) {
+        emptyList()
+      } else {
+        val scope = practiceConfig.scope
+        val tasks = scope.taskIds
+        if (tasks.isNotEmpty()) {
+          tasks.map { it.uppercase(Locale.US) }
+        } else {
+          scope.blocks.map { it.uppercase(Locale.US) }
+        }
+      }
+    val scopeLog = scopeValues.sorted().joinToString(prefix = "[", postfix = "]")
+    val distribution = practiceConfig?.scope?.distribution?.name ?: Distribution.Proportional.name
+    val wrongBiased = practiceConfig?.wrongBiased ?: false
+    val resolvedSize = if (mode == ExamMode.PRACTICE) practiceConfig?.size ?: questionCount else questionCount
+    Timber.i(
+      "[attempt_restart] mode=%s size=%d scope=%s dist=%s wrongBiased=%s",
+      when (mode) {
+        ExamMode.IP_MOCK -> "IPMock"
+        ExamMode.PRACTICE -> "Practice"
+        else -> mode.name,
+      },
+      resolvedSize,
+      scopeLog,
+      distribution,
+      wrongBiased,
+    )
+  }
+
   sealed interface ExamEvent {
     data object NavigateToResult : ExamEvent
     data object ResumeReady : ExamEvent
@@ -872,6 +1024,8 @@ class ExamViewModel(
 
   sealed class ExamEffect {
     data object NavigateToExam : ExamEffect()
+    data object NavigateToMode : ExamEffect()
+    data object RestartWithSameConfig : ExamEffect()
     data class ShowDeficit(val detail: String) : ExamEffect()
     data class ShowError(val msg: String) : ExamEffect()
   }
