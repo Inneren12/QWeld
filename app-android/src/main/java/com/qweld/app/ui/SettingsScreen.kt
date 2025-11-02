@@ -67,7 +67,7 @@ fun SettingsScreen(
   val analyticsEnabled by userPrefs.analyticsEnabled.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED,
   )
-  val practiceSize by userPrefs.practiceSize.collectAsState(
+  val practiceSize by userPrefs.practiceSizeFlow().collectAsState(
     initial = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE,
   )
   val wrongBiased by userPrefs.wrongBiased.collectAsState(

@@ -7,6 +7,13 @@
     <string name="practice_scope_title">Охват практики</string>
     <string name="practice_scope_blocks">Блоки</string>
     <string name="practice_scope_presets">Пресеты</string>
+    <string name="practice_scope_questions_label">Количество вопросов</string>
+    <string name="practice_scope_questions_hint">Мин. %1$d, Макс. %2$d</string>
+    <string name="practice_scope_questions_invalid">Некорректное значение</string>
+    <string name="practice_scope_questions_min">Мин. %1$d</string>
+    <string name="practice_scope_questions_max">Макс. %1$d</string>
+    <string name="practice_scope_questions_decrease">Уменьшить количество вопросов</string>
+    <string name="practice_scope_questions_increase">Увеличить количество вопросов</string>
     <string name="practice_scope_preset_a_only">Только A</string>
     <string name="practice_scope_preset_b_only">Только B</string>
     <string name="practice_scope_preset_c_only">Только C</string>

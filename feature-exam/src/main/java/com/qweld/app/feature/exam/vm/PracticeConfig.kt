@@ -1,5 +1,7 @@
 package com.qweld.app.feature.exam.vm
 
+import com.qweld.app.data.prefs.UserPrefsDataStore
+
 /**
  * User-configurable practice parameters.
  */
@@ -22,9 +24,11 @@ data class PracticeConfig(
   companion object {
     val PRESETS: List<Int> = listOf(10, 20, 30)
     const val DEFAULT_SIZE: Int = 20
+    const val MIN_SIZE: Int = UserPrefsDataStore.MIN_PRACTICE_SIZE
+    const val MAX_SIZE: Int = UserPrefsDataStore.MAX_PRACTICE_SIZE
 
     fun sanitizeSize(value: Int): Int {
-      return PRESETS.firstOrNull { it == value } ?: DEFAULT_SIZE
+      return value.coerceIn(MIN_SIZE, MAX_SIZE)
     }
   }
 }
