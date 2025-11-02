@@ -17,6 +17,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -33,9 +34,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardActions
+import androidx.compose.ui.text.input.KeyboardOptions
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.qweld.app.R
 import com.qweld.app.data.content.ContentIndexReader
@@ -82,8 +88,22 @@ fun SettingsScreen(
   val soundsEnabled by userPrefs.soundsEnabled.collectAsState(
     initial = UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED,
   )
+  val prewarmDisabled by userPrefs.prewarmDisabled.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_PREWARM_DISABLED,
+  )
+  val lruCacheSize by userPrefs.lruCacheSizeFlow().collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
+  )
   var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
   val clipboardManager = LocalClipboardManager.current
+
+  var lruCacheInput by remember(lruCacheSize) { mutableStateOf(lruCacheSize.toString()) }
+  val lruCacheHint =
+    stringResource(
+      id = R.string.settings_lru_size_hint,
+      UserPrefsDataStore.MIN_LRU_CACHE_SIZE,
+      UserPrefsDataStore.MAX_LRU_CACHE_SIZE,
+    )
 
   val resolvedPracticeConfig =
     PracticeConfig(
@@ -194,6 +214,30 @@ fun SettingsScreen(
       SettingsToolsSection(
         hapticsEnabled = hapticsEnabled,
         soundsEnabled = soundsEnabled,
+        prewarmEnabled = !prewarmDisabled,
+        lruCacheSize = lruCacheInput,
+        lruCacheHint = lruCacheHint,
+        onTogglePrewarm = { enabled ->
+          scope.launch {
+            userPrefs.setPrewarmDisabled(!enabled)
+            Timber.i("[settings_update] key=prewarmDisabled value=%s", !enabled)
+          }
+        },
+        onLruCacheSizeChange = { text ->
+          val digits = text.filter { it.isDigit() }
+          lruCacheInput = digits
+        },
+        onLruCacheSizeCommit = {
+          val parsed = lruCacheInput.toIntOrNull()
+          if (parsed == null) {
+            lruCacheInput = lruCacheSize.toString()
+          } else {
+            scope.launch {
+              userPrefs.setLruCacheSize(parsed)
+              Timber.i("[settings_update] key=lruCacheSize value=%d", parsed)
+            }
+          }
+        },
         onToggleHaptics = { enabled ->
           scope.launch {
             userPrefs.setHapticsEnabled(enabled)
@@ -464,6 +508,12 @@ private fun ContentInfoTable(tasks: Map<String, Int>) {
 private fun SettingsToolsSection(
   hapticsEnabled: Boolean,
   soundsEnabled: Boolean,
+  prewarmEnabled: Boolean,
+  lruCacheSize: String,
+  lruCacheHint: String,
+  onTogglePrewarm: (Boolean) -> Unit,
+  onLruCacheSizeChange: (String) -> Unit,
+  onLruCacheSizeCommit: () -> Unit,
   onToggleHaptics: (Boolean) -> Unit,
   onToggleSounds: (Boolean) -> Unit,
   onExportLogs: (() -> Unit)?,
@@ -490,6 +540,34 @@ private fun SettingsToolsSection(
         label = stringResource(id = R.string.settings_sounds_label),
         checked = soundsEnabled,
         onCheckedChange = onToggleSounds,
+      )
+    }
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+      Text(
+        text = stringResource(id = R.string.settings_section_performance),
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+      SettingsToggleRow(
+        label = stringResource(id = R.string.settings_prewarm_label),
+        checked = prewarmEnabled,
+        onCheckedChange = onTogglePrewarm,
+      )
+      OutlinedTextField(
+        modifier = Modifier
+          .fillMaxWidth()
+          .onFocusChanged { focusState -> if (!focusState.isFocused) onLruCacheSizeCommit() },
+        value = lruCacheSize,
+        onValueChange = onLruCacheSizeChange,
+        label = { Text(text = stringResource(id = R.string.settings_lru_size_label)) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions(onDone = { onLruCacheSizeCommit() }),
+        singleLine = true,
+      )
+      Text(
+        text = lruCacheHint,
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
     }
     Button(

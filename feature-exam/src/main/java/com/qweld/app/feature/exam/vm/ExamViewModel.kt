@@ -51,7 +51,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.JsonElement
@@ -75,7 +78,12 @@ class ExamViewModel(
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val timerController: TimerController = TimerController { message -> Timber.i(message) },
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-  private val prewarmUseCase: PrewarmUseCase = PrewarmUseCase(repository, ioDispatcher),
+  private val prewarmUseCase: PrewarmUseCase =
+    PrewarmUseCase(
+      repository = repository,
+      prewarmDisabled = userPrefs.prewarmDisabled,
+      ioDispatcher = ioDispatcher,
+    ),
   private val resumeUseCase: ResumeUseCase =
     ResumeUseCase(
       repository = repository,
@@ -109,9 +117,23 @@ class ExamViewModel(
   private val _effects = MutableSharedFlow<ExamEffect>(extraBufferCapacity = 1)
   val effects: Flow<ExamEffect> = _effects.asSharedFlow()
 
-  val prewarmDisabled: Boolean = false
+  private val _prewarmDisabled = MutableStateFlow(UserPrefsDataStore.DEFAULT_PREWARM_DISABLED)
+  val prewarmDisabled = _prewarmDisabled.asStateFlow()
 
   val lastPracticeScope = userPrefs.readLastPracticeScope()
+
+  init {
+    viewModelScope.launch {
+      userPrefs.prewarmDisabled.collect { disabled ->
+        val previous = _prewarmDisabled.value
+        _prewarmDisabled.value = disabled
+        if (disabled && !previous) {
+          prewarmJob?.cancel()
+          prewarmJob = null
+        }
+      }
+    }
+  }
 
   fun startAttempt(
     mode: ExamMode,
@@ -596,7 +618,7 @@ class ExamViewModel(
   }
 
   fun startPrewarmForIpMock(locale: String) {
-    if (prewarmDisabled) return
+    if (_prewarmDisabled.value) return
     val normalizedLocale = locale.lowercase(Locale.US)
     val current = _uiState.value.prewarmState
     if (current.isRunning) return
@@ -1191,7 +1213,7 @@ class ExamViewModelFactory(
         answersRepository = answersRepository,
         statsRepository = statsRepository,
         userPrefs = userPrefs,
-        prewarmUseCase = PrewarmUseCase(repository),
+        prewarmUseCase = PrewarmUseCase(repository, userPrefs.prewarmDisabled),
       ) as T
     }
     throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")

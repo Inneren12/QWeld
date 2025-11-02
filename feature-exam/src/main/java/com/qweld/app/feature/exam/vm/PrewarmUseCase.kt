@@ -13,10 +13,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import timber.log.Timber
 
 class PrewarmUseCase(
   private val repository: AssetQuestionRepository,
+  private val prewarmDisabled: Flow<Boolean> = kotlinx.coroutines.flow.flowOf(false),
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
 ) {
@@ -28,6 +31,11 @@ class PrewarmUseCase(
     val normalizedLocale = locale.lowercase(Locale.US)
     val sanitizedTasks = tasks.filter { it.isNotBlank() }.toSet()
     val totalTasks = sanitizedTasks.size
+    val disabled = prewarmDisabled.first()
+    if (disabled) {
+      Timber.i("[prewarm_skip] locale=%s reason=disabled", normalizedLocale)
+      return
+    }
     Timber.i("[prewarm_start] locale=%s tasks=%d", normalizedLocale, totalTasks)
 
     if (totalTasks == 0) {

@@ -31,6 +31,10 @@
     <string name="settings_section_accessibility">Доступность</string>
     <string name="settings_haptics_label">Haptics feedback</string>
     <string name="settings_sounds_label">Click sound on submit</string>
+    <string name="settings_section_performance">Производительность</string>
+    <string name="settings_prewarm_label">Прогрев по заданиям</string>
+    <string name="settings_lru_size_label">Размер LRU-кэша</string>
+    <string name="settings_lru_size_hint">Держать в памяти %1$d-%2$d заданий.</string>
     <string name="settings_export_logs">Экспорт логов</string>
     <string name="settings_clear_attempts">Очистить локальные попытки</string>
     <string name="settings_clear_cache">Очистить кэш заданий</string>
