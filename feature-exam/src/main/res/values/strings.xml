@@ -7,6 +7,13 @@
     <string name="practice_scope_title">Practice scope</string>
     <string name="practice_scope_blocks">Blocks</string>
     <string name="practice_scope_presets">Presets</string>
+    <string name="practice_scope_questions_label">Number of questions</string>
+    <string name="practice_scope_questions_hint">Min %1$d, Max %2$d</string>
+    <string name="practice_scope_questions_invalid">Invalid value</string>
+    <string name="practice_scope_questions_min">Min %1$d</string>
+    <string name="practice_scope_questions_max">Max %1$d</string>
+    <string name="practice_scope_questions_decrease">Decrease question count</string>
+    <string name="practice_scope_questions_increase">Increase question count</string>
     <string name="practice_scope_preset_a_only">A-only</string>
     <string name="practice_scope_preset_b_only">B-only</string>
     <string name="practice_scope_preset_c_only">C-only</string>

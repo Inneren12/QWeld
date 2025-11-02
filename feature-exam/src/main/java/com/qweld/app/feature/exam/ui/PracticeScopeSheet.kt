@@ -11,16 +11,23 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,7 +38,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.isCtrlPressed
+import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardOptions
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamBlueprint
@@ -45,6 +58,7 @@ import com.qweld.app.feature.exam.vm.detectPresetForScope
 import com.qweld.app.feature.exam.vm.toScope
 import java.util.LinkedHashSet
 import java.util.Locale
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,10 +69,33 @@ fun PracticeScopeSheet(
   blueprint: ExamBlueprint,
   lastScope: UserPrefsDataStore.LastScope?,
   onDismiss: () -> Unit,
-  onConfirm: (PracticeScope, PracticeScopePresetName?) -> Boolean,
+  onConfirm: (PracticeScope, Int, PracticeScopePresetName?) -> Boolean,
 ) {
   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
   val sanitizedSize = remember(size) { PracticeConfig.sanitizeSize(size) }
+  var sizeText by remember { mutableStateOf(sanitizedSize.toString()) }
+  var showInvalidSize by remember { mutableStateOf(false) }
+
+  LaunchedEffect(sanitizedSize) {
+    sizeText = sanitizedSize.toString()
+    showInvalidSize = false
+  }
+
+  val parsedSize = sizeText.toIntOrNull()
+  val clampedSize = parsedSize?.coerceIn(PracticeConfig.MIN_SIZE, PracticeConfig.MAX_SIZE)
+  val effectiveSize = clampedSize ?: sanitizedSize
+  val isOutOfRange = parsedSize != null && clampedSize != null && parsedSize != clampedSize
+
+  fun setSize(value: Int) {
+    val resolved = value.coerceIn(PracticeConfig.MIN_SIZE, PracticeConfig.MAX_SIZE)
+    sizeText = resolved.toString()
+    showInvalidSize = false
+  }
+
+  fun adjustSize(delta: Int) {
+    val base = (clampedSize ?: sanitizedSize) + delta
+    setSize(base)
+  }
 
   fun normalizeSet(values: Set<String>): Set<String> {
     return values
@@ -95,7 +132,7 @@ fun PracticeScopeSheet(
       if (lastScope != null) PracticeScopePresetName.LAST_USED else detectPresetForScope(initial, lastScope)
   }
 
-  val previewSize by remember {
+  val previewSize by remember(selectedBlocks, selectedTasks, distribution, effectiveSize, blueprint) {
     derivedStateOf {
       val previewScope =
         PracticeScope(
@@ -106,7 +143,7 @@ fun PracticeScopeSheet(
       ExamViewModel.resolvePracticeQuotas(
         blueprint = blueprint,
         scope = previewScope,
-        total = sanitizedSize,
+        total = effectiveSize,
       ).values.sum()
     }
   }
@@ -184,6 +221,102 @@ fun PracticeScopeSheet(
               enabled = enabled,
               colors = FilterChipDefaults.filterChipColors(),
             )
+          }
+        }
+      }
+
+      Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Text(
+          text = stringResource(id = R.string.practice_scope_questions_label),
+          style = MaterialTheme.typography.titleMedium,
+        )
+        val supportingText =
+          if (showInvalidSize) {
+            stringResource(id = R.string.practice_scope_questions_invalid)
+          } else {
+            stringResource(
+              id = R.string.practice_scope_questions_hint,
+              PracticeConfig.MIN_SIZE,
+              PracticeConfig.MAX_SIZE,
+            )
+          }
+        val supportingColor =
+          if (showInvalidSize || isOutOfRange) {
+            MaterialTheme.colorScheme.error
+          } else {
+            MaterialTheme.colorScheme.onSurfaceVariant
+          }
+        val minusEnabled = effectiveSize > PracticeConfig.MIN_SIZE
+        val plusEnabled = effectiveSize < PracticeConfig.MAX_SIZE
+        Row(
+          modifier = Modifier.fillMaxWidth(),
+          horizontalArrangement = Arrangement.spacedBy(12.dp),
+          verticalAlignment = Alignment.CenterVertically,
+        ) {
+          IconButton(onClick = { adjustSize(-1) }, enabled = minusEnabled) {
+            Icon(
+              imageVector = Icons.Filled.Remove,
+              contentDescription = stringResource(id = R.string.practice_scope_questions_decrease),
+            )
+          }
+          TextField(
+            modifier =
+              Modifier
+                .weight(1f)
+                .onPreviewKeyEvent { event ->
+                  if (event.type != KeyEventType.KeyDown || !event.isCtrlPressed) {
+                    return@onPreviewKeyEvent false
+                  }
+                  when (event.key) {
+                    Key.DirectionUp, Key.DirectionRight -> {
+                      adjustSize(+1)
+                      true
+                    }
+                    Key.DirectionDown, Key.DirectionLeft -> {
+                      adjustSize(-1)
+                      true
+                    }
+                    else -> false
+                  }
+                },
+            value = sizeText,
+            onValueChange = { newValue ->
+              val digits = newValue.filter { it.isDigit() }
+              sizeText = digits.take(3)
+              showInvalidSize = false
+            },
+            singleLine = true,
+            textStyle = MaterialTheme.typography.bodyLarge,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            supportingText = {
+              Text(text = supportingText, color = supportingColor, style = MaterialTheme.typography.bodySmall)
+            },
+            isError = showInvalidSize || isOutOfRange,
+          )
+          IconButton(onClick = { adjustSize(+1) }, enabled = plusEnabled) {
+            Icon(
+              imageVector = Icons.Filled.Add,
+              contentDescription = stringResource(id = R.string.practice_scope_questions_increase),
+            )
+          }
+        }
+        val sliderSteps = (PracticeConfig.MAX_SIZE - PracticeConfig.MIN_SIZE).coerceAtLeast(1) - 1
+        Slider(
+          modifier = Modifier.fillMaxWidth(),
+          value = effectiveSize.toFloat(),
+          onValueChange = { updated -> setSize(updated.roundToInt()) },
+          valueRange = PracticeConfig.MIN_SIZE.toFloat()..PracticeConfig.MAX_SIZE.toFloat(),
+          steps = sliderSteps,
+        )
+        Row(
+          modifier = Modifier.fillMaxWidth(),
+          horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+          TextButton(onClick = { setSize(PracticeConfig.MIN_SIZE) }, enabled = effectiveSize != PracticeConfig.MIN_SIZE) {
+            Text(text = stringResource(id = R.string.practice_scope_questions_min, PracticeConfig.MIN_SIZE))
+          }
+          TextButton(onClick = { setSize(PracticeConfig.MAX_SIZE) }, enabled = effectiveSize != PracticeConfig.MAX_SIZE) {
+            Text(text = stringResource(id = R.string.practice_scope_questions_max, PracticeConfig.MAX_SIZE))
           }
         }
       }
@@ -354,7 +487,17 @@ fun PracticeScopeSheet(
                 taskIds = normalizedTasks,
                 distribution = distribution,
               )
-            if (onConfirm(scopeToSubmit, selectedPreset)) {
+            val parsed = sizeText.toIntOrNull()
+            if (parsed == null) {
+              showInvalidSize = true
+              return@Button
+            }
+            val resolvedSize = parsed.coerceIn(PracticeConfig.MIN_SIZE, PracticeConfig.MAX_SIZE)
+            if (resolvedSize != parsed) {
+              sizeText = resolvedSize.toString()
+            }
+            showInvalidSize = false
+            if (onConfirm(scopeToSubmit, resolvedSize, selectedPreset)) {
               onDismiss()
             }
           },

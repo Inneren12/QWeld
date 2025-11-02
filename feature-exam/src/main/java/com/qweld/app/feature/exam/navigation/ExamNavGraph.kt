@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -29,6 +30,7 @@ import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 object ExamDestinations {
@@ -85,8 +87,9 @@ fun ExamNavGraph(
               userPrefs = userPrefs,
             ),
         )
+      val coroutineScope = rememberCoroutineScope()
       val practiceSize by
-        userPrefs.practiceSize.collectAsState(
+        userPrefs.practiceSizeFlow().collectAsState(
           initial = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE,
         )
       val wrongBiased by
@@ -105,6 +108,9 @@ fun ExamNavGraph(
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
         navController = navController,
+        onPracticeSizeCommit = { size ->
+          coroutineScope.launch { userPrefs.setPracticeSize(size) }
+        },
         onRepeatMistakes = { locale, blueprint, config ->
           val launched = examViewModel.startAttempt(
             mode = ExamMode.PRACTICE,

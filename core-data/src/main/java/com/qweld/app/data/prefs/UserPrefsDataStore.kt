@@ -37,8 +37,10 @@ class UserPrefsDataStore internal constructor(
     preferences[ANALYTICS_ENABLED_KEY] ?: DEFAULT_ANALYTICS_ENABLED
   }
 
-  val practiceSize: Flow<Int> = dataStore.data.map { preferences ->
-    sanitizePracticeSize(preferences[PRACTICE_SIZE_KEY] ?: DEFAULT_PRACTICE_SIZE)
+  fun practiceSizeFlow(): Flow<Int> {
+    return dataStore.data.map { preferences ->
+      sanitizePracticeSize(preferences[PRACTICE_SIZE_KEY] ?: DEFAULT_PRACTICE_SIZE)
+    }
   }
 
   val fallbackToEN: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -134,6 +136,8 @@ class UserPrefsDataStore internal constructor(
   companion object {
     val DEFAULT_ANALYTICS_ENABLED: Boolean = BuildConfig.ENABLE_ANALYTICS
     const val DEFAULT_PRACTICE_SIZE: Int = 20
+    const val MIN_PRACTICE_SIZE: Int = 5
+    const val MAX_PRACTICE_SIZE: Int = 125
     const val DEFAULT_WRONG_BIASED: Boolean = false
     const val DEFAULT_FALLBACK_TO_EN: Boolean = false
     const val DEFAULT_HAPTICS_ENABLED: Boolean = true
@@ -154,8 +158,8 @@ class UserPrefsDataStore internal constructor(
     private val LAST_SCOPE_TASKS_KEY = stringPreferencesKey("last_scope_tasks")
     private val LAST_SCOPE_DISTRIBUTION_KEY = stringPreferencesKey("last_scope_distribution")
 
-    private fun sanitizePracticeSize(value: Int): Int {
-      return if (value in PRACTICE_SIZE_PRESETS) value else DEFAULT_PRACTICE_SIZE
+    internal fun sanitizePracticeSize(value: Int): Int {
+      return value.coerceIn(MIN_PRACTICE_SIZE, MAX_PRACTICE_SIZE)
     }
 
     private fun normalizeAndJoin(values: Set<String>): String {

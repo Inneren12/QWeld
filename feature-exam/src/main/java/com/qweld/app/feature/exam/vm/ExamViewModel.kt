@@ -902,6 +902,8 @@ class ExamViewModel(
     preset: PracticeScopePresetName? = null,
   ): Boolean {
     val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
+    val sizeSource = if (resolvedConfig.size in PracticeConfig.PRESETS) "preset" else "manual"
+    Timber.i("[practice_size] value=%d source=%s", resolvedConfig.size, sizeSource)
     val baseBlueprint = practiceBlueprint()
     val selectedTasks = resolvePracticeTasks(baseBlueprint, resolvedConfig.scope)
     val scopeBlocksLog =

@@ -93,6 +93,11 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 - Once you finish a practice session, a **Last used** preset appears; choosing it restores the previously saved blocks, explicit tasks, and distribution while logging `[practice_preset] name=LastUsed … dist=<mode>`.
 - Starting practice now persists the chosen scope via `UserPrefsDataStore`, logging `[practice_scope_saved]` with the normalized blocks/tasks so the next sheet opening preselects the remembered scope and highlights **Last used**.
 
+### Practice: manual question count
+- Set the practice session length anywhere between 5 and 125 questions with the new stepper, numeric field, or slider directly inside the scope sheet.
+- The field clamps invalid input, shows a localized hint when the range is exceeded, and even supports `Ctrl` + arrow adjustments for keyboard users.
+- Confirming practice saves the chosen size back to `UserPrefsDataStore` and overrides preset totals, logging `[practice_size] value=<n> source=manual|preset` before launching the attempt.
+
 ### F5-D review & explain
 - Complete an exam attempt to unlock the Review screen, which lists every answered item with your selection, the correct choice, and the quick rationale from the bank.
 - Tapping **Explain** opens a bottom sheet that pulls structured content from `app-android/src/main/assets/explanations/<locale>/<taskId>/<id>__explain_<locale>.json`; the sheet falls back to the quick rationale if the asset is missing.
@@ -125,7 +130,7 @@ The script installs Poetry dependencies, runs `qw_fix_familyid.py`, and executes
 ### Settings: privacy & tools
 - Open **Settings** from the top app bar overflow to review analytics and practice preferences alongside maintenance tools.
 - Privacy includes a single toggle that persists to `UserPrefsDataStore`; disabling analytics keeps Timber logs but stops Firebase event delivery until re-enabled.
-- Practice exposes a 5–50 slider/number field for the default question count plus an RU→EN fallback switch (practice only), both stored in the same DataStore.
+- Practice exposes a 5–125 slider/number field for the default question count plus an RU→EN fallback switch (practice only), both stored in the same DataStore.
 - Tools provide one-tap log export (SAF), a combined "Clear local attempts" action (wipes Room attempts/answers), and "Clear per-task cache" for the asset repository—each posts a confirmation snackbar and logs `[settings_action]` markers with `result=ok|error`.
 - Tools now include an **Accessibility** sub-section with persistent toggles for haptics (enabled by default) and submit click sounds (opt-in) backed by `UserPrefsDataStore`.
 

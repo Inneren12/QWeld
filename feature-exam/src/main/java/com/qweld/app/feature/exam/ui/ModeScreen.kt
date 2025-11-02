@@ -59,6 +59,7 @@ fun ModeScreen(
   practiceConfig: PracticeConfig = PracticeConfig(),
   modifier: Modifier = Modifier,
   navController: NavHostController,
+  onPracticeSizeCommit: (Int) -> Unit = {},
   onRepeatMistakes: (String, ExamBlueprint, PracticeConfig) -> Unit = { _, _, _ -> },
   onResumeAttempt: () -> Unit = {},
 ) {
@@ -260,7 +261,7 @@ fun ModeScreen(
       blueprint = practiceBlueprint,
       lastScope = lastScope,
       onDismiss = { showPracticeScope = false },
-      onConfirm = { scope, preset ->
+      onConfirm = { scope, selectedSize, preset ->
         val selected = ExamViewModel.resolvePracticeTasks(practiceBlueprint, scope)
         if (selected.isEmpty()) {
           coroutineScope.launch { snackbarHostState.showSnackbar(noTasksMessage) }
@@ -269,10 +270,11 @@ fun ModeScreen(
           val launched =
             viewModel.startPractice(
               locale = resolvedLanguage,
-              config = practiceConfig.copy(scope = scope),
+              config = practiceConfig.copy(scope = scope, size = selectedSize),
               preset = preset,
             )
           if (launched) {
+            onPracticeSizeCommit(selectedSize)
             practiceScope = scope
           }
           launched

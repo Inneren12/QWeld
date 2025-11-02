@@ -32,7 +32,7 @@ class UserPrefsDataStoreTest {
     val prefs = newDataStore()
 
     assertEquals(UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED, prefs.analyticsEnabled.first())
-    assertEquals(UserPrefsDataStore.DEFAULT_PRACTICE_SIZE, prefs.practiceSize.first())
+    assertEquals(UserPrefsDataStore.DEFAULT_PRACTICE_SIZE, prefs.practiceSizeFlow().first())
     assertEquals(UserPrefsDataStore.DEFAULT_WRONG_BIASED, prefs.wrongBiased.first())
     assertEquals(UserPrefsDataStore.DEFAULT_FALLBACK_TO_EN, prefs.fallbackToEN.first())
     assertEquals(UserPrefsDataStore.DEFAULT_HAPTICS_ENABLED, prefs.hapticsEnabled.first())
@@ -51,7 +51,7 @@ class UserPrefsDataStoreTest {
     prefs.setWrongBiased(true)
 
     assertFalse(prefs.analyticsEnabled.first())
-    assertEquals(UserPrefsDataStore.DEFAULT_PRACTICE_SIZE, prefs.practiceSize.first())
+    assertEquals(35, prefs.practiceSizeFlow().first())
     assertTrue(prefs.fallbackToEN.first())
     assertFalse(prefs.hapticsEnabled.first())
     assertTrue(prefs.soundsEnabled.first())
@@ -72,6 +72,17 @@ class UserPrefsDataStoreTest {
     prefs.setAppLocale("ru")
 
     assertEquals("ru", prefs.appLocaleFlow().first())
+  }
+
+  @Test
+  fun practiceSize_clampsToRange() = runTest {
+    val prefs = newDataStore()
+
+    prefs.setPracticeSize(UserPrefsDataStore.MIN_PRACTICE_SIZE - 2)
+    assertEquals(UserPrefsDataStore.MIN_PRACTICE_SIZE, prefs.practiceSizeFlow().first())
+
+    prefs.setPracticeSize(UserPrefsDataStore.MAX_PRACTICE_SIZE + 10)
+    assertEquals(UserPrefsDataStore.MAX_PRACTICE_SIZE, prefs.practiceSizeFlow().first())
   }
 
   private fun TestScope.newDataStore(): UserPrefsDataStore {
