@@ -31,6 +31,10 @@
     <string name="settings_section_accessibility">Accessibility</string>
     <string name="settings_haptics_label">Haptics feedback</string>
     <string name="settings_sounds_label">Click sound on submit</string>
+    <string name="settings_section_performance">Performance</string>
+    <string name="settings_prewarm_label">Pre-warm per-task</string>
+    <string name="settings_lru_size_label">LRU cache size</string>
+    <string name="settings_lru_size_hint">Keeps %1$d-%2$d tasks ready in memory.</string>
     <string name="settings_export_logs">Export logs</string>
     <string name="settings_clear_attempts">Clear local attempts</string>
     <string name="settings_clear_cache">Clear per-task cache</string>
@@ -45,6 +49,15 @@
     <string name="settings_content_generated_at">Generated at %1$s</string>
     <string name="settings_content_copy_json">Copy index JSON</string>
     <string name="settings_content_copy_success">Content index copied to clipboard</string>
+    <string name="settings_section_integrity">Integrity</string>
+    <string name="settings_integrity_checking">Verifying assets…</string>
+    <string name="settings_integrity_ok">Integrity check passed</string>
+    <string name="settings_integrity_warning">Integrity issues detected: %1$d</string>
+    <string name="settings_integrity_issue_index">Missing index asset: %1$s</string>
+    <string name="settings_integrity_issue_missing">Missing asset: %1$s (expected hash %2$s)</string>
+    <string name="settings_integrity_issue_hash">Hash mismatch: %1$s (expected %2$s, actual %3$s)</string>
+    <string name="settings_integrity_missing">missing</string>
+    <string name="settings_integrity_unknown">unknown</string>
     <string name="start_exam">Start exam</string>
     <string name="practice_scope_title">Practice scope</string>
     <string name="practice_scope_presets">Presets</string>

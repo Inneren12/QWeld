@@ -39,6 +39,7 @@ import androidx.navigation.NavHostController
 import com.qweld.app.feature.exam.R
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository.Result
 import com.qweld.app.feature.exam.navigation.ExamDestinations
@@ -69,7 +70,9 @@ fun ModeScreen(
   val uiState by viewModel.uiState
   val resumeDialog = uiState.resumeDialog
   val prewarmState = uiState.prewarmState
-  val prewarmDisabled = viewModel.prewarmDisabled
+  val prewarmDisabled by viewModel.prewarmDisabled.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_PREWARM_DISABLED,
+  )
   var deficitDetail by remember { mutableStateOf<String?>(null) }
   val coroutineScope = rememberCoroutineScope()
   var showPracticeScope by remember { mutableStateOf(false) }

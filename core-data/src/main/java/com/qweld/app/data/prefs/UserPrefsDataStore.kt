@@ -37,9 +37,19 @@ class UserPrefsDataStore internal constructor(
     preferences[ANALYTICS_ENABLED_KEY] ?: DEFAULT_ANALYTICS_ENABLED
   }
 
+  val prewarmDisabled: Flow<Boolean> = dataStore.data.map { preferences ->
+    preferences[PREWARM_DISABLED_KEY] ?: DEFAULT_PREWARM_DISABLED
+  }
+
   fun practiceSizeFlow(): Flow<Int> {
     return dataStore.data.map { preferences ->
       sanitizePracticeSize(preferences[PRACTICE_SIZE_KEY] ?: DEFAULT_PRACTICE_SIZE)
+    }
+  }
+
+  fun lruCacheSizeFlow(): Flow<Int> {
+    return dataStore.data.map { preferences ->
+      sanitizeLruCacheSize(preferences[LRU_CACHE_SIZE_KEY] ?: DEFAULT_LRU_CACHE_SIZE)
     }
   }
 
@@ -85,9 +95,18 @@ class UserPrefsDataStore internal constructor(
     dataStore.edit { preferences -> preferences[ANALYTICS_ENABLED_KEY] = value }
   }
 
+  suspend fun setPrewarmDisabled(value: Boolean) {
+    dataStore.edit { preferences -> preferences[PREWARM_DISABLED_KEY] = value }
+  }
+
   suspend fun setPracticeSize(value: Int) {
     val sanitized = sanitizePracticeSize(value)
     dataStore.edit { preferences -> preferences[PRACTICE_SIZE_KEY] = sanitized }
+  }
+
+  suspend fun setLruCacheSize(value: Int) {
+    val sanitized = sanitizeLruCacheSize(value)
+    dataStore.edit { preferences -> preferences[LRU_CACHE_SIZE_KEY] = sanitized }
   }
 
   suspend fun setFallbackToEN(value: Boolean) {
@@ -138,6 +157,10 @@ class UserPrefsDataStore internal constructor(
     const val DEFAULT_PRACTICE_SIZE: Int = 20
     const val MIN_PRACTICE_SIZE: Int = 5
     const val MAX_PRACTICE_SIZE: Int = 125
+    const val DEFAULT_PREWARM_DISABLED: Boolean = false
+    const val DEFAULT_LRU_CACHE_SIZE: Int = 8
+    const val MIN_LRU_CACHE_SIZE: Int = 4
+    const val MAX_LRU_CACHE_SIZE: Int = 32
     const val DEFAULT_WRONG_BIASED: Boolean = false
     const val DEFAULT_FALLBACK_TO_EN: Boolean = false
     const val DEFAULT_HAPTICS_ENABLED: Boolean = true
@@ -148,7 +171,9 @@ class UserPrefsDataStore internal constructor(
 
     private const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
+    private val PREWARM_DISABLED_KEY = booleanPreferencesKey("prewarm_disabled")
     private val PRACTICE_SIZE_KEY = intPreferencesKey("practice_size")
+    private val LRU_CACHE_SIZE_KEY = intPreferencesKey("lru_cache_size")
     private val FALLBACK_TO_EN_KEY = booleanPreferencesKey("allow_fallback_en")
     private val HAPTICS_ENABLED_KEY = booleanPreferencesKey("haptics_enabled")
     private val SOUNDS_ENABLED_KEY = booleanPreferencesKey("sounds_enabled")
@@ -160,6 +185,10 @@ class UserPrefsDataStore internal constructor(
 
     internal fun sanitizePracticeSize(value: Int): Int {
       return value.coerceIn(MIN_PRACTICE_SIZE, MAX_PRACTICE_SIZE)
+    }
+
+    internal fun sanitizeLruCacheSize(value: Int): Int {
+      return value.coerceIn(MIN_LRU_CACHE_SIZE, MAX_LRU_CACHE_SIZE)
     }
 
     private fun normalizeAndJoin(values: Set<String>): String {

@@ -121,6 +121,11 @@ jobs:
         if: ${{ matrix.shard == 0 }}
         run: node -e "require('ajv'); require('ajv-formats'); console.log('Ajv modules OK')"
 
+      - name: Validate blueprint schema
+        if: ${{ matrix.shard == 0 && steps.diff.outputs.blueprint == 'true' }}
+        run: |
+          bash scripts/validate-blueprint.sh
+
       - name: Validate questions (changed-only)
         if: ${{ matrix.shard == 0 }}
         run: |
@@ -145,8 +150,8 @@ jobs:
           name: question-bank-dist
           path: dist/questions
 
-      - name: Plagiarism (full, sharded)
-        if: ${{ steps.diff.outputs.blueprint == 'true' || steps.diff.outputs.exam_profile == 'true' }}
+      - name: Plagiarism (auto, sharded)
+        if: ${{ steps.diff.outputs.changed_any == 'true' }}
         env:
           SHARD_INDEX: ${{ matrix.shard }}
           SHARD_COUNT: 4
@@ -157,10 +162,11 @@ jobs:
             --progress 20000 \
             --time-budget 3300 \
             --soft-fail \
-            --out "plag-shard-${SHARD_INDEX}.json"
+            --out "plag-shard-${SHARD_INDEX}.json" \
+            --changed @.github/changed.txt
 
       - name: Upload plagiarism shard
-        if: ${{ (steps.diff.outputs.blueprint == 'true' || steps.diff.outputs.exam_profile == 'true') && hashFiles('plag-shard-*.json') != '' }}
+        if: ${{ hashFiles('plag-shard-*.json') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: plag-shard-${{ matrix.shard }}

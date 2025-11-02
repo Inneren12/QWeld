@@ -19,6 +19,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -128,6 +129,7 @@ class ExamViewModelResumeTest {
       prewarmUseCase =
         PrewarmUseCase(
           repository = repository,
+          prewarmDisabled = flowOf(false),
           ioDispatcher = dispatcherRule.dispatcher,
           nowProvider = { currentTime },
         ),

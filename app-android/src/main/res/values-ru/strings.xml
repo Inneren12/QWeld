@@ -31,6 +31,10 @@
     <string name="settings_section_accessibility">Доступность</string>
     <string name="settings_haptics_label">Haptics feedback</string>
     <string name="settings_sounds_label">Click sound on submit</string>
+    <string name="settings_section_performance">Производительность</string>
+    <string name="settings_prewarm_label">Прогрев по заданиям</string>
+    <string name="settings_lru_size_label">Размер LRU-кэша</string>
+    <string name="settings_lru_size_hint">Держать в памяти %1$d-%2$d заданий.</string>
     <string name="settings_export_logs">Экспорт логов</string>
     <string name="settings_clear_attempts">Очистить локальные попытки</string>
     <string name="settings_clear_cache">Очистить кэш заданий</string>
@@ -45,6 +49,15 @@
     <string name="settings_content_generated_at">Сгенерировано %1$s</string>
     <string name="settings_content_copy_json">Скопировать index JSON</string>
     <string name="settings_content_copy_success">Индекс скопирован в буфер обмена</string>
+    <string name="settings_section_integrity">Целостность</string>
+    <string name="settings_integrity_checking">Проверка ассетов…</string>
+    <string name="settings_integrity_ok">Целостность подтверждена</string>
+    <string name="settings_integrity_warning">Найдены проблемы с целостностью: %1$d</string>
+    <string name="settings_integrity_issue_index">Отсутствует индексный ассет: %1$s</string>
+    <string name="settings_integrity_issue_missing">Отсутствует ассет: %1$s (ожидаемый хеш %2$s)</string>
+    <string name="settings_integrity_issue_hash">Несовпадение хеша: %1$s (ожидалось %2$s, фактически %3$s)</string>
+    <string name="settings_integrity_missing">отсутствует</string>
+    <string name="settings_integrity_unknown">неизвестно</string>
     <string name="start_exam">Старт экзамена</string>
     <string name="practice_scope_title">Охват практики</string>
     <string name="practice_scope_presets">Пресеты</string>
