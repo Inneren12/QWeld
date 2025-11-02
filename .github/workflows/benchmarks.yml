@@ -15,27 +15,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Sanity: verify plugin repository resolution
-        run: |
-          grep -n "gradlePluginPortal" settings.gradle.kts || (echo "gradlePluginPortal missing" && exit 1)
-          ./gradlew --version
-          ./gradlew help -q
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v2
 
-      - name: Set up JDK
+      - name: Set up JDK (Temurin 21)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
-          cache: gradle
+          cache: 'gradle'
 
-      - name: Run JMH suite
-        run: ./gradlew --no-daemon :benchmarks-jvm:jmh
+      - name: Setup Gradle (cache & config)
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Upload JMH artifacts
+      - name: Sanity: verify plugin repository resolution
+        run: |
+          grep -n "gradlePluginPortal" settings.gradle.kts || (echo "gradlePluginPortal missing" && exit 1)
+          ./gradlew --version --no-daemon
+          ./gradlew help -q --no-daemon
+
+      - name: Run JMH benchmarks
+        run: |
+          ./gradlew :benchmarks-jvm:jmh --no-daemon
+
+      - name: Upload JMH report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: jmh-results
+          name: jmh-report
           path: |
-            benchmarks-jvm/build/reports/jmh/jmh-result.json
-            benchmarks-jvm/build/reports/jmh/jmh-result.csv
-          if-no-files-found: error
+            benchmarks-jvm/build/reports/**
+            benchmarks-jvm/build/results/**
