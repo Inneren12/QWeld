@@ -5,6 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
@@ -20,6 +21,7 @@ class PrewarmUseCaseTest {
     val useCase =
       PrewarmUseCase(
         repository = repository,
+        prewarmDisabled = flowOf(false),
         ioDispatcher = dispatcherRule.dispatcher,
         nowProvider = { 0L },
       )
@@ -42,6 +44,7 @@ class PrewarmUseCaseTest {
     val useCase =
       PrewarmUseCase(
         repository = repository,
+        prewarmDisabled = flowOf(false),
         ioDispatcher = dispatcherRule.dispatcher,
         nowProvider = { 0L },
       )

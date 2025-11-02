@@ -13,6 +13,7 @@ import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -167,7 +168,13 @@ class ExamViewModelTest {
       nowProvider = { 0L },
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcher,
-      prewarmUseCase = PrewarmUseCase(repository, ioDispatcher = dispatcher, nowProvider = { 0L }),
+      prewarmUseCase =
+        PrewarmUseCase(
+          repository,
+          prewarmDisabled = flowOf(false),
+          ioDispatcher = dispatcher,
+          nowProvider = { 0L },
+        ),
     )
   }
 

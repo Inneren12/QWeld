@@ -21,9 +21,11 @@ class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
   private val localeResolver: () -> String,
   private val json: Json,
+  cacheCapacity: Int = DEFAULT_CACHE_CAPACITY,
 ) {
   constructor(
     context: Context,
+    cacheCapacity: Int = DEFAULT_CACHE_CAPACITY,
     jsonCodec: Json = DEFAULT_JSON,
   ) : this(
       assetReader = AssetReader(
@@ -32,13 +34,16 @@ class AssetQuestionRepository internal constructor(
       ),
       localeResolver = { resolveLanguage(context.resources.configuration) },
       json = jsonCodec,
+      cacheCapacity = cacheCapacity,
     )
 
   private val cacheLock = Any()
+  private val cacheCapacity = cacheCapacity.coerceIn(MIN_CACHE_CAPACITY, MAX_CACHE_CAPACITY)
+
   private val taskCache =
-    object : LinkedHashMap<String, List<QuestionDTO>>(CACHE_CAPACITY, 0.75f, true) {
+    object : LinkedHashMap<String, List<QuestionDTO>>(this.cacheCapacity, 0.75f, true) {
       override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, List<QuestionDTO>>): Boolean {
-        return size > CACHE_CAPACITY
+        return size > this@AssetQuestionRepository.cacheCapacity
       }
     }
 
@@ -356,7 +361,9 @@ class AssetQuestionRepository internal constructor(
   companion object {
     private val DEFAULT_JSON = Json { ignoreUnknownKeys = true }
     private const val DEFAULT_LOCALE = "en"
-    private const val CACHE_CAPACITY = 6
+    private const val DEFAULT_CACHE_CAPACITY = 8
+    private const val MIN_CACHE_CAPACITY = 4
+    private const val MAX_CACHE_CAPACITY = 32
     private const val TASKS_DIR = "tasks"
     private val QUESTION_LIST_SERIALIZER = ListSerializer(QuestionDTO.serializer())
 

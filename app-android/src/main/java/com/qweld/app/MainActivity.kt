@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.lifecycleScope
@@ -59,7 +61,12 @@ fun QWeldAppRoot(
 ) {
   val context = LocalContext.current
   val appContext = context.applicationContext
-  val questionRepository = remember(appContext) { AssetQuestionRepository(appContext) }
+  val lruCacheSize by userPrefs.lruCacheSizeFlow().collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
+  )
+  val questionRepository = remember(appContext, lruCacheSize) {
+    AssetQuestionRepository(appContext, cacheCapacity = lruCacheSize)
+  }
   val explanationRepository = remember(appContext) { AssetExplanationRepository(appContext) }
   val contentIndexReader = remember(appContext) { ContentIndexReader(appContext) }
   val database = remember(appContext) { QWeldDb.create(appContext) }
