@@ -6,11 +6,16 @@ import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AttemptEntity
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class AttemptDaoAbortTest {
   private lateinit var context: Context
   private lateinit var db: QWeldDb
