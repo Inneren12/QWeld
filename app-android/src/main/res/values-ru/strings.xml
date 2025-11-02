@@ -5,6 +5,10 @@
     <string name="menu_sync">Синхронизация</string>
     <string name="menu_sign_out">Выйти</string>
     <string name="menu_settings">Настройки</string>
+    <string name="language">Язык</string>
+    <string name="language_system">Системный</string>
+    <string name="language_en">Английский</string>
+    <string name="language_ru">Русский</string>
     <string name="sync_coming_soon">Скоро появится</string>
     <string name="sync_back_to_exam">Назад</string>
     <string name="export_logs_title">Экспорт логов</string>
@@ -41,6 +45,7 @@
     <string name="settings_content_generated_at">Сгенерировано %1$s</string>
     <string name="settings_content_copy_json">Скопировать index JSON</string>
     <string name="settings_content_copy_success">Индекс скопирован в буфер обмена</string>
+    <string name="start_exam">Старт экзамена</string>
     <string name="practice_scope_title">Охват практики</string>
     <string name="practice_scope_presets">Пресеты</string>
     <string name="practice_scope_preset_a_only">Только A</string>

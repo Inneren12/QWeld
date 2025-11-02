@@ -58,6 +58,22 @@ class UserPrefsDataStoreTest {
     assertTrue(prefs.wrongBiased.first())
   }
 
+  @Test
+  fun appLocale_defaultsToSystem() = runTest {
+    val prefs = newDataStore()
+
+    assertEquals(UserPrefsDataStore.DEFAULT_APP_LOCALE, prefs.appLocaleFlow().first())
+  }
+
+  @Test
+  fun appLocale_persistsSelection() = runTest {
+    val prefs = newDataStore()
+
+    prefs.setAppLocale("ru")
+
+    assertEquals("ru", prefs.appLocaleFlow().first())
+  }
+
   private fun TestScope.newDataStore(): UserPrefsDataStore {
     val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
     val dataStore =
