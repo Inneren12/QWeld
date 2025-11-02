@@ -18,6 +18,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,6 +39,10 @@ import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.data.logging.LogCollector
+import com.qweld.app.data.logging.LogExportFormat
+import com.qweld.app.data.logging.writeTo
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.auth.AuthService
 import com.qweld.app.feature.auth.R
@@ -46,11 +51,9 @@ import com.qweld.app.feature.auth.ui.SignInScreen
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
+import com.qweld.app.i18n.LocaleController
+import com.qweld.app.ui.SettingsScreen
 import com.qweld.app.ui.TopBarMenus
-import com.qweld.app.data.logging.LogCollector
-import com.qweld.app.data.logging.LogExportFormat
-import com.qweld.app.data.logging.writeTo
-import com.qweld.app.data.prefs.UserPrefsDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -90,6 +93,19 @@ fun AppNavGraph(
         .build()
     GoogleSignIn.getClient(context, options)
   }
+
+  val appLocale by userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
+  val currentLocale = appLocale
+  val handleLocaleSelection =
+    remember(userPrefs, scope, currentLocale) {
+      { tag: String, source: String ->
+        Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
+        LocaleController.apply(tag)
+        if (tag != currentLocale) {
+          scope.launch { userPrefs.setAppLocale(tag) }
+        }
+      }
+    }
 
   val navigateToAuth: () -> Unit = {
     navController.navigate(Routes.AUTH) {
@@ -186,6 +202,8 @@ fun AppNavGraph(
           } else {
             null
           },
+        currentLocaleTag = appLocale,
+        onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
       )
     },
   ) { innerPadding ->
@@ -268,6 +286,8 @@ fun AppNavGraph(
           answersRepository = answersRepository,
           questionRepository = questionRepository,
           contentIndexReader = contentIndexReader,
+          appLocaleTag = appLocale,
+          onLocaleSelected = { tag -> handleLocaleSelection(tag, "settings") },
           onExportLogs =
             if (logExportActions != null) {
               {

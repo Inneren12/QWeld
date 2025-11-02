@@ -32,7 +32,7 @@
     <string name="mode_repeat_mistakes_empty">Завершённых попыток ещё нет</string>
     <string name="mode_prewarm_preparing">Подготавливаем вопросы…</string>
     <string name="mode_prewarm_ready">Готово</string>
-    <string name="mode_start">Старт</string>
+    <string name="start_exam">Старт экзамена</string>
     <string name="mode_status_preparing">Подготовка...</string>
     <string name="mode_status_ready">Готово</string>
     <string name="mode_exam_cannot_start">Не удалось начать экзамен</string>

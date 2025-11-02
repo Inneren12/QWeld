@@ -9,12 +9,12 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.qweld.core.data.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import com.qweld.core.data.BuildConfig
 import java.util.LinkedHashSet
 import java.util.Locale
 
@@ -51,6 +51,10 @@ class UserPrefsDataStore internal constructor(
 
   val soundsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[SOUNDS_ENABLED_KEY] ?: DEFAULT_SOUNDS_ENABLED
+  }
+
+  fun appLocaleFlow(): Flow<String> {
+    return dataStore.data.map { preferences -> preferences[APP_LOCALE_KEY] ?: DEFAULT_APP_LOCALE }
   }
 
   val wrongBiased: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -104,6 +108,10 @@ class UserPrefsDataStore internal constructor(
     dataStore.edit { preferences -> preferences[WRONG_BIASED_KEY] = value }
   }
 
+  suspend fun setAppLocale(tag: String) {
+    dataStore.edit { preferences -> preferences[APP_LOCALE_KEY] = tag }
+  }
+
   suspend fun saveLastPracticeScope(
     blocks: Set<String>,
     tasks: Set<String>,
@@ -130,6 +138,7 @@ class UserPrefsDataStore internal constructor(
     const val DEFAULT_FALLBACK_TO_EN: Boolean = false
     const val DEFAULT_HAPTICS_ENABLED: Boolean = true
     const val DEFAULT_SOUNDS_ENABLED: Boolean = false
+    const val DEFAULT_APP_LOCALE: String = "system"
 
     val PRACTICE_SIZE_PRESETS: Set<Int> = setOf(10, 20, 30)
 
@@ -139,6 +148,7 @@ class UserPrefsDataStore internal constructor(
     private val FALLBACK_TO_EN_KEY = booleanPreferencesKey("allow_fallback_en")
     private val HAPTICS_ENABLED_KEY = booleanPreferencesKey("haptics_enabled")
     private val SOUNDS_ENABLED_KEY = booleanPreferencesKey("sounds_enabled")
+    private val APP_LOCALE_KEY = stringPreferencesKey("app_locale")
     private val WRONG_BIASED_KEY = booleanPreferencesKey("wrong_biased")
     private val LAST_SCOPE_BLOCKS_KEY = stringPreferencesKey("last_scope_blocks")
     private val LAST_SCOPE_TASKS_KEY = stringPreferencesKey("last_scope_tasks")

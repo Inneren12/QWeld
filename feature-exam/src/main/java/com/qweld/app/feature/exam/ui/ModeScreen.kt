@@ -176,7 +176,7 @@ fun ModeScreen(
         enabled = startEnabled,
         onClick = { viewModel.startAttempt(ExamMode.IP_MOCK, resolvedLanguage) },
       ) {
-        Text(text = stringResource(id = R.string.mode_start))
+        Text(text = stringResource(id = R.string.start_exam))
       }
       val statusText =
         when {

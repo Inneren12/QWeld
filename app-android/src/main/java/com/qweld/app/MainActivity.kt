@@ -24,8 +24,12 @@ import com.qweld.app.data.logging.LogCollectorOwner
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.auth.firebase.FirebaseAuthService
+import com.qweld.app.i18n.LocaleController
 import com.qweld.app.navigation.AppNavGraph
 import com.qweld.app.ui.theme.QWeldTheme
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -35,6 +39,11 @@ class MainActivity : ComponentActivity() {
     Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
     val analytics = FirebaseAnalyticsImpl(Firebase.analytics, BuildConfig.ENABLE_ANALYTICS)
     val userPrefs = UserPrefsDataStore(applicationContext)
+    userPrefs
+      .appLocaleFlow()
+      .distinctUntilChanged()
+      .onEach { tag -> LocaleController.apply(tag) }
+      .launchIn(lifecycleScope)
     lifecycleScope.launch {
       userPrefs.analyticsEnabled.collect { enabled -> analytics.setEnabled(enabled) }
     }
