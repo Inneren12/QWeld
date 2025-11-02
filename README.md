@@ -12,6 +12,27 @@
 - Bootstrap with `scripts/bootstrap.sh` and validate with `scripts/verify-structure.sh` or `scripts/tests/test_verify.sh`.
 - Run `bash scripts/validate-blueprint.sh` to lint blueprints against the JSON schema and quota totals.
 
+## Release checklist
+
+1. **build-dist** — run `node scripts/build-questions-dist.mjs` (or `bash scripts/build-questions-dist.sh`) to regenerate `dist/questions/<locale>` bundles and the global `dist/questions/index.json` summary.
+2. **copy assets** — sync the refreshed `dist/questions/{en,ru}/bank.v1.json`, `dist/questions/{en,ru}/tasks/`, and `dist/questions/index.json` into `app-android/src/main/assets/questions/`.
+3. **verifyAssets** — execute `./gradlew :app-android:verifyAssets` to ensure locale banks, per-task bundles, and the index manifest are present and hashed as expected.
+4. **bundleRelease** — assemble the Play-ready artifact with `./gradlew bundleRelease` and confirm the generated AAB under `app-android/build/outputs/bundle/release/`.
+5. **Play Console** — upload the AAB to the Play Console and roll it through **Internal → Closed → Production**, validating release notes and staged percentages at each track.
+
+### Troubleshooting verifyAssets
+
+- **Missing locale bundle** — ensure `dist/questions/<locale>/bank.v1.json` exists and was copied into `app-android/src/main/assets/questions/<locale>/` before running the Gradle task.
+- **Per-task directory mismatch** — delete stale `app-android/src/main/assets/questions/<locale>/tasks/` folders before copying fresh bundles from `dist/questions/<locale>/tasks/` to avoid leftover files failing the checksum step.
+- **Index manifest out of date** — rerun the dist builder and copy the regenerated `dist/questions/index.json` to `app-android/src/main/assets/questions/index.json`; the task compares hashes and build timestamps.
+- **Gradle cache confusion** — call `./gradlew --stop && ./gradlew :app-android:verifyAssets --rerun-tasks` after cleaning the `app-android/build` directory when asset checks continue to fail unexpectedly.
+
+### FAQ (locale/assets/index)
+
+- **Where do locale banks live?** — `dist/questions/{en,ru}/bank.v1.json` are the sources of truth; mirror them under `app-android/src/main/assets/questions/{en,ru}/` for app consumption.
+- **How are per-task assets structured?** — each locale contains `tasks/<taskId>.json` files; ensure the entire `tasks/` directory is copied so the app can lazy-load task-specific bundles during practice and IP Mock flows.
+- **What is index.json for?** — `app-android/src/main/assets/questions/index.json` mirrors `dist/questions/index.json`, exposing total counts, per-task tallies, and SHA-256 hashes for in-app diagnostics and `verifyAssets` integrity checks.
+
 ## Content tooling (F4)
 
 Use the combined fixer to populate missing `familyId` values and enforce the Russian terminology glossary:
