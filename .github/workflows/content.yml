@@ -26,10 +26,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Validate blueprint
+      - name: Install Ajv locally (no workspace)
+        shell: bash
         run: |
-          npm install --global ajv-cli
-          bash scripts/validate-blueprint.sh
+          set -euo pipefail
+          mkdir -p .ci-node
+          npm install \
+            ajv@8 ajv-formats@3 ajv-cli@5 \
+            --no-save --no-audit --no-fund --no-package-lock \
+            --prefix ./.ci-node
+          echo "NODE_PATH=${{ github.workspace }}/.ci-node/node_modules" >> $GITHUB_ENV
+          echo "${{ github.workspace }}/.ci-node/node_modules/.bin" >> $GITHUB_PATH
+
+      - name: Validate blueprint
+        run: bash scripts/validate-blueprint.sh
 
       - name: Upload validation logs
         uses: actions/upload-artifact@v4
