@@ -70,15 +70,11 @@
     <string name="practice_scope_preset_c_d">C+D</string>
     <string name="practice_scope_preset_all">All</string>
     <string name="practice_scope_preset_last_used">Last used</string>
-    <string name="privacy_url">https://your-domain.example/privacy.html</string>
-    <string name="content_policy_url">https://your-domain.example/content-policy.html</string>
-    <string name="contact_email">support@example.com</string>
-    <string name="about_title">About</string>
-    <string name="about_version_value">Version %1$s (code %2$d)</string>
-    <string name="about_build_time_value">Built at %1$s</string>
-    <string name="about_commit_value">Commit %1$s</string>
-    <string name="about_links_title">Resources</string>
-    <string name="about_privacy_policy">Privacy Policy</string>
-    <string name="about_content_policy">Content Policy</string>
-    <string name="about_contact">Contact us</string>
+    <string name="about_title">About QWeld</string>
+    <string name="about_privacy_policy">Privacy policy</string>
+    <string name="about_content_policy">Content policy</string>
+    <string name="about_contact">Contact support</string>
+    <string name="privacy_url">https://www.qweld.app/privacy</string>
+    <string name="content_policy_url">https://www.qweld.app/content-policy</string>
+    <string name="contact_email">support@qweld.app</string>
 </resources>

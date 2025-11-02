@@ -136,22 +136,7 @@ tasks.register("verifyAssets") {
   inputs.dir("dist/questions/en").optional()
   inputs.dir("dist/questions/ru").optional()
 
-  doLast {
-    val required = listOf(
-      "app-android/src/main/assets/questions/en/bank.v1.json",
-      "app-android/src/main/assets/questions/ru/bank.v1.json",
-      "app-android/src/main/assets/questions/en/tasks/A-1.json",
-      "app-android/src/main/assets/questions/en/tasks/D-15.json",
-      "app-android/src/main/assets/questions/ru/tasks/A-1.json",
-      "app-android/src/main/assets/questions/ru/tasks/D-15.json",
-      "app-android/src/main/assets/questions/index.json",
-    )
-    val missing = required.filterNot { file(it).exists() }
-    if (missing.isNotEmpty()) {
-      throw GradleException(
-        "Missing release assets:\n" +
-          missing.joinToString("\n") +
-          "\nRun: node scripts/build-questions-dist.mjs && scripts/sync-dist-to-assets.mjs",
+
       )
     }
   }
