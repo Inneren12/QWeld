@@ -28,6 +28,8 @@ const args = parseArgs({
     out: { type: 'string' },
     'soft-fail': { type: 'boolean' },
     'ignore-cross-locale': { type: 'boolean', default: true },
+    changed: { type: 'string', multiple: true },
+    'dry-run': { type: 'boolean' },
   },
   allowPositionals: false,
 });
@@ -43,14 +45,184 @@ const progressEvery = args.values.progress !== undefined ? Number(args.values.pr
 const outPath = args.values.out ? String(args.values.out) : null;
 const softFail = Boolean(args.values['soft-fail']);
 const ignoreCrossLocale = args.values['ignore-cross-locale'] !== false;
-const startedAt = Date.now();
-
+const dryRun = Boolean(args.values['dry-run']);
 if ((shardIndex >= 0 && shardCount <= 0) || (shardIndex < 0 && shardCount > 0)) {
   throw new Error('Both --shard-index and --shard-count must be provided together.');
 }
 
 if (Number.isNaN(shardIndex) || Number.isNaN(shardCount) || Number.isNaN(timeBudgetSec) || Number.isNaN(progressEvery)) {
   throw new Error('Invalid numeric argument provided.');
+}
+
+const FULL_SCAN_PATTERNS = [
+  /^content\/blueprints\//u,
+  /^content\/schema\//u,
+  /^schemas\//u,
+];
+
+const CONTENT_PATTERNS = [
+  /^content\/questions\//u,
+  /^content\/explanations\//u,
+];
+
+function shouldRunFullScan(paths) {
+  for (const rawPath of paths ?? []) {
+    const value = typeof rawPath === 'string' ? rawPath.trim() : '';
+    if (!value) {
+      continue;
+    }
+
+    if (FULL_SCAN_PATTERNS.some((pattern) => pattern.test(value))) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function formatLocaleList(localeSet) {
+  if (!localeSet || localeSet.size === 0) {
+    return '(all locales)';
+  }
+
+  return [...localeSet].sort().join(', ');
+}
+
+async function resolveChangedPaths(specs) {
+  if (!specs) {
+    return [];
+  }
+
+  const values = Array.isArray(specs) ? specs : [specs];
+  const resolved = [];
+
+  for (const entry of values) {
+    if (typeof entry !== 'string' || entry.length === 0) {
+      continue;
+    }
+
+    if (entry.startsWith('@')) {
+      const relative = entry.slice(1).trim();
+      if (!relative) {
+        continue;
+      }
+
+      const absolute = path.isAbsolute(relative) ? relative : path.resolve(ROOT_DIR, relative);
+      try {
+        const payload = await fsp.readFile(absolute, 'utf8');
+        const lines = payload.split(/\r?\n/gu).map((line) => line.trim()).filter(Boolean);
+        resolved.push(...lines);
+      } catch (error) {
+        if (error.code === 'ENOENT') {
+          console.warn(`[plagiarism] Changed file list not found: ${relative}`);
+          continue;
+        }
+        throw error;
+      }
+      continue;
+    }
+
+    const parts = entry.split(',');
+    for (const part of parts) {
+      const trimmed = part.trim();
+      if (trimmed) {
+        resolved.push(trimmed);
+      }
+    }
+  }
+
+  return resolved;
+}
+
+function classifyChangedPaths(paths) {
+  const locales = new Set();
+  let hasContentChanges = false;
+  const requiresFull = shouldRunFullScan(paths);
+
+  for (const rawPath of paths ?? []) {
+    const value = rawPath.trim();
+    if (!value) {
+      continue;
+    }
+
+    if (CONTENT_PATTERNS.some((pattern) => pattern.test(value))) {
+      hasContentChanges = true;
+    }
+
+    const questionMatch = value.match(/^content\/questions\/([a-z]{2})(?:\/|$)/iu);
+    if (questionMatch) {
+      locales.add(questionMatch[1].toLowerCase());
+      continue;
+    }
+
+    const explanationMatch = value.match(/^content\/explanations\/([a-z]{2})(?:\/|$)/iu);
+    if (explanationMatch) {
+      locales.add(explanationMatch[1].toLowerCase());
+    }
+  }
+
+  return { requiresFull, hasContentChanges, locales };
+}
+
+function buildPartialLocaleFilter(partialLocales) {
+  if (partialLocales && partialLocales.size > 0) {
+    const filter = new Set();
+    for (const locale of partialLocales) {
+      if (typeof locale === 'string' && locale.trim().length > 0) {
+        filter.add(locale.trim());
+      }
+    }
+    return filter;
+  }
+
+  if (localeFilter && localeFilter.size > 0) {
+    return new Set(localeFilter);
+  }
+
+  return null;
+}
+
+function decideScanPlan({ changedPaths, changedProvided }) {
+  const uniquePaths = Array.from(new Set((changedPaths ?? []).map((value) => value.trim()).filter(Boolean)));
+  const { requiresFull, hasContentChanges, locales: partialLocales } = classifyChangedPaths(uniquePaths);
+
+  if (requiresFull) {
+    return { type: 'full', reason: 'blueprint/schema change detected', locales: null, changedPaths: uniquePaths };
+  }
+
+  if (hasContentChanges) {
+    return {
+      type: 'partial',
+      reason: 'content questions/explanations updated',
+      locales: buildPartialLocaleFilter(partialLocales),
+      changedPaths: uniquePaths,
+    };
+  }
+
+  if (!changedProvided) {
+    return { type: 'full', reason: 'no changed file list provided', locales: null, changedPaths: uniquePaths };
+  }
+
+  if (uniquePaths.length === 0) {
+    return { type: 'skip', reason: 'no files changed vs origin/main', locales: null, changedPaths: uniquePaths };
+  }
+
+  return { type: 'skip', reason: 'no content files detected', locales: null, changedPaths: uniquePaths };
+}
+
+function logPlan(plan, { dryRun: isDryRun }) {
+  const prefix = isDryRun ? '[plagiarism][dry-run]' : '[plagiarism]';
+  switch (plan.type) {
+    case 'full':
+      console.log(`${prefix} ${isDryRun ? 'Would run' : 'Running'} full scan (${plan.reason}).`);
+      break;
+    case 'partial':
+      console.log(`${prefix} ${isDryRun ? 'Would run' : 'Running'} partial scan for locales: ${formatLocaleList(plan.locales)}.`);
+      break;
+    default:
+      console.log(`${prefix} ${isDryRun ? 'Would skip' : 'Skipping'} plagiarism scan (${plan.reason}).`);
+      break;
+  }
 }
 
 function normaliseWhitespace(value) {
@@ -298,8 +470,12 @@ function printResults(matches) {
   }
 }
 
-async function main() {
-  const documents = await loadDocuments(localeFilter);
+async function runPlagiarismScan(filterLocales) {
+  const effectiveFilter = filterLocales && filterLocales.size > 0
+    ? new Set(filterLocales)
+    : (localeFilter && localeFilter.size > 0 ? new Set(localeFilter) : null);
+
+  const documents = await loadDocuments(effectiveFilter);
   if (documents.length === 0) {
     console.error('No documents found to analyse.');
     return {
@@ -308,7 +484,7 @@ async function main() {
       comparedPairs: 0,
       shardIndex,
       shardCount,
-      locales: locales ?? [],
+      locales: effectiveFilter ? [...effectiveFilter].sort() : (locales ?? []),
       timeBudgetSec,
       timedOut: false,
       generatedAt: new Date().toISOString(),
@@ -318,6 +494,7 @@ async function main() {
   const matches = [];
   let comparisons = 0;
   let timedOut = false;
+  const startedAt = Date.now();
 
   outer: for (let leftIndex = 0; leftIndex < documents.length; leftIndex += 1) {
     const a = documents[leftIndex];
@@ -371,11 +548,65 @@ async function main() {
     comparedPairs: comparisons,
     shardIndex,
     shardCount,
-    locales: locales ?? [],
+    locales: effectiveFilter ? [...effectiveFilter].sort() : (locales ?? []),
     timeBudgetSec,
     timedOut,
     generatedAt: new Date().toISOString(),
   };
+}
+
+async function main() {
+  const changedSpecs = args.values.changed;
+  const changedProvided = changedSpecs !== undefined;
+  const changedPaths = await resolveChangedPaths(changedSpecs);
+  const plan = decideScanPlan({ changedPaths, changedProvided });
+
+  if (plan.changedPaths && plan.changedPaths.length > 0) {
+    console.log(`[plagiarism] Changed paths (${plan.changedPaths.length}):`);
+    for (const filePath of plan.changedPaths) {
+      console.log(`[plagiarism]   ${filePath}`);
+    }
+  } else {
+    console.log('[plagiarism] No changed paths detected.');
+  }
+
+  logPlan(plan, { dryRun });
+
+  if (dryRun) {
+    return null;
+  }
+
+  if (plan.type === 'skip') {
+    return null;
+  }
+
+  if (plan.type === 'partial') {
+    const localeSet = plan.locales ? new Set(plan.locales) : null;
+    if (!localeSet || localeSet.size === 0) {
+      console.log('[plagiarism] No locales resolved for partial run; falling back to full scan.');
+      const report = await runPlagiarismScan(null);
+      report.mode = 'full';
+      report.plan = plan.type;
+      report.reason = plan.reason;
+      report.changedPaths = plan.changedPaths;
+      report.fallback = 'partial-without-locales';
+      return report;
+    }
+
+    const report = await runPlagiarismScan(localeSet);
+    report.mode = 'partial';
+    report.plan = plan.type;
+    report.reason = plan.reason;
+    report.changedPaths = plan.changedPaths;
+    return report;
+  }
+
+  const report = await runPlagiarismScan(null);
+  report.mode = 'full';
+  report.plan = plan.type;
+  report.reason = plan.reason;
+  report.changedPaths = plan.changedPaths;
+  return report;
 }
 
 let report;

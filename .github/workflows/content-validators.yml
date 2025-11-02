@@ -66,6 +66,15 @@ jobs:
             echo "changed_any=$any"
           } >> "$GITHUB_OUTPUT"
 
+      - name: Capture changed files for plagiarism scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .github
+          git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main >/dev/null 2>&1 || true
+          git diff --name-only origin/main...HEAD > .github/changed.txt || true
+          echo "[plagiarism] captured $(wc -l < .github/changed.txt) changed paths"
+
       - name: Export PR SHAs
         if: ${{ github.event_name == 'pull_request' }}
         run: |
@@ -118,8 +127,8 @@ jobs:
           name: question-bank-dist
           path: dist/questions
 
-      - name: Plagiarism (full, sharded)
-        if: ${{ steps.diff.outputs.blueprint == 'true' || steps.diff.outputs.exam_profile == 'true' }}
+      - name: Plagiarism (auto, sharded)
+        if: ${{ steps.diff.outputs.changed_any == 'true' }}
         env:
           SHARD_INDEX: ${{ matrix.shard }}
           SHARD_COUNT: 4
@@ -130,10 +139,11 @@ jobs:
             --progress 20000 \
             --time-budget 3300 \
             --soft-fail \
-            --out "plag-shard-${SHARD_INDEX}.json"
+            --out "plag-shard-${SHARD_INDEX}.json" \
+            --changed @.github/changed.txt
 
       - name: Upload plagiarism shard
-        if: ${{ (steps.diff.outputs.blueprint == 'true' || steps.diff.outputs.exam_profile == 'true') && hashFiles('plag-shard-*.json') != '' }}
+        if: ${{ hashFiles('plag-shard-*.json') != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: plag-shard-${{ matrix.shard }}
