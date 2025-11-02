@@ -77,7 +77,11 @@ fun ModeScreen(
   val coroutineScope = rememberCoroutineScope()
   var showPracticeScope by remember { mutableStateOf(false) }
   var practiceScope by remember { mutableStateOf(practiceConfig.scope) }
+  val resolvedLanguage = remember(configuration) { resolveLanguage(configuration) }
   val practiceBlueprint = remember(viewModel) { viewModel.practiceBlueprint() }
+  val taskLabels = remember(practiceBlueprint, resolvedLanguage) {
+    repository.loadTaskLabels(resolvedLanguage)
+  }
   val tasksByBlock = remember(practiceBlueprint) {
     val grouped = practiceBlueprint.taskQuotas.groupBy { it.blockId }
     val blocks = listOf("A", "B", "C", "D")
@@ -94,8 +98,6 @@ fun ModeScreen(
     Timber.i("[a11y_check] scale=1.3 pass=true | attrs=%s", "{}")
     Timber.i("[a11y_fix] target=mode_buttons desc=touch_target>=48dp,cd=mode selection")
   }
-
-  val resolvedLanguage = remember(configuration) { resolveLanguage(configuration) }
   val repeatState by practiceShortcuts.repeatMistakes.collectAsState()
 
   LaunchedEffect(resolvedLanguage, repository) {
@@ -265,6 +267,8 @@ fun ModeScreen(
     PracticeScopeSheet(
       size = practiceConfig.size,
       tasksByBlock = tasksByBlock,
+      blockLabels = taskLabels.blocks,
+      taskLabels = taskLabels.tasks,
       scope = practiceScope,
       blueprint = practiceBlueprint,
       lastScope = lastScope,
