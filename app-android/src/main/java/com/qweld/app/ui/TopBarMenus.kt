@@ -37,6 +37,7 @@ fun TopBarMenus(
   user: AuthService.User?,
   onNavigateToSync: () -> Unit,
   onNavigateToSettings: () -> Unit,
+  onNavigateToAbout: () -> Unit,
   onSignOut: () -> Unit,
   onExportLogs: (() -> Unit)? = null,
   currentLocaleTag: String,
@@ -49,6 +50,7 @@ fun TopBarMenus(
         currentLocaleTag = currentLocaleTag,
         onLocaleSelected = onLocaleSelected,
         onNavigateToSettings = onNavigateToSettings,
+        onNavigateToAbout = onNavigateToAbout,
         onExportLogs = onExportLogs,
       )
       AccountMenu(
@@ -65,6 +67,7 @@ private fun OverflowMenu(
   currentLocaleTag: String,
   onLocaleSelected: (String) -> Unit,
   onNavigateToSettings: () -> Unit,
+  onNavigateToAbout: () -> Unit,
   onExportLogs: (() -> Unit)?,
 ) {
   var expanded by remember { mutableStateOf(false) }
@@ -85,6 +88,13 @@ private fun OverflowMenu(
       onClick = {
         expanded = false
         onNavigateToSettings()
+      },
+    )
+    DropdownMenuItem(
+      text = { Text(text = stringResource(id = R.string.menu_about)) },
+      onClick = {
+        expanded = false
+        onNavigateToAbout()
       },
     )
     onExportLogs?.let { exportLogs ->

@@ -20,6 +20,14 @@
 4. **bundleRelease** — assemble the Play-ready artifact with `./gradlew bundleRelease` and confirm the generated AAB under `app-android/build/outputs/bundle/release/`.
 5. **Play Console** — upload the AAB to the Play Console and roll it through **Internal → Closed → Production**, validating release notes and staged percentages at each track.
 
+## RL-A: Technical Release (AAB, verifyAssets, About)
+
+- **Automated versioning** — `app-android` stamps `versionCode` with the UTC `YYMMDDHH` sequence at configuration time, keeps `versionName` pinned to `1.0.0`, and ships build metadata (`BUILD_TIME`, `GIT_SHA`) via `BuildConfig`.
+- **Asset gate** — the new `verifyAssets` Gradle task enforces the presence of the canonical question banks (`bank.v1.json`), sentinel per-task bundles (`A-1.json`, `D-15.json` for EN/RU), and `index.json` before any build by hooking into `preBuild`.
+- **Release automation** — workflow `.github/workflows/android-internal.yml` provisions Java 21, caches Gradle, runs `./gradlew :app-android:bundleRelease :app-android:assembleRelease`, and publishes the AAB plus ProGuard mapping as artifacts on pushes to `main` and manual dispatch.
+- **About screen** — the overflow menu now links to an About page that surfaces the app name, semantic version, UTC build time, optional commit SHA, and quick actions for Privacy Policy, Content Policy, and support email with `[about_open]` analytics.
+- **Blueprint logging** — startup rules loading logs `[rules_load]` for `rules/welder_exam_2024.json` and delegates to `BlueprintJsonLoader` which reports `[blueprint_source] type=asset …` with totals/tasks when reading blueprint assets.
+
 ### Troubleshooting verifyAssets
 
 - **Missing locale bundle** — ensure `dist/questions/<locale>/bank.v1.json` exists and was copied into `app-android/src/main/assets/questions/<locale>/` before running the Gradle task.
