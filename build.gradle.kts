@@ -116,3 +116,58 @@ val generateThirdPartyNotices by tasks.registering(GenerateThirdPartyNoticesTask
   outputFile.set(layout.projectDirectory.file("THIRD_PARTY_NOTICES.md"))
   dependsOn(":app-android:licensee")
 }
+
+val verifyReleaseAssets by tasks.registering {
+  group = "verification"
+  description = "Verify that localized question bundles ship with index manifests"
+
+  doLast {
+    val questionsDir = layout.projectDirectory.dir("app-android/src/main/assets/questions").asFile
+    if (!questionsDir.exists()) {
+      throw GradleException("Questions assets directory is missing: ${questionsDir.relativeTo(projectDir)}")
+    }
+
+    val localeDirs = questionsDir.listFiles()?.filter { it.isDirectory }?.sortedBy { it.name } ?: emptyList()
+    if (localeDirs.isEmpty()) {
+      throw GradleException("No locale bundles found under ${questionsDir.relativeTo(projectDir)}")
+    }
+
+    val slurper = JsonSlurper()
+    localeDirs.forEach { localeDir ->
+      val indexFile = localeDir.resolve("index.json")
+      if (!indexFile.exists()) {
+        throw GradleException("Missing index manifest: ${indexFile.relativeTo(projectDir)}")
+      }
+
+      val parsed = slurper.parse(indexFile)
+      val data = parsed as? Map<*, *> ?: throw GradleException("Index manifest must be an object: ${indexFile.relativeTo(projectDir)}")
+      val blueprintId = data["blueprintId"] as? String
+      val bankVersion = data["bankVersion"] as? String
+      val files = data["files"] as? Map<*, *>
+
+      if (blueprintId.isNullOrBlank()) {
+        throw GradleException("Missing blueprintId in ${indexFile.relativeTo(projectDir)}")
+      }
+      if (bankVersion.isNullOrBlank()) {
+        throw GradleException("Missing bankVersion in ${indexFile.relativeTo(projectDir)}")
+      }
+      if (files.isNullOrEmpty()) {
+        throw GradleException("No files declared in ${indexFile.relativeTo(projectDir)}")
+      }
+
+      files.forEach { (path, value) ->
+        if (path !is String || path.isBlank()) {
+          throw GradleException("Invalid file entry in ${indexFile.relativeTo(projectDir)}: $path")
+        }
+        val hash =
+          when (value) {
+            is Map<*, *> -> value["sha256"] ?: value["hash"]
+            else -> value
+          } as? String
+        if (hash.isNullOrBlank()) {
+          throw GradleException("Missing sha256 for $path in ${indexFile.relativeTo(projectDir)}")
+        }
+      }
+    }
+  }
+}

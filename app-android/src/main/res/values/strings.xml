@@ -56,8 +56,11 @@
     <string name="settings_error_message">Something went wrong</string>
     <string name="settings_section_content_info">Content info</string>
     <string name="settings_content_not_available">Not available</string>
-    <string name="settings_content_total">%1$s: %2$d questions</string>
-    <string name="settings_content_generated_at">Generated at %1$s</string>
+    <string name="settings_content_locale_title">%1$s bundle</string>
+    <string name="settings_content_blueprint">Blueprint: %1$s</string>
+    <string name="settings_content_bank_version">Bank version: %1$s</string>
+    <string name="settings_content_files_title">Files</string>
+    <string name="settings_content_file_entry">%1$s — %2$s</string>
     <string name="settings_content_copy_json">Copy index JSON</string>
     <string name="settings_content_copy_success">Content index copied to clipboard</string>
     <string name="settings_section_integrity">Integrity</string>
