@@ -120,24 +120,24 @@ task("verifyAssets") {
   inputs.dir(questionsDir)
 
   doLast {
+    // NOTE: questionsDir is already scoped to this module. Don't prefix with "app-android/" when checking files.
     val locales = listOf("en", "ru")
     val expectedTaskCount = 15
     val missing = mutableListOf<String>()
 
     locales.forEach { locale ->
-      val localeDir = questionsDir.dir(locale).asFile
-      val localePath = "app-android/src/main/assets/questions/$locale"
+      val localePath = "src/main/assets/questions/$locale"
 
-      val bankFile = localeDir.resolve("bank.v1.json")
+      val bankFile = questionsDir.file("$locale/bank.v1.json").asFile
       if (!bankFile.isFile) {
         missing += "• Missing $localePath/bank.v1.json — copy it with `cp dist/questions/$locale/bank.v1.json $localePath/`."
       }
 
-      val tasksDir = localeDir.resolve("tasks")
+      val tasksDir = questionsDir.dir("$locale/tasks").asFile
       if (!tasksDir.isDirectory) {
         missing += "• Missing $localePath/tasks/ — copy them with `cp -R dist/questions/$locale/tasks $localePath/`."
       } else {
-        val taskFiles = tasksDir.listFiles { file -> file.isFile }?.size ?: 0
+        val taskFiles = tasksDir.listFiles { file -> file.isFile && file.extension == "json" }?.size ?: 0
         if (taskFiles != expectedTaskCount) {
           missing += "• Expected $expectedTaskCount task bundles under $localePath/tasks/ but found $taskFiles — rebuild and copy with `cp -R dist/questions/$locale/tasks $localePath/`."
         }
@@ -146,7 +146,7 @@ task("verifyAssets") {
 
     val indexFile = questionsDir.file("index.json").asFile
     if (!indexFile.isFile) {
-      missing += "• Missing app-android/src/main/assets/questions/index.json — copy it with `cp dist/questions/index.json app-android/src/main/assets/questions/`."
+      missing += "• Missing src/main/assets/questions/index.json — copy it with `cp dist/questions/index.json src/main/assets/questions/`."
     }
 
     if (missing.isNotEmpty()) {
@@ -155,7 +155,7 @@ task("verifyAssets") {
           appendLine("verifyAssets failed — required question assets are missing:")
           missing.forEach { appendLine(it) }
           appendLine()
-          appendLine("Run `bash scripts/build-questions-dist.sh` to regenerate the bundles before copying them into app-android/src/main/assets/questions/.")
+          appendLine("Run `bash scripts/build-questions-dist.sh` to regenerate the bundles before copying them into src/main/assets/questions/.")
         },
       )
     }
