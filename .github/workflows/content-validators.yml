@@ -66,14 +66,37 @@ jobs:
             echo "changed_any=$any"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Capture changed files for plagiarism scan
+      - name: Capture changed files (PR)
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p .github
-          git fetch --no-tags --prune origin +refs/heads/main:refs/remotes/origin/main >/dev/null 2>&1 || true
-          git diff --name-only origin/main...HEAD > .github/changed.txt || true
-          echo "[plagiarism] captured $(wc -l < .github/changed.txt) changed paths"
+          : > .github/changed.txt
+          echo "[changed] PR base=${PR_BASE_REF} base_sha=${PR_BASE_SHA} head_sha=${PR_HEAD_SHA}"
+          git fetch --no-tags --prune origin +refs/heads/${PR_BASE_REF}:refs/remotes/origin/base >/dev/null 2>&1 || true
+          git diff --name-only "${PR_BASE_SHA}...${PR_HEAD_SHA}" > .github/changed.txt || true
+          echo "[changed] paths: $(wc -l < .github/changed.txt)"
+
+      - name: Capture changed files (push)
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          PUSH_BEFORE: ${{ github.event.before }}
+          PUSH_SHA: ${{ github.sha }}
+          PUSH_REF: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .github
+          : > .github/changed.txt
+          echo "[changed] Push ref=${PUSH_REF} before=${PUSH_BEFORE} head=${PUSH_SHA}"
+          git fetch --no-tags --prune origin +refs/heads/${PUSH_REF}:refs/remotes/origin/current >/dev/null 2>&1 || true
+          git diff --name-only "${PUSH_BEFORE}...${PUSH_SHA}" > .github/changed.txt || true
+          echo "[changed] paths: $(wc -l < .github/changed.txt)"
 
       - name: Export PR SHAs
         if: ${{ github.event_name == 'pull_request' }}
