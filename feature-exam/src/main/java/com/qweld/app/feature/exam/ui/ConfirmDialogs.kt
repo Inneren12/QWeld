@@ -38,7 +38,7 @@ fun ConfirmExitDialog(
       TextButton(onClick = onCancel) { Text(text = stringResource(id = R.string.action_cancel)) }
     },
     confirmButton = {
-      TextButton(onClick = onExit) { Text(text = stringResource(id = R.string.action_exit)) }
+      TextButton(onClick = onExit) { Text(text = stringResource(id = R.string.exit)) }
     },
   )
 }

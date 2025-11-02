@@ -4,15 +4,26 @@ import android.view.SoundEffectConstants
 import androidx.activity.compose.BackHandler
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.gestures.rememberNestedScrollInteropConnection
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsets.Companion.safeDrawing
+import androidx.compose.foundation.layout.WindowInsets.Companion.systemBars
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -38,6 +49,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -249,7 +261,8 @@ internal fun performSubmitFeedback(
 }
 
 @Composable
-private fun ExamScreenContent(
+@VisibleForTesting
+internal fun ExamScreenContent(
   state: ExamUiState,
   modifier: Modifier = Modifier,
   onChoiceSelected: (String) -> Unit,
@@ -261,6 +274,9 @@ private fun ExamScreenContent(
   onShowExit: () -> Unit,
 ) {
   Scaffold(
+    modifier = modifier
+      .fillMaxSize()
+      .nestedScroll(rememberNestedScrollInteropConnection()),
     topBar = {
       if (state.attempt != null) {
         ExamTopBarMenu(
@@ -269,13 +285,28 @@ private fun ExamScreenContent(
         )
       }
     },
+    bottomBar = {
+      val attempt = state.attempt
+      if (attempt != null) {
+        BottomActions(
+          canGoPrevious = attempt.canGoPrevious(),
+          canGoNext = attempt.canGoNext(),
+          onPrevious = onPrevious,
+          onNext = onNext,
+          onFinish = onFinish,
+        )
+      }
+    },
+    contentWindowInsets = WindowInsets.safeDrawing,
   ) { paddingValues ->
     val attempt = state.attempt
     if (attempt == null) {
       Box(
-        modifier = modifier
+        modifier = Modifier
           .fillMaxSize()
-          .padding(paddingValues),
+          .padding(paddingValues)
+          .padding(WindowInsets.systemBars.asPaddingValues())
+          .imePadding(),
         contentAlignment = Alignment.Center,
       ) {
         Text(
@@ -286,11 +317,18 @@ private fun ExamScreenContent(
       }
     } else {
       val question = attempt.currentQuestion()
+      val questionKey = attempt.currentIndex
+      val scrollState = remember(questionKey) { ScrollState(initial = 0) }
+      LaunchedEffect(questionKey) { scrollState.scrollTo(0) }
       Column(
-        modifier = modifier
+        modifier = Modifier
           .fillMaxSize()
           .padding(paddingValues)
-          .padding(horizontal = 20.dp, vertical = 16.dp),
+          .padding(WindowInsets.systemBars.asPaddingValues())
+          .padding(horizontal = 20.dp, vertical = 16.dp)
+          .verticalScroll(scrollState)
+          .imePadding()
+          .testTag("exam-content"),
         verticalArrangement = Arrangement.spacedBy(24.dp),
       ) {
         if (attempt.mode == ExamMode.IP_MOCK && state.timerLabel != null) {
@@ -376,50 +414,66 @@ private fun ExamScreenContent(
             }
           }
         }
-        Spacer(modifier = Modifier.weight(1f))
-        Row(
-          modifier = Modifier.fillMaxWidth(),
-          horizontalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-          val previousCd = stringResource(id = R.string.exam_previous_cd)
-          Button(
-            modifier = Modifier
-              .weight(1f)
-              .heightIn(min = minHeight)
-              .semantics { contentDescription = previousCd },
-            onClick = onPrevious,
-            enabled = attempt.canGoPrevious(),
-          ) {
-            Text(text = stringResource(id = R.string.exam_previous))
-          }
-          val nextCd = stringResource(id = R.string.exam_next_cd)
-          Button(
-            modifier = Modifier
-              .weight(1f)
-              .heightIn(min = minHeight)
-              .semantics { contentDescription = nextCd },
-            onClick = onNext,
-            enabled = attempt.canGoNext(),
-          ) {
-            Text(text = stringResource(id = R.string.exam_next))
-          }
-        }
-        val finishCd = stringResource(id = R.string.exam_finish_cd)
-        Button(
-          modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = minHeight)
-            .semantics { contentDescription = finishCd },
-          onClick = onFinish,
-        ) {
-          Text(text = stringResource(id = R.string.exam_finish))
-        }
+        Spacer(modifier = Modifier.height(80.dp))
       }
     }
   }
 
   state.deficitDialog?.let { dialog ->
     DeficitDialog(dialog = dialog, onDismiss = onDismissDeficit)
+  }
+}
+
+@Composable
+private fun BottomActions(
+  canGoPrevious: Boolean,
+  canGoNext: Boolean,
+  onPrevious: () -> Unit,
+  onNext: () -> Unit,
+  onFinish: () -> Unit,
+) {
+  val minHeight = dimensionResource(id = R.dimen.min_touch_target)
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 20.dp, vertical = 16.dp)
+      .windowInsetsPadding(WindowInsets.systemBars)
+      .navigationBarsPadding(),
+    horizontalArrangement = Arrangement.spacedBy(12.dp),
+  ) {
+    val previousCd = stringResource(id = R.string.exam_previous_cd)
+    Button(
+      modifier = Modifier
+        .weight(1f)
+        .heightIn(min = minHeight)
+        .semantics { contentDescription = previousCd },
+      onClick = onPrevious,
+      enabled = canGoPrevious,
+    ) {
+      Text(text = stringResource(id = R.string.exam_previous))
+    }
+    val nextCd = stringResource(id = R.string.exam_next_cd)
+    Button(
+      modifier = Modifier
+        .weight(1f)
+        .heightIn(min = minHeight)
+        .semantics { contentDescription = nextCd },
+      onClick = onNext,
+      enabled = canGoNext,
+    ) {
+      Text(text = stringResource(id = R.string.exam_next))
+    }
+    val finishCd = stringResource(id = R.string.exam_finish_cd)
+    Button(
+      modifier = Modifier
+        .weight(1f)
+        .heightIn(min = minHeight)
+        .testTag("btn-finish")
+        .semantics { contentDescription = finishCd },
+      onClick = onFinish,
+    ) {
+      Text(text = stringResource(id = R.string.finish_exam))
+    }
   }
 }
 
