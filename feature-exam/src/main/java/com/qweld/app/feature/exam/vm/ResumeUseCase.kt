@@ -52,7 +52,7 @@ class ResumeUseCase(
       blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
     val questionsResult = repository.loadQuestions(normalizedLocale, tasks = requestedTasks)
     val (domainQuestions, rationales) = when (questionsResult) {
-      is AssetQuestionRepository.Result.Success -> {
+      is AssetQuestionRepository.LoadResult.Success -> {
         val rationales =
           questionsResult.questions.mapNotNull { dto ->
             val rationale = dto.rationales?.get(dto.correctId)?.takeIf { it.isNotBlank() }
@@ -61,11 +61,11 @@ class ResumeUseCase(
         val domain = questionsResult.questions.map { dto -> dto.toDomain(normalizedLocale) }
         domain to rationales
       }
-      is AssetQuestionRepository.Result.Missing -> {
-        throw IllegalStateException("Question bank missing for ${questionsResult.locale}")
+      AssetQuestionRepository.LoadResult.Missing -> {
+        throw IllegalStateException("Question bank missing for $normalizedLocale")
       }
-      is AssetQuestionRepository.Result.Error -> {
-        throw IllegalStateException("Failed to load questions", questionsResult.cause)
+      is AssetQuestionRepository.LoadResult.Corrupt -> {
+        throw IllegalStateException("Failed to load questions: ${questionsResult.reason}")
       }
     }
 

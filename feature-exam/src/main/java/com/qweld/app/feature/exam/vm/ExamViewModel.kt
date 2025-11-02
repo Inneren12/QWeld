@@ -172,21 +172,25 @@ class ExamViewModel(
       blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
     val result = repository.loadQuestions(normalizedLocale, tasks = requestedTasks)
     val questions = when (result) {
-      is AssetQuestionRepository.Result.Success -> {
+      is AssetQuestionRepository.LoadResult.Success -> {
         questionRationales = result.questions.mapNotNull { dto ->
           val rationale = dto.rationales?.get(dto.correctId)?.takeIf { it.isNotBlank() }
           rationale?.let { dto.id to it }
         }.toMap()
         result.questions.map { it.toDomain(normalizedLocale) }
       }
-      is AssetQuestionRepository.Result.Missing -> {
+      AssetQuestionRepository.LoadResult.Missing -> {
         questionRationales = emptyMap()
-        Timber.w("[exam_start] cancelled reason=missing locale=%s", result.locale)
+        Timber.w("[exam_start] cancelled reason=missing locale=%s", normalizedLocale)
         return false
       }
-      is AssetQuestionRepository.Result.Error -> {
+      is AssetQuestionRepository.LoadResult.Corrupt -> {
         questionRationales = emptyMap()
-        Timber.e(result.cause, "[exam_start] cancelled reason=error locale=%s", result.locale)
+        Timber.e(
+          "[exam_start] cancelled reason=corrupt locale=%s details=%s",
+          normalizedLocale,
+          result.reason,
+        )
         return false
       }
     }

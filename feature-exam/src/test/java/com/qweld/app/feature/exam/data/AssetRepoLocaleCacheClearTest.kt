@@ -30,9 +30,9 @@ class AssetRepoLocaleCacheClearTest {
       )
 
     val enResult = repository.loadQuestions(locale = "en", tasks = setOf("D-13"))
-    assertIs<AssetQuestionRepository.Result.Success>(enResult)
+    assertIs<AssetQuestionRepository.LoadResult.Success>(enResult)
     val ruResult = repository.loadQuestions(locale = "ru", tasks = setOf("D-13"))
-    assertIs<AssetQuestionRepository.Result.Success>(ruResult)
+    assertIs<AssetQuestionRepository.LoadResult.Success>(ruResult)
 
     opened.clear()
     repository.loadQuestions(locale = "en", tasks = setOf("D-13"))
