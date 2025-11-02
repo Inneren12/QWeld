@@ -83,6 +83,7 @@ fun SettingsScreen(
     initial = UserPrefsDataStore.DEFAULT_SOUNDS_ENABLED,
   )
   var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
+  var contentIntegrity by remember { mutableStateOf<List<ContentIndexReader.Mismatch>?>(null) }
   val clipboardManager = LocalClipboardManager.current
 
   val resolvedPracticeConfig =
@@ -102,7 +103,14 @@ fun SettingsScreen(
 
   LaunchedEffect(Unit) { Timber.i("[settings_open]") }
   LaunchedEffect(contentIndexReader) {
-    contentIndex = withContext(Dispatchers.IO) { contentIndexReader.read() }
+    contentIntegrity = null
+    val (indexResult, mismatches) =
+      withContext(Dispatchers.IO) {
+        val result = contentIndexReader.read()
+        result to contentIndexReader.verify(result)
+      }
+    contentIndex = indexResult
+    contentIntegrity = mismatches
   }
   LaunchedEffect(contentIndex) {
     contentIndex?.index?.locales?.toSortedMap()?.forEach { (locale, info) ->
@@ -188,6 +196,10 @@ fun SettingsScreen(
           }
         },
       )
+
+      Divider()
+
+      SettingsIntegritySection(contentIntegrity = contentIntegrity)
 
       Divider()
 
@@ -453,6 +465,61 @@ private fun ContentInfoTable(tasks: Map<String, Int>) {
           val value = tasks[taskId] ?: 0
           Box(modifier = Modifier.size(columnWidth, cellHeight), contentAlignment = Alignment.Center) {
             Text(text = value.toString(), style = MaterialTheme.typography.bodySmall)
+          }
+        }
+      }
+    }
+  }
+}
+
+@Composable
+private fun SettingsIntegritySection(contentIntegrity: List<ContentIndexReader.Mismatch>?) {
+  Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Text(text = stringResource(id = R.string.settings_section_integrity), style = MaterialTheme.typography.titleMedium)
+    when {
+      contentIntegrity == null ->
+        Text(
+          text = stringResource(id = R.string.settings_integrity_checking),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+      contentIntegrity.isEmpty() ->
+        Text(
+          text = stringResource(id = R.string.settings_integrity_ok),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.tertiary,
+        )
+      else -> {
+        Text(
+          text = stringResource(id = R.string.settings_integrity_warning, contentIntegrity.size),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.error,
+        )
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+          contentIntegrity.forEach { mismatch ->
+            val message =
+              when (mismatch.reason) {
+                ContentIndexReader.Mismatch.Reason.INDEX_MISSING ->
+                  stringResource(id = R.string.settings_integrity_issue_index, mismatch.path)
+                ContentIndexReader.Mismatch.Reason.FILE_MISSING ->
+                  stringResource(
+                    id = R.string.settings_integrity_issue_missing,
+                    mismatch.path,
+                    mismatch.expectedHash ?: stringResource(id = R.string.settings_integrity_unknown),
+                  )
+                ContentIndexReader.Mismatch.Reason.HASH_MISMATCH ->
+                  stringResource(
+                    id = R.string.settings_integrity_issue_hash,
+                    mismatch.path,
+                    mismatch.expectedHash ?: stringResource(id = R.string.settings_integrity_unknown),
+                    mismatch.actualHash ?: stringResource(id = R.string.settings_integrity_missing),
+                  )
+              }
+            Text(
+              text = message,
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.error,
+            )
           }
         }
       }
