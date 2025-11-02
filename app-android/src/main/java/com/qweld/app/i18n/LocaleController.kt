@@ -8,10 +8,10 @@ object LocaleController {
   fun apply(tag: String) {
     val locales =
       when (tag) {
-        "system" -> LocaleListCompat.getEmpty()
+        "system" -> LocaleListCompat.getEmptyLocaleList()
         "en" -> LocaleListCompat.forLanguageTags("en")
         "ru" -> LocaleListCompat.forLanguageTags("ru")
-        else -> LocaleListCompat.getEmpty()
+        else -> LocaleListCompat.getEmptyLocaleList()
       }
     AppCompatDelegate.setApplicationLocales(locales)
     Timber.i("[settings_locale] apply tag=%s locales=%s", tag, locales)
