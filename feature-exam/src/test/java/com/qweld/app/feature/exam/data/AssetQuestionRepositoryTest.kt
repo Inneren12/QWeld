@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
+import com.qweld.app.feature.exam.data.TestIntegrity
 import org.junit.Assert.assertEquals
 import kotlin.test.assertIs
 import org.junit.Test
@@ -22,9 +23,14 @@ class AssetQuestionRepositoryTest {
       ]
     """.trimIndent()
 
+    val assets =
+      TestIntegrity.addIndexes(
+        mapOf("questions/en/bank.v1.json" to payload.toByteArray()),
+      )
     val repository =
       AssetQuestionRepository(
-        assetReader = AssetQuestionRepository.AssetReader(open = { payload.byteInputStream() }),
+        assetReader =
+          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )

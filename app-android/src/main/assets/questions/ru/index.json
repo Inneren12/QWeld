@@ -1,0 +1,23 @@
+{
+  "blueprintId": "welder_ip_sk_202404",
+  "bankVersion": "v1",
+  "files": {
+    "questions/ru/bank.v1.json": { "sha256": "16234d66ad606cb437dfef42eff591d3ea797fc230ba312f9d7982ee587e41c3" },
+    "questions/ru/meta/task_labels.json": { "sha256": "fd123aa4fafdef2a284f5fba08902436bc97dff4b49a286ad2f91a65ca531590" },
+    "questions/ru/tasks/A-1.json": { "sha256": "7c39099c3e69e677e7c7335e880a736552cabc14698f734310abd61180e7a6df" },
+    "questions/ru/tasks/A-2.json": { "sha256": "0cfc4b23636197629b1be883ae8bf4b1f40844cadc7394c3d8bd39ad4432e973" },
+    "questions/ru/tasks/A-3.json": { "sha256": "1dad0fc288cb09aa5bee360e0007d12ed9d00a62ebd8e99779d9d58c55e6de7c" },
+    "questions/ru/tasks/A-4.json": { "sha256": "54d97941ad4d25ce3942ce11d0c18e6bab8f9c8333f510c2d7f289022164e58a" },
+    "questions/ru/tasks/A-5.json": { "sha256": "c90e7395e628b4b0d5c12640fe5200308ebdd5b8c48057253fc3175065c76b5d" },
+    "questions/ru/tasks/B-6.json": { "sha256": "c3b096d6c6cfa85cc6c6afdfcbfc43d5858308cfa5e957ff21b06460169cbaad" },
+    "questions/ru/tasks/B-7.json": { "sha256": "e1f22279dfda5dd83b3208494a86e111f20b43cbcd1ec0212f2f6bbe6ad0a997" },
+    "questions/ru/tasks/C-8.json": { "sha256": "73af9273acef9f66ae9f53c4baf2dbaf8cf1cc70eac16c84018be1509d83c926" },
+    "questions/ru/tasks/C-9.json": { "sha256": "b7d3865f6f95c304b089472507930b02515681e4d4e7eae408477e0332539b4d" },
+    "questions/ru/tasks/C-10.json": { "sha256": "b8189f0eb1077350b48f23fe00640624c142806a6292832afe541933f026dd34" },
+    "questions/ru/tasks/C-11.json": { "sha256": "744ada8f1051da4bbd18fa6dcfcaca69fe03ead17ca1fdb0803f57fdd7fe423b" },
+    "questions/ru/tasks/D-12.json": { "sha256": "634d69ec4e1c3a2d6d7f65c366742638c289cd997ddc4d162253b27241ade044" },
+    "questions/ru/tasks/D-13.json": { "sha256": "9dcff75f706c01af47c09d2b1808f34860c6f73d36f0b340830480219b8e3cb5" },
+    "questions/ru/tasks/D-14.json": { "sha256": "310823a8257ac2743a474a0946326042f131319f6a7e00ef0777c15520dbab41" },
+    "questions/ru/tasks/D-15.json": { "sha256": "e0a55703115c44f8e69e3a96d89dd48aecc2aec8599ca3f602aaf1bb4309b5a0" }
+  }
+}

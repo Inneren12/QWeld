@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
+import com.qweld.app.feature.exam.data.TestIntegrity
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -39,17 +40,20 @@ class AssetRepoIoPoolTest {
       ]
     """.trimIndent()
 
+    val assets =
+      TestIntegrity.addIndexes(
+        mapOf(
+          "questions/en/tasks/D-13.json" to perTaskPayload.toByteArray(),
+          "questions/en/bank.v1.json" to bankPayload.toByteArray(),
+        ),
+      )
     val repository =
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
             opener = { path ->
               threadByPath[path] = Thread.currentThread().name
-              when (path) {
-                "questions/en/tasks/D-13.json" -> perTaskPayload.byteInputStream()
-                "questions/en/bank.v1.json" -> bankPayload.byteInputStream()
-                else -> null
-              }
+              assets[path]?.inputStream()
             },
             lister = { _ -> emptyList() },
           ),

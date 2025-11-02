@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
+import com.qweld.app.feature.exam.data.TestIntegrity
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import kotlin.test.assertIs
@@ -15,14 +16,15 @@ class AssetRepoPerTaskTest {
       "questions/en/tasks/D-13.json" to perTaskPayload("D-13", "13"),
       "questions/en/tasks/D-14.json" to perTaskPayload("D-14", "14"),
     )
+    val assets = TestIntegrity.addIndexes(payloads.mapValues { it.value.toByteArray() })
     val opened = mutableListOf<String>()
     val repository =
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
             open = { path ->
-              opened += path
-              payloads[path]?.byteInputStream()
+              if (!path.endsWith("/index.json")) opened += path
+              assets[path]?.inputStream()
             },
           ),
         localeResolver = { "en" },
@@ -52,14 +54,15 @@ class AssetRepoPerTaskTest {
     """.trimIndent()
 
     val payloads = mapOf("questions/en/bank.v1.json" to bankPayload)
+    val assets = TestIntegrity.addIndexes(payloads.mapValues { it.value.toByteArray() })
     val opened = mutableListOf<String>()
     val repository =
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
             open = { path ->
-              opened += path
-              payloads[path]?.byteInputStream()
+              if (!path.endsWith("/index.json")) opened += path
+              assets[path]?.inputStream()
             },
           ),
         localeResolver = { "en" },

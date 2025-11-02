@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
+import com.qweld.app.feature.exam.data.TestIntegrity
 import org.junit.Assert.assertEquals
 import kotlin.test.assertIs
 import org.junit.Test
@@ -14,12 +15,13 @@ class AssetRepoLocaleSwitchTest {
       "questions/en/tasks/D-13.json" to perTaskPayload(locale = "en", stem = "Stem EN"),
       "questions/ru/tasks/D-13.json" to perTaskPayload(locale = "ru", stem = "Stem RU"),
     )
+    val assets = TestIntegrity.addIndexes(payloads.mapValues { it.value.toByteArray() })
 
     val repository =
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
-            open = { path -> payloads[path]?.byteInputStream() },
+            open = { path -> assets[path]?.inputStream() },
           ),
         localeResolver = { "en" },
         json = json,

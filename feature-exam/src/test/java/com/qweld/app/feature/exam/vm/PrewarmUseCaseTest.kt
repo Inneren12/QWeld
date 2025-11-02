@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.TestIntegrity
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -17,7 +18,8 @@ class PrewarmUseCaseTest {
   @Test
   fun prewarmLoadsEveryTaskAndReportsProgress() = runTest {
     val openedPaths = CopyOnWriteArrayList<String>()
-    val repository = repositoryWithTasks(openedPaths)
+    val tasks = setOf("A-1", "A-2", "A-3")
+    val repository = repositoryWithTasks(openedPaths, indexTasks = tasks)
     val useCase =
       PrewarmUseCase(
         repository = repository,
@@ -40,7 +42,13 @@ class PrewarmUseCaseTest {
   @Test
   fun missingTaskFallsBackToBank() = runTest {
     val openedPaths = CopyOnWriteArrayList<String>()
-    val repository = repositoryWithTasks(openedPaths, missingTasks = setOf("A-1"), includeBank = true)
+    val repository =
+      repositoryWithTasks(
+        openedPaths,
+        missingTasks = setOf("A-1"),
+        includeBank = true,
+        indexTasks = setOf("A-1"),
+      )
     val useCase =
       PrewarmUseCase(
         repository = repository,
@@ -60,23 +68,25 @@ class PrewarmUseCaseTest {
     openedPaths: MutableList<String>,
     missingTasks: Set<String> = emptySet(),
     includeBank: Boolean = false,
+    indexTasks: Set<String> = emptySet(),
   ): AssetQuestionRepository {
+    val assets = mutableMapOf<String, ByteArray>()
+    if (includeBank) {
+      assets["questions/en/bank.v1.json"] = bankPayload().toByteArray()
+    }
+    val tasksForIndex = if (indexTasks.isEmpty()) setOf("A-1", "A-2", "A-3") else indexTasks
+    for (task in tasksForIndex) {
+      if (!missingTasks.contains(task)) {
+        val path = "questions/en/tasks/$task.json"
+        assets[path] = taskPayload(task).toByteArray()
+      }
+    }
+    val indexedAssets = TestIntegrity.addIndexes(assets)
     val reader =
       AssetQuestionRepository.AssetReader(
         opener = { path ->
           openedPaths += path
-          when {
-            path.endsWith("bank.v1.json") && includeBank -> bankPayload().byteInputStream()
-            path.contains("/tasks/") -> {
-              val taskId = path.substringAfterLast("/").removeSuffix(".json")
-              if (missingTasks.contains(taskId)) {
-                null
-              } else {
-                taskPayload(taskId).byteInputStream()
-              }
-            }
-            else -> null
-          }
+          indexedAssets[path]?.inputStream()
         },
       )
     return AssetQuestionRepository(
