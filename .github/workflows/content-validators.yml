@@ -12,14 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Verify no bidi chars in workflows
+        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
 
       - name: Setup Node.js (LTS)
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Guard: no bidi chars in workflows
-        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows || exit 1'
 
       - name: Install Ajv locally (no workspace)
         run: |

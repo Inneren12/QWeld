@@ -13,11 +13,13 @@ jobs:
     build:
         runs-on: ubuntu-latest
         env:
-            ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
+            ANDROID_SDK_ROOT: ${{ env.RUNNER_TEMP }}/android-sdk
 
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+            - name: Verify no bidi chars in workflows
+              run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
 
             - name: Set up JDK 21
               uses: actions/setup-java@v4
