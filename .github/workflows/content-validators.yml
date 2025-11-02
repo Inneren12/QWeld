@@ -93,6 +93,22 @@ jobs:
           set -euo pipefail
           mkdir -p .github
           : > .github/changed.txt
+          echo "[changed] PR base=${PR_BASE_REF} base_sha=${PR_BASE_SHA} head_sha=${PR_HEAD_SHA}"
+          git fetch --no-tags --prune origin +refs/heads/${PR_BASE_REF}:refs/remotes/origin/base >/dev/null 2>&1 || true
+          git diff --name-only "${PR_BASE_SHA}...${PR_HEAD_SHA}" > .github/changed.txt || true
+          echo "[changed] paths: $(wc -l < .github/changed.txt)"
+
+      - name: Capture changed files (push)
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          PUSH_BEFORE: ${{ github.event.before }}
+          PUSH_SHA: ${{ github.sha }}
+          PUSH_REF: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .github
+          : > .github/changed.txt
           echo "[changed] Push ref=${PUSH_REF} before=${PUSH_BEFORE} head=${PUSH_SHA}"
           git fetch --no-tags --prune origin +refs/heads/${PUSH_REF}:refs/remotes/origin/current >/dev/null 2>&1 || true
           git diff --name-only "${PUSH_BEFORE}...${PUSH_SHA}" > .github/changed.txt || true
