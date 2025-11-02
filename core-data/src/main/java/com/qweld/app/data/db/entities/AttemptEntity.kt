@@ -2,9 +2,19 @@ package com.qweld.app.data.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "attempts")
+@Entity(
+  tableName = "attempts",
+  indices = [
+    Index(
+      name = "idx_attempts_started_at",
+      value = ["started_at"],
+      orders = [Index.Order.DESC],
+    ),
+  ],
+)
 data class AttemptEntity(
   @PrimaryKey @ColumnInfo(name = "id") val id: String,
   @ColumnInfo(name = "mode") val mode: String,
