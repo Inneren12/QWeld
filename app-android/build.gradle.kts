@@ -35,7 +35,7 @@ val buildTimestamp = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).app
 
 android {
   namespace = "com.qweld.app"
-  compileSdk = 36
+  compileSdk = 35
 
   val enableAnalyticsDebug =
     providers.gradleProperty("enableAnalyticsDebug").map { it.toBoolean() }.getOrElse(false)
@@ -43,7 +43,7 @@ android {
   defaultConfig {
     applicationId = "com.qweld.app"
     minSdk = 24
-    targetSdk = 36
+    targetSdk = 35
     versionCode = extra["autoVersionCode"] as Int
     versionName = "1.0.0"
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -96,9 +96,9 @@ dependencies {
   implementation(project(":feature-exam"))
   implementation(project(":feature-auth"))
 
-  implementation("androidx.core:core-ktx:1.13.1")
-  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
-  implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.6")
+  implementation("androidx.core:core-ktx:1.15.0")
+  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+  implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
   implementation("androidx.activity:activity-compose:1.9.3")
   implementation("androidx.navigation:navigation-compose:2.8.3")
   implementation("androidx.compose.ui:ui:1.7.1")
