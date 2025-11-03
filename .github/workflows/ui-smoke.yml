@@ -38,26 +38,8 @@ jobs:
             - name: Setup Gradle
               uses: gradle/actions/setup-gradle@v3
 
-            - name: Install Android SDK
-              run: |
-                  set -euo pipefail
-                  mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
-                  cd "$ANDROID_SDK_ROOT"
-                  curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o cmdline-tools.zip
-                  unzip -q cmdline-tools.zip
-                  rm cmdline-tools.zip
-                  mv cmdline-tools cmdline-tools-temp
-                  mkdir -p cmdline-tools/latest
-                  mv cmdline-tools-temp/* cmdline-tools/latest/
-                  rm -rf cmdline-tools-temp
-                  export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
-                  echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
-                  echo "$ANDROID_SDK_ROOT/platform-tools" >> "$GITHUB_PATH"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platforms;android-34" "system-images;android-34;google_apis;x86_64"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "build-tools;34.0.0"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" --licenses
-                  cd "$GITHUB_WORKSPACE"
+            - name: Setup Android SDK
+              uses: android-actions/setup-android@v3
 
             - name: Remove local.properties
               run: rm -f local.properties
@@ -65,14 +47,13 @@ jobs:
             - name: Grant execute permission for gradlew
               run: chmod +x gradlew
 
-            - name: Assemble debug and androidTest APKs
-              run: ./gradlew :app-android:assembleDebug :app-android:assembleDebugAndroidTest --no-daemon --stacktrace
-
-            - name: Run UI smoke tests (connectedDebugAndroidTest)
-              uses: ReactiveCircus/android-emulator-runner@v2
+            - name: Run UI smoke tests
+              uses: reactivecircus/android-emulator-runner@v2
               with:
-                  api-level: 34
+                  api-level: 36
+                  system-image-api-level: 34
                   target: google_apis
                   arch: x86_64
                   profile: pixel_6
-                  script: ./gradlew connectedDebugAndroidTest --no-daemon --stacktrace
+                  emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+                  script: ./gradlew :app-android:assembleDebug :app-android:assembleDebugAndroidTest connectedDebugAndroidTest -x lint -x test --no-daemon --stacktrace

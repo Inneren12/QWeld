@@ -35,29 +35,19 @@ jobs:
             - name: Setup Gradle
               uses: gradle/actions/setup-gradle@v3
 
-            - name: Install Android SDK
+            - name: Setup Android SDK
+              uses: android-actions/setup-android@v3
+
+            - name: Install required SDK packages
+              shell: bash
               run: |
                   set -euo pipefail
-                  mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
-                  cd "$ANDROID_SDK_ROOT"
-                  curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o cmdline-tools.zip
-                  unzip -q cmdline-tools.zip
-                  rm cmdline-tools.zip
-                  mv cmdline-tools cmdline-tools-temp
-                  mkdir -p cmdline-tools/latest
-                  mv cmdline-tools-temp/* cmdline-tools/latest/
-                  rm -rf cmdline-tools-temp
-                  export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
-                  echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
-                  echo "$ANDROID_SDK_ROOT/platform-tools" >> "$GITHUB_PATH"
-                  COMPILE_SDK=$(grep -Rho "compileSdk *[0-9][0-9]" . | tail -n1 | grep -o "[0-9]*")
-                  BUILD_TOOLS=$(grep -Rho "buildToolsVersion *\"[0-9.]*\"" . | head -n1 | grep -o "[0-9.]*" || true)
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "platforms;android-${COMPILE_SDK}"
-                  if [ -n "$BUILD_TOOLS" ]; then
-                      yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "build-tools;${BUILD_TOOLS}"
-                  fi
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" --licenses
-                  cd "$GITHUB_WORKSPACE"
+                  sdkmanager --install \
+                      "platforms;android-36" \
+                      "build-tools;36.0.0" \
+                      "build-tools;34.0.0" \
+                      "platform-tools"
+                  yes | sdkmanager --licenses >/dev/null || true
 
             - name: Remove local.properties
               run: rm -f local.properties
