@@ -5,7 +5,7 @@ plugins {
 
 android {
   namespace = "com.qweld.core.common"
-  compileSdk = 36
+  compileSdk = 35
 
   defaultConfig {
     minSdk = 24
