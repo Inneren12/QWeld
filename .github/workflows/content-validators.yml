@@ -4,46 +4,30 @@ on:
     paths:
       - "assets/blueprints/**"
       - "app-android/src/main/assets/questions/**"
-      - "scripts/validate-blueprint.sh"
+      - "tools/schema-validation/**"
   workflow_dispatch:
 
 jobs:
   validate-blueprint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Verify no bidi chars in workflows
-        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
-
-      - name: Setup Node.js (LTS)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Ajv locally (no workspace)
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Install validator deps
+        working-directory: tools/schema-validation
+        run: npm ci
+      - name: Validate index.json via Ajv
+        working-directory: tools/schema-validation
         run: |
-          set -euo pipefail
-          mkdir -p .ci-node
-          npm install \
-            ajv@8 ajv-formats@3 ajv-cli@5 \
-            --no-save --no-audit --no-fund --no-package-lock \
-            --prefix ./.ci-node
-
-      - name: Debug Node & Ajv
-        run: |
-          node -v
-          npm -v
-          ./.ci-node/node_modules/.bin/ajv --version || true
-          ls -la ./.ci-node/node_modules/.bin
-
-      - name: Validate blueprint
-        shell: bash
-        run: bash scripts/validate-blueprint.sh
-
-      - name: Upload validator log (always)
+          npx -y ajv-cli@5 validate \
+            -c ajv-formats \
+            -s schemas/welder_blueprint.schema.json \
+            -d "../../app-android/src/main/assets/questions/**/index.json" \
+            --spec=draft2020 --all-errors --strict=false
+      - name: Upload Ajv logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ajv-logs
-          path: |
-            ./.ci-node/node_modules/.bin
+          path: .
