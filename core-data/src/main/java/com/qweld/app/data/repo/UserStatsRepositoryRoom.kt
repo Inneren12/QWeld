@@ -6,6 +6,7 @@ import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import java.time.Instant
+import kotlinx.coroutines.CancellationException
 
 class UserStatsRepositoryRoom(
   private val answerDao: AnswerDao,
@@ -19,6 +20,8 @@ class UserStatsRepositoryRoom(
     val uniqueIds = ids.toSet()
     logger("[stats_fetch] ids=${ids.size} unique=${uniqueIds.size}")
     return runCatching { answerDao.bulkCountByQuestions(uniqueIds.toList()) }
+      // Не маскируем отмену корутины под I/O-ошибку
+      .onFailure { e -> if (e is CancellationException) throw e }
       .map { aggregates ->
         if (aggregates.isEmpty()) {
           emptyMap()
