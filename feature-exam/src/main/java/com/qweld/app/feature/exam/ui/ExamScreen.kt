@@ -322,7 +322,7 @@ internal fun ExamScreenContent(
       val scrollState = remember(questionKey) { ScrollState(initial = 0) }
       LaunchedEffect(questionKey) { scrollState.scrollTo(0) }
       Column(
-        modifier = Modifier
+        modifier = modifier
           .fillMaxSize()
           .padding(paddingValues)
           .padding(WindowInsets.systemBars.asPaddingValues())
