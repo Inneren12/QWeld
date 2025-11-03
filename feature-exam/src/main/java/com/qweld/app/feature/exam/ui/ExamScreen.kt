@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsets.Companion.safeDrawing
-import androidx.compose.foundation.layout.WindowInsets.Companion.systemBars
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,6 +22,7 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -318,9 +318,9 @@ internal fun ExamScreenContent(
       }
     } else {
       val question = attempt.currentQuestion()
-      val questionKey = attempt.currentIndex
-      val scrollState = remember(questionKey) { ScrollState(initial = 0) }
-      LaunchedEffect(questionKey) { scrollState.scrollTo(0) }
+      val questionId = question?.id
+      val scrollState = remember(questionId) { ScrollState(0) }
+      LaunchedEffect(questionId) { scrollState.scrollTo(0) }
       Column(
         modifier = modifier
           .fillMaxSize()
