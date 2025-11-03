@@ -42,6 +42,37 @@ jobs:
               with:
                   packages: ''
 
+            - name: Install Android SDK packages (compileSdk/build-tools)
+              shell: bash
+              run: |
+                  set -euo pipefail
+                  # 1) Выясняем compileSdk и buildTools из Gradle-скриптов (падает в head -n1)
+                  COMPILE_SDK="$(grep -Rho 'compileSdk *[0-9][0-9]' . | head -n1 | grep -o '[0-9]*' || true)"
+                  BUILD_TOOLS="$(grep -Rho 'buildToolsVersion *\"[0-9\.]*\"' . | head -n1 | grep -o '[0-9\.]*' || true)"
+
+                  echo "[sdk] compileSdk=${COMPILE_SDK:-<none>} buildTools=${BUILD_TOOLS:-<auto>}"
+
+                  # 2) Ставим platform-tools и нужную платформу
+                  sdkmanager "platform-tools"
+                  if [ -n "${COMPILE_SDK:-}" ]; then
+                      sdkmanager "platforms;android-${COMPILE_SDK}"
+                  else
+                      # Фолбэк: ставим 36, чтобы покрыть текущую конфигурацию
+                      sdkmanager "platforms;android-36"
+                  fi
+
+                  # 3) Ставим build-tools (если версия задана в Gradle — именно её; иначе — последнюю доступную)
+                  if [ -n "${BUILD_TOOLS:-}" ]; then
+                      sdkmanager "build-tools;${BUILD_TOOLS}"
+                  else
+                      LATEST_BT="$(sdkmanager --list | awk '/build-tools;[0-9]/{print $1}' | sort -V | tail -1 || true)"
+                      if [ -n "${LATEST_BT:-}" ]; then
+                          sdkmanager "${LATEST_BT}"
+                      fi
+                  fi
+
+                  yes | sdkmanager --licenses >/dev/null || true
+
             - name: Remove local.properties
               run: rm -f local.properties
 
