@@ -11,10 +11,15 @@ plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.plugin.compose")
-  id("com.google.gms.google-services")
   id("com.google.firebase.crashlytics")
   id("app.cash.licensee")
   id("org.cyclonedx.bom")
+}
+
+if (file("google-services.json").exists()) {
+  apply(plugin = "com.google.gms.google-services")
+} else {
+  logger.info("google-services.json not found; skipping com.google.gms.google-services plugin")
 }
 
 val autoVersionCode = SimpleDateFormat("yyMMddHH", Locale.US).apply {

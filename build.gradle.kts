@@ -11,6 +11,7 @@ plugins {
   id("com.android.library") version "8.5.2" apply false
   id("org.jetbrains.kotlin.android") version "2.0.20" apply false
   id("org.jetbrains.kotlin.plugin.compose") version "2.0.20" apply false
+  id("org.jetbrains.kotlin.plugin.serialization") version "2.0.20" apply false
   id("com.diffplug.spotless")
   id("io.gitlab.arturbosch.detekt") version "1.23.6"
   id("org.jetbrains.kotlinx.kover") version "0.7.6"

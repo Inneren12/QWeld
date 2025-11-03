@@ -150,7 +150,15 @@ constructor(
           files = files,
         )
       manifests[localeCode] = manifest
-      elements[localeCode] = runCatching { json.parseToJsonElement(payload) }.getOrNull()
+      runCatching { json.parseToJsonElement(payload) }
+        .onSuccess { element -> elements[localeCode] = element }
+        .onFailure { error ->
+          Timber.w(
+            error,
+            "[content_index] failed to parse manifest locale=%s for aggregation",
+            localeCode,
+          )
+        }
     }
 
     if (locales.isEmpty()) {
