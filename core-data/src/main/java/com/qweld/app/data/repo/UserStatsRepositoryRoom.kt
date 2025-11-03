@@ -4,6 +4,7 @@ import android.util.Log
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.repo.UserStatsRepository
+import kotlinx.coroutines.CancellationException
 import java.time.Instant
 
 class UserStatsRepositoryRoom(
@@ -14,7 +15,13 @@ class UserStatsRepositoryRoom(
     if (ids.isEmpty()) return emptyMap()
     val uniqueIds = ids.toSet()
     logger("[stats_fetch] ids=${ids.size} unique=${uniqueIds.size}")
-    val aggregates = answerDao.bulkCountByQuestions(uniqueIds.toList())
+    val aggregates =
+      runCatching { answerDao.bulkCountByQuestions(uniqueIds.toList()) }
+        .onFailure { error ->
+          if (error is CancellationException) throw error // важно: не съедаем отмену
+          logger("[stats_fetch] failed=${error.javaClass.simpleName} msg=${error.message}")
+        }
+        .getOrElse { return emptyMap() }
     if (aggregates.isEmpty()) return emptyMap()
     return aggregates.associate { aggregate ->
       val lastAnswered = aggregate.lastAnsweredAt?.let(Instant::ofEpochMilli) ?: Instant.EPOCH
