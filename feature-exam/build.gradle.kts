@@ -7,7 +7,7 @@ plugins {
 
 android {
   namespace = "com.qweld.app.feature.exam"
-  compileSdk = 36
+  compileSdk = 35
 
   defaultConfig {
     minSdk = 24
@@ -29,15 +29,15 @@ dependencies {
   implementation(project(":core-domain"))
   implementation(project(":core-data"))
   implementation(project(":core-common"))
-  implementation("androidx.core:core-ktx:1.13.1")
-  implementation("androidx.activity:activity-compose:1.9.3")
+  implementation("androidx.core:core-ktx:1.15.0")
+  implementation("androidx.activity:activity-compose:1.10.1")
   implementation("androidx.compose.foundation:foundation:1.7.1")
   implementation("androidx.compose.material3:material3:1.3.1")
   implementation("androidx.compose.material:material-icons-extended:1.7.1")
   implementation("androidx.compose.runtime:runtime:1.7.1")
   implementation("androidx.compose.ui:ui:1.7.1")
   implementation("androidx.compose.ui:ui-tooling-preview:1.7.1")
-  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
+  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4")
   implementation("androidx.navigation:navigation-compose:2.8.3")
   implementation("com.jakewharton.timber:timber:5.0.1")
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")

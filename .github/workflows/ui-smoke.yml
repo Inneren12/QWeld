@@ -15,12 +15,16 @@ jobs:
         runs-on: ubuntu-latest
         continue-on-error: true
         timeout-minutes: 45
-        env:
-            ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
+        strategy:
+            matrix:
+                api: [34, 35]
+                device: [pixel_6]
 
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+            - name: Export ANDROID_SDK_ROOT
+              run: echo "ANDROID_SDK_ROOT=$RUNNER_TEMP/android-sdk" >> $GITHUB_ENV
             - name: Guard ANDROID_SDK_ROOT is resolvable
               run: |
                   echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
@@ -38,26 +42,7 @@ jobs:
             - name: Setup Gradle
               uses: gradle/actions/setup-gradle@v3
 
-            - name: Install Android SDK
-              run: |
-                  set -euo pipefail
-                  mkdir -p "$ANDROID_SDK_ROOT/cmdline-tools"
-                  cd "$ANDROID_SDK_ROOT"
-                  curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o cmdline-tools.zip
-                  unzip -q cmdline-tools.zip
-                  rm cmdline-tools.zip
-                  mv cmdline-tools cmdline-tools-temp
-                  mkdir -p cmdline-tools/latest
-                  mv cmdline-tools-temp/* cmdline-tools/latest/
-                  rm -rf cmdline-tools-temp
-                  export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
-                  echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
-                  echo "$ANDROID_SDK_ROOT/platform-tools" >> "$GITHUB_PATH"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platforms;android-34" "system-images;android-34;google_apis;x86_64"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "build-tools;34.0.0"
-                  yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" --licenses
-                  cd "$GITHUB_WORKSPACE"
+            - uses: android-actions/setup-android@v3
 
             - name: Remove local.properties
               run: rm -f local.properties
@@ -71,8 +56,8 @@ jobs:
             - name: Run UI smoke tests (connectedDebugAndroidTest)
               uses: ReactiveCircus/android-emulator-runner@v2
               with:
-                  api-level: 34
-                  target: google_apis
+                  api-level: ${{ matrix.api }}
                   arch: x86_64
-                  profile: pixel_6
-                  script: ./gradlew connectedDebugAndroidTest --no-daemon --stacktrace
+                  target: google_apis
+                  profile: ${{ matrix.device }}
+                  script: ./gradlew :app-android:connectedDebugAndroidTest --no-daemon --stacktrace
