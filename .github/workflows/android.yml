@@ -73,10 +73,8 @@ jobs:
             - name: Generate coverage report
               run: ./gradlew koverXmlReport --no-daemon --stacktrace
 
-            - name: Enforce coverage threshold
-              env:
-                  THRESH: '0.60'
-              run: bash scripts/coverage-threshold.sh
+            - name: Coverage gate
+              run: ./gradlew koverVerify --no-daemon --stacktrace
 
             - name: Verify OSS licenses
               run: ./gradlew :app-android:licensee --no-daemon --stacktrace
