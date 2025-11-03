@@ -44,6 +44,33 @@ jobs:
 
             - uses: android-actions/setup-android@v3
 
+            - name: Install Android SDK packages (compileSdk & build-tools)
+              shell: bash
+              run: |
+                  set -euo pipefail
+                  # autodetect from Gradle (fallbacks: api 34/35 and build-tools 34.0.0)
+                  COMPILE_SDK="$(grep -Rho 'compileSdk *[0-9]\{2\}' . | head -n1 | grep -o '[0-9]\{2\}' || true)"
+                  BUILD_TOOLS="$(grep -Rho 'buildToolsVersion *\"[0-9\.]\+\"' . | head -n1 | grep -o '[0-9\.]\+' || true)"
+                  echo "[sdk] compileSdk=${COMPILE_SDK:-<none>} buildTools=${BUILD_TOOLS:-<none>}"
+
+                  sdkmanager "platform-tools" >/dev/null
+
+                  if [ -n "${COMPILE_SDK:-}" ]; then
+                      sdkmanager "platforms;android-${COMPILE_SDK}" >/dev/null
+                  else
+                      # попробуем обе целевые конфигурации smoke (34 и 35)
+                      sdkmanager "platforms;android-34" "platforms;android-35" >/dev/null
+                  fi
+
+                  if [ -n "${BUILD_TOOLS:-}" ]; then
+                      sdkmanager "build-tools;${BUILD_TOOLS}" >/dev/null
+                  else
+                      sdkmanager "build-tools;34.0.0" >/dev/null
+                  fi
+
+                  # главное: принять лицензии БЕЗ диалога
+                  yes | sdkmanager --licenses >/dev/null
+
             - name: Remove local.properties
               run: rm -f local.properties
 
