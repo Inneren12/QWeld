@@ -1,5 +1,6 @@
 package com.qweld.benchmarks
 
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssembler
 import com.qweld.app.domain.exam.ExamBlueprint
@@ -67,11 +68,12 @@ open class ExamAssemblyBenchmark {
       )
     }
     when (result) {
-      is ExamAssembler.AssemblyResult.Ok -> blackhole.consume(result.exam)
-      is ExamAssembler.AssemblyResult.Deficit ->
+      is Outcome.Ok -> blackhole.consume(result.value.exam)
+      is Outcome.Err.QuotaExceeded ->
         error(
-          "Deficit for ${result.taskId}: required=${result.required} have=${result.have} seed=${result.seed}",
+          "Deficit for ${result.taskId}: required=${result.required} have=${result.have}",
         )
+      is Outcome.Err -> error("Unexpected outcome ${result::class.simpleName}")
     }
   }
 }
@@ -80,7 +82,7 @@ private object EmptyStatsRepository : UserStatsRepository {
   override suspend fun getUserItemStats(
     userId: String,
     ids: List<String>,
-  ): Map<String, ItemStats> = emptyMap()
+  ): Outcome<Map<String, ItemStats>> = Outcome.Ok(emptyMap())
 }
 
 private class FixtureQuestionRepository(
@@ -93,14 +95,14 @@ private class FixtureQuestionRepository(
     taskId: String,
     locale: String,
     allowFallbackToEnglish: Boolean,
-  ): List<Question> {
+  ): Outcome<List<Question>> {
     val normalized = locale.lowercase(Locale.US)
     val candidates = byTask[taskId].orEmpty()
     val primary = candidates.filter { it.locale.lowercase(Locale.US) == normalized }
     if (primary.isNotEmpty() || !allowFallbackToEnglish) {
-      return primary
+      return Outcome.Ok(primary)
     }
-    return candidates.filter { it.locale.equals("en", ignoreCase = true) }
+    return Outcome.Ok(candidates.filter { it.locale.equals("en", ignoreCase = true) })
   }
 }
 

@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
@@ -38,8 +39,8 @@ class FamilyUniquenessTest {
         )
       }
 
-    require(result is ExamAssembler.AssemblyResult.Ok)
-    val attempt = result.exam
+    require(result is Outcome.Ok)
+    val attempt = result.value.exam
 
     val families = attempt.questions.mapNotNull { it.question.familyId }
     assertEquals(2, families.size)
@@ -71,10 +72,10 @@ class FamilyUniquenessTest {
           blueprint = blueprint,
         )
       }
-    require(result is ExamAssembler.AssemblyResult.Deficit)
+    require(result is Outcome.Err.QuotaExceeded)
     assertEquals("A-1", result.taskId)
     assertEquals(2, blueprint.quotaFor("A-1").required)
     assertEquals(1, result.have)
-    assertEquals(1, result.missing)
+    assertEquals(1, result.required - result.have)
   }
 }

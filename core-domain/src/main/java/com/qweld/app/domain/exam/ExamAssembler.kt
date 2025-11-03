@@ -1,6 +1,6 @@
 package com.qweld.app.domain.exam
 
-import com.qweld.app.domain.exam.ItemStats
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.domain.exam.util.ChoiceBalanceResult
@@ -30,18 +30,10 @@ class ExamAssembler(
   private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
   private val randomProvider: RandomProvider = DefaultRandomProvider,
 ) {
-  sealed class AssemblyResult {
-    data class Ok(val exam: ExamAttempt, val seed: Long) : AssemblyResult()
-
-    data class Deficit(
-      val taskId: String,
-      val required: Int,
-      val have: Int,
-      val seed: Long,
-    ) : AssemblyResult() {
-      val missing: Int get() = required - have
-    }
-  }
+  data class Assembly(
+    val exam: ExamAttempt,
+    val seed: Long,
+  )
 
   suspend fun assemble(
     userId: String,
@@ -49,7 +41,7 @@ class ExamAssembler(
     locale: String,
     seed: AttemptSeed,
     blueprint: ExamBlueprint = ExamBlueprint.default(),
-  ): AssemblyResult =
+  ): Outcome<Assembly> =
     withContext(dispatcher) {
       logger(
         "[blueprint_load] source type=${if (blueprint == ExamBlueprint.default()) "default" else "external"} " +
@@ -74,8 +66,16 @@ class ExamAssembler(
       val allSelected = mutableListOf<Question>()
       val deficits = mutableListOf<DeficitDetail>()
       for (quota in blueprint.taskQuotas) {
-        val pool = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)
-        val stats = statsRepository.getUserItemStats(userId, pool.map { it.id })
+        val pool =
+          when (val questions = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)) {
+            is Outcome.Ok -> questions.value
+            is Outcome.Err -> return@withContext questions
+          }
+        val stats =
+          when (val statsOutcome = statsRepository.getUserItemStats(userId, pool.map { it.id })) {
+            is Outcome.Ok -> statsOutcome.value
+            is Outcome.Err -> return@withContext statsOutcome
+          }
         val selectionResult =
           when (mode) {
             ExamMode.IP_MOCK -> selectUniform(pool, stats, quota, seed, now, locale)
@@ -98,11 +98,10 @@ class ExamAssembler(
 
       if (deficits.isNotEmpty()) {
         val first = deficits.first()
-        return@withContext AssemblyResult.Deficit(
+        return@withContext Outcome.Err.QuotaExceeded(
           taskId = first.taskId,
           required = first.required,
           have = first.have,
-          seed = seed.value,
         )
       }
 
@@ -160,16 +159,18 @@ class ExamAssembler(
       val formattedTimeLeft = TimerController.formatDuration(timeLeftDuration)
       logger("[exam_finish] correct=0/${blueprint.totalQuestions} score=0 timeLeft=$formattedTimeLeft")
 
-      AssemblyResult.Ok(
-        exam =
-          ExamAttempt(
-            mode = mode,
-            locale = locale,
-            seed = seed,
-            questions = assembledQuestions,
-            blueprint = blueprint,
-          ),
-        seed = seed.value,
+      Outcome.Ok(
+        Assembly(
+          exam =
+            ExamAttempt(
+              mode = mode,
+              locale = locale,
+              seed = seed,
+              questions = assembledQuestions,
+              blueprint = blueprint,
+            ),
+          seed = seed.value,
+        )
       )
     }
 

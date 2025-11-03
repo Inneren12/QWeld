@@ -11,6 +11,7 @@ import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssembler
@@ -243,127 +244,164 @@ class ExamViewModel(
       },
     )
     val attemptSeed = AttemptSeed(seedProvider())
-    return try {
-      when (
-        val assembly =
-          runBlocking(ioDispatcher) {
-            assembler.assemble(
-              userId = userIdProvider(),
-              mode = mode,
-              locale = normalizedLocale,
-              seed = attemptSeed,
-              blueprint = blueprint,
-            )
-          }
-      ) {
-        is ExamAssembler.AssemblyResult.Ok -> {
-          val attempt = assembly.exam
-          val attemptId = attemptIdProvider()
-          val startedAt = nowProvider()
-          Timber.i(
-            "[attempt_create] id=%s mode=%s locale=%s",
-            attemptId,
-            attempt.mode.name,
-            attempt.locale,
+    val assemblyOutcome =
+      try {
+        runBlocking(ioDispatcher) {
+          assembler.assemble(
+            userId = userIdProvider(),
+            mode = mode,
+            locale = normalizedLocale,
+            seed = attemptSeed,
+            blueprint = blueprint,
           )
-          viewModelScope.launch(ioDispatcher) {
-            val entity =
-              AttemptEntity(
-                id = attemptId,
-                mode = attempt.mode.name,
-                locale = attempt.locale.uppercase(Locale.US),
-                seed = attempt.seed.value,
-                questionCount = attempt.questions.size,
-                startedAt = startedAt,
-              )
-            attemptsRepository.save(entity)
-          }
-          currentAttempt =
-            ExamAssemblerResult(
-              attempt = attempt,
-              answers = emptyMap(),
-              currentIndex = 0,
-              attemptId = attemptId,
+        }
+      } catch (error: Throwable) {
+        if (error is CancellationException) throw error
+        return handleAssemblyFailure(
+          mode = mode,
+          message = error.message ?: "Unable to start attempt.",
+          throwable = error,
+        )
+      }
+
+    return when (assemblyOutcome) {
+      is Outcome.Ok -> {
+        val attempt = assemblyOutcome.value.exam
+        val attemptId = attemptIdProvider()
+        val startedAt = nowProvider()
+        Timber.i(
+          "[attempt_create] id=%s mode=%s locale=%s",
+          attemptId,
+          attempt.mode.name,
+          attempt.locale,
+        )
+        viewModelScope.launch(ioDispatcher) {
+          val entity =
+            AttemptEntity(
+              id = attemptId,
+              mode = attempt.mode.name,
+              locale = attempt.locale.uppercase(Locale.US),
+              seed = attempt.seed.value,
+              questionCount = attempt.questions.size,
               startedAt = startedAt,
             )
-          recordLastSession(
-            mode = mode,
-            locale = attempt.locale,
-            practiceConfig = if (mode == ExamMode.PRACTICE) normalizedPracticeConfig else null,
-          )
-          hasFinished = false
-          prepareAutosave(attemptId)
-          latestResult = null
-          questionSeenAt.clear()
-          if (mode == ExamMode.IP_MOCK) {
-            startTimer()
-          } else {
-            stopTimer(clearLabel = true)
-          }
-          refreshState()
-          if (mode == ExamMode.IP_MOCK) {
-            Timber.i("[exam_start] ready=125")
-            _effects.tryEmit(ExamEffect.NavigateToExam)
-          }
-          true
+          attemptsRepository.save(entity)
         }
-        is ExamAssembler.AssemblyResult.Deficit -> {
-          questionRationales = emptyMap()
-          Logx.w(
-            LogTag.DEFICIT,
-            "assembly",
-            "taskId" to assembly.taskId,
-            "required" to assembly.required,
-            "have" to assembly.have,
-            "seed" to assembly.seed,
+        currentAttempt =
+          ExamAssemblerResult(
+            attempt = attempt,
+            answers = emptyMap(),
+            currentIndex = 0,
+            attemptId = attemptId,
+            startedAt = startedAt,
           )
-          val details =
-            listOf(
-              DeficitDetailUiModel(
-                taskId = assembly.taskId,
-                need = assembly.required,
-                have = assembly.have,
-                missing = assembly.missing,
-              )
-            )
-          if (mode == ExamMode.IP_MOCK) {
-            val detailSummary =
-              details.joinToString(separator = "\n") { detail ->
-                "taskId=${detail.taskId} need=${detail.need} have=${detail.have} missing=${detail.missing}"
-              }
-            _effects.tryEmit(ExamEffect.ShowDeficit(detailSummary))
-          }
-          currentAttempt = null
-          val previous = _uiState.value
-          _uiState.value =
-            previous.copy(
-              isLoading = false,
-              attempt = null,
-              deficitDialog = DeficitDialogUiModel(details),
-              errorMessage = null,
-            )
-          false
-        }
-      }
-    } catch (error: Throwable) {
-      if (error is CancellationException) throw error
-      if (mode == ExamMode.IP_MOCK) {
-        Timber.e(error, "[exam_error]")
-        _effects.tryEmit(ExamEffect.ShowError(error.message ?: "unknown"))
-      } else {
-        Timber.e(error)
-      }
-      currentAttempt = null
-      val previous = _uiState.value
-      _uiState.value =
-        previous.copy(
-          isLoading = false,
-          attempt = null,
-          deficitDialog = null,
-          errorMessage = error.message ?: "Unable to start attempt.",
+        recordLastSession(
+          mode = mode,
+          locale = attempt.locale,
+          practiceConfig = if (mode == ExamMode.PRACTICE) normalizedPracticeConfig else null,
         )
-      false
+        hasFinished = false
+        prepareAutosave(attemptId)
+        latestResult = null
+        questionSeenAt.clear()
+        if (mode == ExamMode.IP_MOCK) {
+          startTimer()
+        } else {
+          stopTimer(clearLabel = true)
+        }
+        refreshState()
+        if (mode == ExamMode.IP_MOCK) {
+          Timber.i("[exam_start] ready=125")
+          _effects.tryEmit(ExamEffect.NavigateToExam)
+        }
+        true
+      }
+      is Outcome.Err.QuotaExceeded -> {
+        questionRationales = emptyMap()
+        Logx.w(
+          LogTag.DEFICIT,
+          "assembly",
+          "taskId" to assemblyOutcome.taskId,
+          "required" to assemblyOutcome.required,
+          "have" to assemblyOutcome.have,
+          "seed" to attemptSeed.value,
+        )
+        val details =
+          listOf(
+            DeficitDetailUiModel(
+              taskId = assemblyOutcome.taskId,
+              need = assemblyOutcome.required,
+              have = assemblyOutcome.have,
+              missing = assemblyOutcome.required - assemblyOutcome.have,
+            )
+          )
+        if (mode == ExamMode.IP_MOCK) {
+          val detailSummary =
+            details.joinToString(separator = "\n") { detail ->
+              "taskId=${detail.taskId} need=${detail.need} have=${detail.have} missing=${detail.missing}"
+            }
+          _effects.tryEmit(ExamEffect.ShowDeficit(detailSummary))
+        }
+        currentAttempt = null
+        val previous = _uiState.value
+        _uiState.value =
+          previous.copy(
+            isLoading = false,
+            attempt = null,
+            deficitDialog = DeficitDialogUiModel(details),
+            errorMessage = null,
+          )
+        false
+      }
+      is Outcome.Err.ContentNotFound ->
+        handleAssemblyFailure(
+          mode = mode,
+          message = "Missing content: ${assemblyOutcome.path}",
+        )
+      is Outcome.Err.SchemaViolation ->
+        handleAssemblyFailure(
+          mode = mode,
+          message = "Invalid content at ${assemblyOutcome.path}: ${assemblyOutcome.reason}",
+        )
+      is Outcome.Err.IoFailure ->
+        handleAssemblyFailure(
+          mode = mode,
+          message = assemblyOutcome.cause.message ?: "Unable to start attempt.",
+          throwable = assemblyOutcome.cause,
+        )
     }
+  }
+
+  private fun handleAssemblyFailure(
+    mode: ExamMode,
+    message: String,
+    throwable: Throwable? = null,
+  ): Boolean {
+    if (mode == ExamMode.IP_MOCK) {
+      if (throwable != null) {
+        Timber.e(throwable, "[exam_error] %s", message)
+      } else {
+        Timber.e("[exam_error] %s", message)
+      }
+      _effects.tryEmit(ExamEffect.ShowError(message))
+    } else {
+      if (throwable != null) {
+        Timber.e(throwable)
+      } else {
+        Timber.e(message)
+      }
+    }
+    questionRationales = emptyMap()
+    currentAttempt = null
+    val previous = _uiState.value
+    _uiState.value =
+      previous.copy(
+        isLoading = false,
+        attempt = null,
+        deficitDialog = null,
+        errorMessage = message,
+      )
+    return false
   }
 
   fun detectResume(deviceLocale: String) {
@@ -450,7 +488,7 @@ class ExamViewModel(
           return@launch
         }
         val answers = withContext(ioDispatcher) { answersRepository.listByAttempt(attemptId) }
-        val reconstructionResult =
+        val reconstructionOutcome =
           withContext(ioDispatcher) {
             resumeUseCase.reconstructAttempt(
               mode = mode,
@@ -459,24 +497,70 @@ class ExamViewModel(
               questionCount = pending.questionCount,
             )
           }
-        if (reconstructionResult is ResumeUseCase.ReconstructionResult.Deficit) {
-          Logx.w(
-            LogTag.DEFICIT,
-            "resume",
-            "taskId" to reconstructionResult.taskId,
-            "required" to reconstructionResult.required,
-            "have" to reconstructionResult.have,
-            "seed" to reconstructionResult.seed,
-          )
-          pendingResume = null
-          _uiState.value =
-            _uiState.value.copy(
-              resumeDialog = null,
-              errorMessage = "Unable to resume attempt.",
-            )
-          return@launch
-        }
-        val reconstruction = reconstructionResult as ResumeUseCase.ReconstructionResult.Success
+        val reconstruction =
+          when (reconstructionOutcome) {
+            is Outcome.Ok -> reconstructionOutcome.value
+            is Outcome.Err.QuotaExceeded -> {
+              Logx.w(
+                LogTag.DEFICIT,
+                "resume",
+                "taskId" to reconstructionOutcome.taskId,
+                "required" to reconstructionOutcome.required,
+                "have" to reconstructionOutcome.have,
+                "seed" to pending.seed,
+              )
+              pendingResume = null
+              _uiState.value =
+                _uiState.value.copy(
+                  resumeDialog = null,
+                  errorMessage = "Unable to resume attempt.",
+                )
+              return@launch
+            }
+            is Outcome.Err.ContentNotFound -> {
+              Timber.e(
+                "[resume_continue] missing content path=%s attemptId=%s",
+                reconstructionOutcome.path,
+                attemptId,
+              )
+              pendingResume = null
+              _uiState.value =
+                _uiState.value.copy(
+                  resumeDialog = null,
+                  errorMessage = "Unable to resume attempt.",
+                )
+              return@launch
+            }
+            is Outcome.Err.SchemaViolation -> {
+              Timber.e(
+                "[resume_continue] invalid content path=%s reason=%s attemptId=%s",
+                reconstructionOutcome.path,
+                reconstructionOutcome.reason,
+                attemptId,
+              )
+              pendingResume = null
+              _uiState.value =
+                _uiState.value.copy(
+                  resumeDialog = null,
+                  errorMessage = "Unable to resume attempt.",
+                )
+              return@launch
+            }
+            is Outcome.Err.IoFailure -> {
+              Timber.e(
+                reconstructionOutcome.cause,
+                "[resume_continue] failed attemptId=%s",
+                attemptId,
+              )
+              pendingResume = null
+              _uiState.value =
+                _uiState.value.copy(
+                  resumeDialog = null,
+                  errorMessage = reconstructionOutcome.cause.message ?: "Unable to resume attempt.",
+                )
+              return@launch
+            }
+          }
         val merged: MergeState = resumeUseCase.mergeAnswers(reconstruction.attempt.questions, answers)
         questionRationales = reconstruction.rationales
         questionSeenAt.clear()
@@ -983,42 +1067,67 @@ class ExamViewModel(
     mode: ExamMode,
   ) {
     val answers = answersRepository.listByAttempt(attempt.id)
-    val reconstructionResult =
+    val reconstructionOutcome =
       resumeUseCase.reconstructAttempt(
         mode = mode,
         seed = attempt.seed,
         locale = attempt.locale.lowercase(Locale.US),
         questionCount = attempt.questionCount,
       )
-    if (reconstructionResult is ResumeUseCase.ReconstructionResult.Deficit) {
-      Logx.w(
-        LogTag.DEFICIT,
-        "expire",
-        "taskId" to reconstructionResult.taskId,
-        "required" to reconstructionResult.required,
-        "have" to reconstructionResult.have,
-        "seed" to reconstructionResult.seed,
-      )
-      val finishedAt = nowProvider()
-      val durationSec = TimerController.EXAM_DURATION.seconds.toInt()
-      val passThreshold = if (mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
-      attemptsRepository.markFinished(
-        attemptId = attempt.id,
-        finishedAt = finishedAt,
-        durationSec = durationSec,
-        passThreshold = passThreshold,
-        scorePct = 0.0,
-      )
-      Timber.i(
-        "[resume_timeout] attemptId=%s correct=%d/%d score=%.2f",
-        attempt.id,
-        0,
-        attempt.questionCount,
-        0.0,
-      )
-      return
-    }
-    val reconstruction = reconstructionResult as ResumeUseCase.ReconstructionResult.Success
+    val reconstruction =
+      when (reconstructionOutcome) {
+        is Outcome.Ok -> reconstructionOutcome.value
+        is Outcome.Err -> {
+          when (reconstructionOutcome) {
+            is Outcome.Err.QuotaExceeded ->
+              Logx.w(
+                LogTag.DEFICIT,
+                "expire",
+                "taskId" to reconstructionOutcome.taskId,
+                "required" to reconstructionOutcome.required,
+                "have" to reconstructionOutcome.have,
+                "seed" to attempt.seed,
+              )
+            is Outcome.Err.ContentNotFound ->
+              Timber.e(
+                "[resume_timeout] missing content path=%s attemptId=%s",
+                reconstructionOutcome.path,
+                attempt.id,
+              )
+            is Outcome.Err.SchemaViolation ->
+              Timber.e(
+                "[resume_timeout] invalid content path=%s reason=%s attemptId=%s",
+                reconstructionOutcome.path,
+                reconstructionOutcome.reason,
+                attempt.id,
+              )
+            is Outcome.Err.IoFailure ->
+              Timber.e(
+                reconstructionOutcome.cause,
+                "[resume_timeout] failed to reconstruct attemptId=%s",
+                attempt.id,
+              )
+          }
+          val finishedAt = nowProvider()
+          val durationSec = TimerController.EXAM_DURATION.seconds.toInt()
+          val passThreshold = if (mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
+          attemptsRepository.markFinished(
+            attemptId = attempt.id,
+            finishedAt = finishedAt,
+            durationSec = durationSec,
+            passThreshold = passThreshold,
+            scorePct = 0.0,
+          )
+          Timber.i(
+            "[resume_timeout] attemptId=%s correct=%d/%d score=%.2f",
+            attempt.id,
+            0,
+            attempt.questionCount,
+            0.0,
+          )
+          return
+        }
+      }
     val merged = resumeUseCase.mergeAnswers(reconstruction.attempt.questions, answers)
     val correct =
       reconstruction.attempt.questions.count { assembled ->
@@ -1298,13 +1407,13 @@ class ExamViewModel(
       taskId: String,
       locale: String,
       allowFallbackToEnglish: Boolean,
-    ): List<Question> {
+    ): Outcome<List<Question>> {
       val normalizedLocale = locale.lowercase(Locale.US)
       val primary = questions.filter { it.taskId == taskId && it.locale.equals(normalizedLocale, ignoreCase = true) }
       if (primary.isNotEmpty() || !allowFallbackToEnglish) {
-        return primary
+        return Outcome.Ok(primary)
       }
-      return questions.filter { it.taskId == taskId && it.locale.equals("en", ignoreCase = true) }
+      return Outcome.Ok(questions.filter { it.taskId == taskId && it.locale.equals("en", ignoreCase = true) })
     }
   }
 

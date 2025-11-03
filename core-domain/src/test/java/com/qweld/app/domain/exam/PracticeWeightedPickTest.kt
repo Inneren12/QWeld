@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
@@ -46,7 +47,7 @@ class PracticeWeightedPickTest {
             blueprint = blueprint,
           )
         }
-      val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
+      val attempt = (result as Outcome.Ok).value.exam
       val picked = attempt.questions.single().question.id
       practiceCounts[picked] = practiceCounts.getValue(picked) + 1
     }
@@ -70,7 +71,7 @@ class PracticeWeightedPickTest {
             blueprint = blueprint,
           )
         }
-      val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
+      val attempt = (result as Outcome.Ok).value.exam
       val picked = attempt.questions.single().question.id
       ipCounts[picked] = ipCounts.getValue(picked) + 1
     }

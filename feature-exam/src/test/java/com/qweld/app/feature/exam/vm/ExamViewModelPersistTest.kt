@@ -6,6 +6,7 @@ import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
@@ -90,7 +91,9 @@ class ExamViewModelPersistTest {
     assertNull(finishedAttempt.passThreshold)
     assertEquals(100.0, finishedAttempt.scorePct)
 
-    val stats = statsRepository.getUserItemStats("local_user", listOf(attemptQuestion.id))
+    val statsOutcome = statsRepository.getUserItemStats("local_user", listOf(attemptQuestion.id))
+    require(statsOutcome is Outcome.Ok)
+    val stats = statsOutcome.value
     val questionStats = stats[attemptQuestion.id]
     assertNotNull(questionStats)
     assertEquals(1, questionStats.attempts)

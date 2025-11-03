@@ -2,6 +2,7 @@ package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
@@ -25,7 +26,7 @@ class ResumeUseCaseTest {
     override suspend fun getUserItemStats(
       userId: String,
       ids: List<String>,
-    ) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
+    ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
   }
 
   @Test
@@ -47,13 +48,13 @@ class ResumeUseCaseTest {
         questionCount = 2,
       )
 
-    require(firstResult is ResumeUseCase.ReconstructionResult.Success)
-    require(secondResult is ResumeUseCase.ReconstructionResult.Success)
-    val firstIds = firstResult.attempt.questions.map { it.question.id }
-    val secondIds = secondResult.attempt.questions.map { it.question.id }
+    require(firstResult is Outcome.Ok)
+    require(secondResult is Outcome.Ok)
+    val firstIds = firstResult.value.attempt.questions.map { it.question.id }
+    val secondIds = secondResult.value.attempt.questions.map { it.question.id }
     assertEquals(firstIds, secondIds)
     assertFalse(firstIds.isEmpty())
-    assertTrue(firstResult.rationales.isNotEmpty())
+    assertTrue(firstResult.value.rationales.isNotEmpty())
   }
 
   @Test
@@ -66,8 +67,8 @@ class ResumeUseCaseTest {
         locale = "en",
         questionCount = 3,
       )
-    require(reconstructionResult is ResumeUseCase.ReconstructionResult.Success)
-    val questions = reconstructionResult.attempt.questions
+    require(reconstructionResult is Outcome.Ok)
+    val questions = reconstructionResult.value.attempt.questions
     val first = questions.first()
     val answers =
       listOf(

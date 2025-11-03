@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
@@ -39,11 +40,11 @@ class LocaleDeficitTest {
         )
       }
 
-    assertTrue(result is ExamAssembler.AssemblyResult.Deficit)
-    result as ExamAssembler.AssemblyResult.Deficit
+    assertTrue(result is Outcome.Err.QuotaExceeded)
+    result as Outcome.Err.QuotaExceeded
     assertEquals("B-1", result.taskId)
     assertEquals(1, result.required)
     assertEquals(0, result.have)
-    assertEquals(1, result.missing)
+    assertEquals(1, result.required - result.have)
   }
 }

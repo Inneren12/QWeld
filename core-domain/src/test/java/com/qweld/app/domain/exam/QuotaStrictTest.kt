@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
@@ -42,11 +43,11 @@ class QuotaStrictTest {
         )
       }
 
-    require(result is ExamAssembler.AssemblyResult.Deficit)
+    require(result is Outcome.Err.QuotaExceeded)
     assertEquals("B-1", result.taskId)
     assertEquals(2, result.required)
     assertEquals(1, result.have)
-    assertEquals(1, result.missing)
+    assertEquals(1, result.required - result.have)
     assertTrue(logs.any { it == "[deficit] taskId=B-1 required=2 have=1 seed=1" })
   }
 }

@@ -1,6 +1,6 @@
 package com.qweld.app.domain.exam
 
-import com.qweld.app.domain.exam.ExamAssembler.AssemblyResult
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.domain.exam.util.computeWeight
 import java.time.Clock
@@ -232,9 +232,13 @@ class ExamPropertyContractsTest {
         )
       }
     return when (result) {
-      is AssemblyResult.Ok -> result.exam
-      is AssemblyResult.Deficit ->
-        error("[tests] seed=$seed reason=deficit task=${result.taskId} missing=${result.missing}")
+      is Outcome.Ok -> result.value.exam
+      is Outcome.Err.QuotaExceeded ->
+        error(
+          "[tests] seed=$seed reason=deficit task=${result.taskId} missing=${result.required - result.have}"
+        )
+      is Outcome.Err ->
+        error("[tests] seed=$seed reason=unexpected outcome ${result::class.simpleName}")
     }
   }
 
@@ -449,8 +453,8 @@ class ExamPropertyContractsTest {
     override suspend fun getUserItemStats(
       userId: String,
       ids: List<String>,
-    ): Map<String, ItemStats> {
-      return ids.mapNotNull { id -> stats[id]?.let { id to it } }.toMap()
+    ): Outcome<Map<String, ItemStats>> {
+      return Outcome.Ok(ids.mapNotNull { id -> stats[id]?.let { id to it } }.toMap())
     }
   }
 }
