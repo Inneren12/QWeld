@@ -318,7 +318,7 @@ internal fun ExamScreenContent(
       }
     } else {
       val question = attempt.currentQuestion()
-      val questionKey = attempt.currentIndex
+      val questionKey = question?.id ?: "index-${attempt.currentIndex}"
       val scrollState = remember(questionKey) { ScrollState(initial = 0) }
       LaunchedEffect(questionKey) { scrollState.scrollTo(0) }
       Column(
