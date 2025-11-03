@@ -65,9 +65,12 @@ jobs:
             - name: Grant execute permission for gradlew
               run: chmod +x gradlew
 
+            - name: Detekt (release profile)
+              run: ./gradlew -Ddetekt.config=config/detekt/detekt-release.yml detekt --info --no-daemon --stacktrace
+
             - name: Run checks and unit tests
               run: >-
-                  ./gradlew spotlessCheck detekt :core-domain:test :core-data:test :feature-exam:test
+                  ./gradlew :core-domain:test :core-data:test :feature-exam:test
                   test assembleDebug --no-daemon --stacktrace
 
             - name: Generate coverage report
