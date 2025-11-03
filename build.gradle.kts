@@ -50,6 +50,13 @@ koverReport {
     xml {
       setReportFile(layout.buildDirectory.file("reports/kover/xml/report.xml"))
     }
+    verify {
+      rule("minimum-line-coverage") {
+        bound {
+          minValue = 60
+        }
+      }
+    }
   }
 }
 
