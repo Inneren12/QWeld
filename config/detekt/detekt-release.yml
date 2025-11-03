@@ -1,0 +1,84 @@
+build:
+  maxIssues: 0
+
+config:
+  validation: true
+
+processors:
+  active: true
+
+console-reports:
+  active: true
+
+complexity:
+  active: true
+  ComplexMethod:
+    active: true
+    threshold: 20
+  LongParameterList:
+    active: true
+    functionThreshold: 6
+    constructorThreshold: 7
+    ignoreDefaultParameters: true
+  TooManyFunctions:
+    active: true
+    thresholdInClasses: 20
+    thresholdInInterfaces: 20
+    thresholdInObjects: 20
+    thresholdInFiles: 20
+  ComplexCondition:
+    active: true
+    threshold: 5
+
+potential-bugs:
+  active: true
+  DuplicateCaseInWhenExpression:
+    active: true
+  EqualsAlwaysReturnsTrueOrFalse:
+    active: true
+  EqualsHashCode:
+    active: true
+  ExplicitGarbageCollectionCall:
+    active: true
+  ImplicitDefaultLocale:
+    active: true
+  InvalidRange:
+    active: true
+  LateinitUsage:
+    active: true
+    excludeAnnotatedProperties: ["Inject", "Autowired"]
+  NullPointerException:
+    active: true
+  UnsafeCallOnNullableType:
+    active: true
+  UnsafeCast:
+    active: true
+  UselessPostfixExpression:
+    active: true
+
+exceptions:
+  active: true
+  PrintStackTrace:
+    active: true
+  RethrowCaughtException:
+    active: true
+  ReturnFromFinally:
+    active: true
+
+style:
+  active: false
+
+naming:
+  active: false
+
+performance:
+  active: false
+
+comments:
+  active: false
+
+coroutines:
+  active: false
+
+formatting:
+  active: false
