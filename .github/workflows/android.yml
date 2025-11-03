@@ -36,10 +36,17 @@ jobs:
             - name: Setup Gradle
               uses: gradle/actions/setup-gradle@v3
 
-            - name: Setup Android SDK
+            - name: Setup Android SDK (compileSdk & build-tools)
               uses: android-actions/setup-android@v3
               with:
-                  packages: ''  # Add packages such as 'platform-tools;build-tools-35.0.0;platforms;android-35' if required
+                  packages: |
+                      platform-tools
+                      platforms;android-36
+                      build-tools;34.0.0
+
+            - name: Accept Android SDK licenses
+              shell: bash
+              run: yes | sdkmanager --licenses >/dev/null || true
 
             - name: Remove local.properties
               run: rm -f local.properties

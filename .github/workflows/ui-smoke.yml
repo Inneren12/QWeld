@@ -39,10 +39,21 @@ jobs:
             - name: Setup Gradle
               uses: gradle/actions/setup-gradle@v3
 
-            - name: Setup Android SDK
+            - name: Setup Android SDK (platforms, build-tools, emulator & system-images)
               uses: android-actions/setup-android@v3
               with:
-                  packages: ''  # Add packages such as 'platform-tools;build-tools-35.0.0;platforms;android-35' if required
+                  # Prepare images for smoke tests across API levels 34 and 35
+                  packages: |
+                      platform-tools
+                      platforms;android-36
+                      build-tools;34.0.0
+                      emulator
+                      system-images;android-34;google_apis;x86_64
+                      system-images;android-35;google_apis;x86_64
+
+            - name: Accept Android SDK licenses
+              shell: bash
+              run: yes | sdkmanager --licenses >/dev/null || true
 
             - name: Remove local.properties
               run: rm -f local.properties
