@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
@@ -71,8 +72,8 @@ class WeightsBiasTest {
             blueprint = blueprint,
           )
         }
-      val neutralAttempt = (neutralResult as ExamAssembler.AssemblyResult.Ok).exam
-      val biasedAttempt = (biasedResult as ExamAssembler.AssemblyResult.Ok).exam
+      val neutralAttempt = (neutralResult as Outcome.Ok).value.exam
+      val biasedAttempt = (biasedResult as Outcome.Ok).value.exam
       if (neutralAttempt.questions.first().question.id == wrongQuestion.id) {
         neutralWrongSelections++
       }

@@ -6,6 +6,7 @@ import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
@@ -156,7 +157,7 @@ class ExamViewModelTest {
       override suspend fun getUserItemStats(
         userId: String,
         ids: List<String>,
-      ) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
+      ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
     }
     val dispatcher = StandardTestDispatcher()
     return ExamViewModel(

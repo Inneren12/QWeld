@@ -2,6 +2,7 @@ package com.qweld.app.data.repo
 
 import android.util.Log
 import com.qweld.app.data.db.dao.AnswerDao
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import java.time.Instant
@@ -10,23 +11,35 @@ class UserStatsRepositoryRoom(
   private val answerDao: AnswerDao,
   private val logger: (String) -> Unit = { Log.i(TAG, it) },
 ) : UserStatsRepository {
-  override suspend fun getUserItemStats(userId: String, ids: List<String>): Map<String, ItemStats> {
-    if (ids.isEmpty()) return emptyMap()
+  override suspend fun getUserItemStats(
+    userId: String,
+    ids: List<String>,
+  ): Outcome<Map<String, ItemStats>> {
+    if (ids.isEmpty()) return Outcome.Ok(emptyMap())
     val uniqueIds = ids.toSet()
     logger("[stats_fetch] ids=${ids.size} unique=${uniqueIds.size}")
-    val aggregates = answerDao.bulkCountByQuestions(uniqueIds.toList())
-    if (aggregates.isEmpty()) return emptyMap()
-    return aggregates.associate { aggregate ->
-      val lastAnswered = aggregate.lastAnsweredAt?.let(Instant::ofEpochMilli) ?: Instant.EPOCH
-      aggregate.questionId to
-        ItemStats(
-          questionId = aggregate.questionId,
-          attempts = aggregate.attempts,
-          correct = aggregate.correct,
-          lastAnsweredAt = lastAnswered,
-          lastAnswerCorrect = aggregate.lastIsCorrect,
-        )
-    }
+    return runCatching { answerDao.bulkCountByQuestions(uniqueIds.toList()) }
+      .map { aggregates ->
+        if (aggregates.isEmpty()) {
+          emptyMap()
+        } else {
+          aggregates.associate { aggregate ->
+            val lastAnswered = aggregate.lastAnsweredAt?.let(Instant::ofEpochMilli) ?: Instant.EPOCH
+            aggregate.questionId to
+              ItemStats(
+                questionId = aggregate.questionId,
+                attempts = aggregate.attempts,
+                correct = aggregate.correct,
+                lastAnsweredAt = lastAnswered,
+                lastAnswerCorrect = aggregate.lastIsCorrect,
+              )
+          }
+        }
+      }
+      .fold(
+        onSuccess = { Outcome.Ok(it) },
+        onFailure = { error -> Outcome.Err.IoFailure(error) },
+      )
   }
 
   private companion object {

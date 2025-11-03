@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.test.fail
@@ -102,12 +103,13 @@ class ExamAssemblerPropertyTest {
         )
       }
     return when (result) {
-      is ExamAssembler.AssemblyResult.Ok -> result.exam
-      is ExamAssembler.AssemblyResult.Deficit ->
+      is Outcome.Ok -> result.value.exam
+      is Outcome.Err.QuotaExceeded ->
         fail(
           "Seed $seed triggered deficit for task ${result.taskId}: " +
             "required=${result.required} have=${result.have}",
         )
+      is Outcome.Err -> fail("Seed $seed produced unexpected outcome ${result::class.simpleName}")
     }
   }
 

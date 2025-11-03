@@ -7,6 +7,7 @@ import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
@@ -118,7 +119,10 @@ class ExamViewModelAbortRestartTest {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = object : UserStatsRepository {
-        override suspend fun getUserItemStats(userId: String, ids: List<String>) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
+        override suspend fun getUserItemStats(
+          userId: String,
+          ids: List<String>,
+        ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
       },
       userPrefs = object : UserPrefsDataStore {
         override val prewarmDisabled: Flow<Boolean> = flowOf(true)

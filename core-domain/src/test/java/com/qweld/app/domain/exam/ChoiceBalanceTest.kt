@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.math.abs
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
@@ -30,7 +31,7 @@ class ChoiceBalanceTest {
           blueprint = blueprint,
         )
       }
-    val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
+    val attempt = (result as Outcome.Ok).value.exam
     val histogram = attempt.correctPositionHistogram()
     val total = attempt.questions.size
     histogram.values.forEach { count ->
@@ -54,7 +55,7 @@ class ChoiceBalanceTest {
             blueprint = blueprint,
           )
         }
-      val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
+      val attempt = (result as Outcome.Ok).value.exam
       attempt.correctPositionHistogram().forEach { (key, value) ->
         aggregate[key] = aggregate.getValue(key) + value
       }
