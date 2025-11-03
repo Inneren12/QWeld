@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import java.time.Clock
@@ -117,8 +118,10 @@ class ExamAssemblerDeterminismHarnessTest {
         )
       }
     return when (result) {
-      is ExamAssembler.AssemblyResult.Ok -> result.exam
-      is ExamAssembler.AssemblyResult.Deficit -> error("Unexpected deficit for task ${result.taskId}")
+      is Outcome.Ok -> result.value.exam
+      is Outcome.Err.QuotaExceeded ->
+        error("Unexpected quota deficit for task ${result.taskId}")
+      is Outcome.Err -> error("Unexpected outcome ${result::class.simpleName}")
     }
   }
 
@@ -139,8 +142,10 @@ class ExamAssemblerDeterminismHarnessTest {
     }
     val attempt =
       when (result) {
-        is ExamAssembler.AssemblyResult.Ok -> result.exam
-        is ExamAssembler.AssemblyResult.Deficit -> error("Unexpected deficit for task ${result.taskId}")
+        is Outcome.Ok -> result.value.exam
+        is Outcome.Err.QuotaExceeded ->
+          error("Unexpected quota deficit for task ${result.taskId}")
+        is Outcome.Err -> error("Unexpected outcome ${result::class.simpleName}")
       }
     return TimeoutRun(attempt, logs.toList())
   }
@@ -183,7 +188,7 @@ class ExamAssemblerDeterminismHarnessTest {
       taskId: String,
       locale: String,
       allowFallbackToEnglish: Boolean,
-    ): List<Question> {
+    ): Outcome<List<Question>> {
       if (delayMillis > 0) {
         Thread.sleep(delayMillis)
       }
@@ -195,11 +200,14 @@ class ExamAssemblerDeterminismHarnessTest {
     private val stats: Map<String, ItemStats> = emptyMap(),
     private val delayMillis: Long,
   ) : UserStatsRepository {
-    override suspend fun getUserItemStats(userId: String, ids: List<String>): Map<String, ItemStats> {
+    override suspend fun getUserItemStats(
+      userId: String,
+      ids: List<String>,
+    ): Outcome<Map<String, ItemStats>> {
       if (delayMillis > 0) {
         delay(delayMillis)
       }
-      return ids.mapNotNull { id -> stats[id]?.let { id to it } }.toMap()
+      return Outcome.Ok(ids.mapNotNull { id -> stats[id]?.let { id to it } }.toMap())
     }
   }
 }

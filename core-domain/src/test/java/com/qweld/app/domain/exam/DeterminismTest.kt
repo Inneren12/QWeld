@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
@@ -40,7 +41,7 @@ class DeterminismTest {
           blueprint = blueprint,
         )
       }
-    val attempt1 = (result1 as ExamAssembler.AssemblyResult.Ok).exam
+    val attempt1 = (result1 as Outcome.Ok).value.exam
 
     val logs2 = mutableListOf<String>()
     val assembler2 =
@@ -60,7 +61,7 @@ class DeterminismTest {
           blueprint = blueprint,
         )
       }
-    val attempt2 = (result2 as ExamAssembler.AssemblyResult.Ok).exam
+    val attempt2 = (result2 as Outcome.Ok).value.exam
 
     assertEquals(
       attempt1.questions.map { it.question.id },

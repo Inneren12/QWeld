@@ -1,5 +1,6 @@
 package com.qweld.app.data.fakes
 
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.repo.QuestionRepository
@@ -12,15 +13,15 @@ class FakeQuestionRepository(
     taskId: String,
     locale: String,
     allowFallbackToEnglish: Boolean,
-  ): List<Question> {
+  ): Outcome<List<Question>> {
     val primary =
       backing.filter { it.taskId == taskId && it.locale.equals(locale, ignoreCase = true) }
     if (primary.isNotEmpty() || !allowFallbackToEnglish || locale.equals("EN", ignoreCase = true)) {
-      return primary.sortedBy { it.id }
+      return Outcome.Ok(primary.sortedBy { it.id })
     }
     val fallback =
       backing.filter { it.taskId == taskId && it.locale.equals("EN", ignoreCase = true) }
-    return fallback.sortedBy { it.id }
+    return Outcome.Ok(fallback.sortedBy { it.id })
   }
 }
 
@@ -30,7 +31,7 @@ class FakeUserStatsRepository(
   override suspend fun getUserItemStats(
     userId: String,
     ids: List<String>,
-  ): Map<String, ItemStats> {
-    return ids.mapNotNull { id -> stats[id]?.let { id to it } }.toMap()
+  ): Outcome<Map<String, ItemStats>> {
+    return Outcome.Ok(ids.mapNotNull { id -> stats[id]?.let { id to it } }.toMap())
   }
 }

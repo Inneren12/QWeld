@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.Outcome
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
@@ -43,7 +44,7 @@ class AntiClusterTest {
         )
       }
 
-    val attempt = (result as ExamAssembler.AssemblyResult.Ok).exam
+    val attempt = (result as Outcome.Ok).value.exam
 
     val taskIds = attempt.questions.map { it.question.taskId }
     val blocks = attempt.questions.map { it.question.blockId }

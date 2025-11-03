@@ -6,6 +6,8 @@ import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.domain.Outcome
+import java.io.IOException
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -56,7 +58,9 @@ class UserStatsRepositoryRoomTest {
       )
     answerDao.insertAll(answers)
 
-    val stats = repository.getUserItemStats("user-1", listOf("Q1", "Q2", "Q1", "Q3"))
+    val outcome = repository.getUserItemStats("user-1", listOf("Q1", "Q2", "Q1", "Q3"))
+    require(outcome is Outcome.Ok)
+    val stats = outcome.value
     val q1 = stats["Q1"]
     assertNotNull(q1)
     assertEquals(2, q1?.attempts)
@@ -71,6 +75,31 @@ class UserStatsRepositoryRoomTest {
     assertEquals(true, q2?.lastAnswerCorrect)
 
     assertTrue("Q3" !in stats)
+  }
+
+  @Test
+  fun propagatesIoFailure() = runTest {
+    val throwingDao = object : AnswerDao {
+      override suspend fun insertAll(answers: List<AnswerEntity>) = Unit
+
+      override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = emptyList()
+
+      override suspend fun listWrongByAttempt(attemptId: String): List<String> = emptyList()
+
+      override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? = null
+
+      override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
+        throw IOException("boom")
+      }
+
+      override suspend fun clearAll() = Unit
+    }
+
+    val repository = UserStatsRepositoryRoom(throwingDao) { }
+    val outcome = repository.getUserItemStats("user", listOf("A"))
+    assertTrue(outcome is Outcome.Err.IoFailure)
+    val error = outcome as Outcome.Err.IoFailure
+    assertEquals("boom", error.cause.message)
   }
 
   private fun answer(

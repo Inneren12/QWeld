@@ -2,6 +2,7 @@ package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssembler
@@ -30,21 +31,10 @@ class ResumeUseCase(
   private val ioDispatcher: CoroutineDispatcher,
 ) {
 
-  sealed class ReconstructionResult {
-    data class Success(
-      val attempt: com.qweld.app.domain.exam.ExamAttempt,
-      val rationales: Map<String, String>,
-    ) : ReconstructionResult()
-
-    data class Deficit(
-      val taskId: String,
-      val required: Int,
-      val have: Int,
-      val seed: Long,
-    ) : ReconstructionResult() {
-      val missing: Int get() = required - have
-    }
-  }
+  data class Reconstruction(
+    val attempt: com.qweld.app.domain.exam.ExamAttempt,
+    val rationales: Map<String, String>,
+  )
 
   data class MergeState(
     val answers: Map<String, String>,
@@ -56,29 +46,31 @@ class ResumeUseCase(
     seed: Long,
     locale: String,
     questionCount: Int,
-  ): ReconstructionResult {
+  ): Outcome<Reconstruction> {
     val normalizedLocale = locale.lowercase(Locale.US)
     val blueprint = blueprintProvider(mode, questionCount)
     val requestedTasks =
       blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
     val questionsResult = repository.loadQuestions(normalizedLocale, tasks = requestedTasks)
-    val (domainQuestions, rationales) = when (questionsResult) {
-      is AssetQuestionRepository.LoadResult.Success -> {
-        val rationales =
-          questionsResult.questions.mapNotNull { dto ->
-            val rationale = dto.rationales?.get(dto.correctId)?.takeIf { it.isNotBlank() }
-            rationale?.let { dto.id to it }
-          }.toMap()
-        val domain = questionsResult.questions.map { dto -> dto.toDomain(normalizedLocale) }
-        domain to rationales
+    val (domainQuestions, rationales) =
+      when (questionsResult) {
+        is AssetQuestionRepository.LoadResult.Success -> {
+          val rationales =
+            questionsResult.questions.mapNotNull { dto ->
+              val rationale = dto.rationales?.get(dto.correctId)?.takeIf { it.isNotBlank() }
+              rationale?.let { dto.id to it }
+            }.toMap()
+          val domain = questionsResult.questions.map { dto -> dto.toDomain(normalizedLocale) }
+          domain to rationales
+        }
+        AssetQuestionRepository.LoadResult.Missing ->
+          return Outcome.Err.ContentNotFound("questions/$normalizedLocale")
+        is AssetQuestionRepository.LoadResult.Corrupt ->
+          return Outcome.Err.SchemaViolation(
+            path = "questions/$normalizedLocale",
+            reason = questionsResult.reason,
+          )
       }
-      AssetQuestionRepository.LoadResult.Missing -> {
-        throw IllegalStateException("Question bank missing for $normalizedLocale")
-      }
-      is AssetQuestionRepository.LoadResult.Corrupt -> {
-        throw IllegalStateException("Failed to load questions: ${questionsResult.reason}")
-      }
-    }
 
     val assembler =
       ExamAssembler(
@@ -87,26 +79,20 @@ class ResumeUseCase(
         logger = { },
       )
 
-    val assembly =
-      withContext(ioDispatcher) {
-        assembler.assemble(
-          userId = userIdProvider(),
-          mode = mode,
-          locale = normalizedLocale,
-          seed = AttemptSeed(seed),
-          blueprint = blueprint,
-        )
-      }
-
-    return when (assembly) {
-      is ExamAssembler.AssemblyResult.Ok -> ReconstructionResult.Success(assembly.exam, rationales)
-      is ExamAssembler.AssemblyResult.Deficit ->
-        ReconstructionResult.Deficit(
-          taskId = assembly.taskId,
-          required = assembly.required,
-          have = assembly.have,
-          seed = assembly.seed,
-        )
+    return when (
+      val assembly =
+        withContext(ioDispatcher) {
+          assembler.assemble(
+            userId = userIdProvider(),
+            mode = mode,
+            locale = normalizedLocale,
+            seed = AttemptSeed(seed),
+            blueprint = blueprint,
+          )
+        }
+    ) {
+      is Outcome.Ok -> Outcome.Ok(Reconstruction(assembly.value.exam, rationales))
+      is Outcome.Err -> assembly
     }
   }
 
@@ -145,14 +131,16 @@ class ResumeUseCase(
       taskId: String,
       locale: String,
       allowFallbackToEnglish: Boolean,
-    ): List<Question> {
+    ): Outcome<List<Question>> {
       val normalizedLocale = locale.lowercase(Locale.US)
       val primary =
         questions.filter { it.taskId == taskId && it.locale.equals(normalizedLocale, ignoreCase = true) }
       if (primary.isNotEmpty() || !allowFallbackToEnglish) {
-        return primary
+        return Outcome.Ok(primary)
       }
-      return questions.filter { it.taskId == taskId && it.locale.equals("en", ignoreCase = true) }
+      return Outcome.Ok(
+        questions.filter { it.taskId == taskId && it.locale.equals("en", ignoreCase = true) }
+      )
     }
   }
 

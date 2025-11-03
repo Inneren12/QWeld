@@ -6,6 +6,7 @@ import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
@@ -76,7 +77,7 @@ class ExamViewModelStartTest {
     val statsRepository =
       object : UserStatsRepository {
         override suspend fun getUserItemStats(userId: String, ids: List<String>) =
-          throw IllegalStateException("stats failed")
+          Outcome.Err.IoFailure(IllegalStateException("stats failed"))
       }
     val viewModel = createViewModel(repository, blueprint, statsRepository)
 
@@ -145,7 +146,10 @@ class ExamViewModelStartTest {
     repository: AssetQuestionRepository,
     blueprint: ExamBlueprint,
     statsRepository: UserStatsRepository = object : UserStatsRepository {
-      override suspend fun getUserItemStats(userId: String, ids: List<String>) = emptyMap<String, com.qweld.app.domain.exam.ItemStats>()
+      override suspend fun getUserItemStats(
+        userId: String,
+        ids: List<String>,
+      ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
     },
   ): ExamViewModel {
     val attemptDao = FakeAttemptDao()

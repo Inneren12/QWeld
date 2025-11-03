@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam.repo
 
+import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.Question
 
 interface QuestionRepository {
@@ -7,5 +8,5 @@ interface QuestionRepository {
     taskId: String,
     locale: String,
     allowFallbackToEnglish: Boolean = false,
-  ): List<Question>
+  ): Outcome<List<Question>>
 }
