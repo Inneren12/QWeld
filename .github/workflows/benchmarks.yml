@@ -11,6 +11,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Простой локальный preflight: проверяем, что все wrapper-файлы на месте.
+      - name: Preflight — verify Gradle wrapper files exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          ls -l gradle/wrapper/ || true
+          test -f gradle/wrapper/gradle-wrapper.properties
+          test -f gradle/wrapper/gradle-wrapper.jar
+          test -f gradlew
+          test -f gradlew.bat
+          echo "Gradle wrapper files — OK"
+
+      # Валидацию оставляем best-effort: сетевые таймауты не рушат job.
+      - name: Validate Gradle Wrapper (best-effort)
+        uses: gradle/wrapper-validation-action@v2
+        timeout-minutes: 2
+        continue-on-error: true
+
+      # Печатаем SHA256 JAR для ручного аудита при необходимости.
+      - name: Print gradle-wrapper.jar SHA256
+        shell: bash
+        run: shasum -a 256 gradle/wrapper/gradle-wrapper.jar || sha256sum gradle/wrapper/gradle-wrapper.jar
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
