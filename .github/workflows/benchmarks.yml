@@ -1,48 +1,29 @@
-name: JVM Benchmarks
+name: Benchmarks
 
 on:
+  workflow_dispatch:
   push:
+    branches: ["main"]
   pull_request:
 
 jobs:
-  run:
-    name: Run JMH benchmarks
-    if: >-
-      (github.event_name == 'push' && contains(github.event.head_commit.message, 'bench:')) ||
-      (github.event_name == 'pull_request' && contains(github.event.pull_request.title, 'bench:'))
+  jmh:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v2
-
-      - name: Set up JDK (Temurin 21)
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '21'
-          cache: 'gradle'
-
-      - name: Setup Gradle (cache & config)
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Sanity: verify plugin repository resolution
-        run: |
-          grep -n "gradlePluginPortal" settings.gradle.kts || (echo "gradlePluginPortal missing" && exit 1)
-          ./gradlew --version --no-daemon
-          ./gradlew help -q --no-daemon
-
-      - name: Run JMH benchmarks
-        run: |
-          ./gradlew :benchmarks-jvm:jmh --no-daemon
-
-      - name: Upload JMH report
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v3
+      - name: Run JMH
+        run: ./gradlew :benchmarks-jvm:jmh
+      - name: Upload JMH results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: jmh-report
+          name: jmh-results
           path: |
             benchmarks-jvm/build/reports/**
             benchmarks-jvm/build/results/**
+          if-no-files-found: warn
