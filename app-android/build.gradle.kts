@@ -11,16 +11,24 @@ plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.plugin.compose")
-  id("com.google.firebase.crashlytics")
   id("app.cash.licensee")
   id("org.cyclonedx.bom")
 }
 
-if (file("google-services.json").exists()) {
+val hasGoogleServices =
+  rootProject.file("app-android/google-services.json").exists() ||
+    project.findProperty("withGoogleServices")?.toString() == "true"
+
+if (hasGoogleServices) {
   apply(plugin = "com.google.gms.google-services")
+  apply(plugin = "com.google.firebase.crashlytics")
 } else {
-  logger.info("google-services.json not found; skipping com.google.gms.google-services plugin")
+  logger.lifecycle("CI: google-services.json absent → skipping GMS/Crashlytics")
 }
+
+tasks
+  .matching { it.name.contains("uploadCrashlyticsMappingFile") }
+  .configureEach { onlyIf { hasGoogleServices } }
 
 val autoVersionCode = SimpleDateFormat("yyMMddHH", Locale.US).apply {
   timeZone = TimeZone.getTimeZone("UTC")
