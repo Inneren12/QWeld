@@ -10,9 +10,9 @@ import java.util.LinkedHashMap
 import java.util.Locale
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.parseToJsonElement
 import kotlinx.serialization.json.put
 import timber.log.Timber
@@ -95,7 +95,7 @@ constructor(
 
     val locales = LinkedHashMap<String, Result.Locale>()
     val manifests = LinkedHashMap<String, IndexParser.Manifest>()
-    val elements = LinkedHashMap<String, JsonElement>()
+    val elements = LinkedHashMap<String, JsonObject>()
 
     candidates.forEach { candidate ->
       val manifestPath = manifestPath(candidate)
@@ -150,7 +150,7 @@ constructor(
           files = files,
         )
       manifests[localeCode] = manifest
-      runCatching { json.parseToJsonElement(payload) }
+      runCatching { json.parseToJsonElement(payload).jsonObject }
         .onSuccess { element -> elements[localeCode] = element }
         .onFailure { error ->
           Timber.w(

@@ -50,8 +50,7 @@ class IndexParser(private val json: Json = DEFAULT_JSON) {
   }
 
   fun parse(payload: String): Manifest {
-    val element = json.parseToJsonElement(payload)
-    val obj = element.jsonObject
+    val obj = json.parseToJsonElement(payload).jsonObject
     val blueprintId = extractBlueprintId(obj)
     val bankVersion = extractBankVersion(obj)
     val expected = LinkedHashMap<String, String>()
