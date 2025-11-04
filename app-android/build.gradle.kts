@@ -89,6 +89,10 @@ android {
   kotlinOptions { jvmTarget = "21" }
 }
 
+kotlin {
+  jvmToolchain(21)
+}
+
 afterEvaluate {
   configurations.findByName("releaseCompileClasspath")?.attributes?.attribute(
     Attribute.of("artifactType", String::class.java),

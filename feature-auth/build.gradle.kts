@@ -24,6 +24,10 @@ android {
   kotlinOptions { jvmTarget = "21" }
 }
 
+kotlin {
+  jvmToolchain(21)
+}
+
 dependencies {
   implementation(project(":core-data"))
   implementation("androidx.core:core-ktx:1.15.0")
