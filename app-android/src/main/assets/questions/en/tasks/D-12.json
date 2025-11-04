@@ -28,149 +28,9 @@
     }
   },
   {
-    "id": "Q-D-12_arc_blow_mitigation_v1_08_40000008",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "How can magnetic arc blow be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase current"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger electrode only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v3_08_4000001c",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "How can magnetic arc blow be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase current"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger electrode only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v5_08_40000030",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "How can magnetic arc blow be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase current"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger electrode only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v7_08_40000044",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "How can magnetic arc blow be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase current"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger electrode only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v9_08_40000058",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "How can magnetic arc blow be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase current"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger electrode only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
     "id": "Q-D-12_arc_length_1000004c",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "What arc length is generally recommended for SMAW?",
     "choices": [
       {
@@ -196,233 +56,9 @@
     }
   },
   {
-    "id": "Q-D-12_arc_length_short_v1_06_40000006",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~electrode diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve shielding and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v3_06_4000001a",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~electrode diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve shielding and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v5_06_4000002e",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~electrode diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve shielding and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v7_06_40000042",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~electrode diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve shielding and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v9_06_40000056",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~electrode diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve shielding and reduce spatter/undercut."
-    }
-  },
-  {
     "id": "Q-D-12_arc_start_methods_v2_09_40000013",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, which is a recommended arc start method on finished surfaces?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike directly on visible faces"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Strike on run‑on tabs or within joint area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on machined faces away from joints"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No preference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Start within joint/tabs to avoid hard spots on faces."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_start_methods_v4_09_40000027",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, which is a recommended arc start method on finished surfaces?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike directly on visible faces"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Strike on run‑on tabs or within joint area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on machined faces away from joints"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No preference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Start within joint/tabs to avoid hard spots on faces."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_start_methods_v6_09_4000003b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW, which is a recommended arc start method on finished surfaces?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike directly on visible faces"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Strike on run‑on tabs or within joint area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on machined faces away from joints"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No preference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Start within joint/tabs to avoid hard spots on faces."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_start_methods_v8_09_4000004f",
-    "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "For SMAW, which is a recommended arc start method on finished surfaces?",
     "choices": [
       {
@@ -450,7 +86,7 @@
   {
     "id": "Q-D-12_clean_between_passes_1000004f",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "Why remove slag between passes with E7018?",
     "choices": [
       {
@@ -478,7 +114,7 @@
   {
     "id": "Q-D-12_damp_rods_10000053",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "What problem can damp E7018 electrodes cause?",
     "choices": [
       {
@@ -504,121 +140,9 @@
     }
   },
   {
-    "id": "Q-D-12_damp_rods_effect_v2_03_4000000d",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What problem can damp E7018 electrodes cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster travel speed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
-    }
-  },
-  {
-    "id": "Q-D-12_damp_rods_effect_v4_03_40000021",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What problem can damp E7018 electrodes cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster travel speed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
-    }
-  },
-  {
-    "id": "Q-D-12_damp_rods_effect_v6_03_40000035",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What problem can damp E7018 electrodes cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster travel speed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
-    }
-  },
-  {
-    "id": "Q-D-12_damp_rods_effect_v8_03_40000049",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What problem can damp E7018 electrodes cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster travel speed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
-    }
-  },
-  {
     "id": "Q-D-12_e6010_polarity_10000049",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "Which polarity is commonly used with E6010?",
     "choices": [
       {
@@ -641,286 +165,6 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "Cellulosic E6010 typically runs on DCEP for deep penetration."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v1_03_40000003",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which polarity is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC or DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP for deep penetration."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v3_03_40000017",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which polarity is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC or DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP for deep penetration."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v5_03_4000002b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which polarity is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC or DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP for deep penetration."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v7_03_4000003f",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which polarity is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC or DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP for deep penetration."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v9_03_40000053",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which polarity is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC or DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP for deep penetration."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v1_04_40000004",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which technique is typical for open‑root welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip‑and‑pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for root fusion."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v3_04_40000018",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which technique is typical for open‑root welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip‑and‑pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for root fusion."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v5_04_4000002c",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which technique is typical for open‑root welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip‑and‑pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for root fusion."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v7_04_40000040",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which technique is typical for open‑root welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip‑and‑pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for root fusion."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v9_04_40000054",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which technique is typical for open‑root welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip‑and‑pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for root fusion."
     }
   },
   {
@@ -954,7 +198,7 @@
   {
     "id": "Q-D-12_e7018_70ksi_10000047",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "In the designation E7018, what does the '70' indicate?",
     "choices": [
       {
@@ -1008,149 +252,9 @@
     }
   },
   {
-    "id": "Q-D-12_e7018_coating_v1_00_40000000",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What coating type characterizes E7018 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (low‑hydrogen)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic low‑hydrogen electrode per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v3_00_40000014",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What coating type characterizes E7018 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (low‑hydrogen)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic low‑hydrogen electrode per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v5_00_40000028",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What coating type characterizes E7018 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (low‑hydrogen)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic low‑hydrogen electrode per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v7_00_4000003c",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What coating type characterizes E7018 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (low‑hydrogen)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic low‑hydrogen electrode per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v9_00_40000050",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What coating type characterizes E7018 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (low‑hydrogen)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic low‑hydrogen electrode per AWS A5.1."
-    }
-  },
-  {
     "id": "Q-D-12_e7018_current_10000055",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "Which power source setting can E7018 typically run on?",
     "choices": [
       {
@@ -1173,258 +277,6 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "E7018 is usually suitable for DCEP and often AC depending on brand/WPS."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v2_05_4000000f",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP or AC per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP only, never AC"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP and AC."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v4_05_40000023",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP or AC per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP only, never AC"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP and AC."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v6_05_40000037",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP or AC per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP only, never AC"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP and AC."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v8_05_4000004b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP or AC per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP only, never AC"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP and AC."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v1_01_40000001",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended current"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile strength"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile strength."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v3_01_40000015",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended current"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile strength"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile strength."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v5_01_40000029",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended current"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile strength"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile strength."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v7_01_4000003d",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended current"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile strength"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile strength."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v9_01_40000051",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended current"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile strength"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile strength."
     }
   },
   {
@@ -1456,93 +308,9 @@
     }
   },
   {
-    "id": "Q-D-12_e7024_character_v4_08_40000026",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which statement describes E7024 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cellulosic coating, deep penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑deposition iron‑powder rutile, flat/horizontal"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Basic low‑hydrogen for all positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stainless steel welding only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7024 is iron‑powder rutile for high deposition in flat/horizontal."
-    }
-  },
-  {
-    "id": "Q-D-12_e7024_character_v6_08_4000003a",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which statement describes E7024 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cellulosic coating, deep penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑deposition iron‑powder rutile, flat/horizontal"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Basic low‑hydrogen for all positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stainless steel welding only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7024 is iron‑powder rutile for high deposition in flat/horizontal."
-    }
-  },
-  {
-    "id": "Q-D-12_e7024_character_v8_08_4000004e",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which statement describes E7024 electrodes?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cellulosic coating, deep penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑deposition iron‑powder rutile, flat/horizontal"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Basic low‑hydrogen for all positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stainless steel welding only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7024 is iron‑powder rutile for high deposition in flat/horizontal."
-    }
-  },
-  {
     "id": "Q-D-12_fillet_angles_10000052",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "What are typical angles for a flat fillet weld with SMAW?",
     "choices": [
       {
@@ -1565,118 +333,6 @@
     "correctId": "CHOICE-1",
     "rationales": {
       "CHOICE-1": "A 45° work angle with a slight drag/push travel angle is common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v2_02_4000000c",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v4_02_40000020",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v6_02_40000034",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v8_02_40000048",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
     }
   },
   {
@@ -1708,118 +364,6 @@
     }
   },
   {
-    "id": "Q-D-12_galvanized_fumes_v2_07_40000011",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove coating and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum oxide deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove coating and ventilate."
-    }
-  },
-  {
-    "id": "Q-D-12_galvanized_fumes_v4_07_40000025",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove coating and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum oxide deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove coating and ventilate."
-    }
-  },
-  {
-    "id": "Q-D-12_galvanized_fumes_v6_07_40000039",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove coating and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum oxide deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove coating and ventilate."
-    }
-  },
-  {
-    "id": "Q-D-12_galvanized_fumes_v8_07_4000004d",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove coating and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum oxide deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove coating and ventilate."
-    }
-  },
-  {
     "id": "Q-D-12_lowhyd_oven_1000004b",
     "taskId": "D-12",
     "difficulty": "medium",
@@ -1845,146 +389,6 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "Dry storage limits hydrogen pickup that can cause cold cracking."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v1_05_40000005",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Why should low‑hydrogen electrodes be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase flux melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make slag removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and cracking."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v3_05_40000019",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Why should low‑hydrogen electrodes be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase flux melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make slag removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and cracking."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v5_05_4000002d",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Why should low‑hydrogen electrodes be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase flux melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make slag removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and cracking."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v7_05_40000041",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Why should low‑hydrogen electrodes be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase flux melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make slag removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and cracking."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v9_05_40000055",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Why should low‑hydrogen electrodes be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase flux melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen cracking"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make slag removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and cracking."
     }
   },
   {
@@ -2016,121 +420,9 @@
     }
   },
   {
-    "id": "Q-D-12_open_root_choice_v2_04_4000000e",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which electrode best suits deep‑penetration open‑root on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep penetration/tolerance to light rust."
-    }
-  },
-  {
-    "id": "Q-D-12_open_root_choice_v4_04_40000022",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which electrode best suits deep‑penetration open‑root on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep penetration/tolerance to light rust."
-    }
-  },
-  {
-    "id": "Q-D-12_open_root_choice_v6_04_40000036",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which electrode best suits deep‑penetration open‑root on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep penetration/tolerance to light rust."
-    }
-  },
-  {
-    "id": "Q-D-12_open_root_choice_v8_04_4000004a",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Which electrode best suits deep‑penetration open‑root on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep penetration/tolerance to light rust."
-    }
-  },
-  {
     "id": "Q-D-12_position_digit_10000048",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "What does the '1' in E7018 indicate?",
     "choices": [
       {
@@ -2153,146 +445,6 @@
     "correctId": "CHOICE-3",
     "rationales": {
       "CHOICE-3": "The position digit '1' means the electrode is usable in all positions."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v1_02_40000002",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all positions."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v3_02_40000016",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all positions."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v5_02_4000002a",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all positions."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v7_02_4000003e",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all positions."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v9_02_40000052",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "What does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All positions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all positions."
     }
   },
   {
@@ -2324,230 +476,6 @@
     }
   },
   {
-    "id": "Q-D-12_preheat_benefit_v2_00_4000000a",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is the main benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen cracking risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen flux coating"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_preheat_benefit_v4_00_4000001e",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is the main benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen cracking risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen flux coating"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_preheat_benefit_v6_00_40000032",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is the main benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen cracking risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen flux coating"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_preheat_benefit_v8_00_40000046",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is the main benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen cracking risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen flux coating"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v2_01_4000000b",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is a good practice when restarting a bead?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; slag will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v4_01_4000001f",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is a good practice when restarting a bead?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; slag will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v6_01_40000033",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is a good practice when restarting a bead?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; slag will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v8_01_40000047",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "What is a good practice when restarting a bead?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; slag will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
-    }
-  },
-  {
     "id": "Q-D-12_restart_tiein_10000051",
     "taskId": "D-12",
     "difficulty": "medium",
@@ -2576,149 +504,9 @@
     }
   },
   {
-    "id": "Q-D-12_slag_between_passes_v1_09_40000009",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Why remove slag between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; slag burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid slag inclusions and lack of fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent beads."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v3_09_4000001d",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Why remove slag between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; slag burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid slag inclusions and lack of fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent beads."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v5_09_40000031",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Why remove slag between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; slag burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid slag inclusions and lack of fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent beads."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v7_09_40000045",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Why remove slag between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; slag burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid slag inclusions and lack of fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent beads."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v9_09_40000059",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Why remove slag between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; slag burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid slag inclusions and lack of fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent beads."
-    }
-  },
-  {
     "id": "Q-D-12_undercut_cause_1000004d",
     "taskId": "D-12",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "Which condition commonly leads to undercut in SMAW?",
     "choices": [
       {
@@ -2741,146 +529,6 @@
     "correctId": "CHOICE-1",
     "rationales": {
       "CHOICE-1": "High speed or long arc washes metal away from the toes, creating undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v1_07_40000007",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which condition commonly leads to undercut in SMAW?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive travel speed or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low travel speed with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small electrode diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer beads"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v3_07_4000001b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which condition commonly leads to undercut in SMAW?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive travel speed or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low travel speed with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small electrode diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer beads"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v5_07_4000002f",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which condition commonly leads to undercut in SMAW?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive travel speed or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low travel speed with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small electrode diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer beads"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v7_07_40000043",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which condition commonly leads to undercut in SMAW?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive travel speed or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low travel speed with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small electrode diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer beads"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v9_07_40000057",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Which condition commonly leads to undercut in SMAW?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive travel speed or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low travel speed with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small electrode diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer beads"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
     }
   },
   {
@@ -2912,94 +560,122 @@
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v2_06_40000010",
+    "id": "Q-D-12P_0001",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Which technique helps when welding vertical‑up with E7018?",
+    "stem": "What safe starting current should you choose for E7018 Ø3.2 mm (1/8 in) in the flat position on an 8 mm fillet weld?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "60–80 A"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer beads with brief toe pauses"
+        "text": "90–130 A"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high current"
+        "text": "160–220 A"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "30–50 A"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-2": "For 1/8 in E7018 a typical range is ~90–130 A; start mid‑range and adjust by puddle response."
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v4_06_40000024",
+    "id": "Q-D-12P_0002",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Which technique helps when welding vertical‑up with E7018?",
+    "stem": "Open‑root butt with ~3 mm gap. What starting current for E6010 Ø3.2 mm (DCEP)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "40–60 A"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer beads with brief toe pauses"
+        "text": "80–110 A"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high current"
+        "text": "140–180 A"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "Any — just go by sound"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-2": "For 1/8 in E6010, 80–110 A is typical — controllable keyhole without burn‑through."
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v6_06_40000038",
+    "id": "Q-D-12P_0003",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Which technique helps when welding vertical‑up with E7018?",
+    "stem": "How should you finish a bead to avoid a crater crack?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "Snap the arc off sharply at the end"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer beads with brief toe pauses"
+        "text": "Raise current and ‘shoot’ out of the crater"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high current"
+        "text": "Fill the crater with a short backstep/small circle, then break the arc smoothly"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "Extinguish the arc on the base metal"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-3": "Filling the crater before breaking the arc prevents a shrinkage crack at the bead end."
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v8_06_4000004c",
+    "id": "Q-D-12P_0004",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Which technique helps when welding vertical‑up with E7018?",
+    "stem": "Before welding through tack welds, what should you do to them?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing — the slag will burn out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Grind the tacks flush and feather their edges"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase current and burn straight through the tacks"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Leave as is — it will strengthen the weld"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flush‑grinding and feathering prevent slag entrapment and give a smooth tie‑in for the main pass."
+    }
+  },
+  {
+    "id": "Q-D-12P_0005",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Vertical‑up (3F) T‑joint 10 mm with E7018. Which travel pattern is preferred?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -3007,20 +683,1560 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer beads with brief toe pauses"
+        "text": "Small ‘triangle’/‘Christmas tree’ with brief pauses at the toes"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high current"
+        "text": "Straight stringer with no pauses"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "Large figure‑eights in the middle"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-2": "A small triangle with toe pauses holds the puddle and builds even shelves."
+    }
+  },
+  {
+    "id": "Q-D-12P_0006",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "On a vertical E7018 weld you get undercut on the upper toe. First corrective action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lengthen the arc to ‘cool’ it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly reduce current, shorten the arc, and pause at the upper toe"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Travel even faster"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to a larger electrode"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Short arc, a brief toe pause, and moderate current reduce undercut on the top edge."
+    }
+  },
+  {
+    "id": "Q-D-12P_0007",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Overhead (4F/4G) with E7018. What helps hold the puddle?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Raise current and use a wide weave"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a smaller diameter, keep a short arc, and run short stringers"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Push the electrode 30° forward"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hold a long arc so it ‘cools’"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Smaller diameter, short arc, and short passes minimize dripping and sag in overhead."
+    }
+  },
+  {
+    "id": "Q-D-12P_0008",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "WPS limits interpass temperature to ≤200 °C. How do you correctly monitor it on the part?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "By gloved hand feel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Temperature crayon/contact thermometer on base metal 25–50 mm from the weld toe"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Measure on the slag immediately after the pass"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Aim a pyrometer at a shiny face with no emissivity correction"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Measure the base metal near the weld; slag/‘touch’ checks are unreliable."
+    }
+  },
+  {
+    "id": "Q-D-12P_0009",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "A box of E7018 sat outside the rod oven for 5 hours at ~20 °C. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use immediately — 5 hours is trivial"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Warm the tip with a flame and weld"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Return the batch for rebake/storage per manufacturer; scrap/rebake any suspect electrodes"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Coat with oil to ‘seal’ moisture out"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Low‑hydrogen rods have limited ‘open‑time’; if exceeded, rebake per data sheet or replace."
+    }
+  },
+  {
+    "id": "Q-D-12P_0010",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Typical E7018 rebake (after moisture pickup) and subsequent holding regime:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "80–100 °C for 10 min; store at room temperature"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "120–150 °C for 1 h; store at 40 °C"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "~315 °C (±25°) for ≈1 h; then hold at 120–150 °C"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "500 °C for 4 h; store at 250 °C"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Rule of thumb: rebake around 315 °C, then hold 120–150 °C; follow the brand/WPS specifics."
+    }
+  },
+  {
+    "id": "Q-D-12P_0011",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Butt joint, 25 mm carbon steel shows cold (hydrogen) cracking. Practical fix:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase current and speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Add preheat ~100–150 °C and control interpass temperature per WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use a smaller electrode diameter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Gap to 10 mm and weld with no preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preheat reduces cooling rate and crack risk; control interpass per WPS."
+    }
+  },
+  {
+    "id": "Q-D-12P_0012",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "After an E6010 root, a E7018 ‘hot pass’ is planned. What must be done first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing — the slag will float out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove all slag/scale to bright metal and verify root fusion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Raise E7018 current and melt the slag out"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Spray a chlorinated solvent for cleaning"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cellulosic slag residues cause lack of fusion and ‘wagon tracks’; clean fully before the hot pass."
+    }
+  },
+  {
+    "id": "Q-D-12P_0013",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "A 1.2 m fillet on thin section is warping badly. How can you reduce distortion?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Make one continuous pass"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use short stitch welds with backstep/symmetric sequence"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Max out current and travel speed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Water‑quench immediately after each stitch"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Short stitches and backstep/symmetry spread heat input and limit distortion."
+    }
+  },
+  {
+    "id": "Q-D-12P_0014",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Where should the work (return) clamp be attached for SMAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To a bearing housing near the weld"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To an oxygen cylinder — the path is short"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To the workpiece as close as practicable to the weld area"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To a building steel column for convenience"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Clamp to the work near the weld, avoiding current paths through bearings/cylinders/structures."
+    }
+  },
+  {
+    "id": "Q-D-12P_0015",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Sheet 3 mm with E6013: how to avoid burn‑through on a fillet?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use 4.0 mm electrode and high current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use 2.5 mm electrode, low‑end current, short arc, and short ‘pecking’ stringers"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hold a long arc and go slow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Make a very wide weave to spread heat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Smaller diameter, lower current, and short arc reduce heat input on thin material."
+    }
+  },
+  {
+    "id": "Q-D-12P_0016",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "After a vertical‑up E7018 pass you see ‘wagon tracks’ of slag along the toes. What should you adjust?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Raise current further"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lengthen the arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add brief toe pauses, slightly reduce current, and improve interpass cleaning"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Travel faster with no pauses"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Toe pauses and cleaning prevent slag traces trapped along bead edges."
+    }
+  },
+  {
+    "id": "Q-D-12P_0017",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "You need high deposition on an 8 mm fillet in flat/horizontal. Which E7018 diameter is a good choice?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2.5 mm (3/32 in)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "3.2 mm (1/8 in)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "4.0 mm (5/32 in)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "5.0 mm (3/16 in) — in any position"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Ø4.0 mm offers higher deposition in flat/horizontal while remaining manageable."
+    }
+  },
+  {
+    "id": "Q-D-12P_0018",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "In the flat position with E7018 you typically travel by…",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Pushing 20–30° forward"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dragging with a 5–10° back angle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Holding the rod perfectly perpendicular"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any way — it doesn’t matter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A slight drag angle is common for 7018 — steadier puddle and slag control."
+    }
+  },
+  {
+    "id": "Q-D-12P_0019",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Your electrode holder is running hot; the jaws burn every 2–3 rods. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wrap with tape and continue"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Greatly lower current and ‘stretch’ the rods"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Check/tighten the cable connection and repair/replace the holder"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Periodically wet the holder with water"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Poor contact/worn jaws cause heating and voltage drop — service or replace the holder and fix the cable lug."
+    }
+  },
+  {
+    "id": "Q-D-12P_0020",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "You’re unsure about the dryness of E7018 from an open container. Practical step:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "If the coating looks shiny, they’re dry"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a fresh pack from the oven; return the suspect batch for rebake per datasheet and check batch/date"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Heat the tips to red with a torch"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Dip the tip in oil for ‘protection’"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "When in doubt, weld with verified dry rods and rebake or replace the open batch per instructions."
+    }
+  },
+  {
+    "id": "Q-D-12P_0021",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "What starting current should you choose for E7018 Ø4.0 mm (5/32 in) in the flat position on an ~10 mm fillet?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "100–120 A"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "130–180 A"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "200–260 A"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "60–80 A"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "For Ø4.0 mm E7018 a common range is ~130–180 A; start mid‑range and tune by puddle response."
+    }
+  },
+  {
+    "id": "Q-D-12P_0022",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "You only have an AC transformer. You need an open‑root on slightly rusty steel. What should you choose?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "E6010 on DCEN"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "E6011 on AC"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "E7018 on AC with no prep"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "E7024 on AC with a wide weave"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "E6011 is designed for AC and tolerates light contamination — suitable for roots."
+    }
+  },
+  {
+    "id": "Q-D-12P_0023",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "During an E6010 root the keyhole became too large and unstable. First corrective action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase current and whip wider"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly reduce current, shorten the arc, and use a smaller whip‑and‑pause"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to E7018 right in the root"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Force the rod into the opening aggressively"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Less heat and a short arc stabilize the keyhole and prevent burn‑through."
+    }
+  },
+  {
+    "id": "Q-D-12P_0024",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Bevel and root gap are out of WPS tolerance (gap ~5 mm vs 2–3 mm). Proper action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Compensate with higher current and a wide weave"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop and correct the prep/gap or use a permitted backing method per WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Knock off tacks on one side only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lay a wide cap over it and continue"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Nonconformances to the WPS are corrected before welding — fix fit‑up or apply an approved backing."
+    }
+  },
+  {
+    "id": "Q-D-12P_0025",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Your multipass weld has excessive reinforcement (a high cap). How do you prevent this on the next sections?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Greatly lengthen the arc"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly reduce current/weave amplitude and increase travel speed; use stringers"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Peen the reinforcement with a hammer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Make mid‑bead stops to cool the puddle"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Lower heat input and stringer beads help form a flatter cap without overlaps."
+    }
+  },
+  {
+    "id": "Q-D-12P_0026",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "On a horizontal fillet you see overlap along the lower toe. What should you adjust first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Reduce speed further and lengthen the arc"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly increase speed/current, keep a short arc, and hold the correct angle toward the lower toe"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to a larger electrode"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Push the electrode 30° forward"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Overlap is excess metal without fusion; a short arc, proper angle, and enough energy into the toe eliminate it."
+    }
+  },
+  {
+    "id": "Q-D-12P_0027",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Near the end of the weld at a corner you get magnetic arc blow. What can you do on site without changing the power source?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lengthen the arc and raise current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Move the work clamp closer to the end, run a short arc, and use short stitches/backstep"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Change to the largest electrode diameter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Only weld in one direction"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Short current paths and a short arc reduce magnetic effects; backstep helps stabilize the puddle."
+    }
+  },
+  {
+    "id": "Q-D-12P_0028",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Outdoor wind and your E7018 cap shows porosity. First step?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase current and speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Shield the area from wind and verify dry electrodes/clean edges"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lengthen the arc to ‘cool’ it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Move the work clamp to another part"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Wind, moisture, or dirt cause pores — screen the weld, use dry rods, and ensure clean metal."
+    }
+  },
+  {
+    "id": "Q-D-12P_0029",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "WPS: interpass ≤250 °C. You measured 270 °C. What’s correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Let it air‑cool or blow with air to below the limit, then continue"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Water quench for fast cooling"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Continue but reduce current by 20%"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do nothing — within measurement error"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Cool naturally/with air until within spec; water quenching is not permitted."
+    }
+  },
+  {
+    "id": "Q-D-12P_0030",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "What is a typical ‘holding’ temperature for low‑hydrogen electrodes in a jobsite oven?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "40–60 °C"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "120–150 °C"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "250–300 °C"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Room temperature"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "E7018 are commonly held ~120–150 °C; follow the brand datasheet/WPS."
+    }
+  },
+  {
+    "id": "Q-D-12P_0031",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Inverter settings: ‘Hot Start’ and ‘Arc Force’ for E7018 vertical‑up. Preferred approach?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Hot Start minimum, Arc Force maximum"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Disable both features"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Moderately raise Hot Start and Arc Force, watching the puddle and toes"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hot Start maximum, Arc Force minimum"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Moderate boosts ease ignition and puddle control without causing undercut."
+    }
+  },
+  {
+    "id": "Q-D-12P_0032",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Long butt: how should you place tack welds to minimize distortion and keep the root gap?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Sparse, long tacks every 300–400 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Short, even tacks every 75–150 mm with a symmetric sequence"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "One long tack along the whole seam"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tacks only at the beginning and end"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Frequent short tacks hold alignment and the gap uniformly."
+    }
+  },
+  {
+    "id": "Q-D-12P_0033",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "A common sequence for a 10 mm V‑groove with no backing is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A single wide E7018 weave from the start"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "E6010 root → hot pass → fill with stringers → E7018 cap"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "E6013 root only and clean"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cap first, then root"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Typical practice: a cellulosic root followed by low‑hydrogen fill and cap."
+    }
+  },
+  {
+    "id": "Q-D-12P_0034",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "How do you correctly verify an 8 mm fillet weld size with a fillet gauge?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lay the gauge on the bead and eyeball it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use the 8 mm leaf so both legs and the face contact the gauge with no light gap"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Measure the bead diagonal with a tape"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Measure only one leg on one side"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Full contact on both legs and face without daylight confirms the fillet size."
+    }
+  },
+  {
+    "id": "Q-D-12P_0035",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "WPS requires DCEP for E7018, but you welded a section on AC (the brand allows AC). What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave it — the rod can run on AC"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Consult the responsible engineer; if out of WPS, remove and re‑weld on DCEP"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Just lay a DCEP cap over it without removal"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No documentation needed — not critical"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The WPS governs; deviations require evaluation and typically repair to the specified polarity."
+    }
+  },
+  {
+    "id": "Q-D-12P_0036",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Overhead (4G) open‑root with E6010: you get periodic burn‑throughs. What helps first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase current and dwell over the keyhole"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly reduce current, shorten the arc, reduce whip amplitude; a copper backing is acceptable"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hold a long arc so it ‘cools’"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to E7024"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Lower heat and a small whip stabilize the root; copper backing can help in overhead."
+    }
+  },
+  {
+    "id": "Q-D-12P_0037",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Joint edges are painted/oily. Proper prep for SMAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Raise current by 20% and burn through contaminants"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Clean to bright metal 10–20 mm each side and degrease with an approved solvent"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Do nothing — the cap will cover it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Coat heavily with machine oil for protection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Clean, dry metal reduces porosity and defects; do not ‘burn off’ contaminants."
+    }
+  },
+  {
+    "id": "Q-D-12P_0038",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "2F (horizontal fillet). How should you hold the electrode to counter gravity and avoid undercut?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Work angle ~45°, 5–10° drag travel angle, slight lean toward the upper member"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Perfectly perpendicular with no angle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Push 30° downward toward the lower member"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use a wide fast weave across both legs"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A small lean toward the upper piece with a slight drag angle stabilizes the puddle in 2F."
+    }
+  },
+  {
+    "id": "Q-D-12P_0039",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "You find a ‘hi‑lo’ (misalignment) of ~2 mm; WPS allows ≤1 mm. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Compensate with higher current and ‘fill’ it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Break tacks/re‑fit or dress edges to meet the WPS tolerance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Shift the bead axis with a wide weave"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do nothing — the cap will level it"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Fix misalignment before welding or between passes; do not ‘fill’ geometry errors."
+    }
+  },
+  {
+    "id": "Q-D-12P_0040",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Inspection found a slag inclusion in the fill. Proper repair?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lay an additional cap over it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Gouge/grind to sound metal and re‑weld per WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Heat with a torch to melt the inclusion"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Leave it — not critical"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove the defect to sound metal and re‑weld in accordance with the procedure."
+    }
+  },
+  {
+    "id": "Q-D-12P_0041",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "The arc feels soft and unstable: total welding lead length is ~40 m and current is 140 A. What should you do first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Add another 20 m of lead — more length is fine"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Install a step-up transformer on the output"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase cable cross-section or double up the leads, shorten the run, and move the power source/work clamp closer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Simply raise current by 30–40 A"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Voltage drop on long/thin leads chokes the arc; fix by larger conductors and shorter return path."
+    }
+  },
+  {
+    "id": "Q-D-12P_0042",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "A supply extension cord was left coiled on its reel; the cord runs hot and the arc sags. What’s the proper action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing — that’s normal while welding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fully uncoil the reel and verify the cord gauge is adequate"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wrap the reel in foil to cool it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add a second extension cord in series"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Coiled cords overheat and cause voltage drop; uncoil fully and use proper gauge."
+    }
+  },
+  {
+    "id": "Q-D-12P_0043",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "E6010 struggles on an inverter: hard starts and the arc dies. Practical fix?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Switch to DCEN and lengthen the arc"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Enable the cellulosic/6010 mode or raise Arc Force (Dig), or use E6011 instead"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower OCV to the minimum"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use a larger-diameter electrode at the same current"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Many inverters need a special 6010 profile or higher Dig; E6011 is more forgiving on standard inverters."
+    }
+  },
+  {
+    "id": "Q-D-12P_0044",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Open-root E6010 without backing: after the root you see ‘icicles’ on the backside. How should you correct technique on the fly?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase current and whip wider"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly reduce current, shorten the arc, and reduce whip amplitude"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hold a long arc to ‘cool’ the puddle"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Force the rod aggressively into the keyhole"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Backside icicles indicate excess heat/metal; a short arc and smaller whip stabilize the keyhole."
+    }
+  },
+  {
+    "id": "Q-D-12P_0045",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "After an E6010 root you see small ‘dog-ears’ at the edges. Before a E7018 hot pass you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Melt them out with E7018 without cleaning"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Feather the edges lightly by grinding and remove slag to bright metal"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spray anti-spatter and weld"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Do nothing — the hot pass will wash it out"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Feathering and thorough cleaning help avoid lack of fusion and ‘wagon tracks’."
+    }
+  },
+  {
+    "id": "Q-D-12P_0046",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "After cooling you find a crater crack on a vertical E7018 weld. Proper repair?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lay an extra bead over it ‘for strength’"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Gouge/grind the crack out to sound metal and re‑weld per WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Torch-heat and peen it closed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Leave it if the crack is small"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cracks must be removed to sound metal and re‑welded; capping over a crack is unacceptable."
+    }
+  },
+  {
+    "id": "Q-D-12P_0047",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "2G (horizontal groove) with E7018: the bead sags and you get undercut at the top toe. What should you adjust?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase weave width and current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lean slightly toward the upper toe, add short toe pauses, and keep a short arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Push the rod 30° downward"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hold a long arc to reduce heat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A slight lean toward the upper member with brief toe pauses stabilizes the puddle and prevents undercut."
+    }
+  },
+  {
+    "id": "Q-D-12P_0048",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Your electrode stuck to the work. How do you free it without damaging the machine or the work?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Jerk the holder sharply"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "De‑energize/release current, twist the rod, and gently break it free"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hammer the holder against the work until it lets go"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Splash water on the stick point"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "First remove current, then twist/break off to avoid damaging contacts or the work."
+    }
+  },
+  {
+    "id": "Q-D-12P_0049",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Before bend tests on a plate coupon, what should be done to the weld and specimens?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave reinforcement as is — stronger"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Grind reinforcement flush, remove backing (if any), and break edges/deburr the specimens"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oil‑polish the face for ‘slip’"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cut a V‑groove down the center to act as a notch"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "For valid bends, remove cap/root reinforcement, remove backing, and dress sharp specimen edges."
+    }
+  },
+  {
+    "id": "Q-D-12P_0050",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "You welded with a backing bar. How should it be removed and prepared for NDE/testing?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Knock it off with a sledge — fastest"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Burn it off with a torch along the seam"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove mechanically and grind the root to a smooth surface without notches or undercut"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Leave it — it won’t affect results"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Remove backing carefully and finish to a smooth, notch‑free surface for reliable inspection."
+    }
+  },
+  {
+    "id": "Q-D-12P_0051",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "A tack on the root cracked under heat. What should you do before continuing?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Place another tack right over it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove the cracked tack completely and install a new correctly sized tack"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Weld over it — the crack will fuse out"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Close the gap and weld without tacks"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cracked tacks must be removed and replaced; otherwise the defect propagates into the root."
+    }
+  },
+  {
+    "id": "Q-D-12P_0052",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "You used magnetic squares for fit‑up. Near the end the arc is blowing off. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave the magnets — they hold alignment"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove the magnets before welding that section, move the work clamp closer, and run a short arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lengthen the arc and raise current"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to a larger electrode diameter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Magnets exacerbate arc blow; remove them, shorten the current path, and keep a short arc."
+    }
+  },
+  {
+    "id": "Q-D-12P_0053",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Arc strikes were found outside the weld zone on low‑alloy steel. Proper corrective action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cover with a cap bead"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Grind to sound metal, perform NDE (PT/MT) if required, and document per procedure"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Peen the marks with a hammer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint over before inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Arc strikes can create hard spots; remove to sound metal and verify per quality procedure."
+    }
+  },
+  {
+    "id": "Q-D-12P_0054",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Outdoor work at −10 °C on 20 mm carbon steel with E7018. Which set of measures is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Weld as usual but faster"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Minimal preheat on the first pass only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Preheat per WPS, wind shielding, interpass temperature control, and a heated rod quiver"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Raise current by 30% with no preheat"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Cold conditions speed cooling and raise H‑crack risk; use preheat, wind shields, interpass control, and dry rods."
+    }
+  },
+  {
+    "id": "Q-D-12P_0055",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "A continuous line of pores appears along the cap. Likely cause and action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Weave too narrow — widen it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Anti‑spatter/oil contamination — degrease to bright metal and verify dry electrodes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Current too low — increase by 50%"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Arc too short — lengthen it"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Linear porosity often comes from contamination or moisture; clean thoroughly and use dry 7018."
+    }
+  },
+  {
+    "id": "Q-D-12P_0056",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "After the root you detect local lack of fusion. Proper repair before fill passes?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cover it with fill — it won’t be seen"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Back‑gouge/air‑carbon gouge to remove the defect and re‑weld the root"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lay a wide bead over the area"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Torch‑heat and ‘burn in’ the spot"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove lack‑of‑fusion defects to sound metal (often by back‑gouging) and re‑establish a sound root."
+    }
+  },
+  {
+    "id": "Q-D-12P_0057",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Tight access inside a box section; E7018 Ø4.0 mm doesn’t fit well and the puddle wanders. Practical solution?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave as is — tolerances will allow it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Switch to a smaller diameter (3.2/2.5 mm), run short stringers, and keep a short arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lengthen the arc and widen the weave"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add oil for ‘better glide’"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Smaller diameter and short stringers improve control in cramped spaces."
+    }
+  },
+  {
+    "id": "Q-D-12P_0058",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "On vertical E7018 you see undercut and a harsh arc. The inverter’s Arc Force (Dig) is set high. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase Arc Force further"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduce Arc Force to a moderate level and keep a short arc with toe pauses"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to a long arc"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Greatly increase current"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Excessive Dig can wash metal from the toes; moderate settings and proper technique reduce undercut."
+    }
+  },
+  {
+    "id": "Q-D-12P_0059",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Pipe joint: internal hi‑lo is ~1.5 mm; the WPS allows ≤1 mm. What should you do before welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Shift bead axis with a wide weave and ‘fill it’"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use hi‑lo clamps/line‑up tools to re‑fit within tolerance, then weld"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Do nothing — the hot pass will cover it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase the root gap to 6 mm and weld without correction"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct misalignment mechanically during fit‑up; you can’t ‘fill away’ geometry errors."
+    }
+  },
+  {
+    "id": "Q-D-12P_0060",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Two welders work on the same structure at once on different seams. Stray currents cause arc strikes and hot spots. Practical solution?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Attach both work leads to a nearby column"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Provide separate return leads for each station and clamp on the workpiece near each arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use a single common work lead — simpler"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Place magnets near the weld to stabilize the arc"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Separate, short return paths clamped close to each weld prevent stray current through the structure."
     }
   }
 ]

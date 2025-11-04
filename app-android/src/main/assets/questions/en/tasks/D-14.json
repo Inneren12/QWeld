@@ -1,1184 +1,8 @@
 [
   {
-    "id": "Q-D-14_ac_balance_10000074",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the electrode‑positive (EP) portion of AC balance in GTAW will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase oxide cleaning but heat the tungsten more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cleaning and cool the tungsten"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change cleaning action"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic cleaning while raising tungsten temperature."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v1_07_400000ca",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC balance in GTAW will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase oxide cleaning but heat the tungsten more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cleaning and cool the tungsten"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic cleaning and tungsten heating."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v3_02_400000d9",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC balance in GTAW will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase oxide cleaning but heat the tungsten more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cleaning and cool the tungsten"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic cleaning and tungsten heating."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v4_07_400000e8",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC balance in GTAW will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase oxide cleaning but heat the tungsten more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cleaning and cool the tungsten"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic cleaning and tungsten heating."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v6_02_400000f7",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC balance in GTAW will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase oxide cleaning but heat the tungsten more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cleaning and cool the tungsten"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change cleaning"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic cleaning and tungsten heating."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v1_01_400000c4",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which current is commonly used for GTAW on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC with water shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC provides EP cleaning action for oxide removal."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v2_06_400000d3",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which current is commonly used for GTAW on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC with water shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC provides EP cleaning action for oxide removal."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v4_01_400000e2",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which current is commonly used for GTAW on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC with water shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC provides EP cleaning action for oxide removal."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v5_06_400000f1",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which current is commonly used for GTAW on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC with water shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC provides EP cleaning action for oxide removal."
-    }
-  },
-  {
-    "id": "Q-D-14_argon_common_v1_05_400000c8",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which gas is commonly used for GTAW shielding and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon dioxide"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_argon_common_v3_00_400000d7",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which gas is commonly used for GTAW shielding and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon dioxide"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_argon_common_v4_05_400000e6",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which gas is commonly used for GTAW shielding and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon dioxide"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_argon_common_v6_00_400000f5",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which gas is commonly used for GTAW shielding and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon dioxide"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_er70s2_10000073",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which filler classification is commonly used for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S‑2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Flux‑cored E71T‑1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S‑2 is a deoxidized solid filler rod for GTAW on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v1_08_400000cb",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Too much GTAW shielding gas flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher penetration"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v3_03_400000da",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Excessive GTAW shielding gas flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher penetration"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v4_08_400000e9",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Excessive GTAW shielding gas flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher penetration"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v6_03_400000f8",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Excessive GTAW shielding gas flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher penetration"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v1_06_400000c9",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which filler classification is common for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S‑2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T‑1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S‑2 is a deoxidized filler for GTAW on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v3_01_400000d8",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which filler classification is common for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S‑2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T‑1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S‑2 is a deoxidized filler for GTAW on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v4_06_400000e7",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which filler classification is common for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S‑2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T‑1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S‑2 is a deoxidized filler for GTAW on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v6_01_400000f6",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which filler classification is common for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S‑2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T‑1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S‑2 is a deoxidized filler for GTAW on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_flow_high_10000075",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What can excessive GTAW shielding gas flow cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air and contamination"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect on shielding"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher penetration"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and aspiration of air into the shield."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_1000006f",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What is the purpose of a gas lens on a GTAW torch?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar gas flow and extend shielding coverage"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce tungsten life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher current on DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A gas lens straightens flow, improving shielding on joints with more stickout."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v1_02_400000c5",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What is the purpose of a gas lens on a GTAW torch?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend shielding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce tungsten life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher current on DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with stickout."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v2_07_400000d4",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What is the purpose of a gas lens on a GTAW torch?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend shielding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce tungsten life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher current on DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with stickout."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v4_02_400000e3",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What is the purpose of a gas lens on a GTAW torch?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend shielding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce tungsten life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher current on DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with stickout."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v5_07_400000f2",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What is the purpose of a gas lens on a GTAW torch?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend shielding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce tungsten life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher current on DCEN"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with stickout."
-    }
-  },
-  {
-    "id": "Q-D-14_gtaw_aluminum_1000006e",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which current type is commonly used for GTAW on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC with water as shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC provides electrode‑positive cleaning action to remove aluminum oxide."
-    }
-  },
-  {
-    "id": "Q-D-14_gtaw_polarity_steel_1000006d",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (electrode negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (electrode positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN focuses heat into the work for deep penetration and protects the tungsten."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v2_03_400000d0",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon shielding generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/penetration and travel speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes porosity"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He‑Ar mixes raise arc voltage and heat input."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v3_08_400000df",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon shielding generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/penetration and travel speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes porosity"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He‑Ar mixes raise arc voltage and heat input."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v5_03_400000ee",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon shielding generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/penetration and travel speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes porosity"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He‑Ar mixes raise arc voltage and heat input."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v6_08_400000fd",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon shielding generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/penetration and travel speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes porosity"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He‑Ar mixes raise arc voltage and heat input."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_10000077",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW, what provides oxide cleaning action?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode‑negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode‑positive (EP) portion of AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half‑cycle breaks the aluminum oxide film during AC welding."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v2_00_400000cd",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW, oxide cleaning action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode‑negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode‑positive (EP) portion of AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half‑cycle breaks the oxide film."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v3_05_400000dc",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW, oxide cleaning action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode‑negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode‑positive (EP) portion of AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half‑cycle breaks the oxide film."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v5_00_400000eb",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW, oxide cleaning action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode‑negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode‑positive (EP) portion of AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half‑cycle breaks the oxide film."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v6_05_400000fa",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW, oxide cleaning action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode‑negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode‑positive (EP) portion of AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half‑cycle breaks the oxide film."
-    }
-  },
-  {
-    "id": "Q-D-14_polarity_steel_dcen_v1_00_400000c3",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which of the following polarity is standard for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (electrode negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (electrode positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN focuses heat into the work and protects tungsten."
-    }
-  },
-  {
-    "id": "Q-D-14_polarity_steel_dcen_v2_05_400000d2",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (electrode negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (electrode positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN focuses heat into the work and protects tungsten."
-    }
-  },
-  {
-    "id": "Q-D-14_polarity_steel_dcen_v4_00_400000e1",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for GTAW on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (electrode negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (electrode positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN focuses heat into the work and protects tungsten."
-    }
-  },
-  {
     "id": "Q-D-14_polarity_steel_dcen_v5_05_400000f0",
     "taskId": "D-14",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "Which polarity is standard for GTAW on carbon steel?",
     "choices": [
       {
@@ -1206,7 +30,7 @@
   {
     "id": "Q-D-14_purge_gas_10000072",
     "taskId": "D-14",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "Which gas is commonly used for GTAW shielding and back purging?",
     "choices": [
       {
@@ -1229,118 +53,6 @@
     "correctId": "CHOICE-1",
     "rationales": {
       "CHOICE-1": "Argon is inert and widely used for GTAW and purging."
-    }
-  },
-  {
-    "id": "Q-D-14_stainless_back_purge_v1_04_400000c7",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What prevents 'sugaring' on the backside of stainless GTAW joints?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher torch angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Back purging with inert gas"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "More filler metal"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch to DCEP"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Back purging shields the root until it cools."
-    }
-  },
-  {
-    "id": "Q-D-14_stainless_back_purge_v2_09_400000d6",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What prevents 'sugaring' on the backside of stainless GTAW joints?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher torch angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Back purging with inert gas"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "More filler metal"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch to DCEP"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Back purging shields the root until it cools."
-    }
-  },
-  {
-    "id": "Q-D-14_stainless_back_purge_v4_04_400000e5",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What prevents 'sugaring' on the backside of stainless GTAW joints?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher torch angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Back purging with inert gas"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "More filler metal"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch to DCEP"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Back purging shields the root until it cools."
-    }
-  },
-  {
-    "id": "Q-D-14_stainless_back_purge_v5_09_400000f4",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "What prevents 'sugaring' on the backside of stainless GTAW joints?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher torch angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Back purging with inert gas"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "More filler metal"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch to DCEP"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Back purging shields the root until it cools."
     }
   },
   {
@@ -1372,202 +84,6 @@
     }
   },
   {
-    "id": "Q-D-14_start_methods_10000076",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which GTAW start method avoids tungsten contamination without scraping?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch‑start on the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑frequency or lift‑arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "HF or lift‑arc initiates the arc without rubbing the tungsten."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v1_09_400000cc",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which GTAW start method avoids tungsten contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch‑start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑frequency or lift‑arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "HF or lift‑arc allows non‑contact starts."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v3_04_400000db",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which GTAW start method avoids tungsten contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch‑start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑frequency or lift‑arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "HF or lift‑arc allows non‑contact starts."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v4_09_400000ea",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which GTAW start method avoids tungsten contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch‑start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑frequency or lift‑arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "HF or lift‑arc allows non‑contact starts."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v6_04_400000f9",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Which GTAW start method avoids tungsten contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch‑start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑frequency or lift‑arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "HF or lift‑arc allows non‑contact starts."
-    }
-  },
-  {
-    "id": "Q-D-14_torch_angle_effect_v2_02_400000cf",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Excessive GTAW torch angle typically:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improves shielding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduces coverage and can cause contamination/undercut"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increases current"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
-    }
-  },
-  {
-    "id": "Q-D-14_torch_angle_effect_v3_07_400000de",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Excessive GTAW torch angle typically:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improves shielding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduces coverage and can cause contamination/undercut"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increases current"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
-    }
-  },
-  {
     "id": "Q-D-14_torch_angle_effect_v5_02_400000ed",
     "taskId": "D-14",
     "difficulty": "medium",
@@ -1593,118 +109,6 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
-    }
-  },
-  {
-    "id": "Q-D-14_torch_angle_effect_v6_07_400000fc",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Excessive GTAW torch angle typically:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improves shielding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduces coverage and can cause contamination/undercut"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increases current"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_contamination_v2_04_400000d1",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "If tungsten touches the molten pool, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Continue welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Break off/resharpen tungsten and clean the area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase current"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Change to CO₂ shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Contamination requires regrinding and cleaning."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_contamination_v3_09_400000e0",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "If tungsten touches the molten pool, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Continue welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Break off/resharpen tungsten and clean the area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase current"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Change to CO₂ shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Contamination requires regrinding and cleaning."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_contamination_v5_04_400000ef",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "If tungsten touches the molten pool, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Continue welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Break off/resharpen tungsten and clean the area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase current"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Change to CO₂ shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Contamination requires regrinding and cleaning."
     }
   },
   {
@@ -1764,205 +168,177 @@
     }
   },
   {
-    "id": "Q-D-14_tungsten_grind_long_v1_03_400000c6",
+    "id": "Q-D-14_oxide_cleaning_al_10000077",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "How should tungsten be ground for DC GTAW on steel?",
+    "stem": "On aluminum GTAW, what provides oxide cleaning action?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
+        "text": "Electrode‑negative (EN) portion"
       },
       {
         "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
+        "text": "Electrode‑positive (EP) portion of AC"
       },
       {
         "id": "CHOICE-3",
-        "text": "No grinding needed"
+        "text": "Back purging"
       },
       {
         "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
+        "text": "Helium only"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
+      "CHOICE-2": "The EP half‑cycle breaks the aluminum oxide film during AC welding."
     }
   },
   {
-    "id": "Q-D-14_tungsten_grind_long_v2_08_400000d5",
+    "id": "Q-D-14_aluminum_ac_v5_06_400000f1",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "How should tungsten be ground for DC GTAW on steel?",
+    "stem": "Which current is commonly used for GTAW on aluminum?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
+        "text": "DCEN only"
       },
       {
         "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
+        "text": "AC"
       },
       {
         "id": "CHOICE-3",
-        "text": "No grinding needed"
+        "text": "DCEP only"
       },
       {
         "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
+        "text": "AC with water shielding"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
+      "CHOICE-2": "AC provides EP cleaning action for oxide removal."
     }
   },
   {
-    "id": "Q-D-14_tungsten_grind_long_v4_03_400000e4",
+    "id": "Q-D-14_filler_er70s2_v6_01_400000f6",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "How should tungsten be ground for DC GTAW on steel?",
+    "stem": "Which filler classification is common for GTAW on carbon steel?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
+        "text": "ER70S‑2"
       },
       {
         "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
+        "text": "E7018"
       },
       {
         "id": "CHOICE-3",
-        "text": "No grinding needed"
+        "text": "ER308L"
       },
       {
         "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
+        "text": "E71T‑1"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
+      "CHOICE-1": "ER70S‑2 is a deoxidized filler for GTAW on carbon steel."
     }
   },
   {
-    "id": "Q-D-14_tungsten_grind_long_v5_08_400000f3",
+    "id": "Q-D-14_start_methods_v6_04_400000f9",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "How should tungsten be ground for DC GTAW on steel?",
+    "stem": "Which GTAW start method avoids tungsten contamination?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
+        "text": "Touch‑start"
       },
       {
         "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
+        "text": "High‑frequency or lift‑arc start"
       },
       {
         "id": "CHOICE-3",
-        "text": "No grinding needed"
+        "text": "Strike like a match"
       },
       {
         "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
+        "text": "Hit with a hammer"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
+      "CHOICE-2": "HF or lift‑arc allows non‑contact starts."
     }
   },
   {
-    "id": "Q-D-14_tungsten_size_10000078",
+    "id": "Q-D-14_gas_flow_high_10000075",
     "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Why choose a larger‑diameter tungsten for higher currents?",
+    "difficulty": "medium",
+    "stem": "What can excessive GTAW shielding gas flow cause?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To increase spatter"
+        "text": "Improved laminar flow"
       },
       {
         "id": "CHOICE-2",
-        "text": "To handle higher heat without melting the tip"
+        "text": "Turbulence that draws in air and contamination"
       },
       {
         "id": "CHOICE-3",
-        "text": "To reduce shielding"
+        "text": "No effect on shielding"
       },
       {
         "id": "CHOICE-4",
-        "text": "To avoid the need for filler"
+        "text": "Higher penetration"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Bigger electrodes carry more current without overheating."
+      "CHOICE-2": "Too much flow creates turbulence and aspiration of air into the shield."
     }
   },
   {
-    "id": "Q-D-14_tungsten_size_current_v2_01_400000ce",
+    "id": "Q-D-14_ac_balance_effect_v6_02_400000f7",
     "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Why choose a larger‑diameter tungsten for higher currents?",
+    "difficulty": "medium",
+    "stem": "Increasing the EP portion of AC balance in GTAW will:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increase spatter"
+        "text": "Increase oxide cleaning but heat the tungsten more"
       },
       {
         "id": "CHOICE-2",
-        "text": "Handle higher heat without melting the tip"
+        "text": "Reduce cleaning and cool the tungsten"
       },
       {
         "id": "CHOICE-3",
-        "text": "Reduce shielding"
+        "text": "Not change cleaning"
       },
       {
         "id": "CHOICE-4",
-        "text": "Avoid filler metal"
+        "text": "Stop the arc"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-2": "Larger tungsten carries more current without overheating."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_size_current_v3_06_400000dd",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Why choose a larger‑diameter tungsten for higher currents?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Handle higher heat without melting the tip"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce shielding"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Avoid filler metal"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Larger tungsten carries more current without overheating."
+      "CHOICE-1": "More EP enhances cathodic cleaning and tungsten heating."
     }
   },
   {
     "id": "Q-D-14_tungsten_size_current_v5_01_400000ec",
     "taskId": "D-14",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "stem": "Why choose a larger‑diameter tungsten for higher currents?",
     "choices": [
       {
@@ -1988,31 +364,1123 @@
     }
   },
   {
-    "id": "Q-D-14_tungsten_size_current_v6_06_400000fb",
+    "id": "Q-D-14P_0001",
     "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Why choose a larger‑diameter tungsten for higher currents?",
+    "difficulty": "medium",
+    "stem": "Deep bevel, limited access: shielding gas is blowing off and edges are discoloring. What should you do first?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increase spatter"
+        "text": "Increase flow to 25–30 L/min — the more, the better"
       },
       {
         "id": "CHOICE-2",
-        "text": "Handle higher heat without melting the tip"
+        "text": "Install a gas lens and a larger cup (e.g., #12), keep 6–10 mm stickout and 8–12 L/min flow"
       },
       {
         "id": "CHOICE-3",
-        "text": "Reduce shielding"
+        "text": "Remove the cup and weld without it — less restriction"
       },
       {
         "id": "CHOICE-4",
-        "text": "Avoid filler metal"
+        "text": "Angle the torch 45° away from the joint — the stream will wrap better"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Larger tungsten carries more current without overheating."
+      "CHOICE-2": "A gas lens straightens the flow and a larger cup increases coverage; excessive flow creates turbulence."
+    }
+  },
+  {
+    "id": "Q-D-14P_0002",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "What electrode stickout is acceptable when using a gas lens with a #8–12 cup in tight areas?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0–2 mm — otherwise the arc wanders"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "8–15 mm with stable flow and correct angle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only flush with the cup edge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "More than 25 mm — better puddle view"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A gas lens allows safely increasing stickout without losing shielding; excessive stickout degrades coverage."
+    }
+  },
+  {
+    "id": "Q-D-14P_0003",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Root pass on stainless pipe Ø25–30 mm. What back purge at the start is typically adequate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.5–1 L/min — otherwise the ‘sugar’ won’t disappear"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "3–6 L/min with leak‑checked dams/blanks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "10–15 L/min for a guarantee"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No back purge is needed for TIG"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A localized, steady 3–6 L/min purge forms an inert cushion without turbulence or waste."
+    }
+  },
+  {
+    "id": "Q-D-14P_0004",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "‘Sugar’ (crystalline oxide) appeared on the stainless root. What is the most likely cause?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Too low current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Insufficient/absent back purge or leaks in the dams"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Filler rod too large"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Arc too long"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "‘Sugar’ is almost always due to poor backside shielding allowing O₂/moisture to reach the puddle."
+    }
+  },
+  {
+    "id": "Q-D-14P_0005",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "How do you properly fill out the crater at the end of a bead on thin material?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Snap the pedal off to zero — the puddle will freeze itself"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a stepped slope‑out and add a drop of filler into the crater"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Turn purge off early — it cools faster"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Run the puddle off the part into the air"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Smooth current decay plus feeding the crater reduces end‑crater shrinkage and cracking."
+    }
+  },
+  {
+    "id": "Q-D-14P_0006",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Working in a tight position (overhead/inside a shell), the pedal is inaccessible. How do you control heat?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Switch to constant maximum current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a torch‑mounted amperage control (slider/roller) or a programmed on‑torch current profile"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only change the torch angle"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Disable post‑flow to reduce heat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "On‑torch control/programming lets you meter current when a foot pedal can’t be used."
+    }
+  },
+  {
+    "id": "Q-D-14P_0007",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "How should tungsten be ground for DCEN on steel to get a stable arc?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Radially, across the rod’s axis"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Longitudinally along the axis, with a small flat at the tip"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Don’t grind at all — a ball is better"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "As sharp as possible with no flat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Longitudinal grind marks guide electron flow; a slight flat stabilizes the tip."
+    }
+  },
+  {
+    "id": "Q-D-14P_0008",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Which tungsten tip geometry is the most versatile for DCEN on steel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Very sharp 20–30° point with no flat"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A 60–90° cone with a ~0.1–0.3 mm flat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A spherical ball"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A 1 mm flat blunt tip"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A medium cone with a small flat provides a stable arc and predictable bead width."
+    }
+  },
+  {
+    "id": "Q-D-14P_0009",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "For a #8 cup on steel in the flat position, what argon flow commonly works right away?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1–2 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "5–8 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "10–15 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "20–25 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "For a #8 cup, 6–8 L/min is typical; too much flow tends to cause turbulence."
+    }
+  },
+  {
+    "id": "Q-D-14P_0010",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "On aluminum (AC) you see a white oxide crust and the puddle won’t break through. What should you adjust first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Decrease the EP portion in balance"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase the EP (cleaning) portion in the AC balance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to DCEP"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lower AC frequency to 20 Hz"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "More EP strengthens cathodic cleaning to break the aluminum oxide."
+    }
+  },
+  {
+    "id": "Q-D-14P_0011",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "You need to narrow the arc on aluminum (AC) when welding into a corner. What helps?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lower AC frequency to 30–40 Hz"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase AC frequency to about 120–200 Hz"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to DCEP"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove the flat on the tungsten"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Higher AC frequency narrows the arc column and improves control in corners."
+    }
+  },
+  {
+    "id": "Q-D-14P_0012",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Thin stainless 1.0 mm is warping and discoloring. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase current and speed to get through faster"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use copper backers/heat sinks, keep a short arc and reduce heat input"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to CO₂ for cooling"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Downsize to a #4 cup and 1 L/min flow"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cold backers and a short arc reduce heat input, distortion, and heat tint."
+    }
+  },
+  {
+    "id": "Q-D-14P_0013",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "What pre‑flow is usually sufficient to start without oxidation when using a #6–8 cup?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.1 s"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.5–1.0 s"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "3–5 s"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Pre‑flow isn’t needed for TIG"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A short pre‑flow fills the cup with argon and lowers contamination risk at ignition."
+    }
+  },
+  {
+    "id": "Q-D-14P_0014",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "A rule of thumb for post‑flow to protect the weld and cool the tungsten is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.2 s per 10 A, minimum 1 s"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1 s per 10 A, but not less than 5 s"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always 20 s regardless of current"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Post‑flow doesn’t matter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "This protects the hot electrode and weld; exact values depend on material and cup."
+    }
+  },
+  {
+    "id": "Q-D-14P_0015",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Sheet thickness 2.0 mm (mild steel, DCEN). Which filler diameter is a good starting point?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.8 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1.6 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "3.2 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "4.0 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Around 1.6 mm filler is commonly comfortable on ~2 mm stock with predictable heat input."
+    }
+  },
+  {
+    "id": "Q-D-14P_0016",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Titanium welding: which colors on the surface after welding indicate adequate shielding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Blue/gray — that’s normal"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Straw/silver are acceptable; blue/gray call for rework/cleaning"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any colors are fine with argon"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Black is best — a ‘hardened’ weld"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Titanium is sensitive to O₂/N₂ at high temperature; light colors can be acceptable, dark colors indicate poor shielding."
+    }
+  },
+  {
+    "id": "Q-D-14P_0017",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "For the ‘walking the cup’ technique on pipe, what is critical for stability?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A large torch angle of about 45°"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Cup support contact and short rocking steps with a short arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "The longest arc possible for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tungsten stickout >20 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Supporting and rocking the cup in short steps maintains shielding and an even arc gap."
+    }
+  },
+  {
+    "id": "Q-D-14P_0018",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "When is it reasonable to switch to a water‑cooled torch?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "At currents up to 80 A on thin sheet"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "For prolonged work around ~200 A and above / high duty cycle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only on aluminum"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "When there is no water supply — for versatility"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Water cooling reduces handle/cable heating and increases duty cycle at higher currents."
+    }
+  },
+  {
+    "id": "Q-D-14P_0019",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "On DC the arc is ‘pulling’ to one side (magnetic arc blow). What should you try first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lengthen the arc"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Move the work lead closer to the weld zone and change the travel direction"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Raise gas flow to 25 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ball the tungsten tip"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Relocating the return clamp and altering current path reduces magnetic field asymmetry."
+    }
+  },
+  {
+    "id": "Q-D-14P_0020",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "TIG root on pipe with back purge. To what oxygen level inside do you aim before starting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈5% O₂ — that’s enough"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈0.1% O₂ (≤1000 ppm) or lower, per requirements"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈2% O₂ — to save gas"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "O₂ level isn’t important as long as there’s purge flow"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Low O₂ promotes a bright, clean root; the target threshold is defined by the spec/standard."
+    }
+  },
+  {
+    "id": "Q-D-14P_0021",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Closed stainless pipe purge: where should you place the purge inlet and vent to displace air efficiently?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Inlet at the top, vent at the bottom with a large opening"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Inlet at the lowest point, a small vent at the highest point"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Both inlet and vent at the highest point"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No vent; seal completely for maximum purity"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Argon is heavier than air; feeding from low and venting at high allows air to be pushed out smoothly."
+    }
+  },
+  {
+    "id": "Q-D-14P_0022",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Open‑root TIG on 1.5\" stainless pipe: the root sugars despite 15 L/min purge flow. What should you adjust first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase purge to 25 L/min to flood the cavity"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Add 50% helium to the purge"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduce purge to ~3–6 L/min and seal leaks at dams/tape"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to CO₂ as a purge gas"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Excessive purge flow creates turbulence that drags air in; gentle laminar flow and tight seals prevent oxidation."
+    }
+  },
+  {
+    "id": "Q-D-14P_0023",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Acceptable pre‑clean before TIG on stainless?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wipe with acetone and use a stainless‑only wire brush"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Spray chlorinated brake cleaner right before welding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wipe with a used oily rag to lubricate the joint"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Grind with a wheel previously used on carbon steel"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Solvent wipe and dedicated stainless tools avoid contamination and oxide‑forming residues."
+    }
+  },
+  {
+    "id": "Q-D-14P_0024",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "You dipped the tungsten, the tip is black, and the arc wanders. What’s the correct recovery?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Keep welding; it will burn clean"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Quench the hot tungsten in water and continue"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stop, clip back the contaminated tip, and re‑grind longitudinally"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sand the tip with emery cloth and continue"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Mechanical removal and proper longitudinal grinding restore arc focus and cleanliness."
+    }
+  },
+  {
+    "id": "Q-D-14P_0025",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Approximate tungsten diameter for ~180 A DCEN on mild steel with a steady duty cycle?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1.0 mm (0.040\")"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1.6 mm (1/16\")"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "2.4 mm (3/32\")"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "3.2 mm (1/8\")"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A 2.4 mm tungsten typically covers ~150–200 A DCEN with stable tip geometry."
+    }
+  },
+  {
+    "id": "Q-D-14P_0026",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "AC TIG on 6 mm aluminum: stubborn oxide and black smut appear. First control to tweak?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Decrease EP (cleaning) percentage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase EP (cleaning) percentage in AC balance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to DCEN"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lower the AC frequency to 20 Hz"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "More EP increases cathodic cleaning to break the aluminum oxide film."
+    }
+  },
+  {
+    "id": "Q-D-14P_0027",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "You need deeper penetration on thick aluminum but you’re current‑limited by duty cycle. Gas choice?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Pure helium shielding at the same flow"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Ar/He mix (≈25–50% He) to boost heat input and penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "CO₂ for more heat"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Nitrogen for better arc stability"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Helium in the mix raises arc voltage/enthalpy, improving penetration without raising amperage as much."
+    }
+  },
+  {
+    "id": "Q-D-14P_0028",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "With a #12 gas lens cup in a light draft, what argon flow is a good starting point?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2–3 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "5–6 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "10–12 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "20–25 L/min"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Large cups often need ~10–12 L/min; too much flow can turn turbulent and entrain air."
+    }
+  },
+  {
+    "id": "Q-D-14P_0029",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "You’re inside equipment with sensitive electronics nearby. Which TIG arc start reduces EMI risk?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "High‑frequency continuous start"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Scratch start"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lift‑arc start"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Manual contact start with hot tungsten"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Lift‑arc limits high‑frequency interference while providing clean starts."
+    }
+  },
+  {
+    "id": "Q-D-14P_0030",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Vertical‑up fillet on 3 mm stainless is overheating and sagging. Practical control to stabilize the puddle?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Enable low‑frequency pulse (≈1–2 Hz) with a lower base current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Hold a longer arc for more visibility"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to a larger cup with much higher gas flow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Push travel speed to the maximum"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Pulsing freezes the puddle periodically and reduces overall heat input."
+    }
+  },
+  {
+    "id": "Q-D-14P_0031",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Best practice for filler wire handling before TIG on stainless?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Keep rods loose on the bench; wipe occasionally with an oily rag"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Store in a clean tube; wipe with acetone just before use"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rub rods with carbon steel wool for ‘activation’"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Dust with talc to reduce sticking"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Clean, sealed storage and solvent wipe reduce contamination and porosity."
+    }
+  },
+  {
+    "id": "Q-D-14P_0032",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "On an inverter AC TIG, which tungsten and tip geometry give a stable, narrow arc on aluminum?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Pure (green) with a large ball"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "2% lanthanated, tapered with a small flat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "2% thoriated, ground radially"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ceriated with a blunt 90° end"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Modern inverters run well with pointed/landed lanthanated tips, giving focused AC arcs."
+    }
+  },
+  {
+    "id": "Q-D-14P_0033",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Thick 12 mm aluminum plate is cold‑starting and porosity‑prone. A practical mitigation?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Preheat to roughly 120–150°C to reduce start‑up chill"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Switch to DCEN for a hotter start"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower gas flow to 2 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Grind the oxide with a wheel used on carbon steel"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Moderate preheat improves puddle wet‑in and reduces hydrogen entrapment on heavy sections."
+    }
+  },
+  {
+    "id": "Q-D-14P_0034",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Interpass cleaning for stainless multipass TIG:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stainless‑only brush and solvent wipe before the next pass"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Brush with a carbon‑steel wire brush for more bite"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "No cleaning; slag will float out"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hammer the bead to knock colors off"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Dedicated stainless tools and solvent remove heat tint/oxide to prevent lack of fusion."
+    }
+  },
+  {
+    "id": "Q-D-14P_0035",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Your O₂ analyzer at the purge vent shows 0.6% (≈6000 ppm) on a critical stainless root. What now?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Begin welding; the torch shielding will handle it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Add more torch post‑flow to compensate"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Continue purging until ≤0.1% O₂ (≤1000 ppm) or as per procedure"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Drill vent holes to increase air exchange"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A low O₂ level at the vent is required for a bright, sugar‑free root per typical procedures."
+    }
+  },
+  {
+    "id": "Q-D-14P_0036",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Joining 304 stainless to mild steel with TIG. Which filler is appropriate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "ER308L"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "ER309L"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "ER70S‑6"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "ER316L"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "ER309L is formulated for dissimilar joints from stainless to carbon steel."
+    }
+  },
+  {
+    "id": "Q-D-14P_0037",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Long straight TIG bead on titanium in open air: how to keep colors light beyond the torch cup?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use a trailing shield and extend post‑flow duration"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Switch to CO₂ shielding briefly"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spray water mist behind the torch"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Run with a very long arc for dispersion"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A trailing shield protects the hot bead until it cools below oxidation temperature."
+    }
+  },
+  {
+    "id": "Q-D-14P_0038",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Autogenous TIG tack welds show porosity. A simple technique change to try first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Shorten the arc to ≈1–1.5× tungsten diameter and steady the torch"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase gas flow to 25 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to a larger tungsten without regrinding"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hold the torch farther away for a wider puddle"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A short, steady arc improves shielding effectiveness and reduces air entrainment."
+    }
+  },
+  {
+    "id": "Q-D-14P_0039",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Sealing purge dams on a small stainless box: which tape is suitable?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cloth duct tape"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Masking tape"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Aluminum HVAC foil tape"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Electrical PVC tape"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Aluminum foil tape withstands heat and seals well without leaving contaminating residues."
+    }
+  },
+  {
+    "id": "Q-D-14P_0040",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "TIG arc drifts due to residual magnetism near lifting magnets on a carbon‑steel fabrication. Immediate fix?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Hold a long arc to average it out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase gas flow to stabilize the arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Move the work lead close to the weld path and remove/demagnetize sources"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to DCEP"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Changing the current path and eliminating magnetic sources reduces arc blow."
     }
   }
 ]
