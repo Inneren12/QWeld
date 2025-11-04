@@ -44,6 +44,7 @@ val buildTimestamp = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).app
 android {
   namespace = "com.qweld.app"
   compileSdk = 35
+  buildToolsVersion = "35.0.0"
 
   val enableAnalyticsDebug =
     providers.gradleProperty("enableAnalyticsDebug").map { it.toBoolean() }.getOrElse(false)

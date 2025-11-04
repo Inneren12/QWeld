@@ -6,6 +6,7 @@ plugins {
 android {
   namespace = "com.qweld.core.model"
   compileSdk = 35
+  buildToolsVersion = "35.0.0"
 
   defaultConfig {
     minSdk = 24
