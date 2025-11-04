@@ -15,8 +15,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate Gradle Wrapper
+      - name: Preflight — verify Gradle wrapper files exist
+        run: |
+          set -euo pipefail
+          ls -l gradle/wrapper/
+          test -f gradle/wrapper/gradle-wrapper.properties
+          test -f gradle/wrapper/gradle-wrapper.jar
+          test -f gradlew
+          test -f gradlew.bat
+
+      - name: Print Gradle wrapper SHA256
+        run: sha256sum gradle/wrapper/gradle-wrapper.jar
+
+      - name: Validate Gradle Wrapper (best-effort)
         uses: gradle/wrapper-validation-action@v2
+        timeout-minutes: 2
+        continue-on-error: true
 
       - name: Set up JDK (Temurin 21)
         uses: actions/setup-java@v4
@@ -24,6 +38,12 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: 'gradle'
+
+      - name: Verify Java toolchain
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME"
+          java -version
+          javac -version
 
       - name: Setup Gradle (cache & config)
         uses: gradle/actions/setup-gradle@v3

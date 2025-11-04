@@ -3,16 +3,7 @@ package com.qweld.app.data.content.questions
 import java.io.InputStream
 import java.util.LinkedHashMap
 import java.util.Locale
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonNull
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.contentOrNull
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.json.parseToJsonElement
+import kotlinx.serialization.json.*
 
 class IndexParser(private val json: Json = DEFAULT_JSON) {
 
