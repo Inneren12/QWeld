@@ -1,6 +1,7 @@
 package com.qweld.app.navigation
 
 import android.app.Activity
+import android.content.Context
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -9,13 +10,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -28,7 +29,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -38,12 +41,12 @@ import com.google.android.gms.common.api.ApiException
 import com.qweld.app.BuildConfig
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
-import com.qweld.app.data.repo.AnswersRepository
-import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogExportFormat
 import com.qweld.app.data.logging.writeTo
 import com.qweld.app.data.prefs.UserPrefsDataStore
+import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.auth.AuthService
 import com.qweld.app.feature.auth.R
@@ -58,18 +61,11 @@ import com.qweld.app.ui.AboutScreen
 import com.qweld.app.ui.SettingsScreen
 import com.qweld.app.ui.TopBarMenus
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import androidx.compose.ui.unit.dp
-import android.content.Context
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.navigation.NavController
-import androidx.navigation.NavOptionsBuilder
 
-
-private const val START_ROUTE = Routes.MAIN // подставь свой стартовый route, который указан в NavHost
+private const val START_ROUTE = Routes.AUTH
 
 @Composable
 fun AppNavGraph(
@@ -91,6 +87,18 @@ fun AppNavGraph(
   val user by authService.currentUser.collectAsStateWithLifecycle(initialValue = null)
   val context = LocalContext.current
   val scope = rememberCoroutineScope()
+  val safeNavigate = remember(navController, scope) {
+    { route: String, opts: (NavOptionsBuilder.() -> Unit)? ->
+      scope.launch {
+        runCatching { navController.currentBackStackEntryFlow.first() }
+        navController.navigate(route) {
+          if (opts != null) {
+            opts(this)
+          }
+        }
+      }
+    }
+  }
   val genericErrorText = stringResource(id = R.string.auth_error_generic)
   val googleCancelledText = stringResource(id = R.string.auth_error_google_sign_in)
   val missingTokenText = stringResource(id = R.string.auth_error_missing_token)
@@ -123,8 +131,8 @@ fun AppNavGraph(
     }
 
   val navigateToAuth: () -> Unit = {
-    navController.navigate(Routes.AUTH) {
-      popUpTo(navController.graph.startDestinationId) { inclusive = true }
+    safeNavigate(Routes.AUTH) {
+      popUpTo(START_ROUTE) { inclusive = true }
       launchSingleTop = true
     }
   }
@@ -179,8 +187,8 @@ fun AppNavGraph(
     } else if (u.isAnonymous) {
       navigateToAuth()
     } else if (currentRoute == Routes.AUTH) {
-      navController.navigate(Routes.EXAM) {
-        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+      safeNavigate(Routes.EXAM) {
+        popUpTo(START_ROUTE) { inclusive = true }
         launchSingleTop = true
       }
     }
@@ -228,7 +236,7 @@ fun AppNavGraph(
   ) { innerPadding ->
     NavHost(
       navController = navController,
-      startDestination = Routes.AUTH,
+      startDestination = START_ROUTE,
       modifier = Modifier.padding(innerPadding),
     ) {
       composable(Routes.AUTH) {
