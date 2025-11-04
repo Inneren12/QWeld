@@ -61,6 +61,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import androidx.compose.ui.unit.dp
+import android.content.Context
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.NavController
+import androidx.navigation.NavOptionsBuilder
+
+
+private const val START_ROUTE = Routes.MAIN // подставь свой стартовый route, который указан в NavHost
 
 @Composable
 fun AppNavGraph(
@@ -78,6 +87,7 @@ fun AppNavGraph(
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
+
   val user by authService.currentUser.collectAsStateWithLifecycle(initialValue = null)
   val context = LocalContext.current
   val scope = rememberCoroutineScope()
@@ -90,8 +100,11 @@ fun AppNavGraph(
   val googleSignInClient = remember {
     val options =
       GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(context.getString(com.qweld.app.R.string.default_web_client_id))
-        .requestEmail()
+      // Запрашиваем web client ID ТОЛЬКО если ресурс реально существует (без google-services.json его нет)
+          .apply {
+          googleWebClientIdOrNull(context)?.let { requestIdToken(it) }
+      }
+          .requestEmail()
         .build()
     GoogleSignIn.getClient(context, options)
   }
@@ -267,12 +280,8 @@ fun AppNavGraph(
           appVersion = appVersion,
           analytics = analytics,
           userPrefs = userPrefs,
-          prewarmConfig =
-            PrewarmConfig(
-              enabled = BuildConfig.PREWARM_ENABLED,
-              maxConcurrency = BuildConfig.PREWARM_MAX_CONCURRENCY,
-              taskTimeoutMs = BuildConfig.PREWARM_TIMEOUT_MS,
-            ),
+            // нормализуем BuildConfig.* → Kotlin-типы вне аргументов вызова
+            prewarmConfig = prewarmConfigFromBuildConfig(),
         )
       }
       composable(Routes.SYNC) {
@@ -453,6 +462,22 @@ private fun LogExportDialog(
   )
 }
 
+/**
+ * Безопасно вернуть default_web_client_id, если он существует.
+ * Ресурс создаётся плагином google-services только при наличии google-services.json.
+ * Возвращаем null, если ресурса нет или он неинициализирован (плейсхолдер).
+ */
+private fun googleWebClientIdOrNull(context: Context): String? {
+    val id = context.resources.getIdentifier(
+        "default_web_client_id",
+        "string",
+        context.packageName
+    )
+    if (id == 0) return null
+    val value = context.getString(id)
+    return value.takeIf { it.isNotBlank() && it != "YOUR_WEB_CLIENT_ID" }
+}
+
 private fun <T> runAuthAction(
   scope: CoroutineScope,
   setLoading: (Boolean) -> Unit,
@@ -479,6 +504,26 @@ private object Routes {
   const val SYNC = "sync"
   const val SETTINGS = "settings"
   const val ABOUT = "about"
+}
+
+/**
+ * Безопасно вернуть default_web_client_id, если он существует.
+ * Ресурс создаётся плагином google-services только при наличии google-services.json.
+ */
+
+private fun prewarmConfigFromBuildConfig(): PrewarmConfig {
+    val enabled = BuildConfig.PREWARM_ENABLED
+    // maxConcurrency
+    val maxConc = (BuildConfig.PREWARM_MAX_CONCURRENCY as? Number)?.toInt()
+        ?: BuildConfig.PREWARM_MAX_CONCURRENCY.toString().toDouble().toInt()
+    // taskTimeoutMs
+    val timeoutMs: Long = (BuildConfig.PREWARM_TIMEOUT_MS as? Number)?.toLong()
+        ?: BuildConfig.PREWARM_TIMEOUT_MS.toString().toDouble().toLong()
+    return PrewarmConfig(
+        enabled = enabled,
+        maxConcurrency = maxConc,
+        taskTimeoutMs = timeoutMs
+    )
 }
 
 @Composable

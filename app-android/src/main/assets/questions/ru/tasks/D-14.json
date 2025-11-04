@@ -1,1213 +1,9 @@
 [
   {
-    "id": "Q-D-14_ac_balance_10000074",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the электрод-positive (EP) portion of AC (переменный ток) balance in GTAW (TIG) will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Увеличивает oxide cleaning but heat the tungsten more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Уменьшить cleaning and cool the tungsten"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change cleaning action"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic cleaning while raising tungsten temperature."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v1_07_400000ca",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC (переменный ток) balance in GTAW (TIG) will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase оксида очистка but heat the вольфрамовый электрод more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce очистка and cool the вольфрамовый электрод"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic очистка and вольфрамовый электрод heating."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v3_02_400000d9",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC (переменный ток) balance in GTAW (TIG) will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase оксида очистка but heat the вольфрамовый электрод more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce очистка and cool the вольфрамовый электрод"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic очистка and вольфрамовый электрод heating."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v4_07_400000e8",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC (переменный ток) balance in GTAW (TIG) will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase оксида очистка but heat the вольфрамовый электрод more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce очистка and cool the вольфрамовый электрод"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic очистка and вольфрамовый электрод heating."
-    }
-  },
-  {
-    "id": "Q-D-14_ac_balance_effect_v6_02_400000f7",
-    "taskId": "D-14",
-    "difficulty": "hard",
-    "stem": "Increasing the EP portion of AC (переменный ток) balance in GTAW (TIG) will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase оксида очистка but heat the вольфрамовый электрод more"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce очистка and cool the вольфрамовый электрод"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Not change очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stop the arc"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "More EP enhances cathodic очистка and вольфрамовый электрод heating."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v1_01_400000c4",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой ток is commonly used for GTAW (TIG) on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (обратная полярность) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC (переменный ток) with water защитного газа"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC (переменный ток) provides EP очистка action for оксида removal."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v2_06_400000d3",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой ток is commonly used for GTAW (TIG) on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (обратная полярность) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC (переменный ток) with water защитного газа"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC (переменный ток) provides EP очистка action for оксида removal."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v4_01_400000e2",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой ток is commonly used for GTAW (TIG) on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (обратная полярность) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC (переменный ток) with water защитного газа"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC (переменный ток) provides EP очистка action for оксида removal."
-    }
-  },
-  {
-    "id": "Q-D-14_aluminum_ac_v5_06_400000f1",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой ток is commonly used for GTAW (TIG) on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (обратная полярность) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC (переменный ток) with water защитного газа"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC (переменный ток) provides EP очистка action for оксида removal."
-    }
-  },
-  {
     "id": "Q-D-14_argon_common_v1_05_400000c8",
     "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой газ is commonly used for GTAW (TIG) защитного газа and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon diоксида"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_argon_common_v3_00_400000d7",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой газ is commonly used for GTAW (TIG) защитного газа and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon diоксида"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_argon_common_v4_05_400000e6",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой газ is commonly used for GTAW (TIG) защитного газа and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon diоксида"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_argon_common_v6_00_400000f5",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой газ is commonly used for GTAW (TIG) защитного газа and purge?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Argon"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Carbon diоксида"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dry air"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Argon is inert and widely used."
-    }
-  },
-  {
-    "id": "Q-D-14_er70s2_10000073",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какую классификацию присадки — commonly used for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S-2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Флюс-cored E71T-1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S-2 — a deoxidized solid filler rod for GTAW (TIG) on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v1_08_400000cb",
-    "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Too much GTAW (TIG) защитного газа газ flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher проплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v3_03_400000da",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Чрезмерный GTAW (TIG) защитного газа газ flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher проплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v4_08_400000e9",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Чрезмерный GTAW (TIG) защитного газа газ flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher проплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_excess_gas_flow_v6_03_400000f8",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Чрезмерный GTAW (TIG) защитного газа газ flow can cause:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher проплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and contamination."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v1_06_400000c9",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое filler classification is common for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S-2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T-1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S-2 is a deoxidized filler for GTAW (TIG) on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v3_01_400000d8",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое filler classification is common for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S-2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T-1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S-2 is a deoxidized filler for GTAW (TIG) on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v4_06_400000e7",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое filler classification is common for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S-2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T-1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S-2 is a deoxidized filler for GTAW (TIG) on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_filler_er70s2_v6_01_400000f6",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое filler classification is common for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "ER70S-2"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "ER308L"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E71T-1"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "ER70S-2 is a deoxidized filler for GTAW (TIG) on carbon steel."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_flow_high_10000075",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "К чему может привести чрезмерный GTAW (TIG) shielding gas flow cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved laminar flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Turbulence that draws in air and contamination"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No effect on shielding"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Higher проплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence and aspiration of air into the shield."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_1000006f",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Какова цель a gas lens on a GTAW (TIG) torch?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Увеличивает spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar gas flow and extend shielding coverage"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Уменьшить tungsten life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher ток on DCEN (прямая полярность) (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A gas lens straightens flow, improving shielding on joints with more вылет."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v1_02_400000c5",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Что is the purpose of a газ-линзы on a GTAW (TIG) горелка?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend защитного газа"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce вольфрамовый электрод life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher ток on DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with вылета."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v2_07_400000d4",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Что is the purpose of a газ-линзы on a GTAW (TIG) горелка?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend защитного газа"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce вольфрамовый электрод life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher ток on DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with вылета."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v4_02_400000e3",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Что is the purpose of a газ-линзы on a GTAW (TIG) горелка?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend защитного газа"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce вольфрамовый электрод life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher ток on DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with вылета."
-    }
-  },
-  {
-    "id": "Q-D-14_gas_lens_purpose_v5_07_400000f2",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Что is the purpose of a газ-линзы on a GTAW (TIG) горелка?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Create laminar flow and extend защитного газа"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce вольфрамовый электрод life"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Allow higher ток on DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas lens straightens flow, improving coverage with вылета."
-    }
-  },
-  {
-    "id": "Q-D-14_gtaw_aluminum_1000006e",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой тип тока — commonly used for GTAW (TIG) on aluminum?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (прямая полярность) только"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (обратная полярность) (обратная полярность) только"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC (переменный ток) with water as shielding"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "AC (переменный ток) обеспечивает электрод-positive cleaning action to remove aluminum oxide."
-    }
-  },
-  {
-    "id": "Q-D-14_gtaw_polarity_steel_1000006d",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какая полярность — standard for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (прямая полярность) (электрод negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (обратная полярность) (электрод positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только AC (переменный ток) (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN (прямая полярность) (прямая полярность) focuses heat into the work for deep проплавление and protects the tungsten."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v2_03_400000d0",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon защитного газа generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces тепловложение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/проплавление and скорость перемещения"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He-Ar mixes raise arc напряжение and тепловложение."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v3_08_400000df",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon защитного газа generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces тепловложение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/проплавление and скорость перемещения"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He-Ar mixes raise arc напряжение and тепловложение."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v5_03_400000ee",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon защитного газа generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces тепловложение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/проплавление and скорость перемещения"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He-Ar mixes raise arc напряжение and тепловложение."
-    }
-  },
-  {
-    "id": "Q-D-14_helium_mixture_v6_08_400000fd",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Adding helium to argon защитного газа generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Reduces тепловложение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Increases heat/проплавление and скорость перемещения"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminates need for AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "He-Ar mixes raise arc напряжение and тепловложение."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_10000077",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW (TIG), что обеспечивает oxide cleaning action?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Электрод-negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Электрод-positive (EP) portion of AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium только"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half-cycle breaks the aluminum oxide film during AC (переменный ток) welding."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v2_00_400000cd",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW (TIG), оксида очистка action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode-negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode-positive (EP) portion of AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half-cycle breaks the оксида film."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v3_05_400000dc",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW (TIG), оксида очистка action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode-negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode-positive (EP) portion of AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half-cycle breaks the оксида film."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v5_00_400000eb",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW (TIG), оксида очистка action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode-negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode-positive (EP) portion of AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half-cycle breaks the оксида film."
-    }
-  },
-  {
-    "id": "Q-D-14_oxide_cleaning_al_v6_05_400000fa",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "On aluminum GTAW (TIG), оксида очистка action is provided by:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Electrode-negative (EN) portion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Electrode-positive (EP) portion of AC (переменный ток)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Back purging"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Helium only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The EP half-cycle breaks the оксида film."
-    }
-  },
-  {
-    "id": "Q-D-14_polarity_steel_dcen_v1_00_400000c3",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой из следующих polarity is standard for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (электрод negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (электрод positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN (прямая полярность) focuses heat into the work and protects вольфрамовый электрод."
-    }
-  },
-  {
-    "id": "Q-D-14_polarity_steel_dcen_v2_05_400000d2",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какая полярность is standard for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (электрод negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (электрод positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN (прямая полярность) focuses heat into the work and protects вольфрамовый электрод."
-    }
-  },
-  {
-    "id": "Q-D-14_polarity_steel_dcen_v4_00_400000e1",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какая полярность is standard for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (электрод negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (электрод positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN (прямая полярность) focuses heat into the work and protects вольфрамовый электрод."
-    }
-  },
-  {
-    "id": "Q-D-14_polarity_steel_dcen_v5_05_400000f0",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какая полярность is standard for GTAW (TIG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (электрод negative)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (электрод positive)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either with no effect"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "DCEN (прямая полярность) focuses heat into the work and protects вольфрамовый электрод."
-    }
-  },
-  {
-    "id": "Q-D-14_purge_gas_10000072",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой газ — commonly used for GTAW (TIG) shielding and back purging?",
+    "stem": "Какой газ обычно применяют для защиты и продувки при GTAW (аргонодуговой сварке)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -1215,7 +11,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Углекислый газ"
+        "text": "Диоксид углерода (CO₂)"
       },
       {
         "id": "CHOICE-3",
@@ -1228,791 +24,1519 @@
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Аргон — inert and widely used for GTAW (TIG) and purging."
+      "CHOICE-1": "Аргон инертный и даёт стабильную защиту ванны; это наиболее распространённый выбор."
     }
   },
   {
-    "id": "Q-D-14_stainless_back_purge_v1_04_400000c7",
+    "id": "Q-D-14_aluminum_ac_v5_06_400000f1",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Что prevents 'sugaring' on the обратной стороны of stainless GTAW (TIG) joints?",
+    "stem": "Какой вид тока обычно используют при GTAW по алюминию?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Higher горелка angle"
+        "text": "Только DCEN (электрод минус)"
       },
       {
         "id": "CHOICE-2",
-        "text": "Back purging with inert газ"
+        "text": "AC (переменный)"
       },
       {
         "id": "CHOICE-3",
-        "text": "More filler metal"
+        "text": "Только DCEP (электрод плюс)"
       },
       {
         "id": "CHOICE-4",
-        "text": "Switch to DCEP (обратная полярность)"
+        "text": "AC с водяной защитой"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Back purging shields the корень until it cools."
+      "CHOICE-2": "AC даёт «очищающее» действие на полупериоде EP, разрушая оксидную плёнку алюминия."
     }
   },
   {
-    "id": "Q-D-14_stainless_back_purge_v2_09_400000d6",
+    "id": "Q-D-14_oxide_cleaning_al_10000077",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Что prevents 'sugaring' on the обратной стороны of stainless GTAW (TIG) joints?",
+    "stem": "При GTAW по алюминию очищение оксидной плёнки обеспечивается:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Higher горелка angle"
+        "text": "На участке EN (электрод минус)"
       },
       {
         "id": "CHOICE-2",
-        "text": "Back purging with inert газ"
+        "text": "На участке EP (электрод плюс) переменного тока"
       },
       {
         "id": "CHOICE-3",
-        "text": "More filler metal"
+        "text": "Задней продувкой"
       },
       {
         "id": "CHOICE-4",
-        "text": "Switch to DCEP (обратная полярность)"
+        "text": "Только чистым гелием"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Back purging shields the корень until it cools."
-    }
-  },
-  {
-    "id": "Q-D-14_stainless_back_purge_v4_04_400000e5",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Что prevents 'sugaring' on the обратной стороны of stainless GTAW (TIG) joints?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher горелка angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Back purging with inert газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "More filler metal"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch to DCEP (обратная полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Back purging shields the корень until it cools."
-    }
-  },
-  {
-    "id": "Q-D-14_stainless_back_purge_v5_09_400000f4",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Что prevents 'sugaring' on the обратной стороны of stainless GTAW (TIG) joints?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher горелка angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Back purging with inert газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "More filler metal"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch to DCEP (обратная полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Back purging shields the корень until it cools."
-    }
-  },
-  {
-    "id": "Q-D-14_stainless_purge_10000071",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Что предотвращает 'sugaring' (oxidation) on the backside of stainless GTAW (TIG) joints?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher torch angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Back purging with inert gas"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "More filler metal"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch to DCEP (обратная полярность) (обратная полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Inert purge gas shields the backside until the metal cools below oxidation temps."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_10000076",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какой способ поджига GTAW (TIG) avoids tungsten contamination without scraping?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch-start on the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-frequency or подъём-arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "HF or подъём-arc initiates the arc without rubbing the tungsten."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v1_09_400000cc",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое GTAW (TIG) start method avoids вольфрамовый электрод contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch-start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-frequency or lift-arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "ВЧ or lift-arc allows non-contact starts."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v3_04_400000db",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое GTAW (TIG) start method avoids вольфрамовый электрод contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch-start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-frequency or lift-arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "ВЧ or lift-arc allows non-contact starts."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v4_09_400000ea",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое GTAW (TIG) start method avoids вольфрамовый электрод contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch-start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-frequency or lift-arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "ВЧ or lift-arc allows non-contact starts."
-    }
-  },
-  {
-    "id": "Q-D-14_start_methods_v6_04_400000f9",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Какое GTAW (TIG) start method avoids вольфрамовый электрод contamination?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Touch-start"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-frequency or lift-arc start"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike like a match"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Hit with a hammer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "ВЧ or lift-arc allows non-contact starts."
+      "CHOICE-2": "Полупериод EP «счищает» оксид Al₂O₃, улучшая смачиваемость и формирование шва."
     }
   },
   {
     "id": "Q-D-14_torch_angle_effect_v2_02_400000cf",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Чрезмерный GTAW (TIG) горелка angle typically:",
+    "stem": "Чрезмерный угол наклона горелки при GTAW обычно:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Improves защитного газа"
+        "text": "Улучшает защиту"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces coverage and can cause contamination/undercut"
+        "text": "Сужает зону защиты и может вызвать загрязнение/подрез"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has no effect"
+        "text": "Не влияет"
       },
       {
         "id": "CHOICE-4",
-        "text": "Increases ток"
+        "text": "Повышает сварочный ток"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
+      "CHOICE-2": "Большой наклон открывает ванну воздуху и ухудшает покрытие струёй защитного газа."
     }
   },
   {
-    "id": "Q-D-14_torch_angle_effect_v3_07_400000de",
+    "id": "Q-D-14_ac_balance_effect_v6_02_400000f7",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Чрезмерный GTAW (TIG) горелка angle typically:",
+    "stem": "Увеличение доли EP в балансе AC при GTAW приведёт к:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Improves защитного газа"
+        "text": "Усилению очистки оксида и большему нагреву вольфрама"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces coverage and can cause contamination/undercut"
+        "text": "Снижению очистки и охлаждению вольфрама"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has no effect"
+        "text": "Отсутствию изменений"
       },
       {
         "id": "CHOICE-4",
-        "text": "Increases ток"
+        "text": "Погасанию дуги"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
+      "CHOICE-1": "Больше EP — сильнее катодная очистка, но и выше тепловая нагрузка на электрод."
     }
   },
   {
-    "id": "Q-D-14_torch_angle_effect_v5_02_400000ed",
+    "id": "Q-D-14_gtaw_polarity_steel_1000006d",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Чрезмерный GTAW (TIG) горелка angle typically:",
+    "stem": "Какая полярность стандартна для GTAW по углеродистой стали?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Improves защитного газа"
+        "text": "DCEN (электрод минус)"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces coverage and can cause contamination/undercut"
+        "text": "DCEP (электрод плюс)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has no effect"
+        "text": "Только AC"
       },
       {
         "id": "CHOICE-4",
-        "text": "Increases ток"
+        "text": "Любая — без разницы"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
+      "CHOICE-1": "DCEN концентрирует тепло в изделии, улучшая проплавление и сохраняя вольфрам."
     }
   },
   {
-    "id": "Q-D-14_torch_angle_effect_v6_07_400000fc",
+    "id": "Q-D-14_gas_flow_high_10000075",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Чрезмерный GTAW (TIG) горелка angle typically:",
+    "stem": "Что может вызвать избыточный расход защитного газа при GTAW?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Improves защитного газа"
+        "text": "Улучшение ламинарного потока"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces coverage and can cause contamination/undercut"
+        "text": "Турбулентность, подсос воздуха и загрязнение"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has no effect"
+        "text": "Отсутствие влияния на защиту"
       },
       {
         "id": "CHOICE-4",
-        "text": "Increases ток"
+        "text": "Увеличение проплавления"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Large angles expose the pool to air and narrow coverage."
+      "CHOICE-2": "Слишком большой поток создаёт турбулентность и «присасывает» воздух к дуге."
+    }
+  },
+  {
+    "id": "Q-D-14_gas_lens_1000006f",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Для чего на горелке GTAW применяют газ‑линзу?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы увеличить разбрызгивание"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы сформировать ламинарный поток и расширить зону защиты"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы сократить ресурс вольфрама"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чтобы повысить ток на DCEN"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Газ‑линза выпрямляет поток и улучшает защиту при большем вылете."
+    }
+  },
+  {
+    "id": "Q-D-14_start_methods_10000076",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Какой способ поджига GTAW помогает избежать загрязнения вольфрама без «чирканья»?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Касанием детали (touch‑start)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "ВЧ‑поджиг (HF) или lift‑arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Как спичкой по металлу"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Лёгкий удар молотком по электроду"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "HF/lift‑arc запускают дугу без контакта электродом с изделием."
     }
   },
   {
     "id": "Q-D-14_tungsten_contamination_v2_04_400000d1",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "If вольфрамовый электрод touches the molten pool, you should:",
+    "stem": "Если вольфрам коснулся расплавленной ванны, что следует сделать?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Continue welding"
+        "text": "Продолжать сварку"
       },
       {
         "id": "CHOICE-2",
-        "text": "Break off/resharpen вольфрамовый электрод and clean the area"
+        "text": "Отломить/переточить вольфрам и очистить зону"
       },
       {
         "id": "CHOICE-3",
-        "text": "Increase ток"
+        "text": "Увеличить ток"
       },
       {
         "id": "CHOICE-4",
-        "text": "Change to CO₂ защитного газа"
+        "text": "Перейти на CO₂‑защиту"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Contamination requires regrinding and очистка."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_contamination_v3_09_400000e0",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "If вольфрамовый электрод touches the molten pool, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Continue welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Break off/resharpen вольфрамовый электрод and clean the area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase ток"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Change to CO₂ защитного газа"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Contamination requires regrinding and очистка."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_contamination_v5_04_400000ef",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "If вольфрамовый электрод touches the molten pool, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Continue welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Break off/resharpen вольфрамовый электрод and clean the area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase ток"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Change to CO₂ защитного газа"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Contamination requires regrinding and очистка."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_contamination_v6_09_400000fe",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "If вольфрамовый электрод touches the molten pool, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Continue welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Break off/resharpen вольфрамовый электрод and clean the area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase ток"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Change to CO₂ защитного газа"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Contamination requires regrinding and очистка."
+      "CHOICE-2": "Загрязнение требует пере‑заточки электрода и обезжиривания участка шва."
     }
   },
   {
     "id": "Q-D-14_tungsten_grind_10000070",
     "taskId": "D-14",
     "difficulty": "medium",
-    "stem": "Как следует tungsten be ground for GTAW (TIG) on steel?",
+    "stem": "Как затачивать вольфрам для DC GTAW по стали?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
+        "text": "По окружности (поперёк стержня)"
       },
       {
         "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
+        "text": "Вдоль оси стержня (продольно)"
       },
       {
         "id": "CHOICE-3",
-        "text": "With a blunt chisel наконечник только"
+        "text": "Только «тупым зубилом»"
       },
       {
         "id": "CHOICE-4",
-        "text": "No grinding needed"
+        "text": "Заточка не нужна"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Longitudinal grinding directs electrons axially and minimizes arc wander."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_grind_long_v1_03_400000c6",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Как следует вольфрамовый электрод be ground for DC GTAW (TIG) on steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No grinding needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_grind_long_v2_08_400000d5",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Как следует вольфрамовый электрод be ground for DC GTAW (TIG) on steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No grinding needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_grind_long_v4_03_400000e4",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Как следует вольфрамовый электрод be ground for DC GTAW (TIG) on steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No grinding needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_grind_long_v5_08_400000f3",
-    "taskId": "D-14",
-    "difficulty": "medium",
-    "stem": "Как следует вольфрамовый электрод be ground for DC GTAW (TIG) on steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Circumferentially around the rod"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Longitudinally along the rod"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No grinding needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "With a blunt chisel only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Longitudinal grinding minimizes arc wander."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_size_10000078",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Почему choose a larger-diameter tungsten for higher currents?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To увеличивает spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To handle higher heat without melting the наконечник"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To уменьшить shielding"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To avoid the need for filler"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Bigger электроды carry more ток without overheating."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_size_current_v2_01_400000ce",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Почему choose a larger-diameter вольфрамовый электрод for higher токs?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Handle higher heat without melting the tip"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce защитного газа"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Avoid filler metal"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Larger вольфрамовый электрод carries more ток without overheating."
-    }
-  },
-  {
-    "id": "Q-D-14_tungsten_size_current_v3_06_400000dd",
-    "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Почему choose a larger-diameter вольфрамовый электрод for higher токs?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Handle higher heat without melting the tip"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce защитного газа"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Avoid filler metal"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Larger вольфрамовый электрод carries more ток without overheating."
+      "CHOICE-2": "Продольная рисовка направляет эмиссию электронов вдоль оси и снижает «гуляние» дуги."
     }
   },
   {
     "id": "Q-D-14_tungsten_size_current_v5_01_400000ec",
     "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Почему choose a larger-diameter вольфрамовый электрод for higher токs?",
+    "difficulty": "medium",
+    "stem": "Зачем выбирать вольфрам большего диаметра для более высоких токов?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increase spatter"
+        "text": "Чтобы увеличить разбрызгивание"
       },
       {
         "id": "CHOICE-2",
-        "text": "Handle higher heat without melting the tip"
+        "text": "Чтобы выдерживать большую тепловую нагрузку без оплавления наконечника"
       },
       {
         "id": "CHOICE-3",
-        "text": "Reduce защитного газа"
+        "text": "Чтобы хуже защищать шов"
       },
       {
         "id": "CHOICE-4",
-        "text": "Avoid filler metal"
+        "text": "Чтобы отказаться от присадки"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Larger вольфрамовый электрод carries more ток without overheating."
+      "CHOICE-2": "Электрод большего диаметра проводит больший ток без перегрева и оплавления вершины."
     }
   },
   {
-    "id": "Q-D-14_tungsten_size_current_v6_06_400000fb",
+    "id": "Q-D-14_er70s2_10000073",
     "taskId": "D-14",
-    "difficulty": "easy",
-    "stem": "Почему choose a larger-diameter вольфрамовый электрод for higher токs?",
+    "difficulty": "medium",
+    "stem": "Какую классификацию присадочного материала обычно используют при GTAW по углеродистой стали?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increase spatter"
+        "text": "ER70S‑2"
       },
       {
         "id": "CHOICE-2",
-        "text": "Handle higher heat without melting the tip"
+        "text": "E7018"
       },
       {
         "id": "CHOICE-3",
-        "text": "Reduce защитного газа"
+        "text": "ER308L"
       },
       {
         "id": "CHOICE-4",
-        "text": "Avoid filler metal"
+        "text": "E71T‑1 (порошковая проволока)"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "ER70S‑2 — деоксидированная сплошная проволока/пруток для GTAW по углеродистым сталям."
+    }
+  },
+  {
+    "id": "Q-D-14_stainless_purge_10000071",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Что предотвращает «сахарение» (окисление) корня шва на нержавеющей стали при GTAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Больший угол наклона горелки"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Задняя продувка инертным газом"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Больше присадки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Переход на DCEP"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Larger вольфрамовый электрод carries more ток without overheating."
+      "CHOICE-2": "Инертная продувка защищает обратную сторону шва до охлаждения ниже температур окисления."
+    }
+  },
+  {
+    "id": "Q-D-14_helium_mixture_v2_03_400000d0",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Добавление гелия к аргону обычно приводит к:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Снижению тепловложения"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Росту тепла/проплавления и повышению скорости перемещения"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Отсутствию необходимости в AC"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Неизбежной пористости"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Смеси He‑Ar повышают напряжение дуги, увеличивая тепловложение и проплавление."
+    }
+  },
+  {
+    "id": "Q-D-14P_0001",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Глубокая разделка, ограниченный доступ: защитный газ срывается, кромки темнеют. Что сделать в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличить расход до 25–30 L/min — чем больше, тем лучше"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Поставить газ-ленс и чашку крупнее (например, №12), держать вылет 6–10 мм и расход 8–12 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Снять чашку и вести без неё — так меньше сопротивление"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Наклонить горелку на 45° от шва — поток обтекает лучше"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Газ-ленс выпрямляет поток, крупная чашка увеличивает покрытие; избыточный расход вызывает турбулентность."
+    }
+  },
+  {
+    "id": "Q-D-14P_0002",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Какой вылет электрода допустим при использовании газ-ленса на чашке №8–12 в узких местах?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0–2 мм — иначе дуга «гуляет»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "8–15 мм при стабильном потоке и правильном угле"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только заподлицо с кромкой чашки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Более 25 мм — так лучше видна ванна"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Газ-ленс позволяет безопасно увеличить вылет без срыва защиты; чрезмерный вылет ухудшает экранирование."
+    }
+  },
+  {
+    "id": "Q-D-14P_0003",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Корневой проход на нержавеющей трубе Ø25–30 мм. Какая продувка (back purge) на старте обычно адекватна?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,5–1 L/min — иначе «сахар» не уйдёт"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "3–6 L/min с контролем утечек/заглушек"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "10–15 L/min для гарантии"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Продувка не нужна при TIG"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Локальная стабильная продувка 3–6 L/min создаёт инертную «подушку» без турбулентности и перерасхода."
+    }
+  },
+  {
+    "id": "Q-D-14P_0004",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "На корне нержавейки появился «сахар» (кристаллическая окалина). Наиболее вероятная причина?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Слишком малый ток"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Недостаточная/отсутствующая продувка корня или утечки в заглушках"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Слишком крупный присадочный пруток"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Слишком длинная дуга"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "«Сахар» почти всегда следствие плохой защиты обратной стороны шва (O₂/влага попадают к ванне)."
+    }
+  },
+  {
+    "id": "Q-D-14P_0005",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Как корректно погасить кратер в конце валика на тонком металле?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Отпустить педаль резко до нуля — ванна сама схватится"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Сделать ступенчатое снижение тока (slope‑out) и добавить каплю присадки в кратер"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Продувку отключить раньше — так быстрее остывает"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Вывести ванну на воздух за контур шва"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Плавный спад тока и подпитка кратера снижают риск продольных трещин/усадки на конце шва."
+    }
+  },
+  {
+    "id": "Q-D-14P_0006",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Работа в тесной позиции (над головой/внутри корпуса), педаль недоступна. Как контролировать тепло?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Перейти на постоянный максимальный ток"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать регулятор на горелке (ползунок/ролик) или кнопочный «профиль» тока"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только менять угол горелки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Отключить продувку для меньшего тепла"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Встроенный контроллер на горелке/программе позволяет дозировать ток, когда педаль нельзя применять."
+    }
+  },
+  {
+    "id": "Q-D-14P_0007",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Как точить вольфрам под DCEN по стали для стабильной дуги?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Радиально, поперёк оси стержня"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Продольно, вдоль оси, с небольшим притуплением на вершине"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Вообще не точить — лучше шарик"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сделать как можно более остро без притупления"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Продольные риски направляют электронный поток, а микропритупление стабилизирует вершину."
+    }
+  },
+  {
+    "id": "Q-D-14P_0008",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Какой наконечник (геометрия) для DCEN по стали наиболее универсален?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Острый 20–30° без площадки"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Конус 60–90° с притуплением ~0,1–0,3 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сферический шарик"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Плоский торец 1 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Конус среднего угла с лёгким притуплением даёт устойчивую дугу и предсказуемую ширину."
+    }
+  },
+  {
+    "id": "Q-D-14P_0009",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Для чашки №8 на стали в нижнем положении какой расход аргона обычно работает «с первого»?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1–2 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "5–8 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "10–15 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "20–25 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для чашки №8 типично 6–8 L/min; слишком большие расходы турбулентят поток."
+    }
+  },
+  {
+    "id": "Q-D-14P_0010",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "На алюминии (AC) видно белую корку оксида и «не берёт». Что скорректировать в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Уменьшить долю EP в балансе"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Увеличить долю EP (cleaning) в балансе AC"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на DCEP"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Снизить частоту AC до 20 Гц"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Добавление EP‑составляющей усиливает катодную очистку оксида алюминия."
+    }
+  },
+  {
+    "id": "Q-D-14P_0011",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Нужно сузить дугу на алюминии (AC) при работе в углу. Что поможет?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Снизить частоту AC до 30–40 Гц"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Повысить частоту AC до ~120–200 Гц"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на DCEP"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Убрать притупление на вольфраме"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Повышение частоты AC сужает столб дуги и улучшает управляемость в уголках."
+    }
+  },
+  {
+    "id": "Q-D-14P_0012",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Тонкая нержавейка 1,0 мм «ведёт» и окрашивается. Ваши действия?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличить ток и скорость, чтобы быстрее пройти"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать медные подкладки/теплоотводы, сократить дугу и подачу тепла"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на CO₂ для охлаждения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чашку уменьшить до №4 и расход до 1 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Холодные подкладки и короткая дуга уменьшают тепловложение и деформации/окраску."
+    }
+  },
+  {
+    "id": "Q-D-14P_0013",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Какой преддув (pre‑flow) обычно достаточно для старта без окисления у чашки №6–8?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,1 с"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0,5–1,0 с"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "3–5 с"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Преддув не нужен при TIG"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Короткий преддув заполняет чашку аргоном, снижая риск загрязнения на старте."
+    }
+  },
+  {
+    "id": "Q-D-14P_0014",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Эмпирическое правило послепротока (post‑flow) для защиты шва и остывания вольфрама:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,2 с на каждые 10 А, мин. 1 с"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1 с на каждые 10 А, но не менее 5 с"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда 20 с независимо от тока"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Послепроток не влияет"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Такой режим защищает горячий электрод и шов; точные значения зависят от материала/чашки."
+    }
+  },
+  {
+    "id": "Q-D-14P_0015",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Толщина листа 2,0 мм (низкоуглеродистая сталь, DCEN). Какой диаметр присадки удобнее начать пробовать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,8 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,6 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "3,2 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "4,0 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для 2 мм заготовок обычно комфортна присадка ~1,6 мм с предсказуемым тепловложением."
+    }
+  },
+  {
+    "id": "Q-D-14P_0016",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Сварка титана: какие цвета на поверхности после шва считаются признаком достаточной защиты?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Синий/серый — норма"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Соломенный/серебристый — приемлемо; синий/серый — пересварка/чистка"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Любые цвета допустимы при аргоне"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чёрный — лучший, «закалённый» шов"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Титан чувствителен к O₂/N₂ при высоких температурах; допустимы светлые оттенки, тёмные — признак бедной защиты."
+    }
+  },
+  {
+    "id": "Q-D-14P_0017",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Приём «walking the cup» на трубе. Что критично для стабильности?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Большой угол горелки ~45°"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Опорный контакт чашки и короткие перекаты, малая дуга"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Максимально длинная дуга для обзора"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Вылет вольфрама >20 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Опирая чашку и перекатывая её короткими шагами, держат стабильную защиту и одинаковый зазор."
+    }
+  },
+  {
+    "id": "Q-D-14P_0018",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Когда целесообразно переходить на водоохлаждаемую горелку?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "При токах до 80 А на тонком листе"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "При длительной работе на токах ~200 А и выше/высоком ПВ"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только на алюминии"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Когда нет доступа к воде — для универсальности"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Водоохлаждение снижает нагрев рукоятки/кабеля и повышает ПВ на больших токах."
+    }
+  },
+  {
+    "id": "Q-D-14P_0019",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "На DC дуга «тянется» в сторону (магнитное дутьё). Что поможет в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Удлинить дугу"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Переставить «массу» ближе к зоне шва и изменить направление подачи"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Повысить расход газа до 25 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сделать шарик на вольфраме"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Перенос зажима массы и изменение пути тока уменьшают неравномерность магнитного поля."
+    }
+  },
+  {
+    "id": "Q-D-14P_0020",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Корень TIG на трубопроводе под продувкой. До какого уровня кислорода в полости стремятся довести перед началом?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈5% O₂ — достаточно"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈0,1% O₂ (≤1000 ppm) или ниже, в зависимости от требований"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈2% O₂ — для экономии газа"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Уровень O₂ не важен, лишь бы была продувка"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Низкое содержание O₂ обеспечивает светлый корень без «сахара»; целевой порог задаёт ТЗ/стандарт."
+    }
+  },
+  {
+    "id": "Q-D-14P_0021",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Цех с рядом ПЛК/датчиков рядом с зоной сварки. Нужно минимизировать помехи при запуске дуги TIG. Какой прием предпочтителен?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "HF-старт с максимальной мощностью и длинными кабелями"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lift-arc (если доступен), зажим массы как можно ближе и жгутование кабелей вместе"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Увеличить частоту пульса до 500 Гц"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Подключить массу к соседней балке — она «поглотит» помехи"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Lift‑arc снижает ВЧ‑наводки; короткий путь тока и параллельная прокладка кабелей уменьшают петли и наведённые помехи."
+    }
+  },
+  {
+    "id": "Q-D-14P_0022",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Сталь, DCEN ~120 А, работа шнуром 1,6 мм. С какого диаметра вольфрама начать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1,0 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,6 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "2,4 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "3,2 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для ~120 А DCEN 1,6 мм обычно стабильно держит дугу без избыточного притупления; 2,4 мм пригодится на больших токах."
+    }
+  },
+  {
+    "id": "Q-D-14P_0023",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Без газ-ленса (обычный коллет-боди) какой вылет вольфрама предпочтителен?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0–1 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "2–3 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "8–12 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Более 20 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "При обычной чашке без газ‑ленса стабильнее держать короткий вылет ~2–3 мм для надёжного экранирования."
+    }
+  },
+  {
+    "id": "Q-D-14P_0024",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Нержавеющая сталь в открытой зоне, чашка №12 с газ-ленсом. Какой диапазон расхода аргона чаще всего «встаёт»?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "4–6 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "8–10 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "12–16 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "20–25 L/min"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Крупная чашка требует большего, но умеренного потока: 12–16 L/min обычно хватает без турбулентности."
+    }
+  },
+  {
+    "id": "Q-D-14P_0025",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Перед сваркой алюминия (AC) кромки матово‑белые, покрыты оксидом. Что сделать в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Пройтись угловой шлифмашиной лепестковым кругом по металлу и сразу варить"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Обезжирить и механически снять оксид «своей» нержавеющей щёткой, используемой только для Al"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Добавить масла в сопло для «смазки»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Понизить частоту AC до минимума"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Оксид Al₂O₃ тугоплавок; нужна чистка и обезжиривание, лучше отдельной щёткой, не «переносящей» загрязнения."
+    }
+  },
+  {
+    "id": "Q-D-14P_0026",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "На алюминии (AC) появилась мощная зона травления и быстро шарится кончик вольфрама. Что скорректировать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличить долю EP (cleaning)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снизить долю EP (больше EN) в балансе AC"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на DCEP"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сильно поднять расход газа"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Чрезмерный EP перегревает электрод и расширяет зону очистки; уменьшение EP стабилизирует наконечник."
+    }
+  },
+  {
+    "id": "Q-D-14P_0027",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Нужно шире «растянуть» ванну на алюминии (AC) для лучшего смачивания в плоском. Что поможет?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Понизить частоту AC до ~60–80 Гц"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Повысить частоту AC до 200–300 Гц"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на DCEN"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Убрать притупление на вольфраме"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Более низкая частота AC делает дугу «шире», облегчая растекание ванны на алюминии."
+    }
+  },
+  {
+    "id": "Q-D-14P_0028",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Требуется послепроток после прохода 180 А по стали, чашка №8. По правилу «≈1 с на 10 А» сколько держать минимум?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈6 с"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈12 с"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈18 с"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈30 с"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "180 А ≈ 18 с; этого обычно достаточно для остывания вольфрама и защиты кратера."
+    }
+  },
+  {
+    "id": "Q-D-14P_0029",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Объём полости для продувки ~3 литра. Нужны 3 обмена объёма при расходе 6 L/min. Сколько времени закладывать на продувку?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈15 с"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈30 с"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈90 с"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈180 с"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "3 объёма × 3 л = 9 л; при 6 L/min нужно ~1,5 мин, то есть ≈90 секунд."
+    }
+  },
+  {
+    "id": "Q-D-14P_0030",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "При подаче присадки на стали дуга «стреляет» и провоцирует чёрные точки. Как изменить прием?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Давать присадку с «холодной» стороны, вне газовой шторки"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Заводить присадку в передний край ванны, удерживая её кончик внутри газового потока"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Увеличить длину дуги до 6–8 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Опустить расход газа до минимума"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Подача в передний край ванны и внутри газовой «шапки» предотвращает окисление и «перец»."
+    }
+  },
+  {
+    "id": "Q-D-14P_0031",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Вне камеры нужно сварить титан на плоскости с требованием «светлый» шов. Что критично из перечисленного?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Повысить ток, чтобы быстрее пройти"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Большая чашка (№12+), газ-ленс, хвостовой щиток/шторка и увеличенный пост‑флоу с удержанием факела над швом"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Снизить расход до 3 L/min — меньше турбулентность"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сократить преддув до 0,1 с"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Титан требует расширенного экранирования: большая чашка, trailing‑shield и долгое пост‑продувание до остывания."
+    }
+  },
+  {
+    "id": "Q-D-14P_0032",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Прихватки на нержавейке под продувкой: как уменьшить риск «сахара» на корне?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Выключить продувку на время прихваток"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Держать продувку, маленький ток/короткая дуга, короткий пост‑флоу на месте прихватки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сильно разогреть и быстро погасить без присадки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Открыть вентиляционные отверстия пошире"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Минимальный тепловклад при сохранении защиты с обеих сторон снижает окисление корня."
+    }
+  },
+  {
+    "id": "Q-D-14P_0033",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "При установке заглушек для продувки трубы что важно предусмотреть?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Полную герметичность без выхода газа"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Небольшой контрольный «дыхательный» выход (bleed) для исключения избыточного давления"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Заполнение полости кислородом"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Отсутствие очистки перед сваркой"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Небольшой выход предотвращает надув/взрыв заглушек и облегчает смену атмосферы."
+    }
+  },
+  {
+    "id": "Q-D-14P_0034",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "На готовых лицевых поверхностях TIG лучше начинать дугу:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Прямо на видимой грани — так быстрее"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "На технологических планках (run-on) или внутри разделки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "На обработанной полке в стороне от шва"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Где угодно — значения не имеет"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Запуски на планках/в зоне разделки предотвращают дуговые пятна на лицевой поверхности."
+    }
+  },
+  {
+    "id": "Q-D-14P_0035",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Нужно больше тепла и «тяги» на толстом алюминии. Что даст ощутимый прирост, сохраняя TIG‑процесс?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Переход на смесь Ar/He (или He) при корректировке настроек"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Понизить расход газа до 4 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сильно увеличить EP в AC‑балансе"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Перейти на DCEN без присадки"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Гелий повышает теплоперенос и глубину проплавления; требует адаптации тока/скорости."
+    }
+  },
+  {
+    "id": "Q-D-14P_0036",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Конец шва на нержавейке темнеет («фиш-ай»). Что исправить в приеме гашения?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сразу отпустить ток и убрать факел"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Сделать slope‑out, задержаться чашкой над кратером под пост‑флоу и, при необходимости, добавить каплю присадки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Поднять дугу на 10 мм для остывания"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Уменьшить расход газа до 3 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Плавный спад и продолжение экранирования предотвращают окисление и усадочные дефекты на конце."
+    }
+  },
+  {
+    "id": "Q-D-14P_0037",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Работа DCEN по стали, вольфрам 1,6 мм. Какой ориентир по длине дуги сохранит узкую ЗТВ и стабильность?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈1–1,5 диаметра электрода (около 1,5–2,5 мм)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "5–6 мм — лучше обзор"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда нулевой зазор — касаться металла"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Неважно, дуга может быть любой длины"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Короткая дуга ~1–1,5 D даёт концентрированную теплоту и устойчивое экранирование."
+    }
+  },
+  {
+    "id": "Q-D-14P_0038",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Корень TIG по нержавейке с продувкой «провисает» (icicles). Что поправить в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Повысить ток и скорость"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чуть снизить ток, укоротить дугу и добавить ритмичную подачу присадки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Убрать присадку и варить автогеном"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Полностью перекрыть bleed-отверстие"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Меньше тепла + короткая дуга и опора присадкой стабилизируют корень, ограничивая провис."
+    }
+  },
+  {
+    "id": "Q-D-14P_0039",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "Вольфрам коснулся ванны и «подсосал» металл. Ваши действия?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Продолжать — само очистится"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Остановиться, обрезать загрязнённый кончик и переточить продольно с притуплением"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Добавить кислород в смесь газа"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Снизить расход газа до 2 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Загрязнённый вольфрам даёт нестабильную дугу и пористость; нужна переточка по оси с лёгким притуплением."
+    }
+  },
+  {
+    "id": "Q-D-14P_0040",
+    "taskId": "D-14",
+    "difficulty": "medium",
+    "stem": "На объекте запрещены торированные электроды. Чем их чаще всего заменяют для универсальной работы (DC/сталь/нерж)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чистый вольфрам (WP)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Церий (WCe 2%)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Лантан (WLa 1,5–2%)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Иттрий (WY 2%)"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "2% лантанированные — распространённая альтернатива с хорошими пусками и стабильностью на DC/AC."
     }
   }
 ]

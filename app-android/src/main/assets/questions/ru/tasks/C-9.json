@@ -1,1178 +1,870 @@
 [
   {
-    "id": "Q-C-9_acetylene_limit_v1_06_3000009c",
+    "id": "Q-C-9P_0001",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Каково максимальное recommended working pressure for acetylene?",
+    "difficulty": "medium",
+    "stem": "Как правильнее проверять соединения на утечки в oxy-fuel системе?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Above 30 psi (207 kPa) is safe"
+        "text": "Открытым пламенем — быстрее видно"
       },
       {
         "id": "CHOICE-2",
-        "text": "Do not use acetylene above 15 psi (≈103 kPa)"
+        "text": "Слушать на слух — достаточно"
       },
       {
         "id": "CHOICE-3",
-        "text": "Any pressure is fine with arrestors"
+        "text": "Нанести мыльный раствор/утечкоискатель и наблюдать пузырение"
       },
       {
         "id": "CHOICE-4",
-        "text": "Всегда 5 psi or less"
+        "text": "Погрузить горелку в воду"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-2": "Acetylene is unstable above ~15 psi; keep working pressure below this."
+      "CHOICE-3": "Мыльный раствор безопасно выявляет микропузырение; открытое пламя и «на слух» недопустимы."
     }
   },
   {
-    "id": "Q-C-9_acetylene_limit_v2_05_300000a6",
+    "id": "Q-C-9P_0002",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Каково максимальное recommended working pressure for acetylene?",
+    "difficulty": "medium",
+    "stem": "Последовательность розжига ручной горелки:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Above 30 psi (207 kPa) is safe"
+        "text": "Открыть кислород, поджечь, затем добавить ацетилен"
       },
       {
         "id": "CHOICE-2",
-        "text": "Do not use acetylene above 15 psi (≈103 kPa)"
+        "text": "Открыть оба газа на максимум и поджечь"
       },
       {
         "id": "CHOICE-3",
-        "text": "Any pressure is fine with arrestors"
+        "text": "Чуть открыть ацетилен на горелке, поджечь, затем добавить кислород до нейтрального пламени"
       },
       {
         "id": "CHOICE-4",
-        "text": "Всегда 5 psi or less"
+        "text": "Сначала поджечь заготовку, затем поднести горелку"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-2": "Acetylene is unstable above ~15 psi; keep working pressure below this."
+      "CHOICE-3": "Стартуют с небольшого потока горючего, затем добавляют кислород для настройки пламени."
     }
   },
   {
-    "id": "Q-C-9_acetylene_limit_v3_04_300000b0",
+    "id": "Q-C-9P_0003",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Каково максимальное recommended working pressure for acetylene?",
+    "difficulty": "medium",
+    "stem": "Полное безопасное выключение системы после работы включает:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Above 30 psi (207 kPa) is safe"
+        "text": "Только закрыть вентили на горелке — редукторы не трогать"
       },
       {
         "id": "CHOICE-2",
-        "text": "Do not use acetylene above 15 psi (≈103 kPa)"
+        "text": "Закрыть баллоны, сбросить давление через горелку, вывести регулировочные винты редукторов в ноль"
       },
       {
         "id": "CHOICE-3",
-        "text": "Any pressure is fine with arrestors"
+        "text": "Оставить давление в шлангах — на завтра будет быстрее"
       },
       {
         "id": "CHOICE-4",
-        "text": "Всегда 5 psi or less"
+        "text": "Сбросить давление через редуктор, баллоны оставить открытыми"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Acetylene is unstable above ~15 psi; keep working pressure below this."
+      "CHOICE-2": "Перекрываем баллоны, стравливаем линии, отпускаем винты редукторов — так снимается нагрузка и риск."
+    }
+  },
+  {
+    "id": "Q-C-9P_0004",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Как должно быть установлено положение газовых баллонов при работе/хранении?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Лёжа — так устойчивее"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Стоя вертикально и надёжно закреплены (цепью/ремнём)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Под наклоном на тачке без фиксации"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Любое — если есть колпак"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Баллоны держат вертикально и фиксируют, чтобы исключить падение и перенос растворителя (ацетилен)."
+    }
+  },
+  {
+    "id": "Q-C-9P_0005",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Правило 1/7 для ацетилена: из баллона T (~300 ft³) допустимо снимать не более…",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈25 CFH"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈43 CFH"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈70 CFH"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈100 CFH"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1/7 от 300 ft³ ≈ 42,9 CFH — большее расходование тянет ацетон и нестабильность пламени."
+    }
+  },
+  {
+    "id": "Q-C-9P_0006",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Переведите 50 CFH (куб. фут/час) в L/min (литр/мин):",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈8 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈12 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈24 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈80 L/min"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "1 CFH ≈ 0,472 L/min; 50×0,472 ≈ 23,6 L/min."
+    }
+  },
+  {
+    "id": "Q-C-9P_0007",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Расход на розебуде требует 25 L/min ацетилена. Это сколько в CFH?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈18 CFH"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈53 CFH"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈75 CFH"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈125 CFH"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "25 L/min ×60 /28,3168 ≈ 53 CFH."
+    }
+  },
+  {
+    "id": "Q-C-9P_0008",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Розебуд требует 80 CFH ацетилена, а у вас один T-баллон. Какой вариант безопасен?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Открыть ацетилен «на полную» — редуктор удержит"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снизить давление кислорода — и продолжать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Использовать коллектор из нескольких баллонов или перейти на альтернативное топливо"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Периодически переворачивать баллон для «подлива»"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "80 CFH превышает 1/7‑правило одного баллона; решение — коллектор/другое топливо."
+    }
+  },
+  {
+    "id": "Q-C-9P_0009",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Где устанавливают элементы защиты от обратного тока/пламени?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Только на кислороде, у редуктора"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check valve (обратный клапан) на горелке; flashback arrestor (огнепреградитель) на линиях обоих газов у редуктора/горелки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только на ацетилене, у горелки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Эти устройства не нужны при нейтральном пламени"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Комбинация обратных клапанов и огнепреградителей на обеих линиях повышает защиту от обратного пламени."
+    }
+  },
+  {
+    "id": "Q-C-9P_0010",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Чем отличается обратный клапан от огнепреградителя?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ничем — это одно и то же"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Обратный клапан предотвращает переток газов, огнепреградитель гасит пламя/фронт горения"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Огнепреградитель только фильтрует пыль"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Обратный клапан гасит пламя, а огнепреградитель — нет"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Назначения разные: переток vs останов пламени."
+    }
+  },
+  {
+    "id": "Q-C-9P_0011",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "При признаках flashback (писк, нагрев корпуса) ваши первые действия:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Продолжать, пока не погаснет само"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Немедленно закрыть подачу на горелке, перекрыть баллоны, дать остыть, проверить защиту/сопло"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Добавить кислород для охлаждения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Окунуть горелку в воду и продолжить"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Быстро остановить подачу, охладить и осмотреть — минимизирует риск повреждения и возгорания в шлангах."
+    }
+  },
+  {
+    "id": "Q-C-9P_0012",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Когда и как продувают шланги после монтажа редукторов?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Никогда — достаточно визуального осмотра"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Поочерёдно открыть на горелке каждый газ на несколько секунд в проветриваемом месте без источников зажигания"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Одновременно открыть оба газа — быстрее продуется"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Продувать через сопло, поджигая пламя"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Раздельная краткая продувка удаляет воздух/влагу без смешения газов."
+    }
+  },
+  {
+    "id": "Q-C-9P_0013",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Насколько открывают вентиль ацетиленового баллона в работе?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Полностью до упора (backseat)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Примерно на 1/2–3/4 оборота (не более 1 оборота)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "На 2–3 оборота"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только на 1/8 оборота — иначе опасно"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Небольшое открытие позволяет быстро перекрыть вентиль при нештатной ситуации."
+    }
+  },
+  {
+    "id": "Q-C-9P_0014",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Как открывать вентиль кислородного баллона?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Быстро, на половину оборота — и хватит"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Медленно и полностью (до заднего седла)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Не открывать — редуктор сам подтянет"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Рывком до упора"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Открывают медленно и полностью для корректной работы клапана и стабильного потока."
+    }
+  },
+  {
+    "id": "Q-C-9P_0015",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Что делают с регулировочными винтами редукторов при полном отключении системы?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оставляют на рабочем давлении — чтобы не сбивать настройки"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Выворачивают до нуля, снимая нагрузку с пружины/мембраны"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Затягивают до упора — чтобы не вибрировали"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Это не важно"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Ослабление винта предотвращает «залипание» пружины и продлевает ресурс редуктора."
+    }
+  },
+  {
+    "id": "Q-C-9P_0016",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Почему нельзя использовать детали/трубки из меди высокой чистоты с ацетиленом?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Медь быстро корродирует от кислорода"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Образуется взрывоопасный медный ацетилид"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Падает теплопроводность соединений"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Это просто рекомендация, а не опасность"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "С ацетиленом некоторые цветные металлы образуют неустойчивые ацетилиды, опасные при ударе."
+    }
+  },
+  {
+    "id": "Q-C-9P_0017",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Как безопасно перемещать газовые баллоны по цеху?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Катить по полу лёжа"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Поднять магнитным краном за корпус"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "На спец. тележке с цепью, с надетым колпаком"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Перекатывать «на ребре», придерживая ногой"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Используют тележку/цепь и колпак — исключают падение и удар по вентилю."
+    }
+  },
+  {
+    "id": "Q-C-9P_0018",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Перед резкой закрытого резервуара/полости следует:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Заполнить кислородом — чтобы выжечь пары"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чуть приоткрыть крышку и резать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Очистить/провентилировать, выполнить газоанализ и оформить наряд‑допуск на огневые работы"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Залить немного воды внутрь — этого достаточно"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Резка в замкнутых объёмах требует подготовки: удаление паров, контроль атмосферы и разрешение."
+    }
+  },
+  {
+    "id": "Q-C-9P_0019",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Наиболее вероятная причина «хлопка» (backfire) во время резки:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Слишком чистые шланги"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Касание соплом металла/шлака или засорение каналов"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Переизбыток вентиляции в зоне"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Любой наклон горелки более 5°"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Контакт сопла и засорение создают локальное перегревание/обратную волну — типичная причина хлопка."
+    }
+  },
+  {
+    "id": "Q-C-9P_0020",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Можно ли применять ФУМ‑ленту/тефлон на соединении редуктора с баллоном?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Да, всегда — улучшает герметичность"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Нет, CGA‑соединение уплотняется металлом/прокладкой; лента не применяется"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только на кислороде — он суше"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только если есть утечка — намотать побольше"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Баллон‑редуктор герметизируются по уплотнительным поверхностям; лента допустима лишь на соответствующих трубных резьбах дальше по системе."
+    }
+  },
+  {
+    "id": "Q-C-9P_0021",
+    "taskId": "C-9",
+    "difficulty": "medium",
+    "stem": "Типовая ориентация резака при прямолинейной резке толстой пластины:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Строго вертикально к поверхности"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "С небольшим «опережающим» наклоном 10–20° по ходу реза"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Под 45° от себя — чтобы сдувать шлак"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Носиком назад — удобнее держать"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Небольшой опережающий угол улучшает удаление шлака и устойчивость струи при толстом металле."
     }
   },
   {
     "id": "Q-C-9_acetylene_pressure_1000003c",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Что — the maximum recommended working pressure for ацетилен?",
+    "difficulty": "medium",
+    "stem": "Каково максимально рекомендуемое рабочее давление для ацетилена?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Безопасно выше 30 psi (207 кПа)"
+        "text": "Безопасно выше 30 psi (≈207 кПа)"
       },
       {
         "id": "CHOICE-2",
-        "text": "Не использовать ацетилен выше 15 psi (≈103 кПа)"
+        "text": "Не использовать ацетилен свыше 15 psi (≈103 кПа)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Any pressure — fine with arrestors"
+        "text": "Любое давление допустимо при наличии огнепреградителей"
       },
       {
         "id": "CHOICE-4",
-        "text": "Always use 5 psi or less"
+        "text": "Всегда 5 psi или меньше"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Ацетилен becomes unstable above ~15 psi; keep working pressure below this limit."
+      "CHOICE-2": "Ацетилен становится нестабилен примерно выше 15 psi; рабочее давление держат ниже этого уровня."
     }
   },
   {
     "id": "Q-C-9_crack_valves_1000003b",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какова цель 'растрескивание' cylinder valves briefly before attaching regulators?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To waste gas"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To blow dust/debris away from the outlet seat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the valve"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To test the regulator threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Растрескивание clears contaminants that could damage regulators."
-    }
-  },
-  {
-    "id": "Q-C-9_flashback_backfire_10000037",
-    "taskId": "C-9",
     "difficulty": "medium",
-    "stem": "Какое утверждение о backfire vs flashback — верно?",
+    "stem": "Зачем кратковременно «приоткрывать» вентиль баллона перед присоединением редуктора (cracking)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Backfire means flame travels into the hoses"
+        "text": "Чтобы выпустить газ впустую"
       },
       {
         "id": "CHOICE-2",
-        "text": "Flashback — flame burning into the torch/hose; backfire — a momentary pop"
+        "text": "Чтобы выдуть пыль/сор с седла выхода"
       },
       {
         "id": "CHOICE-3",
-        "text": "There — no difference"
+        "text": "Чтобы охладить вентиль"
       },
       {
         "id": "CHOICE-4",
-        "text": "Backfire — preferred and safer"
+        "text": "Чтобы проверить резьбу редуктора"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Backfire — a brief pop at the наконечник; flashback sustains into the torch/hose and — hazardous."
-    }
-  },
-  {
-    "id": "Q-C-9_flashback_vs_backfire_v1_01_30000097",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "Какое утверждение about хлопка vs обратного удара пламени is correct?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Backfire means flame travels into the hoses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flashback is flame burning into the torch/hose; хлопка is a momentary pop"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "There is no difference"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backfire is preferred and safer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Backfire is a brief pop; обратного удара пламени sustains into torch/hose and is hazardous."
-    }
-  },
-  {
-    "id": "Q-C-9_flashback_vs_backfire_v2_00_300000a1",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "Какое утверждение about хлопка vs обратного удара пламени is correct?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Backfire means flame travels into the hoses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flashback is flame burning into the torch/hose; хлопка is a momentary pop"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "There is no difference"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backfire is preferred and safer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Backfire is a brief pop; обратного удара пламени sustains into torch/hose and is hazardous."
-    }
-  },
-  {
-    "id": "Q-C-9_flashback_vs_backfire_v2_10_300000ab",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "Какое утверждение about хлопка vs обратного удара пламени is correct?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Backfire means flame travels into the hoses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flashback is flame burning into the torch/hose; хлопка is a momentary pop"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "There is no difference"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backfire is preferred and safer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Backfire is a brief pop; обратного удара пламени sustains into torch/hose and is hazardous."
-    }
-  },
-  {
-    "id": "Q-C-9_flashback_vs_backfire_v3_09_300000b5",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "Какое утверждение about хлопка vs обратного удара пламени is correct?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Backfire means flame travels into the hoses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flashback is flame burning into the torch/hose; хлопка is a momentary pop"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "There is no difference"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backfire is preferred and safer"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Backfire is a brief pop; обратного удара пламени sustains into torch/hose and is hazardous."
-    }
-  },
-  {
-    "id": "Q-C-9_fuel_threads_10000039",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое утверждение о кислородно-топливного hose/torch threads — верно?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Fuel gas fittings use right-hand threads"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fuel gas fittings use left-hand threads with notches"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Кислород uses left-hand threads"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Both use tapered pipe threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Fuel gas fittings — left-hand (often with notches); кислород — right-hand to предотвращает mixups."
-    }
-  },
-  {
-    "id": "Q-C-9_fuel_threads_left_v1_03_30000099",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое утверждение about кислородно‑топливной fittings is true?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Fuel gas fittings use right-hand threads"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen uses left-hand threads"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Both use tapered pipe threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
-    }
-  },
-  {
-    "id": "Q-C-9_fuel_threads_left_v2_02_300000a3",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое утверждение about кислородно‑топливной fittings is true?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Fuel gas fittings use right-hand threads"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen uses left-hand threads"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Both use tapered pipe threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
-    }
-  },
-  {
-    "id": "Q-C-9_fuel_threads_left_v3_01_300000ad",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое утверждение about кислородно‑топливной fittings is true?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Fuel gas fittings use right-hand threads"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen uses left-hand threads"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Both use tapered pipe threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
-    }
-  },
-  {
-    "id": "Q-C-9_fuel_threads_left_v4_00_300000b7",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое утверждение about кислородно‑топливной fittings is true?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Fuel gas fittings use right-hand threads"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fuel gas fittings use left-hand threads (often notched); oxygen is right-hand"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Oxygen uses left-hand threads"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Both use tapered pipe threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Left-hand threads help prevent misconnections with fuel gas lines."
+      "CHOICE-2": "Краткое приоткрытие удаляет загрязнения, которые могут повредить редуктор."
     }
   },
   {
     "id": "Q-C-9_neutral_flame_10000036",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое описание соответствует a neutral кислородно-топливного flame?",
+    "difficulty": "medium",
+    "stem": "Какое описание соответствует нейтральному пламени (oxy‑fuel)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "A long carburizing (ацетилен) feather"
+        "text": "Длинное науглероживающее «перо» ацетилена"
       },
       {
         "id": "CHOICE-2",
-        "text": "A balanced inner cone with no feather"
+        "text": "Сбалансированный внутренний конус без пера"
       },
       {
         "id": "CHOICE-3",
-        "text": "An oxidizing feather on the inner cone"
+        "text": "Окислительное «перо» на внутреннем конусе"
       },
       {
         "id": "CHOICE-4",
-        "text": "A loud, popping flame with backfire"
+        "text": "Громкое хлопающее пламя"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Neutral flame has a well-defined cone and no ацетилен feather."
+      "CHOICE-2": "Нейтральное пламя имеет чёткий внутренний конус без ацетиленового «пера»."
     }
   },
   {
-    "id": "Q-C-9_neutral_flame_id_v1_00_30000096",
+    "id": "Q-C-9_fuel_threads_10000039",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое описание matches a neutral кислородно‑топливной flame?",
+    "difficulty": "medium",
+    "stem": "Какое утверждение о резьбах шлангов/соединений для газокислородной резки верно?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "A long fuel-rich (acetylene) feather"
+        "text": "Соединения для горючего газа — с правой резьбой"
       },
       {
         "id": "CHOICE-2",
-        "text": "A balanced inner cone with no feather"
+        "text": "Соединения для горючего газа — с левой резьбой (часто с насечками); кислород — с правой"
       },
       {
         "id": "CHOICE-3",
-        "text": "An oxidizing feather on the inner cone"
+        "text": "Кислород — с левой резьбой"
       },
       {
         "id": "CHOICE-4",
-        "text": "A loud popping flame"
+        "text": "Оба используют коническую трубную резьбу"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
-    }
-  },
-  {
-    "id": "Q-C-9_neutral_flame_id_v1_10_300000a0",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое описание matches a neutral кислородно‑топливной flame?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "A long fuel-rich (acetylene) feather"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "A balanced inner cone with no feather"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "An oxidizing feather on the inner cone"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A loud popping flame"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
-    }
-  },
-  {
-    "id": "Q-C-9_neutral_flame_id_v2_09_300000aa",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое описание matches a neutral кислородно‑топливной flame?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "A long fuel-rich (acetylene) feather"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "A balanced inner cone with no feather"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "An oxidizing feather on the inner cone"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A loud popping flame"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
-    }
-  },
-  {
-    "id": "Q-C-9_neutral_flame_id_v3_08_300000b4",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Какое описание matches a neutral кислородно‑топливной flame?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "A long fuel-rich (acetylene) feather"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "A balanced inner cone with no feather"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "An oxidizing feather on the inner cone"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A loud popping flame"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Neutral flame has a well-defined inner cone without an acetylene feather."
-    }
-  },
-  {
-    "id": "Q-C-9_oxygen_no_oil_v1_04_3000009a",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Что is the correct practice regarding oxygen equipment?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use oil/grease to stop leaks"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Никогда use oil/grease on oxygen equipment"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Open acetylene valves fully back-seated"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do not crack cylinder valves before attaching regulators"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
-    }
-  },
-  {
-    "id": "Q-C-9_oxygen_no_oil_v2_03_300000a4",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Что is the correct practice regarding oxygen equipment?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use oil/grease to stop leaks"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Никогда use oil/grease on oxygen equipment"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Open acetylene valves fully back-seated"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do not crack cylinder valves before attaching regulators"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
-    }
-  },
-  {
-    "id": "Q-C-9_oxygen_no_oil_v3_02_300000ae",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Что is the correct practice regarding oxygen equipment?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use oil/grease to stop leaks"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Никогда use oil/grease on oxygen equipment"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Open acetylene valves fully back-seated"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do not crack cylinder valves before attaching regulators"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
-    }
-  },
-  {
-    "id": "Q-C-9_oxygen_no_oil_v4_01_300000b8",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Что is the correct practice regarding oxygen equipment?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use oil/grease to stop leaks"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Никогда use oil/grease on oxygen equipment"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Open acetylene valves fully back-seated"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do not crack cylinder valves before attaching regulators"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Oil/grease can ignite violently in oxygen systems."
+      "CHOICE-2": "Левая резьба на линиях горючего предотвращает ошибочные соединения с кислородом."
     }
   },
   {
     "id": "Q-C-9_oxygen_oil_1000003a",
     "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Что — the верно practice regarding кислород equipment?",
+    "difficulty": "medium",
+    "stem": "Как правильно обращаться с кислородным оборудованием?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Использовать масло/смазку для предотвращения утечек"
+        "text": "Использовать масло/жир для устранения утечек"
       },
       {
         "id": "CHOICE-2",
-        "text": "Никогда не использовать масло/смазку на кислородном оборудовании"
+        "text": "Никогда не применять масло/жир на кислородном оборудовании"
       },
       {
         "id": "CHOICE-3",
-        "text": "Open ацетилен valves fully back-seated"
+        "text": "Полностью откидывать ацетиленовый вентиль в «заднее седло»"
       },
       {
         "id": "CHOICE-4",
-        "text": "not трещина cylinder valves before attaching regulators"
+        "text": "Не «приоткрывать» вентиль перед установкой редуктора"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Oil/grease can ignite violently in pure кислород."
+      "CHOICE-2": "Масла и смазки могут воспламеняться в среде чистого кислорода."
     }
   },
   {
     "id": "Q-C-9_pierce_technique_10000038",
     "taskId": "C-9",
     "difficulty": "medium",
-    "stem": "Какой верный приём для piercing a plate with кислородно-топливного?",
+    "stem": "Какая техника прожига листа/пластины газокислородной резкой является корректной?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Place the наконечник flat and go to full кислород immediately"
+        "text": "Поставить сопло плашмя и сразу дать полный кислород"
       },
       {
         "id": "CHOICE-2",
-        "text": "Tilt the наконечник, предварительного подогрева, then use the кислород jet to pierce"
+        "text": "Наклонить сопло, прогреть, затем включить струю кислорода для прожига"
       },
       {
         "id": "CHOICE-3",
-        "text": "Только start on the edge"
+        "text": "Всегда начинать только с края"
       },
       {
         "id": "CHOICE-4",
-        "text": "Point straight down without предварительного подогрева"
+        "text": "Держать сопло строго вертикально без прогрева"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Preheating and a slight tilt help предотвращает blowback and наконечник damage."
-    }
-  },
-  {
-    "id": "Q-C-9_piercing_technique_v1_02_30000098",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "For piercing a plate with кислородно‑топливной, a good technique is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Place the сопла flat and go to full oxygen immediately"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Tilt the сопла, подогрева, then use the oxygen jet to pierce"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только start from the edge"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down without подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and сопла damage."
-    }
-  },
-  {
-    "id": "Q-C-9_piercing_technique_v2_01_300000a2",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "For piercing a plate with кислородно‑топливной, a good technique is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Place the сопла flat and go to full oxygen immediately"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Tilt the сопла, подогрева, then use the oxygen jet to pierce"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только start from the edge"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down without подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and сопла damage."
-    }
-  },
-  {
-    "id": "Q-C-9_piercing_technique_v3_00_300000ac",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "For piercing a plate with кислородно‑топливной, a good technique is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Place the сопла flat and go to full oxygen immediately"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Tilt the сопла, подогрева, then use the oxygen jet to pierce"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только start from the edge"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down without подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and сопла damage."
-    }
-  },
-  {
-    "id": "Q-C-9_piercing_technique_v3_10_300000b6",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "For piercing a plate with кислородно‑топливной, a good technique is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Place the сопла flat and go to full oxygen immediately"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Tilt the сопла, подогрева, then use the oxygen jet to pierce"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только start from the edge"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down without подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat and a slight tilt help prevent blowback and сопла damage."
+      "CHOICE-2": "Предпрогрев и небольшой наклон снижают обратный выброс шлака и риск повреждения сопла."
     }
   },
   {
     "id": "Q-C-9_preheat_setting_v1_08_3000009e",
     "taskId": "C-9",
     "difficulty": "medium",
-    "stem": "Insufficient подогрева during cutting often causes:",
+    "stem": "К чему часто приводит недостаточный подогрев при резке?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Smooth, slag-free cuts"
+        "text": "К гладким резам без шлака"
       },
       {
         "id": "CHOICE-2",
-        "text": "Excess slag and slow starts"
+        "text": "К избытку шлака и «тяжёлому» старту"
       },
       {
         "id": "CHOICE-3",
-        "text": "Narrow пропил (kerf) and square edges"
+        "text": "К узкой керфе и идеальной прямолинейности"
       },
       {
         "id": "CHOICE-4",
-        "text": "No change"
+        "text": "Без изменений"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Too little подогрева leads to slagging and poor starts."
-    }
-  },
-  {
-    "id": "Q-C-9_preheat_setting_v2_07_300000a8",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "Insufficient подогрева during cutting often causes:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Smooth, slag-free cuts"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Excess slag and slow starts"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Narrow пропил (kerf) and square edges"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No change"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too little подогрева leads to slagging and poor starts."
-    }
-  },
-  {
-    "id": "Q-C-9_preheat_setting_v3_06_300000b2",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "Insufficient подогрева during cutting often causes:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Smooth, slag-free cuts"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Excess slag and slow starts"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Narrow пропил (kerf) and square edges"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No change"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too little подогрева leads to slagging and poor starts."
+      "CHOICE-2": "Слишком малый подогрев ухудшает воспламенение и формирование струи, нарастает шлак."
     }
   },
   {
     "id": "Q-C-9_tip_cleaning_v1_07_3000009d",
     "taskId": "C-9",
     "difficulty": "medium",
-    "stem": "Почему clean кислородно‑топливной cutting соплаs with correct сопла cleaners?",
+    "stem": "Зачем очищать режущие сопла штатными ершиками/калибрами?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To enlarge the orifices for more flow"
+        "text": "Чтобы увеличить отверстия для большего расхода"
       },
       {
         "id": "CHOICE-2",
-        "text": "To maintain proper orifice size/shape and cut quality"
+        "text": "Чтобы сохранить правильный размер/форму каналов и качество реза"
       },
       {
         "id": "CHOICE-3",
-        "text": "To reduce подогрева"
+        "text": "Чтобы уменьшить подогрев"
       },
       {
         "id": "CHOICE-4",
-        "text": "To scratch off plating"
+        "text": "Чтобы содрать гальваническое покрытие"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Proper cleaners keep orifices correct, preserving flame shape and quality."
+      "CHOICE-2": "Корректные чистики сохраняют геометрию отверстий, обеспечивая стабильную форму пламени."
     }
   },
   {
-    "id": "Q-C-9_tip_cleaning_v2_06_300000a7",
+    "id": "Q-C-9_flashback_backfire_10000037",
     "taskId": "C-9",
     "difficulty": "medium",
-    "stem": "Почему clean кислородно‑топливной cutting соплаs with correct сопла cleaners?",
+    "stem": "Как верно отличить хлопок (backfire) от обратного пламени (flashback)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To enlarge the orifices for more flow"
+        "text": "Хлопок — это когда пламя уходит в рукава/шланги"
       },
       {
         "id": "CHOICE-2",
-        "text": "To maintain proper orifice size/shape and cut quality"
+        "text": "Flashback — устойчивое горение внутрь горелки/шланга; backfire — кратковременный «хлопок» на сопле"
       },
       {
         "id": "CHOICE-3",
-        "text": "To reduce подогрева"
+        "text": "Разницы нет"
       },
       {
         "id": "CHOICE-4",
-        "text": "To scratch off plating"
+        "text": "Хлопок предпочтительнее и безопаснее"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Proper cleaners keep orifices correct, preserving flame shape and quality."
-    }
-  },
-  {
-    "id": "Q-C-9_tip_cleaning_v3_05_300000b1",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "Почему clean кислородно‑топливной cutting соплаs with correct сопла cleaners?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To enlarge the orifices for more flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To maintain proper orifice size/shape and cut quality"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To reduce подогрева"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To scratch off plating"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Proper cleaners keep orifices correct, preserving flame shape and quality."
+      "CHOICE-2": "Backfire — краткий «поп» на сопле; flashback — устойчивое горение внутрь факела/шланга и серьёзная опасность."
     }
   },
   {
     "id": "Q-C-9_travel_speed_effect_v1_09_3000009f",
     "taskId": "C-9",
     "difficulty": "medium",
-    "stem": "If travel speed is too fast in кислородно‑топливной cutting, the cut will:",
+    "stem": "Если скорость перемещения при резке слишком высока, рез будет:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Have heavy bottom slag"
+        "text": "С тяжёлым нижним шлаком"
       },
       {
         "id": "CHOICE-2",
-        "text": "Lag and drag lines will trail far behind the сопла"
+        "text": "С отстающими, сильно уходящими назад линиями среза (lag/drag)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Track straight with no change"
+        "text": "Без изменений, идеально прямым"
       },
       {
         "id": "CHOICE-4",
-        "text": "Harden the steel surface"
+        "text": "С упрочнённой поверхностью стали"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Excessive speed увеличиваетs линиий отставания (lag lines); too slow causes heavy slag."
-    }
-  },
-  {
-    "id": "Q-C-9_travel_speed_effect_v2_08_300000a9",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "If travel speed is too fast in кислородно‑топливной cutting, the cut will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Have heavy bottom slag"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lag and drag lines will trail far behind the сопла"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Track straight with no change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Harden the steel surface"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Excessive speed увеличиваетs линиий отставания (lag lines); too slow causes heavy slag."
-    }
-  },
-  {
-    "id": "Q-C-9_travel_speed_effect_v3_07_300000b3",
-    "taskId": "C-9",
-    "difficulty": "medium",
-    "stem": "If travel speed is too fast in кислородно‑топливной cutting, the cut will:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Have heavy bottom slag"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lag and drag lines will trail far behind the сопла"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Track straight with no change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Harden the steel surface"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Excessive speed увеличиваетs линиий отставания (lag lines); too slow causes heavy slag."
-    }
-  },
-  {
-    "id": "Q-C-9_valve_cracking_v1_05_3000009b",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Cracking a cylinder valve briefly before attaching a regulator помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Waste gas"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Blow dust/debris away from the outlet seat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Cool the valve"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Test the regulator threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cracking clears contaminants that could damage regulators."
-    }
-  },
-  {
-    "id": "Q-C-9_valve_cracking_v2_04_300000a5",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Cracking a cylinder valve briefly before attaching a regulator помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Waste gas"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Blow dust/debris away from the outlet seat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Cool the valve"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Test the regulator threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cracking clears contaminants that could damage regulators."
-    }
-  },
-  {
-    "id": "Q-C-9_valve_cracking_v3_03_300000af",
-    "taskId": "C-9",
-    "difficulty": "easy",
-    "stem": "Cracking a cylinder valve briefly before attaching a regulator помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Waste gas"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Blow dust/debris away from the outlet seat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Cool the valve"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Test the regulator threads"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cracking clears contaminants that could damage regulators."
+      "CHOICE-2": "Чрезмерная скорость увеличивает «отставание» струи; слишком медленно — даёт тяжёлый нижний шлак."
     }
   }
 ]

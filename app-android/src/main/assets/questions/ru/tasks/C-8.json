@@ -1,842 +1,702 @@
 [
   {
-    "id": "Q-C-8_blotter_use_v1_03_30000080",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "Почему are paper blotters used between wheel flanges and the wheel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Decoration only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They distribute clamping force and protect the wheel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They увеличивает vibration"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They trap oil for lubrication"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Blotters spread load and reduce stress concentrations."
-    }
-  },
-  {
-    "id": "Q-C-8_blotter_use_v2_02_3000008a",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "Почему are paper blotters used between wheel flanges and the wheel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Decoration only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They distribute clamping force and protect the wheel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They увеличивает vibration"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They trap oil for lubrication"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Blotters spread load and reduce stress concentrations."
-    }
-  },
-  {
-    "id": "Q-C-8_blotter_use_v3_01_30000094",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "Почему are paper blotters used between wheel flanges and the wheel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Decoration only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They distribute clamping force and protect the wheel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They увеличивает vibration"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They trap oil for lubrication"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Blotters spread load and reduce stress concentrations."
-    }
-  },
-  {
-    "id": "Q-C-8_blotters_10000032",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "Почему paper blotters used between grinding wheel flanges and the wheel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Decoration только"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They distribute clamping force and protect the wheel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They увеличивает vibration"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They trap oil for lubrication"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Blotters cushion and spread load to уменьшить stress concentrations."
-    }
-  },
-  {
     "id": "Q-C-8_cutoff_side_grind_10000031",
     "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Какое правило безопасного использования верно для cut-off wheels?",
+    "difficulty": "medium",
+    "stem": "Какое правило безопасной работы с отрезными кругами?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Side-grind with heavy pressure for speed"
+        "text": "Выполнять боковую шлифовку с большим нажимом для скорости"
       },
       {
         "id": "CHOICE-2",
-        "text": "not side-grind with cut-off wheels"
+        "text": "Не выполнять боковую шлифовку отрезными кругами"
       },
       {
         "id": "CHOICE-3",
-        "text": "Use on stainless только"
+        "text": "Применять только по нержавеющей стали"
       },
       {
         "id": "CHOICE-4",
-        "text": "It — fine with the guard removed"
+        "text": "Допустимо работать со снятым кожухом"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Cut-off wheels — not designed for side loads and can shatter."
+      "CHOICE-2": "Отрезные круги не рассчитаны на боковую нагрузку — возможен разрыв. Кожух снимать нельзя; материал применения не ограничивается нержавейкой."
     }
   },
   {
-    "id": "Q-C-8_cutoff_side_load_v1_00_3000007d",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Какое rule is correct for using cut-off wheels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Side-grind with heavy pressure for speed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Do not side-grind with cut-off wheels"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Remove the guard for better visibility"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lubricate the wheel with oil"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
-    }
-  },
-  {
-    "id": "Q-C-8_cutoff_side_load_v1_10_30000087",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Какое rule is correct for using cut-off wheels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Side-grind with heavy pressure for speed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Do not side-grind with cut-off wheels"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Remove the guard for better visibility"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lubricate the wheel with oil"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
-    }
-  },
-  {
-    "id": "Q-C-8_cutoff_side_load_v2_09_30000091",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Какое rule is correct for using cut-off wheels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Side-grind with heavy pressure for speed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Do not side-grind with cut-off wheels"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Remove the guard for better visibility"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lubricate the wheel with oil"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
-    }
-  },
-  {
-    "id": "Q-C-8_dress_wheel_v1_07_30000084",
+    "id": "Q-C-8_wheel_storage_10000034",
     "taskId": "C-8",
     "difficulty": "medium",
-    "stem": "Dressing a grinding wheel primarily:",
+    "stem": "Как следует хранить связанные абразивные круги?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Clogs the wheel"
+        "text": "Во влажном месте для охлаждения"
       },
       {
         "id": "CHOICE-2",
-        "text": "Restores shape and exposes sharp abrasive"
+        "text": "Сухо, ровно, защищая от ударов/падений"
       },
       {
         "id": "CHOICE-3",
-        "text": "Reduces balance"
+        "text": "Подвешенными за посадочное отверстие"
       },
       {
         "id": "CHOICE-4",
-        "text": "Is only cosmetic"
+        "text": "Под тяжёлыми грузами"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Dressing trues the wheel and renews cutting action."
-    }
-  },
-  {
-    "id": "Q-C-8_dress_wheel_v2_06_3000008e",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "Dressing a grinding wheel primarily:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Clogs the wheel"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Restores shape and exposes sharp abrasive"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduces balance"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Is only cosmetic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dressing trues the wheel and renews cutting action."
+      "CHOICE-2": "Влага и удары повреждают связку; храните круги сухими, на ровной опоре, не подвешивайте и не нагружайте."
     }
   },
   {
     "id": "Q-C-8_guard_position_10000033",
     "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует a grinder guard be positioned?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Aim sparks toward coworkers"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Place the guard between the wheel and the operator"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Remove the guard for visibility"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Open the guard for cooling"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The guard should block fragments and direct debris away from the user."
-    }
-  },
-  {
-    "id": "Q-C-8_guard_positioning_v1_04_30000081",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует the grinder guard be positioned?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Aim sparks toward coworkers"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Place the guard between the wheel and the operator"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Remove it for visibility"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Open it for cooling"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Position the guard to block fragments and direct debris away."
-    }
-  },
-  {
-    "id": "Q-C-8_guard_positioning_v2_03_3000008b",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует the grinder guard be positioned?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Aim sparks toward coworkers"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Place the guard between the wheel and the operator"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Remove it for visibility"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Open it for cooling"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Position the guard to block fragments and direct debris away."
-    }
-  },
-  {
-    "id": "Q-C-8_guard_positioning_v3_02_30000095",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует the grinder guard be positioned?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Aim sparks toward coworkers"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Place the guard between the wheel and the operator"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Remove it for visibility"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Open it for cooling"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Position the guard to block fragments and direct debris away."
-    }
-  },
-  {
-    "id": "Q-C-8_ring_test_v1_02_3000007f",
-    "taskId": "C-8",
     "difficulty": "medium",
-    "stem": "Перед mounting a bonded grinding wheel, a recommended check is to:",
+    "stem": "Как должен быть установлен кожух шлифмашины?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Spin it up on the grinder first"
+        "text": "Направлять искры на коллег"
       },
       {
         "id": "CHOICE-2",
-        "text": "Perform a ring test and inspect for cracks"
+        "text": "Расположить кожух между кругом и оператором"
       },
       {
         "id": "CHOICE-3",
-        "text": "Soak it in oil"
+        "text": "Снять кожух для лучшего обзора"
       },
       {
         "id": "CHOICE-4",
-        "text": "Strike it with a hammer forcefully"
+        "text": "Открыть кожух для охлаждения"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "A ring (sound) test помогает detect hidden cracks."
-    }
-  },
-  {
-    "id": "Q-C-8_ring_test_v2_01_30000089",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "Перед mounting a bonded grinding wheel, a recommended check is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Spin it up on the grinder first"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Perform a ring test and inspect for cracks"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Soak it in oil"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strike it with a hammer forcefully"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A ring (sound) test помогает detect hidden cracks."
-    }
-  },
-  {
-    "id": "Q-C-8_ring_test_v3_00_30000093",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "Перед mounting a bonded grinding wheel, a recommended check is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Spin it up on the grinder first"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Perform a ring test and inspect for cracks"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Soak it in oil"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strike it with a hammer forcefully"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A ring (sound) test помогает detect hidden cracks."
+      "CHOICE-2": "Кожух должен перекрывать возможную траекторию осколков и отводить мусор/искры от оператора."
     }
   },
   {
     "id": "Q-C-8_rpm_rating_10000035",
     "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует wheel RPM ratings relate to tool RPM?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wheel rating may be below tool speed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "RPMs not matter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any mismatch — fine for brief use"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A wheel must be rated for at least the tool’s maximum rotational speed."
-    }
-  },
-  {
-    "id": "Q-C-8_rpm_rating_match_v1_01_3000007e",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует an abrasive wheel’s RPM rating relate to the tool?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wheel rating may be below tool speed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "RPMs do not matter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any mismatch is fine briefly"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The wheel must be rated for at least the tool’s speed."
-    }
-  },
-  {
-    "id": "Q-C-8_rpm_rating_match_v2_00_30000088",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует an abrasive wheel’s RPM rating relate to the tool?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wheel rating may be below tool speed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "RPMs do not matter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any mismatch is fine briefly"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The wheel must be rated for at least the tool’s speed."
-    }
-  },
-  {
-    "id": "Q-C-8_rpm_rating_match_v2_10_30000092",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует an abrasive wheel’s RPM rating relate to the tool?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wheel rating may be below tool speed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "RPMs do not matter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any mismatch is fine briefly"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The wheel must be rated for at least the tool’s speed."
-    }
-  },
-  {
-    "id": "Q-C-8_spark_test_v1_08_30000085",
-    "taskId": "C-8",
     "difficulty": "medium",
-    "stem": "A quick spark test during grinding can help to:",
+    "stem": "Как должны соотноситься допустимые обороты круга и обороты инструмента?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Measure voltage"
+        "text": "Допустимая скорость круга может быть ниже скорости инструмента"
       },
       {
         "id": "CHOICE-2",
-        "text": "Identify general steel type by spark pattern"
+        "text": "Допустимая скорость круга должна быть не ниже максимальных оборотов инструмента"
       },
       {
         "id": "CHOICE-3",
-        "text": "Check gas flow rate"
+        "text": "Обороты не важны"
       },
       {
         "id": "CHOICE-4",
-        "text": "Calibrate the grinder"
+        "text": "Короткое несоответствие безопасно"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Spark patterns give a rough indication of carbon/alloy content."
-    }
-  },
-  {
-    "id": "Q-C-8_spark_test_v2_07_3000008f",
-    "taskId": "C-8",
-    "difficulty": "medium",
-    "stem": "A quick spark test during grinding can help to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Measure voltage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Identify general steel type by spark pattern"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Check gas flow rate"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Calibrate the grinder"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spark patterns give a rough indication of carbon/alloy content."
+      "CHOICE-2": "Круг обязан быть рассчитан как минимум на максимальную частоту вращения шпинделя; иначе высок риск разрушения."
     }
   },
   {
     "id": "Q-C-8_tool_rest_clearance_v1_06_30000083",
     "taskId": "C-8",
     "difficulty": "medium",
-    "stem": "On a bench grinder, the tool rest should be kept:",
+    "stem": "На стационарном точиле какой зазор между упором и кругом следует держать?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "As far from the wheel as possible"
+        "text": "Как можно дальше от круга"
       },
       {
         "id": "CHOICE-2",
-        "text": "As close as practical (about 3 mm / 1/8 дюйма) from the wheel"
+        "text": "Как можно ближе (около 3 мм / 1/8\")"
       },
       {
         "id": "CHOICE-3",
-        "text": "Removed entirely"
+        "text": "Снять упор"
       },
       {
         "id": "CHOICE-4",
-        "text": "Touching the wheel"
+        "text": "Прижать упор вплотную к кругу"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Small clearance уменьшает the chance of workpiece jamming."
+      "CHOICE-2": "Малый зазор уменьшает риск захвата/закусывания заготовки; упор не должен касаться круга."
     }
   },
   {
-    "id": "Q-C-8_tool_rest_clearance_v2_05_3000008d",
+    "id": "Q-C-8_spark_test_v1_08_30000085",
     "taskId": "C-8",
     "difficulty": "medium",
-    "stem": "On a bench grinder, the tool rest should be kept:",
+    "stem": "Что позволяет оценить быстрая «искровая проба» при шлифовании?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "As far from the wheel as possible"
+        "text": "Напряжение питания"
       },
       {
         "id": "CHOICE-2",
-        "text": "As close as practical (about 3 mm / 1/8 дюйма) from the wheel"
+        "text": "Ориентировочно определить тип стали по рисунку искр"
       },
       {
         "id": "CHOICE-3",
-        "text": "Removed entirely"
+        "text": "Расход защитного газа"
       },
       {
         "id": "CHOICE-4",
-        "text": "Touching the wheel"
+        "text": "Калибровку станка"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Small clearance уменьшает the chance of workpiece jamming."
+      "CHOICE-2": "Форма и разветвлённость искр связаны с содержанием углерода/легирования; метод ориентировочный."
     }
   },
   {
-    "id": "Q-C-8_wheel_storage_10000034",
+    "id": "Q-C-8_blotters_10000032",
     "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует bonded abrasive wheels be stored?",
+    "difficulty": "medium",
+    "stem": "Зачем используют бумажные прокладки (blotters) между фланцами и шлифовальным кругом?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "In a damp area to keep cool"
+        "text": "Для декора"
       },
       {
         "id": "CHOICE-2",
-        "text": "Dry, flat, and protected from dropping"
+        "text": "Чтобы равномерно распределять зажим и защищать круг"
       },
       {
         "id": "CHOICE-3",
-        "text": "Hanging by the arbor hole"
+        "text": "Чтобы усилить вибрации"
       },
       {
         "id": "CHOICE-4",
-        "text": "Stacked with heavy weights"
+        "text": "Чтобы удерживать масло для смазки"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture and impacts damage wheels; keep them dry and supported."
+      "CHOICE-2": "Прокладки снижают концентрации напряжений под фланцами и уменьшают риск повреждения круга."
     }
   },
   {
-    "id": "Q-C-8_wheel_storage_v1_05_30000082",
+    "id": "Q-C-8_dress_wheel_v1_07_30000084",
     "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует bonded abrasive wheels be stored?",
+    "difficulty": "medium",
+    "stem": "Правка шлифовального круга преимущественно:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "In a damp area to keep cool"
+        "text": "Засоряет круг"
       },
       {
         "id": "CHOICE-2",
-        "text": "Dry, flat, protected from impact"
+        "text": "Восстанавливает форму и открывает острое зерно"
       },
       {
         "id": "CHOICE-3",
-        "text": "Hanging by the arbor hole"
+        "text": "Ухудшает баланс"
       },
       {
         "id": "CHOICE-4",
-        "text": "Under heavy weights"
+        "text": "Нужна только для вида"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture/impacts damage wheels; keep them dry and supported."
-    }
-  },
-  {
-    "id": "Q-C-8_wheel_storage_v2_04_3000008c",
-    "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Как следует bonded abrasive wheels be stored?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "In a damp area to keep cool"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Dry, flat, protected from impact"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Hanging by the arbor hole"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Under heavy weights"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture/impacts damage wheels; keep them dry and supported."
+      "CHOICE-2": "Правка выравнивает профиль и обновляет режущую поверхность, возвращая производительность."
     }
   },
   {
     "id": "Q-C-8_wire_wheel_ppe_v1_09_30000086",
     "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Что PPE is appropriate when using a powered wire wheel?",
+    "difficulty": "medium",
+    "stem": "Какие СИЗ нужны при работе с приводной проволочной щёткой (wire wheel)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "No eye protection; bristles are soft"
+        "text": "Без защиты глаз — щетина мягкая"
       },
       {
         "id": "CHOICE-2",
-        "text": "Safety glasses and a face shield"
+        "text": "Защитные очки и лицевой щиток"
       },
       {
         "id": "CHOICE-3",
-        "text": "Earplugs only"
+        "text": "Только беруши"
       },
       {
         "id": "CHOICE-4",
-        "text": "A dust mask only"
+        "text": "Только пылезащитная маска"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Wire bristles can eject; use both glasses and a shield."
+      "CHOICE-2": "Проволочные усики могут отрываться и лететь с высокой энергией; нужна защита глаз и лица."
     }
   },
   {
-    "id": "Q-C-8_wire_wheel_ppe_v2_08_30000090",
+    "id": "Q-C-8_ring_test_v1_02_3000007f",
     "taskId": "C-8",
-    "difficulty": "easy",
-    "stem": "Что PPE is appropriate when using a powered wire wheel?",
+    "difficulty": "medium",
+    "stem": "Что рекомендуется сделать перед установкой связанного шлифовального круга?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "No eye protection; bristles are soft"
+        "text": "Сразу раскрутить на полной скорости"
       },
       {
         "id": "CHOICE-2",
-        "text": "Safety glasses and a face shield"
+        "text": "Сделать звуковую (ring) пробу и проверить на трещины"
       },
       {
         "id": "CHOICE-3",
-        "text": "Earplugs only"
+        "text": "Замочить круг в масле"
       },
       {
         "id": "CHOICE-4",
-        "text": "A dust mask only"
+        "text": "Сильно ударить молотком для проверки"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Wire bristles can eject; use both glasses and a shield."
+      "CHOICE-2": "«Звонкий» звук указывает на отсутствие скрытых трещин; ударять и сразу раскручивать опасно."
+    }
+  },
+  {
+    "id": "Q-C-8P_wps_gas_change_20000201",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "На WPS указана смесь GMAW 75/25 (Ar/CO₂), но в наличии только 100% CO₂. Ваше действие?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Остановиться, запросить согласование изменения, при необходимости — квалификацию/переработку WPS, затем вести работу по утверждённой процедуре"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Просто поднять напряжение и продолжать без оформления"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сварить пробный шов и, если «нормально», продолжать без документов"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Перейти на 50/50 (Ar/CO₂) без уведомления — компромисс"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Газ — существенная переменная; изменение требует согласования и, при необходимости, переквалификации/обновления WPS."
+    }
+  },
+  {
+    "id": "Q-C-8P_traceability_filler_20000202",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Получена новая катушка проволоки GMAW. Что нужно зафиксировать для прослеживаемости?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Класс/марка, диаметр, производитель, номер партии/плавки (heat/lot), дата/оператор — запись в маршрут/журнал"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Ничего, раз проволока новая"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только цвет катушки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только массу брутто"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Прослеживаемость расходников обязательна для корректной аттестации швов и разбирательств при НК/НСР."
+    }
+  },
+  {
+    "id": "Q-C-8P_fillet_tolerance_case_20000203",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Чертёж: катет углового шва 10 ± 1 мм. Замерено 9,2 мм в нескольких точках. Решение?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Принять — в пределах допуска"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Отклонить — ниже 10 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Поднять ток и «додуть» без документов"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Закрасить для скрытия"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Диапазон допуска — 9–11 мм. 9,2 мм соответствует требованиям."
+    }
+  },
+  {
+    "id": "Q-C-8P_conv_tungsten_3over32_20000204",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Переведите диаметр вольфрама 3/32\" в миллиметры (до 0,01 мм).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2,38 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "2,00 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "3,20 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2,80 мм"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "3/32\" × 25,4 = 2,381 мм → 2,38 мм."
+    }
+  },
+  {
+    "id": "Q-C-8P_NDE_aluminum_surface_20000205",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Нужно выявить поверхностные трещины на алюминиевом шве после зачистки. Что выбрать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Капиллярный контроль (PT) с белым/красным индикатором"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Магнитопорошковый (MT)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ультразвук (UT) только"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только визуальный осмотр (VT), без НК"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "MT применим лишь к ферромагнитным материалам; для алюминия — PT на поверхностные дефекты."
+    }
+  },
+  {
+    "id": "Q-C-8P_NDE_after_backgouge_20000206",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "После воздушно‑дуговой строжки корня на углеродистой стали требуется контроль поверхностных трещин. Что уместнее?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Магнитопорошковый контроль (MT) по очищенной поверхности"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Капиллярный контроль (PT) — только для нержавейки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ничего, шлифовка «всё лечит»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только рентген (RT) на промежуточной стадии"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Для ферромагнитной стали MT эффективен по поверхности после строжки/шлифовки; выбор НК — по плану контроля."
+    }
+  },
+  {
+    "id": "Q-C-8P_gauge_calibration_due_20000207",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "У универсального сварочного калибра истёк срок поверки. Действие?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Продолжать — «±0,5 мм роли не играет»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снять из эксплуатации, отправить на поверку/заменить, до этого не использовать для приёмки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Поставить самодельную метку и работать"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Пользоваться только для «черновых» замеров при приёмке"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Приёмочные измерения выполняют поверенным инструментом; просроченный — изъять до поверки."
+    }
+  },
+  {
+    "id": "Q-C-8P_NCR_porosity_flow_20000208",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Кластерная пористость выявлена при VT. Правильная последовательность действий?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Остановить работу; оформить NCR; найти причину; согласовать rework/план исправления; выполнить; провести повторный контроль; задокументировать"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Подкрасить и сдать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Слегка «подмазать» наплавкой без записей"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Обрезать участок и продолжать без инспекции"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Несоответствия проходят через NCR и подтверждённый маршрут исправления с контролем."
+    }
+  },
+  {
+    "id": "Q-C-8P_conv_wire_0_035in_20000209",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Переведите диаметр проволоки 0,035\" в мм (до 0,01 мм).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,89 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,20 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0,95 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "0,80 мм"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "0,035\" × 25,4 = 0,889 мм → 0,89 мм."
+    }
+  },
+  {
+    "id": "Q-C-8P_undercut_measure_tool_20000210",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Как корректно измерять глубину подреза на валике?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Калибром катета (fillet gauge) — он для всего"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Универсальным сварочным калибром (Bridge Cam) или глубиномером по очищенной кромке"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Рулеткой с шагом 1 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "На глаз, опыт важнее"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для подреза применяют калибры с шкалой глубины; fillet gauge — для катета/горла."
+    }
+  },
+  {
+    "id": "Q-C-8P_cap_reinforcement_tol_20000211",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Чертёж: усиление шва (cap) 1,5 ± 0,5 мм, переходы плавные. Измерено 2,1–2,2 мм с резкими ребрами. Решение?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Принять: чуть выше — не страшно"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Отклонить; выполнить стачивание/выравнивание до допуска, повторный контроль и запись"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сделать наплавку для ещё большего усиления"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Закрыть грунтом"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "2,1–2,2 мм превышает верхний предел (2,0 мм), к тому же резкие переходы — недопустимы."
+    }
+  },
+  {
+    "id": "Q-C-8P_interpass_cool_time_20000212",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Макс. межслойная 150 °C. Сейчас кромка 190 °C. По эмпирике остывание в зоне — ~10 °C/мин. Через сколько минут можно возобновить сварку?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2 мин"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "4 мин"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "6 мин"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "8 мин"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "ΔT = 190 − 150 = 40 °C; при 10 °C/мин ≈ 4 мин до допустимого значения."
+    }
+  },
+  {
+    "id": "Q-C-8P_conv_1over16_in_mm_20000213",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Переведите 1/16\" в мм (до 0,01 мм).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1,27 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,59 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "2,00 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1,90 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1/16\" × 25,4 = 1,5875 мм → 1,59 мм."
+    }
+  },
+  {
+    "id": "Q-C-8P_root_gap_fitup_20000214",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Требуемый зазор корня 2,0 ± 0,5 мм. Измерено 2,6–2,7 мм. Что корректно?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Принять — «чуть шире»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Вне допуска; переустановить прокладки/струбцины/прихватки для достижения 1,5–2,5 мм и повторно измерить"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Компенсировать повышением тока без замеров"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Заварить прихватками и продолжать"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "2,6–2,7 мм > 2,5 мм; требуется корректировка подгонки и контроль."
+    }
+  },
+  {
+    "id": "Q-C-8P_router_holdpoint_breach_20000215",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "В маршруте указан hold‑point перед НК, но сварщик прошёл его и продолжил. Правильные дальнейшие действия?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Игнорировать, если дефектов не видно"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Остановиться; уведомить инспекцию; задокументировать нарушение; вернуться к требуемой операции/контролю; получить подпись; оценить влияние на качество"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Попросить коллегу подписать задним числом"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Стереть запись о hold‑point"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Hold‑points обязательны; пропуск требует остановки, оформления и подтверждённого контроля."
     }
   }
 ]

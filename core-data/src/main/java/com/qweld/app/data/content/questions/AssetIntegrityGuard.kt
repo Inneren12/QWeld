@@ -7,6 +7,8 @@ import java.util.LinkedHashMap
 import java.util.Locale
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
+import java.nio.charset.StandardCharsets
+
 
 class IntegrityMismatchException(
   val path: String,
@@ -38,7 +40,23 @@ class AssetIntegrityGuard(
     }
 
   fun readVerified(pathPreferred: String, altPath: String? = null): ByteArray {
-    val primary = verify(pathPreferred)
+      // Если путь НЕ индексирован — читаем без проверки (например, meta/*)
+      val expectedPreferred = manifest.expectedFor(pathPreferred)
+      if (expectedPreferred == null) {
+          readBytes(pathPreferred)?.let {
+              Logx.i(LogTag.INTEGRITY, "skip", "path" to pathPreferred, "reason" to "not_indexed")
+              return it
+          }
+          if (altPath != null) {
+              readBytes(altPath)?.let {
+                  Logx.i(LogTag.INTEGRITY, "skip", "path" to altPath, "reason" to "not_indexed")
+                  return it
+              }
+          }
+          throw FileNotFoundException(pathPreferred)
+      }
+
+      val primary = verify(pathPreferred)
     if (primary.success) {
       handleSuccess(primary, isFallback = false)
       return primary.bytes!!
@@ -97,6 +115,18 @@ class AssetIntegrityGuard(
     )
   }
 
+    /** Для JSON нормализуем CRLF/CR → LF, чтобы SHA была стабильной на Win/Linux. */
+    private fun normalizeJsonEolIfNeeded(path: String, bytes: ByteArray): ByteArray {
+        if (!path.lowercase().endsWith(".json")) return bytes
+        val s = String(bytes, StandardCharsets.UTF_8)
+            .replace("\r\n", "\n")
+            .replace("\r", "\n")
+        return s.toByteArray(StandardCharsets.UTF_8)
+    }
+
+    private fun computeSha(path: String, bytes: ByteArray): String {
+        return digest(normalizeJsonEolIfNeeded(path, bytes))
+    }
   private fun logMiss(result: VerificationResult) {
     val expectedValue = result.expected ?: "unknown"
     val actualValue = result.actual ?: "missing"
@@ -139,9 +169,9 @@ class AssetIntegrityGuard(
       )
     }
 
-    val bytes = readBytes(path) ?: return VerificationResult(path, null, expected, null, cached = false, success = false)
-    val actual = digest(bytes)
-    val normalizedSha = actual.lowercase(Locale.US)
+      val bytes = readBytes(path) ?: return VerificationResult(path, null, expected, null, cached = false, success = false)
+      val actual = computeSha(path, bytes)
+      val normalizedSha = actual.lowercase(Locale.US)
     return if (!expected.isNullOrBlank() && actual.equals(expected, ignoreCase = true)) {
       cache[normalized] = normalizedSha
       VerificationResult(path, bytes, expected, normalizedSha, cached = false, success = true)

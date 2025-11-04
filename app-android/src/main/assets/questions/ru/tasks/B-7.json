@@ -1,2942 +1,2102 @@
 [
   {
-    "id": "Q-B-7_alignment_tools_10000025",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как можно hi-lo (internal misalignment) be minimized during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Ignore it until after welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use clamps, hi-lo tools, and alignment fixtures"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Hammer it flush after the weld cools"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Rely on weld metal to fill the offset"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Proper clamping and alignment tools set parts flush before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_alignment_tools_10000025",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как можно hi-lo (internal misalignment) be minimized during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Ignore it until after welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Использовать clamps, hi-lo tools, and alignment fixtures"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Hammer it flush after the weld cools"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Rely on weld metal to fill the offset"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Proper clamping and alignment tools set parts flush before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_alignment_tools_use_v1_03_30000035",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как можно internal misalignment (смещения кромок (hi‑lo)) be minimized during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Ignore it until after welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use clamps, смещения кромок (hi‑lo) tools, and alignment fixtures"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Hammer it after cooling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Fill the offset with weld metal"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Clamps and alignment tools set parts flush before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_alignment_tools_use_v3_08_30000050",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как можно internal misalignment (смещения кромок (hi‑lo)) be minimized during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Ignore it until after welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use clamps, смещения кромок (hi‑lo) tools, and alignment fixtures"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Hammer it after cooling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Fill the offset with weld metal"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Clamps and alignment tools set parts flush before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_alignment_tools_use_v6_02_3000006b",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как можно internal misalignment (смещения кромок (hi‑lo)) be minimized during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Ignore it until after welding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use clamps, смещения кромок (hi‑lo) tools, and alignment fixtures"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Hammer it after cooling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Fill the offset with weld metal"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Clamps and alignment tools set parts flush before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_backing_bar_10000024",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Какова цель a подкладки (планки)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It supports the root pass and helps предотвращает burn-through"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It adds no benefit"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It — forbidden by all codes"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It replaces all tacking"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Backing обеспечивает support and can aid complete joint проплавление."
-    }
-  },
-  {
-    "id": "Q-B-7_backing_bar_10000024",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Какова цель a подкладки (планки)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It supports the root pass and helps предотвращает burn-through"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It adds no benefit"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It — forbidden by all codes"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It replaces all tacking"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Backing обеспечивает support and can aid complete joint проплавление."
-    }
-  },
-  {
-    "id": "Q-B-7_backing_bar_purpose_v1_02_30000034",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Что is the purpose of a подкладки (планки)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To support the корень шва pass and help prevent burn-through"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To add no benefit"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace all tacks"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It is forbidden by all codes"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Backing supports the корень шва and can aid complete penetration."
-    }
-  },
-  {
-    "id": "Q-B-7_backing_bar_purpose_v3_07_3000004f",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Что is the purpose of a подкладки (планки)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To support the корень шва pass and help prevent burn-through"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To add no benefit"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace all tacks"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It is forbidden by all codes"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Backing supports the корень шва and can aid complete penetration."
-    }
-  },
-  {
-    "id": "Q-B-7_backing_bar_purpose_v6_01_3000006a",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Что is the purpose of a подкладки (планки)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To support the корень шва pass and help prevent burn-through"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To add no benefit"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace all tacks"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It is forbidden by all codes"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Backing supports the корень шва and can aid complete penetration."
-    }
-  },
-  {
-    "id": "Q-B-7_balanced_welds_v2_07_30000044",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Balancing welds on opposite sides помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase distortion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Counteract shrinkage and reduce distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Replace fixtures"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increase residual stress"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Balanced welding уменьшает distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_balanced_welds_v5_01_3000005f",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Balancing welds on opposite sides помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase distortion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Counteract shrinkage and reduce distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Replace fixtures"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increase residual stress"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Balanced welding уменьшает distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_balanced_welds_v7_06_3000007a",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Balancing welds on opposite sides помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase distortion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Counteract shrinkage and reduce distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Replace fixtures"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increase residual stress"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Balanced welding уменьшает distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_bevel_angle_10000023",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему choose a proper угла скоса кромок during prep?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Zero bevel gives best access"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "The right angle allows access and proper проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Steeper — always stronger"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Shallower — always better"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Adequate groove angle lets the электрод/torch reach the root and sidewalls."
-    }
-  },
-  {
-    "id": "Q-B-7_bevel_angle_10000023",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему choose a proper угла скоса кромок during prep?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Zero bevel gives best access"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "The right angle allows access and proper проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Steeper — always stronger"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Shallower — always better"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Adequate groove angle lets the электрод/torch reach the root and sidewalls."
-    }
-  },
-  {
-    "id": "Q-B-7_bevel_angle_access_v1_01_30000033",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему select an appropriate bevel angle during joint prep?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Zero bevel always улучшает access"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "The right angle allows access and proper penetration"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Steeper is always stronger"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Shallower is always better"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Adequate разделка angle lets the electrode/torch reach sidewalls and корень шва."
-    }
-  },
-  {
-    "id": "Q-B-7_bevel_angle_access_v3_06_3000004e",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему select an appropriate bevel angle during joint prep?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Zero bevel always улучшает access"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "The right angle allows access and proper penetration"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Steeper is always stronger"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Shallower is always better"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Adequate разделка angle lets the electrode/torch reach sidewalls and корень шва."
-    }
-  },
-  {
-    "id": "Q-B-7_bevel_angle_access_v6_00_30000069",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему select an appropriate bevel angle during joint prep?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Zero bevel always улучшает access"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "The right angle allows access and proper penetration"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Steeper is always stronger"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Shallower is always better"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Adequate разделка angle lets the electrode/torch reach sidewalls and корень шва."
-    }
-  },
-  {
-    "id": "Q-B-7_bridge_tacks_10000029",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что — перемычек-прихваток used for?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Spanning gaps temporarily during fit-up"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Permanent structural members"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They — forbidden for any process"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They replace the root pass"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Bridge tacks hold edges where gaps exist until proper welding occurs."
-    }
-  },
-  {
-    "id": "Q-B-7_bridge_tacks_10000029",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что — перемычек-прихваток used for?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Spanning gaps temporarily during fit-up"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Permanent structural members"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They — forbidden for any process"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They replace the root pass"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Bridge tacks hold edges where gaps exist until proper welding occurs."
-    }
-  },
-  {
-    "id": "Q-B-7_bridge_tacks_use_v1_07_30000039",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что are перемычек‑прихваток используется для?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Spanning gaps temporarily during fit-up"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Permanent structural members"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Replacing the корень шва pass"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Forbidden for any process"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Bridge tacks hold edges where small gaps exist until welding."
-    }
-  },
-  {
-    "id": "Q-B-7_bridge_tacks_use_v4_01_30000054",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что are перемычек‑прихваток используется для?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Spanning gaps temporarily during fit-up"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Permanent structural members"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Replacing the корень шва pass"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Forbidden for any process"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Bridge tacks hold edges where small gaps exist until welding."
-    }
-  },
-  {
-    "id": "Q-B-7_bridge_tacks_use_v6_06_3000006f",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что are перемычек‑прихваток используется для?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Spanning gaps temporarily during fit-up"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Permanent structural members"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Replacing the корень шва pass"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Forbidden for any process"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Bridge tacks hold edges where small gaps exist until welding."
-    }
-  },
-  {
-    "id": "Q-B-7_chill_bars_1000002b",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как помогают теплоотводящих планок help когда welding thin material?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They extract heat to control деформации"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They measure temperature"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They destabilize the arc"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Heat sinks pull heat away to limit деформации and burn-through."
-    }
-  },
-  {
-    "id": "Q-B-7_chill_bars_1000002b",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как помогают теплоотводящих планок help когда welding thin material?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They extract heat to control деформации"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They measure temperature"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They destabilize the arc"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Heat sinks pull heat away to limit деформации and burn-through."
-    }
-  },
-  {
-    "id": "Q-B-7_chill_bars_thin_v1_09_3000003b",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как do теплоотводящих планок help on thin material?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They extract heat to control distortion and burn-through"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They destabilize the arc"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They measure temperature"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Chill bars act as heat sinks to limit distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_chill_bars_thin_v4_03_30000056",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как do теплоотводящих планок help on thin material?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They extract heat to control distortion and burn-through"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They destabilize the arc"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They measure temperature"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Chill bars act as heat sinks to limit distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_chill_bars_thin_v6_08_30000071",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как do теплоотводящих планок help on thin material?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает heat input"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They extract heat to control distortion and burn-through"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They destabilize the arc"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They measure temperature"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Chill bars act as heat sinks to limit distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_clean_start_stop_v3_04_3000004c",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "To make a clean tie-in when restarting, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Restart directly in the crater"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead, then backfill"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on the finished face without grinding"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Использовать higher current only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and tie-in ahead blends beads without defects."
-    }
-  },
-  {
-    "id": "Q-B-7_clean_start_stop_v5_09_30000067",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "To make a clean tie-in when restarting, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Restart directly in the crater"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead, then backfill"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on the finished face without grinding"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Использовать higher current only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and tie-in ahead blends beads without defects."
-    }
-  },
-  {
-    "id": "Q-B-7_distortion_plan_1000002f",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как следует деформации be addressed during fabrication planning?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Assume shrinkage — random"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Plan fit and sequence to allow for predicted shrinkage"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Clamps cause деформации and should be avoided"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Heat input — unrelated to деформации"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Anticipating shrinkage lets you set counter-measures like sequencing and fixturing."
-    }
-  },
-  {
-    "id": "Q-B-7_distortion_plan_1000002f",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как следует деформации be addressed during fabrication planning?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Assume shrinkage — random"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Plan fit and sequence to allow for predicted shrinkage"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Clamps cause деформации and should be avoided"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Heat input — unrelated to деформации"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Anticipating shrinkage lets you set counter-measures like sequencing and fixturing."
-    }
-  },
-  {
-    "id": "Q-B-7_distortion_planning_v2_02_3000003f",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как следует distortion be addressed during planning?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Assume shrinkage is random"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Plan fit and sequence to allow for predicted shrinkage"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Avoid clamps"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Heat input is unrelated to distortion"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Anticipating shrinkage enables countermeasures."
-    }
-  },
-  {
-    "id": "Q-B-7_distortion_planning_v4_07_3000005a",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как следует distortion be addressed during planning?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Assume shrinkage is random"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Plan fit and sequence to allow for predicted shrinkage"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Avoid clamps"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Heat input is unrelated to distortion"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Anticipating shrinkage enables countermeasures."
-    }
-  },
-  {
-    "id": "Q-B-7_distortion_planning_v7_01_30000075",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Как следует distortion be addressed during planning?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Assume shrinkage is random"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Plan fit and sequence to allow for predicted shrinkage"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Avoid clamps"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Heat input is unrelated to distortion"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Anticipating shrinkage enables countermeasures."
-    }
-  },
-  {
-    "id": "Q-B-7_edge_prep_1000002e",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем удалять burrs and oxides from prepared edges?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It saves time but уменьшает strength"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It — unnecessary on any material"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It улучшает сплавление and уменьшает inclusions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It — только for aluminum"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Clean, smooth edges promote full сплавление and fewer inclusions."
-    }
-  },
-  {
-    "id": "Q-B-7_edge_prep_1000002e",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем удалять burrs and oxides from prepared edges?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It saves time but уменьшает strength"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It — unnecessary on any material"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It улучшает сплавление and уменьшает inclusions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It — только for aluminum"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Clean, smooth edges promote full сплавление and fewer inclusions."
-    }
-  },
-  {
-    "id": "Q-B-7_edge_prep_clean_v2_01_3000003e",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Почему remove burrs and oxides from prepped edges?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It уменьшает strength"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It улучшает fusion and уменьшает inclusions"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It is only for aluminum"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It is unnecessary on any material"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Clean edges promote fusion and fewer inclusions."
-    }
-  },
-  {
-    "id": "Q-B-7_edge_prep_clean_v4_06_30000059",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Почему remove burrs and oxides from prepped edges?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It уменьшает strength"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It улучшает fusion and уменьшает inclusions"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It is only for aluminum"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It is unnecessary on any material"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Clean edges promote fusion and fewer inclusions."
-    }
-  },
-  {
-    "id": "Q-B-7_edge_prep_clean_v7_00_30000074",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Почему remove burrs and oxides from prepped edges?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It уменьшает strength"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It улучшает fusion and уменьшает inclusions"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It is only for aluminum"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It is unnecessary on any material"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Clean edges promote fusion and fewer inclusions."
-    }
-  },
-  {
-    "id": "Q-B-7_fillet_gauge_use_v2_08_30000045",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "A калибра для угловых швов используется для measure:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fillet leg size/effective throat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Gas flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Surface roughness"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gauges verify fillet size against requirements."
-    }
-  },
-  {
-    "id": "Q-B-7_fillet_gauge_use_v5_02_30000060",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "A калибра для угловых швов используется для measure:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fillet leg size/effective throat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Gas flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Surface roughness"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gauges verify fillet size against requirements."
-    }
-  },
-  {
-    "id": "Q-B-7_fillet_gauge_use_v7_07_3000007b",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "A калибра для угловых швов используется для measure:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fillet leg size/effective throat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Gas flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Surface roughness"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gauges verify fillet size against requirements."
-    }
-  },
-  {
-    "id": "Q-B-7_fitup_inspect_10000030",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Когда следует fit-up be verified?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "After welding — completed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Before welding — check dimensions, gaps, and angles"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только the inspector checks fit-up"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Skip if the schedule — tight"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Verifying fit-up beforehand предотвращает defects and rework."
-    }
-  },
-  {
-    "id": "Q-B-7_fitup_inspect_10000030",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Когда следует fit-up be verified?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "After welding — completed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Before welding — check dimensions, gaps, and angles"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только the inspector checks fit-up"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Skip if the schedule — tight"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Verifying fit-up beforehand предотвращает defects and rework."
-    }
-  },
-  {
-    "id": "Q-B-7_fitup_verification_v2_03_30000040",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Когда should fit-up be verified?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "After welding is completed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Перед welding—check dimensions, gaps, and angles"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только by inspectors"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Skip if schedule is tight"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Verify fit-up beforehand to prevent defects."
-    }
-  },
-  {
-    "id": "Q-B-7_fitup_verification_v4_08_3000005b",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Когда should fit-up be verified?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "After welding is completed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Перед welding—check dimensions, gaps, and angles"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только by inspectors"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Skip if schedule is tight"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Verify fit-up beforehand to prevent defects."
-    }
-  },
-  {
-    "id": "Q-B-7_fitup_verification_v7_02_30000076",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Когда should fit-up be verified?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "After welding is completed"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Перед welding—check dimensions, gaps, and angles"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только by inspectors"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Skip if schedule is tight"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Verify fit-up beforehand to prevent defects."
-    }
-  },
-  {
-    "id": "Q-B-7_gap_shrinkage_effect_v3_03_3000004b",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "If the корень шва gap is too tight during fit-up, the likely result is:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive корень шва penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lack of корень шва penetration/fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Perfect fusion in all cases"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Insufficient gap can prevent корень шва penetration."
-    }
-  },
-  {
-    "id": "Q-B-7_gap_shrinkage_effect_v5_08_30000066",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "If the корень шва gap is too tight during fit-up, the likely result is:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive корень шва penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lack of корень шва penetration/fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Perfect fusion in all cases"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Insufficient gap can prevent корень шва penetration."
-    }
-  },
-  {
-    "id": "Q-B-7_hi_lo_measure_v2_09_30000046",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Internal misalignment (смещения кромок (hi‑lo)) can be measured with:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "A thermometer"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "A смещения кромок (hi‑lo) gauge or calipers"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A voltmeter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A paint stick"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Use proper gauges to measure offset."
-    }
-  },
-  {
-    "id": "Q-B-7_hi_lo_measure_v5_03_30000061",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Internal misalignment (смещения кромок (hi‑lo)) can be measured with:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "A thermometer"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "A смещения кромок (hi‑lo) gauge or calipers"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A voltmeter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A paint stick"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Use proper gauges to measure offset."
-    }
-  },
-  {
-    "id": "Q-B-7_hi_lo_measure_v7_08_3000007c",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Internal misalignment (смещения кромок (hi‑lo)) can be measured with:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "A thermometer"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "A смещения кромок (hi‑lo) gauge or calipers"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A voltmeter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A paint stick"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Use proper gauges to measure offset."
-    }
-  },
-  {
-    "id": "Q-B-7_interpass_cleaning_v2_06_30000043",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Between passes with flux-shielded processes you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Leave slag; it burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Удалить slag and heavy spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только chip the cap"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Water quench the bead"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cleaning предотвращает slag inclusions and lack of fusion."
-    }
-  },
-  {
-    "id": "Q-B-7_interpass_cleaning_v5_00_3000005e",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Between passes with flux-shielded processes you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Leave slag; it burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Удалить slag and heavy spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только chip the cap"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Water quench the bead"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cleaning предотвращает slag inclusions and lack of fusion."
-    }
-  },
-  {
-    "id": "Q-B-7_interpass_cleaning_v7_05_30000079",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Between passes with flux-shielded processes you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Leave slag; it burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Удалить slag and heavy spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только chip the cap"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Water quench the bead"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cleaning предотвращает slag inclusions and lack of fusion."
-    }
-  },
-  {
     "id": "Q-B-7_orientation_marks_1000002d",
     "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем метить part orientation before tacking/welding?",
+    "difficulty": "medium",
+    "stem": "Зачем маркировать ориентацию детали перед прихватками/сваркой?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Such marks — graffiti"
+        "text": "Такие метки — это «граффити»"
       },
       {
         "id": "CHOICE-2",
-        "text": "They help avoid assembly errors"
+        "text": "Они помогают избежать ошибок при сборке"
       },
       {
         "id": "CHOICE-3",
-        "text": "They weaken structural members"
+        "text": "Они ослабляют элементы"
       },
       {
         "id": "CHOICE-4",
-        "text": "They — not allowed on steel"
+        "text": "Их нельзя наносить на сталь"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Orientation marks help ensure parts — positioned as designed."
-    }
-  },
-  {
-    "id": "Q-B-7_orientation_marks_1000002d",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем метить part orientation before tacking/welding?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Such marks — graffiti"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They help avoid assembly errors"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They weaken structural members"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They — not allowed on steel"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Orientation marks help ensure parts — positioned as designed."
-    }
-  },
-  {
-    "id": "Q-B-7_orientation_marks_use_v2_00_3000003d",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Почему mark part orientation before tacking/welding?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Such marks weaken members"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They help avoid assembly errors"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They are graffiti"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Not allowed on steel"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Orientation marks ensure parts are positioned as designed."
-    }
-  },
-  {
-    "id": "Q-B-7_orientation_marks_use_v4_05_30000058",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Почему mark part orientation before tacking/welding?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Such marks weaken members"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They help avoid assembly errors"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They are graffiti"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Not allowed on steel"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Orientation marks ensure parts are positioned as designed."
-    }
-  },
-  {
-    "id": "Q-B-7_orientation_marks_use_v6_10_30000073",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Почему mark part orientation before tacking/welding?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Such marks weaken members"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They help avoid assembly errors"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They are graffiti"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Not allowed on steel"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Orientation marks ensure parts are positioned as designed."
+      "CHOICE-2": "Марки направления/ориентации фиксируют «что-где-как», поэтому элементы сводятся именно так, как заложено в проекте, без перевёртышей и смещений."
     }
   },
   {
     "id": "Q-B-7_preheat_use_v2_05_30000042",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Preheating before welding primarily:",
+    "stem": "Предварительный подогрев перед сваркой в первую очередь:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increases cooling rate"
+        "text": "Увеличивает скорость охлаждения"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces cooling rate and hydrogen cracking risk"
+        "text": "Снижает скорость охлаждения и риск водородного растрескивания"
       },
       {
         "id": "CHOICE-3",
-        "text": "Eliminates interpass cleaning"
+        "text": "Отменяет межслойную очистку"
       },
       {
         "id": "CHOICE-4",
-        "text": "Strengthens flux coating"
+        "text": "Укрепляет покрытие электрода"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
+      "CHOICE-2": "Подогрев замедляет охлаждение, облегчает диффузию водорода и тем самым снижает склонность к холодным трещинам (особенно в жёстких сборках и высокопрочных сталях)."
     }
   },
   {
-    "id": "Q-B-7_preheat_use_v4_10_3000005d",
+    "id": "Q-B-7_distortion_planning_v7_01_30000075",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Preheating before welding primarily:",
+    "stem": "Как учитывать деформации на этапе планирования работ?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increases cooling rate"
+        "text": "Считать, что усадка случайна"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces cooling rate and hydrogen cracking risk"
+        "text": "Планировать сборку и последовательность с учётом прогнозируемой усадки"
       },
       {
         "id": "CHOICE-3",
-        "text": "Eliminates interpass cleaning"
+        "text": "Отказаться от применения струбцин/фиксаторов"
       },
       {
         "id": "CHOICE-4",
-        "text": "Strengthens flux coating"
+        "text": "Считать, что тепловложение не связано с деформациями"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
+      "CHOICE-2": "Усадка предсказуема: её компенсируют последовательностью швов, прихватками, симметрией, жёсткой фиксацией и приёмами типа back‑step."
     }
   },
   {
-    "id": "Q-B-7_preheat_use_v7_04_30000078",
+    "id": "Q-B-7_edge_prep_1000002e",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Preheating before welding primarily:",
+    "stem": "Зачем удалять заусенцы и оксиды с подготовленных кромок?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increases cooling rate"
+        "text": "Это экономит время, но уменьшает прочность"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces cooling rate and hydrogen cracking risk"
+        "text": "Это не нужно ни на каком материале"
       },
       {
         "id": "CHOICE-3",
-        "text": "Eliminates interpass cleaning"
+        "text": "Это улучшает сплавление и снижает включения"
       },
       {
         "id": "CHOICE-4",
-        "text": "Strengthens flux coating"
+        "text": "Это касается только алюминия"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
+      "CHOICE-3": "Чистые, ровные кромки обеспечивают контакт металла и газоотвод; загрязнения и оксиды дают поры и непровары."
     }
   },
   {
-    "id": "Q-B-7_presetting_v3_00_30000048",
+    "id": "Q-B-7_alignment_tools_use_v3_08_30000050",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Presetting (offsetting) parts opposite expected shrinkage используется для:",
+    "stem": "Как уменьшить внутреннее несовпадение кромок (hi‑lo) при сборке?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Make parts misaligned after welding"
+        "text": "Игнорировать до окончания сварки"
       },
       {
         "id": "CHOICE-2",
-        "text": "Compensate for predictable contraction"
+        "text": "Использовать струбцины, hi‑lo‑шаблоны и юстировочные приспособления"
       },
       {
         "id": "CHOICE-3",
-        "text": "Avoid using clamps"
+        "text": "Подбить кувалдой после остывания"
       },
       {
         "id": "CHOICE-4",
-        "text": "Eliminate need for WPS"
+        "text": "Заложить смещение металлом шва"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Preset enables correct alignment after shrinkage."
+      "CHOICE-2": "Выравнивание выполняют до сварки: фиксаторы и калибры выставляют кромки заподлицо, чтобы исключить стресс‑концентраторы и непровар."
     }
   },
   {
-    "id": "Q-B-7_presetting_v5_05_30000063",
+    "id": "Q-B-7_backing_bar_10000024",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Presetting (offsetting) parts opposite expected shrinkage используется для:",
+    "stem": "Для чего используется подкладка (backing bar/strip)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Make parts misaligned after welding"
+        "text": "Поддерживает корневой проход и снижает прожог"
       },
       {
         "id": "CHOICE-2",
-        "text": "Compensate for predictable contraction"
+        "text": "Не даёт никакой пользы"
       },
       {
         "id": "CHOICE-3",
-        "text": "Avoid using clamps"
+        "text": "Запрещена всеми стандартами"
       },
       {
         "id": "CHOICE-4",
-        "text": "Eliminate need for WPS"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preset enables correct alignment after shrinkage."
-    }
-  },
-  {
-    "id": "Q-B-7_root_face_land_v3_02_3000004a",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "A small корень шва face (land) on разделка edges помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Prevent any penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Control корень шва penetration and support the корень шва"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase arc length"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Удалить the need for backing"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A land supports корень шва control and bead shape."
-    }
-  },
-  {
-    "id": "Q-B-7_root_face_land_v5_07_30000065",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "A small корень шва face (land) on разделка edges помогает to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Prevent any penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Control корень шва penetration and support the корень шва"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase arc length"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Удалить the need for backing"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A land supports корень шва control and bead shape."
-    }
-  },
-  {
-    "id": "Q-B-7_root_gap_consistency_v1_00_30000032",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему is a consistent корень шва opening important before welding a butt joint?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It has no effect on penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It помогает control penetration and корень шва fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A completely closed gap is always best"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A very large gap предотвращает burn-through"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Uniform gaps help achieve consistent корень шва fusion without burn-through."
-    }
-  },
-  {
-    "id": "Q-B-7_root_gap_consistency_v3_05_3000004d",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему is a consistent корень шва opening important before welding a butt joint?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It has no effect on penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It помогает control penetration and корень шва fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A completely closed gap is always best"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A very large gap предотвращает burn-through"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Uniform gaps help achieve consistent корень шва fusion without burn-through."
-    }
-  },
-  {
-    "id": "Q-B-7_root_gap_consistency_v5_10_30000068",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему is a consistent корень шва opening important before welding a butt joint?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It has no effect on penetration"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It помогает control penetration and корень шва fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A completely closed gap is always best"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A very large gap предотвращает burn-through"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Uniform gaps help achieve consistent корень шва fusion without burn-through."
-    }
-  },
-  {
-    "id": "Q-B-7_root_opening_10000022",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему a consistent зазора в корне important before welding a butt joint?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It has no effect on проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It helps control проплавление and root сплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A completely closed gap — always best"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A very large gap предотвращает burn-through"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Uniform root gaps help achieve consistent root сплавление without burn-through."
-    }
-  },
-  {
-    "id": "Q-B-7_root_opening_10000022",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему a consistent зазора в корне important before welding a butt joint?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It has no effect on проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It helps control проплавление and root сплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "A completely closed gap — always best"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A very large gap предотвращает burn-through"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Uniform root gaps help achieve consistent root сплавление without burn-through."
-    }
-  },
-  {
-    "id": "Q-B-7_runon_runoff_tabs_v1_08_3000003a",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему install планок разгона/сбега?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cosmetics only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To start/stop off the part and protect edges"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They weaken the weld"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They are lifting points"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Tabs enable full fusion at tie-ins without damaging part edges."
-    }
-  },
-  {
-    "id": "Q-B-7_runon_runoff_tabs_v4_02_30000055",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему install планок разгона/сбега?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cosmetics only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To start/stop off the part and protect edges"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They weaken the weld"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They are lifting points"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Tabs enable full fusion at tie-ins without damaging part edges."
-    }
-  },
-  {
-    "id": "Q-B-7_runon_runoff_tabs_v6_07_30000070",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Почему install планок разгона/сбега?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cosmetics only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To start/stop off the part and protect edges"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They weaken the weld"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They are lifting points"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Tabs enable full fusion at tie-ins without damaging part edges."
-    }
-  },
-  {
-    "id": "Q-B-7_runon_tabs_1000002a",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Зачем устанавливать планок разгона и сбега?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They — cosmetic только"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Чтобы получить full сплавление at tie-ins and protect part edges"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "For lifting points"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They make the weld weaker"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Tabs allow starting/ending outside the part for complete сплавление."
-    }
-  },
-  {
-    "id": "Q-B-7_runon_tabs_1000002a",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Зачем устанавливать планок разгона и сбега?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They — cosmetic только"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Чтобы получить full сплавление at tie-ins and protect part edges"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "For lifting points"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They make the weld weaker"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Tabs allow starting/ending outside the part for complete сплавление."
-    }
-  },
-  {
-    "id": "Q-B-7_sequence_symmetry_v2_10_30000047",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "A symmetric welding sequence on a long seam помогает:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Concentrate heat"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Distribute heat and minimize bowing"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Add pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increase магнитный срыв дуги"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Symmetry помогает control distortion on long joints."
-    }
-  },
-  {
-    "id": "Q-B-7_sequence_symmetry_v5_04_30000062",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "A symmetric welding sequence on a long seam помогает:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Concentrate heat"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Distribute heat and minimize bowing"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Add pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increase магнитный срыв дуги"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Symmetry помогает control distortion on long joints."
-    }
-  },
-  {
-    "id": "Q-B-7_shim_uniform_gap_v1_10_3000003c",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем использовать прокладок (шимов) during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To hide defects"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To ensure a consistent корень шва gap when parts vary"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace beveling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Только for painting"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Shims help set uniform gaps before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_shim_uniform_gap_v4_04_30000057",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем использовать прокладок (шимов) during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To hide defects"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To ensure a consistent корень шва gap when parts vary"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace beveling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Только for painting"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Shims help set uniform gaps before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_shim_uniform_gap_v6_09_30000072",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем использовать прокладок (шимов) during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To hide defects"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To ensure a consistent корень шва gap when parts vary"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace beveling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Только for painting"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Shims help set uniform gaps before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_shims_gap_1000002c",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем использовать прокладок (шимов) during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To ensure a consistent root gap когда parts vary"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To hide defects"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace beveling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They — только for painting"
+        "text": "Заменяет все прихватки"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Temporary прокладок (шимов) help set uniform gaps before welding."
+      "CHOICE-1": "Подкладка стабилизирует корень, облегчая получение ПШС/ПСШ и предотвращая провис/прожог."
     }
   },
   {
-    "id": "Q-B-7_shims_gap_1000002c",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Зачем использовать прокладок (шимов) during fit-up?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To ensure a consistent root gap когда parts vary"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To hide defects"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To replace beveling"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They — только for painting"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Temporary прокладок (шимов) help set uniform gaps before welding."
-    }
-  },
-  {
-    "id": "Q-B-7_skip_backstep_10000028",
+    "id": "Q-B-7_balanced_welds_v7_06_3000007a",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Зачем использовать skip or backstep welding sequences?",
+    "stem": "Балансирование швов по противоположным сторонам позволяет:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To concentrate heat in one area"
+        "text": "Увеличить деформации"
       },
       {
         "id": "CHOICE-2",
-        "text": "To distribute heat and уменьшить деформации"
+        "text": "Компенсировать усадку и уменьшить деформации"
       },
       {
         "id": "CHOICE-3",
-        "text": "Because random order — best"
+        "text": "Заменить приспособления"
       },
       {
         "id": "CHOICE-4",
-        "text": "To always weld straight through in one pass"
+        "text": "Нарастить остаточные напряжения"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Sequencing spreads heat input and limits деформации."
+      "CHOICE-2": "Симметричное распределение тепла и швов уравновешивает усадочные силы."
     }
   },
   {
-    "id": "Q-B-7_skip_backstep_10000028",
+    "id": "Q-B-7_bevel_angle_10000023",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Зачем использовать skip or backstep welding sequences?",
+    "stem": "Зачем подбирать правильный угол разделки при подготовке кромок?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To concentrate heat in one area"
+        "text": "Нулевой скос даёт лучший доступ"
       },
       {
         "id": "CHOICE-2",
-        "text": "To distribute heat and уменьшить деформации"
+        "text": "Правильный угол обеспечивает доступ и необходимое проплавление"
       },
       {
         "id": "CHOICE-3",
-        "text": "Because random order — best"
+        "text": "Чем круче, тем всегда прочнее"
       },
       {
         "id": "CHOICE-4",
-        "text": "To always weld straight through in one pass"
+        "text": "Чем мельче, тем всегда лучше"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Sequencing spreads heat input and limits деформации."
-    }
-  },
-  {
-    "id": "Q-B-7_skip_backstep_reason_v1_06_30000038",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Зачем использовать skip or backstep welding sequences?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To concentrate heat in one area"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To distribute heat and reduce distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To weld straight through in one pass"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Because random order is best"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Sequencing spreads heat and limits distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_skip_backstep_reason_v4_00_30000053",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Зачем использовать skip or backstep welding sequences?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To concentrate heat in one area"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To distribute heat and reduce distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To weld straight through in one pass"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Because random order is best"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Sequencing spreads heat and limits distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_skip_backstep_reason_v6_05_3000006e",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Зачем использовать skip or backstep welding sequences?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To concentrate heat in one area"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To distribute heat and reduce distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To weld straight through in one pass"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Because random order is best"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Sequencing spreads heat and limits distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_strongbacks_10000026",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что — the function of стронгбеков (жёстких распорок) during fabrication?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает warpage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They предотвращает деформации and hold alignment while welding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They — lifting devices"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They replace предварительного подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Strongbacks restrain parts to counteract weld shrinkage."
-    }
-  },
-  {
-    "id": "Q-B-7_strongbacks_10000026",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что — the function of стронгбеков (жёстких распорок) during fabrication?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает warpage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They предотвращает деформации and hold alignment while welding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They — lifting devices"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They replace предварительного подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Strongbacks restrain parts to counteract weld shrinkage."
-    }
-  },
-  {
-    "id": "Q-B-7_strongbacks_function_v1_04_30000036",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что is the function of стронгбеков (жёстких распорок) during fabrication?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает warpage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They restrain parts to counteract distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They are lifting devices"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They replace подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Strongbacks hold alignment and reduce distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_strongbacks_function_v3_09_30000051",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что is the function of стронгбеков (жёстких распорок) during fabrication?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает warpage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They restrain parts to counteract distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They are lifting devices"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They replace подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Strongbacks hold alignment and reduce distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_strongbacks_function_v6_03_3000006c",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "Что is the function of стронгбеков (жёстких распорок) during fabrication?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They увеличивает warpage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They restrain parts to counteract distortion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They are lifting devices"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They replace подогрева"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Strongbacks hold alignment and reduce distortion."
-    }
-  },
-  {
-    "id": "Q-B-7_tack_size_10000027",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как следует tack welds be sized?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very large tacks — best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Sized so they can be fused into the final weld"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Always tiny tacks"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Tacks should never be ground"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Properly sized tacks fuse into the weld without defects."
-    }
-  },
-  {
-    "id": "Q-B-7_tack_size_10000027",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как следует tack welds be sized?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very large tacks — best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Sized so they can be fused into the final weld"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Всегда tiny tacks"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Tacks should never be ground"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Properly sized tacks fuse into the weld without defects."
-    }
-  },
-  {
-    "id": "Q-B-7_tack_sizing_v1_05_30000037",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как следует tack welds be sized?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very large tacks are always best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Sized to fuse into the final weld without defects"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Всегда tiny tacks regardless of gap"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Никогда ground or cleaned"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Proper tacks fuse smoothly into the weld."
-    }
-  },
-  {
-    "id": "Q-B-7_tack_sizing_v3_10_30000052",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как следует tack welds be sized?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very large tacks are always best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Sized to fuse into the final weld without defects"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Всегда tiny tacks regardless of gap"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Никогда ground or cleaned"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Proper tacks fuse smoothly into the weld."
-    }
-  },
-  {
-    "id": "Q-B-7_tack_sizing_v6_04_3000006d",
-    "taskId": "B-7",
-    "difficulty": "easy",
-    "stem": "Как следует tack welds be sized?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very large tacks are always best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Sized to fuse into the final weld without defects"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Всегда tiny tacks regardless of gap"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Никогда ground or cleaned"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Proper tacks fuse smoothly into the weld."
-    }
-  },
-  {
-    "id": "Q-B-7_temporary_attachments_v2_04_30000041",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "For temporary стронгбеков (жёстких распорок) or tabs, a best practice is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Leave them on finished products"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Удалить and finish per drawings/WPS after welding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Ignore drawing requirements"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Paint over them if visible"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Temporary attachments should be removed and finished as specified."
-    }
-  },
-  {
-    "id": "Q-B-7_temporary_attachments_v4_09_3000005c",
-    "taskId": "B-7",
-    "difficulty": "medium",
-    "stem": "For temporary стронгбеков (жёстких распорок) or tabs, a best practice is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Leave them on finished products"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Удалить and finish per drawings/WPS after welding"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Ignore drawing requirements"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Paint over them if visible"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Temporary attachments should be removed and finished as specified."
+      "CHOICE-2": "Достаточный раскрытый угол даёт доступ к корню и стенкам, снижает риск непровара."
     }
   },
   {
     "id": "Q-B-7_temporary_attachments_v7_03_30000077",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "For temporary стронгбеков (жёстких распорок) or tabs, a best practice is to:",
+    "stem": "Как правильно обращаться со временными усилителями/прихватными косынками (strongbacks/tabs)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Leave them on finished products"
+        "text": "Оставлять на готовых изделиях"
       },
       {
         "id": "CHOICE-2",
-        "text": "Удалить and finish per drawings/WPS after welding"
+        "text": "Снимать и зачищать по чертежу/ВИК после сварки"
       },
       {
         "id": "CHOICE-3",
-        "text": "Ignore drawing requirements"
+        "text": "Игнорировать требования документации"
       },
       {
         "id": "CHOICE-4",
-        "text": "Paint over them if visible"
+        "text": "Закрасить, если видны"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Temporary attachments should be removed and finished as specified."
+      "CHOICE-2": "Временные элементы не должны оставаться — их удаляют и доводят поверхность по чертежу/WPS."
     }
   },
   {
     "id": "Q-B-7_temporary_tack_removal_v3_01_30000049",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Перед final welding, temporary tacks or dogs that interfere should be:",
+    "stem": "Перед финальной сваркой мешающие доступу временные «собаки»/прихватки следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Left in place"
+        "text": "Оставить как есть"
       },
       {
         "id": "CHOICE-2",
-        "text": "Удалитьd or reshaped per plan to allow proper access"
+        "text": "Удалить или переформовать по плану для нормального доступа"
       },
       {
         "id": "CHOICE-3",
-        "text": "Hidden under weld metal"
+        "text": "Спрятать под наплавкой"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ignored"
+        "text": "Игнорировать"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Remove interferences so the torch can reach sidewalls/корень шва."
+      "CHOICE-2": "Физические помехи мешают подвести дугу к стенкам/корню и ведут к непроварам."
     }
   },
   {
-    "id": "Q-B-7_temporary_tack_removal_v5_06_30000064",
+    "id": "Q-B-7_fillet_gauge_use_v2_08_30000045",
     "taskId": "B-7",
     "difficulty": "medium",
-    "stem": "Перед final welding, temporary tacks or dogs that interfere should be:",
+    "stem": "Для чего применяют шаблон угловых швов (fillet‑weld gauge)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Left in place"
+        "text": "Для измерения напряжения"
       },
       {
         "id": "CHOICE-2",
-        "text": "Удалитьd or reshaped per plan to allow proper access"
+        "text": "Для контроля размера катета/эффективного горла"
       },
       {
         "id": "CHOICE-3",
-        "text": "Hidden under weld metal"
+        "text": "Для измерения расхода газа"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ignored"
+        "text": "Для оценки шероховатости"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Remove interferences so the torch can reach sidewalls/корень шва."
+      "CHOICE-2": "Шаблон даёт быстрый контроль катета и горла на соответствие чертежу/кодам."
+    }
+  },
+  {
+    "id": "Q-B-7_runon_tabs_1000002a",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Зачем устанавливают заходные/выходные планки (run‑on/run‑off tabs)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Только ради внешнего вида"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы начинать/заканчивать вне детали и защитить кромки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Они ослабляют шов"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Это точки строповки"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Планки позволяют получить полный провар на заходе/выходе без подрезов и кратеров на детали."
+    }
+  },
+  {
+    "id": "Q-B-7_sequence_symmetry_v2_10_30000047",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Симметричная последовательность на длинном шве помогает:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сконцентрировать тепло"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Равномерно распределить тепло и уменьшить «банан»"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Добавить пористость"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Усилить магнитный дуновение (arc blow)"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Чередование участков от середины к краям и «зеркальность» ограничивают прогиб/ведение."
+    }
+  },
+  {
+    "id": "Q-B-7_shim_uniform_gap_v1_10_3000003c",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Зачем применять проставки (shims) при сборке?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы скрыть дефекты"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы обеспечить постоянный корневой зазор при разбросе размеров"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы заменить разделку кромок"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только для окраски"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Проставки стандартизируют зазор, делая проплав предсказуемым по всей длине."
+    }
+  },
+  {
+    "id": "Q-B-7_hi_lo_measure_v2_09_30000046",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Чем измеряют внутреннее несовпадение кромок (hi‑lo)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Термометром"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Шаблоном hi‑lo или штангенциркулем"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Вольтметром"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Маркёром/мелком"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Используют измерительный инструмент, а не «на глаз» — так исключают локальные перепады и последующие дефекты."
+    }
+  },
+  {
+    "id": "Q-B-7_interpass_cleaning_v2_06_30000043",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Что делать между проходами при флюсовых процессах?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оставить шлак — он «выгорит»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Удалить шлак и крупные брызги"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чистить только финишный валик"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Охлаждать водой для скорости"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Остатки шлака дают включения и непровар — межслойная очистка обязательна."
+    }
+  },
+  {
+    "id": "Q-B-7_presetting_v3_00_30000048",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Зачем предварительно «переставлять» детали (preset/offset) навстречу ожидаемой усадке?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы получить рассогласование после сварки"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы компенсировать предсказуемую усадку"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы отказаться от струбцин"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чтобы не применять WPS"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Искусственное смещение в обратную сторону даёт выверенную геометрию после усадки."
+    }
+  },
+  {
+    "id": "Q-B-7_root_face_land_v3_02_3000004a",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Как помогает небольшое притупление (land) на кромках разделки?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Полностью предотвращает проплавление"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Помогает контролировать проплав корня и поддерживает корневой валик"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Увеличивает длину дуги"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Отменяет необходимость подкладки"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Небольшой «ленд» задаёт окно для проплава корня и формирует стабильную геометрию."
+    }
+  },
+  {
+    "id": "Q-B-7_tack_size_10000027",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Какого размера должны быть прихватки?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чем больше — тем лучше"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Такие, чтобы их можно было бездефектно «вварить» в основной шов"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда минимальные, независимо от зазора"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Никогда не зачищать"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Правильная длина/высота удерживает геометрию и при этом легко «растворяется» в шве без непровара."
+    }
+  },
+  {
+    "id": "Q-B-7_bridge_tacks_10000029",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Для чего применяют «мостиковые» прихватки (bridge tacks)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Временное перекрытие зазоров при сборке"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Это постоянные силовые элементы"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Они заменяют корневой проход"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Полностью запрещены при любых процессах"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "«Мостики» удерживают кромки при небольших зазорах до выполнения корня."
+    }
+  },
+  {
+    "id": "Q-B-7_chill_bars_1000002b",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Как помогают теплоотводящие планки (chill bars) при сварке тонкого металла?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Повышают тепловложение"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Отводят тепло, снижая деформации и прожог"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Измеряют температуру"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Дестабилизируют дугу"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Плотно прижатый теплоотвод увеличивает теплопроводящий контур и «охлаждает» зону сварки."
+    }
+  },
+  {
+    "id": "Q-B-7_gap_shrinkage_effect_v5_08_30000066",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Если корневой зазор при сборке слишком мал, вероятнее всего произойдёт:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чрезмерный проплав корня"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Недостаточный проплав/непровар в корне"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Идеальный провар в любом случае"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Никакого эффекта"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Малый зазор лишает дугу и расплав доступа в корень — формируется «холодный» корень."
+    }
+  },
+  {
+    "id": "Q-B-7P_box_seq_corners_20000201",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Короб 600×400×6 мм, угловые швы по периметру. Чтобы сохранить прямоугольность, какой порядок сварки лучше?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Вести непрерывно по периметру по часовой"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Сваривать два смежных угла подряд с одной стороны"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Короткими участками от середины длинных сторон к концам, симметрично и попеременно, контролируя диагонали"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Полностью заварить одну длинную сторону, затем остальное"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Симметричное распределение тепла + проверка диагоналей и укороченные проходы минимизируют коробление рам/коробов."
+    }
+  },
+  {
+    "id": "Q-B-7P_corner_tacks_dogears_20000202",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "На тонком коробе 2 мм «уходят» углы (dog‑ears). Как прихватывать углы?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Одна крупная прихватка снаружи"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Несколько небольших прихваток по обеим кромкам изнутри, с теплоотводом и промежуточным охлаждением"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Без прихваток, сразу длинный проход"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Прогреть углы до синего и держать под струбциной"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Малые симметричные прихватки + теплоотводы ограничивают прогиб тонкого металла в углах."
+    }
+  },
+  {
+    "id": "Q-B-7P_mid_outwards_20000203",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Длинный стыковой шов 1200 мм на листе 5 мм. Чтобы ограничить коробление, начинать лучше…",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "От края к краю одним непрерывным проходом"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "От середины к концам короткими секциями, чередуя стороны"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "С любого места — разницы нет"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сначала полностью обратную сторону"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Разбиение шва и чередование сторон распределяет усадку и сохраняет геометрию."
+    }
+  },
+  {
+    "id": "Q-B-7P_ceramic_backing_20000204",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Керамическая подкладка на корневом проходе открытого стыка обычно даёт:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Рост пористости"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Опору ванны корня, ровный обратный валик и меньше зачистки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Запрет по всем кодам"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Отмену подготовки кромок"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Керамика стабилизирует корень и ускоряет отделку; применять по WPS/чертежу."
+    }
+  },
+  {
+    "id": "Q-B-7P_strongbacks_use_20000205",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Для выправления «банана» на листе перед сваркой применяют стяжки/стронгбеки. Что важно?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Тянуть «на максимум», чтобы не шевелилось"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Расположить равномерно и умеренно, контролируя плоскостность и ослабляя по мере продвижения"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Достаточно одной стяжки по центру"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Заменить прихватками без контроля"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Чрезмерный натяг фиксирует ошибки и может привести к трещинам при освобождении."
+    }
+  },
+  {
+    "id": "Q-B-7P_tack_spacing_6mm_20000206",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Толщина 6 мм, длина стыка 800 мм. Базовый шаг прихваток для удержания геометрии:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "50–80 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "100–150 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "300–400 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Прихватки не нужны"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Правило большого пальца: умеренный шаг 0,1–0,15 м для листов ~6 мм удерживает зазор и плоскостность."
+    }
+  },
+  {
+    "id": "Q-B-7P_heat_input_calc_20000207",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Оцените тепловложение H (кДж/мм), если V=22 В, I=160 А, скорость=250 мм/мин, η=0,85. Формула: H≈(V·I·60·η)/(1000·скорость).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,48 кДж/мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0,72 кДж/мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1,20 кДж/мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2,40 кДж/мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "22×160×60×0,85/1000/250 ≈ 0,718 → 0,72 кДж/мм. Меньшее H — меньше коробление (при достаточном проплавлении)."
+    }
+  },
+  {
+    "id": "Q-B-7P_preset_shrink_est_20000208",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Угловой шов длиной 1000 мм, ожидаемая усадка ~1,0 мм/м. Какой предварительный отгиб (preset) заложить?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Около 1 мм против направления усадки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "5 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "10 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Небольшой preset компенсирует типовую усадку; точные величины — по опыту/контролю, без излишков."
+    }
+  },
+  {
+    "id": "Q-B-7P_doubleV_choice_20000209",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Для пластины 20 мм предпочтительнее выбрать разделку:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Одинарная V с одной стороны"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Двойная V с обеих сторон и симметричной последовательностью"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "U без подготовки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Прямой стык без зазора"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Двойная V уменьшает объём наплавки и балансирует усадку."
+    }
+  },
+  {
+    "id": "Q-B-7P_fixture_datums_20000210",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "На сборочном столе применяют базовые штифты/упоры. Что это даёт?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Только ускоряет шлифовку"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Повторяемую базировку по датумам и контроль диагоналей при прихватках"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Можно отказаться от измерений совсем"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Запрещено стандартами"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Фикстура стабилизирует базу, снижая вариативность геометрии."
+    }
+  },
+  {
+    "id": "Q-B-7P_measure_when_cool_20000211",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Когда выполнять финальные контрольные замеры размеров?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "На горячем металле — быстрее"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Сразу после локального охлаждения водой"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "После остывания до окрестной температуры согласно маршруту"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "До снятия из оснастки всегда"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Измерения «на горячую» нестабильны из‑за тепловых деформаций."
+    }
+  },
+  {
+    "id": "Q-B-7P_intermittent_sheet_20000212",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Полка 3 мм к стенке 3 мм. Чтобы снизить коробление, разумно:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сплошной шов по всей длине"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Прерывистый шов по заданию (например, 50 мм через 100 мм), симметрично"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Увеличить ток вдвое"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Не делать прихваток"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Прерывистая наплавка уменьшает тепловложение и усадку на тонких стенках."
+    }
+  },
+  {
+    "id": "Q-B-7P_copper_chill_al_20000213",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "При GTAW алюминия 2 мм использование медной подкладки (chill bar) обычно:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ухудшает отвод тепла"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Обеспечивает теплоотвод и опору ванны, снижая прожог"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Запрещает применение аргона"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Не влияет на процесс"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Медь — хороший теплоотвод; применяйте по WPS/оснастке."
+    }
+  },
+  {
+    "id": "Q-B-7P_start_stop_frames_20000214",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Где лучше располагать начало/окончание швов на рамной конструкции?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "На видовых кромках"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "В малозаметных зонах, чередуя места старта/стопа и заполняя кратеры"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Всегда в одном углу"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Посередине длинной стороны без табов"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Это снижает локальные напряжения/дефекты и улучшает внешний вид."
+    }
+  },
+  {
+    "id": "Q-B-7P_post_ceramic_finish_20000215",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "После сварки с керамической подкладкой чертёж требует чистую обратную сторону. Правильные шаги:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оставить остатки керамики «как есть»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снять остатки, зашлифовать до требуемой чистоты/плоскостности, выполнить VT; при требовании — PT; задокументировать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Закрасить обратную сторону"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Снять, но контроль не проводить"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Отделка и контроль соответствуют требованиям чертежа/WPS и маршрута."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_restraint_risk_40000001",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Как жёсткая фиксация/зажим деталей (высокая степень закрепления) влияет на качество и риски при сварке?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Полностью исключает деформации и трещины"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снижает потребность в прихватках"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Повышает риск холодных трещин и усиливает деформационные напряжения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Не влияет на процесс"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Высокая жёсткость мешает свободному усадочному перемещению металла, накапливая растягивающие напряжения и повышая склонность к холодным (водородным) трещинам."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_doubleV_benefit_40000002",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Чем двусторонняя разделка (двойной V) на толстом материале обычно лучше одинарной?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличивает объём наплавки и деформации"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снижает объём наплавки и симметризует тепловложение, уменьшая угловую деформацию"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Исключает необходимость преднагрева"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Гарантирует отсутствие непровара при любых режимах"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Двойная V уменьшает суммарный объём наплавленного металла и делает тепловложение более симметричным, что снижает угловой увод."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_purge_stainless_40000003",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Зачем применяют поддув (пуржинг) инертным газом при открытом корне на нержавеющих сталях?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы усилить окисление корня"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Для снижения сварочного тока"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы защитить корень от окисления и получить гладкую корневую поверхность"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чтобы исключить необходимость зачистки кромок"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Инертный газ вытесняет кислород, предотвращая «сахарение» корня и обеспечивая требуемое качество и коррозионную стойкость."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_interpass_measure_loc_40000004",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Где корректно измерять преднагрев/межслойную температуру для контроля по WPS?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "В самом сварном шве по расплавленному металлу"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "На чистом металле рядом с кромкой/швом в зоне термического влияния"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "На противоположной стороне заготовки вдали от шва"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "По цвету побежалости «на глаз»"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Температуру контролируют на очищенном основном металле вблизи шва (ЗТВ), а не по расплаву и не в удалённых точках."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_feeler_gap_40000005",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Каким инструментом удобно контролировать ширину корневого зазора перед сваркой?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Инфракрасным пирометром"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Индикатором часового типа"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Набором щупов (feeler gauges)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Амперметром источника"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Щупы позволяют быстро и точно оценить фактический зазор между кромками."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_ceramic_backing_role_40000006",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Какова основная функция керамической подкладки при сварке корня?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличить сопротивление электрической цепи"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Поддержать ванну и сформировать корень, снижая риск прожога"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Охладить дугу для меньшего проплавления"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Заменить газовую защиту"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Керамическая подкладка удерживает расплавленный металл и задаёт форму корневого валика."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_excess_gap_effect_40000007",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "К чему обычно приводит чрезмерно большой корневой зазор при неизменных режимах?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "К гарантированному полному проплавлению без риска"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "К риску прожога и нестабильной формы корневого валика"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "К снижению тепловложений"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ни к чему — величина зазора несущественна"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Большой зазор требует корректировки режимов и/или подкладки; иначе возрастает риск прожога и дефектной геометрии корня."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_backgouge_reason_40000008",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Зачем при двусторонней сварке выполняют выборку корня (back‑gouging) перед обратным проваром?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы увеличить высоту усиления"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы удалить возможные дефекты корня и обеспечить полный проплав"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы снизить требования к газовой защите"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чтобы не выполнять межслойную очистку"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Выборка удаляет шлак, непровар и поры с первой стороны, повышая надёжность обратного прохода."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_tack_spacing_40000009",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Как лучше расположить прихватки на длинном стыке, чтобы уменьшить коробление?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Все прихватки с одной стороны в начале шва"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Редкие и длинные прихватки произвольно"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Равномерно и симметрично по длине, по плану, с одинаковым шагом"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Расположение прихваток не влияет на коробление"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Равномерное и симметричное расположение удерживает геометрию и распределяет усадку."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_stringer_on_thin_40000010",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Что чаще помогает уменьшить деформации на тонком листе?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Широкие колебательные проходы и низкая скорость"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Узкие стрингерные проходы с меньшим тепловложением и большей скоростью"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Очень высокий ток и нулевая скорость"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Максимально широкий зазор для лучшего проплавления"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Меньший тепловклад и более короткое воздействие дуги снижают коробление тонкого металла."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_root_face_small_40000011",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Как малое притупление кромок (root face) влияет на открытый корень?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Уменьшает риск прожога"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Не влияет на форму корня"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Увеличивает риск прожога и провисания корневого валика"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Гарантирует полный проплав при любом токе"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Слишком малый 'land' плохо поддерживает ванну, облегчая прожог и неустойчивую форму корня."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_backing_contact_40000012",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Почему важно обеспечить плотный контакт подкладки (стальной/керамической) с кромками?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы увеличить ширину зазора"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы исключить затекание металла и пористость, корректно сформировать корень"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы заменить межслойную очистку"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Контакт несущественен"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Плотная опора подкладки предотвращает утечку металла и дефекты корня."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_center_out_frame_40000013",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Какой общий принцип последовательности сварки рам/коробов помогает уменьшить перекос?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "От угла к углу по часовой стрелке"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "От краёв к центру"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "От центра к краям симметричными участками"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Непрерывно в одном направлении без остановок"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Начало в середине и симметричное продвижение распределяют усадку и уменьшают перекос."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_avoid_scribing_40000014",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Почему следует избегать острых кернов/насечек на кромках и поверхностях, подлежащих сварке?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Они улучшают сцепление металла"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Могут служить концентраторами напряжений и местом зарождения трещин"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Облегчают последующую зачистку"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Не оказывают влияния"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Острые насечки создают локальные концентрации напряжений и могут инициировать трещины."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_angular_distortion_cause_40000015",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Основная причина угловой деформации в одностороннем V‑образном стыке — это:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Слишком высокая скорость перемещения"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Низкая влажность воздуха"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Несимметричное расположение наплавленного металла относительно нейтральной оси сечения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Применение прихваток"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Эксцентриситет наплавки относительно нейтральной оси вызывает неравномерную усадку и угловой увод."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_remove_al_oxide_40000016",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Зачем перед сваркой алюминия механически удаляют оксидную плёнку (и/или выполняют химическую очистку)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оксид улучшает смачивание и проплавление"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Оксид имеет более высокую температуру плавления и мешает проплавлению/сцеплению"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы увеличить пористость"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только для эстетики поверхности"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Алюминиевый оксид тугоплавок и препятствует смачиванию/проплаву, поэтому его удаляют."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_stainless_dedicated_brush_40000017",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Почему для нержавейки используют отдельную проволочную щётку из нержавеющей стали?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы перенести углерод на поверхность"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы избежать перекрёстного загрязнения железом и последующей коррозии"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Материал щётки не имеет значения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чтобы снизить прочность стали"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Чужеродное железо вызывает коррозию; отдельные щётки исключают загрязнение."
+    }
+  },
+  {
+    "id": "Q-B-7_theory_diagonal_check_40000018",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Какой контроль геометрии сборки рам/коробов помогает подтвердить прямоугольность?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Измерение только одной стороны"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Проверка диагоналей (X‑замер) и сравнение их равенства"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Слуховой тест постукиванием молотком"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Измерение массы изделия"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Равенство диагоналей подтверждает прямоугольную геометрию сборки."
+    }
+  },
+  {
+    "id": "Q-B-7P7_heat_input_calc_20000701",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Оцените тепловложение H (кДж/мм), если V=26 В, I=220 А, скорость=350 мм/мин, η=0,9. Формула: H≈(V·I·60·η)/(1000·скорость). Округлите до сотых.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,56 кДж/мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0,74 кДж/мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0,88 кДж/мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1,05 кДж/мм"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Подставляем: (26·220·60·0,9)/(1000·350)=0,882… ⇒ 0,88 кДж/мм."
+    }
+  },
+  {
+    "id": "Q-B-7P7_speed_change_effect_20000702",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "При тех же V, I и η увеличили скорость с 250 до 375 мм/мин. Как изменится тепловложение H?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличится примерно на 33%"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Уменьшится примерно на 33%"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Увеличится примерно на 50%"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Не изменится"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "H обратно пропорционален скорости: 250→375 — это ×1,5 по скорости ⇒ H делится на 1,5 (≈−33%)."
+    }
+  },
+  {
+    "id": "Q-B-7P7_cfh_to_lpm_30_20000703",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Преобразуйте расход 30 CFH в л/мин (1 CFH ≈ 0,472 л/мин). Округлите до десятых.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "12,0 л/мин"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "14,2 л/мин"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "16,9 л/мин"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "9,5 л/мин"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "30×0,472≈14,16 ⇒ 14,2 л/мин."
+    }
+  },
+  {
+    "id": "Q-B-7P7_lpm_to_cfh_12_20000704",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Какому значению CFH соответствует 12 л/мин? (1 CFH ≈ 0,472 л/мин). Округлите до десятых.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "20,5 CFH"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "25,4 CFH"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "30,0 CFH"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "40,0 CFH"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "CFH≈12/0,472≈25,4."
+    }
+  },
+  {
+    "id": "Q-B-7P7_fillet_throat_mm_10leg_20000705",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Для углового шва с катетом 10 мм вычислите эквивалентное горло t (t≈0,707·катет).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "6,0 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "7,07 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "7,5 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "10,0 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "t≈0,707×10=7,07 мм."
+    }
+  },
+  {
+    "id": "Q-B-7P7_fillet_throat_inch_3over8_20000706",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Катет углового шва 3/8\". Укажите эквивалентное горло t в мм (t≈0,707·катет; 3/8\"=9,525 мм).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "6,30 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "6,73 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "7,50 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "9,53 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "t≈0,707×9,525≈6,73 мм."
+    }
+  },
+  {
+    "id": "Q-B-7P7_speed_for_target_H_20000707",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Нужно получить H≈0,80 кДж/мм при V=24 В, I=200 А, η=0,9. Какая скорость (мм/мин) подойдёт? (H≈(V·I·60·η)/(1000·скорость)).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "300"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "324"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "350"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "400"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Скорость≈(24·200·60·0,9)/(1000·0,8)=259200/800=324 мм/мин."
+    }
+  },
+  {
+    "id": "Q-B-7P7_duty_cycle_60pct_20000708",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Источник 200 А @ 60% ПВ (10‑мин цикл). Сколько минут можно варить при 200 А без перегрева?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "10 мин"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "8 мин"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "6 мин"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "4 мин"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "60% от 10 мин = 6 мин сварки, 4 мин охлаждение."
+    }
+  },
+  {
+    "id": "Q-B-7P7_duty_cycle_40pct_20000709",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Источник 230 А @ 40% ПВ. Сколько минут сварки в 10‑мин цикле допустимо при 230 А?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "4 мин"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "5 мин"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "6 мин"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "8 мин"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "40% от 10 мин = 4 мин сварки, 6 мин охлаждение."
+    }
+  },
+  {
+    "id": "Q-B-7P7_fillet_mass_6mm_500mm_20000710",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Оцените массу металла в угловом шве длиной 500 мм, катет 6 мм (плотность 7,85 г/см³). Приближённо: площадь≈0,5·a². Округлите до сотых кг.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,07 кг"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0,17 кг"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0,70 кг"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "0,007 кг"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Площадь≈0,5·6²=18 мм²; V≈18·500=9000 мм³=9 см³; m≈9·7,85≈70,7 г≈0,07 кг."
+    }
+  },
+  {
+    "id": "Q-B-7P7_wire_length_1mm_15kg_20000711",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Катушка 15 кг проволоки 1,0 мм. Приблизительная общая длина проволоки?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈1,2 км"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈2,4 км"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈4,8 км"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈240 м"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "m/м≈6,16 г/м ⇒ 15000/6,16≈2430 м ≈ 2,4 км."
+    }
+  },
+  {
+    "id": "Q-B-7P7_dia_inch_to_mm_5over32_20000712",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Диаметр электрода 5/32\" — это примерно сколько мм?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "3,2 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "4,0 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "4,8 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "3,6 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "5/32\"=0,15625\"; ×25,4≈3,97 мм ⇒ ≈4,0 мм."
+    }
+  },
+  {
+    "id": "Q-B-7P7_time_for_bead_350mm_20000713",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Скорость 280 мм/мин. Сколько времени займёт валик длиной 350 мм (мин)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1,00 мин"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,25 мин"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1,50 мин"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2,00 мин"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "t=350/280=1,25 мин (75 с)."
+    }
+  },
+  {
+    "id": "Q-B-7P7_reinforcement_tolerance_20000714",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Чертёж: усиление 2,0±0,5 мм. Замер: 2,6 мм. Что делать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Принять как есть — «почти попали»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Принять с замечанием"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Отклонить/доработать: выше допуска"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Закрасить и принять"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Макс допустимо 2,5 мм; 2,6 мм — вне допуска ⇒ требуется исправление."
+    }
+  },
+  {
+    "id": "Q-B-7P7_cylinder_runtime_50L_200bar_20000715",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Баллон Ar 50 л при 200 бар (≈10000 л при 1 бар). Расход 12 л/мин. На сколько часов хватит (идеально, без утечек)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈7 ч"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈14 ч"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈28 ч"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈3 ч"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "10000/12≈833 мин ≈ 13,9 ч ⇒ ≈14 ч."
+    }
+  },
+  {
+    "id": "Q-B-7P7_rods_needed_200mm_per_rod_20000716",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "SMAW: в среднем один электрод даёт 200 мм шва (с учётом обрубки огрызков). Для 3 м непрерывной сварки понадобится примерно…",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "10 шт."
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "12 шт."
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "15 шт."
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "20 шт."
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "3000 мм / 200 мм ≈ 15 электродов."
+    }
+  },
+  {
+    "id": "Q-B-7P7_thermal_expansion_2m_200C_20000717",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Приближённо оцените удлинение стальной полосы 2,0 м при нагреве с 20°C до 200°C (α≈12×10⁻⁶ 1/°C).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈1,8 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈4,3 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈8,6 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈2,2 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "ΔL=L·α·ΔT=2·12×10⁻⁶·180≈0,00432 м=4,32 мм."
+    }
+  },
+  {
+    "id": "Q-B-7P7_tungsten_1over16_to_mm_20000718",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Размер вольфрамового электрода 1/16\" — это примерно сколько мм?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1,2 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,6 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "2,0 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2,4 мм"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1/16\"=0,0625\"; ×25,4≈1,59 мм ⇒ ≈1,6 мм."
+    }
+  },
+  {
+    "id": "Q-B-7P7_fillet_area_8mm_20000719",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Приближённая площадь поперечного сечения углового шва на 1 мм длины при катете 8 мм? (Половина квадрата катета).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "16 мм²"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "32 мм²"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "64 мм²"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "48 мм²"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Площадь≈0,5·a²=0,5·8²=32 мм²."
+    }
+  },
+  {
+    "id": "Q-B-7P7_voltage_plus10_effect_20000720",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "При прочих равных (I, скорость, η постоянны) напряжение дуги выросло на 10%. На сколько процентов изменится тепловложение H?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "На 5% ↑"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "На 10% ↑"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "На 20% ↑"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Не изменится"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "H пропорционально V (H∝V·I/скорость). Рост V на 10% ⇒ H на 10%."
     }
   }
 ]

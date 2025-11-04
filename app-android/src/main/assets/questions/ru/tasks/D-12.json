@@ -3,963 +3,207 @@
     "id": "Q-D-12_arc_blow_1000004e",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Как можно arc blow be reduced during SMAW (ручная дуговая)?",
+    "stem": "Как можно уменьшить «сдувание» дуги (arc blow) при РДС (SMAW)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Lengthen the arc and увеличивает ток"
+        "text": "Удлинить дугу и увеличить ток"
       },
       {
         "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
+        "text": "Укоротить дугу, переставить обратный провод (массу) или использовать приём backstep"
       },
       {
         "id": "CHOICE-3",
-        "text": "Switch to a larger электрод только"
+        "text": "Перейти только на электрод большего диаметра"
       },
       {
         "id": "CHOICE-4",
-        "text": "Weld только in one direction"
+        "text": "Варить строго в одном направлении"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Short arcs and better return lead placement уменьшить magnetic arc blow."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v1_08_40000008",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Как можно magnetic магнитного срыва дуги (arc blow) be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase ток"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger электрод only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v3_08_4000001c",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Как можно magnetic магнитного срыва дуги (arc blow) be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase ток"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger электрод only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v5_08_40000030",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Как можно magnetic магнитного срыва дуги (arc blow) be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase ток"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger электрод only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v7_08_40000044",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Как можно magnetic магнитного срыва дуги (arc blow) be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase ток"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger электрод only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_blow_mitigation_v9_08_40000058",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Как можно magnetic магнитного срыва дуги (arc blow) be reduced?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lengthen the arc and increase ток"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Shorten the arc, move the work lead, or backstep"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Use a larger электрод only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Weld in one direction only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arc and better return lead placement help."
+      "CHOICE-2": "Короткая дуга и правильное расположение обратного провода снижают магнитное «сдувание» дуги."
     }
   },
   {
     "id": "Q-D-12_arc_length_1000004c",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что arc length — generally recommended for SMAW (ручная дуговая)?",
+    "difficulty": "medium",
+    "stem": "Какая длина дуги обычно рекомендуется для РДС (SMAW)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Very long arc for better visibility"
+        "text": "Очень длинная дуга ради лучшей видимости"
       },
       {
         "id": "CHOICE-2",
-        "text": "As short as practical, about the электрод diameter"
+        "text": "Настолько короткая, насколько возможно (примерно диаметр электрода)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
+        "text": "Ровно 1 дюйм"
       },
       {
         "id": "CHOICE-4",
-        "text": "No effect on quality"
+        "text": "Длина дуги не влияет на качество"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Short arcs улучшить shielding and уменьшить spatter and подрез."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v1_06_40000006",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~электрод diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve защитного газа and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v3_06_4000001a",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~электрод diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve защитного газа and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v5_06_4000002e",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~электрод diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve защитного газа and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v7_06_40000042",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~электрод diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve защитного газа and reduce spatter/undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_length_short_v9_06_40000056",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), what arc length is generally recommended?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Very long for visibility"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "As short as practical (~электрод diameter)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Exactly 1 inch"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Arc length has no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short arcs improve защитного газа and reduce spatter/undercut."
+      "CHOICE-2": "Короткая дуга улучшает защиту, снижает разбрызгивание и риск подрезов."
     }
   },
   {
     "id": "Q-D-12_arc_start_methods_v2_09_40000013",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), which is a recommended arc start method on finished surfaces?",
+    "difficulty": "medium",
+    "stem": "Какой способ зажигания дуги на обработанных (лицевых) поверхностях предпочтителен при РДС?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Strike directly on visible faces"
+        "text": "Черкнуть прямо по видимой лицевой поверхности"
       },
       {
         "id": "CHOICE-2",
-        "text": "Strike on run-on tabs or within joint area"
+        "text": "Зажигать на пусковых планках (run‑on tabs) или внутри зоны разделки"
       },
       {
         "id": "CHOICE-3",
-        "text": "Strike on machined faces away from joints"
+        "text": "Черкнуть по обработанной поверхности вдали от шва"
       },
       {
         "id": "CHOICE-4",
-        "text": "No preference"
+        "text": "Без предпочтений"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Start within joint/tabs to avoid hard spots on faces."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_start_methods_v4_09_40000027",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), which is a recommended arc start method on finished surfaces?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike directly on visible faces"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Strike on run-on tabs or within joint area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on machined faces away from joints"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No preference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Start within joint/tabs to avoid hard spots on faces."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_start_methods_v6_09_4000003b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), which is a recommended arc start method on finished surfaces?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike directly on visible faces"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Strike on run-on tabs or within joint area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on machined faces away from joints"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No preference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Start within joint/tabs to avoid hard spots on faces."
-    }
-  },
-  {
-    "id": "Q-D-12_arc_start_methods_v8_09_4000004f",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For SMAW (ручная дуговая), which is a recommended arc start method on finished surfaces?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike directly on visible faces"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Strike on run-on tabs or within joint area"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike on machined faces away from joints"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No preference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Start within joint/tabs to avoid hard spots on faces."
+      "CHOICE-2": "Пуск в зоне разделки/на планках предотвращает «закалённые пятна» на лицевых поверхностях."
     }
   },
   {
     "id": "Q-D-12_clean_between_passes_1000004f",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Зачем удалять шлак between passes with E7018?",
+    "difficulty": "medium",
+    "stem": "Зачем удалять шлак между проходами при работе электродом E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "It — optional; шлак burns out"
+        "text": "Необязательно — шлак выгорит сам"
       },
       {
         "id": "CHOICE-2",
-        "text": "To avoid шлак inclusions and lack of сплавление"
+        "text": "Чтобы избежать включений шлака и непровара"
       },
       {
         "id": "CHOICE-3",
-        "text": "To cool the joint"
+        "text": "Чтобы охладить соединение"
       },
       {
         "id": "CHOICE-4",
-        "text": "To увеличивает arc length"
+        "text": "Чтобы увеличить длину дуги"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Шлак can become trapped and предотвращает bonding on subsequent beads."
+      "CHOICE-2": "Шлак может быть захвачен и препятствовать сплавлению следующего валика."
     }
   },
   {
     "id": "Q-D-12_damp_rods_10000053",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что problem can damp E7018 электроды cause?",
+    "difficulty": "medium",
+    "stem": "Какую проблему вызывают отсыревшие электроды E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Improved проплавление"
+        "text": "Улучшенное проплавление"
       },
       {
         "id": "CHOICE-2",
-        "text": "Пористость and delayed растрескивание"
+        "text": "Пористость и задержанные трещины"
       },
       {
         "id": "CHOICE-3",
-        "text": "Lower водород content"
+        "text": "Снижение содержания водорода"
       },
       {
         "id": "CHOICE-4",
-        "text": "Faster travel speed"
+        "text": "Более высокая скорость ведения"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture in the покрытие adds водород to the weld pool."
-    }
-  },
-  {
-    "id": "Q-D-12_damp_rods_effect_v2_03_4000000d",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что problem can damp E7018 электроды cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster скорость перемещения"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
-    }
-  },
-  {
-    "id": "Q-D-12_damp_rods_effect_v4_03_40000021",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что problem can damp E7018 электроды cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster скорость перемещения"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
-    }
-  },
-  {
-    "id": "Q-D-12_damp_rods_effect_v6_03_40000035",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что problem can damp E7018 электроды cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster скорость перемещения"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
-    }
-  },
-  {
-    "id": "Q-D-12_damp_rods_effect_v8_03_40000049",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что problem can damp E7018 электроды cause?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Porosity and delayed растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower hydrogen content"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Faster скорость перемещения"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture adds hydrogen to the weld pool."
+      "CHOICE-2": "Влага в обмазке добавляет водород в ванну, повышая риск пор и трещин."
     }
   },
   {
     "id": "Q-D-12_e6010_polarity_10000049",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какая полярность — commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только AC (переменный ток) (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "AC (переменный ток) или DCEN (прямая полярность) (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Целлюлозное E6010 typically runs on DCEP (обратная полярность) (обратная полярность) for deep проплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v1_03_40000003",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какая полярность is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC (переменный ток) or DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP (обратная полярность) for deep проплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v3_03_40000017",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какая полярность is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC (переменный ток) or DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP (обратная полярность) for deep проплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v5_03_4000002b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какая полярность is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC (переменный ток) or DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP (обратная полярность) for deep проплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v7_03_4000003f",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какая полярность is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC (переменный ток) or DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP (обратная полярность) for deep проплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_polarity_v9_03_40000053",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какая полярность is commonly used with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either AC (переменный ток) or DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E6010 typically runs on DCEP (обратная полярность) for deep проплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v1_04_40000004",
-    "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какое technique is typical for open-корень welding with E6010?",
+    "stem": "Какая полярность обычно применяется с электродом E6010?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
+        "text": "DCEN"
       },
       {
         "id": "CHOICE-2",
-        "text": "Whip-and-pause to control the keyhole"
+        "text": "DCEP"
       },
       {
         "id": "CHOICE-3",
-        "text": "Fast wide weave"
+        "text": "Только AC"
       },
       {
         "id": "CHOICE-4",
-        "text": "Backhand push 45°"
+        "text": "AC или DCEN"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for корень сплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v3_04_40000018",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое technique is typical for open-корень welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip-and-pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for корень сплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v5_04_4000002c",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое technique is typical for open-корень welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip-and-pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for корень сплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v7_04_40000040",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое technique is typical for open-корень welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip-and-pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for корень сплавление."
-    }
-  },
-  {
-    "id": "Q-D-12_e6010_root_whip_v9_04_40000054",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое technique is typical for open-корень welding with E6010?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Whip-and-pause to control the keyhole"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Fast wide weave"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Backhand push 45°"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole for корень сплавление."
+      "CHOICE-2": "Целлюлозные E6010 обычно работают на DCEP для глубокого проплавления."
     }
   },
   {
     "id": "Q-D-12_e6010_whip_1000004a",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какой приём — typical for open-root welding with E6010?",
+    "stem": "Какая техника типична для сварки корня (open‑root) электродом E6010?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Steady drag with no motion"
+        "text": "Ровное ведение без колебаний (drag)"
       },
       {
         "id": "CHOICE-2",
-        "text": "Whip-and-pause to control the keyhole"
+        "text": "Приём «whip‑and‑pause» (выплясывание с паузами) для контроля «замочной скважины»"
       },
       {
         "id": "CHOICE-3",
-        "text": "Fast weave to wash the toes"
+        "text": "Быстрая широкая качка"
       },
       {
         "id": "CHOICE-4",
-        "text": "Backhand push 45°"
+        "text": "Толкание под 45° (backhand)"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Whipping controls the keyhole and позволяет root сплавление without excessive burn-through."
+      "CHOICE-2": "Whip‑and‑pause позволяет контролировать отверстие и получить провар корня без прожога."
     }
   },
   {
     "id": "Q-D-12_e7018_70ksi_10000047",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "В обозначении E7018 что означает «70»?",
+    "difficulty": "medium",
+    "stem": "Что означает число «70» в обозначении E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Эффективность соединения 70%"
+        "text": "70% коэффициента эффективности шва"
       },
       {
         "id": "CHOICE-2",
@@ -967,27 +211,27 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Минимальная прочность на растяжение 70 000 psi"
+        "text": "Минимальную прочность на растяжение 70 000 psi"
       },
       {
         "id": "CHOICE-4",
-        "text": "70° included угла скоса кромок"
+        "text": "Угол разделки 70°"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "The first two digits give the minimum tensile strength in ksi."
+      "CHOICE-3": "Первые две цифры указывают минимальную прочность на разрыв (в ksi)."
     }
   },
   {
     "id": "Q-D-12_e7018_coating_10000046",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Что покрытие type characterizes E7018 электроды?",
+    "stem": "Какой тип покрытия характерен для электродов E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Кислое"
+        "text": "Кислотное"
       },
       {
         "id": "CHOICE-2",
@@ -1004,994 +248,154 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "E7018 — a basic (low-водород), often iron-powder type электрод."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v1_00_40000000",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что покрытие type characterizes E7018 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (низководородное)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic низководородное электрод per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v3_00_40000014",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что покрытие type characterizes E7018 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (низководородное)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic низководородное электрод per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v5_00_40000028",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что покрытие type characterizes E7018 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (низководородное)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic низководородное электрод per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v7_00_4000003c",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что покрытие type characterizes E7018 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (низководородное)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic низководородное электрод per AWS A5.1."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_coating_v9_00_40000050",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что покрытие type characterizes E7018 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Acid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Basic (низководородное)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Rutile"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cellulosic"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7018 is a basic низководородное электрод per AWS A5.1."
+      "CHOICE-2": "E7018 — основное (низководородное), часто с железным порошком."
     }
   },
   {
     "id": "Q-D-12_e7018_current_10000055",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какие режимы источника питания can E7018 typically run on?",
+    "difficulty": "medium",
+    "stem": "С какими настройками источника обычно можно работать электродом E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (прямая полярность) только"
+        "text": "Только DCEN"
       },
       {
         "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (обратная полярность) or AC (переменный ток), per manufacturer"
+        "text": "DCEP или AC (по данным производителя)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Только AC (переменный ток) (переменный ток)"
+        "text": "Только AC"
       },
       {
         "id": "CHOICE-4",
-        "text": "DCEP (обратная полярность) (обратная полярность) только, never AC (переменный ток)"
+        "text": "Только DCEP, никогда AC"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "E7018 — usually suitable for DCEP (обратная полярность) (обратная полярность) and often AC (переменный ток) depending on brand/WPS."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v2_05_4000000f",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) or AC (переменный ток) per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP (обратная полярность) only, never AC (переменный ток)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP (обратная полярность) and AC (переменный ток)."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v4_05_40000023",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) or AC (переменный ток) per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP (обратная полярность) only, never AC (переменный ток)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP (обратная полярность) and AC (переменный ток)."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v6_05_40000037",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) or AC (переменный ток) per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP (обратная полярность) only, never AC (переменный ток)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP (обратная полярность) and AC (переменный ток)."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_power_setting_v8_05_4000004b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое power source setting can E7018 typically use?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) or AC (переменный ток) per manufacturer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "DCEP (обратная полярность) only, never AC (переменный ток)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Many E7018 run on DCEP (обратная полярность) and AC (переменный ток)."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v1_01_40000001",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended ток"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v3_01_40000015",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended ток"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v5_01_40000029",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended ток"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v7_01_4000003d",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended ток"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-12_e7018_strength_v9_01_40000051",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "In the designation E7018, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% joint efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70 A recommended ток"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° included bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "'70' = 70 ksi minimum tensile прочность."
+      "CHOICE-2": "Многие E7018 подходят для DCEP и нередко для AC — ориентируйтесь на WPS/паспорт."
     }
   },
   {
     "id": "Q-D-12_e7024_character_v2_08_40000012",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какое утверждение describes E7024 электроды?",
+    "stem": "Какое утверждение верно описывает электроды E7024?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Cellulosic покрытие, deep проплавление"
+        "text": "Целлюлозное покрытие, глубокий проплав"
       },
       {
         "id": "CHOICE-2",
-        "text": "High-deположение iron-powder rutile, flat/horizontal"
+        "text": "Высокая наплавка: рутиловые с железным порошком, для нижнего/горизонтального"
       },
       {
         "id": "CHOICE-3",
-        "text": "Basic низководородное for all положениеs"
+        "text": "Основные низководородные для всех положений"
       },
       {
         "id": "CHOICE-4",
-        "text": "Stainless steel welding only"
+        "text": "Только для сварки нержавеющих сталей"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "E7024 is iron-powder rutile for high deположение in flat/horizontal."
-    }
-  },
-  {
-    "id": "Q-D-12_e7024_character_v4_08_40000026",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое утверждение describes E7024 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cellulosic покрытие, deep проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-deположение iron-powder rutile, flat/horizontal"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Basic низководородное for all положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stainless steel welding only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7024 is iron-powder rutile for high deположение in flat/horizontal."
-    }
-  },
-  {
-    "id": "Q-D-12_e7024_character_v6_08_4000003a",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое утверждение describes E7024 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cellulosic покрытие, deep проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-deположение iron-powder rutile, flat/horizontal"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Basic низководородное for all положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stainless steel welding only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7024 is iron-powder rutile for high deположение in flat/horizontal."
-    }
-  },
-  {
-    "id": "Q-D-12_e7024_character_v8_08_4000004e",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое утверждение describes E7024 электроды?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Cellulosic покрытие, deep проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-deположение iron-powder rutile, flat/horizontal"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Basic низководородное for all положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stainless steel welding only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "E7024 is iron-powder rutile for high deположение in flat/horizontal."
+      "CHOICE-2": "E7024 — рутиловые с железным порошком для высокой наплавки в нижнем/горизонтальном."
     }
   },
   {
     "id": "Q-D-12_fillet_angles_10000052",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что — typical angles for a flat углового шва with SMAW (ручная дуговая)?",
+    "difficulty": "medium",
+    "stem": "Для углового шва в нижнем положении (SMAW) типичные рабочий/угол ведения:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Work angle ~45° with 5–15° travel angle"
+        "text": "Рабочий ~45°, угол ведения 5–15°"
       },
       {
         "id": "CHOICE-2",
-        "text": "Work angle 15° with 45° travel angle"
+        "text": "Рабочий 15°, угол ведения 45°"
       },
       {
         "id": "CHOICE-3",
-        "text": "90° to both pieces with zero travel angle"
+        "text": "По 90° к обеим деталям, без угла ведения"
       },
       {
         "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
+        "text": "Толкать 30° в разделку"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "A 45° work angle with a slight drag/push travel angle — common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v2_02_4000000c",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v4_02_40000020",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v6_02_40000034",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
-    }
-  },
-  {
-    "id": "Q-D-12_fillet_angles_flat_v8_02_40000048",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "For a flat fillet weld, typical work/travel angles are:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Work ~45° with 5–15° travel angle"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Work 15° with 45° travel"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "90° to both pieces"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Push 30° into the joint"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "45° work + slight drag/push is common."
+      "CHOICE-1": "Обычно ~45° рабочий угол и небольшой угол тяги/толчка."
     }
   },
   {
     "id": "Q-D-12_galvanized_fume_10000057",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Что hazard — associated with welding galvanized steel?",
+    "stem": "Какая опасность связана со сваркой оцинкованной стали?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "No special hazard compared to bare steel"
+        "text": "Особых опасностей нет по сравнению с «чёрной» сталью"
       },
       {
         "id": "CHOICE-2",
-        "text": "Zinc fumes; remove покрытие locally and ensure ventilation"
+        "text": "Пары цинка; локально снять покрытие и обеспечить вентиляцию"
       },
       {
         "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
+        "text": "Выход гелия из пор"
       },
       {
         "id": "CHOICE-4",
-        "text": "Aluminum oxide deposits"
+        "text": "Отложения оксида алюминия"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Zinc fumes — hazardous; remove coatings where possible and ventilate adequately."
-    }
-  },
-  {
-    "id": "Q-D-12_galvanized_fumes_v2_07_40000011",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove покрытие and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum оксида deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove покрытие and ventilate."
-    }
-  },
-  {
-    "id": "Q-D-12_galvanized_fumes_v4_07_40000025",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove покрытие and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum оксида deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove покрытие and ventilate."
-    }
-  },
-  {
-    "id": "Q-D-12_galvanized_fumes_v6_07_40000039",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove покрытие and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum оксида deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove покрытие and ventilate."
-    }
-  },
-  {
-    "id": "Q-D-12_galvanized_fumes_v8_07_4000004d",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что hazard is associated with welding galvanized steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No special hazard"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Zinc fumes—remove покрытие and ensure ventilation"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Helium leaks from pores"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Aluminum оксида deposits"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Zinc fumes are hazardous; remove покрытие and ventilate."
+      "CHOICE-2": "Пары цинка токсичны; удалите покрытие и обеспечьте достаточную вентиляцию."
     }
   },
   {
     "id": "Q-D-12_lowhyd_oven_1000004b",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Почему следует E7018 электроды be kept in a heated rod oven between uses?",
+    "stem": "Зачем держать электроды E7018 в подогреваемом шкафу (rod oven) между применениями?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To увеличивает флюс melting rate"
+        "text": "Чтобы быстрее плавилась обмазка"
       },
       {
         "id": "CHOICE-2",
-        "text": "To предотвращает moisture pickup and водород растрескивание"
+        "text": "Чтобы предотвратить увлажнение и водородное растрескивание"
       },
       {
         "id": "CHOICE-3",
-        "text": "To make шлак removal easier"
+        "text": "Чтобы облегчить удаление шлака"
       },
       {
         "id": "CHOICE-4",
-        "text": "To уменьшить amperage requirements"
+        "text": "Чтобы снизить требуемый ток"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Dry storage limits водород pickup that can cause cold растрескивание."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v1_05_40000005",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Почему should низководородное электроды be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase флюса melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make шлака removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and растрескивание."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v3_05_40000019",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Почему should низководородное электроды be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase флюса melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make шлака removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and растрескивание."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v5_05_4000002d",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Почему should низководородное электроды be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase флюса melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make шлака removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and растрескивание."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v7_05_40000041",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Почему should низководородное электроды be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase флюса melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make шлака removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and растрескивание."
-    }
-  },
-  {
-    "id": "Q-D-12_lowhyd_storage_v9_05_40000055",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Почему should низководородное электроды be kept hot and dry between uses?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase флюса melting rate"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Prevent moisture pickup and hydrogen растрескивание"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Make шлака removal easier"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduce amperage needs"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Dry storage limits hydrogen pickup and растрескивание."
+      "CHOICE-2": "Сухое тёплое хранение ограничивает набор влаги/водорода и снижает риск холодных трещин."
     }
   },
   {
     "id": "Q-D-12_open_root_choice_10000054",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какое электрод — best suited for deep-проплавление open-root welding on rusty steel?",
+    "stem": "Какой электрод лучше подходит для корня с глубоким проплавлением по слегка ржавой стали?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -2012,126 +416,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Целлюлозное E6010 обеспечивает deep проплавление and tolerance to light surface contamination."
-    }
-  },
-  {
-    "id": "Q-D-12_open_root_choice_v2_04_4000000e",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое электрод best suits deep-проплавление open-корень on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep проплавление/tolerance to light rust."
-    }
-  },
-  {
-    "id": "Q-D-12_open_root_choice_v4_04_40000022",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое электрод best suits deep-проплавление open-корень on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep проплавление/tolerance to light rust."
-    }
-  },
-  {
-    "id": "Q-D-12_open_root_choice_v6_04_40000036",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое электрод best suits deep-проплавление open-корень on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep проплавление/tolerance to light rust."
-    }
-  },
-  {
-    "id": "Q-D-12_open_root_choice_v8_04_4000004a",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какое электрод best suits deep-проплавление open-корень on rusty steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "E7018"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "E308L"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "E6010"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "E7024"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "E6010 offers deep проплавление/tolerance to light rust."
+      "CHOICE-3": "Целлюлозный E6010 даёт глубокий проплав и терпит лёгкие загрязнения/ржавчину."
     }
   },
   {
     "id": "Q-D-12_position_digit_10000048",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что означает цифра «1» в E7018?",
+    "difficulty": "medium",
+    "stem": "Что означает цифра «1» в обозначении E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -2143,7 +435,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Во всех положениях"
+        "text": "Все положения"
       },
       {
         "id": "CHOICE-4",
@@ -2152,875 +444,1799 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "The положение digit '1' means the электрод — usable in all положения."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v1_02_40000002",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all положениеs."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v3_02_40000016",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all положениеs."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v5_02_4000002a",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all положениеs."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v7_02_4000003e",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all положениеs."
-    }
-  },
-  {
-    "id": "Q-D-12_position_digit_v9_02_40000052",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Что does the '1' in E7018 indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Flat only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Flat and horizontal only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "All положениеs"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Overhead only"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Digit '1' means all положениеs."
+      "CHOICE-3": "Цифра «1» означает пригодность для всех положений."
     }
   },
   {
     "id": "Q-D-12_preheat_benefit_10000050",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Что — the main benefit of preheating thick or high-strength steel before welding?",
+    "stem": "Какова основная польза подогрева перед сваркой толстых/высокопрочных сталей?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "It increases residual stress"
+        "text": "Увеличение остаточных напряжений"
       },
       {
         "id": "CHOICE-2",
-        "text": "It уменьшает cooling rate and водород растрескивание risk"
+        "text": "Снижение скорости охлаждения и риска водородного растрескивания"
       },
       {
         "id": "CHOICE-3",
-        "text": "It eliminates the need for interpass cleaning"
+        "text": "Отпадает необходимость межслойной очистки"
       },
       {
         "id": "CHOICE-4",
-        "text": "It strengthens the флюс покрытие"
+        "text": "Укрепление обмазки электрода"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Preheat slows cooling and позволяет водород to diffuse, lowering трещина risk."
-    }
-  },
-  {
-    "id": "Q-D-12_preheat_benefit_v2_00_4000000a",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какова главная benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen растрескивание risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen флюса покрытие"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_preheat_benefit_v4_00_4000001e",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какова главная benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen растрескивание risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen флюса покрытие"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_preheat_benefit_v6_00_40000032",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какова главная benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen растрескивание risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen флюса покрытие"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_preheat_benefit_v8_00_40000046",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Какова главная benefit of preheating thick/hard steels?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase residual stress"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce cooling rate and hydrogen растрескивание risk"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Eliminate interpass очистка"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Strengthen флюса покрытие"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v2_01_4000000b",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что is a good practice when restarting a валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; шлака will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v4_01_4000001f",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что is a good practice when restarting a валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; шлака will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v6_01_40000033",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что is a good practice when restarting a валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; шлака will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
-    }
-  },
-  {
-    "id": "Q-D-12_restart_tie_in_v8_01_40000047",
-    "taskId": "D-12",
-    "difficulty": "medium",
-    "stem": "Что is a good practice when restarting a валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Feather the stop and restart slightly ahead to tie in"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Do nothing; шлака will float out"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead blend without defects."
+      "CHOICE-2": "Подогрев замедляет охлаждение и облегчает диффузию водорода, уменьшая риск трещин."
     }
   },
   {
     "id": "Q-D-12_restart_tiein_10000051",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какой хороший приём когда restarting a SMAW (ручная дуговая) bead?",
+    "stem": "Какая практика хороша при перезапуске валика РДС (SMAW)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Strike on the weld face and continue"
+        "text": "Черкнуть по лицу шва и продолжить"
       },
       {
         "id": "CHOICE-2",
-        "text": "Grind/feather the stop and restart slightly ahead to tie in"
+        "text": "Снять (зафасонить) окончание и стартовать чуть вперёд для плавной врезки"
       },
       {
         "id": "CHOICE-3",
-        "text": "Restart exactly in the crater"
+        "text": "Перезапустить точно в кратере"
       },
       {
         "id": "CHOICE-4",
-        "text": "nothing; the шлак will float out"
+        "text": "Ничего не делать — шлак сам всплывёт"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Feathering and restarting ahead allow blending without defects."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v1_09_40000009",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Почему remove шлака between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; шлака burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid шлака inclusions and lack of сплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent валикs."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v3_09_4000001d",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Почему remove шлака between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; шлака burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid шлака inclusions and lack of сплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent валикs."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v5_09_40000031",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Почему remove шлака between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; шлака burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid шлака inclusions and lack of сплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent валикs."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v7_09_40000045",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Почему remove шлака between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; шлака burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid шлака inclusions and lack of сплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent валикs."
-    }
-  },
-  {
-    "id": "Q-D-12_slag_between_passes_v9_09_40000059",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Почему remove шлака between passes with E7018?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Optional; шлака burns out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To avoid шлака inclusions and lack of сплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To cool the joint"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To increase arc length"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slag can trap and prevent bonding on subsequent валикs."
+      "CHOICE-2": "Фасонка окончания и старт «с упреждением» позволяют аккуратно связать валики без дефектов."
     }
   },
   {
     "id": "Q-D-12_undercut_cause_1000004d",
     "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое condition commonly leads to подрез in SMAW (ручная дуговая)?",
+    "difficulty": "medium",
+    "stem": "Какие условия чаще приводят к подрезу при РДС?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Excessive travel speed or a long arc"
+        "text": "Слишком высокая скорость и/или длинная дуга"
       },
       {
         "id": "CHOICE-2",
-        "text": "Low travel speed with short arc"
+        "text": "Малая скорость и короткая дуга"
       },
       {
         "id": "CHOICE-3",
-        "text": "Small электрод diameter"
+        "text": "Малый диаметр электрода"
       },
       {
         "id": "CHOICE-4",
-        "text": "Using stringer beads"
+        "text": "Использование узких проходов‑стрингеров"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "High speed or long arc washes metal away from the toes, creating подрез."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v1_07_40000007",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое condition commonly leads to undercut in SMAW (ручная дуговая)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Чрезмерный скорость перемещения or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low скорость перемещения with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small электрод diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer валикs"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v3_07_4000001b",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое condition commonly leads to undercut in SMAW (ручная дуговая)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Чрезмерный скорость перемещения or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low скорость перемещения with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small электрод diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer валикs"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v5_07_4000002f",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое condition commonly leads to undercut in SMAW (ручная дуговая)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Чрезмерный скорость перемещения or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low скорость перемещения with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small электрод diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer валикs"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v7_07_40000043",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое condition commonly leads to undercut in SMAW (ручная дуговая)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Чрезмерный скорость перемещения or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low скорость перемещения with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small электрод diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer валикs"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
-    }
-  },
-  {
-    "id": "Q-D-12_undercut_causes_v9_07_40000057",
-    "taskId": "D-12",
-    "difficulty": "easy",
-    "stem": "Какое condition commonly leads to undercut in SMAW (ручная дуговая)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Чрезмерный скорость перемещения or a long arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Low скорость перемещения with short arc"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small электрод diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Stringer валикs"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "High speed/long arc washes metal from toes, causing undercut."
+      "CHOICE-1": "Высокая скорость/длинная дуга «вымывают» металл у кромок, формируя подрез."
     }
   },
   {
     "id": "Q-D-12_vertical_up_7018_10000056",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какой приём helps control heat когда welding vertical-up with E7018?",
+    "stem": "Какая техника помогает контролировать тепло при сварке «снизу‑вверх» (vertical‑up) электродом E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "Широкая быстрая качка"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer beads (or limited weave) with pauses at the toes"
+        "text": "Стрингерные проходы (или ограниченная качка) с короткими паузами у кромок"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high ток"
+        "text": "Ведение вниз на большом токе"
       },
       {
         "id": "CHOICE-4",
-        "text": "Hold a long arc"
+        "text": "Держать длинную дугу"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Stringers with brief toe pauses help keep the puddle under control."
+      "CHOICE-2": "Узкие проходы с короткими паузами у кромок удерживают ванну под контролем."
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v2_06_40000010",
+    "id": "Q-D-12P_0001",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какое technique helps when welding vertical-up with E7018?",
+    "stem": "Какой безопасный пусковой ток выбрать для E7018 Ø3,2 мм (1/8\") в нижнем положении на угловом шве 8 мм?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "60–80 А"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer валикs with brief toe pauses"
+        "text": "90–130 А"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high ток"
+        "text": "160–220 А"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "30–50 А"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-2": "Для 1/8\" E7018 обычно берут ~90–130 А; стартуют из середины диапазона и подстраиваются по ванне."
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v4_06_40000024",
+    "id": "Q-D-12P_0002",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какое technique helps when welding vertical-up with E7018?",
+    "stem": "Открытый корень стыка, зазор ~3 мм. Какой ток взять для E6010 Ø3,2 мм (DCEP) на старт?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "40–60 А"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer валикs with brief toe pauses"
+        "text": "80–110 А"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high ток"
+        "text": "140–180 А"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "Любой — «по звуку»"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-2": "Для 1/8\" E6010 типично 80–110 А — управляемая «замочная скважина» без прожога."
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v6_06_40000038",
+    "id": "Q-D-12P_0003",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какое technique helps when welding vertical-up with E7018?",
+    "stem": "Как завершать валик, чтобы исключить кратерную трещину?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "Резко оторвать дугу в конце"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer валикs with brief toe pauses"
+        "text": "Увеличить ток и «выстрелить» из кратера"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high ток"
+        "text": "Коротким обратным шагом/небольшим кругом заполнить кратер и плавно выйти"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "«Потушить» дугу о поверхность детали"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-3": "Заполнение кратера перед отрывом предотвращает усадочную трещину в конце шва."
     }
   },
   {
-    "id": "Q-D-12_vertical_up_7018_v8_06_4000004c",
+    "id": "Q-D-12P_0004",
     "taskId": "D-12",
     "difficulty": "medium",
-    "stem": "Какое technique helps when welding vertical-up with E7018?",
+    "stem": "Перед проваром через прихватки что следует сделать с ними?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Wide fast weave"
+        "text": "Ничего — шлак выгорит сам"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer валикs with brief toe pauses"
+        "text": "Срезать прихватки заподлицо и «сфасонить» (feather) их край"
       },
       {
         "id": "CHOICE-3",
-        "text": "Downhand travel with high ток"
+        "text": "Увеличить ток и «прожечь» прихватки насквозь"
       },
       {
         "id": "CHOICE-4",
-        "text": "Long arc"
+        "text": "Оставить как есть — это усилит шов"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Stringers with toe pauses control the puddle."
+      "CHOICE-2": "Снятие/фасонка прихваток исключают включения и дают плавную врезку основного прохода."
+    }
+  },
+  {
+    "id": "Q-D-12P_0005",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Вертикаль‑вверх (3F) по Т‑стыку 10 мм электродом E7018. Какой рисунок движения предпочтителен?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Широкая быстрая качка"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Малый «треугольник»/«ёлочка» с короткими паузами у кромок"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Прямо без пауз"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Большие «восьмёрки» посередине"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Малый треугольник с паузами у «плеч» удерживает ванну и формирует равномерные «полки»."
+    }
+  },
+  {
+    "id": "Q-D-12P_0006",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "На вертикальном шве E7018 появился подрез верхней кромки. Первое корректирующее действие?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Удлинить дугу для охлаждения"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Немного снизить ток, укоротить дугу и делать паузу у верхнего плеча"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ещё ускориться"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Перейти на более толстый электрод"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Короткая дуга, малая пауза у верхнего края и умеренный ток убирают подрез."
+    }
+  },
+  {
+    "id": "Q-D-12P_0007",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Потолочное положение (4F/4G) электродом E7018. Что поможет удержать ванну?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Повысить ток и делать широкую качку"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Взять меньший диаметр, держать короткую дугу, вести короткие стрингеры"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Толкать электрод вперёд на 30°"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Удерживать длинную дугу — так «остывает»"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Малый диаметр, короткая дуга и короткие проходы снижают стекание и капли."
+    }
+  },
+  {
+    "id": "Q-D-12P_0008",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "WPS ограничивает межслойную температуру ≤200 °C. Как корректно её контролировать на детали?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Касанием руки в перчатке"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Термокарандаш/контактный термометр на основном металле в 25–50 мм от кромки шва"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Измерить на шлаке сразу после прохода"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Пирометром по блестящей поверхности без поправок"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Мерят основной металл рядом со швом; шлак и «ощупь» недостоверны."
+    }
+  },
+  {
+    "id": "Q-D-12P_0009",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Пачка E7018 пролежала вне «горячего шкафа» 5 часов при 20 °C. Ваши действия?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сразу в работу — 5 часов не критично"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Подогреть электрод пламенем и варить"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Вернуть партию на прокалку/хранение по паспорту; сомнительные — отбраковать/ребейк"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Смазать маслом для «герметизации»"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Низководородные электроды защищают от влаги: при превышении «времени на воздухе» их прокаливают заново."
+    }
+  },
+  {
+    "id": "Q-D-12P_0010",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Типовой режим ре‑прокалки (rebake) E7018 после переувлажнения и дальнейшего хранения:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "80–100 °C, 10 минут; хранение при комнатной"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "120–150 °C, 1 час; хранение при 40 °C"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Около 315 °C (±25 °) ≈1 час; затем «холдинг» 120–150 °C"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "500 °C, 4 часа; хранение при 250 °C"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Ориентир: ребейк около 315 °C, затем хранение в 120–150 °C; точные значения — по паспорту производителя/WPS."
+    }
+  },
+  {
+    "id": "Q-D-12P_0011",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "При сварке стыка 25 мм из углеродистой стали появляются холодные трещины. Практичное решение:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ещё повысить ток и скорость"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Ввести предварительный подогрев ~100–150 °C и контролировать межслойную температуру по WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Уменьшить диаметр электрода"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сделать зазор 10 мм и варить без подогрева"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Подогрев снижает скорость охлаждения и риск водородного растрескивания."
+    }
+  },
+  {
+    "id": "Q-D-12P_0012",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "После корня E6010 планируется «горячий» проход E7018. Что обязательно сделать перед наложением?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ничего — шлак сам вытолкнется"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Полностью удалить шлак/окалину до металла и проверить провар корня"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Повысить ток E7018 и «переплавить» шлак"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сбрызнуть растворителем на основе хлорсодержащих соединений"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Остатки целлюлозного шлака дадут несплавления и «колеи» — их убирают полностью."
+    }
+  },
+  {
+    "id": "Q-D-12P_0013",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Длинный угловой шов 1,2 м на тонком профиле «ведёт». Как снизить коробление?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Выполнить одним непрерывным проходом"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Серией коротких стежков с обратноступенчатой/симметричной последовательностью"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Максимально поднять ток и скорость"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Охлаждать водой сразу после каждого стежка"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Разбиение на короткие участки и backstep/симметрия распределяют тепло и уменьшают деформации."
+    }
+  },
+  {
+    "id": "Q-D-12P_0014",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Где правильно закрепить зажим «массы» при ручной дуговой сварке?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "На корпусе подшипника рядом со швом"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "На кислородном баллоне — ток короткий"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "На свариваемой детали как можно ближе к зоне шва"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "На стальной колонне здания — так удобнее"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Крепят к изделию близко к шву, избегая путей через подшипники/цилиндры/коммуникации."
+    }
+  },
+  {
+    "id": "Q-D-12P_0015",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Лист 3 мм, электрод E6013. Как избежать прожога на угловом шве?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Взять 4,0 мм электрод и высокий ток"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Взять 2,5 мм электрод, нижний диапазон тока, короткую дугу и выполнять короткие «прихлопывающие» проходы"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Держать длинную дугу и идти медленно"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Делать широкую качку для «рассевания» тепла"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Меньший диаметр, низкий ток и короткая дуга уменьшают тепловложение на тонком металле."
+    }
+  },
+  {
+    "id": "Q-D-12P_0016",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "После прохода E7018 (вертикаль‑вверх) остались «колеи» шлака вдоль кромок. Что скорректировать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ещё поднять ток"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Удлинить дугу"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Делать короткие паузы у кромок, слегка снизить ток и тщательнее очищать межслойно"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Идти быстрее без пауз"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Паузы у «плеч» и чистка предотвращают захват шлака у границ валика."
+    }
+  },
+  {
+    "id": "Q-D-12P_0017",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Нужна хорошая наплавка для углового шва 8 мм в нижнем/горизонтальном положении. Какой диаметр E7018 выбрать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2,5 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "3,2 мм"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "4,0 мм"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "5,0 мм — в любом положении"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Ø4,0 мм даёт более высокую производительность в плоскости/горизонте при сохранении управляемости."
+    }
+  },
+  {
+    "id": "Q-D-12P_0018",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "В нижнем положении электродом E7018 обычно ведут…",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Толкая (push) под 20–30° вперёд"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Тянув (drag) с 5–10° назад по ходу"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Строго перпендикулярно без угла"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Как угодно — это неважно"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для 7018 типичен небольшой «тянущий» угол — стабильнее ванна и шлакоотделение."
+    }
+  },
+  {
+    "id": "Q-D-12P_0019",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Держатель электрода заметно греется, губки подгорают каждые 2–3 электрода. Что предпринять?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Обмотать изолентой и продолжать"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Сильно снизить ток и «дожигать»"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Проверить/подтянуть контакт кабеля и заменить/отремонтировать держатель"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Периодически смачивать держатель водой"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Плохой контакт/износ губок вызывает нагрев и падение напряжения — держатель обслуживают/меняют."
+    }
+  },
+  {
+    "id": "Q-D-12P_0020",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Сомневаетесь в сухости E7018 из открытой тары. Практичный шаг:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Если обмазка блестит — значит сухие"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Взять новую пачку из печи; сомнительную — на прокалку по паспорту, сверить партию/дату"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Прогреть кончик электродов пламенем до покраснения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Окунуть наконечник в масло для «защиты»"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "При сомнениях используют сухую партию, а открытую — возвращают на ребейк/хранение по инструкции."
+    }
+  },
+  {
+    "id": "Q-D-12P_0021",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Какой пусковой ток выбрать для E7018 Ø4,0 мм (5/32\") в нижнем положении на угловом шве ~10 мм?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "100–120 А"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "130–180 А"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "200–260 А"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "60–80 А"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для Ø4,0 мм E7018 типично ~130–180 А; стартуют из середины и подстраивают по ванне."
+    }
+  },
+  {
+    "id": "Q-D-12P_0022",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Есть только AC‑трансформатор. Нужен корень открытого стыка по слегка ржавой стали. Что выбрать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "E6010 на DCEN"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "E6011 на AC"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "E7018 на AC, без подготовки"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "E7024 на AC, широкая качка"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "E6011 рассчитан на AC и «терпит» лёгкие загрязнения — подходит для корня."
+    }
+  },
+  {
+    "id": "Q-D-12P_0023",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "При корне E6010 «замочная скважина» стала слишком большой и нестабильной. Первое действие?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличить ток и шире «выплясывать»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чуть снизить ток, укоротить дугу, уменьшить амплитуду «whip‑and‑pause»"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на E7018 прямо в корне"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сильно толкать электрод внутрь отверстия"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Меньше тепла и короткая дуга стабилизируют скважину и предотвращают прожог."
+    }
+  },
+  {
+    "id": "Q-D-12P_0024",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Фаска и зазор вышли за допуски WPS (зазор ~5 мм вместо 2–3 мм). Как правильно поступить?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Компенсировать большим током и широкой качкой"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Остановиться и исправить разделку/зазор или применить разрешённую подкладку по WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Отбить прихватки только с одной стороны"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Проложить сверху широкий «колпак» и продолжить"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Несоответствие WPS устраняют до сварки: правят сборку или используют допустимую технологию."
+    }
+  },
+  {
+    "id": "Q-D-12P_0025",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "На многопроходном шве получилось завышенное усиление «колпака». Как предотвратить это на следующих участках?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сильно удлинить дугу"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Немного уменьшить ток/амплитуду качки и повысить скорость; использовать стрингеры"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Добавлять присадку молотком (пеинить)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Делать остановки в середине шва для охлаждения ванны"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Меньшая тепловложенность и стрингеры помогают формировать плоский «колпак» без наплывов."
+    }
+  },
+  {
+    "id": "Q-D-12P_0026",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "На горизонтальном угловом шве появился «наплыв» (overlap) по нижней кромке. Что скорректировать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ещё снизить скорость и удлинить дугу"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чуть увеличить скорость/ток, держать короткую дугу и правильный угол к нижней кромке"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на электрод большего диаметра"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сильно толкать под 30° вперёд"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Overlap вызывают избыток металла без сплавления; помогает больше «энергии на кромку» и короче дуга."
+    }
+  },
+  {
+    "id": "Q-D-12P_0027",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "К концу шва возле угла дугу «сдувает» (магнитное). Что сделать на площадке без смены источника?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Удлинить дугу и поднять ток"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Переставить «массу» ближе к окончанию, вести короткой дугой, применить короткие стежки/backstep"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сменить Ø электрода на максимальный"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Заваривать только в одном направлении"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Путь тока и короткая дуга уменьшают влияние поля; backstep помогает стабилизировать ванну."
+    }
+  },
+  {
+    "id": "Q-D-12P_0028",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "При ветре на улице на «колпаке» E7018 пошла пористость. Что предпринять в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Поднять ток и ускориться"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Экранировать от ветра и убедиться в сухости электродов/чистоте кромок"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Удлинить дугу для «остывания»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сместить зажим массы на другую деталь"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Поры вызывают ветер/влага/грязь — защитить зону, проверить электроды и очистку."
+    }
+  },
+  {
+    "id": "Q-D-12P_0029",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "WPS: межслой ≤250 °C. Замер показал 270 °C. Правильные действия?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Дуть воздухом или дать остыть ниже лимита и только потом следующий проход"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Облить водой для быстрого охлаждения"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Продолжить, но снизить ток на 20%"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ничего — это в пределах погрешности"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Охлаждают естественно/воздухом до нормативной температуры; водяное охлаждение запрещено."
+    }
+  },
+  {
+    "id": "Q-D-12P_0030",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Какая температура «холдинга» типична для хранения низководородных электродов в печи на участке?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "40–60 °C"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "120–150 °C"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "250–300 °C"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Комнатная температура"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для E7018 обычно держат ~120–150 °C; конкретику задаёт производитель/WPS."
+    }
+  },
+  {
+    "id": "Q-D-12P_0031",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Инвертор: настройки «Hot Start» и «Arc Force» для E7018 вертикаль‑вверх. Что предпочтительно?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Hot Start на минимум, Arc Force на максимум"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Обе функции отключить"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Умеренно повысить Hot Start и Arc Force, контролируя по ванне и краям"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hot Start на максимум, Arc Force на минимум"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Умеренные прибавки облегчают поджиг и удержание ванны без подрезов."
+    }
+  },
+  {
+    "id": "Q-D-12P_0032",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Длинный стык: как расставить прихватки для минимизации ведения и сохранения зазора?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Редкие длинные прихватки через 300–400 мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Короткие равномерные прихватки через 75–150 мм; симметричная последовательность"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Одна длинная прихватка на весь стык"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Прихватки только в начале и в конце"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Частые короткие прихватки равномерно «держат» геометрию и зазор."
+    }
+  },
+  {
+    "id": "Q-D-12P_0033",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Последовательность для V‑стыка 10 мм без подкладки (распространённый вариант):",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сразу широкая качка E7018 одним проходом"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Корень E6010 → «горячий» проход → заполнение стрингерами → «колпак» E7018"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только корень E6013 и зачистка"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сначала «колпак», потом корень"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Классически: целлюлозный корень, затем низководородные проходы и «колпак»."
+    }
+  },
+  {
+    "id": "Q-D-12P_0034",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Как правильно проверить размер углового шва 8 мм шаблоном‑угломером?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Положить шаблон на валик и смотреть на глаз"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Приложить шаблон 8 мм так, чтобы обе «ноги» и лицо шва касались плоскостей шаблона без просветов"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Мерить рулеткой диагональ валика"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Мерить только катет по одной стороне"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Правильный контакт по двум катетам и лицу без зазора подтверждает размер."
+    }
+  },
+  {
+    "id": "Q-D-12P_0035",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "WPS требует DCEP для E7018, а вы проварили участок на AC (марка допускает AC). Ваши действия?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оставить как есть — электрод «умеет» AC"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Согласовать с ответственным; при несоответствии WPS — удалить и переварить на DCEP"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Закрыть «колпаком» на DCEP, не вырезая"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Протокол не нужен, это не критично"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Решает WPS/инженер: отклонение требует оценки и, как правило, исправления."
+    }
+  },
+  {
+    "id": "Q-D-12P_0036",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Оверхед (4G) открытый корень E6010: периодические прожоги. Что поможет в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличить ток и задерживаться на скважине"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Слегка снизить ток, укоротить дугу, уменьшить амплитуду «whip», допустимо применить медную подкладку"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Держать длинную дугу для «остывания»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Перейти на E7024"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Меньше тепла и малая амплитуда движения стабилизируют корень; медная подкладка помогает."
+    }
+  },
+  {
+    "id": "Q-D-12P_0037",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Кромки покрыты краской/маслом. Как подготовить под РДС?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Поднять ток на 20% и прожечь загрязнения"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Очистить до металлического блеска 10–20 мм по обе стороны, обезжирить разрешённым растворителем"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ничего — «колпак» всё перекроет"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Обильно смазать машинным маслом для защиты"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Чистая сухая поверхность снижает пористость/дефекты; прожигать загрязнения нельзя."
+    }
+  },
+  {
+    "id": "Q-D-12P_0038",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "2F (горизонтальный угловой). Как держать электрод, чтобы компенсировать гравитацию и не получить подрезов?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Рабочий угол ~45°, угол ведения 5–10° «на тягу», лёгкий наклон к верхней полке"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Строго перпендикулярно без угла"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Толкать 30° вниз к нижней полке"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Широкая быстрая качка через обе полки"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Небольшой наклон к верхней детали и «тяга» стабилизируют ванну в 2F."
+    }
+  },
+  {
+    "id": "Q-D-12P_0039",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "В стыке обнаружен «hi‑lo» (несовпадение кромок) ~2 мм, WPS допускает ≤1 мм. Что делать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Компенсировать большим током и «залить»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Разобрать прихватки/пересобрать или подправить кромки до допуска WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сместить ось шва широкой качкой"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ничего — «колпак» выровняет"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Несоосность правят до сварки/межоперационно, а не «заливкой»."
+    }
+  },
+  {
+    "id": "Q-D-12P_0040",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "После контроля выявлено включение шлака на заполнении. Правильный ремонт?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Наложить дополнительный «колпак» сверху"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Вырубить/выгриндировать до «чистого» металла и переварить по WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Подогреть горелкой и расплавить включение"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Оставить — не критично"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Дефект удаляют механически до чистого металла и переваривают согласно процедуре."
+    }
+  },
+  {
+    "id": "Q-D-12P_0041",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Дуга «ватная» и нестабильная: длина сварочных кабелей ~40 м, ток 140 А. Что сделать в первую очередь?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Добавить ещё 20 м кабеля — запас не помешает"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Поставить трансформатор-повышатель напряжения на выход"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Увеличить сечение/сдвоить кабели, укоротить трассу и переставить источник/массу ближе"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Просто поднять ток на 30–40 А"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Падение напряжения на длинных/тонких кабелях «глушит» дугу; лечится сечением и сокращением длины."
+    }
+  },
+  {
+    "id": "Q-D-12P_0042",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Питающий удлинитель оставили смотанным в катушку, кабель греется, дуга «проваливается». Ваше действие?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ничего — это нормально при сварке"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Полностью размотать катушку и проверить сечение удлинителя"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Обмотать катушку фольгой для охлаждения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Подключить второй удлинитель последовательно"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Смотанный кабель перегревается и даёт падение напряжения; его разматывают и подбирают нужное сечение."
+    }
+  },
+  {
+    "id": "Q-D-12P_0043",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "E6010 «срывается» на инверторе: поджиг тяжёлый, дуга тухнет. Практичное решение?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Перейти на DCEN и удлинить дугу"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Включить на источнике режим для целлюлозных/поднять Arc Force (Dig), либо использовать E6011"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Снизить ОCV до минимума"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Поставить электрод большего диаметра на том же токе"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Не все инверторы «тянут» 6010; помогает спец‑режим/бóльший Dig или переход на 6011."
+    }
+  },
+  {
+    "id": "Q-D-12P_0044",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "После корня E6010 на стыке без подкладки с обратной стороны «сосульки» металла. Как скорректировать технику на ходу?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Поднять ток и сильнее «выплясывать»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Немного снизить ток, укоротить дугу и уменьшить амплитуду whip‑движений"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Держать длинную дугу — она «остудит»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сильно толкать электрод в отверстие корня"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "«Сосульки» — признак избытка тепла/металла; спасают короткая дуга и малый whip."
+    }
+  },
+  {
+    "id": "Q-D-12P_0045",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "После корня E6010 видны «усики» (dog‑ears) у кромок. Перед «горячим» проходом E7018 правильно:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Переплавить их током E7018 без зачистки"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Слегка сфасонить (feather) кромки шлифовкой и удалить шлак до блеска"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Добавить антипригарный спрей и варить"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ничего не делать — «горячий» всё вытащит"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Feather‑подготовка и чистка уменьшают риск несплавления и «колей» шлака."
+    }
+  },
+  {
+    "id": "Q-D-12P_0046",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "После остывания обнаружили трещину в кратере на вертикальном шве E7018. Ваши действия по ремонту?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Наложить сверху ещё один валик «для прочности»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Вырубить/выгриндировать трещину до «чистого» металла и переварить по WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Прогреть горелкой и затереть молотком"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Оставить — если трещина мелкая"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Трещины удаляют до здорового металла и переваривают согласно процедуре — «накрывать» нельзя."
+    }
+  },
+  {
+    "id": "Q-D-12P_0047",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "2G (горизонтальный стык) E7018: валик «ползёт» вниз и появляется подрез сверху. Что поправить?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Увеличить ширину качки и ток"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Слегка наклонить к верхней кромке, делать короткие паузы у «плеча» и держать короткую дугу"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Толкать электрод вниз под 30°"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Держать дугу длинной — так меньше тепла"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Небольшой наклон к верхней полке и паузы у «плеча» стабилизируют ванну и убирают подрез."
+    }
+  },
+  {
+    "id": "Q-D-12P_0048",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Электрод «прилип» к детали. Как правильно освободить его, не повредив источник и изделие?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Резко дёрнуть держатель на себя"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Отключить ток/разжать курок, провернуть электрод и аккуратно отломить"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Постучать держателем по детали до отрыва"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Плеснуть водой на место залипания"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Сначала снять ток, затем провернуть/отломить — так не срывается дуга и не горят контакты."
+    }
+  },
+  {
+    "id": "Q-D-12P_0049",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Перед изгибными испытаниями (bend) с пластинного купона что сделать с швом/образцами?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оставить усиление «как есть» — так прочнее"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снять усиление заподлицо, удалить подкладку (если есть), снять острые кромки/заусенцы на образцах"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Полировать маслом для «скольжения»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Прорезать V‑канавку по центру для концентраторов"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Для корректного изгиба убирают усиление/подкладку и фаскуют острые кромки образцов."
+    }
+  },
+  {
+    "id": "Q-D-12P_0050",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Сваривали с подкладной планкой (backing). Как корректно её удалить и подготовить к НК/испытаниям?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сбить кувалдой — быстрее"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Аккуратно выжечь резаком по шву"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Механически удалить и зачистить до ровной поверхности без подрезов/зарубок"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Оставить — на результат не влияет"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Подкладку снимают механически/щадяще, доводя корень до гладкой поверхности без надрезов."
+    }
+  },
+  {
+    "id": "Q-D-12P_0051",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Прихватка на корне лопнула при прогреве. Что сделать перед продолжением?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Наложить поверх ещё прихватку"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Полностью удалить треснувшую прихватку и поставить новую корректного размера"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сразу варить поверх — трещина «переплавится»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Уменьшить зазор и варить без прихваток"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Трещиноватые прихватки удаляют и меняют — иначе дефект уйдёт в корень."
+    }
+  },
+  {
+    "id": "Q-D-12P_0052",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "При сборке использовали магнитные угольники. На финише шов «сдувает» у конца. Что предпринять?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оставить магниты — они «держат» геометрию"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Снять магниты перед сваркой участка, переставить «массу» ближе и вести короткой дугой"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Удлинить дугу и поднять ток"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Перейти на больший диаметр электрода"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Магниты усиливают магнитное дутьё; их убирают, массу переставляют ближе, дугу держат короткой."
+    }
+  },
+  {
+    "id": "Q-D-12P_0053",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Обнаружены следы «дуговых касаний» (arc strikes) вне зоны шва на низколегированной стали. Как правильно исправить?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Накрыть «колпаком» сверху"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Сточить до «чистого» металла, при необходимости выполнить НК (PT/MT) и задокументировать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Пройтись молотком по месту касания"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Закрасить грунтом до инспекции"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Arc‑strikes — очаги закалки; их удаляют до чистого металла и контролируют по процедуре."
+    }
+  },
+  {
+    "id": "Q-D-12P_0054",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Работа на улице −10 °C, сталь 20 мм, E7018. Что из ниже — верный комплекс мер?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Варить как обычно, но быстрее"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Минимальный прогрев только первого прохода"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Подогрев по WPS, защита от ветра, контроль межслойной температуры, переносной «кивер» для электродов"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Поднять ток на 30% без подогрева"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Холод ускоряет остывание → риск HIC; нужны подогрев, ветерозащита и сухие электроды."
+    }
+  },
+  {
+    "id": "Q-D-12P_0055",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "На «колпаке» появилась непрерывная линия пор вдоль оси. Вероятная причина и действие?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Слишком узкая качка — расширить"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Антиспаттер/масло на поверхности — обезжирить/снять до металла и проверить сухость электродов"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Недостаточный ток — поднять на 50%"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Слишком короткая дуга — удлинить"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Линейная пористость часто из‑за загрязнений/влаги; чистят/обезжиривают и используют сухие 7018."
+    }
+  },
+  {
+    "id": "Q-D-12P_0056",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "После корня локальный непровар по просвету. Как правильно отремонтировать до заполнения?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Закрыть заполнением — «не увидят»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Сделать выборку/строжку (back‑gouge), удалить дефект и переварить корень"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Наложить широкий валик поверх"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Прогреть горелкой и «прижечь» место"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Непровар удаляют механически/термически с обратной стороны или с лицевой — и переваривают."
+    }
+  },
+  {
+    "id": "Q-D-12P_0057",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Тесный доступ в коробчатом профиле; Ø4,0 мм 7018 не «влезает» по углам, ванна плывёт. Практичное решение?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оставить как есть — допуски позволят"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Перейти на меньший диаметр (3,2/2,5 мм), короткие стрингеры и короткую дугу"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Удлинить дугу и увеличить качку"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Добавить масла для лучшего скольжения"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Меньший Ø и короткие стрингеры улучшают управляемость в тесных местах."
+    }
+  },
+  {
+    "id": "Q-D-12P_0058",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "При вертикали E7018 заметны подрезы и «жёсткая» дуга. Настройка инвертора: высокий Arc Force (Dig). Что сделать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ещё поднять Arc Force"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Понизить Arc Force до умеренного уровня и держать короткую дугу с паузами у кромок"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Перейти на длинную дугу"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Сильно увеличить ток"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Чрезмерный Dig «вымывает» металл у кромок; умеренные значения и техника убирают подрез."
+    }
+  },
+  {
+    "id": "Q-D-12P_0059",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Трубный стык: внутренний «hi‑lo» ~1,5 мм. Как поступить перед сваркой?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сместить ось шва широкой качкой и «залить»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать выравниватели/собачки (hi‑lo clamps), переразвести кромки до допуска и только потом варить"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ничего — «горячий» проход всё перекроет"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Увеличить зазор до 6 мм и варить без правки"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Несовпадение кромок устраняют механически/прихватками до сварки — «заливка» не исправляет геометрию."
+    }
+  },
+  {
+    "id": "Q-D-12P_0060",
+    "taskId": "D-12",
+    "difficulty": "medium",
+    "stem": "Двое сварщиков одновременно работают на одном изделии разными швами. Появились блуждающие токи и «поджоги». Практичное решение?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Подключить обе «массы» на ближайшую колонну"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Организовать отдельные обратные провода на каждый пост, крепить «массу» на самой детали рядом с каждой дугой"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Оставить одну общую «массу» — так проще"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Поставить магниты у шва для стабилизации дуги"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Раздельные обратные цепи, зажатые близко к каждому шву, исключают паразитные токи через конструкцию."
     }
   }
 ]

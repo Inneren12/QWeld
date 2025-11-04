@@ -12,8 +12,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.parseToJsonElement
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.put
 import timber.log.Timber
 
@@ -150,7 +149,7 @@ constructor(
           files = files,
         )
       manifests[localeCode] = manifest
-      runCatching { json.parseToJsonElement(payload).jsonObject }
+        runCatching { json.decodeFromString<JsonObject>(payload) }
         .onSuccess { element -> elements[localeCode] = element }
         .onFailure { error ->
           Timber.w(

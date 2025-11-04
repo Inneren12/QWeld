@@ -12,7 +12,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.json.parseToJsonElement
+import kotlinx.serialization.decodeFromString
 
 class IndexParser(private val json: Json = DEFAULT_JSON) {
 
@@ -49,16 +49,43 @@ class IndexParser(private val json: Json = DEFAULT_JSON) {
     internal fun expectedMap(): Map<String, String> = expected
   }
 
-  fun parse(payload: String): Manifest {
-    val obj = json.parseToJsonElement(payload).jsonObject
+    fun parse(payload: String): Manifest {
+        val obj: JsonObject = json.decodeFromString(payload)
     val blueprintId = extractBlueprintId(obj)
     val bankVersion = extractBankVersion(obj)
     val expected = LinkedHashMap<String, String>()
     collectFiles(obj[FILES_KEY], expected)
     collectEntries(obj[ENTRIES_KEY], expected)
-    if (expected.isEmpty()) {
-      obj[LOCALES_KEY]?.let { collectLocaleEntries(it, expected) }
-    }
+        // locales.{files|entries} старого формата
+        if (expected.isEmpty()) obj[LOCALES_KEY]?.let { collectLocaleEntries(it, expected) }
+        // Новый формат: schema=questions-index-v1 → locales.<loc>.sha256.{bank,tasks}
+        obj["schema"]?.let { schemaEl ->
+            val schema = schemaEl.asString()
+            if (schema != null && schema.equals("questions-index-v1", ignoreCase = true)) {
+                val localesObj = obj[LOCALES_KEY].asObject()
+                if (localesObj != null) {
+                    for ((loc, localeEl) in localesObj) {
+                        val lo = localeEl.asObject() ?: continue
+                        val sha = lo["sha256"].asObject() ?: continue
+                        // bank
+                        val bankSha = sha["bank"].asString()
+                        if (!bankSha.isNullOrBlank()) {
+                            val path = normalizePath("questions/$loc/bank.v1.json")
+                            expected[path] = bankSha.lowercase(Locale.US)
+                        }
+                        // tasks map: "A-1": "<sha>"
+                        val tasksObj = sha["tasks"].asObject()
+                        if (tasksObj != null) {
+                            for ((taskId, shaEl) in tasksObj) {
+                                val shaStr = shaEl.asString() ?: continue
+                                val path = normalizePath("questions/$loc/tasks/$taskId.json")
+                                expected[path] = shaStr.lowercase(Locale.US)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     return Manifest(blueprintId = blueprintId, bankVersion = bankVersion, expected = expected)
   }
 
@@ -97,6 +124,18 @@ class IndexParser(private val json: Json = DEFAULT_JSON) {
       collectFiles(filesElement, sink)
       val entriesElement = localeObject[ENTRIES_KEY]
       collectEntries(entriesElement, sink)
+        // Дополнительно: если в локали есть sha256.{bank,tasks} — тоже учитываем
+        val sha = localeObject["sha256"].asObject()
+        if (sha != null) {
+            val bankSha = sha["bank"].asString()
+            if (!bankSha.isNullOrBlank()) {
+            // Локаль нам здесь недоступна по имени — эта ветка отработает только в parse(schema) выше.
+            }
+            val tasksObj = sha["tasks"].asObject()
+            if (tasksObj != null) {
+            // Аналогично: поддержка через ветку parse(schema) выше.
+            }
+        }
     }
   }
 

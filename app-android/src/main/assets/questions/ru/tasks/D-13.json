@@ -1,3530 +1,534 @@
 [
   {
-    "id": "Q-D-13_birdnesting_10000063",
+    "id": "Q-D-12_arc_blow_1000004e",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A common cause of 'birdnesting' in GMAW (MIG/MAG) wire feeders — :",
+    "stem": "Как уменьшить сдувание дуги (arc blow) при ручной дуговой сварке (SMAW)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Верно liner size"
+        "text": "Удлинить дугу и увеличить ток"
       },
       {
         "id": "CHOICE-2",
-        "text": "Incorrect drive-roll tension or liner size causing high drag"
+        "text": "Укоротить дугу, переставить обратный провод (зажим «массы») ближе или применять «бэкстеп»"
       },
       {
         "id": "CHOICE-3",
-        "text": "Proper conduit length"
+        "text": "Только перейти на больший диаметр электрода"
       },
       {
         "id": "CHOICE-4",
-        "text": "Using a clean wire"
+        "text": "Варить только в одном направлении"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Poor feeding due to drag or excessive pressure can tangle the wire at the rolls."
+      "CHOICE-2": "Короткая дуга и правильное расположение обратного провода («массы») уменьшают магнитное сдувание дуги."
     }
   },
   {
-    "id": "Q-D-13_birdnesting_reason_v2_01_40000065",
+    "id": "Q-D-12_arc_length_1000004c",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A common cause of 'birdnesting' in проволока feeders is:",
+    "stem": "Какую длину дуги обычно рекомендуют при SMAW?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Correct liner size"
+        "text": "Очень длинную дугу для лучшей видимости"
       },
       {
         "id": "CHOICE-2",
-        "text": "Incorrect drive-roll tension or liner size"
+        "text": "Как можно короче — примерно равную диаметру электрода"
       },
       {
         "id": "CHOICE-3",
-        "text": "Proper conduit length"
+        "text": "Ровно 1 дюйм"
       },
       {
         "id": "CHOICE-4",
-        "text": "Using a clean проволока"
+        "text": "Не влияет на качество"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Poor feeding due to drag or excessive pressure tangles the проволока."
+      "CHOICE-2": "Короткая дуга улучшает защиту/стабильность и снижает разбрызгивание и подрезы."
     }
   },
   {
-    "id": "Q-D-13_birdnesting_reason_v4_07_4000007f",
+    "id": "Q-D-12_arc_start_methods_v2_09_40000013",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A common cause of 'birdnesting' in проволока feeders is:",
+    "stem": "Как рекомендовано инициировать дугу при SMAW на готовых (видимых) поверхностях?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Correct liner size"
+        "text": "Чиркать прямо по видимой поверхности"
       },
       {
         "id": "CHOICE-2",
-        "text": "Incorrect drive-roll tension or liner size"
+        "text": "Зажигание на заходной пластине (run‑on tab) или внутри зоны шва"
       },
       {
         "id": "CHOICE-3",
-        "text": "Proper conduit length"
+        "text": "Чиркать по обработанной плоскости вдали от шва"
       },
       {
         "id": "CHOICE-4",
-        "text": "Using a clean проволока"
+        "text": "Разницы нет"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Poor feeding due to drag or excessive pressure tangles the проволока."
+      "CHOICE-2": "Стартовать в зоне шва/на заходных пластинах, чтобы не оставлять твёрдых пятен/дефектов на лицевой поверхности."
     }
   },
   {
-    "id": "Q-D-13_birdnesting_reason_v7_03_40000099",
+    "id": "Q-D-12_clean_between_passes_1000004f",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A common cause of 'birdnesting' in проволока feeders is:",
+    "stem": "Зачем удалять шлак между проходами при работе E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Correct liner size"
+        "text": "Необязательно — шлак «выгорит»"
       },
       {
         "id": "CHOICE-2",
-        "text": "Incorrect drive-roll tension or liner size"
+        "text": "Чтобы избежать включений шлака и непровара"
       },
       {
         "id": "CHOICE-3",
-        "text": "Proper conduit length"
+        "text": "Чтобы охладить соединение"
       },
       {
         "id": "CHOICE-4",
-        "text": "Using a clean проволока"
+        "text": "Чтобы увеличить длину дуги"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Poor feeding due to drag or excessive pressure tangles the проволока."
+      "CHOICE-2": "Шлак может застрять и помешать сплавлению следующего валика; его удаляют для чистоты шва."
     }
   },
   {
-    "id": "Q-D-13_birdnesting_reason_v9_09_400000b3",
+    "id": "Q-D-12_damp_rods_10000053",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A common cause of 'birdnesting' in проволока feeders is:",
+    "stem": "Какую проблему вызывают отсыревшие электроды E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Correct liner size"
+        "text": "Улучшенную проплавку"
       },
       {
         "id": "CHOICE-2",
-        "text": "Incorrect drive-roll tension or liner size"
+        "text": "Пористость и отсроченные трещины"
       },
       {
         "id": "CHOICE-3",
-        "text": "Proper conduit length"
+        "text": "Снижение содержания водорода"
       },
       {
         "id": "CHOICE-4",
-        "text": "Using a clean проволока"
+        "text": "Повышение скорости перемещения"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Poor feeding due to drag or excessive pressure tangles the проволока."
+      "CHOICE-2": "Влага в обмазке повышает водород в ванне — пористость и холодные трещины."
     }
   },
   {
-    "id": "Q-D-13_burnback_10000064",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Что typically causes 'burnback' (wire fusing to the токоподводящего наконечника)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Too long вылет"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Too short вылет or too slow wire feed relative to напряжение"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "High gas flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Верно индуктивность"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "If burnoff exceeds feed, the arc retreats and fuses the наконечник."
-    }
-  },
-  {
-    "id": "Q-D-13_burnback_cause_v10_00_400000b4",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Что typically causes 'burnback' (проволока fusing to the токоподводящего наконечника)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Too long вылета"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Too short вылета or too slow проволока feed relative to напряжение"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "High газ flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Correct индуктивности"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "If burnoff exceeds feed, the arc retreats and fuses the tip."
-    }
-  },
-  {
-    "id": "Q-D-13_burnback_cause_v2_02_40000066",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Что typically causes 'burnback' (проволока fusing to the токоподводящего наконечника)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Too long вылета"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Too short вылета or too slow проволока feed relative to напряжение"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "High газ flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Correct индуктивности"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "If burnoff exceeds feed, the arc retreats and fuses the tip."
-    }
-  },
-  {
-    "id": "Q-D-13_burnback_cause_v4_08_40000080",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Что typically causes 'burnback' (проволока fusing to the токоподводящего наконечника)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Too long вылета"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Too short вылета or too slow проволока feed relative to напряжение"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "High газ flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Correct индуктивности"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "If burnoff exceeds feed, the arc retreats and fuses the tip."
-    }
-  },
-  {
-    "id": "Q-D-13_burnback_cause_v7_04_4000009a",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Что typically causes 'burnback' (проволока fusing to the токоподводящего наконечника)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Too long вылета"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Too short вылета or too slow проволока feed relative to напряжение"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "High газ flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Correct индуктивности"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "If burnoff exceeds feed, the arc retreats and fuses the tip."
-    }
-  },
-  {
-    "id": "Q-D-13_contact_tip_to_work_v11_00_400000be",
+    "id": "Q-D-12_e6010_polarity_10000049",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "Reducing CTWD at constant WFS and напряжение generally:",
+    "stem": "Какая полярность обычно применяется с E6010?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Lowers ток"
+        "text": "DCEN"
       },
       {
         "id": "CHOICE-2",
-        "text": "Raises ток and проплавление"
+        "text": "DCEP"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has no effect"
+        "text": "Только AC"
       },
       {
         "id": "CHOICE-4",
-        "text": "Reduces spatter only"
+        "text": "AC или DCEN"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Shorter вылета reduces resistive heating, increasing ток."
+      "CHOICE-2": "Целлюлозные E6010 обычно варят на DCEP для глубокой проплавки."
     }
   },
   {
-    "id": "Q-D-13_contact_tip_to_work_v3_02_40000070",
+    "id": "Q-D-12_e6010_whip_1000004a",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "Reducing CTWD at constant WFS and напряжение generally:",
+    "stem": "Какая техника характерна для сварки открытого корня электродом E6010?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Lowers ток"
+        "text": "Равномерное ведение без колебаний"
       },
       {
         "id": "CHOICE-2",
-        "text": "Raises ток and проплавление"
+        "text": "«Выплясывание» (whip‑and‑pause) для контроля «замка» (keyhole)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has no effect"
+        "text": "Быстрая широкая «ёлочка»"
       },
       {
         "id": "CHOICE-4",
-        "text": "Reduces spatter only"
+        "text": "Толкающая техника 45° назад"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Shorter вылета reduces resistive heating, increasing ток."
+      "CHOICE-2": "Ритм «вынос‑пауза» позволяет управлять замком и обеспечить провар корня."
     }
   },
   {
-    "id": "Q-D-13_contact_tip_to_work_v5_08_4000008a",
+    "id": "Q-D-12_e7018_70ksi_10000047",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "Reducing CTWD at constant WFS and напряжение generally:",
+    "stem": "В обозначении E7018 что означает «70»?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Lowers ток"
+        "text": "70% коэффициента прочности шва"
       },
       {
         "id": "CHOICE-2",
-        "text": "Raises ток and проплавление"
+        "text": "Рекомендуемый ток 70 A"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has no effect"
+        "text": "Минимальную временную сопротивляемость 70 000 psi (≈70 ksi)"
       },
       {
         "id": "CHOICE-4",
-        "text": "Reduces spatter only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Shorter вылета reduces resistive heating, increasing ток."
-    }
-  },
-  {
-    "id": "Q-D-13_contact_tip_to_work_v8_04_400000a4",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Reducing CTWD at constant WFS and напряжение generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Lowers ток"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Raises ток and проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Reduces spatter only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Shorter вылета reduces resistive heating, increasing ток."
-    }
-  },
-  {
-    "id": "Q-D-13_crater_fill_10000065",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Зачем использовать crater-fill or a back-step at the end of a GMAW (MIG/MAG) bead?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To save time"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To уменьшить crater растрескивание and underfill"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To увеличивает spatter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To cool the torch"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Filling the crater avoids shrinkage cracks and underfill at the stop."
-    }
-  },
-  {
-    "id": "Q-D-13_crater_fill_reason_v10_01_400000b5",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Зачем использовать crater-fill or a back-step at end of a GMAW (MIG/MAG) валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Save time"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce crater растрескивание and underfill"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the горелка"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Filling the crater avoids shrinkage cracks/underfill."
-    }
-  },
-  {
-    "id": "Q-D-13_crater_fill_reason_v2_03_40000067",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Зачем использовать crater-fill or a back-step at end of a GMAW (MIG/MAG) валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Save time"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce crater растрескивание and underfill"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the горелка"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Filling the crater avoids shrinkage cracks/underfill."
-    }
-  },
-  {
-    "id": "Q-D-13_crater_fill_reason_v4_09_40000081",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Зачем использовать crater-fill or a back-step at end of a GMAW (MIG/MAG) валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Save time"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce crater растрескивание and underfill"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the горелка"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Filling the crater avoids shrinkage cracks/underfill."
-    }
-  },
-  {
-    "id": "Q-D-13_crater_fill_reason_v7_05_4000009b",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Зачем использовать crater-fill or a back-step at end of a GMAW (MIG/MAG) валик?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Save time"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Reduce crater растрескивание and underfill"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the горелка"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Filling the crater avoids shrinkage cracks/underfill."
-    }
-  },
-  {
-    "id": "Q-D-13_ctwd_long_1000005e",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Что — the effect of excessive вылета проволоки (Ctwd) in GMAW (MIG/MAG)/FCAW (порошковая)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher ток and deeper проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lower ток and reduced проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cleaner arc starts"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Long вылет increases resistive heating of the wire, reducing ток at the arc."
-    }
-  },
-  {
-    "id": "Q-D-13_ctwd_long_effect_v1_06_40000060",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный вылета/CTWD in GMAW (MIG/MAG)/FCAW (порошковая) causes:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher ток/deeper проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lower ток/reduced проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cleaner arc starts"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Long вылета increases resistive heating, lowering ток."
-    }
-  },
-  {
-    "id": "Q-D-13_ctwd_long_effect_v4_02_4000007a",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный вылета/CTWD in GMAW (MIG/MAG)/FCAW (порошковая) causes:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher ток/deeper проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lower ток/reduced проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cleaner arc starts"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Long вылета increases resistive heating, lowering ток."
-    }
-  },
-  {
-    "id": "Q-D-13_ctwd_long_effect_v6_08_40000094",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный вылета/CTWD in GMAW (MIG/MAG)/FCAW (порошковая) causes:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher ток/deeper проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lower ток/reduced проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cleaner arc starts"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Long вылета increases resistive heating, lowering ток."
-    }
-  },
-  {
-    "id": "Q-D-13_ctwd_long_effect_v9_04_400000ae",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный вылета/CTWD in GMAW (MIG/MAG)/FCAW (порошковая) causes:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Higher ток/deeper проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lower ток/reduced проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cleaner arc starts"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Long вылета increases resistive heating, lowering ток."
-    }
-  },
-  {
-    "id": "Q-D-13_drive_roll_type_v2_00_40000064",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое drive rolls are appropriate for FCAW (порошковая)-S vs solid проволока?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "V-groove for FCAW (порошковая)-S; knurled for solid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Knurled for FCAW (порошковая)-S; V-groove for solid"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "U-groove for solid only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any roll type"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Knurled for tubular проволока; V-groove for solid steel проволока."
-    }
-  },
-  {
-    "id": "Q-D-13_drive_roll_type_v4_06_4000007e",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое drive rolls are appropriate for FCAW (порошковая)-S vs solid проволока?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "V-groove for FCAW (порошковая)-S; knurled for solid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Knurled for FCAW (порошковая)-S; V-groove for solid"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "U-groove for solid only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any roll type"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Knurled for tubular проволока; V-groove for solid steel проволока."
-    }
-  },
-  {
-    "id": "Q-D-13_drive_roll_type_v7_02_40000098",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое drive rolls are appropriate for FCAW (порошковая)-S vs solid проволока?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "V-groove for FCAW (порошковая)-S; knurled for solid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Knurled for FCAW (порошковая)-S; V-groove for solid"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "U-groove for solid only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any roll type"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Knurled for tubular проволока; V-groove for solid steel проволока."
-    }
-  },
-  {
-    "id": "Q-D-13_drive_roll_type_v9_08_400000b2",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое drive rolls are appropriate for FCAW (порошковая)-S vs solid проволока?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "V-groove for FCAW (порошковая)-S; knurled for solid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Knurled for FCAW (порошковая)-S; V-groove for solid"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "U-groove for solid only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any roll type"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Knurled for tubular проволока; V-groove for solid steel проволока."
-    }
-  },
-  {
-    "id": "Q-D-13_drive_rolls_10000062",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое drive rolls — appropriate for FCAW (порошковая)-S vs solid wire?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "V-groove for FCAW (порошковая)-S; knurled for solid"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Knurled for FCAW (порошковая)-S; V-groove for solid"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "U-groove for solid только"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Подойдут любые ролики"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Knurled rolls grip tubular wire; V-groove rolls suit solid steel wire."
-    }
-  },
-  {
-    "id": "Q-D-13_er70s6_strength_10000059",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "In ER70S-6, что '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% shielding efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Минимальная прочность на растяжение 70 000 psi"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70 A wire feed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° torch angle"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Like SMAW (ручная дуговая), the '70' refers to minimum tensile strength in ksi."
-    }
-  },
-  {
-    "id": "Q-D-13_er70s6_strength_v1_01_4000005b",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "In ER70S-6, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% защитного газа efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70 A проволока feed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° горелка angle"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-13_er70s6_strength_v3_07_40000075",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "In ER70S-6, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% защитного газа efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70 A проволока feed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° горелка angle"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-13_er70s6_strength_v6_03_4000008f",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "In ER70S-6, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% защитного газа efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70 A проволока feed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° горелка angle"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-13_er70s6_strength_v8_09_400000a9",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "In ER70S-6, what does '70' indicate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "70% защитного газа efficiency"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "70,000 psi minimum tensile прочность"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "70 A проволока feed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "70° горелка angle"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "'70' = 70 ksi minimum tensile прочность."
-    }
-  },
-  {
-    "id": "Q-D-13_fcaW_s_polarity_10000069",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Most self-shielded FCAW (порошковая) wires run on:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только AC (переменный ток) (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either полярность"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Popular self-shielded classifications (e.g., E71T-8) use DCEN (прямая полярность) (прямая полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_fcaws_polarity_v10_05_400000b9",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Most self-shielded FCAW (порошковая) проволокаs run on:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either polarity"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Common self-shielded types (e.g., E71T-8) use DCEN (прямая полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_fcaws_polarity_v2_07_4000006b",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Most self-shielded FCAW (порошковая) проволокаs run on:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either polarity"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Common self-shielded types (e.g., E71T-8) use DCEN (прямая полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_fcaws_polarity_v5_03_40000085",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Most self-shielded FCAW (порошковая) проволокаs run on:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either polarity"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Common self-shielded types (e.g., E71T-8) use DCEN (прямая полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_fcaws_polarity_v7_09_4000009f",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Most self-shielded FCAW (порошковая) проволокаs run on:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either polarity"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Common self-shielded types (e.g., E71T-8) use DCEN (прямая полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_gas_flow_too_high_v11_01_400000bf",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный защитного газа газ flow can:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Always improve защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Cause turbulence and aspiration of air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Have no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminate пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence pulling air into the arc."
-    }
-  },
-  {
-    "id": "Q-D-13_gas_flow_too_high_v3_03_40000071",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный защитного газа газ flow can:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Always improve защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Cause turbulence and aspiration of air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Have no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminate пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence pulling air into the arc."
-    }
-  },
-  {
-    "id": "Q-D-13_gas_flow_too_high_v5_09_4000008b",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный защитного газа газ flow can:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Always improve защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Cause turbulence and aspiration of air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Have no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminate пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence pulling air into the arc."
-    }
-  },
-  {
-    "id": "Q-D-13_gas_flow_too_high_v8_05_400000a5",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чрезмерный защитного газа газ flow can:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Always improve защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Cause turbulence and aspiration of air"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Have no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminate пористости"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much flow creates turbulence pulling air into the arc."
-    }
-  },
-  {
-    "id": "Q-D-13_gmaw_polarity_10000058",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какая полярность — standard for GMAW (MIG/MAG) and most gas-shielded FCAW (порошковая) wires?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность) (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность) (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только AC (переменный ток) (переменный ток)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Любая — без разницы"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Solid and gas-shielded флюс-cored wires typically use электрод positive (DCEP (обратная полярность) (обратная полярность))."
-    }
-  },
-  {
-    "id": "Q-D-13_gmaw_polarity_v1_00_4000005a",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какой из следующих polarity is standard for GMAW (MIG/MAG) and most газ-shielded FCAW (порошковая) проволокаs?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either, no difference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Solid and газ-shielded флюса-cored проволокаs typically use DCEP (обратная полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_gmaw_polarity_v11_04_400000c2",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какая полярность is standard for GMAW (MIG/MAG) and most газ-shielded FCAW (порошковая) проволокаs?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either, no difference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Solid and газ-shielded флюса-cored проволокаs typically use DCEP (обратная полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_gmaw_polarity_v3_06_40000074",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какая полярность is standard for GMAW (MIG/MAG) and most газ-shielded FCAW (порошковая) проволокаs?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either, no difference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Solid and газ-shielded флюса-cored проволокаs typically use DCEP (обратная полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_gmaw_polarity_v6_02_4000008e",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какая полярность is standard for GMAW (MIG/MAG) and most газ-shielded FCAW (порошковая) проволокаs?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either, no difference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Solid and газ-shielded флюса-cored проволокаs typically use DCEP (обратная полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_gmaw_polarity_v8_08_400000a8",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какая полярность is standard for GMAW (MIG/MAG) and most газ-shielded FCAW (порошковая) проволокаs?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (прямая полярность)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (обратная полярность)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC (переменный ток) only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either, no difference"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Solid and газ-shielded флюса-cored проволокаs typically use DCEP (обратная полярность)."
-    }
-  },
-  {
-    "id": "Q-D-13_inductance_1000005d",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "In короткозамыкательного GMAW (MIG/MAG), increasing индуктивность generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Makes the arc harsher with more spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Softens the arc and уменьшает spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Предотвращает сплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Greater индуктивность slows ток rise, reducing explosive short clearing."
-    }
-  },
-  {
-    "id": "Q-D-13_inductance_effect_v1_05_4000005f",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "In короткозамыкательного GMAW (MIG/MAG), increasing индуктивности generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Makes arc harsher with more spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Softens arc and reduces spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Prevents сплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Greater индуктивности slows ток rise and reduces spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_inductance_effect_v4_01_40000079",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "In короткозамыкательного GMAW (MIG/MAG), increasing индуктивности generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Makes arc harsher with more spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Softens arc and reduces spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Prevents сплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Greater индуктивности slows ток rise and reduces spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_inductance_effect_v6_07_40000093",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "In короткозамыкательного GMAW (MIG/MAG), increasing индуктивности generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Makes arc harsher with more spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Softens arc and reduces spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Prevents сплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Greater индуктивности slows ток rise and reduces spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_inductance_effect_v9_03_400000ad",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "In короткозамыкательного GMAW (MIG/MAG), increasing индуктивности generally:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Makes arc harsher with more spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Softens arc and reduces spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Prevents сплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Greater индуктивности slows ток rise and reduces spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_liner_selection_v11_02_400000c0",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For soft проволокаs (aluminum), which liner is appropriate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steel-wound liner"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Teflon/UHMW-type liner"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any liner is fine"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No liner needed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Low-friction liners reduce drag and shavings."
-    }
-  },
-  {
-    "id": "Q-D-13_liner_selection_v3_04_40000072",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For soft проволокаs (aluminum), which liner is appropriate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steel-wound liner"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Teflon/UHMW-type liner"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any liner is fine"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No liner needed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Low-friction liners reduce drag and shavings."
-    }
-  },
-  {
-    "id": "Q-D-13_liner_selection_v6_00_4000008c",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For soft проволокаs (aluminum), which liner is appropriate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steel-wound liner"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Teflon/UHMW-type liner"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any liner is fine"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No liner needed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Low-friction liners reduce drag and shavings."
-    }
-  },
-  {
-    "id": "Q-D-13_liner_selection_v8_06_400000a6",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For soft проволокаs (aluminum), which liner is appropriate?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Steel-wound liner"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Teflon/UHMW-type liner"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any liner is fine"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No liner needed"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Low-friction liners reduce drag and shavings."
-    }
-  },
-  {
-    "id": "Q-D-13_metal_cored_gas_v10_03_400000b7",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Metal-cored (MCAW (металлонаполненная)) проволокаs typically require:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No защитного газа газ"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "External защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Only CO₂ without exceptions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Flux baking"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "MCAW (металлонаполненная) проволокаs need correct газ mix per specification."
-    }
-  },
-  {
-    "id": "Q-D-13_metal_cored_gas_v2_05_40000069",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Metal-cored (MCAW (металлонаполненная)) проволокаs typically require:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No защитного газа газ"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "External защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Only CO₂ without exceptions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Flux baking"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "MCAW (металлонаполненная) проволокаs need correct газ mix per specification."
-    }
-  },
-  {
-    "id": "Q-D-13_metal_cored_gas_v5_01_40000083",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Metal-cored (MCAW (металлонаполненная)) проволокаs typically require:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No защитного газа газ"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "External защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Only CO₂ without exceptions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Flux baking"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "MCAW (металлонаполненная) проволокаs need correct газ mix per specification."
-    }
-  },
-  {
-    "id": "Q-D-13_metal_cored_gas_v7_07_4000009d",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Metal-cored (MCAW (металлонаполненная)) проволокаs typically require:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No защитного газа газ"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "External защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Only CO₂ without exceptions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Flux baking"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "MCAW (металлонаполненная) проволокаs need correct газ mix per specification."
-    }
-  },
-  {
-    "id": "Q-D-13_metal_cored_shield_10000067",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Metal-cored (MCAW (металлонаполненная)) wires typically require:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "No shielding gas"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "External shielding gas"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Только CO₂ with no exceptions"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Флюс baking before use"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "MCAW (металлонаполненная) wires — gas-shielded and need the верно gas mix per spec."
-    }
-  },
-  {
-    "id": "Q-D-13_nozzle_care_1000006b",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Почему keep the GMAW (MIG/MAG) сопло and токоподводящего наконечника clean?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To увеличивает spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To maintain gas coverage and stable electrical контактный"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To уменьшить deposition rate"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To cool the wire"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spatter buildup disturbs shielding and electrical continuity."
-    }
-  },
-  {
-    "id": "Q-D-13_nozzle_tip_clean_v10_07_400000bb",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Почему keep the сопла and токоподводящего наконечника clean?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Maintain газ coverage and stable contact"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce deположение rate"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spatter buildup disturbs защитного газа/electrical continuity."
-    }
-  },
-  {
-    "id": "Q-D-13_nozzle_tip_clean_v2_09_4000006d",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Почему keep the сопла and токоподводящего наконечника clean?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Maintain газ coverage and stable contact"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce deположение rate"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spatter buildup disturbs защитного газа/electrical continuity."
-    }
-  },
-  {
-    "id": "Q-D-13_nozzle_tip_clean_v5_05_40000087",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Почему keep the сопла and токоподводящего наконечника clean?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Maintain газ coverage and stable contact"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce deположение rate"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spatter buildup disturbs защитного газа/electrical continuity."
-    }
-  },
-  {
-    "id": "Q-D-13_nozzle_tip_clean_v8_01_400000a1",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Почему keep the сопла and токоподводящего наконечника clean?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Increase spatter"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Maintain газ coverage and stable contact"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduce deположение rate"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cool the проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spatter buildup disturbs защитного газа/electrical continuity."
-    }
-  },
-  {
-    "id": "Q-D-13_porosity_causes_10000061",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Что может вызвать пористости in GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Drafts, improper gas flow, or surface contamination"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Higher напряжение только"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small wire diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using a gas lens"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Shielding disruption and contaminants allow gas pores to form."
-    }
-  },
-  {
-    "id": "Q-D-13_porosity_causes_v1_09_40000063",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое can cause пористости in GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Drafts, improper газ flow, contamination"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Higher напряжение only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small проволока diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using a газ-линзы"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Shielding disruption and contaminants allow газ pores."
-    }
-  },
-  {
-    "id": "Q-D-13_porosity_causes_v4_05_4000007d",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое can cause пористости in GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Drafts, improper газ flow, contamination"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Higher напряжение only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small проволока diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using a газ-линзы"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Shielding disruption and contaminants allow газ pores."
-    }
-  },
-  {
-    "id": "Q-D-13_porosity_causes_v7_01_40000097",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое can cause пористости in GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Drafts, improper газ flow, contamination"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Higher напряжение only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small проволока diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using a газ-линзы"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Shielding disruption and contaminants allow газ pores."
-    }
-  },
-  {
-    "id": "Q-D-13_porosity_causes_v9_07_400000b1",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое can cause пористости in GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Drafts, improper газ flow, contamination"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Higher напряжение only"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Small проволока diameter"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using a газ-линзы"
-      }
-    ],
-    "correctId": "CHOICE-1",
-    "rationales": {
-      "CHOICE-1": "Shielding disruption and contaminants allow газ pores."
-    }
-  },
-  {
-    "id": "Q-D-13_push_vs_pull_1000005f",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Compared with pulling, pushing the GMAW (MIG/MAG) gun typically:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Produces deeper проплавление and narrow bead"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Produces a wider, flatter bead with slightly less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has identical results"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Always causes lack of сплавление"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Push angles broaden the bead and slightly уменьшить проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_push_vs_pull_v1_07_40000061",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Pushing the GMAW (MIG/MAG) gun typically results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Deeper проплавление and narrow валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wider, flatter валик with slightly less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Identical results"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lack of сплавление always"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Push angles broaden the валик and slightly reduce проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_push_vs_pull_v4_03_4000007b",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Pushing the GMAW (MIG/MAG) gun typically results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Deeper проплавление and narrow валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wider, flatter валик with slightly less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Identical results"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lack of сплавление always"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Push angles broaden the валик and slightly reduce проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_push_vs_pull_v6_09_40000095",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Pushing the GMAW (MIG/MAG) gun typically results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Deeper проплавление and narrow валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wider, flatter валик with slightly less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Identical results"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lack of сплавление always"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Push angles broaden the валик and slightly reduce проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_push_vs_pull_v9_05_400000af",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Pushing the GMAW (MIG/MAG) gun typically results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Deeper проплавление and narrow валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wider, flatter валик with slightly less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Identical results"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lack of сплавление always"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Push angles broaden the валик and slightly reduce проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_shortc_gas_1000005a",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Какое shielding gas — commonly used for короткозамыкательного GMAW (MIG/MAG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "100% CO₂"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "75% Ar / 25% CO₂"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "100% Ar"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "98% Ar / 2% O₂"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "C25 (75/25) обеспечивает stable короткозамыкательного transfer with low spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_shortc_gas_v1_02_4000005c",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Какое защитного газа газ is common for короткозамыкательного GMAW (MIG/MAG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "100% CO₂"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "75% Ar / 25% CO₂"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "100% Ar"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "98% Ar / 2% O₂"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "C25 provides stable короткозамыкательного with low spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_shortc_gas_v3_08_40000076",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Какое защитного газа газ is common for короткозамыкательного GMAW (MIG/MAG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "100% CO₂"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "75% Ar / 25% CO₂"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "100% Ar"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "98% Ar / 2% O₂"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "C25 provides stable короткозамыкательного with low spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_shortc_gas_v6_04_40000090",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Какое защитного газа газ is common for короткозамыкательного GMAW (MIG/MAG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "100% CO₂"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "75% Ar / 25% CO₂"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "100% Ar"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "98% Ar / 2% O₂"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "C25 provides stable короткозамыкательного with low spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_shortc_gas_v9_00_400000aa",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Какое защитного газа газ is common for короткозамыкательного GMAW (MIG/MAG) on carbon steel?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "100% CO₂"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "75% Ar / 25% CO₂"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "100% Ar"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "98% Ar / 2% O₂"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "C25 provides stable короткозамыкательного with low spatter."
-    }
-  },
-  {
-    "id": "Q-D-13_shortc_limit_10000068",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Ограничение режима короткозамыкательного GMAW (MIG/MAG) on thick plate — :",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Excessive fume"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High проплавление causing burn-through"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Potential lack of сплавление in grooves and fillets"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It cannot run out of положение"
+        "text": "Угол скоса 70°"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Low energy per droplet risks lack of сплавление on heavy sections."
+      "CHOICE-3": "Первые две цифры — минимальная временная прочность в ksi (тыс. psi)."
     }
   },
   {
-    "id": "Q-D-13_shortc_limitation_v10_04_400000b8",
+    "id": "Q-D-12_e7018_coating_10000046",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A limitation of короткозамыкательного GMAW (MIG/MAG) on thick plate is:",
+    "stem": "Какая обмазка характерна для электродов E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Чрезмерный fume"
+        "text": "Кислая"
       },
       {
         "id": "CHOICE-2",
-        "text": "High проплавление causing burn-through"
+        "text": "Основная низководородная"
       },
       {
         "id": "CHOICE-3",
-        "text": "Potential lack of сплавление in grooves/fillets"
+        "text": "Рутиловая"
       },
       {
         "id": "CHOICE-4",
-        "text": "Cannot run out of положение"
+        "text": "Целлюлозная"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "E7018 — основные низководородные (часто с железным порошком)."
+    }
+  },
+  {
+    "id": "Q-D-12_e7018_current_10000055",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "На каких режимах источника обычно работают E7018?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Только DCEN"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "DCEP или AC — согласно ТДС/паспорту"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только AC"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только DCEP, никогда AC"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Большинство E7018 рассчитаны на DCEP и часто на AC (см. производителя/WPS)."
+    }
+  },
+  {
+    "id": "Q-D-12_e7024_character_v2_08_40000012",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Какое утверждение описывает электроды E7024?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Целлюлозная обмазка, глубокая проплавка"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Высокопроизводительные рутиловые с железным порошком, для нижнего/горизонтального положения"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Основные низководородные для всех положений"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Только для нержавеющих сталей"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "E7024 — «железнопорошковые» рутиловые электроды с высокой наплавкой в нижнем/горизонтальном."
+    }
+  },
+  {
+    "id": "Q-D-12_fillet_angles_10000052",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Какие типовые углы при выполнении нижнего углового шва (SMAW)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Рабочий угол ~45° и угол движения 5–15° (лёгкое «ведение»)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Рабочий 15°, угол движения 45°"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "90° к деталям и нулевой угол движения"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Толкать в шов на 30°"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Обычно держат ~45° к углу и небольшой угол ведения для стабилизации ванны."
+    }
+  },
+  {
+    "id": "Q-D-12_galvanized_fume_10000057",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Какой риск связан со сваркой оцинкованной стали?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Особых рисков нет по сравнению с черной сталью"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Пары цинка; локально удалять покрытие и обеспечивать вентиляцию"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Выход гелия через поры"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Осаждение оксида алюминия"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Испарения цинка токсичны; удаляют покрытие в зоне шва и обеспечивают хорошую вытяжку."
+    }
+  },
+  {
+    "id": "Q-D-12_lowhyd_oven_1000004b",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Зачем держать электроды E7018 в подогреваемом шкафу между работами?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Чтобы быстрее плавилась обмазка"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Чтобы исключить увлажнение и риск водородной трещиноватости"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чтобы легче отбивать шлак"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Чтобы снизить требуемый ток"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Сухое хранение ограничивает водород и риск холодных трещин."
+    }
+  },
+  {
+    "id": "Q-D-12_open_root_choice_10000054",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Какой электрод лучше подходит для глубокого проплавления открытого корня по слегка ржавой стали?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "E7018"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "E308L"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "E6010"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "E7024"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Low energy per droplet risks lack of сплавление."
+      "CHOICE-3": "Целлюлозный E6010 даёт хорошую проплавку и терпит лёгкие загрязнения/ржавчину."
     }
   },
   {
-    "id": "Q-D-13_shortc_limitation_v2_06_4000006a",
+    "id": "Q-D-12_position_digit_10000048",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A limitation of короткозамыкательного GMAW (MIG/MAG) on thick plate is:",
+    "stem": "Что означает цифра «1» в E7018?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Чрезмерный fume"
+        "text": "Только нижнее положение"
       },
       {
         "id": "CHOICE-2",
-        "text": "High проплавление causing burn-through"
+        "text": "Только нижнее и горизонтальное"
       },
       {
         "id": "CHOICE-3",
-        "text": "Potential lack of сплавление in grooves/fillets"
+        "text": "Все положения"
       },
       {
         "id": "CHOICE-4",
-        "text": "Cannot run out of положение"
+        "text": "Только потолочное"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Low energy per droplet risks lack of сплавление."
+      "CHOICE-3": "Цифра «1» — пригодность электрода во всех положениях."
     }
   },
   {
-    "id": "Q-D-13_shortc_limitation_v5_02_40000084",
+    "id": "Q-D-12_preheat_benefit_10000050",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A limitation of короткозамыкательного GMAW (MIG/MAG) on thick plate is:",
+    "stem": "Какова основная польза подогрева перед сваркой толстой/высокопрочной стали?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Чрезмерный fume"
+        "text": "Увеличение остаточных напряжений"
       },
       {
         "id": "CHOICE-2",
-        "text": "High проплавление causing burn-through"
+        "text": "Снижение скорости охлаждения и риска водородных трещин"
       },
       {
         "id": "CHOICE-3",
-        "text": "Potential lack of сплавление in grooves/fillets"
+        "text": "Отмена межоперационной очистки"
       },
       {
         "id": "CHOICE-4",
-        "text": "Cannot run out of положение"
+        "text": "Упрочнение обмазки электрода"
       }
     ],
-    "correctId": "CHOICE-3",
+    "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-3": "Low energy per droplet risks lack of сплавление."
+      "CHOICE-2": "Подогрев замедляет охлаждение и даёт водороду диффундировать — меньше риск трещин."
     }
   },
   {
-    "id": "Q-D-13_shortc_limitation_v7_08_4000009e",
+    "id": "Q-D-12_restart_tiein_10000051",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "A limitation of короткозамыкательного GMAW (MIG/MAG) on thick plate is:",
+    "stem": "Как правильно возобновлять дугу/вести стык при перезапуске валика SMAW?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Чрезмерный fume"
+        "text": "Чиркнуть по лицу шва и продолжить"
       },
       {
         "id": "CHOICE-2",
-        "text": "High проплавление causing burn-through"
+        "text": "Сточить/растушевать место остановки и перезапустить чуть впереди для плавного захода"
       },
       {
         "id": "CHOICE-3",
-        "text": "Potential lack of сплавление in grooves/fillets"
+        "text": "Перезапустить ровно в кратере"
       },
       {
         "id": "CHOICE-4",
-        "text": "Cannot run out of положение"
+        "text": "Ничего не делать — шлак сам всплывёт"
       }
     ],
-    "correctId": "CHOICE-3",
+    "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-3": "Low energy per droplet risks lack of сплавление."
+      "CHOICE-2": "Растушёвка и перезапуск чуть впереди позволяют без дефектов «подвязаться» к предыдущему валику."
     }
   },
   {
-    "id": "Q-D-13_spool_gun_reason_v11_03_400000c1",
+    "id": "Q-D-12_undercut_cause_1000004d",
     "taskId": "D-13",
     "difficulty": "medium",
-    "stem": "Зачем использовать a spool gun with aluminum GMAW (MIG/MAG)?",
+    "stem": "Что чаще всего приводит к подрезу (undercut) при SMAW?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To increase вылета"
+        "text": "Чрезмерная скорость или длинная дуга"
       },
       {
         "id": "CHOICE-2",
-        "text": "To keep soft проволока feed path short, reducing birdnesting"
+        "text": "Малая скорость и короткая дуга"
       },
       {
         "id": "CHOICE-3",
-        "text": "To eliminate защитного газа газ"
+        "text": "Малый диаметр электрода"
       },
       {
         "id": "CHOICE-4",
-        "text": "To run DCEN (прямая полярность)"
+        "text": "Применение струнных валиков"
       }
     ],
-    "correctId": "CHOICE-2",
+    "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-2": "Short path in the gun reduces feeding issues."
-    }
-  },
-  {
-    "id": "Q-D-13_spool_gun_reason_v3_05_40000073",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Зачем использовать a spool gun with aluminum GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To increase вылета"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To keep soft проволока feed path short, reducing birdnesting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To eliminate защитного газа газ"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To run DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short path in the gun reduces feeding issues."
-    }
-  },
-  {
-    "id": "Q-D-13_spool_gun_reason_v6_01_4000008d",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Зачем использовать a spool gun with aluminum GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To increase вылета"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To keep soft проволока feed path short, reducing birdnesting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To eliminate защитного газа газ"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To run DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short path in the gun reduces feeding issues."
-    }
-  },
-  {
-    "id": "Q-D-13_spool_gun_reason_v8_07_400000a7",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Зачем использовать a spool gun with aluminum GMAW (MIG/MAG)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "To increase вылета"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To keep soft проволока feed path short, reducing birdnesting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "To eliminate защитного газа газ"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "To run DCEN (прямая полярность)"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Short path in the gun reduces feeding issues."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_gas_1000005b",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Чтобы получить струйного переноса on carbon steel, что — generally required?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "CO₂-только shielding"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Аргон-rich shielding gas"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Very low напряжение"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Short вылет"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Струйный transfer needs an аргон-dominant gas and sufficient ток/напряжение."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_gas_need_v1_03_4000005d",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "To achieve струйного переноса on carbon steel, generally required:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "CO₂-only защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Argon-rich защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Very low напряжение"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Short вылета"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spray requires argon-dominant газ and sufficient ток/напряжение."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_gas_need_v3_09_40000077",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "To achieve струйного переноса on carbon steel, generally required:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "CO₂-only защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Argon-rich защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Very low напряжение"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Short вылета"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spray requires argon-dominant газ and sufficient ток/напряжение."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_gas_need_v6_05_40000091",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "To achieve струйного переноса on carbon steel, generally required:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "CO₂-only защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Argon-rich защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Very low напряжение"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Short вылета"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spray requires argon-dominant газ and sufficient ток/напряжение."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_gas_need_v9_01_400000ab",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "To achieve струйного переноса on carbon steel, generally required:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "CO₂-only защитного газа"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Argon-rich защитного газа газ"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Very low напряжение"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Short вылета"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Spray requires argon-dominant газ and sufficient ток/напряжение."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_transfer_10000066",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какое transfer mode обеспечивает a continuous stream of metal droplets at high ток?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Short-circuit"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Крупнокапельный"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Струйный"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Импульсный"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Струйный transfer delivers fine droplets axially across the arc."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_transfer_mode_v10_02_400000b6",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какой режим переноса provides a continuous stream of fine droplets?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Short-circuit"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Globular"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Spray"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Pulsed"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Spray transfer delivers fine droplets axially."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_transfer_mode_v2_04_40000068",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какой режим переноса provides a continuous stream of fine droplets?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Short-circuit"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Globular"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Spray"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Pulsed"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Spray transfer delivers fine droplets axially."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_transfer_mode_v5_00_40000082",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какой режим переноса provides a continuous stream of fine droplets?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Short-circuit"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Globular"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Spray"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Pulsed"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Spray transfer delivers fine droplets axially."
-    }
-  },
-  {
-    "id": "Q-D-13_spray_transfer_mode_v7_06_4000009c",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Какой режим переноса provides a continuous stream of fine droplets?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Short-circuit"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Globular"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Spray"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Pulsed"
-      }
-    ],
-    "correctId": "CHOICE-3",
-    "rationales": {
-      "CHOICE-3": "Spray transfer delivers fine droplets axially."
-    }
-  },
-  {
-    "id": "Q-D-13_travel_speed_effect_1000006c",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Каков типичный эффект increasing travel speed (all else equal)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wider, deeper bead"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Narrower bead with less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change to bead shape"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminates деформации"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher travel speed уменьшает heat input, narrowing the bead and проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_travel_speed_effect_v10_08_400000bc",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Increasing скорость перемещения (all else equal) results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wider, deeper валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Narrower валик with less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminates distortion"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher speed reduces тепловложение and проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_travel_speed_effect_v3_00_4000006e",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Increasing скорость перемещения (all else equal) results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wider, deeper валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Narrower валик with less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminates distortion"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher speed reduces тепловложение and проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_travel_speed_effect_v5_06_40000088",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Increasing скорость перемещения (all else equal) results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wider, deeper валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Narrower валик with less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminates distortion"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher speed reduces тепловложение and проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_travel_speed_effect_v8_02_400000a2",
-    "taskId": "D-13",
-    "difficulty": "easy",
-    "stem": "Increasing скорость перемещения (all else equal) results in:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wider, deeper валик"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Narrower валик with less проплавление"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No change"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Eliminates distortion"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher speed reduces тепловложение and проплавление."
-    }
-  },
-  {
-    "id": "Q-D-13_voltage_bead_1000005c",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Increasing напряжение in CV GMAW (MIG/MAG) (at fixed WFS) tends to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Narrow and stiffen the arc with deeper проплавление"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Widen the bead and увеличивает wetting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower heat input and widen the bead"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Have no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher напряжение broadens the arc column, improving sidewall wetting."
-    }
-  },
-  {
-    "id": "Q-D-13_voltage_effect_v1_04_4000005e",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Increasing напряжение in CV GMAW (MIG/MAG) (fixed WFS) tends to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Narrow and stiffen the arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Widen the валик and increase wetting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower тепловложение and widen валик"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher напряжение broadens the arc column, improving wetting."
-    }
-  },
-  {
-    "id": "Q-D-13_voltage_effect_v4_00_40000078",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Increasing напряжение in CV GMAW (MIG/MAG) (fixed WFS) tends to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Narrow and stiffen the arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Widen the валик and increase wetting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower тепловложение and widen валик"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher напряжение broadens the arc column, improving wetting."
-    }
-  },
-  {
-    "id": "Q-D-13_voltage_effect_v6_06_40000092",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Increasing напряжение in CV GMAW (MIG/MAG) (fixed WFS) tends to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Narrow and stiffen the arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Widen the валик and increase wetting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower тепловложение and widen валик"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher напряжение broadens the arc column, improving wetting."
-    }
-  },
-  {
-    "id": "Q-D-13_voltage_effect_v9_02_400000ac",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "Increasing напряжение in CV GMAW (MIG/MAG) (fixed WFS) tends to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Narrow and stiffen the arc"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Widen the валик and increase wetting"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower тепловложение and widen валик"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "No effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher напряжение broadens the arc column, improving wetting."
-    }
-  },
-  {
-    "id": "Q-D-13_wfs_controls_current_1000006a",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "In a CV GMAW (MIG/MAG) system, какое control primarily changes welding ток?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Напряжение knob"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wire feed speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Индуктивность"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Gas flow rate"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "At constant напряжение, increasing WFS raises ток and deposition rate."
-    }
-  },
-  {
-    "id": "Q-D-13_wfs_controls_current_v10_06_400000ba",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "In a CV GMAW (MIG/MAG) system, which setting primarily changes ток?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage control"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wire feed speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Inductance"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Gas flow rate"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Increasing WFS raises ток/deположение."
-    }
-  },
-  {
-    "id": "Q-D-13_wfs_controls_current_v2_08_4000006c",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "In a CV GMAW (MIG/MAG) system, which setting primarily changes ток?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage control"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wire feed speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Inductance"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Gas flow rate"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Increasing WFS raises ток/deположение."
-    }
-  },
-  {
-    "id": "Q-D-13_wfs_controls_current_v5_04_40000086",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "In a CV GMAW (MIG/MAG) system, which setting primarily changes ток?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage control"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wire feed speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Inductance"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Gas flow rate"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Increasing WFS raises ток/deположение."
-    }
-  },
-  {
-    "id": "Q-D-13_wfs_controls_current_v8_00_400000a0",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "In a CV GMAW (MIG/MAG) system, which setting primarily changes ток?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage control"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Wire feed speed"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Inductance"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Gas flow rate"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Increasing WFS raises ток/deположение."
-    }
-  },
-  {
-    "id": "Q-D-13_wind_fcaW_s_v10_09_400000bd",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For self-shielded FCAW (порошковая) in windy conditions, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use higher газ flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use wind shields and adjust parameters, or postpone if excessive wind"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Switch to pure argon"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Ignore wind"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Wind can strip защитного газа; use barriers or reschedule."
-    }
-  },
-  {
-    "id": "Q-D-13_wind_fcaW_s_v3_01_4000006f",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For self-shielded FCAW (порошковая) in windy conditions, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use higher газ flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use wind shields and adjust parameters, or postpone if excessive wind"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Switch to pure argon"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Ignore wind"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Wind can strip защитного газа; use barriers or reschedule."
-    }
-  },
-  {
-    "id": "Q-D-13_wind_fcaW_s_v5_07_40000089",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For self-shielded FCAW (порошковая) in windy conditions, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use higher газ flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use wind shields and adjust parameters, or postpone if excessive wind"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Switch to pure argon"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Ignore wind"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Wind can strip защитного газа; use barriers or reschedule."
-    }
-  },
-  {
-    "id": "Q-D-13_wind_fcaW_s_v8_03_400000a3",
-    "taskId": "D-13",
-    "difficulty": "medium",
-    "stem": "For self-shielded FCAW (порошковая) in windy conditions, you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Use higher газ flow"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Use wind shields and adjust parameters, or postpone if excessive wind"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Switch to pure argon"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Ignore wind"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Wind can strip защитного газа; use barriers or reschedule."
-    }
-  },
-  {
-    "id": "Q-D-13_worm_tracks_10000060",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "Что often causes 'червоточин (worm tracks)' in FCAW (порошковая)-G deposits?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Perfect shielding and low напряжение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Excessive напряжение/heat or surface contamination causing gas channels"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Too short вылет только"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using solid wire"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas bubbles under the шлак can leave tracks когда напряжение/heat — high or surfaces — dirty."
-    }
-  },
-  {
-    "id": "Q-D-13_worm_tracks_cause_v1_08_40000062",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "Что often causes 'червоточин' in FCAW (порошковая)-G welds?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Perfect защитного газа and low напряжение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Excess heat/напряжение or contamination"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Too short вылета only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using solid проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas channels under шлака due to heat/contamination leave tracks."
-    }
-  },
-  {
-    "id": "Q-D-13_worm_tracks_cause_v4_04_4000007c",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "Что often causes 'червоточин' in FCAW (порошковая)-G welds?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Perfect защитного газа and low напряжение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Excess heat/напряжение or contamination"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Too short вылета only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using solid проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas channels under шлака due to heat/contamination leave tracks."
-    }
-  },
-  {
-    "id": "Q-D-13_worm_tracks_cause_v7_00_40000096",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "Что often causes 'червоточин' in FCAW (порошковая)-G welds?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Perfect защитного газа and low напряжение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Excess heat/напряжение or contamination"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Too short вылета only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using solid проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas channels under шлака due to heat/contamination leave tracks."
-    }
-  },
-  {
-    "id": "Q-D-13_worm_tracks_cause_v9_06_400000b0",
-    "taskId": "D-13",
-    "difficulty": "hard",
-    "stem": "Что often causes 'червоточин' in FCAW (порошковая)-G welds?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Perfect защитного газа and low напряжение"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Excess heat/напряжение or contamination"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Too short вылета only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Using solid проволока"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gas channels under шлака due to heat/contamination leave tracks."
+      "CHOICE-1": "Слишком быстрое ведение/длинная дуга «вымывают» металл у кромок и дают подрез."
     }
   }
 ]

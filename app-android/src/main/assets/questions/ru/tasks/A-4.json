@@ -2,785 +2,869 @@
   {
     "id": "Q-A-4_5s_housekeeping_1000000f",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Почему apply 5S/бережливого хозяйствования in a welding shop?",
+    "difficulty": "medium",
+    "stem": "Зачем применять 5S/производственный порядок (housekeeping) в сварочном цехе?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "It adds non-value work"
+        "text": "Это добавляет неценную работу"
       },
       {
         "id": "CHOICE-2",
-        "text": "It уменьшает waste and улучшает safety"
+        "text": "Это сокращает потери и повышает безопасность"
       },
       {
         "id": "CHOICE-3",
-        "text": "It — только for offices"
+        "text": "Это только для офисов"
       },
       {
         "id": "CHOICE-4",
-        "text": "It means sweeping at the end of the day только"
+        "text": "Это значит подметать только в конце дня"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Orderly workplaces cut search time, trip hazards, and defects."
-    }
-  },
-  {
-    "id": "Q-A-4_5s_housekeeping_1000000f",
-    "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Почему apply 5S/бережливого производства in a welding shop?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "It adds non-value work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "It уменьшает waste and улучшает safety"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "It — только for offices"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It means sweeping at the end of the day только"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Orderly workplaces cut search time, trip hazards, and defects."
+      "CHOICE-2": "Это сокращает потери и повышает безопасность"
     }
   },
   {
     "id": "Q-A-4_consumable_vs_wps_20000044",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Before starting, consumables should be checked to ensure they:",
+    "difficulty": "medium",
+    "stem": "Перед началом работы следует проверить расходные материалы, чтобы убедиться, что они:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Match the WPS (спецификации сварочного процесса) classification and size"
+        "text": "Соответствуют классификации и размеру, указанным в WPS"
       },
       {
         "id": "CHOICE-2",
-        "text": "Are the cheapest available"
+        "text": "Самые дешёвые из доступных"
       },
       {
         "id": "CHOICE-3",
-        "text": "Were found on the nearest bench"
+        "text": "Найдены на ближайшем столе"
       },
       {
         "id": "CHOICE-4",
-        "text": "Have the longest storage time"
+        "text": "Имеют самый длинный срок хранения"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Confirm wire/rod classification and sizes match the WPS (спецификации сварочного процесса)."
+      "CHOICE-1": "Соответствуют классификации и размеру, указанным в WPS"
     }
   },
   {
     "id": "Q-A-4_datum_on_drawing_20000048",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Когда measuring from drawings, a good practice is to:",
+    "stem": "При снятии размеров по чертежам хорошая практика:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Использовать any convenient edge as a baseline"
+        "text": "Использовать любую удобную кромку как базовую"
       },
       {
         "id": "CHOICE-2",
-        "text": "Measure from the designated база отсчёта(s) shown"
+        "text": "Отсчитывать от указанных на чертеже баз (датумов)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Scale dimensions from a printout"
+        "text": "Снимать размеры по масштабу с распечатки"
       },
       {
         "id": "CHOICE-4",
-        "text": "Guess from photos"
+        "text": "Догадываться по фотографиям"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use the specified база отсчётаs to control накопление допусков."
+      "CHOICE-2": "Отсчитывать от указанных на чертеже баз (датумов)"
     }
   },
   {
     "id": "Q-A-4_distortion_plan_2000004e",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Почему следует weld sequence and fixturing be planned before сварки?",
+    "stem": "Зачем до начала сварки планировать последовательность швов и оснастку/фиксацию?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To maximize distortion"
+        "text": "Чтобы максимизировать деформации"
       },
       {
         "id": "CHOICE-2",
-        "text": "To minimize distortion and rework"
+        "text": "Чтобы минимизировать деформации и переделки"
       },
       {
         "id": "CHOICE-3",
-        "text": "So clamps are unnecessary"
+        "text": "Чтобы струбцины/зажимы не понадобились"
       },
       {
         "id": "CHOICE-4",
-        "text": "To avoid reading drawings"
+        "text": "Чтобы не читать чертежи"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Sequencing/fixturing помогает control shrinkage and alignment."
+      "CHOICE-2": "Чтобы минимизировать деформации и переделки"
     }
   },
   {
     "id": "Q-A-4_do_not_scale_2000004a",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "'Do not scale drawing' means you should:",
+    "difficulty": "medium",
+    "stem": "Пометка «Do not scale drawing» («Не масштабировать чертёж») означает, что следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Measure distances with a ruler on the print"
+        "text": "Измерять линейкой на распечатке"
       },
       {
         "id": "CHOICE-2",
-        "text": "Rely on stated dimensions and notes, not scaling"
+        "text": "Опираться на заданные размеры и примечания, а не на масштаб"
       },
       {
         "id": "CHOICE-3",
-        "text": "Ignore dimensions and use feel"
+        "text": "Игнорировать размеры и работать «по чувству»"
       },
       {
         "id": "CHOICE-4",
-        "text": "Scan and stretch the image"
+        "text": "Сканировать и растягивать изображение"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use listed dimensions; printed scale may distort."
+      "CHOICE-2": "Опираться на заданные размеры и примечания, а не на масштаб"
     }
   },
   {
     "id": "Q-A-4_drawing_revision_1000000e",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Какой подход верен когда using чертежей изготовления?",
+    "difficulty": "medium",
+    "stem": "Какая практика верна при работе с производственными чертежами?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Use any drawing you have"
+        "text": "Использовать любой имеющийся чертёж"
       },
       {
         "id": "CHOICE-2",
-        "text": "Use the latest revision listed in the title block"
+        "text": "Использовать последнюю редакцию, указанную в основной надписи"
       },
       {
         "id": "CHOICE-3",
-        "text": "Older revisions — safer"
+        "text": "Старые редакции надёжнее"
       },
       {
         "id": "CHOICE-4",
-        "text": "Let the shop choose per day"
+        "text": "Пусть цех выбирает на день"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Always confirm and work to the ток drawing revision to avoid rework."
-    }
-  },
-  {
-    "id": "Q-A-4_drawing_revision_1000000e",
-    "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Какой подход верен когда using чертежей изготовления?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Использовать any drawing you have"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Использовать the latest revision listed in the title block"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Older revisions — safer"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Let the shop choose per day"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Always confirm and work to the ток drawing revision to avoid rework."
+      "CHOICE-2": "Использовать последнюю редакцию, указанную в основной надписи"
     }
   },
   {
     "id": "Q-A-4_gas_ready_check_20000050",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Before production сварки, a good readiness check is to:",
+    "difficulty": "medium",
+    "stem": "Перед серийной сваркой хорошей проверкой готовности будет:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Assume gas баллонаs are full"
+        "text": "Предположить, что баллоны полные"
       },
       {
         "id": "CHOICE-2",
-        "text": "Verify gas type, pressure, редуктораs, and spares"
+        "text": "Проверить тип газа, давление, редукторы и наличие запасов"
       },
       {
         "id": "CHOICE-3",
-        "text": "Start сварки and check later"
+        "text": "Начать сварку и проверить позже"
       },
       {
         "id": "CHOICE-4",
-        "text": "Использовать any gas available"
+        "text": "Брать любой имеющийся газ"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Confirm the correct gas type, pressure, and equipment before starting."
+      "CHOICE-2": "Проверить тип газа, давление, редукторы и наличие запасов"
     }
   },
   {
     "id": "Q-A-4_jha_risk_20000051",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "A оценки опасностей (JHA) is used to:",
+    "stem": "Анализ опасностей работ (JHA/JSA) используется для того, чтобы:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Assign overtime pay"
+        "text": "Назначать сверхурочную оплату"
       },
       {
         "id": "CHOICE-2",
-        "text": "Identify hazards and controls for each task step"
+        "text": "Выявлять опасности и меры контроля для каждого шага"
       },
       {
         "id": "CHOICE-3",
-        "text": "Replace PPE"
+        "text": "Заменять СИЗ"
       },
       {
         "id": "CHOICE-4",
-        "text": "Eliminate documentation"
+        "text": "Устранять документацию"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "JHAs break down tasks to identify hazards and define controls."
+      "CHOICE-2": "Выявлять опасности и меры контроля для каждого шага"
     }
   },
   {
     "id": "Q-A-4_kitting_2000004c",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "To reduce delays at the bench, parts and hardware should be:",
+    "difficulty": "medium",
+    "stem": "Чтобы уменьшить задержки у рабочего места, детали и крепёж следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Collected ad‑hoc during сварки"
+        "text": "Собирать по ходу сварки"
       },
       {
         "id": "CHOICE-2",
-        "text": "Kitted and staged before setup"
+        "text": "Комплектовать и подготавливать заранее (kitting/staging)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Left on pallets unmarked"
+        "text": "Оставлять на паллетах без маркировки"
       },
       {
         "id": "CHOICE-4",
-        "text": "Stored in a locked office"
+        "text": "Хранить в закрытом офисе"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Kitting/staging уменьшает lost time and missing parts."
+      "CHOICE-2": "Комплектовать и подготавливать заранее (kitting/staging)"
     }
   },
   {
     "id": "Q-A-4_material_labeling_2000004f",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "To prevent mix-ups between similar materials, you should:",
+    "difficulty": "medium",
+    "stem": "Чтобы избежать путаницы между похожими материалами, следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Удалить all markings"
+        "text": "Удалить все маркировки"
       },
       {
         "id": "CHOICE-2",
-        "text": "Label clearly and segregate storage locations"
+        "text": "Чётко маркировать и хранить раздельно"
       },
       {
         "id": "CHOICE-3",
-        "text": "Store everything in one bin"
+        "text": "Складывать всё в один контейнер"
       },
       {
         "id": "CHOICE-4",
-        "text": "Использовать color only"
+        "text": "Использовать только цветовую метку"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Clear labels and segregation prevent material mix-ups."
+      "CHOICE-2": "Чётко маркировать и хранить раздельно"
     }
   },
   {
     "id": "Q-A-4_measurement_repeatability_20000053",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "To improve measurement repeatability between operators, use:",
+    "stem": "Чтобы повысить воспроизводимость измерений между операторами, следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Different tools and methods each time"
+        "text": "Каждый раз использовать разные инструменты и методы"
       },
       {
         "id": "CHOICE-2",
-        "text": "Standardized tools, fixtures, and methods"
+        "text": "Стандартизировать инструменты, оснастку и методы"
       },
       {
         "id": "CHOICE-3",
-        "text": "Только visual estimates"
+        "text": "Оценивать всё на глаз"
       },
       {
         "id": "CHOICE-4",
-        "text": "Fastest guess wins"
+        "text": "Кто быстрее угадает, тот прав"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Standardized methods reduce variation among measurements."
+      "CHOICE-2": "Стандартизировать инструменты, оснастку и методы"
     }
   },
   {
     "id": "Q-A-4_mtr_check_20000043",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Почему сертификатов МК (MTR) (MTRs) reviewed before fabrication?",
+    "stem": "Зачем перед изготовлением просматривать сертификаты материала (MTR)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To choose paint colors"
+        "text": "Чтобы выбрать цвет краски"
       },
       {
         "id": "CHOICE-2",
-        "text": "To verify material grade/heat meets specifications"
+        "text": "Чтобы подтвердить, что марка и плавка соответствуют требованиям"
       },
       {
         "id": "CHOICE-3",
-        "text": "To estimate power costs"
+        "text": "Чтобы оценить затраты на электроэнергию"
       },
       {
         "id": "CHOICE-4",
-        "text": "To pick сварки position"
+        "text": "Чтобы выбрать положение сварки"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "сертификаты заводских испытаний (MTR) confirm grade and heat/chemistry meet the job requirements."
+      "CHOICE-2": "Чтобы подтвердить, что марка и плавка соответствуют требованиям"
     }
   },
   {
     "id": "Q-A-4_plan_sequence_10000010",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Какова верная последовательность for organizing a welding job?",
+    "stem": "Какова разумная последовательность организации сварочных работ?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Start welding, then look for parts"
+        "text": "Начать сварку, затем искать детали"
       },
       {
         "id": "CHOICE-2",
-        "text": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
+        "text": "Подтвердить материалы/инструменты, изучить WPS и чертежи, спланировать последовательность, затем подготовить рабочее место"
       },
       {
         "id": "CHOICE-3",
-        "text": "Skip fit-up to save time"
+        "text": "Пропустить пригонку для экономии времени"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ignore деформации until final inspection"
+        "text": "Игнорировать деформации до итогового контроля"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Planning with the ток WPS/drawings and confirmed materials предотвращает delays and rework."
-    }
-  },
-  {
-    "id": "Q-A-4_plan_sequence_10000010",
-    "taskId": "A-4",
-    "difficulty": "medium",
-    "stem": "Какова верная последовательность for organizing a welding job?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Start welding, then look for parts"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Skip fit-up to save time"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Ignore деформации until final inspection"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Planning with the ток WPS/drawings and confirmed materials предотвращает delays and rework."
+      "CHOICE-2": "Подтвердить материалы/инструменты, изучить WPS и чертежи, спланировать последовательность, затем подготовить рабочее место"
     }
   },
   {
     "id": "Q-A-4_quality_over_speed_20000052",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "If schedule pressure conflicts with WPS (спецификации сварочного процесса) requirements, you should:",
+    "stem": "Если давление графика конфликтует с требованиями WPS, следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Skip предварительный подогрев to save time"
+        "text": "Пропустить подогрев (preheat), чтобы сэкономить время"
       },
       {
         "id": "CHOICE-2",
-        "text": "Follow the WPS (спецификации сварочного процесса) and escalate schedule concerns"
+        "text": "Соблюдать WPS и эскалировать вопрос сроков руководству"
       },
       {
         "id": "CHOICE-3",
-        "text": "Use any электрода available"
+        "text": "Взять любой подходящий электрод"
       },
       {
         "id": "CHOICE-4",
-        "text": "Reduce inspections"
+        "text": "Сократить объём контроля"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "WPS (спецификации сварочного процесса) requirements take precedence; raise timing issues to supervision."
+      "CHOICE-2": "Соблюдать WPS и эскалировать вопрос сроков руководству"
     }
   },
   {
     "id": "Q-A-4_router_hold_points_20000046",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Job travelers/routers often include hold points meaning:",
+    "stem": "Что означают контрольные точки (hold points) в маршрутных листах/технологических картах?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Optional stops to skip"
+        "text": "Необязательные остановки, которые можно пропустить"
       },
       {
         "id": "CHOICE-2",
-        "text": "Required inspections/approvals before proceeding"
+        "text": "Обязательные проверки/подтверждения перед продолжением"
       },
       {
         "id": "CHOICE-3",
-        "text": "Coffee breaks"
+        "text": "Перерывы на кофе"
       },
       {
         "id": "CHOICE-4",
-        "text": "End of shift only"
+        "text": "Только конец смены"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Hold points require inspection/approval prior to continuing work."
+      "CHOICE-2": "Обязательные проверки/подтверждения перед продолжением"
     }
   },
   {
     "id": "Q-A-4_shift_handover_20000054",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "At shift handover, a good practice is to:",
+    "difficulty": "medium",
+    "stem": "При передаче смены хорошей практикой является:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Держать/сохранять notes private"
+        "text": "Держать записи при себе"
       },
       {
         "id": "CHOICE-2",
-        "text": "Document status, issues, and next steps for continuity"
+        "text": "Задокументировать статус, проблемы и следующие шаги"
       },
       {
         "id": "CHOICE-3",
-        "text": "Leave with work in the machine"
+        "text": "Уходить, оставив работу в станке"
       },
       {
         "id": "CHOICE-4",
-        "text": "Hide in-process parts"
+        "text": "Прятать незавершённые детали"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Clear handover notes maintain continuity and quality."
+      "CHOICE-2": "Задокументировать статус, проблемы и следующие шаги"
     }
   },
   {
     "id": "Q-A-4_symbol_arrow_side_20000042",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "A weld symbol placed below the reference line typically indicates the weld is on the:",
+    "stem": "Символ сварного шва, размещённый под линией выноски, обычно означает, что шов выполняют на:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Other side of the joint"
+        "text": "противоположной стороне соединения"
       },
       {
         "id": "CHOICE-2",
-        "text": "Arrow side of the joint"
+        "text": "стрелочной стороне соединения"
       },
       {
         "id": "CHOICE-3",
-        "text": "Both sides by default"
+        "text": "обеих сторонах по умолчанию"
       },
       {
         "id": "CHOICE-4",
-        "text": "It has no meaning"
+        "text": "это ничего не означает"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Below the reference line = arrow side; above = other side (per common standards)."
+      "CHOICE-2": "стрелочной стороне соединения"
     }
   },
   {
     "id": "Q-A-4_symbol_fillet_basic_20000041",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "На сварочных чертежах, the basic triangular weld symbol indicates a:",
+    "difficulty": "medium",
+    "stem": "На сварочных чертежах базовый треугольный символ обозначает:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Plug weld"
+        "text": "штифтовой (plug) шов"
       },
       {
         "id": "CHOICE-2",
-        "text": "Fillet weld"
+        "text": "угловой (филётовый) шов"
       },
       {
         "id": "CHOICE-3",
-        "text": "Spot weld"
+        "text": "точечную сварку"
       },
       {
         "id": "CHOICE-4",
-        "text": "Surfacing overlay"
+        "text": "наплавку (overlay)"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The triangular symbol denotes a угловой шов per common drafting standards."
+      "CHOICE-2": "угловой (филётовый) шов"
     }
   },
   {
     "id": "Q-A-4_tolerance_basic_20000049",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "The symbol '±' on a dimension means:",
+    "difficulty": "medium",
+    "stem": "Обозначение «±» на размере означает:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Exact dimension only"
+        "text": "Точный (без допуска) размер"
       },
       {
         "id": "CHOICE-2",
-        "text": "Allowed variation around the nominal size"
+        "text": "Допустимое отклонение вокруг номинального значения"
       },
       {
         "id": "CHOICE-3",
-        "text": "Scrap the part"
+        "text": "Деталь в брак"
       },
       {
         "id": "CHOICE-4",
-        "text": "Millimeters only"
+        "text": "Только миллиметры"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "± indicates the permitted deviation from nominal."
+      "CHOICE-2": "Допустимое отклонение вокруг номинального значения"
     }
   },
   {
     "id": "Q-A-4_tool_calibration_20000045",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Measuring tools used for acceptance should be:",
+    "stem": "Измерительный инструмент, применяемый для приёмки, должен быть:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Использоватьd regardless of calibration status"
+        "text": "Использован вне зависимости от статуса калибровки"
       },
       {
         "id": "CHOICE-2",
-        "text": "Within calibration date and zeroed before use"
+        "text": "Внутри срока калибровки и обнулён перед применением"
       },
       {
         "id": "CHOICE-3",
-        "text": "Calibrated once at purchase only"
+        "text": "Откалиброван однажды при покупке"
       },
       {
         "id": "CHOICE-4",
-        "text": "Shared without cases to save time"
+        "text": "Переноситься без футляра ради скорости"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use calibrated tools and verify zero to ensure valid measurements."
+      "CHOICE-2": "Внутри срока калибровки и обнулён перед применением"
     }
   },
   {
     "id": "Q-A-4_toolbox_talk_2000004d",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "A short pre-job briefing (toolbox talk) helps to:",
+    "difficulty": "medium",
+    "stem": "Короткий предсменный инструктаж (toolbox talk) помогает:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increase paperwork only"
+        "text": "Лишь увеличить бумажную работу"
       },
       {
         "id": "CHOICE-2",
-        "text": "Align the team on hazards, sequence, and responsibilities"
+        "text": "Согласовать в команде опасности, последовательность и зоны ответственности"
       },
       {
         "id": "CHOICE-3",
-        "text": "Replace permits"
+        "text": "Заменить разрешения и допуски"
       },
       {
         "id": "CHOICE-4",
-        "text": "Avoid using the WPS (спецификации сварочного процесса)"
+        "text": "Не пользоваться WPS"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Briefings align safety and work plans before starting."
+      "CHOICE-2": "Согласовать в команде опасности, последовательность и зоны ответственности"
     }
   },
   {
     "id": "Q-A-4_traceability_transfer_20000047",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Когда cutting a marked plate, you should maintain heat/lot traceability by:",
+    "stem": "При резке листа с маркировкой для сохранения прослеживаемости плавки (heat/lot) следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Grinding off all markings"
+        "text": "Сточить всю маркировку"
       },
       {
         "id": "CHOICE-2",
-        "text": "Transferring heat numbers to each piece and documenting"
+        "text": "Перенести номера плавки на каждую деталь и задокументировать"
       },
       {
         "id": "CHOICE-3",
-        "text": "Painting over markings"
+        "text": "Закрасить маркировку"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ignoring until final inspection"
+        "text": "Оставить на финальный контроль"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Transfer and record heat numbers to preserve traceability."
+      "CHOICE-2": "Перенести номера плавки на каждую деталь и задокументировать"
     }
   },
   {
     "id": "Q-A-4_units_consistency_2000004b",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Когда drawings mix units (mm/in), the best practice is to:",
+    "difficulty": "medium",
+    "stem": "Если на чертежах смешаны единицы (мм/дюймы), лучшая практика:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Convert everything mentally on the fly"
+        "text": "Конвертировать всё «в уме» на лету"
       },
       {
         "id": "CHOICE-2",
-        "text": "Follow the units stated for each dimension and avoid mixing"
+        "text": "Следовать единицам, указанным у каждого размера, и избегать смешения"
       },
       {
         "id": "CHOICE-3",
-        "text": "Всегда convert to inches"
+        "text": "Всегда переводить в дюймы"
       },
       {
         "id": "CHOICE-4",
-        "text": "Всегда convert to millimeters"
+        "text": "Всегда переводить в миллиметры"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use the units indicated; avoid conversion mistakes."
+      "CHOICE-2": "Следовать единицам, указанным у каждого размера, и избегать смешения"
     }
   },
   {
     "id": "Q-A-4_wps_purpose_1000000d",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Какова основная цель a Спецификация сварочного процесса (WPS)?",
+    "difficulty": "medium",
+    "stem": "Какова основная цель WPS (Welding Procedure Specification)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To replace the PQR entirely"
+        "text": "Полностью заменить PQR"
       },
       {
         "id": "CHOICE-2",
-        "text": "To define essential variables and parameters for production welds"
+        "text": "Определять существенные переменные и параметры для производственных швов"
       },
       {
         "id": "CHOICE-3",
-        "text": "For inspectors только; welders need not read it"
+        "text": "Только для инспекторов; сварщикам читать не нужно"
       },
       {
         "id": "CHOICE-4",
-        "text": "Optional for code work"
+        "text": "Необязателен для работ по нормам"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as ток, положение, and предварительного подогрева."
+      "CHOICE-2": "Определять существенные переменные и параметры для производственных швов"
     }
   },
   {
-    "id": "Q-A-4_wps_purpose_1000000d",
+    "id": "Q-A-4P_rev_conflict_20000121",
     "taskId": "A-4",
-    "difficulty": "easy",
-    "stem": "Какова основная цель a Спецификация сварочного процесса (WPS)?",
+    "difficulty": "medium",
+    "stem": "На участке у вас чертёж ревизии D, а в маршрутном листе указана ревизия C. Правильные действия:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To replace the PQR entirely"
+        "text": "Продолжать по любой версии — отличия несущественны"
       },
       {
         "id": "CHOICE-2",
-        "text": "To define essential variables and parameters for production welds"
+        "text": "Остановить работу, подтвердить последнюю ревизию, обновить маршрут/разрешения и работать только по актуальному комплекту"
       },
       {
         "id": "CHOICE-3",
-        "text": "For inspectors только; welders need not read it"
+        "text": "Согласовать в конце смены"
       },
       {
         "id": "CHOICE-4",
-        "text": "Optional for code work"
+        "text": "Удалить старый номер ревизии маркером"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as ток, положение, and предварительного подогрева."
+      "CHOICE-2": "Остановить работу, подтвердить последнюю ревизию, обновить маршрут/разрешения и работать только по актуальному комплекту"
+    }
+  },
+  {
+    "id": "Q-A-4P_mtr_mismatch_20000122",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Номер плавки на детали не совпадает с указанным в MTR. Что делать?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Игнорировать, если химсостав похож"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Изолировать материал, пометить HOLD, запросить корректный MTR/идентификацию у ОТК/инженера"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Стереть номер и нанести новый"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Использовать и приложить фото"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Изолировать материал, пометить HOLD, запросить корректный MTR/идентификацию у ОТК/инженера"
+    }
+  },
+  {
+    "id": "Q-A-4P_units_mm_in_20000123",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Чертёж содержит размер 3/8\" (дюймы), а у вас штангенциркуль в мм. Лучший подход:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Оценить «на глаз» и записать в мм"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать инструмент с нужными единицами или надёжно конвертировать и чётко фиксировать единицы измерения"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Игнорировать дробные дюймы — округлить"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Перевести весь чертёж в мм от руки"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Использовать инструмент с нужными единицами или надёжно конвертировать и чётко фиксировать единицы измерения"
+    }
+  },
+  {
+    "id": "Q-A-4P_tool_cal_expired_20000124",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "У индикаторной стойки истёк срок калибровки, но она «показывает правильно». Как поступить для приёмки?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Применить — времени мало"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Не использовать для приёмки; заменить на откалиброванный инструмент/отправить на калибровку"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Свериться с линейкой"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Заклеить стикер и продолжить"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Не использовать для приёмки; заменить на откалиброванный инструмент/отправить на калибровку"
+    }
+  },
+  {
+    "id": "Q-A-4P_distortion_sequence_20000125",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Вы собираете рамную конструкцию из профилей. Лучший способ снизить деформации:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сварить непрерывно одну сторону, затем противоположную"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Выполнить симметричную прихватку, использовать back‑step/пропускную (skip) последовательность и фиксацию"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Пустить швы максимально горячими подряд"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Не применять прижимы — они мешают"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Выполнить симметричную прихватку, использовать back‑step/пропускную (skip) последовательность и фиксацию"
+    }
+  },
+  {
+    "id": "Q-A-4P_wps_consumable_mismatch_20000126",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "WPS требует E7018 Ø3,2 мм, а на складе есть только E6013 Ø4,0 мм. Ваше решение:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Взять E6013 — тоже низкоуглеродистые электроды"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Не начинать; запросить правильный расходник/обновить WPS при необходимости через инженера/ОТК"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Разбить Ø4,0 на Ø3,2"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Уменьшить ток и продолжить"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Не начинать; запросить правильный расходник/обновить WPS при необходимости через инженера/ОТК"
+    }
+  },
+  {
+    "id": "Q-A-4P_hold_point_skip_20000127",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "В маршруте указана контрольная точка (hold point) перед сваркой корневого шва, инспектора нет на месте. Как поступить?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Пропустить hold point и заварить, чтобы не терять время"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Остановиться на hold point, вызвать инспекцию/получить разрешение и только потом продолжать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Сделать фото и идти дальше"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Подписать маршрут самостоятельно"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Остановиться на hold point, вызвать инспекцию/получить разрешение и только потом продолжать"
     }
   }
 ]

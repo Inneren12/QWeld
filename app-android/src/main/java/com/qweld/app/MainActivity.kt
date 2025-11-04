@@ -35,7 +35,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
-
+import androidx.lifecycle.lifecycleScope
+import com.qweld.app.i18n.AppLocales
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.Lifecycle
 class MainActivity : ComponentActivity() {
   companion object {
     private const val RULES_ASSET_PATH = "rules/welder_exam_2024.json"
@@ -48,11 +54,18 @@ class MainActivity : ComponentActivity() {
       .onFailure { Timber.e(it, "[rules_load_error] path=%s", RULES_ASSET_PATH) }
     val analytics = FirebaseAnalyticsImpl(Firebase.analytics, BuildConfig.ENABLE_ANALYTICS)
     val userPrefs = UserPrefsDataStore(applicationContext)
-    userPrefs
-      .appLocaleFlow()
-      .distinctUntilChanged()
-      .onEach { tag -> LocaleController.apply(tag) }
-      .launchIn(lifecycleScope)
+      // Применяем локаль только когда Activity в STARTED и сразу перезапускаем UI
+      lifecycleScope.launch {
+          repeatOnLifecycle(Lifecycle.State.STARTED) {
+              userPrefs
+                  .appLocaleFlow()
+                  .distinctUntilChanged()
+                  .collect { tag ->
+                      LocaleController.apply(tag)
+                      this@MainActivity.recreate()
+                  }
+          }
+      }
     lifecycleScope.launch {
       userPrefs.analyticsEnabled.collect { enabled -> analytics.setEnabled(enabled) }
     }

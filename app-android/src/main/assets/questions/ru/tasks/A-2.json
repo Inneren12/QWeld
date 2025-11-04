@@ -3,784 +3,1064 @@
     "id": "Q-A-2_anchor_point_2000001c",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Допустимая anchorage for a fall‑arrest system is typically:",
+    "stem": "Допустимая анкерная точка для системы удержания от падения обычно:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "A conduit or handrail"
+        "text": "Трубопровод или поручень"
       },
       {
         "id": "CHOICE-2",
-        "text": "An engineered or structural anchorage point"
+        "text": "Расчётная (инженерная) или конструктивная анкерная точка"
       },
       {
         "id": "CHOICE-3",
-        "text": "Any pipe overhead"
+        "text": "Любая труба над головой"
       },
       {
         "id": "CHOICE-4",
-        "text": "The nearest ladder rung"
+        "text": "Ближайшая перекладина лестницы"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use only engineered/structural anchor points rated for fall arrest."
+      "CHOICE-2": "Расчётная (инженерная) или конструктивная анкерная точка"
     }
   },
   {
     "id": "Q-A-2_chain_sling_reject_20000022",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Какое condition requires removing a цепного стропа from service?",
+    "stem": "Какое состояние требует вывести цепной строп из эксплуатации?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Manufacturer’s tag present"
+        "text": "Бирка изготовителя на месте"
       },
       {
         "id": "CHOICE-2",
-        "text": "Links stretched or bent"
+        "text": "Удлинённые или изогнутые звенья"
       },
       {
         "id": "CHOICE-3",
-        "text": "Paint markings intact"
+        "text": "Цветная разметка краской сохранена"
       },
       {
         "id": "CHOICE-4",
-        "text": "Sling recently cleaned"
+        "text": "Строп недавно очищен"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Deformation or stretch indicates overload-remove the sling from service."
+      "CHOICE-2": "Удлинённые или изогнутые звенья"
     }
   },
   {
     "id": "Q-A-2_choker_capacity_20000023",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Compared with a basket hitch, a choker hitch of the same sling typically:",
+    "stem": "По сравнению с корзинкой (basket), удавка (choker) у того же стропа обычно:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Has higher capacity"
+        "text": "Имеет большую грузоподъёмность"
       },
       {
         "id": "CHOICE-2",
-        "text": "Has lower capacity"
+        "text": "Имеет меньшую грузоподъёмность"
       },
       {
         "id": "CHOICE-3",
-        "text": "Has identical capacity"
+        "text": "Имеет одинаковую грузоподъёмность"
       },
       {
         "id": "CHOICE-4",
-        "text": "Cannot be used for lifting"
+        "text": "Запрещена к использованию"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Choker hitches reduce capacity due to bending and friction at the choke."
+      "CHOICE-2": "Имеет меньшую грузоподъёмность"
     }
   },
   {
     "id": "Q-A-2_cog_estimate_20000024",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Before lifting an irregular load, you should locate the центра тяжести so that:",
+    "stem": "Перед подъёмом нерегулярного груза следует определить центр тяжести (ЦТ), чтобы:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "The hook is below the COG"
+        "text": "Крюк был ниже ЦТ"
       },
       {
         "id": "CHOICE-2",
-        "text": "The hook is directly above or slightly past the COG toward the heavy end"
+        "text": "Крюк находился прямо над ЦТ или слегка со стороны тяжёлого конца"
       },
       {
         "id": "CHOICE-3",
-        "text": "The hook is far to one side"
+        "text": "Крюк был далеко сбоку"
       },
       {
         "id": "CHOICE-4",
-        "text": "COG position is irrelevant"
+        "text": "Положение ЦТ не важно"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Suspending above/just past the COG помогает the load hang level without tipping."
+      "CHOICE-2": "Крюк находился прямо над ЦТ или слегка со стороны тяжёлого конца"
     }
   },
   {
     "id": "Q-A-2_crane_stop_signal_10000006",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Какое утверждение о кран hand signals — верно?",
+    "difficulty": "medium",
+    "stem": "Что верно про ручные сигналы при работе крана?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Только the operator may signal a stop"
+        "text": "Только оператор может подать сигнал «Стоп»"
       },
       {
         "id": "CHOICE-2",
-        "text": "Anyone may give the universal emergency stop signal"
+        "text": "Любой может подать универсальный аварийный сигнал «Стоп»"
       },
       {
         "id": "CHOICE-3",
-        "text": "Two hands above head always means 'speed up'"
+        "text": "Две руки над головой всегда означают «быстрее»"
       },
       {
         "id": "CHOICE-4",
-        "text": "There — no standard hand signals for cranes"
+        "text": "Стандартных ручных сигналов для кранов нет"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The emergency stop — universal and may be given by any person observing danger."
-    }
-  },
-  {
-    "id": "Q-A-2_crane_stop_signal_10000006",
-    "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Какое утверждение о кран hand signals — верно?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Только the operator may signal a stop"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Anyone may give the universal emergency stop signal"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Two hands above head always means 'speed up'"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "There — no standard hand signals for cranes"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The emergency stop — universal and may be given by any person observing danger."
+      "CHOICE-2": "Любой может подать универсальный аварийный сигнал «Стоп»"
     }
   },
   {
     "id": "Q-A-2_forklift_carry_low_2000001d",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "При использовании with a load on a forklift, you should:",
+    "difficulty": "medium",
+    "stem": "Перемещаясь с грузом на авто‑погрузчике, следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Carry the load high for visibility"
+        "text": "Вести груз высоко для лучшего обзора"
       },
       {
         "id": "CHOICE-2",
-        "text": "Carry the load low and tilted back"
+        "text": "Держать груз низко и наклонённым назад"
       },
       {
         "id": "CHOICE-3",
-        "text": "Travel fast to reduce time under load"
+        "text": "Ехать быстро, чтобы меньше быть под нагрузкой"
       },
       {
         "id": "CHOICE-4",
-        "text": "Turn on ramps with the load elevated"
+        "text": "Поворачивать на уклонах с поднятым грузом"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Keep the load low and tilted back for stability and visibility."
+      "CHOICE-2": "Держать груз низко и наклонённым назад"
     }
   },
   {
     "id": "Q-A-2_hand_hoist_brake_20000026",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Before using a chain fall/lever hoist, you should:",
+    "stem": "Перед работой с цепной талью/рычажной лебёдкой следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Oil the brake surfaces"
+        "text": "Смазать тормозные поверхности"
       },
       {
         "id": "CHOICE-2",
-        "text": "Check the brake/pawl function with a light test lift"
+        "text": "Проверить тормоз/собачку лёгким пробным подъёмом"
       },
       {
         "id": "CHOICE-3",
-        "text": "Удалить the nameplate to reduce weight"
+        "text": "Снять табличку, чтобы облегчить"
       },
       {
         "id": "CHOICE-4",
-        "text": "Использовать a cheater bar on the lever"
+        "text": "Использовать удлинитель‑рычаг («лом») на рукоятке"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Verify the brake holds with a small test lift before proceeding."
+      "CHOICE-2": "Проверить тормоз/собачку лёгким пробным подъёмом"
     }
   },
   {
     "id": "Q-A-2_harness_inspect_2000001a",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Before using a full-body harness, you should:",
+    "stem": "Перед использованием привязи полного охвата следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Ignore small cuts in webbing"
+        "text": "Игнорировать небольшие порезы строп"
       },
       {
         "id": "CHOICE-2",
-        "text": "Check webbing, stitching, and hardware; remove if damaged"
+        "text": "Проверить ленты, строчки и фурнитуру; при дефектах — вывести из эксплуатации"
       },
       {
         "id": "CHOICE-3",
-        "text": "Tie knots to shorten lanyards"
+        "text": "Завязывать узлы на стропах для укорачивания"
       },
       {
         "id": "CHOICE-4",
-        "text": "Использовать any carabiner from the hardware store"
+        "text": "Применять любые хозяйственные карабины"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Inspect harness components and remove damaged gear from service."
+      "CHOICE-2": "Проверить ленты, строчки и фурнитуру; при дефектах — вывести из эксплуатации"
     }
   },
   {
     "id": "Q-A-2_ladder_3points_20000014",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "При использовании a ladder, which practice is correct?",
+    "difficulty": "medium",
+    "stem": "При подъёме по лестнице правильная практика:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Carry tools in your hands"
+        "text": "Нести инструмент в руках"
       },
       {
         "id": "CHOICE-2",
-        "text": "Maintain three points of contact"
+        "text": "Держать три точки опоры"
       },
       {
         "id": "CHOICE-3",
-        "text": "Lean far to the side to reach"
+        "text": "Далеко тянуться в сторону"
       },
       {
         "id": "CHOICE-4",
-        "text": "Stand on the top cap for better height"
+        "text": "Вставать на верхнюю площадку для высоты"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Keep two hands and one foot or two feet and one hand in contact while climbing."
+      "CHOICE-2": "Держать три точки опоры"
     }
   },
   {
     "id": "Q-A-2_ladder_angle_10000004",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Какова рекомендуемая setup angle for a straight лестницы?",
+    "difficulty": "medium",
+    "stem": "Рекомендуемый угол установки приставной лестницы:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "1:1 (about 45°) against the support"
+        "text": "1:1 (≈45°) к опоре"
       },
       {
         "id": "CHOICE-2",
-        "text": "4:1 (about 75°) slope from the base to the support"
+        "text": "4:1 (≈75°) — отступ основания к высоте"
       },
       {
         "id": "CHOICE-3",
-        "text": "Lean as steep as possible to save space"
+        "text": "Как можно круче — так надёжнее"
       },
       {
         "id": "CHOICE-4",
-        "text": "Lay it nearly horizontal for stability"
+        "text": "Почти горизонтально — для устойчивости"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The 4:1 rule обеспечивает stable footing and proper контактный with the support."
-    }
-  },
-  {
-    "id": "Q-A-2_ladder_angle_10000004",
-    "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Какова рекомендуемая setup angle for a straight лестницы?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "1:1 (about 45°) against the support"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "4:1 (about 75°) slope from the base to the support"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lean as steep as possible to save space"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Lay it nearly horizontal for stability"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "The 4:1 rule обеспечивает stable footing and proper контактный with the support."
+      "CHOICE-2": "4:1 (≈75°) — отступ основания к высоте"
     }
   },
   {
     "id": "Q-A-2_ladder_extend_secure_20000015",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Когда a portable ladder is used for access to a higher level, you should:",
+    "stem": "Если переносная лестница используется для доступа на уровень выше, следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Stop it flush with the landing edge"
+        "text": "Остановить заподлицо с кромкой"
       },
       {
         "id": "CHOICE-2",
-        "text": "Extend above the landing and secure it to prevent movement"
+        "text": "Выступить над площадкой и закрепить от смещения"
       },
       {
         "id": "CHOICE-3",
-        "text": "Place it on boxes to gain height"
+        "text": "Поставить на коробки для высоты"
       },
       {
         "id": "CHOICE-4",
-        "text": "Grease the feet so it slides into position"
+        "text": "Смазать опоры для лёгкого сдвига"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Extend above the landing and tie off/secure to prevent movement."
+      "CHOICE-2": "Выступить над площадкой и закрепить от смещения"
     }
   },
   {
     "id": "Q-A-2_metal_ladder_electric_20000017",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Around electrical hazards, which ladder choice is safest?",
+    "difficulty": "medium",
+    "stem": "Вблизи электроопасности безопаснее использовать:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Metal ladder"
+        "text": "Металлическую лестницу"
       },
       {
         "id": "CHOICE-2",
-        "text": "Wet wooden ladder"
+        "text": "Мокрую деревянную лестницу"
       },
       {
         "id": "CHOICE-3",
-        "text": "Fiberglass ladder in good condition"
+        "text": "Стеклопластиковую лестницу в исправном состоянии"
       },
       {
         "id": "CHOICE-4",
-        "text": "Any ladder will do"
+        "text": "Любую — разницы нет"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Non-conductive fiberglass ladders reduce shock risk near electricity."
+      "CHOICE-3": "Стеклопластиковую лестницу в исправном состоянии"
     }
   },
   {
     "id": "Q-A-2_no_ride_hook_20000025",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Какое statement about crane operations is correct?",
+    "difficulty": "medium",
+    "stem": "Что верно про работу с краном и подвешенными грузами?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "It is acceptable to ride the hook for short distances"
+        "text": "Допустимо проехать на крюке на короткое расстояние"
       },
       {
         "id": "CHOICE-2",
-        "text": "Только supervisors may ride the load"
+        "text": "Только руководители могут ехать на грузах"
       },
       {
         "id": "CHOICE-3",
-        "text": "No one may ride the hook or suspended load"
+        "text": "Никому нельзя ехать на крюке или подвешенном грузе"
       },
       {
         "id": "CHOICE-4",
-        "text": "Riding is permitted with a harness"
+        "text": "С привязью это допустимо"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Riding hooks or loads is prohibited; use approved man-lifts instead."
+      "CHOICE-3": "Никому нельзя ехать на крюке или подвешенном грузе"
     }
   },
   {
     "id": "Q-A-2_pedestrian_exclusion_2000001e",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "During a lift with a crane or hoist, посторонних should:",
+    "difficulty": "medium",
+    "stem": "Во время подъёма краном/талью посторонние должны:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Walk under the suspended load quickly"
+        "text": "Быстро пройти под подвешенным грузом"
       },
       {
         "id": "CHOICE-2",
-        "text": "Stand close to guide by hand"
+        "text": "Стоять рядом и направлять руками"
       },
       {
         "id": "CHOICE-3",
-        "text": "Stay out of the fall zone and use barriers/оттяжек"
+        "text": "Находиться вне зоны падения, управлять грузом оттяжками/барьерами"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ride on the hook for better view"
+        "text": "Ехать на крюке для лучшего обзора"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Keep people out of the fall zone; use оттяжек to control the load."
+      "CHOICE-3": "Находиться вне зоны падения, управлять грузом оттяжками/барьерами"
     }
   },
   {
     "id": "Q-A-2_rigging_unknown_20000027",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "If rigging gear’s history or condition is unknown, you should:",
+    "stem": "Если история или состояние такелажа неизвестны, следует:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Использовать it for a light lift first"
+        "text": "Сначала сделать лёгкий подъём и посмотреть"
       },
       {
         "id": "CHOICE-2",
-        "text": "Assume it’s fine if it looks clean"
+        "text": "Считать годным, если чистый"
       },
       {
         "id": "CHOICE-3",
-        "text": "Удалить it from service and have it inspected"
+        "text": "Вывести из эксплуатации и направить на проверку"
       },
       {
         "id": "CHOICE-4",
-        "text": "Paint it and put it back"
+        "text": "Покрасить и вернуть"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Unknown or suspect gear must be inspected or discarded."
+      "CHOICE-3": "Вывести из эксплуатации и направить на проверку"
     }
   },
   {
     "id": "Q-A-2_scaffold_guardrails_20000019",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "On platforms at height, which protection is appropriate?",
+    "difficulty": "medium",
+    "stem": "На рабочих площадках на высоте необходимо:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "No guardrails if you’re careful"
+        "text": "Обойтись без ограждений, если осторожно"
       },
       {
         "id": "CHOICE-2",
-        "text": "Guardrails and toeboards as required"
+        "text": "Установить ограждения и борта (toeboards) по требованиям"
       },
       {
         "id": "CHOICE-3",
-        "text": "Loose ropes instead of rails"
+        "text": "Заменить ограждения верёвками"
       },
       {
         "id": "CHOICE-4",
-        "text": "Just caution tape"
+        "text": "Ограничиться сигнальной лентой"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Guardrails/toeboards help prevent falls and falling objects."
+      "CHOICE-2": "Установить ограждения и борта (toeboards) по требованиям"
     }
   },
   {
     "id": "Q-A-2_scaffold_inspect_tag_20000018",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Before using a scaffold, a best practice is to:",
+    "stem": "Перед использованием лесов лучшая практика — это:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Assume it’s safe if present"
+        "text": "Считать безопасными, раз они стоят"
       },
       {
         "id": "CHOICE-2",
-        "text": "Check that it’s tagged/inspected by a competent person"
+        "text": "Проверить бирку/отметку о проверке компетентным лицом"
       },
       {
         "id": "CHOICE-3",
-        "text": "Jump to test deflection"
+        "text": "Прыжком проверить прогиб"
       },
       {
         "id": "CHOICE-4",
-        "text": "Удалить guardrails to work faster"
+        "text": "Снять ограждения для скорости"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use only inspected scaffolds with proper tags and guardrails in place."
+      "CHOICE-2": "Проверить бирку/отметку о проверке компетентным лицом"
     }
   },
   {
     "id": "Q-A-2_shackle_orientation_20000020",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "For a two‑leg sling connection using a скобы (шэкла), a good practice is:",
+    "stem": "Для двухветвевого стропа через шакл хорошая практика:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Load on the pin with side loading"
+        "text": "Нагружать палец с боковой нагрузкой"
       },
       {
         "id": "CHOICE-2",
-        "text": "Place the bow on the sling side to reduce side-loading the pin"
+        "text": "Разместить дугу (скобу) со стороны строп, чтобы не боковую нагрузку на палец"
       },
       {
         "id": "CHOICE-3",
-        "text": "Использовать any random orientation"
+        "text": "Любая ориентация подходит"
       },
       {
         "id": "CHOICE-4",
-        "text": "Replace скобы (шэкла)s with padlocks"
+        "text": "Заменить шакл навесным замком"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The bow обеспечивает more space and уменьшает side loading on the pin."
+      "CHOICE-2": "Разместить дугу (скобу) со стороны строп, чтобы не боковую нагрузку на палец"
     }
   },
   {
     "id": "Q-A-2_shock_lanyard_use_2000001b",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Зачем использовать a shock‑absorbing lanyard in fall arrest?",
+    "stem": "Зачем в удержании от падения используют амортизирующий строп?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To increase arrest forces"
+        "text": "Чтобы увеличить усилия при останове"
       },
       {
         "id": "CHOICE-2",
-        "text": "To reduce forces on the body during a fall"
+        "text": "Чтобы снизить усилия, передающиеся на тело при срыве"
       },
       {
         "id": "CHOICE-3",
-        "text": "To make the lanyard heavier"
+        "text": "Чтобы сделать строп тяжелее"
       },
       {
         "id": "CHOICE-4",
-        "text": "To replace anchor points"
+        "text": "Чтобы заменить анкерные точки"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Energy-absorbing devices limit peak forces transmitted to the user."
+      "CHOICE-2": "Чтобы снизить усилия, передающиеся на тело при срыве"
     }
   },
   {
     "id": "Q-A-2_sling_angle_10000005",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Как влияет строп angle affect tension in a two-leg подъём?",
+    "stem": "Как угол ветвей стропа влияет на натяжение в двухветвевом подъёме?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Smaller angles уменьшить tension in each leg"
+        "text": "Меньшие углы уменьшают натяжение"
       },
       {
         "id": "CHOICE-2",
-        "text": "Smaller angles увеличивает tension in each leg"
+        "text": "Меньшие углы увеличивают натяжение"
       },
       {
         "id": "CHOICE-3",
-        "text": "Angle has no effect on leg tension"
+        "text": "Угол не влияет на натяжение"
       },
       {
         "id": "CHOICE-4",
-        "text": "Larger angles always увеличивает tension"
+        "text": "Большие углы всегда увеличивают натяжение"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "As the angle from horizontal decreases, leg tension rises significantly."
-    }
-  },
-  {
-    "id": "Q-A-2_sling_angle_10000005",
-    "taskId": "A-2",
-    "difficulty": "medium",
-    "stem": "Как влияет строп angle affect tension in a two-leg подъём?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Smaller angles уменьшить tension in each leg"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Smaller angles увеличивает tension in each leg"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Angle has no effect on leg tension"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Larger angles always увеличивает tension"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "As the angle from horizontal decreases, leg tension rises significantly."
+      "CHOICE-2": "Меньшие углы увеличивают натяжение"
     }
   },
   {
     "id": "Q-A-2_sling_edge_protect_20000021",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Как следует текстильных строп be protected on sharp edges?",
+    "difficulty": "medium",
+    "stem": "Как защищать текстильные стропы на острых кромках?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "No protection needed"
+        "text": "Защита не нужна"
       },
       {
         "id": "CHOICE-2",
-        "text": "Использовать padding/edge protectors"
+        "text": "Использовать прокладки/защиту кромок"
       },
       {
         "id": "CHOICE-3",
-        "text": "Wrap with tape only"
+        "text": "Достаточно обмотать лентой"
       },
       {
         "id": "CHOICE-4",
-        "text": "Move faster to avoid cuts"
+        "text": "Быстро работать, чтобы не порезать"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use corner pads/guards to prevent cutting of webbing."
+      "CHOICE-2": "Использовать прокладки/защиту кромок"
     }
   },
   {
     "id": "Q-A-2_stepladder_top_step_20000016",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Какое statement about stepladders is correct?",
+    "difficulty": "medium",
+    "stem": "Что верно про стремянки?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Standing on the top cap is allowed"
+        "text": "Можно стоять на верхней площадке"
       },
       {
         "id": "CHOICE-2",
-        "text": "Использовать them closed like a straight ladder"
+        "text": "Использовать закрытыми как приставную лестницу"
       },
       {
         "id": "CHOICE-3",
-        "text": "Do not stand on the top or top step unless designed for it"
+        "text": "Не становиться на верхнюю площадку/ступень, если не предусмотрено конструкцией"
       },
       {
         "id": "CHOICE-4",
-        "text": "Всегда lean them against walls"
+        "text": "Всегда прислонять к стене"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Avoid the top/top step unless the ladder is specifically designed for standing there."
+      "CHOICE-3": "Не становиться на верхнюю площадку/ступень, если не предусмотрено конструкцией"
     }
   },
   {
     "id": "Q-A-2_tag_lines_2000001f",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Что такое the primary purpose of using оттяжек on suspended loads?",
+    "difficulty": "medium",
+    "stem": "Основное назначение оттяжек (tag lines) на подвешенных грузах:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To increase the load weight"
+        "text": "Увеличить массу груза"
       },
       {
         "id": "CHOICE-2",
-        "text": "To steer and control load swing at a distance"
+        "text": "Управлять поворотом и раскачкой на расстоянии"
       },
       {
         "id": "CHOICE-3",
-        "text": "To tie off the crane hook"
+        "text": "Привязать крановый крюк"
       },
       {
         "id": "CHOICE-4",
-        "text": "To measure load temperature"
+        "text": "Измерять температуру груза"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Tag lines let workers control rotation/swing while staying clear."
+      "CHOICE-2": "Управлять поворотом и раскачкой на расстоянии"
     }
   },
   {
     "id": "Q-A-2_trial_lift_10000007",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Когда the exact weight of a load — unknown, что — the safest approach?",
+    "difficulty": "medium",
+    "stem": "Если точная масса груза неизвестна, самый безопасный подход:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Guess the weight by the size of the load"
+        "text": "Угадать массу по размерам"
       },
       {
         "id": "CHOICE-2",
-        "text": "Use rated slings and perform a short, controlled пробный подъём"
+        "text": "Использовать сертифицированные стропы и выполнить короткий контролируемый пробный подъём"
       },
       {
         "id": "CHOICE-3",
-        "text": "Подъём quickly to avoid swinging"
+        "text": "Поднимать быстро, чтобы не раскачивался"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ride on the load to watch clearances"
+        "text": "Ехать на грузе, чтобы смотреть зазоры"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "A brief пробный подъём lets you verify balance and capacity while staying within control."
+      "CHOICE-2": "Использовать сертифицированные стропы и выполнить короткий контролируемый пробный подъём"
     }
   },
   {
-    "id": "Q-A-2_trial_lift_10000007",
+    "id": "Q-A-2P1_sling_tension_calc_30deg_20000201",
     "taskId": "A-2",
-    "difficulty": "easy",
-    "stem": "Когда the exact weight of a load — unknown, что — the safest approach?",
+    "difficulty": "medium",
+    "stem": "Двухветвевой подъём 1,2 т; угол каждой ветви к горизонту 30°. Какова нагрузка на одну ветвь? (округлите до 0,1 тс; используйте T = W/(2·sinθ))",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Guess the weight by the size of the load"
+        "text": "0,6 тс"
       },
       {
         "id": "CHOICE-2",
-        "text": "Use rated slings and perform a short, controlled пробный подъём"
+        "text": "0,8 тс"
       },
       {
         "id": "CHOICE-3",
-        "text": "Подъём quickly to avoid swinging"
+        "text": "1,2 тс"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ride on the load to watch clearances"
+        "text": "2,4 тс"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "1,2 тс"
+    }
+  },
+  {
+    "id": "Q-A-2P1_sling_tension_calc_60deg_20000202",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Груз 1,0 т поднимается двумя ветвями под 60° к горизонту. Нагрузка на одну ветвь? (до 0,01 тс)",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,50 тс"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0,58 тс"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0,87 тс"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1,00 тс"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "A brief пробный подъём lets you verify balance and capacity while staying within control."
+      "CHOICE-2": "0,58 тс"
+    }
+  },
+  {
+    "id": "Q-A-2P1_fall_clearance_calc_20000203",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Рассчитайте требуемый запас по высоте под работником для страховки: строп 1,8 м + растяжение/замедление 1,1 м + расстояние от D‑кольца до подошвы 1,5 м + провис 0,3 м + запас безопасности 1,0 м. Итого?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "3,6 м"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "4,3 м"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "5,7 м"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "6,7 м"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "5,7 м"
+    }
+  },
+  {
+    "id": "Q-A-2P1_ladder_4to1_base_20000204",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Высота точки опоры лестницы — 4,0 м. Какой отступ основания по правилу 4:1?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,5 м"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,0 м"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "2,0 м"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "4,0 м"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1,0 м"
+    }
+  },
+  {
+    "id": "Q-A-2P1_choker_derate_factor_20000205",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Прямой (вертикальный) режим стропа — 2,0 т WLL. При удавке (choker) допустимая нагрузка (типично ~80%) составит примерно:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2,0 т"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,6 т"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1,2 т"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2,8 т"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1,6 т"
+    }
+  },
+  {
+    "id": "Q-A-2P2_trial_lift_sequence_20000221",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Нужно поднять деталь с неизвестной массой. Выберите наилучшую последовательность действий.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сразу полный подъём — время не ждать"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Проверить строп/шаклы/углы → организовать зону исключения и оттяжки → короткий пробный подъём на несколько сантиметров для проверки баланса/тормозов → при необходимости скорректировать и только затем поднимать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Попросить кого‑то встать на груз для баланса"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Поднять быстро и проехать над людьми"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Проверить строп/шаклы/углы → организовать зону исключения и оттяжки → короткий пробный подъём на несколько сантиметров для проверки баланса/тормозов → при необходимости скорректировать и только затем поднимать"
+    }
+  },
+  {
+    "id": "Q-A-2P2_jha_rig_plate_steps_20000222",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "JHA/Toolbox‑talk для подвеса листа: что включить по шагам?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Сразу стропить и тянуть; обсуждения мешают"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Идентифицировать острые кромки/щепы (кожаные перчатки, прокладки) → защемления при сборке стропа (руки вне плоскости разжима) → зона падения/раскачка (оттяжки, барьеры) → связь с крановщиком/сигнальщиком → проверка баланса на пробном подъёме"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Поставить музыку, чтобы все слышали"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Довериться опыту без обсуждений"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Идентифицировать острые кромки/щепы (кожаные перчатки, прокладки) → защемления при сборке стропа (руки вне плоскости разжима) → зона падения/раскачка (оттяжки, барьеры) → связь с крановщиком/сигнальщиком → проверка баланса на пробном подъёме"
+    }
+  },
+  {
+    "id": "Q-A-2P2_scaffold_tag_response_20000223",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Подошли к лесам с отсутствующей/красной биркой. Правильные действия:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Продолжать, если визуально «нормально»"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Не использовать; оградить/сообщить; запросить осмотр компетентным лицом и установку корректной бирки"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Подложить доску и работать"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Снять ограждения, чтобы не мешали"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Не использовать; оградить/сообщить; запросить осмотр компетентным лицом и установку корректной бирки"
+    }
+  },
+  {
+    "id": "Q-A-2P2_fall_work_plan_20000224",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Работа на высоте на балке. Лучший план действий до начала:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Пристегнуться к ближайшей трубе"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Выбрать рассчитанную анкерную точку и оценить свободную высоту падения → осмотреть привязь/строп/карабин → спланировать спасение после срыва → исключить острые кромки (удлинители/канаты с защитой) → только затем пристёгиваться и работать"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Использовать узлы для укорачивания стропа"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Снять амортизатор — мешает"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Выбрать рассчитанную анкерную точку и оценить свободную высоту падения → осмотреть привязь/строп/карабин → спланировать спасение после срыва → исключить острые кромки (удлинители/канаты с защитой) → только затем пристёгиваться и работать"
+    }
+  },
+  {
+    "id": "Q-A-2P2_forklift_ramp_20000225",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Движение погрузчика по уклону с грузом. Как правильно?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Поворачивать на уклоне для экономии времени"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Держать груз вверх по склону, низко и наклонённым назад, ехать медленно, не поворачивать на уклоне"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ехать задним ходом с грузом вниз по склону при любой видимости"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Поднять груз высоко — так виднее"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Держать груз вверх по склону, низко и наклонённым назад, ехать медленно, не поворачивать на уклоне"
+    }
+  },
+  {
+    "id": "Q-A-2P2_hand_hoist_preuse_20000226",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Перед затяжкой рычажной талью выберите правильную последовательность:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Смазать тормоз, намотать цепь на крюк — тянуть"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Осмотреть крюк/защёлку и цепь на перекрут/износ → убедиться в прямолинейном ходе → лёгкий пробный подъём для проверки тормоза → затем работать по WLL"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Нагрузить сразу до предела — тормоз сам проверится"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Использовать трубу‑удлинитель на рукоятке"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Осмотреть крюк/защёлку и цепь на перекрут/износ → убедиться в прямолинейном ходе → лёгкий пробный подъём для проверки тормоза → затем работать по WLL"
+    }
+  },
+  {
+    "id": "Q-A-2P3_three_leg_load_calc_20000311",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "3‑ветвевой бридель; из‑за геометрии фактически несут ТОЛЬКО две ветви. Масса груза 2,0 т. Угол каждой нагруженной ветви к горизонту 45°. Какова нагрузка на одну нагруженную ветвь? (формула T = W/(2·sinθ); округлите до 0,01 тс)",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0,71 тс"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1,00 тс"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1,41 тс"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2,00 тс"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "1,41 тс"
+    }
+  },
+  {
+    "id": "Q-A-2P3_four_leg_bridle_plan_20000312",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Нужно поднять прямоугольную раму 4‑ветвевым бриделем; две ветви — несущие, две — стабилизирующие. Выберите наилучший план.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Дать малые углы к горизонту (<30°), чтобы стропы были натянуты, и взять за тонкие кромки без защиты"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Рассматривать подъём как 2‑ветвевой по расчёту нагрузки; выровнять длины через уравнительное кольцо/балансир; держать угол к горизонту ≥60° (или к вертикали ≤30°); защитить кромки; стабилизировать оттяжками; исключить боковую нагрузку на палец шакла"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Чокеровать раму тросом вокруг тонких полок для лучшего «захвата»"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Поднять без оттяжек — стабилизация не нужна"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Рассматривать подъём как 2‑ветвевой по расчёту нагрузки; выровнять длины через уравнительное кольцо/балансир; держать угол к горизонту ≥60° (или к вертикали ≤30°); защитить кромки; стабилизировать оттяжками; исключить боковую нагрузку на палец шакла"
+    }
+  },
+  {
+    "id": "Q-A-2P3_forklift_visibility_reverse_20000341",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Груз на вилочном погрузчике полностью закрывает обзор вперёд; впереди пересечение прохода. Выберите правильные действия.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ехать вперёд с поднятым грузом, чтобы видеть над ним"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Двигаться задним ходом с грузом низко и наклонённым назад; подать звуковой сигнал на пересечении; снизить скорость; при ограниченной видимости — использовать сигнальщика"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Объехать по пешеходной зоне без сигнала, чтобы не мешать"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Попросить коллегу идти прямо перед вилами для ориентира"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Двигаться задним ходом с грузом низко и наклонённым назад; подать звуковой сигнал на пересечении; снизить скорость; при ограниченной видимости — использовать сигнальщика"
     }
   }
 ]
