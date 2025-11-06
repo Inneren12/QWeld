@@ -22,6 +22,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
+import androidx.appcompat.app.AppCompatDelegate
 
 class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
@@ -38,7 +39,13 @@ class AssetQuestionRepository internal constructor(
         opener = { path -> kotlin.runCatching { context.assets.open(path) }.getOrNull() },
         lister = { path -> kotlin.runCatching { context.assets.list(path)?.toList() }.getOrNull() },
       ),
-      localeResolver = { resolveLanguage(context.resources.configuration) },
+      // ВАЖНО: сначала берём язык из AppCompatDelegate (локаль приложения),
+      // потому что applicationContext.resources.configuration может остаться на системной локали.
+      localeResolver = {
+          AppCompatDelegate.getApplicationLocales().get(0)?.language
+              ?.takeIf { it.isNotBlank() }
+              ?: resolveLanguage(context.resources.configuration)
+                       },
       json = jsonCodec,
       cacheCapacity = cacheCapacity,
     )
