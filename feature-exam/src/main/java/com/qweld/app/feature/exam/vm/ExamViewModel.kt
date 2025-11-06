@@ -204,7 +204,15 @@ class ExamViewModel(
           val rationale = dto.rationales?.get(dto.correctId)?.takeIf { it.isNotBlank() }
           rationale?.let { dto.id to it }
         }.toMap()
-        result.questions.map { it.toDomain(normalizedLocale) }
+        val domain = result.questions.map { it.toDomain(normalizedLocale) }
+        if (result.integritySoftBypassed) {
+          Timber.w(
+            "[exam_start] locale=%s integrity=soft-bypass questions=%d",
+            normalizedLocale,
+            result.questions.size,
+          )
+        }
+        domain
       }
       AssetQuestionRepository.LoadResult.Missing -> {
         questionRationales = emptyMap()

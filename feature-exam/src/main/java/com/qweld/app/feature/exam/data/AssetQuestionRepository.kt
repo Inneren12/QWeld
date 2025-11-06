@@ -24,6 +24,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import com.qweld.app.core.i18n.LocaleController
+import timber.log.Timber
 
 class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
@@ -160,7 +161,11 @@ class AssetQuestionRepository internal constructor(
           "elapsedMs" to elapsed,
           "cacheHits" to perTask.cacheHits,
         )
-        return LoadResult.Success(locale = resolvedLocale, questions = questionList)
+        return LoadResult.Success(
+          locale = resolvedLocale,
+          questions = questionList,
+          integritySoftBypassed = perTask.integritySoftBypassed,
+        )
       } else {
         Logx.w(
           LogTag.LOAD,
@@ -184,7 +189,11 @@ class AssetQuestionRepository internal constructor(
           "count" to outcome.value.size,
           "elapsedMs" to bankElapsed,
         )
-        return LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
+        return LoadResult.Success(
+          locale = resolvedLocale,
+          questions = outcome.value,
+          integritySoftBypassed = outcome.integritySoftBypassed,
+        )
       }
       AssetPayload.Missing -> {
         Logx.w(
@@ -220,7 +229,11 @@ class AssetQuestionRepository internal constructor(
           "count" to outcome.value.size,
           "elapsedMs" to singlesElapsed,
         )
-        LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
+        LoadResult.Success(
+          locale = resolvedLocale,
+          questions = outcome.value,
+          integritySoftBypassed = outcome.integritySoftBypassed,
+        )
       }
       AssetPayload.Missing -> {
         Logx.w(
@@ -263,11 +276,15 @@ class AssetQuestionRepository internal constructor(
     }
 
     val loaded = mutableMapOf<String, List<QuestionDTO>>()
+    var integritySoftBypassed = false
     for (task in toLoad) {
       val path = "questions/$locale/tasks/$task.json"
       when (val result = readArray(path)) {
         is AssetPayload.Success -> {
           loaded[task] = result.value
+          if (result.integritySoftBypassed) {
+            integritySoftBypassed = true
+          }
         }
         AssetPayload.Missing -> {
           Logx.w(
@@ -301,6 +318,7 @@ class AssetQuestionRepository internal constructor(
       return PerTaskLoadResult(
         questions = tasks.flatMap { task -> cached[task].orEmpty() },
         cacheHits = cacheHits,
+        integritySoftBypassed = integritySoftBypassed,
       )
     }
   }
@@ -308,7 +326,11 @@ class AssetQuestionRepository internal constructor(
   private fun loadFromBank(locale: String): AssetPayload<List<QuestionDTO>> {
     val path = "questions/$locale/bank.v1.json"
     return when (val result = readArray(path)) {
-      is AssetPayload.Success -> AssetPayload.Success(result.value.sortedBy { it.id })
+      is AssetPayload.Success ->
+        AssetPayload.Success(
+          result.value.sortedBy { it.id },
+          integritySoftBypassed = result.integritySoftBypassed,
+        )
       AssetPayload.Missing -> AssetPayload.Missing
       is AssetPayload.Error -> result
     }
@@ -319,6 +341,7 @@ class AssetQuestionRepository internal constructor(
     val taskEntries = assetReader.list(basePath) ?: return AssetPayload.Missing
     val tasks = taskEntries.filterNot { entry -> entry == TASKS_DIR || entry.endsWith(".json") }.sorted()
     val aggregated = mutableListOf<QuestionDTO>()
+    var integritySoftBypassed = false
 
     for (task in tasks) {
       val taskPath = "$basePath/$task"
@@ -327,7 +350,12 @@ class AssetQuestionRepository internal constructor(
         if (!file.endsWith(".json")) continue
         val path = "$taskPath/$file"
         when (val result = readSingle(path)) {
-          is AssetPayload.Success -> aggregated += result.value
+          is AssetPayload.Success -> {
+            aggregated += result.value
+            if (result.integritySoftBypassed) {
+              integritySoftBypassed = true
+            }
+          }
           AssetPayload.Missing ->
             Logx.w(
               LogTag.LOAD,
@@ -346,7 +374,10 @@ class AssetQuestionRepository internal constructor(
     }
 
     aggregated.sortBy { it.id }
-    return AssetPayload.Success(aggregated)
+    return AssetPayload.Success(
+      aggregated,
+      integritySoftBypassed = integritySoftBypassed,
+    )
   }
 
   private fun readArray(path: String): AssetPayload<List<QuestionDTO>> {
@@ -402,14 +433,42 @@ class AssetQuestionRepository internal constructor(
           }
         }
 
+        val integrity = try {
+          integrityFor(locale)
+        } catch (error: FileNotFoundException) {
+          return@withContext AssetPayload.Missing
+        }
+
+        val (preferred, fallback) = resolveAssetPaths(integrity.manifest, path)
+        var softBypass = false
+
         try {
-          val integrity = integrityFor(locale)
-          val (preferred, fallback) = resolveAssetPaths(integrity.manifest, path)
-          val bytes = integrity.guard.readVerified(preferred, fallback)
-          AssetPayload.Success(reader(bytes))
+          val bytes =
+            integrity.guard.readVerified(
+              preferred,
+              fallback,
+              onIntegritySoftBypass = { bypassPath, reason ->
+                softBypass = true
+                Timber.w("[integrity_soft] path=%s reason=%s -> using raw asset", bypassPath, reason)
+              },
+            )
+          runCatching { reader(bytes) }
+            .map { value -> AssetPayload.Success(value, integritySoftBypassed = softBypass) }
+            .getOrElse { throwable -> AssetPayload.Error(throwable) }
         } catch (error: FileNotFoundException) {
           AssetPayload.Missing
         } catch (error: IntegrityMismatchException) {
+          val raw =
+            listOfNotNull(error.path, preferred, fallback, path)
+              .distinct()
+              .firstNotNullOfOrNull { candidate -> openRawBytes(candidate) }
+          if (raw != null) {
+            val reason = integrityMismatchReason(error)
+            Timber.w("[integrity_soft] path=%s reason=%s -> using raw asset", error.path, reason)
+            return@withContext runCatching { reader(raw) }
+              .map { value -> AssetPayload.Success(value, integritySoftBypassed = true) }
+              .getOrElse { throwable -> AssetPayload.Error(throwable) }
+          }
           AssetPayload.Error(error)
         } catch (error: Throwable) {
           AssetPayload.Error(error)
@@ -493,9 +552,23 @@ class AssetQuestionRepository internal constructor(
     return locale.takeIf { it.isNotBlank() }
   }
 
+  private fun openRawBytes(path: String): ByteArray? {
+    val stream = assetReader.open(path) ?: return null
+    return try {
+      stream.use { it.readBytes() }
+    } catch (_: Throwable) {
+      null
+    }
+  }
+
+  private fun integrityMismatchReason(error: IntegrityMismatchException): String {
+    return if (error.actual.isNullOrBlank()) "missing" else "hash_mismatch"
+  }
+
   private data class PerTaskLoadResult(
     val questions: List<QuestionDTO>,
     val cacheHits: Int,
+    val integritySoftBypassed: Boolean,
   )
 
   private data class LocaleIntegrity(
@@ -531,6 +604,7 @@ class AssetQuestionRepository internal constructor(
     data class Success(
       val locale: String,
       val questions: List<QuestionDTO>,
+      val integritySoftBypassed: Boolean = false,
     ) : LoadResult()
 
     object Missing : LoadResult()
@@ -574,7 +648,7 @@ class AssetQuestionRepository internal constructor(
   )
 
   private sealed interface AssetPayload<out T> {
-    data class Success<T>(val value: T) : AssetPayload<T>
+    data class Success<T>(val value: T, val integritySoftBypassed: Boolean = false) : AssetPayload<T>
     object Missing : AssetPayload<Nothing>
     data class Error(val throwable: Throwable) : AssetPayload<Nothing>
   }

@@ -81,6 +81,12 @@ constructor(
     }
   }
 
+  data class VerifyResult(
+    val ok: Boolean,
+    val mismatches: Int,
+    val details: List<Mismatch>,
+  )
+
   fun read(): Result? {
     val candidates =
       assetLoader
@@ -283,6 +289,11 @@ constructor(
     Timber.i("[content_verify] ok=%s mismatches=%d", mismatches.isEmpty(), mismatches.size)
     return mismatches
   }
+
+  fun verifySummary(result: Result? = read()): VerifyResult =
+    verify(result).let { mismatches ->
+      VerifyResult(ok = mismatches.isEmpty(), mismatches = mismatches.size, details = mismatches)
+    }
 
   private fun manifestPath(source: String): String {
     return "$QUESTIONS_ROOT/$source/$INDEX_FILENAME"

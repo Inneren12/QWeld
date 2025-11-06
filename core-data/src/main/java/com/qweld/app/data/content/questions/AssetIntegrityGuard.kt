@@ -2,12 +2,12 @@ package com.qweld.app.data.content.questions
 
 import java.io.FileNotFoundException
 import java.io.InputStream
+import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 import java.util.LinkedHashMap
 import java.util.Locale
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
-import java.nio.charset.StandardCharsets
 
 
 class IntegrityMismatchException(
@@ -39,24 +39,28 @@ class AssetIntegrityGuard(
       }
     }
 
-  fun readVerified(pathPreferred: String, altPath: String? = null): ByteArray {
-      // Если путь НЕ индексирован — читаем без проверки (например, meta/*)
-      val expectedPreferred = manifest.expectedFor(pathPreferred)
-      if (expectedPreferred == null) {
-          readBytes(pathPreferred)?.let {
-              Logx.i(LogTag.INTEGRITY, "skip", "path" to pathPreferred, "reason" to "not_indexed")
-              return it
-          }
-          if (altPath != null) {
-              readBytes(altPath)?.let {
-                  Logx.i(LogTag.INTEGRITY, "skip", "path" to altPath, "reason" to "not_indexed")
-                  return it
-              }
-          }
-          throw FileNotFoundException(pathPreferred)
+  fun readVerified(
+    pathPreferred: String,
+    altPath: String? = null,
+    onIntegritySoftBypass: ((String, String) -> Unit)? = null,
+  ): ByteArray {
+    // Если путь НЕ индексирован — читаем без проверки (например, meta/*)
+    val expectedPreferred = manifest.expectedFor(pathPreferred)
+    if (expectedPreferred == null) {
+      readBytes(pathPreferred)?.let {
+        Logx.i(LogTag.INTEGRITY, "skip", "path" to pathPreferred, "reason" to "not_indexed")
+        return it
       }
+      if (altPath != null) {
+        readBytes(altPath)?.let {
+          Logx.i(LogTag.INTEGRITY, "skip", "path" to altPath, "reason" to "not_indexed")
+          return it
+        }
+      }
+      throw FileNotFoundException(pathPreferred)
+    }
 
-      val primary = verify(pathPreferred)
+    val primary = verify(pathPreferred)
     if (primary.success) {
       handleSuccess(primary, isFallback = false)
       return primary.bytes!!
@@ -71,22 +75,15 @@ class AssetIntegrityGuard(
         return fallback.bytes!!
       }
       logMiss(fallback)
-      metrics.fail += 1
-      logFailure(fallback)
-      throw IntegrityMismatchException(
-        path = fallback.path,
-        expected = fallback.expected,
-        actual = fallback.actual,
-      )
+      attemptSoftBypass(fallback, onIntegritySoftBypass)?.let { return it }
     }
 
+    attemptSoftBypass(primary, onIntegritySoftBypass)?.let { return it }
+
+    val missingPath = altPath ?: primary.path
     metrics.fail += 1
     logFailure(primary)
-    throw IntegrityMismatchException(
-      path = primary.path,
-      expected = primary.expected,
-      actual = primary.actual,
-    )
+    throw FileNotFoundException(missingPath)
   }
 
   private fun handleSuccess(result: VerificationResult, isFallback: Boolean) {
@@ -147,6 +144,27 @@ class AssetIntegrityGuard(
       "path" to result.path,
       "sha" to sha,
     )
+  }
+
+  private fun attemptSoftBypass(
+    result: VerificationResult,
+    onIntegritySoftBypass: ((String, String) -> Unit)? = null,
+  ): ByteArray? {
+    val raw = readBytes(result.path) ?: return null
+    metrics.fail += 1
+    logFailure(result)
+    val reason = reasonFor(result)
+    Logx.w(LogTag.INTEGRITY, "soft_bypass", "path" to result.path, "reason" to reason)
+    onIntegritySoftBypass?.invoke(result.path, reason)
+    return raw
+  }
+
+  private fun reasonFor(result: VerificationResult): String {
+    return when {
+      result.actual.isNullOrBlank() -> "missing"
+      result.expected.isNullOrBlank() -> "index_missing"
+      else -> "hash_mismatch"
+    }
   }
 
   private fun verify(path: String): VerificationResult {
