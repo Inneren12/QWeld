@@ -184,24 +184,14 @@ fun SettingsScreen(
       val context = LocalContext.current
       var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
 
-      SettingsLanguageSection(
-        selectedTag = pendingLocale,
-        onTagSelected = { pendingLocale = it },
-        onApplyClick = {
-          scope.launch {
-            if (pendingLocale != appLocaleTag) {
-              userPrefs.setAppLocale(pendingLocale)
-            }
-            Timber.i("[settings_locale] select tag=%s (source=settings)", pendingLocale)
-            onLocaleSelected(pendingLocale)
-            LocaleController.apply(
-              tag = pendingLocale,
-              activityToRecreate = context.findActivity(),
-            )
-          }
-        },
-        applyEnabled = pendingLocale != appLocaleTag,
-      )
+        SettingsLanguageSection(
+            selectedTag = pendingLocale,
+            onTagSelected = { pendingLocale = it },
+            onApplyClick = {
+                onLocaleSelected(pendingLocale) // достаточно, остальное сделает MainActivity
+            },
+            applyEnabled = (pendingLocale != appLocaleTag),
+        )
 
       Divider()
 

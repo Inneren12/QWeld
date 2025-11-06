@@ -121,11 +121,9 @@ fun AppNavGraph(
     val handleLocaleSelection =
         remember(userPrefs, scope, currentLocale) {
             { tag: String, source: String ->
-                scope.launch {
-                    Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
-                    if (tag != currentLocale) {
-                        userPrefs.setAppLocale(tag)
-                    }
+                Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
+                if (tag != currentLocale) {
+                    scope.launch { userPrefs.setAppLocale(tag) } // только сохраняем
                 }
             }
         }
