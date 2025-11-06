@@ -180,32 +180,28 @@ fun SettingsScreen(
       )
 
       Divider()
-        // локальный буфер выбора языка (начинаем с текущего)
-        val context = LocalContext.current
-        var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
 
-        SettingsLanguageSection(
-            selectedTag = pendingLocale,
-            onTagSelected = { pendingLocale = it },
-            onApplyClick = {
-                // фикс порядка: сначала сохраняем, потом применяем
-                scope.launch {
-                    userPrefs.setAppLocale(pendingLocale)
-                    Timber.i("[settings_locale] select tag=%s (source=settings)", pendingLocale)
+      val context = LocalContext.current
+      var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
 
-                    // Можно опционально оставить колбэк наверх — для логов/телеметрии.
-                    // Он теперь не помешает, т.к. значение уже сохранено.
-                    onLocaleSelected(pendingLocale)
-
-                    // Применяем и форсим полное обновление активити (как ты и хотел)
-                    LocaleController.apply(
-                        tag = pendingLocale,
-                        activityToRecreate = context.findActivity()
-                    )
-                }
-            },
-            applyEnabled = (pendingLocale != appLocaleTag),
-        )
+      SettingsLanguageSection(
+        selectedTag = pendingLocale,
+        onTagSelected = { pendingLocale = it },
+        onApplyClick = {
+          scope.launch {
+            if (pendingLocale != appLocaleTag) {
+              userPrefs.setAppLocale(pendingLocale)
+            }
+            Timber.i("[settings_locale] select tag=%s (source=settings)", pendingLocale)
+            onLocaleSelected(pendingLocale)
+            LocaleController.apply(
+              tag = pendingLocale,
+              activityToRecreate = context.findActivity(),
+            )
+          }
+        },
+        applyEnabled = pendingLocale != appLocaleTag,
+      )
 
       Divider()
 
@@ -385,49 +381,45 @@ private fun SettingsPrivacySection(
 
 @Composable
 private fun SettingsLanguageSection(
-    selectedTag: String,
-    onTagSelected: (String) -> Unit,
-    onApplyClick: (() -> Unit)? = null,   // <— добавили
-    applyEnabled: Boolean = false,        // <— добавили
+  selectedTag: String,
+  onTagSelected: (String) -> Unit,
+  onApplyClick: (() -> Unit)? = null,
+  applyEnabled: Boolean = false,
 ) {
+  Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Text(text = stringResource(id = R.string.language), style = MaterialTheme.typography.titleMedium)
+
+    val options =
+      listOf(
+        "system" to R.string.language_system,
+        "en" to R.string.language_en,
+        "ru" to R.string.language_ru,
+      )
+
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(
-            text = stringResource(id = R.string.language),
-            style = MaterialTheme.typography.titleMedium
-        )
-
-        val options = listOf(
-            "system" to R.string.language_system,
-            "en" to R.string.language_en,
-            "ru" to R.string.language_ru,
-        )
-
-        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            options.forEach { (tag, labelRes) ->
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    RadioButton(selected = selectedTag == tag, onClick = { onTagSelected(tag) })
-                    Text(text = stringResource(id = labelRes), style = MaterialTheme.typography.bodyLarge)
-                }
-            }
+      options.forEach { (tag, labelRes) ->
+        Row(
+          modifier = Modifier.fillMaxWidth(),
+          verticalAlignment = Alignment.CenterVertically,
+          horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+          RadioButton(selected = selectedTag == tag, onClick = { onTagSelected(tag) })
+          Text(text = stringResource(id = labelRes), style = MaterialTheme.typography.bodyLarge)
         }
-
-        // Кнопка применения (показываем только если колбэк передан)
-        onApplyClick?.let { apply ->
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
-                horizontalArrangement = Arrangement.End
-            ) {
-                // Используем стандартную строку OK, чтобы не править твои strings.xml
-                Button(onClick = apply, enabled = applyEnabled) {
-                    Text(text = stringResource(id = android.R.string.ok))
-                }
-            }
-        }
+      }
     }
+
+    onApplyClick?.let { apply ->
+      Row(
+        modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+        horizontalArrangement = Arrangement.End,
+      ) {
+        Button(onClick = apply, enabled = applyEnabled) {
+          Text(text = stringResource(id = android.R.string.ok))
+        }
+      }
+    }
+  }
 }
 
 @OptIn(ExperimentalLayoutApi::class)

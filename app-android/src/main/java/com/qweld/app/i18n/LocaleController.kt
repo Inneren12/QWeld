@@ -21,8 +21,7 @@ object LocaleController {
         }
         Timber.i("[settings_locale] apply tag=%s locales=%s", tag, locales.toLanguageTags())
         AppCompatDelegate.setApplicationLocales(locales)
-        // Обычно AppCompat сам пересоздаёт активити. Если хочешь, оставь явно:
-        // activityToRecreate?.recreate()
+        activityToRecreate?.recreate()
     }
 }
 
