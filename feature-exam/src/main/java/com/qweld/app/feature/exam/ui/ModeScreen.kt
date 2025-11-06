@@ -37,6 +37,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.navigation.NavHostController
 import com.qweld.app.feature.exam.R
+import androidx.appcompat.app.AppCompatDelegate
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.data.prefs.UserPrefsDataStore
@@ -346,11 +347,14 @@ private suspend fun showBankMissingMessage(
 }
 
 private fun resolveLanguage(configuration: android.content.res.Configuration): String {
-  val language = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-    configuration.locales.takeIf { it.size() > 0 }?.get(0)?.language
-  } else {
-    @Suppress("DEPRECATION")
-    configuration.locale?.language
-  }
-  return language?.takeIf { it.isNotBlank() } ?: Locale.ENGLISH.language
+  AppCompatDelegate.getApplicationLocales().get(0)?.language
+    ?.takeIf { it.isNotBlank() }
+    ?.let { return it.lowercase(Locale.US) }
+  val language =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      configuration.locales.takeIf { it.size() > 0 }?.get(0)?.language
+    } else {
+      @Suppress("DEPRECATION") configuration.locale?.language
+    }
+  return language?.takeIf { it.isNotBlank() }?.lowercase(Locale.US) ?: Locale.ENGLISH.language
 }

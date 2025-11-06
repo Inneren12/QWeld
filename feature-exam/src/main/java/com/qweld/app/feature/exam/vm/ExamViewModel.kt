@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.vm
 
 import androidx.annotation.VisibleForTesting
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -164,16 +165,19 @@ class ExamViewModel(
     practiceConfig: PracticeConfig = PracticeConfig(),
     blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
+    val appLocales = AppCompatDelegate.getApplicationLocales()
+    val effectiveLocale =
+      appLocales.get(0)?.language?.takeIf { it.isNotBlank() } ?: locale
     val normalizedPracticeConfig =
       if (mode == ExamMode.PRACTICE) {
         practiceConfig.copy(size = PracticeConfig.sanitizeSize(practiceConfig.size))
       } else {
         practiceConfig
       }
+    val normalizedLocale = effectiveLocale.lowercase(Locale.US)
     if (mode == ExamMode.IP_MOCK) {
-      Timber.i("[exam_start_req] mode=IPMock locale=%s", locale)
+      Timber.i("[exam_start_req] mode=IPMock locale=%s", normalizedLocale)
     }
-    val normalizedLocale = locale.lowercase(Locale.US)
     pendingResume = null
     manualTimerRemaining = null
     _uiState.value = _uiState.value.copy(resumeDialog = null)

@@ -56,7 +56,6 @@ import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
 import com.qweld.app.feature.exam.vm.PrewarmConfig
-import com.qweld.app.i18n.LocaleController
 import com.qweld.app.ui.AboutScreen
 import com.qweld.app.ui.SettingsScreen
 import com.qweld.app.ui.TopBarMenus
@@ -122,14 +121,11 @@ fun AppNavGraph(
     val handleLocaleSelection =
         remember(userPrefs, scope, currentLocale) {
             { tag: String, source: String ->
-                // Сохраняем СНАЧАЛА, потом применяем — чтобы после recreate не было отката
                 scope.launch {
                     Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
                     if (tag != currentLocale) {
                         userPrefs.setAppLocale(tag)
                     }
-                    // Теперь применяем. AppCompat сам спровоцирует recreate при смене локали.
-                    LocaleController.apply(tag)
                 }
             }
         }

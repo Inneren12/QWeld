@@ -2,6 +2,7 @@ package com.qweld.app
 
 import android.app.Application
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
@@ -26,11 +27,13 @@ class QWeldApp : Application(), LogCollectorOwner {
         }
       )
     }
+    val appLocales = AppCompatDelegate.getApplicationLocales()
+    val localeTag = appLocales.toLanguageTags().ifBlank { Locale.getDefault().toLanguageTag() }
     Timber.i(
       "[app] start version=%s buildType=%s locale=%s | attrs=%s",
       BuildConfig.VERSION_NAME,
       BuildConfig.BUILD_TYPE,
-      Locale.getDefault(),
+      localeTag,
       "{}"
     )
   }

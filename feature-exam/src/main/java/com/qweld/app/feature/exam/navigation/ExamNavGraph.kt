@@ -1,5 +1,6 @@
 package com.qweld.app.feature.exam.navigation
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -163,8 +164,13 @@ fun ExamNavGraph(
             }
             ExamViewModel.ExamEffect.RestartWithSameConfig -> {
               val config = examViewModel.uiState.value.lastPracticeConfig
-              val locale = examViewModel.uiState.value.lastLocale
-                ?: Locale.getDefault().language.lowercase(Locale.US)
+              val fallbackLocale =
+                AppCompatDelegate.getApplicationLocales().get(0)?.language
+                  ?.takeIf { it.isNotBlank() }
+                  ?.lowercase(Locale.US)
+                  ?: Locale.getDefault().language.lowercase(Locale.US)
+              val locale =
+                (examViewModel.uiState.value.lastLocale ?: fallbackLocale).lowercase(Locale.US)
               if (config == null) {
                 examViewModel.notifyRestartFailure("Missing practice configuration.")
                 return@collectLatest
