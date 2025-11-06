@@ -23,6 +23,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
+import com.qweld.app.core.i18n.LocaleController
 
 class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
@@ -42,9 +43,9 @@ class AssetQuestionRepository internal constructor(
       // ВАЖНО: сначала берём язык из AppCompatDelegate (локаль приложения),
       // потому что applicationContext.resources.configuration может остаться на системной локали.
       localeResolver = {
-        AppCompatDelegate.getApplicationLocales().get(0)?.language
-          ?.takeIf { it.isNotBlank() }
-          ?: resolveLanguage(context.resources.configuration)
+          // Стало: единая точка правды о языке — LocaleController.currentLanguage()
+          // это предотвращает гонку между apply(...) и чтением конфигурации
+          LocaleController.currentLanguage()
       },
       json = jsonCodec,
       cacheCapacity = cacheCapacity,

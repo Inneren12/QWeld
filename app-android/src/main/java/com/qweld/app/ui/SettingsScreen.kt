@@ -54,17 +54,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.util.Locale
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.compose.ui.platform.LocalContext
-import com.qweld.app.i18n.LocaleController
-
-private tailrec fun Context.findActivity(): Activity? = when (this) {
-    is Activity -> this
-    is ContextWrapper -> baseContext.findActivity()
-    else -> null
-}
 
 @Composable
 fun SettingsScreen(
@@ -181,7 +170,6 @@ fun SettingsScreen(
 
       Divider()
 
-      val context = LocalContext.current
       var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
 
         SettingsLanguageSection(

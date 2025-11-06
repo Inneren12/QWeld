@@ -7,6 +7,10 @@ import java.util.Locale
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
 import timber.log.Timber
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.first
+import com.qweld.app.data.prefs.UserPrefsDataStore
+import com.qweld.app.i18n.LocaleController
 
 class QWeldApp : Application(), LogCollectorOwner {
   override val logCollector: LogCollector by lazy { LogCollector() }
@@ -29,12 +33,17 @@ class QWeldApp : Application(), LogCollectorOwner {
     }
     val appLocales = AppCompatDelegate.getApplicationLocales()
     val localeTag = appLocales.toLanguageTags().ifBlank { Locale.getDefault().toLanguageTag() }
-    Timber.i(
-      "[app] start version=%s buildType=%s locale=%s | attrs=%s",
-      BuildConfig.VERSION_NAME,
-      BuildConfig.BUILD_TYPE,
-      localeTag,
-      "{}"
-    )
+      // Применяем сохранённую локаль *до* первого UI, чтобы не было мигания
+      runBlocking {
+          runCatching {
+              val prefs = UserPrefsDataStore(applicationContext)
+              val tag = prefs.appLocaleFlow().first()
+              LocaleController.apply(tag) // idempotent: ничего не делает, если уже такая же локаль
+          }.onFailure { Timber.w(it, "[locale_init_skip]") }
+      }
+      Timber.i(
+          "[app] start version=%s buildType=%s locale=%s | attrs=%s",
+          BuildConfig.VERSION_NAME, BuildConfig.BUILD_TYPE, resources.configuration.locales, "{}"
+      )
   }
 }

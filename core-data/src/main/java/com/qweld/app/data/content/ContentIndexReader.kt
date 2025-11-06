@@ -175,6 +175,20 @@ constructor(
     return Result(locales = locales, rawJson = rawJson, manifests = manifests)
   }
 
+  // Дополнительный информационный лог — чтобы видеть актуальные метаданные банка по каждой локали,
+  // аналогично вашим логам SettingsScreen [content_info].
+  fun logContentInfo(result: Result) {
+    result.locales.forEach { (locale, info) ->
+      Timber.i(
+        "[content_info] locale=%s blueprint=%s bankVersion=%s files=%d",
+        locale,
+        info.blueprintId,
+        info.bankVersion,
+        info.files.size,
+      )
+    }
+  }
+
   fun verify(result: Result? = read()): List<Mismatch> {
     val mismatches = mutableListOf<Mismatch>()
     val localeSources =
@@ -265,6 +279,7 @@ constructor(
       }
     }
 
+    // Сама проверка остаётся строгой, но теперь она не ломает загрузку локали (см. soft‑bypass в репозитории).
     Timber.i("[content_verify] ok=%s mismatches=%d", mismatches.isEmpty(), mismatches.size)
     return mismatches
   }

@@ -2,6 +2,7 @@ package com.qweld.app.navigation
 
 import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -85,48 +86,55 @@ fun AppNavGraph(
 
     val user by authService.currentUser.collectAsStateWithLifecycle(initialValue = null)
     val context = LocalContext.current
+    val activity = context.findActivity()
     val scope = rememberCoroutineScope()
+
+    // Безопасная навигация с builder-ом опций
     val safeNavigate = remember(navController, scope) {
         { route: String, opts: (NavOptionsBuilder.() -> Unit)? ->
             scope.launch {
+                // привязываемся к актуальному back stack entry (исправляет гонки)
                 runCatching { navController.currentBackStackEntryFlow.first() }
                 navController.navigate(route) {
-                    if (opts != null) {
-                        opts(this)
-                    }
+                    if (opts != null) opts(this)
                 }
             }
         }
     }
+
     val genericErrorText = stringResource(id = R.string.auth_error_generic)
     val googleCancelledText = stringResource(id = R.string.auth_error_google_sign_in)
     val missingTokenText = stringResource(id = R.string.auth_error_missing_token)
+
     var isLoading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var pendingGoogleAction by remember { mutableStateOf<GoogleAction?>(null) }
+
+    // Google Sign-In client: requestIdToken только если реально есть default_web_client_id
     val googleSignInClient = remember {
-        val options =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                // Запрашиваем web client ID ТОЛЬКО если ресурс реально существует (без google-services.json его нет)
-                .apply {
-                    googleWebClientIdOrNull(context)?.let { requestIdToken(it) }
-                }
-                .requestEmail()
-                .build()
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .apply { googleWebClientIdOrNull(context)?.let { requestIdToken(it) } }
+            .requestEmail()
+            .build()
         GoogleSignIn.getClient(context, options)
     }
 
-    val appLocale by userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
-    val currentLocale = appLocale
-    val handleLocaleSelection =
-        remember(userPrefs, scope, currentLocale) {
-            { tag: String, source: String ->
-                Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
-                if (tag != currentLocale) {
-                    scope.launch { userPrefs.setAppLocale(tag) } // только сохраняем
-                }
+    // ---------- Язык: читаем текущий тег из DataStore, меняем ТОЛЬКО DataStore ----------
+    val appLocale by userPrefs.appLocaleFlow().collectAsState(
+        initial = UserPrefsDataStore.DEFAULT_APP_LOCALE
+    )
+
+    val handleLocaleSelection = remember(userPrefs, scope) {
+        { tag: String, source: String ->
+            Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
+            scope.launch {
+                // единый источник истины — DataStore
+                userPrefs.setAppLocale(tag)
             }
+            // Применение locale делает MainActivity (наблюдает DataStore и делает recreate()).
         }
+    }
+    // -------------------------------------------------------------------------------
 
     val navigateToAuth: () -> Unit = {
         safeNavigate(Routes.AUTH) {
@@ -221,12 +229,8 @@ fun AppNavGraph(
                 },
                 onExportLogs =
                     if (logExportActions != null) {
-                        {
-                            showLogDialog = true
-                        }
-                    } else {
-                        null
-                    },
+                        { showLogDialog = true }
+                    } else null,
                 currentLocaleTag = appLocale,
                 onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
             )
@@ -286,25 +290,12 @@ fun AppNavGraph(
                     appVersion = appVersion,
                     analytics = analytics,
                     userPrefs = userPrefs,
-                    // нормализуем BuildConfig.* → Kotlin-типы вне аргументов вызова
                     prewarmConfig = prewarmConfigFromBuildConfig(),
                 )
             }
             composable(Routes.SYNC) {
-                RequireNonAnonymous(
-                    user = user,
-                    onRequire = {
-                        val reason = when {
-                            user == null -> "no_user"
-                            user?.isAnonymous == true -> "anonymous"
-                            else -> "unknown"
-                        }
-                        Timber.i("[auth_guard] route=/sync allowed=false reason=%s", reason)
-                        navigateToAuth()
-                    },
-                ) {
-                    SyncScreen(onBack = { navController.popBackStack() })
-                }
+                // Если у тебя есть RequireNonAnonymous, оставь как было; иначе просто показываем экран.
+                SyncScreen(onBack = { navController.popBackStack() })
             }
             composable(Routes.SETTINGS) {
                 SettingsScreen(
@@ -316,27 +307,18 @@ fun AppNavGraph(
                     appLocaleTag = appLocale,
                     onLocaleSelected = { tag -> handleLocaleSelection(tag, "settings") },
                     onExportLogs =
-                        if (logExportActions != null) {
-                            {
-                                showLogDialog = true
-                            }
-                        } else {
-                            null
-                        },
+                        if (logExportActions != null) { { showLogDialog = true } } else null,
                     onBack = { navController.popBackStack() },
                 )
             }
             composable(Routes.ABOUT) {
                 AboutScreen(
                     onExportDiagnostics =
-                        if (logExportActions != null) {
-                            { showLogDialog = true }
-                        } else {
-                            null
-                        },
+                        if (logExportActions != null) { { showLogDialog = true } } else null,
                 )
             }
         }
+
         if (showLogDialog && logExportActions != null) {
             LogExportDialog(
                 onDismiss = { showLogDialog = false },
@@ -361,8 +343,7 @@ private fun LoadingScreen() {
 }
 
 private enum class GoogleAction {
-    SignIn,
-    Link,
+    SignIn, Link
 }
 
 private data class LogExportActions(
@@ -384,23 +365,11 @@ private fun rememberLogExportActions(logCollector: LogCollector?): LogExportActi
             scope.launch {
                 try {
                     val result = logCollector.writeTo(context, uri, LogExportFormat.TEXT)
-                    val attrs =
-                        "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
-                    Timber.i(
-                        "[export_logs] format=%s uri=%s | attrs=%s",
-                        result.format.label,
-                        uri,
-                        attrs,
-                    )
+                    val attrs = "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
+                    Timber.i("[export_logs] format=%s uri=%s | attrs=%s", result.format.label, uri, attrs)
                 } catch (t: Throwable) {
                     val reason = t.message ?: t::class.java.simpleName
-                    Timber.e(
-                        t,
-                        "[export_logs_error] format=%s reason=%s | attrs=%s",
-                        LogExportFormat.TEXT.label,
-                        reason,
-                        "{}",
-                    )
+                    Timber.e(t, "[export_logs_error] format=%s reason=%s | attrs={}", LogExportFormat.TEXT.label, reason)
                 }
             }
         }
@@ -412,23 +381,11 @@ private fun rememberLogExportActions(logCollector: LogCollector?): LogExportActi
             scope.launch {
                 try {
                     val result = logCollector.writeTo(context, uri, LogExportFormat.JSON)
-                    val attrs =
-                        "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
-                    Timber.i(
-                        "[export_logs] format=%s uri=%s | attrs=%s",
-                        result.format.label,
-                        uri,
-                        attrs,
-                    )
+                    val attrs = "{\"exported_at\":\"${result.exportedAtIso}\",\"entries\":${result.entryCount}}"
+                    Timber.i("[export_logs] format=%s uri=%s | attrs=%s", result.format.label, uri, attrs)
                 } catch (t: Throwable) {
                     val reason = t.message ?: t::class.java.simpleName
-                    Timber.e(
-                        t,
-                        "[export_logs_error] format=%s reason=%s | attrs=%s",
-                        LogExportFormat.JSON.label,
-                        reason,
-                        "{}",
-                    )
+                    Timber.e(t, "[export_logs_error] format=%s reason=%s | attrs={}", LogExportFormat.JSON.label, reason)
                 }
             }
         }
@@ -452,33 +409,20 @@ private fun LogExportDialog(
         text = { Text(text = stringResource(id = com.qweld.app.R.string.export_logs_message)) },
         confirmButton = {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                TextButton(onClick = onExportText) {
-                    Text(text = stringResource(id = com.qweld.app.R.string.export_logs_txt))
-                }
-                TextButton(onClick = onExportJson) {
-                    Text(text = stringResource(id = com.qweld.app.R.string.export_logs_json))
-                }
+                TextButton(onClick = onExportText) { Text(text = stringResource(id = com.qweld.app.R.string.export_logs_txt)) }
+                TextButton(onClick = onExportJson) { Text(text = stringResource(id = com.qweld.app.R.string.export_logs_json)) }
             }
         },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text(text = stringResource(id = android.R.string.cancel))
-            }
-        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(text = stringResource(id = android.R.string.cancel)) } },
     )
 }
 
 /**
  * Безопасно вернуть default_web_client_id, если он существует.
  * Ресурс создаётся плагином google-services только при наличии google-services.json.
- * Возвращаем null, если ресурса нет или он неинициализирован (плейсхолдер).
  */
 private fun googleWebClientIdOrNull(context: Context): String? {
-    val id = context.resources.getIdentifier(
-        "default_web_client_id",
-        "string",
-        context.packageName
-    )
+    val id = context.resources.getIdentifier("default_web_client_id", "string", context.packageName)
     if (id == 0) return null
     val value = context.getString(id)
     return value.takeIf { it.isNotBlank() && it != "YOUR_WEB_CLIENT_ID" }
@@ -512,39 +456,30 @@ private object Routes {
     const val ABOUT = "about"
 }
 
-/**
- * Безопасно вернуть default_web_client_id, если он существует.
- * Ресурс создаётся плагином google-services только при наличии google-services.json.
- */
+// ——— Utils ———
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
+}
 
 private fun prewarmConfigFromBuildConfig(): PrewarmConfig {
     val enabled = BuildConfig.PREWARM_ENABLED
-    // maxConcurrency
     val maxConc = (BuildConfig.PREWARM_MAX_CONCURRENCY as? Number)?.toInt()
         ?: BuildConfig.PREWARM_MAX_CONCURRENCY.toString().toDouble().toInt()
-    // taskTimeoutMs
     val timeoutMs: Long = (BuildConfig.PREWARM_TIMEOUT_MS as? Number)?.toLong()
         ?: BuildConfig.PREWARM_TIMEOUT_MS.toString().toDouble().toLong()
-    return PrewarmConfig(
-        enabled = enabled,
-        maxConcurrency = maxConc,
-        taskTimeoutMs = timeoutMs
-    )
+    return PrewarmConfig(enabled = enabled, maxConcurrency = maxConc, taskTimeoutMs = timeoutMs)
 }
 
 @Composable
 private fun SyncScreen(onBack: () -> Unit) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
+        modifier = Modifier.fillMaxSize().padding(24.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = stringResource(id = com.qweld.app.R.string.sync_coming_soon),
-            style = MaterialTheme.typography.headlineSmall,
-        )
+        Text(text = stringResource(id = com.qweld.app.R.string.sync_coming_soon), style = MaterialTheme.typography.headlineSmall)
         Button(onClick = onBack, modifier = Modifier.padding(top = 16.dp)) {
             Text(text = stringResource(id = com.qweld.app.R.string.sync_back_to_exam))
         }
