@@ -25,7 +25,7 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
-      - name: Setup Gradle (cache & config)
+      - name: "Setup Gradle (cache & config)"
         uses: gradle/actions/setup-gradle@v3
 
       - name: Sanity: verify plugin repository resolution
