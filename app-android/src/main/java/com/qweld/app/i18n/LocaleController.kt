@@ -5,6 +5,8 @@ import androidx.core.os.LocaleListCompat
 import timber.log.Timber
 
 object LocaleController {
+    annotation class currentLanguage
+
     fun apply(tag: String, activityToRecreate: android.app.Activity? = null) {
         val desired: LocaleListCompat = AppLocales.fromTag(tag)
         val current: LocaleListCompat = AppCompatDelegate.getApplicationLocales()

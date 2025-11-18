@@ -24,6 +24,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import com.qweld.app.core.i18n.LocaleController
+import com.qweld.app.i18n.LocaleController
 
 class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
