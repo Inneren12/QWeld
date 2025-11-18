@@ -3,13 +3,13 @@ package com.qweld.app.feature.exam.data
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import androidx.appcompat.app.AppCompatDelegate
 import com.qweld.app.data.content.questions.AssetIntegrityGuard
 import com.qweld.app.data.content.questions.IndexParser
 import com.qweld.app.data.content.questions.IntegrityMismatchException
 import com.qweld.app.feature.exam.data.Io
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
+import com.qweld.app.core.i18n.LocaleController
 import java.io.FileNotFoundException
 import java.io.InputStream
 import java.util.LinkedHashMap
@@ -23,8 +23,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
-import com.qweld.app.core.i18n.LocaleController
-import com.qweld.app.i18n.LocaleController
 
 class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
@@ -46,7 +44,7 @@ class AssetQuestionRepository internal constructor(
       localeResolver = {
           // Стало: единая точка правды о языке — LocaleController.currentLanguage()
           // это предотвращает гонку между apply(...) и чтением конфигурации
-          LocaleController.currentLanguage()
+          LocaleController.currentLanguage(context)
       },
       json = jsonCodec,
       cacheCapacity = cacheCapacity,

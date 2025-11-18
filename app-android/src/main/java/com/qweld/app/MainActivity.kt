@@ -29,7 +29,7 @@ import com.qweld.app.feature.auth.firebase.FirebaseAuthService
 import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
-import com.qweld.app.i18n.LocaleController
+import com.qweld.app.core.i18n.LocaleController
 import com.qweld.app.navigation.AppNavGraph
 import com.qweld.app.ui.theme.QWeldTheme
 import kotlinx.coroutines.flow.distinctUntilChanged

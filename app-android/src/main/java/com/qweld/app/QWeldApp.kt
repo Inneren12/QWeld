@@ -10,7 +10,7 @@ import timber.log.Timber
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.flow.first
 import com.qweld.app.data.prefs.UserPrefsDataStore
-import com.qweld.app.i18n.LocaleController
+import com.qweld.app.core.i18n.LocaleController
 
 class QWeldApp : Application(), LogCollectorOwner {
   override val logCollector: LogCollector by lazy { LogCollector() }

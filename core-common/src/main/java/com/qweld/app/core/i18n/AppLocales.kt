@@ -1,4 +1,4 @@
-package com.qweld.app.i18n
+package com.qweld.app.core.i18n
 
 import androidx.core.os.LocaleListCompat
 
