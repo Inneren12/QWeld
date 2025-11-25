@@ -1,0 +1,562 @@
+[
+  {
+    "id": "Q-B-7_orientation_marks_1000002d",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Why mark part orientation before tacking/welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Such marks are graffiti"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They help avoid assembly errors"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They weaken structural members"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They are not allowed on steel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Orientation marks help ensure parts are positioned as designed."
+    }
+  },
+  {
+    "id": "Q-B-7_preheat_use_v2_05_30000042",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Preheating before welding primarily:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increases cooling rate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduces cooling rate and hydrogen cracking risk"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Eliminates interpass cleaning"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strengthens flux coating"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preheat slows cooling and lowers crack risk."
+    }
+  },
+  {
+    "id": "Q-B-7_distortion_planning_v7_01_30000075",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "How should distortion be addressed during planning?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Assume shrinkage is random"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Plan fit and sequence to allow for predicted shrinkage"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Avoid clamps"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Heat input is unrelated to distortion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Anticipating shrinkage enables countermeasures."
+    }
+  },
+  {
+    "id": "Q-B-7_edge_prep_1000002e",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Why remove burrs and oxides from prepared edges?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It saves time but reduces strength"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It is unnecessary on any material"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It improves fusion and reduces inclusions"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It is only for aluminum"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Clean, smooth edges promote full fusion and fewer inclusions."
+    }
+  },
+  {
+    "id": "Q-B-7_temporary_attachments_v2_04_30000041",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "For temporary strongbacks or tabs, a best practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave them on finished products"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove and finish per drawings/WPS after welding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore drawing requirements"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint over them if visible"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Temporary attachments should be removed and finished as specified."
+    }
+  },
+  {
+    "id": "Q-B-7_temporary_tack_removal_v3_01_30000049",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Before final welding, temporary tacks or dogs that interfere should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Left in place"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Removed or reshaped per plan to allow proper access"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hidden under weld metal"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignored"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove interferences so the torch can reach sidewalls/root."
+    }
+  },
+  {
+    "id": "Q-B-7_sequence_symmetry_v2_10_30000047",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "A symmetric welding sequence on a long seam helps:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Concentrate heat"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Distribute heat and minimize bowing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add pores"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase arc blow"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Symmetry helps control distortion on long joints."
+    }
+  },
+  {
+    "id": "Q-B-7_shims_gap_1000002c",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Why use shims during fit‑up?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To ensure a consistent root gap when parts vary"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To hide defects"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To replace beveling"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They are only for painting"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Temporary shims help set uniform gaps before welding."
+    }
+  },
+  {
+    "id": "Q-B-7_runon_tabs_1000002a",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Why install run‑on and run‑off tabs?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They are cosmetic only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To achieve full fusion at tie‑ins and protect part edges"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "For lifting points"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They make the weld weaker"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tabs allow starting/ending outside the part for complete fusion."
+    }
+  },
+  {
+    "id": "Q-B-7_interpass_cleaning_v5_00_3000005e",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Between passes with flux-shielded processes you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave slag; it burns out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove slag and heavy spatter"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only chip the cap"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Water quench the bead"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cleaning prevents slag inclusions and lack of fusion."
+    }
+  },
+  {
+    "id": "Q-B-7_fillet_gauge_use_v2_08_30000045",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "A fillet-weld gauge is used to measure:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Voltage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fillet leg size/effective throat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Gas flow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Surface roughness"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Gauges verify fillet size against requirements."
+    }
+  },
+  {
+    "id": "Q-B-7_fitup_inspect_10000030",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "When should fit‑up be verified?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "After welding is completed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Before welding—check dimensions, gaps, and angles"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only the inspector checks fit‑up"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Skip if the schedule is tight"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Verifying fit‑up beforehand prevents defects and rework."
+    }
+  },
+  {
+    "id": "Q-B-7_bridge_tacks_10000029",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "What are bridge tacks used for?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spanning gaps temporarily during fit‑up"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Permanent structural members"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They are forbidden for any process"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They replace the root pass"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Bridge tacks hold edges where gaps exist until proper welding occurs."
+    }
+  },
+  {
+    "id": "Q-B-7_chill_bars_1000002b",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "How do chill bars help when welding thin material?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They increase heat input"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They extract heat to control distortion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They measure temperature"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They destabilize the arc"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Heat sinks pull heat away to limit distortion and burn‑through."
+    }
+  },
+  {
+    "id": "Q-B-7_presetting_v3_00_30000048",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Presetting (offsetting) parts opposite expected shrinkage is used to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Make parts misaligned after welding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Compensate for predictable contraction"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Avoid using clamps"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminate need for WPS"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Preset enables correct alignment after shrinkage."
+    }
+  },
+  {
+    "id": "Q-B-7_root_face_land_v3_02_3000004a",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "A small root face (land) on groove edges helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Prevent any penetration"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Control root penetration and support the root"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase arc length"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove the need for backing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A land supports root control and bead shape."
+    }
+  },
+  {
+    "id": "Q-B-7_skip_backstep_10000028",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Why use skip or backstep welding sequences?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To concentrate heat in one area"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To distribute heat and reduce distortion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Because random order is best"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To always weld straight through in one pass"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Sequencing spreads heat input and limits distortion."
+    }
+  },
+  {
+    "id": "Q-B-7_strongbacks_10000026",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "What is the function of strongbacks during fabrication?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They increase warpage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They prevent distortion and hold alignment while welding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They are lifting devices"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They replace preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Strongbacks restrain parts to counteract weld shrinkage."
+    }
+  },
+  {
+    "id": "Q-B-7_balanced_welds_v7_06_3000007a",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Balancing welds on opposite sides helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase distortion"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Counteract shrinkage and reduce distortion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace fixtures"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase residual stress"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Balanced welding reduces distortion."
+    }
+  },
+  {
+    "id": "Q-B-7_bevel_angle_10000023",
+    "taskId": "B-7",
+    "difficulty": "medium",
+    "stem": "Why choose a proper bevel angle during prep?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Zero bevel gives best access"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "The right angle allows access and proper penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Steeper is always stronger"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Shallower is always better"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Adequate groove angle lets the electrode/torch reach the root and sidewalls."
+    }
+  }
+]

@@ -1,0 +1,1038 @@
+[
+  {
+    "id": "Q-A-3_burn_first_aid_20000036",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "For a minor thermal burn, initial first aid usually involves:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Applying grease to seal the skin"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Cooling the area with cool running water and seeking care if needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Popping blisters to relieve pressure"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Applying strong solvent"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cooling the area with cool running water and seeking care if needed"
+    }
+  },
+  {
+    "id": "Q-A-3_confined_space_o2_1000000a",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Which oxygen range is considered acceptable for entry into a confined space?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "16–18% oxygen"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "19.5–23.5% oxygen"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Above 24% oxygen"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any level if wearing a respirator"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "19.5–23.5% oxygen"
+    }
+  },
+  {
+    "id": "Q-A-3_cylinder_separation_safety_2000003d",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "In storage areas, oxygen cylinders should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stored together with fuel gas cylinders"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Separated from fuel gases by distance or a barrier"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Coated with grease to prevent rust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Laid down to save space"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Separated from fuel gases by distance or a barrier"
+    }
+  },
+  {
+    "id": "Q-A-3_cylinder_transport_20000030",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "When transporting gas cylinders within the shop, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Roll them on the bottom rim"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Carry them horizontally with two people"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use a proper cylinder cart with cap installed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Drag them by the valve cap"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Use a proper cylinder cart with cap installed"
+    }
+  },
+  {
+    "id": "Q-A-3_extinguisher_class_20000037",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Which statement about fire extinguishers is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use water on energized electrical fires"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Select an extinguisher rated for the fire class (e.g., ABC for many shop fires)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "CO₂ extinguishers are for wood only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any extinguisher works the same"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Select an extinguisher rated for the fire class (e.g., ABC for many shop fires)"
+    }
+  },
+  {
+    "id": "Q-A-3_fire_watch_10000009",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "How long should a fire watch typically remain after hot work ends?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Not required if the area looks clean"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "At least 60 minutes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only while cutting/welding is in progress"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A fire extinguisher replaces the fire watch"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "At least 60 minutes"
+    }
+  },
+  {
+    "id": "Q-A-3_flammable_liquid_control_2000003e",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Before hot work near flammable liquids, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ignore containers if closed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove or shield them and test the atmosphere if required"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stack them behind a screen"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Move closer to finish faster"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove or shield them and test the atmosphere if required"
+    }
+  },
+  {
+    "id": "Q-A-3_flashback_arrestors_20000031",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "What device helps prevent flame traveling back into oxy‑fuel hoses?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A flowmeter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A check valve or flashback arrestor"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A pressure gauge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A hose reel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A check valve or flashback arrestor"
+    }
+  },
+  {
+    "id": "Q-A-3_fr_clothing_2000002e",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Which clothing is most appropriate for welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Synthetic athletic wear"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Flame‑resistant cotton or leather"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Shorts and sandals"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Loose acrylic sweater"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flame‑resistant cotton or leather"
+    }
+  },
+  {
+    "id": "Q-A-3_glove_condition_2000002f",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Before welding, gloves should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Oily to repel water"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry and free of holes or tears"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cut‑off fingers for dexterity"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sprayed with solvent"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dry and free of holes or tears"
+    }
+  },
+  {
+    "id": "Q-A-3_grinding_ppe_10000008",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "What eye and face protection is appropriate for grinding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Safety glasses only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Face shield only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Safety glasses and a face shield together"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No eye protection for quick touch‑ups"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Safety glasses and a face shield together"
+    }
+  },
+  {
+    "id": "Q-A-3_hearing_protection_2000002c",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "When noise levels are high during grinding/gouging, workers should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ignore it for short tasks"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use hearing protection"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wear sunglasses"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn up the radio"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use hearing protection"
+    }
+  },
+  {
+    "id": "Q-A-3_hot_metal_mark_2000003c",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "After cutting/welding, a good practice for newly heated parts is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave them unmarked"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Mark or tag them as 'HOT' and control the area"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cool them with oil"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Place them in walkways"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Mark or tag them as 'HOT' and control the area"
+    }
+  },
+  {
+    "id": "Q-A-3_hot_work_permit_20000028",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "When welding outside a designated welding area, a common requirement is to obtain:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "An equipment calibration sheet"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A hot work permit"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A shipping manifest"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A purchase order"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A hot work permit"
+    }
+  },
+  {
+    "id": "Q-A-3_housekeeping_hoses_20000032",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "How can trip hazards from leads and hoses be reduced?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Run them across walkways"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lift them overhead or cover/cross at protected points"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hide them under loose cardboard"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore if only a few people pass"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Lift them overhead or cover/cross at protected points"
+    }
+  },
+  {
+    "id": "Q-A-3_local_exhaust_20000029",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "What is an effective method to control welding fume at the source?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Rely on general building ventilation only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use local exhaust/hoods positioned near the arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Turn off the extractor to reduce noise"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use a desk fan to blow fumes away"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use local exhaust/hoods positioned near the arc"
+    }
+  },
+  {
+    "id": "Q-A-3_lockout_verify_1000000b",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "After isolating and locking equipment, what should be done before starting work?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove the locks briefly to test"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Attempt a start to verify zero energy"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Trust only indicator lights"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ask a coworker to avoid touching controls"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Attempt a start to verify zero energy"
+    }
+  },
+  {
+    "id": "Q-A-3_manganese_fume_2000002b",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Which statement about welding fumes is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They are harmless at normal levels"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They can contain manganese and other metal oxides that require control"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only TIG produces fumes"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Fumes are eliminated by higher amperage"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "They can contain manganese and other metal oxides that require control"
+    }
+  },
+  {
+    "id": "Q-A-3_muster_point_2000003b",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "In case of an emergency evacuation, workers should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Run in different directions"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Go to the designated muster/assembly point"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Return to collect personal items"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Call friends first"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Go to the designated muster/assembly point"
+    }
+  },
+  {
+    "id": "Q-A-3_oxygen_backseated_20000038",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "How should an oxygen cylinder valve be opened for use?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Crack it slightly and leave it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Open it fully back‑seated per manufacturer guidance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open it halfway only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Leave it closed and adjust pressure on the regulator"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Open it fully back‑seated per manufacturer guidance"
+    }
+  },
+  {
+    "id": "Q-A-3_protect_hoses_hot_20000034",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Oxy‑fuel/welding hoses should be kept:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On sharp edges and hot surfaces"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Away from hot/walking areas and protected from damage"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tied in knots for storage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Painted to improve wear resistance"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Away from hot/walking areas and protected from damage"
+    }
+  },
+  {
+    "id": "Q-A-3_regulator_remove_move_2000003f",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Before moving a cylinder to another location, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave the regulator on for faster setup"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove the regulator and install the valve cap"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open the valve fully for transport"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lay the cylinder horizontally"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove the regulator and install the valve cap"
+    }
+  },
+  {
+    "id": "Q-A-3_resp_fit_2000003a",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "For tight‑fitting respirators to work properly, the user should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Have facial hair where the seal sits"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Skip fit testing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Be clean‑shaven where the seal contacts the face"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wear the respirator loosely for comfort"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Be clean‑shaven where the seal contacts the face"
+    }
+  },
+  {
+    "id": "Q-A-3_shade_selection_2000002d",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "For eye protection during arc welding, a safe practice is to choose a filter shade:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Based on sunglasses tint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "According to amperage and process tables"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always the darkest available"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No filter needed for short arcs"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "According to amperage and process tables"
+    }
+  },
+  {
+    "id": "Q-A-3_stainless_hexchrome_2000002a",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Welding on stainless steel can generate which specific hazard?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Helium gas exposure"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Hexavalent chromium in fumes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lead paint overspray only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ozone‑free air"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Hexavalent chromium in fumes"
+    }
+  },
+  {
+    "id": "Q-A-3_stub_bucket_20000033",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Where should SMAW electrode stubs be placed?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On the floor near the welder"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "In a designated stub bucket or container"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "In the scrap bin with sharp edges exposed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Left in pockets"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "In a designated stub bucket or container"
+    }
+  },
+  {
+    "id": "Q-A-3_welding_area_sign_20000035",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "What helps protect bystanders from arc flash in open areas?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove PPE"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use welding curtains/screens and post warning signs"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Point the arc toward coworkers"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn off ventilation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use welding curtains/screens and post warning signs"
+    }
+  },
+  {
+    "id": "Q-A-3_welding_screens_1000000c",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Why are welding screens used around a work area?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Only to improve the welder’s visibility"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To protect others from arc flash and flying sparks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce fumes below limits by themselves"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To replace personal protective equipment"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "To protect others from arc flash and flying sparks"
+    }
+  },
+  {
+    "id": "Q-A-3_wet_conditions_20000039",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "If welding must be performed in damp conditions, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stand in water for stability"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use GFCI protection, dry platforms, and extra insulation"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove gloves to feel the heat better"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore site rules for speed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use GFCI protection, dry platforms, and extra insulation"
+    }
+  },
+  {
+    "id": "Q-A-3P_oxyfuel_startup_20000101",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Before lighting an oxy‑fuel torch, your first actions should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Open both torch valves and light with a lighter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Back out regulator screws, slowly and fully open the oxygen cylinder valve, then set pressures and purge lines individually"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Fully open the acetylene cylinder valve immediately"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Grease threads/fittings for better sealing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Back out regulator screws, slowly and fully open the oxygen cylinder valve, then set pressures and purge lines individually"
+    }
+  },
+  {
+    "id": "Q-A-3P_oxyfuel_fuel_valve_turns_20000102",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "When working with acetylene cylinders, the cylinder valve is typically opened:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fully to the stop"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "About 1/2–1 1/2 turns so it can be closed quickly (per manufacturer guidance)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To any random position—it doesn’t matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Only when moving the cylinder"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "About 1/2–1 1/2 turns so it can be closed quickly (per manufacturer guidance)"
+    }
+  },
+  {
+    "id": "Q-A-3P_confined_space_gas_test_20000104",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Gas testing in a confined space shows O₂ = 19.2% and 10% LEL. Your decision:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Enter; values are close enough to normal"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not enter; ventilate, eliminate vapor sources, and retest until O₂ ≥ 19.5% and LEL is below the threshold"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Enter with a filtering respirator"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Have a coworker stand by with an extinguisher"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Do not enter; ventilate, eliminate vapor sources, and retest until O₂ ≥ 19.5% and LEL is below the threshold"
+    }
+  },
+  {
+    "id": "Q-A-3P_LEV_position_20000105",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "During welding in the shop, the extraction hood/arm should be positioned:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Well away from the arc so it doesn’t block view"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "As close as possible to the fume source without placing yourself between the arc and the intake"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Above the welder’s head so hot air rises into it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Anywhere—general ventilation is enough"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "As close as possible to the fume source without placing yourself between the arc and the intake"
+    }
+  },
+  {
+    "id": "Q-A-3P_hexchrome_controls_20000107",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "You are welding stainless steel (GMAW) indoors. The most appropriate primary controls are:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Open the doors and rely on a draft"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use local exhaust at the arc; add a suitable respirator if the risk assessment requires it"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase amperage to reduce fume"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use only short tacks"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use local exhaust at the arc; add a suitable respirator if the risk assessment requires it"
+    }
+  },
+  {
+    "id": "Q-A-3P_cylinder_storage_sep_20000108",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "You are laying out a cylinder storage area. A correct solution for O₂ and fuel gases is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Store them together for convenience"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Separate by at least 6.1 m (20 ft) or by a 1.5 m (5 ft) barrier with ~30‑min fire rating"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lay cylinders horizontally and roll them to a wall"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Oil the threads for better sealing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Separate by at least 6.1 m (20 ft) or by a 1.5 m (5 ft) barrier with ~30‑min fire rating"
+    }
+  },
+  {
+    "id": "Q-A-3P_gfci_wet_grinder_20000111",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "You need to dress a part quickly on a bench grinder in a damp area. The safe choice is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No protection—it’s just a minute"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safety glasses + face shield; power through GFCI; dry the work area"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Safety glasses only and no extraction"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sunglasses and fingerless gloves"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Safety glasses + face shield; power through GFCI; dry the work area"
+    }
+  },
+  {
+    "id": "Q-A-3P_resp_fit_practical_20000112",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "For tight‑fitting respirators used while welding stainless, practical must‑haves are:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stubble under the mask is fine if straps are tight"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Be clean‑shaven where the mask seals and complete fit testing per the program"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A general room fan is enough"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tighten straps hard over a beard"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Be clean‑shaven where the mask seals and complete fit testing per the program"
+    }
+  }
+]

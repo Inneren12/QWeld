@@ -1,0 +1,786 @@
+[
+  {
+    "id": "Q-D-15_positions_common_v1_00_400000ff",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Which welding positions are most commonly applicable for submerged arc welding (SAW)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "All positions"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Primarily flat and horizontal"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Vertical‑down only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Overhead only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Granular flux and high deposition rates work best in flat/horizontal positions."
+    }
+  },
+  {
+    "id": "Q-D-15_multi_wire_saw_v1_05_40000104",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "An advantage of a multi‑wire SAW system is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lower deposition rate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Higher deposition rate and productivity"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Flux is no longer required"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Operation in all positions"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Multiple wires increase deposition and production rate."
+    }
+  },
+  {
+    "id": "Q-D-15_travel_speed_effect_v1_07_40000106",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Increasing travel speed in SAW typically:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Widens the bead"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Narrows the bead and reduces penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminates distortion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Higher speed lowers heat input and penetration."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_moisture_care_v1_02_40000101",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "How should SAW flux be handled to avoid porosity?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Store open to shop air"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Keep it dry; if damp, re‑bake per manufacturer instructions"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Mix with oil to suppress dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Rinse with water"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture adds hydrogen and causes porosity; flux should be dry, re‑baked if wetted."
+    }
+  },
+  {
+    "id": "Q-D-15_wire_stickout_v1_04_40000103",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Excessive wire stickout in SAW generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increases current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduces current and penetration due to resistive heating of the wire"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Improves bead shape"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Long stickout heats the wire before the arc, lowering arc current and penetration."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_function_1000007c",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "What does the flux primarily provide in SAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cooling water and lubrication"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Shielding and slag formation around the weld pool"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Electrical insulation only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Alloying exclusively"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Granular flux provides shielding and slag; it may also add alloying elements."
+    }
+  },
+  {
+    "id": "Q-D-15_flux_coverage_v2_04_4000010d",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "In SAW the arc should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fully covered by flux"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Barely covered with flux"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open to view"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Periodically uncovered"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Full flux coverage ensures shielding and proper slag formation."
+    }
+  },
+  {
+    "id": "Q-D-15_saw_ac_dc_1000007b",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Why is alternating current (AC) often used for SAW at very high currents?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To reduce magnetic arc blow and allow higher currents"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To increase magnetic arc blow"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Because DC cannot produce quality welds"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate the need for flux"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "AC reduces magnetic field effects on the arc and stabilizes operation at very high currents."
+    }
+  },
+  {
+    "id": "Q-D-15P_0101",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "The end of a weld on 20 mm plate repeatedly cracks across the crater in SAW. What should you do first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Slightly increase arc voltage at the termination"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use run‑off tabs and a crater‑fill/downslope function at stop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Speed up over the last 50 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce the flux bed at the exit to a minimum"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Run‑off tabs and crater fill prevent shrinkage cracking at the bead end."
+    }
+  },
+  {
+    "id": "Q-D-15P_0102",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "A glow is sometimes visible — the flux is not fully covering the arc. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Reduce flux feed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase flux feed/flux ridge height and adjust the guide so the arc is fully buried"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Raise voltage for a longer arc"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn off the vacuum flux‑recovery unit"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The arc must be completely submerged in flux for stable shielding and slag formation."
+    }
+  },
+  {
+    "id": "Q-D-15P_0103",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "An undercut appears along the upper toe of a fillet weld. What most often helps first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase arc voltage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly lower voltage/shorten the arc and adjust the work angle toward the high leg"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase groove width"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add a second wire"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A long arc and incorrect work angle often cause undercut; a tighter arc and correct angle stabilize the bead."
+    }
+  },
+  {
+    "id": "Q-D-15P_0104",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Burn‑through occurs on an 8 mm wall. How can you reduce penetration without reprogramming the whole procedure?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Shorten the stickout"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase CTWD so some heat is spent preheating the wire (lowering arc current)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Raise current"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add more flux at the start zone"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A greater CTWD reduces current at the arc and penetration without changing the main setpoints."
+    }
+  },
+  {
+    "id": "Q-D-15P_0105",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "The bead shows porosity. What is the first action with the flux?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Add oil to the flux to bind dust"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry/rebake the flux per the manufacturer and store it in a dry hopper"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Mix spent and fresh flux 1:1 without screening"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase arc voltage"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture in the flux is a common porosity source; drying and dry storage are required."
+    }
+  },
+  {
+    "id": "Q-D-15P_0106",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "What is proper handling of recovered flux?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Return it to the hopper immediately with no screening"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Screen it, remove slag fines/dust, and blend with new flux within the manufacturer’s allowed ratio"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add water to suppress dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Store it open on the shop floor"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Clean reclaimed flux and dose it per spec to avoid degrading weld quality."
+    }
+  },
+  {
+    "id": "Q-D-15P_0107",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "On a long girder you notice magnetic arc blow and arc deflection. What is your first practical action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lengthen the arc to ‘stretch’ it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Move the work lead closer/ahead of travel (possibly use two leads) and switch to AC if needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase travel speed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce flux feed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Optimizing return‑current location and using AC reduces magnetic‑field effects on the arc."
+    }
+  },
+  {
+    "id": "Q-D-15P_0108",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Welding near a plate edge: the flux slides off and shielding is lost. What helps?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lower voltage and remove flux entirely"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use flux dams/retainers and adjust flux feed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Raise travel speed to maximum"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Weld without flux with a short arc"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Mechanical dams keep flux at the edge and maintain arc coverage."
+    }
+  },
+  {
+    "id": "Q-D-15P_0109",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Lack of root penetration in a double‑V (X) groove on 25 mm plate. Where should you start adjusting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase voltage at the same speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly reduce speed and/or raise current, watching arc shape and the slag shelf"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Greatly increase flux feed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to a larger wire without changing anything else"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Lower speed/ higher current increases heat input and penetration; adjust gradually."
+    }
+  },
+  {
+    "id": "Q-D-15P_0110",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "The bead is excessively convex (high reinforcement). What is a typical first step?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase current and voltage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slightly increase travel speed and/or reduce deposition rate (wire feed)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduce CTWD"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Maximize flux height"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Excess reinforcement commonly comes from too much deposition; more speed/less feed helps."
+    }
+  },
+  {
+    "id": "Q-D-15P_0111",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Circumferential weld on a rotating pipe: flux gets thrown off at the top quadrant. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Greatly increase rotation speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use flux shoes/retainers and adjust the feed rate"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add water to make the flux heavier"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Drop current to zero at top dead center"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Mechanical retainers and correct feed prevent flux throw‑off."
+    }
+  },
+  {
+    "id": "Q-D-15P_0112",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "At high speed the surface shows a scalloped ‘fish‑scale’ appearance and uneven beads. What should you adjust first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase speed further"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduce speed and/or slightly lower voltage for a tighter arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the flux completely"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lengthen the arc"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Excess speed and a long arc produce irregular beads; a tighter arc and moderate speed even them out."
+    }
+  },
+  {
+    "id": "Q-D-15P_0113",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "In multipass welding, thoroughly removing slag and flux between passes is essential because…",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It speeds up flux feeding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It reduces the risk of slag inclusions and lack of fusion on subsequent passes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "You can increase arc voltage without consequences"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Flux improves bonding of the next layer"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Residual slag/flux commonly causes inclusions and fusion problems."
+    }
+  },
+  {
+    "id": "Q-D-15P_0114",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "With long power leads the supply sags and the arc is unstable. What is a practical fix?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Reduce flux feed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase conductor cross‑section/double the leads and/or move the power source closer"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Turn voltage up to maximum"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Shorten CTWD"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Line losses are offset by larger cables/shorter runs or relocating the power source."
+    }
+  },
+  {
+    "id": "Q-D-15P_0115",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Interpass temperature control on a box girder is critical. Why?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To increase flux‑recovery rate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To avoid cold cracking/excess heat input and keep mechanical properties within spec"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To make the bead more convex"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate the need for cleaning the weld"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Temperature control affects hydrogen cracking risk and the weld/HAZ structure."
+    }
+  },
+  {
+    "id": "Q-D-15P_0116",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Flux dust and blow‑off when dropping from excessive height. What is the practical solution?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Raise the drop height even more"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lower the flux drop height/adjust the chute and feed, check baffles"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add water to the hopper"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to an open‑arc process (no flux)"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Shorter drop and proper shielding reduce dispersion and dusting."
+    }
+  },
+  {
+    "id": "Q-D-15P_0117",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "After switching to tandem (two‑wire), the bead is wavy with some undercut. What should you target first in setup?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Greatly increase voltage on both arcs"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Balance lead/lag currents, spacing and offset of arcs, and synchronize wire‑feed speeds"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add a third wire"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce flux feed to a minimum"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "In tandem SAW, bead profile depends on lead/lag balance and arc geometry."
+    }
+  },
+  {
+    "id": "Q-D-15P_0118",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "Slag inclusions appear between passes in SAW on thick plate. Which is the correct first step?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Raise voltage to lengthen the arc"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Improve interpass cleaning and adjust travel so slag has time to escape"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase the flux bed height"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stop using run‑off tabs"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cleaning and suitable travel parameters are critical for slag evacuation and avoiding inclusions."
+    }
+  },
+  {
+    "id": "Q-D-15P_0119",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "The weld start on a clean edge is cratered with undercut. What is a practical remedy?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start directly on the finished face"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use run‑on tabs and/or a soft‑start current ramp"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always start without flux"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Max out voltage on start"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Run‑on tabs and a gentle current ramp produce a smooth tie‑in without undercut/cratering."
+    }
+  },
+  {
+    "id": "Q-D-15P_0120",
+    "taskId": "D-15",
+    "difficulty": "medium",
+    "stem": "When welding near an open edge the flux periodically falls off and the arc is exposed. Which solution is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Weld without flux in that area"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Install side shields/dams and slightly reduce speed/voltage for puddle stability"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Simply increase arc length"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add water to the flux to make it heavier"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Mechanical retention of flux and moderate parameters keep the arc covered at an edge."
+    }
+  }
+]

@@ -1,0 +1,842 @@
+[
+  {
+    "id": "Q-C-10_air_quality_10000040",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Why use dry, clean compressed air for PAC?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wet, oily air extends consumable life"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry, clean air reduces wear and improves cut quality"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Air quality is irrelevant"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Nitrogen is always required instead of air"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Moisture and oil contaminate the plasma stream and damage consumables."
+    }
+  },
+  {
+    "id": "Q-C-10_air_quality_need_v1_03_300000bc",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "What is the benefit of using dry, clean compressed air for PAC?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Better splash lubrication of the torch"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Less consumable wear and improved cut quality"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "No benefit; air quality does not matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Mandatory nitrogen substitution in all cases"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dry, oil‑free air prevents contamination of the arc and orifices."
+    }
+  },
+  {
+    "id": "Q-C-10_arc_stretch_gap_v1_09_300000c2",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Excessive standoff/gap in PAC typically:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Improves cut squareness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increases arc stretch, dross, and bevel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Eliminates dross completely"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Has no effect on the cut"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A long arc increases divergence and heat loss, worsening dross and angle."
+    }
+  },
+  {
+    "id": "Q-C-10_consumable_change_v1_08_300000c1",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "A sign PAC consumables need replacement is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Sharper kerf and less bevel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wider kerf, more bevel, unstable arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower dross with identical settings"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No change at all after many hours"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Worn nozzle/electrode degrade jet focus and arc stability."
+    }
+  },
+  {
+    "id": "Q-C-10_dross_slow_speed_v1_01_300000ba",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Heavy bottom dross is usually a sign of:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Travel speed too slow or too low amperage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Travel speed too fast"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Perfect parameter match"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Excessive gas dryness"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Too slow or too cold allows molten metal to solidify along the bottom edge."
+    }
+  },
+  {
+    "id": "Q-C-10_dross_speed_1000003e",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Heavy bottom dross is usually a sign of what?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Too slow a travel speed or insufficient current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Excessively fast travel speed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ideal parameter match"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Overly dry air supply"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Slow/cold cuts leave adherent bottom dross."
+    }
+  },
+  {
+    "id": "Q-C-10_good_side_kerf_v1_06_300000bf",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Due to kerf angle in PAC, a good practice is to place the 'good side' of the cut:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On the scrap side"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "On the workpiece side that must meet size/tolerance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Randomly; kerf angle is symmetrical"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always on the operator’s left"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "PAC kerf is not perfectly square; orient the torch so the true edge is on the kept side."
+    }
+  },
+  {
+    "id": "Q-C-10_lag_lines_v1_07_300000c0",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Prominent lag lines trailing far behind the torch usually indicate:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Correct travel speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Excessive travel speed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Standoff too small"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Perfect angularity"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "If the jet lags too far, travel is too fast for full penetration."
+    }
+  },
+  {
+    "id": "Q-C-10_pierce_height_v1_05_300000be",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "A good practice for piercing with PAC is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start right on the plate surface to reduce blowback"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Pierce at elevated height/angle to avoid blowback into the nozzle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always pierce from the edge only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lower amperage to minimum and drag the tip"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Piercing higher/angled directs molten ejecta away from the orifices."
+    }
+  },
+  {
+    "id": "Q-C-10_pilot_arc_start_v1_04_300000bd",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "What is the advantage of pilot-arc or HF start in PAC?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No need for a power source"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reliable arc initiation without contacting the work"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Eliminates the need for air supply"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Allows cutting of any non‑conductive materials"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Pilot/HF start lights the arc without tip contact, reducing wear."
+    }
+  },
+  {
+    "id": "Q-C-10_polarity_common_v1_02_300000bb",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Which polarity is typical for air plasma cutting systems?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "AC only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "DCEN (electrode negative)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "DCEP (electrode positive)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Either polarity with no effect"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Air plasma torches commonly use DCEN (electrode negative)."
+    }
+  },
+  {
+    "id": "Q-C-10_standoff_1000003d",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Always drag the tip regardless of torch design"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Maintain the proper standoff/drag per the torch to protect consumables"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Closer is always better"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Farther is always better"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
+    }
+  },
+  {
+    "id": "Q-C-10P_0001",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "The compressor delivers 5.0 scfm at 90 psi. A 45 A hand plasma cutter requires at least 6.0 scfm at 90 psi. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Run as is — the cut will just be slower"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Turn current down to 20 A and the issue disappears"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Provide ≥6.0 scfm (bigger compressor/air line) or run a smaller current and nozzle matched to available flow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Raise pressure to 120 psi with the same compressor"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Too little flow causes an unstable arc and premature consumable wear; meet the flow spec or down‑rate to match available air."
+    }
+  },
+  {
+    "id": "Q-C-10P_0002",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "The gauge shows 6 bar at idle but drops to 4 bar while cutting. The edge is rough and the arc wanders. What should you check first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Switch polarity to DCEN"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Compressor capacity/hose size and any restrictions in the air path"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add a 50 m extension cord — it will help"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce the standoff to zero"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A pressure drop under load points to inadequate flow or a restrictive/undersized air supply path."
+    }
+  },
+  {
+    "id": "Q-C-10P_0003",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Where is it best to place a moisture/oil separator (dryer) for PAC?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Downstream of the compressor, close to the plasma cutter, with regular draining"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Upstream of the compressor — that keeps the whole system dry"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Not needed; shop air is already ‘dry’"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "After the torch — on the hose"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Place the dryer after the compressor/receiver and as close to the machine as practical for best removal of moisture and oil."
+    }
+  },
+  {
+    "id": "Q-C-10P_0004",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "When piercing 12 mm plate, how do you reduce blowback spatter onto the nozzle?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Touch the nozzle to the plate and immediately start moving"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Raise to 1.5–2× normal standoff and slightly tilt away until the jet breaks through, then level out"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower the air pressure to the minimum"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Pierce on the very edge of the part"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Extra height and a slight tilt during the pierce reduce molten blowback onto the nozzle and extend consumable life."
+    }
+  },
+  {
+    "id": "Q-C-10P_0005",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Where should lead‑in/lead‑out be placed when nesting parts for cutting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On the ‘good’ finished edge — it’s more accurate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "On scrap, outside the finished contour"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always centered on each side"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No lead‑in at all — start right on the contour"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Place lead‑in/out on the scrap side so start/stop defects never land on the finished edge."
+    }
+  },
+  {
+    "id": "Q-C-10P_0006",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Inspection shows a deep pit in the electrode face (hafnium). What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Flip the electrode and use the other end"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Keep running until it burns through — there’s life left"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace the electrode (and nozzle if needed) to prevent double‑arcing and kerf angle"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase current for self‑cleaning"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A deep crater indicates wear; continuing risks double‑arcing and degraded cut quality."
+    }
+  },
+  {
+    "id": "Q-C-10P_0007",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "After the torch was dropped the swirl ring cracked. How will this defect show up in cutting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "The arc becomes brighter and more stable"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "No effect — that part is cosmetic"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Unstable arc, bevelled kerf, accelerated nozzle wear"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Severe heating of the work clamp cable"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A damaged swirl ring disrupts plasma stabilization — arc shape and edge quality suffer."
+    }
+  },
+  {
+    "id": "Q-C-10P_0008",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "You’re getting a pronounced bottom burr in corners and at hole exit. What technique change helps?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Speed up through the corner by 30–40%"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Slow down 20–30% before corners and at hole exit"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Raise current by 10 A only in corners"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase standoff to 5–6 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "In corners/exits the jet loses energy; a brief slow‑down keeps the jet trailing under control and reduces dross."
+    }
+  },
+  {
+    "id": "Q-C-10P_0009",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Your machine’s duty cycle is 60% at 40 A. You cut 6 minutes out of 10 and thermal protection tripped. Which statement is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "This is normal — add pauses or reduce current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Change polarity and the protection will disable"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lubricate the fan — that will help"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Raise air pressure to 10 bar"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A 60% duty cycle allows at most 6 minutes on per 10‑minute cycle at rated conditions; add cool‑down time or lower current."
+    }
+  },
+  {
+    "id": "Q-C-10P_0010",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Powered through a 50 m extension cord (1.5 mm²), the unit sags and the arc breaks. Your fix?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use a shorter, larger‑gauge cord or connect closer to the panel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lower the air pressure to 3 bar"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase travel speed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add another air dryer"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Long/thin power leads cause voltage drop — use a shorter and thicker supply cable."
+    }
+  },
+  {
+    "id": "Q-C-10P_0011",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Where should the work clamp be attached for PAC?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On painted surface far away — the sparks will reach"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "On clean metal as close to the cut as possible"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "On the table, through rubber pads"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "On a neighboring part — no difference"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A clean, short return path improves arc stability and cut quality."
+    }
+  },
+  {
+    "id": "Q-C-10P_0012",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "The arc occasionally ‘doubles’ and the kerf is trapezoidal. What does this suggest?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Normal operation — a sign of good speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Worn nozzle/electrode (ovalized orifice, deep electrode crater)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wrong polarity"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Work clamp cable is too short"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Worn consumables cause double‑arcing and kerf angle (bevel)."
+    }
+  },
+  {
+    "id": "Q-C-10P_0013",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "How can you recognize optimal PAC speed on mild steel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Heavy bottom dross and horizontal lag lines"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Nearly vertical lag lines and a thin, easily removed dross"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A heavy top bevel — means it’s ‘cold’"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Absolutely no line marks on the edge"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "At proper speed the lag lines are close to vertical and dross is thin and easy to remove."
+    }
+  },
+  {
+    "id": "Q-C-10P_0014",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "You must cut Ø14 mm holes in 10 mm plate. How can you improve hole geometry with a hand PAC?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cut at normal speed — holes are no different"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduce speed by 30–40% and use a short lead‑in with exit onto scrap"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase standoff to 6–8 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always cut top‑down clockwise"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Small holes need a slower speed and careful lead‑in/out to limit taper and burrs."
+    }
+  },
+  {
+    "id": "Q-C-10P_0015",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Cutting expanded/perforated metal causes constant arc outages. What helps?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use a constant pilot‑arc mode (if available)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase standoff to 10 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower air pressure to the minimum"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Install a larger nozzle without changing current"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A constant pilot arc maintains reignition while traversing gaps and cutouts."
+    }
+  },
+  {
+    "id": "Q-C-10P_0016",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Cutting galvanized steel produces heavy fumes. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Continue — the fumes are harmless"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Provide effective extraction/water table and respiratory PPE"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add oil to the air — it will reduce dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lower air pressure to 2 bar — it will be cleaner"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Zinc fumes are hazardous — use local exhaust/water table and appropriate respiratory protection or remove the coating first."
+    }
+  },
+  {
+    "id": "Q-C-10P_0017",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "The cutter’s stated air demand is 4.5 scfm. About how many liters per minute is that?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈45 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈85 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈128 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈4.5 L/min"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "1 scfm ≈ 28.3 L/min; 4.5 × 28.3 ≈ 127.4 L/min — ≈128 L/min."
+    }
+  },
+  {
+    "id": "Q-C-10P_0018",
+    "taskId": "C-10",
+    "difficulty": "medium",
+    "stem": "Hand cutting along a straightedge, the edge ‘wanders’ due to inconsistent standoff. What can you use to stabilize height?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A drag shield/stand‑off shoe or wheel, or a distance ring on the torch"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Press the nozzle firmly onto the plate"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase current by 20 A"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cut faster — the arc will straighten out"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A mechanical stand‑off helps hold a constant height during manual cutting, improving cut quality."
+    }
+  }
+]

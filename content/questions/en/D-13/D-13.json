@@ -1,0 +1,1122 @@
+[
+  {
+    "id": "Q-D-13_metal_cored_gas_v2_05_40000069",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Metal‑cored (MCAW) wires typically require:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No shielding gas"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "External shielding gas"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only CO₂ without exceptions"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Flux baking"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "MCAW wires need the correct shielding gas mix per specification."
+    }
+  },
+  {
+    "id": "Q-D-13_nozzle_care_1000006b",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Why keep the GMAW nozzle and contact tip clean?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To increase spatter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To maintain gas coverage and stable electrical contact"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce deposition rate"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To cool the wire"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Spatter buildup disturbs shielding and electrical continuity."
+    }
+  },
+  {
+    "id": "Q-D-13_porosity_causes_10000061",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Which can cause porosity in GMAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Drafts, improper gas flow, or surface contamination"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Higher voltage only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Small wire diameter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Using a gas lens"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Shielding disruption and contaminants allow gas pores to form."
+    }
+  },
+  {
+    "id": "Q-D-13_fcaW_s_polarity_10000069",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Most self‑shielded FCAW wires run on:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "DCEN"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "DCEP"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "AC only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Either polarity"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Popular self‑shielded classifications (e.g., E71T‑8) use DCEN."
+    }
+  },
+  {
+    "id": "Q-D-13_gas_flow_too_high_v3_03_40000071",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Excessive shielding gas flow can:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Always improve shielding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Cause turbulence and aspiration of air"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Have no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminate porosity"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Too much flow creates turbulence that pulls air into the arc."
+    }
+  },
+  {
+    "id": "Q-D-13_er70s6_strength_10000059",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "In ER70S‑6, what does '70' indicate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "70% shielding efficiency"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "70,000 psi minimum tensile strength"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "70 A wire feed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "70° torch angle"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Like SMAW, the '70' refers to minimum tensile strength in ksi."
+    }
+  },
+  {
+    "id": "Q-D-13_spray_transfer_10000066",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Which transfer mode provides a continuous stream of metal droplets at high current?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Short‑circuit"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Globular"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spray"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Pulsed"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Spray transfer delivers fine droplets axially across the arc."
+    }
+  },
+  {
+    "id": "Q-D-13_travel_speed_effect_v5_06_40000088",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Increasing travel speed (all else equal) results in:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wider, deeper bead"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Narrower bead with less penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "No change"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminates distortion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Higher speed reduces heat input and penetration."
+    }
+  },
+  {
+    "id": "Q-D-13_voltage_bead_1000005c",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Increasing voltage in CV GMAW (at fixed WFS) tends to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Narrow and stiffen the arc with deeper penetration"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Widen the bead and increase wetting"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower heat input and widen the bead"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Have no effect"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Higher voltage broadens the arc column, improving sidewall wetting."
+    }
+  },
+  {
+    "id": "Q-D-13_wfs_controls_current_1000006a",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "In a CV GMAW system, which control primarily changes welding current?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Voltage knob"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wire feed speed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Inductance"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Gas flow rate"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "At constant voltage, increasing WFS raises current and deposition rate."
+    }
+  },
+  {
+    "id": "Q-D-13_gmaw_polarity_10000058",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Which polarity is standard for GMAW and most gas‑shielded FCAW wires?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "DCEN"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "DCEP"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "AC only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Either, no difference"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Solid and gas‑shielded flux‑cored wires typically use electrode positive (DCEP)."
+    }
+  },
+  {
+    "id": "Q-D-13_drive_rolls_10000062",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Which drive rolls are appropriate for FCAW‑S vs solid wire?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "V‑groove for FCAW‑S; knurled for solid"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Knurled for FCAW‑S; V‑groove for solid"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "U‑groove for solid only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any roll type is fine"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Knurled rolls grip tubular wire; V‑groove rolls suit solid steel wire."
+    }
+  },
+  {
+    "id": "Q-D-13_inductance_1000005d",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "In short‑circuit GMAW, increasing inductance generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Makes the arc harsher with more spatter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Softens the arc and reduces spatter"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Prevents fusion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Greater inductance slows current rise, reducing explosive short clearing and spatter."
+    }
+  },
+  {
+    "id": "Q-D-13_liner_selection_v3_04_40000072",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "For soft wires (aluminum), which liner is appropriate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Steel‑wound liner"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Teflon/UHMW‑type liner"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any liner is fine"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No liner needed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Low‑friction liners reduce drag and shavings with soft wire."
+    }
+  },
+  {
+    "id": "Q-D-13_birdnesting_10000063",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "A common cause of 'birdnesting' in GMAW wire feeders is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Correct liner size"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Incorrect drive‑roll tension or liner size causing high drag"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Proper conduit length"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Using a clean wire"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Feeding drag or excessive pressure can tangle the wire at the rolls."
+    }
+  },
+  {
+    "id": "Q-D-13_ctwd_long_effect_v6_08_40000094",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Excessive stickout/CTWD in GMAW/FCAW causes:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Higher current/deeper penetration"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lower current/reduced penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "No change"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cleaner arc starts"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Long stickout increases resistive heating, lowering current."
+    }
+  },
+  {
+    "id": "Q-D-13_shortc_limitation_v7_08_4000009e",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "A limitation of short‑circuit GMAW on thick plate is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Excessive fume"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "High penetration causing burn‑through"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Potential lack of fusion in grooves/fillets"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cannot run out of position"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Low energy per droplet can leave lack‑of‑fusion in heavy sections."
+    }
+  },
+  {
+    "id": "Q-D-13_spool_gun_reason_v8_07_400000a7",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Why use a spool gun with aluminum GMAW?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To increase stickout"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To keep soft wire feed path short, reducing birdnesting"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To eliminate shielding gas"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To run DCEN"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A short feed path in the gun reduces feeding issues with soft wire."
+    }
+  },
+  {
+    "id": "Q-D-13_burnback_10000064",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "What typically causes 'burnback' (wire fusing to the contact tip)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Too long stickout"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Too short stickout or too slow wire feed relative to voltage"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "High gas flow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Correct inductance"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "If burnoff exceeds feed, the arc retreats and the wire fuses to the tip."
+    }
+  },
+  {
+    "id": "Q-D-13_spray_gas_1000005b",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "To achieve spray transfer on carbon steel, what is generally required?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "CO₂‑only shielding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Argon‑rich shielding gas"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Very low voltage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Short stickout"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Spray transfer needs an argon‑dominant gas and sufficient current/voltage."
+    }
+  },
+  {
+    "id": "Q-D-13_contact_tip_to_work_v11_00_400000be",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Reducing CTWD at constant WFS and voltage generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lowers current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Raises current and penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduces spatter only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Shorter stickout reduces resistive heating, increasing current and penetration."
+    }
+  },
+  {
+    "id": "Q-C-9P_0022",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "During a shutdown check (cylinders still open), the oxygen delivery gauge creeps from 30 psi to 45 psi with the torch valves closed. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Bleed the lines, back out the screw, and keep working"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Crack the tip valves slightly to relieve pressure"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tag out the regulator and replace/repair it (pressure creep = faulty seat)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn the high‑pressure gauge needle back to zero"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Pressure creep indicates a leaking HP seat; remove the regulator from service."
+    }
+  },
+  {
+    "id": "Q-C-9P_0023",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "While using a square‑stem acetylene cylinder, where should the valve key be during operation?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "In your pocket"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Left on the valve stem for quick shutoff"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hanging on the oxygen cylinder"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Not needed once pressures are set"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Keeping the key on the valve allows immediate shutdown in an emergency."
+    }
+  },
+  {
+    "id": "Q-C-9P_0024",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "You switch to propane for heating. Which hose grade should you use?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Grade R"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Grade RM"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Grade T"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any hose grade is fine"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "T‑grade hoses are required for alternate fuels (propane, natural gas); R/RM are for acetylene only."
+    }
+  },
+  {
+    "id": "Q-C-9P_0025",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "What is the safe way to light an oxy‑fuel torch?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "With a cigarette lighter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "With a match"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "With a flint striker (spark lighter)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "By touching the tip to hot steel"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Use a striker to keep hands away from the tip and avoid open‑flame ignition sources."
+    }
+  },
+  {
+    "id": "Q-C-9P_0026",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Before attaching an oxygen regulator, how should you crack the cylinder valve?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stand in front of the outlet and crack toward you"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stand to the side; point the outlet away from people/equipment; brief crack to blow out debris"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open the valve fully for several seconds"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wrap the outlet with a rag and crack the valve"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stand to the side and direct the outlet away while cracking briefly to clear the seat."
+    }
+  },
+  {
+    "id": "Q-C-9P_0027",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "The cutting‑oxygen lever on the torch sticks. What’s the correct action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Oil the lever pivot to free it up"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase oxygen pressure to overcome the sticking"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the torch from service and have it cleaned/repaired—do not lubricate"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tap the lever gently with a hammer"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Sticking controls require service; oil/grease is unsafe on oxygen equipment."
+    }
+  },
+  {
+    "id": "Q-C-9P_0028",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "How should hoses be routed in a busy shop to avoid damage and trips?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Under plates or through pinch points—protected by weight"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Elevated or guarded (covers/bridges), kept away from sparks and hot slag"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Dragged loosely across walkways"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tied tightly together near the tip"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Guard or elevate hoses and keep them out of traffic and hot‑work fallout."
+    }
+  },
+  {
+    "id": "Q-C-9P_0029",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "For oxy‑acetylene brazing on clean steel, which flame is preferred?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Strong oxidizing flame"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Neutral flame only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Slightly carburizing (reducing) flame"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any flame works for brazing"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A slight reducing flame helps protect the molten filler from oxidation."
+    }
+  },
+  {
+    "id": "Q-C-9P_0030",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "You switch from acetylene to propane for cutting. What is required?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No changes—use the same tip and hoses"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use the manufacturer’s propane‑specific tip/mixer and T‑grade hoses"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Open the acetylene regulator further"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add a light oil to the hoses to prevent drying"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Alternate fuels need proper tip/mixer design and T‑grade hoses."
+    }
+  },
+  {
+    "id": "Q-C-9P_0031",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Convert 12 L/min to CFH.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "≈12 CFH"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "≈25 CFH"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "≈50 CFH"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "≈75 CFH"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "CFH ≈ L/min × 60 ÷ 28.3168 → 12 × 60 ÷ 28.3168 ≈ 25 CFH."
+    }
+  },
+  {
+    "id": "Q-C-9P_0032",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "After several backfires the tip is very hot and discolored. What should you do before continuing?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Dip the tip in water to cool it quickly"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Air‑cool, shut off gases, then inspect/clean or replace the tip and seats"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spray a light oil on the tip"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Continue working—heat won’t matter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Let it cool naturally and restore tip/orifice condition before resuming."
+    }
+  },
+  {
+    "id": "Q-C-9P_0033",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Which sequence is correct for changing an oxygen cylinder?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Bleed the low‑pressure side first, then close the cylinder"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Close cylinder valve → open torch valve to bleed → back out regulator screw → remove regulator"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the regulator while the line is still pressurized"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Leave the regulator screw tight to save the setting"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Depressurize the system before removing the regulator; then reset the screw."
+    }
+  },
+  {
+    "id": "Q-C-9P_0034",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Which material cannot be cut by the standard oxy‑fuel oxidation process?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Mild steel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Low‑alloy steel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stainless steel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Carbon steel with mill scale"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Stainless doesn’t support rapid iron‑oxide formation; use plasma or special methods."
+    }
+  },
+  {
+    "id": "Q-C-9P_0035",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "You suspect a small system leak. Which simple leak‑down check is valid?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Close cylinder valves, note delivery pressure, close torch valves, and observe if pressure holds for several minutes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Open both gases and listen for a hiss"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spray WD‑40 on all joints"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tap the gauge glass and see if the needle jumps"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Stable delivery pressure with cylinders shut indicates no internal leak; a drop suggests leakage."
+    }
+  },
+  {
+    "id": "Q-C-9P_0036",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "When piercing 25 mm plate, you get heavy blowback that splashes the tip. What adjustment helps most?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Move the tip closer and open the oxygen jet immediately"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase preheat time and use a slight tip tilt away before opening the oxygen jet"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower oxygen pressure far below tip chart values"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Open the oxygen jet fully from the start at maximum standoff"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Thorough preheat and a small lead angle reduce blowback and tip damage."
+    }
+  },
+  {
+    "id": "Q-C-9P_0037",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Where is PTFE (Teflon) tape permissible in an oxy‑fuel setup?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On the cylinder‑to‑regulator connection"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "On B‑size hose connections"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only on specified tapered pipe threads downstream if permitted by the manufacturer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "On all metal‑to‑metal seats to help sealing"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Use tape only on designated NPT‑type joints downstream; never on CGA/B‑size seats."
+    }
+  },
+  {
+    "id": "Q-C-9P_0038",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "You must cut near combustibles. What control is most appropriate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spray the area with water once at the start"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Assign a trained fire watch with proper extinguishers and maintain watch per the hot‑work permit"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Just open doors for ventilation"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No action needed with a neutral flame"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Fire watch and permit controls mitigate ignition hazards around combustibles."
+    }
+  },
+  {
+    "id": "Q-C-9P_0039",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "A coworker uses oxygen to blow dust off clothing. What’s the correct response?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Allowed if pressure is low"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safe outdoors only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stop it—oxygen can saturate clothing and greatly increase fire risk"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Okay with full PPE"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Never use oxygen for personal cleaning; it creates an extreme fire hazard."
+    }
+  },
+  {
+    "id": "Q-C-9P_0040",
+    "taskId": "D-13",
+    "difficulty": "medium",
+    "stem": "Cutting 10 mm plate from 25 mm standoff gives a ragged kerf and heavy bottom slag. What change will most likely clean the cut?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase standoff to keep heat off the plate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduce standoff to the recommended tip distance and adjust travel to keep a steady preheat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to a carburizing flame"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Throttle the oxygen jet part‑way closed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Proper standoff and steady preheat stabilize the jet and reduce slag."
+    }
+  }
+]

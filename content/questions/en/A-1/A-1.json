@@ -1,0 +1,1654 @@
+[
+  {
+    "id": "Q-A-1_cable_lug_crimp_20000011",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "What is the correct method to attach lugs to welding cables?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Hammer-crimp and tape"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Proper crimping/soldering per manufacturer with insulation"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Twist and tie with wire"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Bare copper strands under the lug without insulation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Proper crimping/soldering per manufacturer with insulation"
+    }
+  },
+  {
+    "id": "Q-A-1_compressor_drain_20000013",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Why should a shop air receiver/compressor be drained regularly?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To increase humidity for welding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To remove moisture that can damage tools and processes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To cool the tank"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To reduce air pressure permanently"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "To remove moisture that can damage tools and processes"
+    }
+  },
+  {
+    "id": "Q-A-1_cylinder_cap_move_20000002",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Before moving a compressed gas cylinder, what should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove the cap for better grip"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Leave the regulator installed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Install the protective cap and use a proper cart"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Roll it on the floor by hand"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Install the protective cap and use a proper cart"
+    }
+  },
+  {
+    "id": "Q-A-1_cylinder_chain_storage_20000001",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "How should compressed gas cylinders be stored when not in use?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Laid horizontally on the floor"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Upright and secured with a chain or strap"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stacked in a corner"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Freestanding; the cap prevents tipping"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Upright and secured with a chain or strap"
+    }
+  },
+  {
+    "id": "Q-A-1_cylinder_separation_2000000f",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "How should oxygen and fuel gas cylinders be stored relative to each other?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Together for convenience"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Separated by distance or a non-combustible barrier"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Mixed with oils to prevent corrosion"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stacked with timber spacers"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Separated by distance or a non-combustible barrier"
+    }
+  },
+  {
+    "id": "Q-A-1_damaged_cord_10000001",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "What should you do if a power tool’s cord insulation is damaged?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wrap it with tape and continue working"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use it only on GFCI-protected outlets"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tag it out and remove it from service until repaired"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Flip the plug to restore the ground"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Tag it out and remove it from service until repaired"
+    }
+  },
+  {
+    "id": "Q-A-1_extension_cord_gauge_20000007",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "For a long extension cord feeding a welder, which practice is best?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use the smallest gauge to save weight"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a larger (heavier) gauge to minimize voltage drop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Coil the cord tightly for neatness"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Run multiple lightweight cords in series"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use a larger (heavier) gauge to minimize voltage drop"
+    }
+  },
+  {
+    "id": "Q-A-1_flowmeter_vertical_20000004",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "How should a ball-type flowmeter be positioned for an accurate reading?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "At any angle; it self-levels"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Horizontally, so the ball rolls freely"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Vertically, with the tube upright"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Upside down to prevent dust entry"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Vertically, with the tube upright"
+    }
+  },
+  {
+    "id": "Q-A-1_fume_extractor_filter_2000000a",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Why maintain fume extractor filters per the indicator or schedule?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Dirty filters always improve capture"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It ensures airflow and capture efficiency"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It increases arc voltage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It replaces local exhaust hoods"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "It ensures airflow and capture efficiency"
+    }
+  },
+  {
+    "id": "Q-A-1_gfci_use_20000008",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "When using portable electric tools in damp areas, what should be used?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Non-grounded two-prong adapters"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A transformer for all tools"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A GFCI-protected supply"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A metal ladder as a ground"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A GFCI-protected supply"
+    }
+  },
+  {
+    "id": "Q-A-1_grinder_inspect_10000000",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Before using a portable angle grinder, which check is mandatory?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove the guard to access tight spots"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use any wheel that fits the arbor"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Verify the guard is fitted and the wheel RPM rating meets or exceeds tool RPM"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lubricate the wheel with oil for a smoother cut"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Verify the guard is fitted and the wheel RPM rating meets or exceeds tool RPM"
+    }
+  },
+  {
+    "id": "Q-A-1_gun_nozzle_clean_2000000c",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Why should a MIG gun nozzle be kept free of spatter?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To increase resistance"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To maintain gas coverage and reduce porosity"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To decrease deposition rate"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "So the nozzle runs hotter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "To maintain gas coverage and reduce porosity"
+    }
+  },
+  {
+    "id": "Q-A-1_holder_maintenance_10000003",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Which is correct for maintaining an electrode holder?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Minor cracks in insulation are acceptable"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Jaws should be oily to reduce sticking"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Insulation must be intact and jaws clean with no exposed conductors"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cool the holder in water after heavy use"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Insulation must be intact and jaws clean with no exposed conductors"
+    }
+  },
+  {
+    "id": "Q-A-1_hose_inspection_20000005",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Which finding requires removing an oxy-fuel hose from service?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Minor surface dust"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Proper color coding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Blistering, cuts, or dry rot"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hose length over 15 m"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Blistering, cuts, or dry rot"
+    }
+  },
+  {
+    "id": "Q-A-1_lowhyd_storage_20000010",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Between uses, low-hydrogen electrodes (e.g., E7018) should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stored open to shop air to cool"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Kept in a heated rod oven or sealed container per manufacturer"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Dipped in water to remove dust"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Left on the workbench"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Kept in a heated rod oven or sealed container per manufacturer"
+    }
+  },
+  {
+    "id": "Q-A-1_machine_vent_clear_20000009",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Which is correct regarding welder power source ventilation?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Block vents to keep dust out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Place the machine against a wall to save space"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Keep inlet/outlet vents clear of obstructions"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cover the fan guard during welding"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Keep inlet/outlet vents clear of obstructions"
+    }
+  },
+  {
+    "id": "Q-A-1_mig_liner_replace_2000000b",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A sign that a GMAW gun liner may need replacement is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Exceptionally smooth wire feed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increased feeding resistance and birdnesting"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Higher gas flow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lower duty cycle"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Increased feeding resistance and birdnesting"
+    }
+  },
+  {
+    "id": "Q-A-1_oxyfuel_leak_check_2000000e",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "How should oxy-fuel connections be checked for leaks after assembly?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "With a match"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "By smell only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "With a leak-detecting (soapy) solution"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "By touching the joints"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "With a leak-detecting (soapy) solution"
+    }
+  },
+  {
+    "id": "Q-A-1_power_fan_obstruction_20000012",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "What should be avoided around welder cooling fans?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Keeping the area clear"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Blocking the intake to reduce noise"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Placing rags over the guard"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stacking boxes near vents"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Blocking the intake to reduce noise"
+    }
+  },
+  {
+    "id": "Q-A-1_regulator_gauge_cracked_20000003",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "What should be done with a regulator that has a cracked or missing gauge lens?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use it carefully until a replacement arrives"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Cover it with tape"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove from service and have it repaired or replaced"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn the gauge to face away from people"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Remove from service and have it repaired or replaced"
+    }
+  },
+  {
+    "id": "Q-A-1_ring_test_wheel_20000000",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Before mounting a new bonded grinding wheel, which check is recommended?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spin it up on the grinder at full speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Perform a ring test and inspect for cracks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Soak the wheel in oil for cooling"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tap the wheel with a metal hammer as hard as possible"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Perform a ring test and inspect for cracks"
+    }
+  },
+  {
+    "id": "Q-A-1_spatter_spray_use_2000000d",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "What is an appropriate use of anti-spatter compound?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Inside the gas diffuser"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "On regulator threads"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lightly on nozzles/fixtures per manufacturer’s guidance"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "On the contact tip bore"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Lightly on nozzles/fixtures per manufacturer’s guidance"
+    }
+  },
+  {
+    "id": "Q-A-1_work_clamp_surface_20000006",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "To ensure a good return path, the work clamp should be attached to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Painted surface near the weld"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Rusty scale far from the weld"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Clean bare metal near the weld area"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any spot; current finds its way"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Clean bare metal near the weld area"
+    }
+  },
+  {
+    "id": "Q-A-1_work_lead_10000002",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Why should welding work leads and connections be tight and clean?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Loose leads improve arc stability"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Painted contact surfaces reduce spatter"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They reduce voltage drop and overheating at the connections"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Smaller cable always saves weight without consequences"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "They reduce voltage drop and overheating at the connections"
+    }
+  },
+  {
+    "id": "Q-A-1P1_cfh_to_lpm_15_20000101",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Convert 15 CFH to L/min (round to 0.1).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "6.2 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "7.1 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "8.0 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "9.5 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "7.1 L/min"
+    }
+  },
+  {
+    "id": "Q-A-1P1_cfh_to_lpm_35_20000102",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Convert 35 CFH to L/min (round to 0.1).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "13.2 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "16.5 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "18.4 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "22.0 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "16.5 L/min"
+    }
+  },
+  {
+    "id": "Q-A-1P1_grinder_rpm_safe_11000_20000103",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "An angle grinder is rated at 11,000 rpm. Which wheel rating is safe?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "8,500 rpm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "10,000 rpm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "11,000 rpm or higher"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any, if you remove the guard"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "11,000 rpm or higher"
+    }
+  },
+  {
+    "id": "Q-A-1P1_grinder_rpm_match_12000_20000104",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "An angle grinder is rated at 12,000 rpm. Available wheels: 10,000 rpm and 13,300 rpm. Which should you choose?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "10,000 rpm — it'll be fine for short cuts"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "13,300 rpm — meets/exceeds tool speed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Either, if using light pressure"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "10,000 rpm, but wear thin gloves"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "13,300 rpm — meets/exceeds tool speed"
+    }
+  },
+  {
+    "id": "Q-A-1P1_wire_in_to_mm_0035_20000105",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A wire diameter of 0.035\" is approximately how many millimeters (to 0.01)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.80 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.90 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1.00 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1.20 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "0.90 mm"
+    }
+  },
+  {
+    "id": "Q-A-1P1_wire_mm_to_in_09_20000106",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Convert 0.9 mm to inches (to 0.001\").",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.028\""
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.031\""
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0.035\""
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "0.040\""
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "0.035\""
+    }
+  },
+  {
+    "id": "Q-A-1P1_contact_tip_match_035_20000107",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "For 0.035\" GMAW wire, which contact tip size (standard fit) should be used?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.030\""
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.035\""
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0.040\""
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any — it’s not critical"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "0.035\""
+    }
+  },
+  {
+    "id": "Q-A-1P1_awg_choice_long_run_20000108",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A long extension cord must supply a welder (high current). Which choice best minimizes voltage drop?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "AWG14 (thin)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "AWG12"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "AWG10"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "AWG8 (thickest listed)"
+      }
+    ],
+    "correctId": "CHOICE-4",
+    "rationales": {
+      "CHOICE-4": "AWG8 (thickest listed)"
+    }
+  },
+  {
+    "id": "Q-A-1P1_cfh_to_lpm_22_20000109",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Convert 22 CFH to L/min (round to 0.1).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "9.8 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "10.4 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "11.6 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "12.9 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "10.4 L/min"
+    }
+  },
+  {
+    "id": "Q-A-1P1_cfh_to_lpm_28_20000110",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Convert 28 CFH to L/min (round to 0.1).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "11.9 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "13.2 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "14.1 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "15.3 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "13.2 L/min"
+    }
+  },
+  {
+    "id": "Q-A-1P2_cylinder_move_sequence_20000121",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "You need to move a gas cylinder to another area. Which sequence is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave the regulator on, remove the cap, and roll it on the rim"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove the regulator, install the protective cap, secure it, and move with a cylinder cart"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Carry it horizontally with two people"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Pull it by the valve for better control"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove the regulator, install the protective cap, secure it, and move with a cylinder cart"
+    }
+  },
+  {
+    "id": "Q-A-1P2_oxyfuel_leak_steps_20000122",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "After assembling oxy-fuel equipment, the best set of steps to check for leaks is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use a small flame — leaks will show quickly"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Open valves per procedure, apply leak-detecting/soapy solution to joints, look for bubbles, fix leaks, and re-check"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rely on smell only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tighten with a pipe wrench by feel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Open valves per procedure, apply leak-detecting/soapy solution to joints, look for bubbles, fix leaks, and re-check"
+    }
+  },
+  {
+    "id": "Q-A-1P2_damaged_cord_tagout_20000123",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A tool’s line cord insulation is damaged. Your action:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wrap with tape and finish the job"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Tag out, remove from service, and send for repair/replacement"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use only with a GFCI — that’s enough"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Suspend the cord overhead and continue"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tag out, remove from service, and send for repair/replacement"
+    }
+  },
+  {
+    "id": "Q-A-1P2_grinder_preuse_sequence_20000124",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "You need to mount a new wheel on a grinder and start work. Choose the correct sequence:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove the guard; mount any wheel; run at full speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Inspect the wheel → ring test → confirm wheel rating ≥ tool rpm → install with guard → start while standing to the side and check for runout"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oil the wheel for a smoother cut → run without a guard"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Pick a wheel rated below tool rpm for light work"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Inspect the wheel → ring test → confirm wheel rating ≥ tool rpm → install with guard → start while standing to the side and check for runout"
+    }
+  },
+  {
+    "id": "Q-A-1P2_mig_nozzle_porosity_20000125",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Porosity appears during GMAW; the nozzle is visibly clogged with spatter. Best plan:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Double the voltage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop; clean nozzle/diffuser; verify gas type/flow and no leaks; check contact tip/liner; then run a test bead"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Switch to a larger wire size"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn gas flow to zero"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stop; clean nozzle/diffuser; verify gas type/flow and no leaks; check contact tip/liner; then run a test bead"
+    }
+  },
+  {
+    "id": "Q-A-1P2_fume_extractor_filter_20000126",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Portable fume extractor shows low airflow; filter indicator is in the red. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ignore it — at least it’s quiet"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop work, service/replace the filter as specified, verify capture at the working distance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Place a fan near your face"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase welding current to ‘burn through’"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stop work, service/replace the filter as specified, verify capture at the working distance"
+    }
+  },
+  {
+    "id": "Q-A-1P2_work_clamp_issue_20000127",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Arc is unstable with signs of arc blow; the work clamp is on a painted area far from the weld. Your fix:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Do nothing — this is normal"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Move the clamp to clean bare metal close to the weld and ensure a solid contact"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spray anti-spatter on the clamp"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase travel speed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Move the clamp to clean bare metal close to the weld and ensure a solid contact"
+    }
+  },
+  {
+    "id": "Q-A-1P2_mig_liner_birdnest_20000128",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Wire ‘birdnesting’ occurs at the feeder. Likely cause and action:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lack of shielding gas — raise the flow"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Worn/dirty liner and/or wrong drive roll pressure — replace/clean the liner and adjust the rolls"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lens too dark — change filter shade"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove the contact tip and weld without it"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Worn/dirty liner and/or wrong drive roll pressure — replace/clean the liner and adjust the rolls"
+    }
+  },
+  {
+    "id": "Q-A-1P2_anti_spatter_use_20000129",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "How should anti-spatter be used correctly?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Apply generously inside the gas diffuser"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lightly on nozzles/fixtures; avoid inside the diffuser and on regulator threads"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Coat the contact tip bore"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Spray the welder case for easier cleanup"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Lightly on nozzles/fixtures; avoid inside the diffuser and on regulator threads"
+    }
+  },
+  {
+    "id": "Q-A-1P2_flowmeter_vertical_20000130",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A ball flowmeter reads erratically; it’s mounted at an angle. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing — trust the average reading"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Mount the tube vertically and readjust the flow"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Shut off shielding gas for consistency"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add oil inside the tube"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Mount the tube vertically and readjust the flow"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_cable_terminal_dark_20000131",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "At power cable lugs you see darkening/melted insulation, scorch marks, and odor. Your actions?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Continue until it gets worse"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop, de-energize, tag out; disassemble; clean contact faces to bare metal; replace damaged lugs/cable; reassemble to proper torque; then load-test and check heat/voltage drop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Wrap tightly with tape and retighten without disassembly"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cool with water and continue"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stop, de-energize, tag out; disassemble; clean contact faces to bare metal; replace damaged lugs/cable; reassemble to proper torque; then load-test and check heat/voltage drop"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_cable_lug_hot_smell_20000132",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "One cable lug runs much hotter than others and there’s a burning smell. What should your diagnosis focus on?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure voltage drop under load at that lug and compare to others; verify torque/clean contact; replace parts if needed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Measure only open-circuit voltage; if normal, ignore"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduce current and paint the area with high-temp paint"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Apply grease to conductive faces"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Measure voltage drop under load at that lug and compare to others; verify torque/clean contact; replace parts if needed"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_voltage_drop_test_under_load_20000133",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "What is the correct way to assess voltage drop on a long welding lead?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure cable resistance with an ohmmeter only (no load)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Compare voltage at the power source vs. at the torch/holder while welding (under load); also monitor cable/connection temperature"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Judge by arc color"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "If lugs don’t spark, there’s no drop"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Compare voltage at the power source vs. at the torch/holder while welding (under load); also monitor cable/connection temperature"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_return_clamp_warm_20000134",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "The work clamp is getting hot and sparking. Best sequence:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spray anti-spatter on the clamp"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Clean to bare metal, reposition close to the weld, ensure firm contact; replace worn clamp; check cable integrity and fasteners"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase shielding gas flow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore — this is normal at high current"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Clean to bare metal, reposition close to the weld, ensure firm contact; replace worn clamp; check cable integrity and fasteners"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_cable_joint_corrosion_20000135",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "At a bolted splice between welding leads you see oxide/green corrosion and loose hardware. What is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Just tighten the bolt without disassembly"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "De-energize; disassemble; clean contacts; replace washers/bolt if needed; reassemble per spec (flat/lock washers), torque to spec; protect from corrosion; verify under load"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spray with penetrating oil and keep working"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add extra insulation over the corrosion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "De-energize; disassemble; clean contacts; replace washers/bolt if needed; reassemble per spec (flat/lock washers), torque to spec; protect from corrosion; verify under load"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_bimetal_cu_al_terminal_20000136",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A copper cable is terminated on an aluminum bus with a standard copper lug; local overheating is evident. Correct remedy:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Apply graphite grease on the joint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a bimetallic transition lug/pad and rebuild per instructions; replace damaged parts"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Double the torque"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint the area with high-temp coating"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use a bimetallic transition lug/pad and rebuild per instructions; replace damaged parts"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_router_fixture_repair_holdpoint_20000137",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A welding fixture was repaired: worn locating pins replaced. What is correct for documentation and control?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing — minor repair"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Record the operation in the traveler/router, update part IDs/serials, obtain hold-point sign-off if required, and check repeatability"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tell the next shift verbally"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lock the fixture until the next PM without records"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Record the operation in the traveler/router, update part IDs/serials, obtain hold-point sign-off if required, and check repeatability"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_router_modification_requires_permit_20000138",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "During fixture repair, an engineer proposes adding a stop (design change). Proper approach:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Do it immediately; it’s a small tweak"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Initiate MOC/ECN/ECR, get approval, update drawing/work instructions, then implement"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Make the change now; document after the batch"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Let the welder decide on the spot"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Initiate MOC/ECN/ECR, get approval, update drawing/work instructions, then implement"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_router_post_repair_validation_20000139",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "After fixture repair, which checks are appropriate before release to production?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "None if it looks clean"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Calibrate/verify key dimensions, trial assembly/weld a control sample with measurements, verify repeatability; sign off in the traveler"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cosmetic inspection only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Have a fitter sign for the inspector"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Calibrate/verify key dimensions, trial assembly/weld a control sample with measurements, verify repeatability; sign off in the traveler"
+    }
+  },
+  {
+    "id": "Q-A-1P2c_router_traceability_fixture_parts_20000140",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "During fixture repair, clamps were replaced with a different part number. How do you maintain traceability?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Delete old records — they’re unnecessary"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Record the change in the fixture log/traveler with the new part number/lot; update the fixture list at the cell and train staff if needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Throw old parts in an unmarked bin"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Send a photo to a group chat — enough"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Record the change in the fixture log/traveler with the new part number/lot; update the fixture list at the cell and train staff if needed"
+    }
+  },
+  {
+    "id": "Q-A-1P1c_extension_coil_overheat_20000141",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "An extension cord on a reel is used at high load. Best way to lower overheating risk:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave it coiled — less tangling"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fully unspool, use only needed length, choose heavier gauge, and periodically check temperature"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oil the cable for cooling"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cover it with a blanket to block drafts"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Fully unspool, use only needed length, choose heavier gauge, and periodically check temperature"
+    }
+  },
+  {
+    "id": "Q-A-1P1c_extension_series_cords_voltage_drop_20000142",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "You need 40 m of reach. You have two thin 20 m cords (AWG14) and one heavy 25 m cord (AWG10). What’s preferable for a welder?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Connect the two AWG14 cords — length achieved"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use the AWG10 cord and reposition the power source closer to reduce length"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add another thin cord for redundancy"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase current to compensate for voltage drop"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use the AWG10 cord and reposition the power source closer to reduce length"
+    }
+  },
+  {
+    "id": "Q-A-1P1c_extension_signs_voltage_drop_20000143",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Which signs indicate excessive voltage drop due to extension cords/connections?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Unstable, ‘soft’ arc and hot plugs/receptacles/clamps"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Less spatter means everything is perfect"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Higher deposition at lower current"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cold cables during prolonged high load"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Unstable, ‘soft’ arc and hot plugs/receptacles/clamps"
+    }
+  },
+  {
+    "id": "Q-A-1P1c_extension_gfci_placement_20000144",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Where is it most effective to place GFCI protection when feeding tools via an extension cord?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "At the source receptacle (or use a cord/box with built-in GFCI) to protect the whole run"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Only at the load — cheaper"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "GFCI isn’t needed if the cable is thick"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Anywhere — placement doesn’t matter"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "At the source receptacle (or use a cord/box with built-in GFCI) to protect the whole run"
+    }
+  },
+  {
+    "id": "Q-A-1P1c_extension_bundled_cable_20000145",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "A bundle of several extension cords lies coiled in a narrow channel. How to reduce overheating risk?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Do nothing — cable will handle it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Separate for airflow, use a single heavier-gauge cord instead of several, and remove coils/reels"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Press foam board on top"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wet the bundle periodically"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Separate for airflow, use a single heavier-gauge cord instead of several, and remove coils/reels"
+    }
+  }
+]

@@ -1,0 +1,1878 @@
+[
+  {
+    "id": "Q-A-5_anti_spatter_fixtures_20000066",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Applying anti‑spatter to jigs/fixtures can:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase porosity"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduce spatter adhesion and cleanup time"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace ventilation"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminate the need for PPE"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Anti‑spatter on non‑weld surfaces reduces cleanup."
+    }
+  },
+  {
+    "id": "Q-A-5_arc_length_short_20000061",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Maintaining a short arc length generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Improves shielding and reduces spatter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increases undercut"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no effect"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Prevents fusion"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Short arcs improve shielding effectiveness and bead control."
+    }
+  },
+  {
+    "id": "Q-A-5_arc_strike_location_20000077",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "To avoid hard spots and cracking from stray arc strikes, where should arc strikes be made?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Anywhere on the base metal and ground later"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Only within the joint area or on run‑on tabs"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "On machined surfaces away from the joint"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "On painted areas to protect the steel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Arc strikes can create hard spots/cracks; strike within the joint or on tabs, and remove any stray strikes per procedure."
+    }
+  },
+  {
+    "id": "Q-A-5_backing_strip_removal_20000068",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "If a temporary backing strip is used and drawings require removal, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave it in place to save time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove and grind smooth per drawing/WPS after welding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove only on one side"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint over it"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Follow drawings/WPS for backing removal and finishing."
+    }
+  },
+  {
+    "id": "Q-A-5_bevel_angle_access_20000059",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Choosing an appropriate bevel angle helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Reduce sidewall access"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Allow electrode/torch access and proper penetration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase distortion only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Avoid cleaning between passes"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Adequate groove angle is required for access and fusion."
+    }
+  },
+  {
+    "id": "Q-A-5_chipping_hammer_angle_2000006f",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "To remove slag without damaging the base metal, a chipping hammer should be used at:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A shallow angle with controlled blows"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A steep angle with heavy blows"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any angle; force is key"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Flat against the face"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Use a shallow angle and controlled blows to avoid base‑metal damage."
+    }
+  },
+  {
+    "id": "Q-A-5_clamp_to_control_gap_20000069",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "To maintain a consistent root gap during fit‑up, you should use:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Only hand pressure"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Clamps, spacers/shims, and fixtures"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "High current to 'pull' parts together"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Random tacks without measuring"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use clamps and shims to set and hold uniform gaps."
+    }
+  },
+  {
+    "id": "Q-A-5_cleanliness_needed_20000057",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Why remove mill scale, paint, and oil before welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "They improve fusion"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "They can cause porosity and lack of fusion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They increase tensile strength"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "They reduce spatter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Contaminants produce gas and block fusion, causing defects."
+    }
+  },
+  {
+    "id": "Q-A-5_consistent_speed_arc_20000074",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Maintaining consistent travel speed and arc length helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase porosity"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Produce uniform bead shape and fusion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Warp the part"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Overheat the torch"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Consistency supports uniform fusion and appearance."
+    }
+  },
+  {
+    "id": "Q-A-5_crater_fill_10000016",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "What should be done at the end of a weld bead?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave the crater as‑is"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Blend and fill the crater before stopping"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Strike a new arc on the finished face"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Never grind defects"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Filling craters reduces the risk of crater cracking."
+    }
+  },
+  {
+    "id": "Q-A-5_cup_size_selection_20000073",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Selecting a larger gas cup/nozzle in GTAW generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Improves coverage for larger stickout if flow is adequate"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduces shielding effectiveness"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Eliminates the need for a gas lens"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Prevents laminar flow"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Bigger cups can cover more area with proper flow and often with a gas lens."
+    }
+  },
+  {
+    "id": "Q-A-5_electrode_dia_position_2000006d",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "For out‑of‑position welding, using a smaller electrode diameter often:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Makes control harder"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Improves puddle control"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Has no benefit"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminates the need for backing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Smaller electrodes help control the puddle overhead/vertical."
+    }
+  },
+  {
+    "id": "Q-A-5_feather_tacks_20000070",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Before welding over tack welds, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave them with abrupt ends"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Feather/clean them to avoid lack of fusion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Paint them for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike over without stopping"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Feathered tacks blend smoothly into the weld."
+    }
+  },
+  {
+    "id": "Q-A-5_fillet_angles_practice_20000062",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "To avoid undercut on flat fillet welds, a common practice is to hold:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "An excessive travel angle and long arc"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A ~45° work angle with a slight travel angle and short arc"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A 90° work angle with no travel angle"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "The torch perpendicular to both plates"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Proper work/travel angles and short arc reduce undercut."
+    }
+  },
+  {
+    "id": "Q-A-5_fillet_gauge_10000011",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "What does a fillet‑weld gauge measure?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Porosity size"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fillet leg size or effective throat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Preheat temperature"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tensile strength"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Fillet gauges verify leg length and throat to drawing or code requirements."
+    }
+  },
+  {
+    "id": "Q-A-5_galvanized_remove_20000067",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Before welding galvanized steel, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Weld directly through the coating"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove zinc coating locally and ensure ventilation"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use water as shielding"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to AC only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Removing zinc and ventilating reduces fume hazards and defects."
+    }
+  },
+  {
+    "id": "Q-A-5_hi_lo_measure_2000006a",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Internal misalignment (hi‑lo) can be checked with:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A paint marker"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A hi‑lo gauge or calipers"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A thermometer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A voltmeter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use appropriate gauges to measure internal misalignment."
+    }
+  },
+  {
+    "id": "Q-A-5_interpass_control_20000056",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Controlling interpass temperature primarily helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase hydrogen cracking risk"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Control metallurgical properties and reduce cracking risk"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Improve arc visibility only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminate fit‑up checks"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Interpass control manages microstructure and cracking susceptibility."
+    }
+  },
+  {
+    "id": "Q-A-5_peening_caution_2000005f",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Peening of weld metal should be used:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Heavily on root and final passes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lightly on intermediate passes only if permitted by code/WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Never under any circumstances"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "As a substitute for proper parameters"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Peening can relieve stress but is restricted—avoid on root/final unless allowed."
+    }
+  },
+  {
+    "id": "Q-A-5_polarity_change_wps_2000006c",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Changing welding polarity from what the WPS specifies may:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Have no effect"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Cause lack of fusion or instability"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always improve penetration"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Only change bead color"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Incorrect polarity can reduce fusion and arc stability."
+    }
+  },
+  {
+    "id": "Q-A-5_polarity_setup_10000017",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "How should power source polarity be chosen?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use the same polarity for all processes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Follow the WPS and consumable manufacturer requirements"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Choose the quietest arc sound"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use DCEN for every job"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Different processes and wires/rods require specific polarity for proper fusion."
+    }
+  },
+  {
+    "id": "Q-A-5_porosity_troubleshoot_20000075",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "If unexpected porosity appears, a first troubleshooting step is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase voltage dramatically"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check gas flow/coverage and surface cleanliness"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Change to the largest wire"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore unless undercut appears"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Verify shielding gas and cleanliness before changing parameters."
+    }
+  },
+  {
+    "id": "Q-A-5_positioner_use_20000063",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Why rotate parts on a positioner/turntable when possible?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To make welding harder"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To weld in the flat position for better quality and deposition"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To remove the need for fit‑up"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate shielding gas"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flat‑position welding improves control and productivity."
+    }
+  },
+  {
+    "id": "Q-A-5_practice_bead_20000071",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Before production welding on a new setup, a good approach is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start immediately on the part"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Run practice beads on scrap of similar material and thickness"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Skip parameter checks"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use random settings"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Practice beads help dial in parameters and technique."
+    }
+  },
+  {
+    "id": "Q-A-5_preheat_check_10000013",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "How should preheat be verified?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "By hand feel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "With temperature‑indicating crayons or a thermometer"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "By metal color alone"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Trust the machine panel temperature"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use objective temperature indicators to confirm required preheat."
+    }
+  },
+  {
+    "id": "Q-A-5_preheat_excess_20000076",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Excessive preheat beyond WPS requirements may:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Always improve toughness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Degrade properties and increase distortion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Have no effect on properties"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminate hydrogen cracking risk completely"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Too much preheat can coarsen microstructure and increase distortion."
+    }
+  },
+  {
+    "id": "Q-A-5_root_face_land_20000058",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "What is the purpose of a root face (land) on a groove?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To prevent any penetration"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To help control root penetration and support the root"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To increase arc length"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate the need for backing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A small land helps control root penetration and bead shape."
+    }
+  },
+  {
+    "id": "Q-A-5_runoff_tabs_use_2000005e",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Run‑on/run‑off tabs are installed to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Speed cooling"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Start/stop off the part and achieve full fusion at tie‑ins"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Support clamps only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Replace preheat"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tabs allow full penetration and clean tie‑ins without damaging part edges."
+    }
+  },
+  {
+    "id": "Q-A-5_shield_gas_flow_20000072",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Shielding gas flow for GMAW/GTAW should be set to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "The highest possible to be safe"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Provide stable coverage without turbulence or aspiration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Zero during tack welds"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A fixed value for all nozzles"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Set flow to protect the pool; too much flow causes turbulence and air entrainment."
+    }
+  },
+  {
+    "id": "Q-A-5_skip_sequence_2000005b",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Skip or back‑step welding sequences are used mainly to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Concentrate heat in one area"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Distribute heat and limit distortion"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase crater cracking"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Avoid using clamps"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Heat distribution reduces distortion and residual stress."
+    }
+  },
+  {
+    "id": "Q-A-5_slag_between_passes_10000015",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "What should be done between weld passes with flux‑shielded processes?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing; inclusions burn out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove slag and heavy spatter"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only chip the final cap"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Water‑quench slag to speed the job"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cleaning between passes prevents slag inclusions and improves fusion."
+    }
+  },
+  {
+    "id": "Q-A-5_stainless_brush_dedicated_20000065",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "On stainless steel, use a wire brush that is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Previously used on carbon steel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dedicated stainless‑only"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Oily for lubrication"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Made of aluminum"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Avoid cross‑contamination; use stainless‑only brushes on stainless."
+    }
+  },
+  {
+    "id": "Q-A-5_stringer_vs_weave_20000060",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "For low‑hydrogen electrodes on many applications, it is preferable to use:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wide weaves at high heat"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stringer beads or limited weave per WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Random motion with long arcs"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Circular motion only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stringers help control heat input and hydrogen cracking risk."
+    }
+  },
+  {
+    "id": "Q-A-5_tack_balance_10000014",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "How should tack welds be placed to control distortion?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "All tacks on one side of the joint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Balanced around the joint to hold alignment"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Very large tacks prevent cracking"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tacks are forbidden in fabrication"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Balanced, adequate tacks hold fit‑up and reduce distortion during welding."
+    }
+  },
+  {
+    "id": "Q-A-5_tack_fuse_in_2000005a",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "How should tack welds be prepared for incorporation into the final weld?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave sharp, unfused ends"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Feather/clean tacks so they fuse smoothly into the weld"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always grind them out"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cover with paint first"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Feathered, clean tacks reduce lack‑of‑fusion at tie‑ins."
+    }
+  },
+  {
+    "id": "Q-A-5_travel_speed_heat_2000006b",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Increasing travel speed (all else equal) generally:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Raises heat input"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lowers heat input and narrows the bead"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Does not affect heat input"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increases penetration"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Higher travel speed reduces heat input and penetration."
+    }
+  },
+  {
+    "id": "Q-A-5_wire_brush_ppe_2000006e",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "When using powered wire brushes, wear:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No eye protection; bristles are soft"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safety glasses and a face shield"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Earplugs only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A dust mask only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Wire bristles can eject; use both glasses and a face shield."
+    }
+  },
+  {
+    "id": "Q-A-5P1_cfh_to_lpm_20_20000151",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Convert shielding gas flow of 20 CFH to L/min (round to 0.1).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "8.5 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "9.4 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "12.0 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "14.0 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1 CFH ≈ 0.472 L/min → 20 CFH ≈ 9.4 L/min."
+    }
+  },
+  {
+    "id": "Q-A-5P1_cfh_to_lpm_25_20000152",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "How many L/min is 25 CFH? (to 0.1)",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "10.5 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "11.8 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "13.5 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "15.0 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "25 × 0.472 ≈ 11.8 L/min."
+    }
+  },
+  {
+    "id": "Q-A-5P1_fillet_throat_mm_8leg_20000153",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "For a fillet weld with an 8 mm leg, compute the effective throat (t ≈ 0.707 × leg).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "4.0 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "5.0 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "5.66 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "8.0 mm"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "0.707 × 8 = 5.66 mm."
+    }
+  },
+  {
+    "id": "Q-A-5P1_dia_inch_to_mm_1over8_20000154",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "An electrode diameter of 1/8\" is approximately how many millimeters (to 0.01)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "3.18 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "3.20 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "3.12 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "3.25 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "1 in = 25.4 mm → 0.125 in ≈ 3.175 mm ≈ 3.18 mm."
+    }
+  },
+  {
+    "id": "Q-A-5P1_dia_inch_to_mm_5over16_20000155",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "A fillet leg of 5/16\" equals approximately how many mm (to 0.01)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "7.90 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "7.94 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "8.00 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "8.10 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "5/16 in = 0.3125 × 25.4 ≈ 7.94 mm."
+    }
+  },
+  {
+    "id": "Q-A-5P1_heat_input_calc_20000156",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Estimate heat input H (kJ/mm) with V=24 V, I=180 A, travel speed=300 mm/min, η=0.8. Formula: H ≈ (V·I·60·η)/(1000·speed).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.35 kJ/mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.69 kJ/mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1.50 kJ/mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2.40 kJ/mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "(24×180×60×0.8)/(1000×300) ≈ 0.69 kJ/mm."
+    }
+  },
+  {
+    "id": "Q-A-5P1_heat_input_speed_change_20000157",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "If speed rises from 300 to 450 mm/min with the same V, I, η, heat input will:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase by ~33%"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Decrease by ~33%"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stay the same"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Decrease by ~15%"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Heat input is inversely proportional to speed: 300/450 ≈ 0.67 (−33%)."
+    }
+  },
+  {
+    "id": "Q-A-5P1_root_gap_tol_20000158",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Drawing: root gap 3.0 ± 0.5 mm. Measurement is 2.6 mm. Decision?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Accept (within tolerance)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reject: out of tolerance"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Raise current instead of adjusting"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tack over without changes"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Allowed 2.5–3.5 mm; 2.6 mm is acceptable."
+    }
+  },
+  {
+    "id": "Q-A-5P1_fillet_size_tol_20000159",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Required fillet leg 8 ± 1 mm. Measured 6.9 mm. Your action:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Accept: difference is small"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reject: below the minimum"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore and paint"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Increase current without adding metal"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Minimum is 7 mm; 6.9 mm fails."
+    }
+  },
+  {
+    "id": "Q-A-5P1_gas_flow_tig_cup8_20000160",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Starting range of argon flow for GTAW with cup #8 (normal indoor conditions, no drafts):",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2–3 L/min"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "10–12 L/min"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "25–35 L/min"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "40–50 L/min"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Typical starting point for #8 is about 10–12 L/min; adjust for stickout/drafts."
+    }
+  },
+  {
+    "id": "Q-A-5P1_fillet_throat_inch_1over4_20000161",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "For a 1/4\" fillet, compute the effective throat t (in mm, to 0.01). (t≈0.707×leg; 1/4\"≈6.35 mm)",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "4.49 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "5.00 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "6.35 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "3.50 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "0.707 × 6.35 ≈ 4.49 mm."
+    }
+  },
+  {
+    "id": "Q-A-5P1_interpass_limit_case_20000162",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "WPS: max interpass 150 °C. Measured 165 °C. Correct action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Proceed—there’s margin"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop, cool to within limits, and document"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower gas flow and continue"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Quench with water"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stay within WPS; cool and record non‑conformance if required."
+    }
+  },
+  {
+    "id": "Q-A-5P2_gmaw_porosity_case_20000171",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "GMAW on carbon steel: sudden porosity; gas type/flow correct and cylinder is new. What to check first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Drafts/airflow direction and hose/fitting integrity"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Double the voltage"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use larger wire"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove the hood for visibility"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Air entrainment/leaks commonly cause fresh porosity."
+    }
+  },
+  {
+    "id": "Q-A-5P2_gTAW_tungsten_contam_20000172",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "GTAW: darkened/oxidized bead with signs of contamination. Likely cause and action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Contaminated tungsten/contact with pool—regrind tungsten, clean work, verify gas lens and flow"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Low current—double it"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "High speed—cool cup with water"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Add motor oil for glide"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Contaminated electrodes and poor shielding drive oxidation."
+    }
+  },
+  {
+    "id": "Q-A-5P2_vertical_up_7018_20000173",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Vertical‑up SMAW (E7018 Ø3.2 mm). Most suitable technique:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Long arc and wide weave"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Short arc, stringer or limited triangle/weave; current per WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "No preheat ever"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Random stops without overlap"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Shorter arcs and controlled motion suit vertical‑up with 7018."
+    }
+  },
+  {
+    "id": "Q-A-5P2_long_fillet_distortion_20000174",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Long fillet weld on thin sheet warps the part. Best plan:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Run continuously end‑to‑end"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Skip/back‑step short segments, alternate sides, use fixturing and balanced tacks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Max current for speed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Heat the piece to 300 °C"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Sequence, fixturing, and symmetry control distortion."
+    }
+  },
+  {
+    "id": "Q-A-5P2_galvanized_case_20000175",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Weld a bracket to galvanized stock in the shop. Best steps:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Weld through zinc; increase gas flow"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Strip local zinc, provide extraction/PPE per hazards, then weld to WPS"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add oil to the groove"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike arc on painted areas"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove coating and control fumes per procedure."
+    }
+  },
+  {
+    "id": "Q-A-5P2_arc_strike_repair_20000176",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Stray arc strikes found outside the weld area. Correct repair:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave as‑is—minor defect"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Grind to sound metal with smooth transitions; VT and NDE as required by plan"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Paint over"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Heat to red"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Remove hardened zone and document/control per route plan."
+    }
+  },
+  {
+    "id": "Q-A-5P2_runon_tabs_decision_20000177",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Edge of the part must be clean by drawing. How to ensure full fusion at start/stop?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start/stop on the part—faster"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use run‑on/run‑off tabs; remove per requirement"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Immediately cap with a heavy pass"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Just raise gas flow"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tabs permit clean tie‑ins and full penetration."
+    }
+  },
+  {
+    "id": "Q-A-5P2_positioner_plan_20000178",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Pipe‑to‑flange: access limited. What improves quality/productivity?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lock the positioner and weld as‑is"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Rotate on a positioner to flat, secure, then weld"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always weld vertical for 'fairness'"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce gas flow to zero"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Flat position improves control and deposition."
+    }
+  },
+  {
+    "id": "Q-A-5P2_tack_spacing_case_20000179",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Butt joint 1000 mm in thin sheet. How to place tacks to minimize warping?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Large tacks only at ends"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Small, even tacks along the length and symmetrically; then skip sequence"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "As they happen, no measuring"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "On one side only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Even, balanced tacks hold alignment and limit distortion."
+    }
+  },
+  {
+    "id": "Q-A-5P2_preheat_hold_case_20000180",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Assembly requires preheat. Edge is below minimum but center is above. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start: average temperature is OK"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Achieve required temperature at the edge in the weld zone; re‑verify and document"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lower gas flow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use larger electrode diameter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Meet preheat at the joint edges where it matters most for HAZ."
+    }
+  },
+  {
+    "id": "Q-A-5P2x_backing_remove_procedure_20000181",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Temporary backing used; drawing requires REMOVAL. Choose the correct procedure.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave it; blend the edge and paint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove per WPS/drawing (mechanical/gouge/cut); grind to required finish/flatness; VT and NDE if required; record in router"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove on one side only; no router notes"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove, then hide defects with primer without inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Follow the qualified procedure and document/inspect as specified."
+    }
+  },
+  {
+    "id": "Q-A-5P2x_backgouge_aircarbon_steps_20000182",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Air‑carbon gouging assigned to remove backing/lack of fusion. Best step set:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Gouge without PPE/extraction—faster"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Set current/air per WPS; PPE + extraction; control depth/geometry; then blend smooth, VT, NDE as required; record in router"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Gouge extra deep 'for safety'; skip blending"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Replace with grinder only, no checks"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Controlled removal, finish, and inspection are required."
+    }
+  },
+  {
+    "id": "Q-A-5P2x_backing_NDE_selection_20000183",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "After backing removal at the root of a groove weld—what inspection is justified?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "None—'it looks fine'"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "VT mandatory; PT/MT if required by WPS/inspection plan/code"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "X‑ray only regardless of requirements"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Prime without inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Apply the specified NDE after material removal at critical locations."
+    }
+  },
+  {
+    "id": "Q-A-5P2x_arc_strike_repair_steps_20000184",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Stray arc strikes outside weld zone—correct sequence:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Paint the arc strikes and continue"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop; mark area; remove heat‑affected metal with light grinding to smooth transition; VT and PT/MT as required; record in router/NCR if needed; add prevention (strike pads, holder insulation check)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Heat to red for 'normalization'"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cut out a large area without inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Proper repair + documentation and preventive actions."
+    }
+  },
+  {
+    "id": "Q-A-5P2x_documentation_router_hold_20000185",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "What documentation is expected when removing backing/repairing arc strikes?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "None—minor job"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Record operation/inspection in the router; file NCR/repair disposition if needed; secure inspector sign‑off at hold‑points"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace router with verbal agreements"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sign for the inspector yourself"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Maintain traceability and required approvals."
+    }
+  },
+  {
+    "id": "Q-A-5P2x_arc_strike_prevent_20000186",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "After an arc‑strike incident, which preventive actions make sense?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ban gloves"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use strike pads/tabs, check insulation of holder/cables, conduct a short toolbox talk"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Strike on machined surfaces for convenience"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove extraction"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Engineering/behavioral controls reduce recurrence."
+    }
+  },
+  {
+    "id": "Q-A-5P3_preheat_by_CE_20000301",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Two steels (wt.%). Plate A: C 0.18, Mn 1.2, Cr 0.50, Mo 0.10, V 0.05, Ni 0.10, Cu 0.20. Plate B: C 0.12, Mn 1.0, Cr 0.20, Mo 0.00, V 0.02, Ni 0.10, Cu 0.10. Using IIW CE = C + Mn/6 + (Cr+Mo+V)/5 + (Ni+Cu)/15, which plate likely requires higher preheat (see WPS)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Plate A (higher CE)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Plate B (higher CE)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Same CE for both"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "CE does not affect preheat choice"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Calculated CE is higher for A → generally higher preheat."
+    }
+  },
+  {
+    "id": "Q-A-5P3_interpass_toughness_20000302",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Exceeding interpass temperature versus WPS typically results in:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Higher Charpy toughness (CVN) and grain refinement"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lower CVN, grain coarsening, and risk of unfavorable HAZ microstructure"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "No influence—only preheat matters"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always improves properties and reduces residual stress"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Interpass control influences grain size and toughness."
+    }
+  }
+]

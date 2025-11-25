@@ -1,0 +1,1374 @@
+[
+  {
+    "id": "Q-A-4_5s_housekeeping_1000000f",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Why apply 5S/housekeeping in a welding shop?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It adds non‑value work"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It reduces waste and improves safety"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It is only for offices"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It means sweeping at the end of the day only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "It reduces waste and improves safety"
+    }
+  },
+  {
+    "id": "Q-A-4_consumable_vs_wps_20000044",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Before starting, consumables should be checked to ensure they:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Match the WPS classification and size"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Are the cheapest available"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Were found on the nearest bench"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Have the longest storage time"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Match the WPS classification and size"
+    }
+  },
+  {
+    "id": "Q-A-4_datum_on_drawing_20000048",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "When measuring from drawings, a good practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use any convenient edge as a baseline"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Measure from the designated datum(s) shown"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Scale dimensions from a printout"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Guess from photos"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Measure from the designated datum(s) shown"
+    }
+  },
+  {
+    "id": "Q-A-4_distortion_plan_2000004e",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Why should weld sequence and fixturing be planned before welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To maximize distortion"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To minimize distortion and rework"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "So clamps are unnecessary"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To avoid reading drawings"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "To minimize distortion and rework"
+    }
+  },
+  {
+    "id": "Q-A-4_do_not_scale_2000004a",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "'Do not scale drawing' means you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure distances with a ruler on the print"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Rely on stated dimensions and notes, not scaling"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore dimensions and use feel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Scan and stretch the image"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Rely on stated dimensions and notes, not scaling"
+    }
+  },
+  {
+    "id": "Q-A-4_drawing_revision_1000000e",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Which practice is correct when using fabrication drawings?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use any drawing you have"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use the latest revision listed in the title block"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Older revisions are safer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Let the shop choose per day"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use the latest revision listed in the title block"
+    }
+  },
+  {
+    "id": "Q-A-4_gas_ready_check_20000050",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Before production welding, a good readiness check is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Assume gas cylinders are full"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Verify gas type, pressure, regulators, and spares"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Start welding and check later"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use any gas available"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Verify gas type, pressure, regulators, and spares"
+    }
+  },
+  {
+    "id": "Q-A-4_jha_risk_20000051",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A Job Hazard Analysis (JHA) is used to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Assign overtime pay"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Identify hazards and controls for each task step"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace PPE"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Eliminate documentation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Identify hazards and controls for each task step"
+    }
+  },
+  {
+    "id": "Q-A-4_kitting_2000004c",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "To reduce delays at the bench, parts and hardware should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Collected ad‑hoc during welding"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Kitted and staged before setup"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Left on pallets unmarked"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stored in a locked office"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Kitted and staged before setup"
+    }
+  },
+  {
+    "id": "Q-A-4_material_labeling_2000004f",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "To prevent mix‑ups between similar materials, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove all markings"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Label clearly and segregate storage locations"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Store everything in one bin"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use color only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Label clearly and segregate storage locations"
+    }
+  },
+  {
+    "id": "Q-A-4_measurement_repeatability_20000053",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "To improve measurement repeatability between operators, use:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Different tools and methods each time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Standardized tools, fixtures, and methods"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only visual estimates"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Fastest guess wins"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Standardized tools, fixtures, and methods"
+    }
+  },
+  {
+    "id": "Q-A-4_mtr_check_20000043",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Why are Mill Test Reports (MTRs) reviewed before fabrication?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To choose paint colors"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To verify material grade/heat meets specifications"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To estimate power costs"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To pick welding position"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "To verify material grade/heat meets specifications"
+    }
+  },
+  {
+    "id": "Q-A-4_plan_sequence_10000010",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Which is a sound sequence for organizing a welding job?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start welding, then look for parts"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Skip fit‑up to save time"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore distortion until final inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
+    }
+  },
+  {
+    "id": "Q-A-4_quality_over_speed_20000052",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "If schedule pressure conflicts with WPS requirements, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Skip preheat to save time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Follow the WPS and escalate schedule concerns"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use any electrode available"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce inspections"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Follow the WPS and escalate schedule concerns"
+    }
+  },
+  {
+    "id": "Q-A-4_router_hold_points_20000046",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Job travelers/routers often include hold points meaning:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Optional stops to skip"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Required inspections/approvals before proceeding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Coffee breaks"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "End of shift only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Required inspections/approvals before proceeding"
+    }
+  },
+  {
+    "id": "Q-A-4_shift_handover_20000054",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "At shift handover, a good practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Keep notes private"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Document status, issues, and next steps for continuity"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Leave with work in the machine"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hide in‑process parts"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Document status, issues, and next steps for continuity"
+    }
+  },
+  {
+    "id": "Q-A-4_symbol_arrow_side_20000042",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A weld symbol placed below the reference line typically indicates the weld is on the:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Other side of the joint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Arrow side of the joint"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Both sides by default"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It has no meaning"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Arrow side of the joint"
+    }
+  },
+  {
+    "id": "Q-A-4_symbol_fillet_basic_20000041",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "On welding drawings, the basic triangular weld symbol indicates a:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Plug weld"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fillet weld"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Spot weld"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Surfacing overlay"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Fillet weld"
+    }
+  },
+  {
+    "id": "Q-A-4_tolerance_basic_20000049",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "The symbol '±' on a dimension means:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Exact dimension only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Allowed variation around the nominal size"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Scrap the part"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Millimeters only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Allowed variation around the nominal size"
+    }
+  },
+  {
+    "id": "Q-A-4_tool_calibration_20000045",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Measuring tools used for acceptance should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Used regardless of calibration status"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Within calibration date and zeroed before use"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Calibrated once at purchase only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Shared without cases to save time"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Within calibration date and zeroed before use"
+    }
+  },
+  {
+    "id": "Q-A-4_toolbox_talk_2000004d",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A short pre‑job briefing (toolbox talk) helps to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase paperwork only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Align the team on hazards, sequence, and responsibilities"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Replace permits"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Avoid using the WPS"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Align the team on hazards, sequence, and responsibilities"
+    }
+  },
+  {
+    "id": "Q-A-4_traceability_transfer_20000047",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "When cutting a marked plate, you should maintain heat/lot traceability by:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Grinding off all markings"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Transferring heat numbers to each piece and documenting"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Painting over markings"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignoring until final inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Transferring heat numbers to each piece and documenting"
+    }
+  },
+  {
+    "id": "Q-A-4_units_consistency_2000004b",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "When drawings mix units (mm/in), the best practice is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Convert everything mentally on the fly"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Follow the units stated for each dimension and avoid mixing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always convert to inches"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always convert to millimeters"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Follow the units stated for each dimension and avoid mixing"
+    }
+  },
+  {
+    "id": "Q-A-4_wps_purpose_1000000d",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "What is the primary purpose of a Welding Procedure Specification (WPS)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To replace the PQR entirely"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To define essential variables and parameters for production welds"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "For inspectors only; welders need not read it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Optional for code work"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "To define essential variables and parameters for production welds"
+    }
+  },
+  {
+    "id": "Q-A-4P_rev_conflict_20000121",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "On the floor you have drawing revision D, while the traveler lists revision C. What is the correct action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Proceed with either version—the differences are minor"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop work, confirm the latest revision, update the traveler/permits, and work only to the current set"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Resolve at end of shift"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cross out the old revision with a marker"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stop work, confirm the latest revision, update the traveler/permits, and work only to the current set"
+    }
+  },
+  {
+    "id": "Q-A-4P_mtr_mismatch_20000122",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "The heat number on a part does not match the MTR. What should you do?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ignore if chemistry seems similar"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Quarantine the material, tag HOLD, and request a correct MTR/ID from QA/engineering"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Erase and re‑stamp a new number"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use it and attach a photo later"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Quarantine the material, tag HOLD, and request a correct MTR/ID from QA/engineering"
+    }
+  },
+  {
+    "id": "Q-A-4P_units_mm_in_20000123",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A drawing shows 3/8\" but your caliper is in millimeters. Best approach:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Estimate by eye and note in mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a tool with the correct units or convert reliably and clearly record units"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore fractional inches—round off"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hand‑convert the whole drawing to mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use a tool with the correct units or convert reliably and clearly record units"
+    }
+  },
+  {
+    "id": "Q-A-4P_tool_cal_expired_20000124",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "An indicator stand is past its calibration date but 'reads fine.' For acceptance measurements you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use it anyway—time is short"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not use for acceptance; replace with an in‑cal tool/send for calibration"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Compare to a ruler once"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cover the sticker and continue"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Do not use for acceptance; replace with an in‑cal tool/send for calibration"
+    }
+  },
+  {
+    "id": "Q-A-4P_distortion_sequence_20000125",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "You are assembling a frame from sections. The best plan to reduce distortion is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Run one long continuous weld on one side, then the other"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use symmetric tack‑up, skip (staggered) sequence, back‑step, alternate sides, and fixturing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Weld as hot and fast as possible in one direction"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Avoid clamps—they slow you down"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use symmetric tack‑up, skip (staggered) sequence, back‑step, alternate sides, and fixturing"
+    }
+  },
+  {
+    "id": "Q-A-4P_wps_consumable_mismatch_20000126",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "The WPS calls for E7018 Ø3.2 mm, but the crib only has E6013 Ø4.0 mm. Your decision:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use E6013—it’s also a mild‑steel electrode"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not start; request the correct consumable and/or a WPS change via engineering/QA"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduce amperage and proceed"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Trim Ø4.0 down to Ø3.2"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Do not start; request the correct consumable and/or a WPS change via engineering/QA"
+    }
+  },
+  {
+    "id": "Q-A-4P_hold_point_skip_20000127",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "The router has a hold point before the root pass; the inspector is not available. You should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Skip the hold point and weld to avoid delay"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop at the hold point, call for inspection/authorization, then proceed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Take a photo and move on"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sign off the router yourself"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stop at the hold point, call for inspection/authorization, then proceed"
+    }
+  },
+  {
+    "id": "Q-A-4P_trace_mark_lost_20000128",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "After cutting, some parts lost heat/lot markings. Best action:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Assign random numbers"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Isolate the parts, restore traceability via records/sampling per procedure, and document"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Pile everything together and continue"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cut the corner off and discard"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Isolate the parts, restore traceability via records/sampling per procedure, and document"
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_3over8_mm_20000131",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Convert 3/8\" to millimeters to three decimal places. Choose the most accurate value.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "9.525 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "9.530 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "9.500 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "9.520 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "9.525 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_5over16_mm_20000132",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A size is given as 5/16\". Round to two decimals in millimeters. What should be recorded?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "7.93 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "7.94 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "7.95 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "7.90 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "7.94 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_tol_in2mm_0010_20000133",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Convert a tolerance of ±0.010\" to millimeters (three decimals).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "±0.254 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "±0.250 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "±0.260 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "±0.200 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "±0.254 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_tol_range_100pm025_20000134",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Which measured value is within 100.00 ± 0.25 mm?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "100.31 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "99.74 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "100.25 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "99.50 mm"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "100.25 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_limits_1000_0995_in_20000135",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "For limit size 1.000\" / 0.995\", which measurement is acceptable?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1.002\""
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.994\""
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0.999\""
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1.005\""
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "0.999\""
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_pair_0406pm005in_20000136",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A hole Ø0.406\" ±0.005\" must be documented in mm (round to two decimals). Pick the correct nominal ± tolerance.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "10.31 ± 0.13 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "10.32 ± 0.13 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "10.31 ± 0.12 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "10.30 ± 0.10 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "10.31 ± 0.13 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_quarter_in_mm_20000137",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Convert 1/4\" to millimeters (two decimals).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "6.35 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "6.30 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "6.34 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "6.36 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "6.35 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_7over16_mm_20000138",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A fillet weld leg size of 7/16\" must be recorded in mm (two decimals). Which is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "11.10 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "11.11 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "11.12 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "11.15 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "11.11 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_125pm01_in_mm_20000139",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Convert 1.25\" ±0.01\" to millimeters (two decimals). Select the correct expression.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "31.75 ± 0.25 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "31.80 ± 0.25 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "31.75 ± 0.20 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "31.80 ± 0.20 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "31.75 ± 0.25 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P1_jha_mapping_cut_asm_20000140",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "For a JHA, choose the correct mapping of 'step — hazards — controls'.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Cutting: sparks/slag → safety glasses + face shield, screens, extinguisher; Assembly: pinch points → clamps/fixtures, keep hands clear"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Cutting: UV burns → sunscreen; Assembly: chemical poisoning → open windows"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cutting: noise → sunglasses; Assembly: pinch points → remove gloves for feel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cutting: sparks → remove shield; Assembly: pinch points → work faster"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Cutting: sparks/slag → safety glasses + face shield, screens, extinguisher; Assembly: pinch points → clamps/fixtures, keep hands clear"
+    }
+  },
+  {
+    "id": "Q-A-4P1_toolbox_content_steps_20000141",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "What must be covered in a toolbox talk before 'cutting → fit‑up → welding'?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Step hazards, sequence, roles, muster/alarms"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Music playlist and lunch order"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only deadlines—skip hazards"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Nothing—figure it out as we go"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Step hazards, sequence, roles, muster/alarms"
+    }
+  },
+  {
+    "id": "Q-A-4P1_distortion_frame_20000142",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Fabricating a steel frame 1000×600×6 mm. Which plan minimizes distortion?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "One continuous long weld on one side, then the opposite"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Symmetric tack‑up; skip sequence of short runs; back‑step; alternate sides; use fixturing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "From one corner around without stopping"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No clamps/fixtures — faster"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Symmetric tack‑up; skip sequence of short runs; back‑step; alternate sides; use fixturing"
+    }
+  },
+  {
+    "id": "Q-A-4P1_distortion_box_20000143",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Welding a thin‑wall box 500×500×500×3 mm. What helps planarity and geometry?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Weld one face continuously, then adjacent faces"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Tack at equal spacing; short runs alternating faces; allow cooling; use braces/fixtures"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Max heat input to finish faster"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Close all seams fully without pauses"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Tack at equal spacing; short runs alternating faces; allow cooling; use braces/fixtures"
+    }
+  },
+  {
+    "id": "Q-A-4P1_units_mixed_thread_depth_20000144",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "On a drawing: “3/8‑16 UNC, depth 25 mm.” What does “25 mm” specify?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Hole diameter 25 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Threaded depth of 25 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "25 threads total"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Countersink size 25 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Threaded depth of 25 mm"
+    }
+  },
+  {
+    "id": "Q-A-4P3_gdt_position_basic_20000321",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "A positional tolerance callout for a hole reads: “⌀0.50 | A | B |”. What does this mean?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "The surface must be parallel to datums A and B"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "The hole axis must lie within a cylindrical zone of diameter 0.50 relative to datums A and B"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "The hole size may be scaled from the print"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It’s a flatness symbol unrelated to axes"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The hole axis must lie within a cylindrical zone of diameter 0.50 relative to datums A and B"
+    }
+  },
+  {
+    "id": "Q-A-4P3_gdt_parallelism_basic_20000322",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "The callout “∥ 0.20 | A” for a surface indicates:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Perpendicularity to datum A by 0.20"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "The surface must lie between two parallel planes 0.20 apart, parallel to datum A"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A roughness requirement only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Free float without datum reference"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The surface must lie between two parallel planes 0.20 apart, parallel to datum A"
+    }
+  },
+  {
+    "id": "Q-A-4P3_ncr_disposition_case_20000331",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "At a hold point an out‑of‑tolerance fillet size is found: 7.2 mm vs requirement 8.0 ± 0.5 mm. What is the best course of action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Build up to 8 mm and skip paperwork to save time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop work, segregate the part, raise an NCR; choose disposition—rework to drawing size, or use‑as‑is ONLY with engineering approval, or scrap; record the decision on the router/traveler before continuing"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Send it forward, marking the spot with a marker"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Widen the tolerance on the shop floor so it passes"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Stop work, segregate the part, raise an NCR; choose disposition—rework to drawing size, or use‑as‑is ONLY with engineering approval, or scrap; record the decision on the router/traveler before continuing"
+    }
+  }
+]

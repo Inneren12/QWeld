@@ -1,0 +1,746 @@
+[
+  {
+    "id": "Q-B-6_transfer_measure_dividers_v1_06_30000006",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Which tool helps transfer equal distances accurately during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Chalk stick"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dividers or a combination square"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A gloved finger"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A pry bar"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: dividers and combination squares let you repeat and transfer distances precisely.",
+      "CHOICE-1": "Chalk is visible but not precise for transferring equal increments.",
+      "CHOICE-3": "A finger is not a measuring device and introduces large error.",
+      "CHOICE-4": "A pry bar is not a layout/measurement tool."
+    }
+  },
+  {
+    "id": "Q-B-6_scribe_vs_marker_v1_10_3000000a",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "On oiled or scaled steel, which layout method is best?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use pencil only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a scribe or a contrasting paint marker"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use chalk only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No marking is needed"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: a hard scribe line or high‑contrast paint mark stays visible on scale/oil.",
+      "CHOICE-1": "Graphite marks wipe off easily on oil/scale.",
+      "CHOICE-3": "Soapstone/chalk can rub off quickly and lack contrast on heavy scale.",
+      "CHOICE-4": "Skipping layout invites fit‑up errors."
+    }
+  },
+  {
+    "id": "Q-B-6_steel_rule_read_v1_04_30000004",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "For accuracy, a steel rule should be read:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "By estimating to the nearest centimeter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To the smallest graduation on the rule"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always rounded up"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "From any end without zeroing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: read to the finest graduation and align the true zero for accuracy.",
+      "CHOICE-1": "Centimeter estimation is too coarse.",
+      "CHOICE-3": "Always rounding up biases the result.",
+      "CHOICE-4": "Reading from a non‑zero edge adds systematic error."
+    }
+  },
+  {
+    "id": "Q-B-6_three_four_five_v3_04_3000001a",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "What is the 3‑4‑5 rule used for during layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring thickness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking 90° squareness by forming a 3‑4‑5 triangle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Leveling a table"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Finding the center of a circle"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: lengths in a 3‑4‑5 ratio form a right triangle, verifying 90°.",
+      "CHOICE-1": "Thickness is measured with calipers or micrometers.",
+      "CHOICE-3": "Levels, not 3‑4‑5, are used for leveling.",
+      "CHOICE-4": "Circle centers are found by chord/diameter methods, not 3‑4‑5."
+    }
+  },
+  {
+    "id": "Q-B-6_tolerance_stack_v2_07_30000012",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Tolerance stack‑up can be reduced by:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring from multiple random references"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Measuring from a single datum with a controlled sequence"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignoring tolerances on non‑critical features"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Scaling from prints instead of using stated dimensions"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: one consistent datum minimizes accumulated error.",
+      "CHOICE-1": "Random references create additive error.",
+      "CHOICE-3": "Ignoring tolerances does not control stack‑up.",
+      "CHOICE-4": "Scaling from prints introduces print scaling error."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_selection_v1_00_30000000",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Which practice is correct when choosing a layout datum?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use several random edges as datums"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Select one clear datum to control accumulated error"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ignore datums when measuring"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Always measure from part centerlines only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: a single, repeatable datum reduces variation and stack‑up.",
+      "CHOICE-1": "Multiple random datums multiply errors.",
+      "CHOICE-3": "Skipping datums leads to inconsistency.",
+      "CHOICE-4": "Centerlines are not always defined; use the drawing’s specified datums."
+    }
+  },
+  {
+    "id": "Q-B-6_datum_transfer_v2_01_3000000c",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "To limit cumulative error across multiple features, you should measure:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "From changing local edges each time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "From the same datum(s) each time"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "From the nearest scratch"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "From the midpoint only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: re‑referencing the same datum prevents additive ‘chain’ error.",
+      "CHOICE-1": "Changing edges creates chain‑dimension error.",
+      "CHOICE-3": "Random marks are not datums.",
+      "CHOICE-4": "A midpoint is not a general datum unless defined on the drawing."
+    }
+  },
+  {
+    "id": "Q-B-6_level_plumb_v2_04_3000000f",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Which tools help verify level and plumb during layout/fit‑up?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Micrometers only"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Spirit level, plumb bob, or laser level"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Feeler gauges only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Vernier calipers only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: levels/plumb bobs/lasers check horizontal and vertical alignment.",
+      "CHOICE-1": "Micrometers measure thickness/diameter, not level/plumb.",
+      "CHOICE-3": "Feeler gauges measure gaps, not level/plumb.",
+      "CHOICE-4": "Calipers do not indicate level/plumb."
+    }
+  },
+  {
+    "id": "Q-B-6_layout_visibility_v1_07_30000007",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "How can layout lines be kept visible through handling and fitting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Scratch very deep grooves"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use contrasting markers/soapstone and refresh as needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rely on memory of dimensions"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Paint over the layout lines"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: high‑contrast marks remain visible and can be renewed.",
+      "CHOICE-1": "Deep grooves damage parts and invite rework.",
+      "CHOICE-3": "Memory is unreliable for precise layout.",
+      "CHOICE-4": "Paint obscures reference lines."
+    }
+  },
+  {
+    "id": "Q-B-6_mark_protection_v2_08_30000013",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "To avoid losing layout marks during cutting/grinding, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use water to wash them off"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Protect or remark them after each step"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Rely on the first mark only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch off ventilation"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: protect, bridge, or refresh marks to preserve references.",
+      "CHOICE-1": "Washing removes useful marks.",
+      "CHOICE-3": "One mark won’t survive multiple operations.",
+      "CHOICE-4": "Ventilation is unrelated to mark preservation."
+    }
+  },
+  {
+    "id": "Q-B-6_pipe_wrap_v2_02_3000000d",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "What tool helps mark square lines around pipe for cutting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "A magnetic base"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "A pipe wrap or flexible square"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A center punch only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A drill press"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: flexible wraps conform to the pipe to mark square circumferential lines.",
+      "CHOICE-1": "A magnet base holds tools, it doesn’t wrap or mark.",
+      "CHOICE-3": "A punch marks points, not square lines around a pipe.",
+      "CHOICE-4": "A drill press is unrelated to layout marking."
+    }
+  },
+  {
+    "id": "Q-B-6_radius_gauge_v2_09_30000014",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "A radius gauge is used to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure angular degrees"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check concave/convex radii against a template"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Measure voltage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Measure thickness only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: compare edge radii to fixed templates for go/no‑go checks.",
+      "CHOICE-1": "Angles are measured with a protractor/angle finder.",
+      "CHOICE-3": "Voltage is electrical, not a layout task.",
+      "CHOICE-4": "Thickness is measured with calipers/micrometers."
+    }
+  },
+  {
+    "id": "Q-B-6_angle_finder_v3_10_30000020",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "What is the primary use of an angle finder/protractor in layout?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measuring material thickness"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Checking or setting angles against drawings"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Estimating weight"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Finding center of gravity"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: use it to verify/set angles to match the specification.",
+      "CHOICE-1": "Not a thickness tool.",
+      "CHOICE-3": "Weight requires density/volume calculations, not a protractor.",
+      "CHOICE-4": "COG is not found with a protractor."
+    }
+  },
+  {
+    "id": "Q-B-6_bend_allowance_reason_v1_05_30000005",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Why include bend allowance when laying out bent parts?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Material does not stretch during bending"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To reach the required finished lengths after bending"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce springback to zero"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To eliminate K‑factor considerations"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: the neutral axis shifts; accounting for BA preserves final dimensions.",
+      "CHOICE-1": "Materials stretch/compress in the bend region.",
+      "CHOICE-3": "BA does not eliminate springback.",
+      "CHOICE-4": "BA uses a K‑factor; it does not replace it."
+    }
+  },
+  {
+    "id": "Q-B-6_combination_square_v5_01_3000002d",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "A combination square can be used to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Mix paints"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Check 90°/45° and measure offsets"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Read amperage"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Set spindle speeds"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: combination squares quickly verify 90°/45° and set offsets.",
+      "CHOICE-1": "Not a painting tool.",
+      "CHOICE-3": "Amperage is electrical; use a meter.",
+      "CHOICE-4": "Spindle speeds are set by machine controls, not a square."
+    }
+  },
+  {
+    "id": "Q-B-6P_345_scale_given4_1200mm",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "You are laying out a square corner using a scaled 3‑4‑5 triangle. If the “4” leg must be 1200 mm, what lengths should you mark for the “3” leg and the diagonal “5”?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "900 mm and 1500 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "800 mm and 1200 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1000 mm and 1600 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1100 mm and 1400 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Correct: scale the 3:4:5 ratio—3/4×1200=900 mm and 5/4×1200=1500 mm.",
+      "CHOICE-2": "800:1200 is a 2:3 ratio, not 3:4:5.",
+      "CHOICE-3": "1000:1600 is 5:8, not 3:4:5.",
+      "CHOICE-4": "1100:1400 is 11:14, not 3:4:5."
+    }
+  },
+  {
+    "id": "Q-B-6P_bend_allowance_calc_90deg_R4_t2_K033",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "For one 90° bend with inside radius R=4.0 mm, thickness t=2.0 mm, and K=0.33, what is the bend allowance (to 0.01 mm)? Use BA = (π/2) × (R + K·t).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "7.32 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "6.28 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "9.42 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "4.66 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Correct: (π/2)×(4 + 0.33×2) = 1.5708×4.66 ≈ 7.32 mm.",
+      "CHOICE-2": "≈πR (or K=0) error—ignores K·t and angle factor.",
+      "CHOICE-3": "Uses π×(R+Kt) (full 180°) instead of 90°.",
+      "CHOICE-4": "Sum (R+Kt) without multiplying by π/2."
+    }
+  },
+  {
+    "id": "Q-B-6P_pipe_circumference_D89mm",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "To wrap a square cut line around a pipe of diameter 89.0 mm, what wrap length (circumference) do you need, to the nearest 0.1 mm?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "279.6 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "280.0 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "178.0 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "89.0 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Correct: C=πD=3.1416×89.0≈279.6 mm.",
+      "CHOICE-2": "Over‑rounded; acceptable only if coarse tolerance is allowed.",
+      "CHOICE-3": "Numerical error—too small for πD.",
+      "CHOICE-4": "Confuses circumference with diameter."
+    }
+  },
+  {
+    "id": "Q-B-6P_units_convert_3_8in_to_mm",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Convert 3/8 in to millimeters (to two decimals).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "9.50 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "9.53 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "9.60 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "9.45 mm"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Correct: 0.375 in × 25.4 = 9.525 mm → 9.53 mm.",
+      "CHOICE-1": "Under‑rounded; drops significant digits.",
+      "CHOICE-3": "Over‑rounded upward.",
+      "CHOICE-4": "Incorrect conversion."
+    }
+  },
+  {
+    "id": "Q-B-6P_units_convert_1_4in_to_mm",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Convert 1/4 in to millimeters.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "6.35 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "6.30 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "6.25 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "7.00 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Correct: 0.25 in × 25.4 = 6.35 mm.",
+      "CHOICE-2": "Rounded down.",
+      "CHOICE-3": "Treats 25 mm as 1 in—wrong basis.",
+      "CHOICE-4": "Unrelated guess."
+    }
+  },
+  {
+    "id": "Q-B-6P_vernier_12_00_plus_0_28",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "A metric vernier caliper shows 12.00 mm on the main scale; the 14th vernier line (0.02 mm per division) aligns. What is the reading?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "12.28 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "12.14 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "12.40 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "12.82 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Correct: 12.00 + 14×0.02 = 12.28 mm.",
+      "CHOICE-2": "Adds 0.14 mm (0.01 mm/div) — wrong vernier least count.",
+      "CHOICE-3": "Adds 0.40 mm—too large.",
+      "CHOICE-4": "Digits reversed; not how verniers work."
+    }
+  },
+  {
+    "id": "Q-B-6P_chain_dimension_10x_pm0_5",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "If you step off ten features in a chain, each ±0.5 mm, what worst‑case cumulative error can the last feature have relative to the first?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "±0.5 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "±1.0 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "±2.5 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "±5.0 mm"
+      }
+    ],
+    "correctId": "CHOICE-4",
+    "rationales": {
+      "CHOICE-4": "Correct: worst‑case stack = 10×0.5 = ±5.0 mm; measure from a datum to avoid this.",
+      "CHOICE-1": "Assumes no stacking.",
+      "CHOICE-2": "Only two steps of error—understates risk.",
+      "CHOICE-3": "Half of the true worst case."
+    }
+  },
+  {
+    "id": "Q-B-6P_345_scale_given5_2_5m",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "A 3‑4‑5 triangle is scaled so the diagonal (“5”) is 2.5 m. What lengths should the “3” and “4” legs be?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1.5 m and 2.0 m"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1.2 m and 2.0 m"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1.6 m and 2.4 m"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1.8 m and 2.0 m"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Correct: 3/5×2.5=1.5 m and 4/5×2.5=2.0 m.",
+      "CHOICE-2": "1.2 m is 3/5×2.0, not ×2.5.",
+      "CHOICE-3": "1.6 & 2.4 correspond to a 2.0 m diagonal (not 2.5 m).",
+      "CHOICE-4": "1.8 m would pair with 2.4 m for a 3‑4‑5 at 3.0 m diagonal."
+    }
+  },
+  {
+    "id": "Q-B-6P_tape_2_13over16_to_mm",
+    "taskId": "B-6",
+    "difficulty": "medium",
+    "stem": "Convert 2‑13/16 in to millimeters (two decimals).",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "71.44 mm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "71.20 mm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "72.00 mm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "73.00 mm"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Correct: 2.8125 in × 25.4 = 71.4375 ≈ 71.44 mm.",
+      "CHOICE-2": "Under‑rounded.",
+      "CHOICE-3": "Rounded to a whole mm—too coarse.",
+      "CHOICE-4": "Over‑estimated."
+    }
+  }
+]
