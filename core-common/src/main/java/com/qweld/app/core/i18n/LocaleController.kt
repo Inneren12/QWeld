@@ -10,24 +10,61 @@ import timber.log.Timber
 object LocaleController {
     annotation class currentLanguage
 
+    @Volatile
+    private var lastExplicitLocale: String? = null
+
     fun currentLanguage(context: Context? = null): String {
+        lastExplicitLocale?.let {
+            Timber.i("[current_language] source=explicit tag=%s", it)
+            return it
+        }
+
         val appLocales = AppCompatDelegate.getApplicationLocales()
         val primaryFromApp = appLocales.get(0)
+        Timber.d(
+            "[current_language_debug] appLocales=%s primary=%s",
+            appLocales.toLanguageTags(),
+            primaryFromApp,
+        )
         if (primaryFromApp != null) {
-            return normalizeContentTagOrEn(primaryFromApp.language)
+            val normalized = normalizeContentTagOrEn(primaryFromApp.language)
+            Timber.i(
+                "[current_language] source=appcompat raw=%s normalized=%s",
+                primaryFromApp.language,
+                normalized,
+            )
+            return normalized
         }
 
         val cfgLocales = context?.resources?.configuration?.locales
-        if (cfgLocales != null && !cfgLocales.isEmpty) {
-            return normalizeContentTagOrEn(cfgLocales[0].language)
+        val primaryFromConfig = if (cfgLocales != null && !cfgLocales.isEmpty) cfgLocales[0] else null
+        if (primaryFromConfig != null) {
+            val normalized = normalizeContentTagOrEn(primaryFromConfig.language)
+            Timber.i(
+                "[current_language] source=config raw=%s normalized=%s",
+                primaryFromConfig.language,
+                normalized,
+            )
+            return normalized
         }
 
-        return normalizeContentTagOrEn(Locale.getDefault().language)
+        val normalizedDefault = normalizeContentTagOrEn(Locale.getDefault().language)
+        Timber.i(
+            "[current_language] source=default raw=%s normalized=%s",
+            Locale.getDefault().language,
+            normalizedDefault,
+        )
+        return normalizedDefault
     }
 
     fun apply(tag: String, activityToRecreate: Activity? = null) {
         val desired: LocaleListCompat = AppLocales.fromTag(tag)
         val current: LocaleListCompat = AppCompatDelegate.getApplicationLocales()
+
+        lastExplicitLocale = when (tag.lowercase(Locale.ROOT)) {
+            "ru", "en" -> tag.lowercase(Locale.ROOT)
+            else -> null
+        }
 
         // Ничего не делаем, если уже установлена нужная локаль
         if (current.toLanguageTags() == desired.toLanguageTags()) {

@@ -33,7 +33,11 @@ fun currentAppLocaleTag(context: Context): String {
  */
 fun normalizeContentTagOrEn(tag: String?): String {
     val t = (tag ?: "").lowercase(Locale.ROOT)
-    return if (t == "ru" || t == "en") t else "en"
+    return when {
+        t.startsWith("ru") -> "ru"
+        t.startsWith("en") -> "en"
+        else -> "en"
+    }
 }
 
 /**
