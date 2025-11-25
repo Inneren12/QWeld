@@ -10,6 +10,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const CONTENT_ROOT = path.join(ROOT_DIR, 'content', 'questions');
 const DIST_ROOT = path.join(ROOT_DIR, 'dist', 'questions');
 const LOCALES = ['en', 'ru'];
+const STRICT_MODE = process.argv.includes('--strict');
 
 async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
@@ -55,8 +56,15 @@ async function collectTaskQuestions(localeDir, taskId) {
       continue;
     }
     const filePath = path.join(taskDir, entry.name);
-    const question = await readJson(filePath);
-    questions.push(question);
+    const payload = await readJson(filePath);
+    const questionList = Array.isArray(payload) ? payload : [payload];
+
+    questionList.forEach((question, index) => {
+      const issues = validateQuestion(question, { locale: path.basename(localeDir), taskId, filePath, itemIndex: index });
+      if (!issues.length) {
+        questions.push(question);
+      }
+    });
   }
 
   questions.sort(sortById);
