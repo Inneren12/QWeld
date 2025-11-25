@@ -21,82 +21,35 @@ async function readJson(filePath) {
   return JSON.parse(payload);
 }
 
-function normalizeSortKey(question) {
-  if (!question || typeof question !== 'object') {
+fuАnction sortById(a, b) {
+  const aId = normalizeId(a);
+  const bId = normalizeId(b);
+  return aId.localeCompare(bId, 'en', { numeric: true });
+}
+
+function normalizeId(item) {
+  if (!item) {
+    console.warn('[dist-node] WARN item is null/undefined in sortById');
     return '';
   }
 
-  const candidates = [question.id, question.taskId];
-  for (const candidate of candidates) {
-    if (typeof candidate === 'string' && candidate.trim().length > 0) {
-      return candidate;
-    }
+  // Основной нормальный случай — вопрос с полем id
+  if (typeof item.id === 'string' && item.id.length > 0) {
+    return item.id;
   }
 
+  // На всякий случай, если когда-то будем сортировать по taskId
+  if (typeof item.taskId === 'string' && item.taskId.length > 0) {
+    return item.taskId;
+  }
+
+  console.warn('[dist-node] WARN item without id/taskId in sortById:', JSON.stringify(item));
   return '';
 }
-
-function sortById(a, b) {
-  const keyA = normalizeSortKey(a);
-  const keyB = normalizeSortKey(b);
-  return keyA.localeCompare(keyB);
-}
-
-function validateQuestion(question, { locale, taskId, filePath, itemIndex }) {
-  const issues = [];
-  if (!question || typeof question !== 'object') {
-    issues.push('Question is not an object');
-  } else {
-    if (typeof question.id !== 'string' || question.id.trim().length === 0) {
-      issues.push('Missing or empty id');
-    }
-    if (typeof question.taskId !== 'string' || question.taskId.trim().length === 0) {
-      issues.push('Missing or empty taskId');
-    }
-    if (question.difficulty === undefined || question.difficulty === null) {
-      issues.push('Missing difficulty');
-    }
-
-    if (!Array.isArray(question.choices) || question.choices.length === 0) {
-      issues.push('Missing choices array');
-    } else {
-      question.choices.forEach((choice, index) => {
-        if (typeof choice !== 'object') {
-          issues.push(`Choice[${index}] is not an object`);
-          return;
-        }
-        if (typeof choice.id !== 'string' || choice.id.trim().length === 0) {
-          issues.push(`Choice[${index}] missing id`);
-        }
-        if (typeof choice.text !== 'string' || choice.text.trim().length === 0) {
-          issues.push(`Choice[${index}] missing text`);
-        }
-      });
-    }
-
-    if (typeof question.correctId !== 'string' || question.correctId.trim().length === 0) {
-      issues.push('Missing correctId');
-    }
-  }
-
-  if (issues.length > 0) {
-    const indexLabel = itemIndex !== undefined ? ` index=${itemIndex}` : '';
-    const prefix = `[dist-node] ${STRICT_MODE ? 'ERROR' : 'WARN'} malformed_question locale=${locale} task=${taskId} file=${path.relative(ROOT_DIR, filePath)}${indexLabel}`;
-    const details = `${prefix} issues=${issues.join('; ')} data=${JSON.stringify(question)}`;
-    if (STRICT_MODE) {
-      throw new Error(details);
-    } else {
-      console.warn(details);
-    }
-  }
-
-  return issues;
-}
-
 async function collectTaskQuestions(localeDir, taskId) {
   const taskDir = path.join(localeDir, taskId);
   const entries = await fs.readdir(taskDir, { withFileTypes: true });
-  const questions = [];
+  const questions = allQuestions.filter(Boolean).sort(sortById);
 
   for (const entry of entries) {
     if (!entry.isFile() || !entry.name.endsWith('.json')) {
