@@ -139,6 +139,9 @@ class AutosaveControllerTest {
     override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> =
       throw UnsupportedOperationException()
 
+    override suspend fun listWrongByAttempt(attemptId: String): List<String> =
+      throw UnsupportedOperationException()
+
     override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? =
       throw UnsupportedOperationException()
 

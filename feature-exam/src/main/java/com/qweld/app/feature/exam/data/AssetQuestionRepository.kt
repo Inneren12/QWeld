@@ -470,6 +470,9 @@ class AssetQuestionRepository internal constructor(
     private val opener: (String) -> InputStream?,
     private val lister: (String) -> List<String>? = { _ -> emptyList() },
   ) {
+    constructor(open: (String) -> InputStream?, list: (String) -> List<String>? = { _ -> emptyList() }) :
+      this(opener = open, lister = list)
+
     fun open(path: String): InputStream? = opener(path)
     fun list(path: String): List<String>? = lister(path)
   }

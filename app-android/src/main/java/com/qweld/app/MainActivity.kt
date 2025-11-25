@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
 import com.qweld.app.data.content.ContentIndexReader
+import com.qweld.app.data.content.ContentLocaleResolver
 import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
@@ -93,15 +94,25 @@ fun QWeldAppRoot(
     val context = LocalContext.current
     val appContext = context.applicationContext
 
-    val lruCacheSize by userPrefs.lruCacheSizeFlow()
-        .collectAsState(initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE)
+  val lruCacheSize by userPrefs.lruCacheSizeFlow()
+    .collectAsState(initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE)
 
-    val questionRepository = remember(appContext, lruCacheSize) {
-        AssetQuestionRepository(appContext, cacheCapacity = lruCacheSize)
+  val questionRepository = remember(appContext, lruCacheSize) {
+    AssetQuestionRepository(appContext, cacheCapacity = lruCacheSize)
+  }
+  val explanationRepository = remember(appContext) { AssetExplanationRepository(appContext) }
+  val contentIndexReader = remember(appContext) { ContentIndexReader(appContext) }
+  val appLocaleState =
+    userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
+  val contentLocaleResolver =
+    remember(appContext) {
+      ContentLocaleResolver(
+        contentIndexReader = contentIndexReader,
+        appLocaleProvider = { appLocaleState.value },
+        systemLocalesProvider = { currentSystemLocales(appContext) },
+      )
     }
-    val explanationRepository = remember(appContext) { AssetExplanationRepository(appContext) }
-    val contentIndexReader = remember(appContext) { ContentIndexReader(appContext) }
-    val database = remember(appContext) { QWeldDb.create(appContext) }
+  val database = remember(appContext) { QWeldDb.create(appContext) }
     val attemptsRepository = remember(database) { AttemptsRepository(database.attemptDao()) }
     val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
     val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
@@ -111,18 +122,35 @@ fun QWeldAppRoot(
     }
 
     QWeldTheme {
-        AppNavGraph(
-            authService = authService,
-            questionRepository = questionRepository,
-            explanationRepository = explanationRepository,
-            attemptsRepository = attemptsRepository,
-            answersRepository = answersRepository,
-            statsRepository = statsRepository,
-            appVersion = BuildConfig.VERSION_NAME,
-            analytics = analytics,
-            logCollector = logCollector,
-            userPrefs = userPrefs,
-            contentIndexReader = contentIndexReader,
-        )
-    }
+    AppNavGraph(
+      authService = authService,
+      questionRepository = questionRepository,
+      explanationRepository = explanationRepository,
+      attemptsRepository = attemptsRepository,
+      answersRepository = answersRepository,
+      statsRepository = statsRepository,
+      appVersion = BuildConfig.VERSION_NAME,
+      analytics = analytics,
+      logCollector = logCollector,
+      userPrefs = userPrefs,
+      contentIndexReader = contentIndexReader,
+      contentLocaleResolver = contentLocaleResolver,
+      appLocaleTag = appLocaleState.value,
+    )
+  }
+}
+
+private fun currentSystemLocales(context: android.content.Context): List<java.util.Locale> {
+  val locales = mutableListOf<java.util.Locale>()
+  val appLocales = androidx.appcompat.app.AppCompatDelegate.getApplicationLocales()
+  for (index in 0 until appLocales.size()) {
+    appLocales[index]?.let { locales += it }
+  }
+  if (locales.isNotEmpty()) return locales
+  val configLocales = context.resources.configuration.locales
+  for (index in 0 until configLocales.size()) {
+    configLocales[index]?.let { locales += it }
+  }
+  if (locales.isEmpty()) locales += java.util.Locale.getDefault()
+  return locales
 }
