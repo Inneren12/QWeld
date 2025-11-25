@@ -223,6 +223,9 @@ class ExamViewModelAbortRestartTest {
 
     override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = answers.filter { it.attemptId == attemptId }
 
+    override suspend fun listWrongByAttempt(attemptId: String): List<String> =
+      answers.filter { it.attemptId == attemptId && !it.isCorrect }.map { it.questionId }
+
     override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? = null
 
     override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> = emptyList()
