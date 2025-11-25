@@ -21,7 +21,7 @@ async function readJson(filePath) {
   return JSON.parse(payload);
 }
 
-fuАnction sortById(a, b) {
+function sortById(a, b) {
   const aId = normalizeId(a);
   const bId = normalizeId(b);
   return aId.localeCompare(bId, 'en', { numeric: true });
