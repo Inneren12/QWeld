@@ -20,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,6 +41,7 @@ import com.google.android.gms.common.api.ApiException
 import com.qweld.app.BuildConfig
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
+import com.qweld.app.data.content.ContentLocaleResolver
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogExportFormat
 import com.qweld.app.data.logging.writeTo
@@ -80,6 +80,8 @@ fun AppNavGraph(
     logCollector: LogCollector?,
     userPrefs: UserPrefsDataStore,
     contentIndexReader: ContentIndexReader,
+    contentLocaleResolver: ContentLocaleResolver,
+    appLocaleTag: String,
     modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
@@ -120,9 +122,7 @@ fun AppNavGraph(
     }
 
     // ---------- Язык: читаем текущий тег из DataStore, меняем ТОЛЬКО DataStore ----------
-    val appLocale by userPrefs.appLocaleFlow().collectAsState(
-        initial = UserPrefsDataStore.DEFAULT_APP_LOCALE
-    )
+    val appLocale = appLocaleTag
 
     val handleLocaleSelection = remember(userPrefs, scope) {
         { tag: String, source: String ->
@@ -287,9 +287,11 @@ fun AppNavGraph(
                     attemptsRepository = attemptsRepository,
                     answersRepository = answersRepository,
                     statsRepository = statsRepository,
+                    contentLocaleResolver = contentLocaleResolver,
                     appVersion = appVersion,
                     analytics = analytics,
                     userPrefs = userPrefs,
+                    appLocaleTag = appLocale,
                     prewarmConfig = prewarmConfigFromBuildConfig(),
                 )
             }

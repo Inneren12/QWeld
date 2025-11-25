@@ -1,6 +1,5 @@
 package com.qweld.app.feature.exam.ui
 
-import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,7 +36,6 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.navigation.NavHostController
 import com.qweld.app.feature.exam.R
-import androidx.appcompat.app.AppCompatDelegate
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.data.prefs.UserPrefsDataStore
@@ -48,6 +46,7 @@ import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.RepeatMistakesAvailability
+import com.qweld.app.data.content.ContentLocaleResolver
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -59,6 +58,8 @@ fun ModeScreen(
   viewModel: ExamViewModel,
   practiceShortcuts: PracticeShortcuts,
   practiceConfig: PracticeConfig = PracticeConfig(),
+  contentLocaleResolver: ContentLocaleResolver,
+  appLocaleTag: String,
   modifier: Modifier = Modifier,
   navController: NavHostController,
   onPracticeSizeCommit: (Int) -> Unit = {},
@@ -78,7 +79,8 @@ fun ModeScreen(
   val coroutineScope = rememberCoroutineScope()
   var showPracticeScope by remember { mutableStateOf(false) }
   var practiceScope by remember { mutableStateOf(practiceConfig.scope) }
-  val resolvedLanguage = remember(configuration) { resolveLanguage(configuration) }
+  val resolvedLanguage =
+    remember(configuration, appLocaleTag) { contentLocaleResolver.currentContentLocale() }
   val practiceBlueprint = remember(viewModel) { viewModel.practiceBlueprint() }
   val taskLabels = remember(practiceBlueprint, resolvedLanguage) {
     repository.loadTaskLabels(resolvedLanguage)
@@ -346,15 +348,3 @@ private suspend fun showBankMissingMessage(
   snackbarHostState.showSnackbar(message)
 }
 
-private fun resolveLanguage(configuration: android.content.res.Configuration): String {
-  AppCompatDelegate.getApplicationLocales().get(0)?.language
-    ?.takeIf { it.isNotBlank() }
-    ?.let { return it.lowercase(Locale.US) }
-  val language =
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-      configuration.locales.takeIf { it.size() > 0 }?.get(0)?.language
-    } else {
-      @Suppress("DEPRECATION") configuration.locale?.language
-    }
-  return language?.takeIf { it.isNotBlank() }?.lowercase(Locale.US) ?: Locale.ENGLISH.language
-}
