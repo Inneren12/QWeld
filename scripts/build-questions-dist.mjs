@@ -93,10 +93,29 @@ function validateQuestion(question, { locale, taskId, filePath, itemIndex }) {
   return issues;
 }
 
+function normalizeId(item) {
+  if (!item) {
+    console.warn('[dist-node] WARN item is null/undefined in sortById');
+    return '';
+  }
+
+  // Основной нормальный случай — вопрос с полем id
+  if (typeof item.id === 'string' && item.id.length > 0) {
+    return item.id;
+  }
+
+  // На всякий случай, если когда-то будем сортировать по taskId
+  if (typeof item.taskId === 'string' && item.taskId.length > 0) {
+    return item.taskId;
+  }
+
+  console.warn('[dist-node] WARN item without id/taskId in sortById:', JSON.stringify(item));
+  return '';
+}
 async function collectTaskQuestions(localeDir, taskId) {
   const taskDir = path.join(localeDir, taskId);
   const entries = await fs.readdir(taskDir, { withFileTypes: true });
-  const questions = [];
+  const questions = allQuestions.filter(Boolean).sort(sortById);
 
   for (const entry of entries) {
     if (!entry.isFile() || !entry.name.endsWith('.json')) {
