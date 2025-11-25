@@ -6,6 +6,7 @@ import java.nio.file.Path
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
+import okio.Path.Companion.toPath
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -46,7 +47,7 @@ class UserPrefsDataStoreLastScopeTest {
   }
 
   private fun TestScope.newDataStore(): UserPrefsDataStore {
-    val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
+    val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb").toString().toPath()
     val dataStore =
       PreferenceDataStoreFactory.createWithPath(
         scope = backgroundScope,

@@ -1,6 +1,5 @@
 package com.qweld.app.feature.exam.navigation
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -14,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.export.AttemptExporter
+import com.qweld.app.data.content.ContentLocaleResolver
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.prefs.UserPrefsDataStore
@@ -53,6 +53,8 @@ fun ExamNavGraph(
   attemptsRepository: AttemptsRepository,
   answersRepository: AnswersRepository,
   statsRepository: UserStatsRepository,
+  contentLocaleResolver: ContentLocaleResolver,
+  appLocaleTag: String,
   appVersion: String,
   analytics: Analytics,
   userPrefs: UserPrefsDataStore,
@@ -114,6 +116,8 @@ fun ExamNavGraph(
         viewModel = examViewModel,
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
+        contentLocaleResolver = contentLocaleResolver,
+        appLocaleTag = appLocaleTag,
         navController = navController,
         onPracticeSizeCommit = { size ->
           coroutineScope.launch { userPrefs.setPracticeSize(size) }
@@ -164,13 +168,9 @@ fun ExamNavGraph(
             }
             ExamViewModel.ExamEffect.RestartWithSameConfig -> {
               val config = examViewModel.uiState.value.lastPracticeConfig
-              val fallbackLocale =
-                AppCompatDelegate.getApplicationLocales().get(0)?.language
-                  ?.takeIf { it.isNotBlank() }
-                  ?.lowercase(Locale.US)
-                  ?: Locale.getDefault().language.lowercase(Locale.US)
               val locale =
-                (examViewModel.uiState.value.lastLocale ?: fallbackLocale).lowercase(Locale.US)
+                (examViewModel.uiState.value.lastLocale
+                  ?: contentLocaleResolver.currentContentLocale()).lowercase(Locale.US)
               if (config == null) {
                 examViewModel.notifyRestartFailure("Missing practice configuration.")
                 return@collectLatest

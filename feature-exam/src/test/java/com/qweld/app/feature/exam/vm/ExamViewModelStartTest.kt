@@ -239,6 +239,10 @@ private class FakeAnswerDao : AnswerDao {
     return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
   }
 
+  override suspend fun listWrongByAttempt(attemptId: String): List<String> {
+    return answers.filter { it.attemptId == attemptId && !it.isCorrect }.map { it.questionId }
+  }
+
   override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
     val relevant = answers.filter { it.questionId == questionId }
     if (relevant.isEmpty()) return null

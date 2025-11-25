@@ -48,6 +48,8 @@ class ResultViewModelTest {
 
           override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = emptyList()
 
+          override suspend fun listWrongByAttempt(attemptId: String): List<String> = emptyList()
+
           override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? = null
 
           override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> = emptyList()
