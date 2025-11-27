@@ -18,7 +18,6 @@ import com.google.firebase.ktx.Firebase
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
 import com.qweld.app.data.content.ContentIndexReader
-import com.qweld.app.data.content.ContentLocaleResolver
 import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
@@ -104,14 +103,6 @@ fun QWeldAppRoot(
   val contentIndexReader = remember(appContext) { ContentIndexReader(appContext) }
   val appLocaleState =
     userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
-  val contentLocaleResolver =
-    remember(appContext) {
-      ContentLocaleResolver(
-        contentIndexReader = contentIndexReader,
-        appLocaleProvider = { appLocaleState.value },
-        systemLocalesProvider = { currentSystemLocales(appContext) },
-      )
-    }
   val database = remember(appContext) { QWeldDb.create(appContext) }
     val attemptsRepository = remember(database) { AttemptsRepository(database.attemptDao()) }
     val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
@@ -134,23 +125,8 @@ fun QWeldAppRoot(
       logCollector = logCollector,
       userPrefs = userPrefs,
       contentIndexReader = contentIndexReader,
-      contentLocaleResolver = contentLocaleResolver,
       appLocaleTag = appLocaleState.value,
     )
   }
 }
 
-private fun currentSystemLocales(context: android.content.Context): List<java.util.Locale> {
-  val locales = mutableListOf<java.util.Locale>()
-  val appLocales = androidx.appcompat.app.AppCompatDelegate.getApplicationLocales()
-  for (index in 0 until appLocales.size()) {
-    appLocales[index]?.let { locales += it }
-  }
-  if (locales.isNotEmpty()) return locales
-  val configLocales = context.resources.configuration.locales
-  for (index in 0 until configLocales.size()) {
-    configLocales[index]?.let { locales += it }
-  }
-  if (locales.isEmpty()) locales += java.util.Locale.getDefault()
-  return locales
-}

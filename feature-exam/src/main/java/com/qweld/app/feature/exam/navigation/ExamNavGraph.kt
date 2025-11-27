@@ -13,7 +13,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.export.AttemptExporter
-import com.qweld.app.data.content.ContentLocaleResolver
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.prefs.UserPrefsDataStore
@@ -33,10 +32,11 @@ import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
 import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
-import java.util.Locale
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
+
+private const val CONTENT_LOCALE_EN = "en"
 
 object ExamDestinations {
   const val MODE = "exam_mode"
@@ -53,8 +53,6 @@ fun ExamNavGraph(
   attemptsRepository: AttemptsRepository,
   answersRepository: AnswersRepository,
   statsRepository: UserStatsRepository,
-  contentLocaleResolver: ContentLocaleResolver,
-  appLocaleTag: String,
   appVersion: String,
   analytics: Analytics,
   userPrefs: UserPrefsDataStore,
@@ -116,8 +114,7 @@ fun ExamNavGraph(
         viewModel = examViewModel,
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
-        contentLocaleResolver = contentLocaleResolver,
-        appLocaleTag = appLocaleTag,
+        contentLocale = CONTENT_LOCALE_EN,
         navController = navController,
         onPracticeSizeCommit = { size ->
           coroutineScope.launch { userPrefs.setPracticeSize(size) }
@@ -168,14 +165,11 @@ fun ExamNavGraph(
             }
             ExamViewModel.ExamEffect.RestartWithSameConfig -> {
               val config = examViewModel.uiState.value.lastPracticeConfig
-              val locale =
-                (examViewModel.uiState.value.lastLocale
-                  ?: contentLocaleResolver.currentContentLocale()).lowercase(Locale.US)
               if (config == null) {
                 examViewModel.notifyRestartFailure("Missing practice configuration.")
                 return@collectLatest
               }
-              val launched = examViewModel.startPractice(locale, config)
+              val launched = examViewModel.startPractice(CONTENT_LOCALE_EN, config)
               if (!launched) {
                 examViewModel.notifyRestartFailure("Unable to restart practice.")
               }

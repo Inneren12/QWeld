@@ -67,7 +67,8 @@ constructor(
     val candidates =
       assetLoader
         .list(QUESTIONS_ROOT)
-        .filter { isLocaleCandidate(it) }
+        .map { it.lowercase(Locale.US) }
+        .filter { locale -> isLocaleCandidate(locale) && SUPPORTED_LOCALES.contains(locale) }
         .sorted()
     if (candidates.isEmpty()) {
       Timber.w("[content_index] no locale directories under %s", QUESTIONS_ROOT)
@@ -199,6 +200,7 @@ constructor(
   private data class IndexMeta(val blueprintId: String?, val bankVersion: String?)
 
   companion object {
+    private val SUPPORTED_LOCALES = setOf("en")
     private const val QUESTIONS_ROOT = "questions"
     private const val INDEX_FILENAME = "index.json"
     private const val TASKS_DIR = "tasks"

@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const CONTENT_ROOT = path.join(ROOT_DIR, 'content', 'questions');
 const DIST_ROOT = path.join(ROOT_DIR, 'dist', 'questions');
-const LOCALES = ['en', 'ru'];
+const LOCALES = ['en'];
 const STRICT_MODE = process.argv.includes('--strict');
 
 async function ensureDir(dir) {

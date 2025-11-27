@@ -41,46 +41,6 @@
           "D-15": "d111409e68f021eff6eb28cccc3fc7c65b96a5f3d8e1f780bd2204fa860ce4d8"
         }
       }
-    },
-    "ru": {
-      "total": 615,
-      "tasks": {
-        "A-1": 59,
-        "A-2": 38,
-        "A-3": 37,
-        "A-4": 31,
-        "A-5": 65,
-        "B-6": 17,
-        "B-7": 75,
-        "C-10": 30,
-        "C-11": 25,
-        "C-8": 25,
-        "C-9": 31,
-        "D-12": 80,
-        "D-13": 19,
-        "D-14": 55,
-        "D-15": 28
-      },
-      "sha256": {
-        "bank": "6aef413e74af9891598e975363f9dba87e1c4a70aef3889ac58e871f14be85ac",
-        "tasks": {
-          "A-1": "2c449d9bd50e182e6a0fcf41f600146209e954e20257946fb1f8aafd997520f8",
-          "A-2": "0c2a2752faf587bb63a07b1376c5ce5368d12f32b5845a6ce8eef0c7f2f5b337",
-          "A-3": "5b216f42f0959dce30cec828b967ccde65a654482deefc7b855dd9e602d4db6b",
-          "A-4": "6bd8c586ea95945c20e30949be0a38a796d117ee74118c76e7e9ff7d4b755f38",
-          "A-5": "ae39ce879fa4bdf2d2fc25a05c3305ee8d748d69199eb664e6bbe7c24c3d743d",
-          "B-6": "91c6d8c1ae52edc7284c4c031ac17ecedecbf43b53b9994cd6a9a40454670df7",
-          "B-7": "fec12fddf2227426fb3fd5951bb3fa8e90a418965c436cea15f6f6b687c4858a",
-          "C-10": "02597eda3a0bdc9b2412f6e808ffa11af85199f3d5c31c7881636e5ceed71db7",
-          "C-11": "ae868f2641299bfe6cad834400ba991736a99e203459ec6a61e1aab411dc9256",
-          "C-8": "2fed039551aba5a7ecdb2bf7b53207389f249df16ab24c1b8e707fd05d85956d",
-          "C-9": "00e81f576e7be58e45cc4c858790830b0aadf1f71b559a71d81d2e5115d34aa7",
-          "D-12": "8ecfc28f68b98147d4917dd1da428a039c2d99dacab2c8748eb82bbbf5d9a949",
-          "D-13": "4eb598d946bfaa93bbd7bc36a1763571dc8756a9a2e608156ad0ed814e75799b",
-          "D-14": "094b7ff02db26e124d40085aca577247dfcfbf4e780894e71b715439885b9e59",
-          "D-15": "29dcc084374e6404262fe60b6ef88026f7c6ab081a2e8f3ac9ce6310612f119d"
-        }
-      }
     }
   }
 }
