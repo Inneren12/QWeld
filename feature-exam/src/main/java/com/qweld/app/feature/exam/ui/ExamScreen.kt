@@ -329,11 +329,11 @@ internal fun ExamScreenContent(
           .fillMaxSize()
           .padding(paddingValues)
             .statusBarsPadding()
-          .padding(horizontal = 20.dp, vertical = 16.dp)
+          .padding(horizontal = 20.dp, vertical = 12.dp)
           .verticalScroll(scrollState)
           .imePadding()
           .testTag("exam-content"),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
       ) {
         if (attempt.mode == ExamMode.IP_MOCK && state.timerLabel != null) {
           Text(
