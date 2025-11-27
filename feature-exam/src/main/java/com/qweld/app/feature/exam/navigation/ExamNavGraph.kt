@@ -122,7 +122,6 @@ fun ExamNavGraph(
         onRepeatMistakes = { locale, blueprint, config ->
           val launched = examViewModel.startAttempt(
             mode = ExamMode.PRACTICE,
-            locale = locale,
             practiceConfig = config,
             blueprintOverride = blueprint,
           )
@@ -169,7 +168,7 @@ fun ExamNavGraph(
                 examViewModel.notifyRestartFailure("Missing practice configuration.")
                 return@collectLatest
               }
-              val launched = examViewModel.startPractice(CONTENT_LOCALE_EN, config)
+              val launched = examViewModel.startPractice(config)
               if (!launched) {
                 examViewModel.notifyRestartFailure("Unable to restart practice.")
               }

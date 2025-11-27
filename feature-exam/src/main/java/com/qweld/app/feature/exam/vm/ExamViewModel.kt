@@ -31,11 +31,7 @@ import com.qweld.app.feature.exam.model.ExamAttemptUiState
 import com.qweld.app.feature.exam.model.ExamChoiceUiModel
 import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
-import com.qweld.app.feature.exam.vm.Distribution
-import com.qweld.app.feature.exam.vm.PracticeScope
-import com.qweld.app.feature.exam.vm.ResumeUseCase
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
-import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
@@ -54,7 +50,6 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -162,7 +157,6 @@ class ExamViewModel(
 
   fun startAttempt(
     mode: ExamMode,
-    locale: String,
     practiceConfig: PracticeConfig = PracticeConfig(),
     blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
@@ -406,7 +400,7 @@ class ExamViewModel(
     return false
   }
 
-  fun detectResume(deviceLocale: String) {
+  fun detectResume() {
     val normalizedLocale = CONTENT_LOCALE_EN
     viewModelScope.launch {
       val unfinished = withContext(ioDispatcher) { attemptsRepository.getUnfinished() }
@@ -468,8 +462,6 @@ class ExamViewModel(
 
   fun resumeAttempt(
     attemptId: String,
-    _localeOption: ResumeLocaleOption,
-    _deviceLocale: String,
   ) {
     val pending = pendingResume?.takeIf { it.id == attemptId } ?: return
     val mode = runCatching { ExamMode.valueOf(pending.mode) }.getOrNull() ?: return
@@ -779,12 +771,11 @@ class ExamViewModel(
         }
       }
       ExamMode.IP_MOCK -> {
-        val locale = attempt.locale
-        viewModelScope.launch {
+          viewModelScope.launch {
           logRestart(ExamMode.IP_MOCK, null, questionCount)
           val aborted = closeCurrentAttemptAsAborted(reason = "user_restart")
           if (!aborted) return@launch
-          val launched = startAttempt(ExamMode.IP_MOCK, locale)
+          val launched = startAttempt(ExamMode.IP_MOCK)
           if (!launched) {
             _effects.emit(ExamEffect.ShowError("Unable to restart exam."))
           }
@@ -848,7 +839,7 @@ class ExamViewModel(
     currentAttempt = attemptResult.copy(currentIndex = index)
   }
 
-  fun startPrewarmForIpMock(_locale: String) {
+  fun startPrewarmForIpMock() {
     if (_prewarmDisabled.value) return
     val normalizedLocale = CONTENT_LOCALE_EN
     val current = _uiState.value.prewarmState
@@ -900,7 +891,7 @@ class ExamViewModel(
       else -> 1
     }
     val clampedLoaded = loaded.coerceIn(0, safeTotal)
-    val isReady = clampedLoaded >= safeTotal && safeTotal > 0
+    val isReady = clampedLoaded >= safeTotal
     updatePrewarmState(
       locale = locale,
       loaded = clampedLoaded,
@@ -1273,12 +1264,10 @@ class ExamViewModel(
   }
 
   fun startPractice(
-    _locale: String,
-    config: PracticeConfig,
+      config: PracticeConfig,
     preset: PracticeScopePresetName? = null,
   ): Boolean {
-    val normalizedLocale = CONTENT_LOCALE_EN
-    val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
+      val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
     val sizeSource = if (resolvedConfig.size in PracticeConfig.PRESETS) "preset" else "manual"
     Timber.i("[practice_size] value=%d source=%s", resolvedConfig.size, sizeSource)
     val baseBlueprint = practiceBlueprint()
@@ -1366,7 +1355,6 @@ class ExamViewModel(
     val launched =
       startAttempt(
         mode = ExamMode.PRACTICE,
-        locale = normalizedLocale,
         practiceConfig = resolvedConfig,
         blueprintOverride = blueprint,
       )

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import java.util.Locale
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -112,12 +113,12 @@ fun ModeScreen(
 
   LaunchedEffect(resolvedLanguage, prewarmDisabled) {
     if (!prewarmDisabled) {
-      viewModel.startPrewarmForIpMock(resolvedLanguage)
+      viewModel.startPrewarmForIpMock()
     }
   }
 
   LaunchedEffect(viewModel, resolvedLanguage) {
-    viewModel.detectResume(resolvedLanguage)
+    viewModel.detectResume()
   }
 
   LaunchedEffect(practiceShortcuts) { practiceShortcuts.refresh() }
@@ -184,7 +185,7 @@ fun ModeScreen(
             role = Role.Button
           },
         enabled = startEnabled,
-        onClick = { viewModel.startAttempt(ExamMode.IP_MOCK, resolvedLanguage) },
+        onClick = { viewModel.startAttempt(ExamMode.IP_MOCK) },
       ) {
         Text(text = stringResource(id = R.string.start_exam))
       }
@@ -280,7 +281,6 @@ fun ModeScreen(
         } else {
           val launched =
             viewModel.startPractice(
-              locale = resolvedLanguage,
               config = practiceConfig.copy(scope = scope, size = selectedSize),
               preset = preset,
             )
@@ -300,8 +300,6 @@ fun ModeScreen(
       onContinue = { option ->
         viewModel.resumeAttempt(
           attemptId = resumeDialog.attemptId,
-          localeOption = option,
-          deviceLocale = resolvedLanguage,
         )
       },
       onDiscard = { viewModel.discardAttempt(resumeDialog.attemptId) },
