@@ -11,6 +11,7 @@ jobs:
       (github.event_name == 'push' && contains(github.event.head_commit.message, 'bench:')) ||
       (github.event_name == 'pull_request' && contains(github.event.pull_request.title, 'bench:'))
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,18 +26,18 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
-      - name: "Setup Gradle (cache & config)"
+      - name: Setup Gradle (cache & config)
         uses: gradle/actions/setup-gradle@v3
 
       - name: Sanity: verify plugin repository resolution
         run: |
+          set -euo pipefail
           grep -n "gradlePluginPortal" settings.gradle.kts || (echo "gradlePluginPortal missing" && exit 1)
           ./gradlew --version --no-daemon
           ./gradlew help -q --no-daemon
 
       - name: Run JMH benchmarks
-        run: |
-          ./gradlew :benchmarks-jvm:jmh --no-daemon
+        run: ./gradlew :benchmarks-jvm:jmh --no-daemon
 
       - name: Upload JMH report
         if: always()
