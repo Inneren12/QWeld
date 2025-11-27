@@ -13,6 +13,7 @@ plugins {
   id("org.jetbrains.kotlin.plugin.compose")
   id("app.cash.licensee")
   id("org.cyclonedx.bom")
+    id("com.google.gms.google-services")
 }
 
 val hasGoogleServices =
