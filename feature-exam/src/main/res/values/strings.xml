@@ -152,4 +152,5 @@
     <string name="resume_dialog_keep">Keep original (%1$s)</string>
     <string name="resume_dialog_switch">Switch to %1$s &amp; rebuild</string>
     <string name="resume_dialog_remaining">Time left: %1$s</string>
+    <string name="exam_title">QWeld</string>
 </resources>
