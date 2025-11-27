@@ -67,6 +67,8 @@ import kotlinx.serialization.json.jsonPrimitive
 import timber.log.Timber
 import kotlinx.coroutines.runBlocking
 
+private const val CONTENT_LOCALE_EN = "en"
+
 class ExamViewModel(
   private val repository: AssetQuestionRepository,
   private val attemptsRepository: AttemptsRepository,
@@ -170,7 +172,7 @@ class ExamViewModel(
       } else {
         practiceConfig
       }
-    val normalizedLocale = locale.takeIf { it.isNotBlank() }?.lowercase(Locale.US) ?: Locale.ENGLISH.language
+    val normalizedLocale = CONTENT_LOCALE_EN
     if (mode == ExamMode.IP_MOCK) {
       Timber.i("[exam_start_req] mode=IPMock locale=%s", normalizedLocale)
     }
@@ -405,6 +407,7 @@ class ExamViewModel(
   }
 
   fun detectResume(deviceLocale: String) {
+    val normalizedLocale = CONTENT_LOCALE_EN
     viewModelScope.launch {
       val unfinished = withContext(ioDispatcher) { attemptsRepository.getUnfinished() }
       if (unfinished == null) {
@@ -432,7 +435,7 @@ class ExamViewModel(
         "[resume_detect] attemptId=%s mode=%s locale=%s elapsedSec=%d",
         unfinished.id,
         mode.name,
-        unfinished.locale,
+        normalizedLocale,
         elapsedSec,
       )
       val nowMillis = nowProvider()
@@ -443,12 +446,9 @@ class ExamViewModel(
         _uiState.value = _uiState.value.copy(resumeDialog = null)
         return@launch
       }
-      val attemptLocale = unfinished.locale.lowercase(Locale.US)
-      val deviceNormalized = deviceLocale.lowercase(Locale.US)
-      val mismatch = !attemptLocale.equals(deviceNormalized, ignoreCase = true)
-      if (mismatch) {
-        Timber.w("[resume_mismatch] reason=locale_changed attemptId=%s", unfinished.id)
-      }
+      val attemptLocale = normalizedLocale
+      val deviceNormalized = normalizedLocale
+      val mismatch = false
       pendingResume = unfinished
       _uiState.value =
         _uiState.value.copy(
@@ -468,16 +468,12 @@ class ExamViewModel(
 
   fun resumeAttempt(
     attemptId: String,
-    localeOption: ResumeLocaleOption,
-    deviceLocale: String,
+    _localeOption: ResumeLocaleOption,
+    _deviceLocale: String,
   ) {
     val pending = pendingResume?.takeIf { it.id == attemptId } ?: return
     val mode = runCatching { ExamMode.valueOf(pending.mode) }.getOrNull() ?: return
-    val targetLocale =
-      when (localeOption) {
-        ResumeLocaleOption.KEEP_ORIGINAL -> pending.locale.lowercase(Locale.US)
-        ResumeLocaleOption.SWITCH_TO_DEVICE -> deviceLocale.lowercase(Locale.US)
-      }
+    val targetLocale = CONTENT_LOCALE_EN
     viewModelScope.launch {
       try {
         val remaining = resumeUseCase.remainingTime(pending, mode, nowProvider())
@@ -852,9 +848,9 @@ class ExamViewModel(
     currentAttempt = attemptResult.copy(currentIndex = index)
   }
 
-  fun startPrewarmForIpMock(locale: String) {
+  fun startPrewarmForIpMock(_locale: String) {
     if (_prewarmDisabled.value) return
-    val normalizedLocale = locale.lowercase(Locale.US)
+    val normalizedLocale = CONTENT_LOCALE_EN
     val current = _uiState.value.prewarmState
     if (current.isRunning) return
     if (current.isReady && current.locale.equals(normalizedLocale, ignoreCase = true)) return
@@ -1277,10 +1273,11 @@ class ExamViewModel(
   }
 
   fun startPractice(
-    locale: String,
+    _locale: String,
     config: PracticeConfig,
     preset: PracticeScopePresetName? = null,
   ): Boolean {
+    val normalizedLocale = CONTENT_LOCALE_EN
     val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
     val sizeSource = if (resolvedConfig.size in PracticeConfig.PRESETS) "preset" else "manual"
     Timber.i("[practice_size] value=%d source=%s", resolvedConfig.size, sizeSource)
@@ -1369,7 +1366,7 @@ class ExamViewModel(
     val launched =
       startAttempt(
         mode = ExamMode.PRACTICE,
-        locale = locale,
+        locale = normalizedLocale,
         practiceConfig = resolvedConfig,
         blueprintOverride = blueprint,
       )

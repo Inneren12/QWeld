@@ -41,7 +41,6 @@ import com.google.android.gms.common.api.ApiException
 import com.qweld.app.BuildConfig
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
-import com.qweld.app.data.content.ContentLocaleResolver
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogExportFormat
 import com.qweld.app.data.logging.writeTo
@@ -80,7 +79,6 @@ fun AppNavGraph(
     logCollector: LogCollector?,
     userPrefs: UserPrefsDataStore,
     contentIndexReader: ContentIndexReader,
-    contentLocaleResolver: ContentLocaleResolver,
     appLocaleTag: String,
     modifier: Modifier = Modifier,
 ) {
@@ -287,11 +285,9 @@ fun AppNavGraph(
                     attemptsRepository = attemptsRepository,
                     answersRepository = answersRepository,
                     statsRepository = statsRepository,
-                    contentLocaleResolver = contentLocaleResolver,
                     appVersion = appVersion,
                     analytics = analytics,
                     userPrefs = userPrefs,
-                    appLocaleTag = appLocale,
                     prewarmConfig = prewarmConfigFromBuildConfig(),
                 )
             }

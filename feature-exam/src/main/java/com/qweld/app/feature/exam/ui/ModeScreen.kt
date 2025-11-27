@@ -46,10 +46,8 @@ import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.RepeatMistakesAvailability
-import com.qweld.app.data.content.ContentLocaleResolver
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.Locale
 import timber.log.Timber
 
 @Composable
@@ -58,8 +56,7 @@ fun ModeScreen(
   viewModel: ExamViewModel,
   practiceShortcuts: PracticeShortcuts,
   practiceConfig: PracticeConfig = PracticeConfig(),
-  contentLocaleResolver: ContentLocaleResolver,
-  appLocaleTag: String,
+  contentLocale: String,
   modifier: Modifier = Modifier,
   navController: NavHostController,
   onPracticeSizeCommit: (Int) -> Unit = {},
@@ -79,8 +76,7 @@ fun ModeScreen(
   val coroutineScope = rememberCoroutineScope()
   var showPracticeScope by remember { mutableStateOf(false) }
   var practiceScope by remember { mutableStateOf(practiceConfig.scope) }
-  val resolvedLanguage =
-    remember(configuration, appLocaleTag) { contentLocaleResolver.currentContentLocale() }
+  val resolvedLanguage = remember(configuration, contentLocale) { contentLocale }
   val practiceBlueprint = remember(viewModel) { viewModel.practiceBlueprint() }
   val taskLabels = remember(practiceBlueprint, resolvedLanguage) {
     repository.loadTaskLabels(resolvedLanguage)
