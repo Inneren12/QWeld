@@ -466,17 +466,18 @@ class AssetQuestionRepository internal constructor(
     val cacheHits: Int,
   )
 
-  class AssetReader(
-    private val opener: (String) -> InputStream?,
-    private val lister: (String) -> List<String>? = { _ -> emptyList() },
-  ) {
-    constructor(open: (String) -> InputStream?, list: (String) -> List<String>? = { _ -> emptyList() }) :
-      this(opener = open, lister = list)
+  private class AssetReader(
+  open: (String) -> InputStream?,
+  list: (String) -> List<String> = { _ -> emptyList() },
+) {
+  private val opener: (String) -> InputStream? = open
+  private val lister: (String) -> List<String> = list
 
-    fun open(path: String): InputStream? = opener(path)
-    fun list(path: String): List<String>? = lister(path)
-  }
+  fun open(path: String): InputStream? = opener(path)
 
+  fun list(path: String): List<String> = lister(path)
+}
+  
   sealed class TaskLoadException(message: String, cause: Throwable? = null) : Exception(message, cause) {
     abstract val taskId: String
     abstract val path: String
