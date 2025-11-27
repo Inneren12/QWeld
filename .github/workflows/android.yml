@@ -59,6 +59,7 @@ jobs:
                       "platform-tools" \
                       "platforms;android-35" \
                       "build-tools;35.0.0" \
+                      "build-tools;34.0.0" \
                       "cmdline-tools;latest"
                   yes | sdkmanager --sdk_root="$ANDROID_SDK_ROOT" --licenses >/dev/null || true
 
