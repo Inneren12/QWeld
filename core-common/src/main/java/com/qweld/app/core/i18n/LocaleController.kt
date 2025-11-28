@@ -1,6 +1,5 @@
 package com.qweld.app.core.i18n
 
-import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
@@ -10,15 +9,7 @@ import timber.log.Timber
 object LocaleController {
     annotation class currentLanguage
 
-    @Volatile
-    private var lastExplicitLocale: String? = null
-
     fun currentLanguage(context: Context? = null): String {
-        lastExplicitLocale?.let {
-            Timber.i("[current_language] source=explicit tag=%s", it)
-            return it
-        }
-
         val appLocales = AppCompatDelegate.getApplicationLocales()
         val primaryFromApp = appLocales.get(0)
         Timber.d(
@@ -57,26 +48,16 @@ object LocaleController {
         return normalizedDefault
     }
 
-    fun apply(tag: String, activityToRecreate: Activity? = null) {
-        val desired: LocaleListCompat = AppLocales.fromTag(tag)
+    fun apply(@Suppress("UNUSED_PARAMETER") tag: String) {
+        val desired: LocaleListCompat = AppLocales.fromTag("en")
         val current: LocaleListCompat = AppCompatDelegate.getApplicationLocales()
 
-        lastExplicitLocale = when (tag.lowercase(Locale.ROOT)) {
-            "ru", "en" -> tag.lowercase(Locale.ROOT)
-            else -> null
-        }
-
-        // Ничего не делаем, если уже установлена нужная локаль
         if (current.toLanguageTags() == desired.toLanguageTags()) {
-            Timber.d("[settings_locale] no-op tag=%s", tag)
+            Timber.d("[settings_locale] no-op locale=disabled")
             return
         }
 
-        Timber.i(
-            "[settings_locale] apply tag=%s locales=%s",
-            tag,
-            desired.toLanguageTags(),
-        )
+        Timber.i("[settings_locale] apply locale=en locales=%s", desired.toLanguageTags())
 
         // Это триггерит пересоздание Activity самим AppCompat, ручной recreate() не нужен
         AppCompatDelegate.setApplicationLocales(desired)
