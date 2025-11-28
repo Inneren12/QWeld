@@ -60,8 +60,6 @@ fun SettingsScreen(
   answersRepository: AnswersRepository,
   questionRepository: AssetQuestionRepository,
   contentIndexReader: ContentIndexReader,
-  appLocaleTag: String,
-  onLocaleSelected: (String) -> Unit,
   onExportLogs: (() -> Unit)?,
   onBack: () -> Unit,
 ) {
@@ -148,19 +146,6 @@ fun SettingsScreen(
           }
         },
       )
-
-      Divider()
-
-      var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
-
-        SettingsLanguageSection(
-            selectedTag = pendingLocale,
-            onTagSelected = { pendingLocale = it },
-            onApplyClick = {
-                onLocaleSelected(pendingLocale) // достаточно, остальное сделает MainActivity
-            },
-            applyEnabled = (pendingLocale != appLocaleTag),
-        )
 
       Divider()
 
@@ -330,49 +315,6 @@ private fun SettingsPrivacySection(
         )
       }
       Switch(checked = analyticsEnabled, onCheckedChange = onToggleAnalytics)
-    }
-  }
-}
-
-@Composable
-private fun SettingsLanguageSection(
-  selectedTag: String,
-  onTagSelected: (String) -> Unit,
-  onApplyClick: (() -> Unit)? = null,
-  applyEnabled: Boolean = false,
-) {
-  Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-    Text(text = stringResource(id = R.string.language), style = MaterialTheme.typography.titleMedium)
-
-    val options =
-      listOf(
-        "system" to R.string.language_system,
-        "en" to R.string.language_en,
-        "ru" to R.string.language_ru,
-      )
-
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-      options.forEach { (tag, labelRes) ->
-        Row(
-          modifier = Modifier.fillMaxWidth(),
-          verticalAlignment = Alignment.CenterVertically,
-          horizontalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-          RadioButton(selected = selectedTag == tag, onClick = { onTagSelected(tag) })
-          Text(text = stringResource(id = labelRes), style = MaterialTheme.typography.bodyLarge)
-        }
-      }
-    }
-
-    onApplyClick?.let { apply ->
-      Row(
-        modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
-        horizontalArrangement = Arrangement.End,
-      ) {
-        Button(onClick = apply, enabled = applyEnabled) {
-          Text(text = stringResource(id = android.R.string.ok))
-        }
-      }
     }
   }
 }

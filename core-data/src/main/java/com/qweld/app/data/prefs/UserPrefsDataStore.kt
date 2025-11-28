@@ -65,7 +65,7 @@ class UserPrefsDataStore internal constructor(
   }
 
   fun appLocaleFlow(): Flow<String> {
-    return dataStore.data.map { preferences -> preferences[APP_LOCALE_KEY] ?: DEFAULT_APP_LOCALE }
+    return dataStore.data.map { DEFAULT_APP_LOCALE }
   }
 
   val wrongBiased: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -129,7 +129,7 @@ class UserPrefsDataStore internal constructor(
   }
 
   suspend fun setAppLocale(tag: String) {
-    dataStore.edit { preferences -> preferences[APP_LOCALE_KEY] = tag }
+    // Locale selection disabled – keep existing preference intact
   }
 
   suspend fun saveLastPracticeScope(
@@ -165,7 +165,7 @@ class UserPrefsDataStore internal constructor(
     const val DEFAULT_FALLBACK_TO_EN: Boolean = false
     const val DEFAULT_HAPTICS_ENABLED: Boolean = true
     const val DEFAULT_SOUNDS_ENABLED: Boolean = false
-    const val DEFAULT_APP_LOCALE: String = "system"
+    const val DEFAULT_APP_LOCALE: String = "en"
 
     val PRACTICE_SIZE_PRESETS: Set<Int> = setOf(10, 20, 30)
 

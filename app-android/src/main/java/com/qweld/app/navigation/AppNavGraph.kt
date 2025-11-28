@@ -119,20 +119,7 @@ fun AppNavGraph(
         GoogleSignIn.getClient(context, options)
     }
 
-    // ---------- Язык: читаем текущий тег из DataStore, меняем ТОЛЬКО DataStore ----------
     val appLocale = appLocaleTag
-
-    val handleLocaleSelection = remember(userPrefs, scope) {
-        { tag: String, source: String ->
-            Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
-            scope.launch {
-                // единый источник истины — DataStore
-                userPrefs.setAppLocale(tag)
-            }
-            // Применение locale делает MainActivity (наблюдает DataStore и делает recreate()).
-        }
-    }
-    // -------------------------------------------------------------------------------
 
     val navigateToAuth: () -> Unit = {
         safeNavigate(Routes.AUTH) {
@@ -230,7 +217,7 @@ fun AppNavGraph(
                         { showLogDialog = true }
                     } else null,
                 currentLocaleTag = appLocale,
-                onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
+                onLocaleSelected = {},
             )
         },
     ) { innerPadding ->
@@ -302,8 +289,6 @@ fun AppNavGraph(
                     answersRepository = answersRepository,
                     questionRepository = questionRepository,
                     contentIndexReader = contentIndexReader,
-                    appLocaleTag = appLocale,
-                    onLocaleSelected = { tag -> handleLocaleSelection(tag, "settings") },
                     onExportLogs =
                         if (logExportActions != null) { { showLogDialog = true } } else null,
                     onBack = { navController.popBackStack() },
