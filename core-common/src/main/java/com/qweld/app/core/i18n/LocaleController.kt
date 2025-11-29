@@ -58,23 +58,20 @@ object LocaleController {
     }
 
     fun apply(tag: String, activityToRecreate: Activity? = null) {
-        val desired: LocaleListCompat = AppLocales.fromTag(tag)
+        // Игнорируем сохранённые предпочтения и применяем фиксированный EN UI locale.
+        val desired: LocaleListCompat = LocaleListCompat.forLanguageTags("en")
         val current: LocaleListCompat = AppCompatDelegate.getApplicationLocales()
 
-        lastExplicitLocale = when (tag.lowercase(Locale.ROOT)) {
-            "ru", "en" -> tag.lowercase(Locale.ROOT)
-            else -> null
-        }
+        lastExplicitLocale = "en"
 
         // Ничего не делаем, если уже установлена нужная локаль
         if (current.toLanguageTags() == desired.toLanguageTags()) {
-            Timber.d("[settings_locale] no-op tag=%s", tag)
+            Timber.d("[settings_locale] no-op applied=en")
             return
         }
 
         Timber.i(
-            "[settings_locale] apply tag=%s locales=%s",
-            tag,
+            "[settings_locale] apply locale=en locales=%s",
             desired.toLanguageTags(),
         )
 
