@@ -1054,11 +1054,12 @@ class ExamViewModel(
     mode: ExamMode,
   ) {
     val answers = answersRepository.listByAttempt(attempt.id)
+    val normalizedLocale = CONTENT_LOCALE_EN
     val reconstructionOutcome =
       resumeUseCase.reconstructAttempt(
         mode = mode,
         seed = attempt.seed,
-        locale = attempt.locale.lowercase(Locale.US),
+        locale = normalizedLocale,
         questionCount = attempt.questionCount,
       )
     val reconstruction =
