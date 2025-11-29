@@ -151,21 +151,6 @@ fun SettingsScreen(
 
       Divider()
 
-      if (false) {
-        var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
-
-        SettingsLanguageSection(
-          selectedTag = pendingLocale,
-          onTagSelected = { pendingLocale = it },
-          onApplyClick = {
-            onLocaleSelected(pendingLocale) // достаточно, остальное сделает MainActivity
-          },
-          applyEnabled = (pendingLocale != appLocaleTag),
-        )
-      }
-
-      Divider()
-
       SettingsPracticeSection(
         practiceSize = resolvedPracticeConfig.size,
         practicePresets = practicePresets,
