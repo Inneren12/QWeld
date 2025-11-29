@@ -20,7 +20,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 
-class AssetQuestionRepository private constructor(
+class AssetQuestionRepository internal constructor(
   private val assetReader: AssetReader,
   private val localeResolver: () -> String,
   private val json: Json,
@@ -466,7 +466,7 @@ class AssetQuestionRepository private constructor(
     val cacheHits: Int,
   )
 
-    private class AssetReader(
+    internal class AssetReader(
         private val opener: (String) -> InputStream?,
         private val lister: (String) -> List<String>? = { _ -> null },
     ) {
