@@ -302,8 +302,6 @@ fun AppNavGraph(
                     answersRepository = answersRepository,
                     questionRepository = questionRepository,
                     contentIndexReader = contentIndexReader,
-                    appLocaleTag = appLocale,
-                    onLocaleSelected = { tag -> handleLocaleSelection(tag, "settings") },
                     onExportLogs =
                         if (logExportActions != null) { { showLogDialog = true } } else null,
                     onBack = { navController.popBackStack() },
