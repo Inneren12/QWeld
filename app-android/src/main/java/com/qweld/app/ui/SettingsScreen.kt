@@ -151,16 +151,18 @@ fun SettingsScreen(
 
       Divider()
 
-      var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
+      if (false) {
+        var pendingLocale by remember(appLocaleTag) { mutableStateOf(appLocaleTag) }
 
         SettingsLanguageSection(
-            selectedTag = pendingLocale,
-            onTagSelected = { pendingLocale = it },
-            onApplyClick = {
-                onLocaleSelected(pendingLocale) // достаточно, остальное сделает MainActivity
-            },
-            applyEnabled = (pendingLocale != appLocaleTag),
+          selectedTag = pendingLocale,
+          onTagSelected = { pendingLocale = it },
+          onApplyClick = {
+            onLocaleSelected(pendingLocale) // достаточно, остальное сделает MainActivity
+          },
+          applyEnabled = (pendingLocale != appLocaleTag),
         )
+      }
 
       Divider()
 
