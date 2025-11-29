@@ -32,6 +32,7 @@ import com.qweld.app.feature.exam.model.ExamChoiceUiModel
 import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
+import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
@@ -157,6 +158,7 @@ class ExamViewModel(
 
   fun startAttempt(
     mode: ExamMode,
+    @Suppress("UNUSED_PARAMETER") locale: String,
     practiceConfig: PracticeConfig = PracticeConfig(),
     blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
@@ -400,7 +402,7 @@ class ExamViewModel(
     return false
   }
 
-  fun detectResume() {
+  fun detectResume(@Suppress("UNUSED_PARAMETER") deviceLocale: String) {
     val normalizedLocale = CONTENT_LOCALE_EN
     viewModelScope.launch {
       val unfinished = withContext(ioDispatcher) { attemptsRepository.getUnfinished() }
@@ -462,6 +464,8 @@ class ExamViewModel(
 
   fun resumeAttempt(
     attemptId: String,
+    @Suppress("UNUSED_PARAMETER") localeOption: ResumeLocaleOption,
+    @Suppress("UNUSED_PARAMETER") deviceLocale: String,
   ) {
     val pending = pendingResume?.takeIf { it.id == attemptId } ?: return
     val mode = runCatching { ExamMode.valueOf(pending.mode) }.getOrNull() ?: return
@@ -775,7 +779,7 @@ class ExamViewModel(
           logRestart(ExamMode.IP_MOCK, null, questionCount)
           val aborted = closeCurrentAttemptAsAborted(reason = "user_restart")
           if (!aborted) return@launch
-          val launched = startAttempt(ExamMode.IP_MOCK)
+          val launched = startAttempt(ExamMode.IP_MOCK, CONTENT_LOCALE_EN)
           if (!launched) {
             _effects.emit(ExamEffect.ShowError("Unable to restart exam."))
           }
@@ -1265,10 +1269,12 @@ class ExamViewModel(
   }
 
   fun startPractice(
-      config: PracticeConfig,
+    @Suppress("UNUSED_PARAMETER") locale: String,
+    config: PracticeConfig,
     preset: PracticeScopePresetName? = null,
   ): Boolean {
-      val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
+    val normalizedLocale = CONTENT_LOCALE_EN
+    val resolvedConfig = config.copy(size = PracticeConfig.sanitizeSize(config.size))
     val sizeSource = if (resolvedConfig.size in PracticeConfig.PRESETS) "preset" else "manual"
     Timber.i("[practice_size] value=%d source=%s", resolvedConfig.size, sizeSource)
     val baseBlueprint = practiceBlueprint()
@@ -1356,6 +1362,7 @@ class ExamViewModel(
     val launched =
       startAttempt(
         mode = ExamMode.PRACTICE,
+        locale = normalizedLocale,
         practiceConfig = resolvedConfig,
         blueprintOverride = blueprint,
       )
