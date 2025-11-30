@@ -267,12 +267,12 @@ fun AppNavGraph(
           appVersion = appVersion,
           analytics = analytics,
           userPrefs = userPrefs,
-          prewarmConfig =
-            PrewarmConfig(
-              enabled = BuildConfig.PREWARM_ENABLED,
-              maxConcurrency = BuildConfig.PREWARM_MAX_CONCURRENCY,
-              taskTimeoutMs = BuildConfig.PREWARM_TIMEOUT_MS,
-            ),
+            prewarmConfig =
+                PrewarmConfig(
+                    enabled = BuildConfig.PREWARM_ENABLED,
+                    maxConcurrency = BuildConfig.PREWARM_MAX_CONCURRENCY.toString().toInt(),
+                    taskTimeoutMs = BuildConfig.PREWARM_TIMEOUT_MS.toString().toLong(),
+                    ),
         )
       }
       composable(Routes.SYNC) {

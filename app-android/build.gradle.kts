@@ -8,11 +8,13 @@ import org.gradle.api.attributes.Attribute
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
 plugins {
-  id("com.android.application")
-  id("org.jetbrains.kotlin.android")
-  id("org.jetbrains.kotlin.plugin.compose")
-  id("app.cash.licensee")
-  id("org.cyclonedx.bom")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
+    id("app.cash.licensee")
+    id("org.cyclonedx.bom")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 val hasGoogleServices =
@@ -58,9 +60,9 @@ android {
     resourceConfigurations += setOf("en", "ru")
     buildConfigField("String", "BUILD_TIME", "\"$buildTimestamp\"")
     buildConfigField("String", "GIT_SHA", "\"${gitShaProvider.get()}\"")
-    buildConfigField("Boolean", "PREWARM_ENABLED", "true")
-    buildConfigField("Int", "PREWARM_MAX_CONCURRENCY", "3")
-    buildConfigField("Long", "PREWARM_TIMEOUT_MS", "2000L")
+    buildConfigField("boolean", "PREWARM_ENABLED", "true")
+    buildConfigField("int", "PREWARM_MAX_CONCURRENCY", "3")
+    buildConfigField("long", "PREWARM_TIMEOUT_MS", "2000L")
   }
 
   buildTypes {
