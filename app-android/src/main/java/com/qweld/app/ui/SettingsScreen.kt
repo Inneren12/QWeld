@@ -34,12 +34,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.qweld.app.R
@@ -94,7 +92,6 @@ fun SettingsScreen(
     initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
   )
   var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
-  var contentIntegrity by remember { mutableStateOf<List<ContentIndexReader.Mismatch>?>(null) }
   val clipboardManager = LocalClipboardManager.current
 
   var lruCacheInput by remember(lruCacheSize) { mutableStateOf(lruCacheSize.toString()) }
@@ -122,25 +119,9 @@ fun SettingsScreen(
 
   LaunchedEffect(Unit) { Timber.i("[settings_open]") }
   LaunchedEffect(contentIndexReader) {
-    contentIntegrity = null
-    val (indexResult, mismatches) =
-      withContext(Dispatchers.IO) {
-        val result = contentIndexReader.read()
-        result to contentIndexReader.verify(result)
-      }
+    val indexResult = withContext(Dispatchers.IO) { contentIndexReader.read() }
     contentIndex = indexResult
-    contentIntegrity = mismatches
-  }
-  LaunchedEffect(contentIndex) {
-    contentIndex?.locales?.toSortedMap()?.forEach { (locale, info) ->
-      Timber.i(
-        "[content_info] locale=%s blueprint=%s bankVersion=%s files=%d",
-        locale,
-        info.blueprintId ?: "unknown",
-        info.bankVersion ?: "unknown",
-        info.files.size,
-      )
-    }
+    indexResult?.let { contentIndexReader.logContentInfo(it) }
   }
 
   Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { innerPadding ->
@@ -166,13 +147,6 @@ fun SettingsScreen(
             Timber.i("[settings_toggle] key=analyticsEnabled value=%s", enabled)
           }
         },
-      )
-
-      Divider()
-
-      SettingsLanguageSection(
-        selectedTag = appLocaleTag,
-        onTagSelected = onLocaleSelected,
       )
 
       Divider()
@@ -216,10 +190,6 @@ fun SettingsScreen(
           }
         },
       )
-
-      Divider()
-
-      SettingsIntegritySection(contentIntegrity = contentIntegrity)
 
       Divider()
 
@@ -355,15 +325,19 @@ private fun SettingsPrivacySection(
 private fun SettingsLanguageSection(
   selectedTag: String,
   onTagSelected: (String) -> Unit,
+  onApplyClick: (() -> Unit)? = null,
+  applyEnabled: Boolean = false,
 ) {
-  val options =
-    listOf(
-      "system" to R.string.language_system,
-      "en" to R.string.language_en,
-      "ru" to R.string.language_ru,
-    )
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
     Text(text = stringResource(id = R.string.language), style = MaterialTheme.typography.titleMedium)
+
+    val options =
+      listOf(
+        "system" to R.string.language_system,
+        "en" to R.string.language_en,
+        "ru" to R.string.language_ru,
+      )
+
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
       options.forEach { (tag, labelRes) ->
         Row(
@@ -373,6 +347,17 @@ private fun SettingsLanguageSection(
         ) {
           RadioButton(selected = selectedTag == tag, onClick = { onTagSelected(tag) })
           Text(text = stringResource(id = labelRes), style = MaterialTheme.typography.bodyLarge)
+        }
+      }
+    }
+
+    onApplyClick?.let { apply ->
+      Row(
+        modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+        horizontalArrangement = Arrangement.End,
+      ) {
+        Button(onClick = apply, enabled = applyEnabled) {
+          Text(text = stringResource(id = android.R.string.ok))
         }
       }
     }
@@ -477,96 +462,44 @@ private fun SettingsContentInfoSection(
               color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
           }
-          ContentInfoFileList(files = localeInfo.files)
+          Text(
+            text = stringResource(
+              id = R.string.settings_content_files_count,
+              localeInfo.filesCount,
+              localeInfo.taskIds.size,
+            ),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+          )
+          if (localeInfo.hasBank) {
+            Text(
+              text = stringResource(id = R.string.settings_content_bank_present),
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+          }
+          if (localeInfo.hasTaskLabels) {
+            Text(
+              text = stringResource(id = R.string.settings_content_labels_present),
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+          }
+          if (localeInfo.taskIds.isNotEmpty()) {
+            Text(
+              text = stringResource(
+                id = R.string.settings_content_tasks_list,
+                localeInfo.taskIds.joinToString(separator = ", "),
+              ),
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+          }
         }
       }
     }
     Button(onClick = onCopyIndex, enabled = !locales.isNullOrEmpty(), modifier = Modifier.fillMaxWidth()) {
       Text(text = stringResource(id = R.string.settings_content_copy_json))
-    }
-  }
-}
-
-@Composable
-private fun ContentInfoFileList(files: List<ContentIndexReader.FileEntry>) {
-  if (files.isEmpty()) return
-  Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-    Text(
-      text = stringResource(id = R.string.settings_content_files_title),
-      style = MaterialTheme.typography.labelMedium,
-      color = MaterialTheme.colorScheme.onSurfaceVariant,
-    )
-    SelectionContainer {
-      Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        files.forEach { entry ->
-          val relativePath = entry.path.removePrefix("questions/")
-          Text(
-            text = stringResource(id = R.string.settings_content_file_entry, relativePath, entry.sha256),
-            style = MaterialTheme.typography.bodySmall,
-            fontFamily = FontFamily.Monospace,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-          )
-        }
-      }
-    }
-  }
-}
-
-@Composable
-private fun SettingsIntegritySection(contentIntegrity: List<ContentIndexReader.Mismatch>?) {
-  Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-    Text(text = stringResource(id = R.string.settings_section_integrity), style = MaterialTheme.typography.titleMedium)
-    when {
-      contentIntegrity == null ->
-        Text(
-          text = stringResource(id = R.string.settings_integrity_checking),
-          style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-      contentIntegrity.isEmpty() ->
-        Text(
-          text = stringResource(id = R.string.settings_integrity_ok),
-          style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.tertiary,
-        )
-      else -> {
-        Text(
-          text = stringResource(id = R.string.settings_integrity_warning, contentIntegrity.size),
-          style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.error,
-        )
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-          contentIntegrity.forEach { mismatch ->
-            val label =
-              mismatch.locale?.let { locale ->
-                "[${locale.uppercase(Locale.ROOT)}] ${mismatch.path}"
-              } ?: mismatch.path
-            val message =
-              when (mismatch.reason) {
-                ContentIndexReader.Mismatch.Reason.INDEX_MISSING ->
-                  stringResource(id = R.string.settings_integrity_issue_index, label)
-                ContentIndexReader.Mismatch.Reason.FILE_MISSING ->
-                  stringResource(
-                    id = R.string.settings_integrity_issue_missing,
-                    label,
-                    mismatch.expectedHash ?: stringResource(id = R.string.settings_integrity_unknown),
-                  )
-                ContentIndexReader.Mismatch.Reason.HASH_MISMATCH ->
-                  stringResource(
-                    id = R.string.settings_integrity_issue_hash,
-                    label,
-                    mismatch.expectedHash ?: stringResource(id = R.string.settings_integrity_unknown),
-                    mismatch.actualHash ?: stringResource(id = R.string.settings_integrity_missing),
-                  )
-              }
-            Text(
-              text = message,
-              style = MaterialTheme.typography.bodySmall,
-              color = MaterialTheme.colorScheme.error,
-            )
-          }
-        }
-      }
     }
   }
 }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "356881114447",
+    "project_id": "qweld-eecb6",
+    "storage_bucket": "qweld-eecb6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356881114447:android:bc9f8fde5b43816936513a",
+        "android_client_info": {
+          "package_name": "com.qweld.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356881114447-r2tisq9ul5bmkjtut5gd3nktkrm7a8bo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.qweld.app",
+            "certificate_hash": "6662ab3fc91fb44c8e0e68e85665357fe7f81dfd"
+          }
+        },
+        {
+          "client_id": "356881114447-ammq475eceh8e6k1tspsr4rfjaubc2ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtI-c8xvGgu63PBHGp0MIS94ZysDpW91k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356881114447-ammq475eceh8e6k1tspsr4rfjaubc2ge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

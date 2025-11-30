@@ -16,6 +16,9 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.doubleOrNull
+import kotlinx.serialization.json.intOrNull
+import kotlinx.serialization.json.longOrNull
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -161,6 +164,13 @@ class AttemptExporterTest {
 
     override suspend fun getUnfinished(): AttemptEntity? =
       attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
+
+    override suspend fun getLastFinished(): AttemptEntity? =
+      attempts.values.filter { it.finishedAt != null }.maxByOrNull { it.finishedAt ?: Long.MIN_VALUE }
+
+    override suspend fun clearAll() {
+      attempts.clear()
+    }
   }
 
   private class InMemoryAnswerDao : AnswerDao {
@@ -174,12 +184,19 @@ class AttemptExporterTest {
     override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> =
       answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
 
+    override suspend fun listWrongByAttempt(attemptId: String): List<String> =
+      answers.filter { it.attemptId == attemptId && !it.isCorrect }.map { it.questionId }
+
     override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
       throw UnsupportedOperationException()
     }
 
     override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
       throw UnsupportedOperationException()
+    }
+
+    override suspend fun clearAll() {
+      answers.clear()
     }
   }
 }

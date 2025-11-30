@@ -5,16 +5,14 @@ import androidx.activity.compose.BackHandler
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.gestures.rememberNestedScrollInteropConnection
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsets.Companion.safeDrawing
-import androidx.compose.foundation.layout.WindowInsets.Companion.systemBars
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,7 +20,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -274,10 +273,14 @@ internal fun ExamScreenContent(
   onShowRestart: () -> Unit,
   onShowExit: () -> Unit,
 ) {
+    // No-op NestedScrollConnection — безопасная замена interop-функции, доступна на старых версиях Compose
+    val nestedScrollConnection = remember {
+        object : NestedScrollConnection {}
+    }
   Scaffold(
     modifier = modifier
       .fillMaxSize()
-      .nestedScroll(rememberNestedScrollInteropConnection()),
+        .nestedScroll(nestedScrollConnection),
     topBar = {
       if (state.attempt != null) {
         ExamTopBarMenu(
@@ -298,7 +301,7 @@ internal fun ExamScreenContent(
         )
       }
     },
-    contentWindowInsets = WindowInsets.safeDrawing,
+      contentWindowInsets = WindowInsets(0),
   ) { paddingValues ->
     val attempt = state.attempt
     if (attempt == null) {
@@ -306,7 +309,7 @@ internal fun ExamScreenContent(
         modifier = Modifier
           .fillMaxSize()
           .padding(paddingValues)
-          .padding(WindowInsets.systemBars.asPaddingValues())
+            .statusBarsPadding()
           .imePadding(),
         contentAlignment = Alignment.Center,
       ) {
@@ -325,12 +328,12 @@ internal fun ExamScreenContent(
         modifier = Modifier
           .fillMaxSize()
           .padding(paddingValues)
-          .padding(WindowInsets.systemBars.asPaddingValues())
-          .padding(horizontal = 20.dp, vertical = 16.dp)
+            .statusBarsPadding()
+          .padding(horizontal = 20.dp, vertical = 12.dp)
           .verticalScroll(scrollState)
           .imePadding()
           .testTag("exam-content"),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
       ) {
         if (attempt.mode == ExamMode.IP_MOCK && state.timerLabel != null) {
           Text(
@@ -438,7 +441,6 @@ private fun BottomActions(
     modifier = Modifier
       .fillMaxWidth()
       .padding(horizontal = 20.dp, vertical = 16.dp)
-      .windowInsetsPadding(WindowInsets.systemBars)
       .navigationBarsPadding(),
     horizontalArrangement = Arrangement.spacedBy(12.dp),
   ) {

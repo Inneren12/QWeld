@@ -3,13 +3,10 @@ package com.qweld.app.feature.exam.data
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import com.qweld.app.data.content.questions.AssetIntegrityGuard
-import com.qweld.app.data.content.questions.IndexParser
-import com.qweld.app.data.content.questions.IntegrityMismatchException
 import com.qweld.app.feature.exam.data.Io
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
-import java.io.FileNotFoundException
+import com.qweld.app.core.i18n.LocaleController
 import java.io.InputStream
 import java.util.LinkedHashMap
 import java.util.Locale
@@ -23,7 +20,7 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 
-class AssetQuestionRepository internal constructor(
+class AssetQuestionRepository private constructor(
   private val assetReader: AssetReader,
   private val localeResolver: () -> String,
   private val json: Json,
@@ -38,17 +35,19 @@ class AssetQuestionRepository internal constructor(
         opener = { path -> kotlin.runCatching { context.assets.open(path) }.getOrNull() },
         lister = { path -> kotlin.runCatching { context.assets.list(path)?.toList() }.getOrNull() },
       ),
-      localeResolver = { resolveLanguage(context.resources.configuration) },
+      // ВАЖНО: сначала берём язык из AppCompatDelegate (локаль приложения),
+      // потому что applicationContext.resources.configuration может остаться на системной локали.
+      localeResolver = {
+          // Стало: единая точка правды о языке — LocaleController.currentLanguage()
+          // это предотвращает гонку между apply(...) и чтением конфигурации
+          LocaleController.currentLanguage(context)
+      },
       json = jsonCodec,
       cacheCapacity = cacheCapacity,
     )
 
   private val cacheLock = Any()
   private val cacheCapacity = cacheCapacity.coerceIn(MIN_CACHE_CAPACITY, MAX_CACHE_CAPACITY)
-
-  private val integrityParser = IndexParser()
-  private val integrityLock = Any()
-  private val integrityByLocale = mutableMapOf<String, LocaleIntegrity>()
 
   private val taskCache =
     object : LinkedHashMap<String, List<QuestionDTO>>(this.cacheCapacity, 0.75f, true) {
@@ -394,18 +393,12 @@ class AssetQuestionRepository internal constructor(
           }
         }
 
-        try {
-          val integrity = integrityFor(locale)
-          val (preferred, fallback) = resolveAssetPaths(integrity.manifest, path)
-          val bytes = integrity.guard.readVerified(preferred, fallback)
-          AssetPayload.Success(reader(bytes))
-        } catch (error: FileNotFoundException) {
-          AssetPayload.Missing
-        } catch (error: IntegrityMismatchException) {
-          AssetPayload.Error(error)
-        } catch (error: Throwable) {
-          AssetPayload.Error(error)
-        }
+        val (primary, fallback) = resolveAssetPaths(path)
+        val bytes =
+          openAsset(primary) ?: fallback?.let { alt -> openAsset(alt) }
+            ?: return@withContext AssetPayload.Missing
+        runCatching { AssetPayload.Success(reader(bytes)) }
+          .getOrElse { throwable -> AssetPayload.Error(throwable) }
       }
     }
   }
@@ -420,53 +413,25 @@ class AssetQuestionRepository internal constructor(
     return "$locale::$taskId"
   }
 
-  private fun integrityFor(locale: String): LocaleIntegrity {
-    synchronized(integrityLock) {
-      val cached = integrityByLocale[locale]
-      if (cached != null) return cached
-
-      val indexPath = "$QUESTIONS_ROOT/$locale/index.json"
-      val manifest =
-        assetReader.open(indexPath)?.use { stream -> integrityParser.parse(stream) }
-          ?: throw FileNotFoundException(indexPath)
-      val guard =
-        AssetIntegrityGuard(
-          manifest = manifest,
-          opener = { path -> assetReader.open(path) ?: throw FileNotFoundException(path) },
-        )
-      Logx.i(
-        LogTag.INTEGRITY,
-        "index",
-        "locale" to locale,
-        "blueprint" to (manifest.blueprintId ?: "unknown"),
-        "bankVersion" to (manifest.bankVersion ?: "unknown"),
-        "files" to manifest.paths().size,
-      )
-      return LocaleIntegrity(manifest = manifest, guard = guard).also { integrityByLocale[locale] = it }
-    }
-  }
-
   private fun resolveAssetPaths(
-    manifest: IndexParser.Manifest,
     requested: String,
   ): Pair<String, String?> {
-    val normalized = IndexParser.normalizePath(requested)
+    val normalized = normalizePath(requested)
     val alternate = toggleCompressedPath(normalized)
-    val preferred =
-      when {
-        manifest.hasPath(normalized) -> normalized
-        alternate != null && manifest.hasPath(alternate) -> alternate
-        else -> normalized
-      }
-    val fallback =
-      when {
-        alternate == null -> null
-        preferred == normalized -> alternate.takeIf { manifest.hasPath(it) }
-        preferred == alternate -> normalized.takeIf { manifest.hasPath(it) }
-        else -> alternate.takeIf { manifest.hasPath(it) }
-      }
-    val resolvedFallback = fallback?.takeIf { it != preferred }
-    return preferred to resolvedFallback
+    return normalized to alternate
+  }
+
+  private fun normalizePath(path: String): String {
+    var result = path.trim()
+    if (result.startsWith("./")) result = result.removePrefix("./")
+    while (result.startsWith('/')) {
+      result = result.removePrefix("/")
+    }
+    result = result.replace('\\', '/')
+    while (result.contains("//")) {
+      result = result.replace("//", "/")
+    }
+    return result
   }
 
   private fun toggleCompressedPath(path: String): String? {
@@ -477,8 +442,19 @@ class AssetQuestionRepository internal constructor(
     }
   }
 
+  private fun openAsset(path: String): ByteArray? {
+    return assetReader.open(path)?.use { stream ->
+      try {
+        stream.readBytes()
+      } catch (throwable: Throwable) {
+        Logx.e(LogTag.LOAD, "read_error", throwable, "path" to path)
+        null
+      }
+    }
+  }
+
   private fun localeFromPath(path: String): String? {
-    val normalized = IndexParser.normalizePath(path)
+    val normalized = normalizePath(path)
     if (!normalized.startsWith("$QUESTIONS_ROOT/")) return null
     val remainder = normalized.removePrefix("$QUESTIONS_ROOT/")
     val locale = remainder.substringBefore('/', missingDelimiterValue = "")
@@ -490,18 +466,13 @@ class AssetQuestionRepository internal constructor(
     val cacheHits: Int,
   )
 
-  private data class LocaleIntegrity(
-    val manifest: IndexParser.Manifest,
-    val guard: AssetIntegrityGuard,
-  )
-
-  class AssetReader(
-    private val opener: (String) -> InputStream?,
-    private val lister: (String) -> List<String>? = { _ -> emptyList() },
-  ) {
-    fun open(path: String): InputStream? = opener(path)
-    fun list(path: String): List<String>? = lister(path)
-  }
+    private class AssetReader(
+        private val opener: (String) -> InputStream?,
+        private val lister: (String) -> List<String>? = { _ -> null },
+    ) {
+        fun open(path: String): InputStream? = opener(path)
+        fun list(path: String): List<String>? = lister(path)
+    }
 
   sealed class TaskLoadException(message: String, cause: Throwable? = null) : Exception(message, cause) {
     abstract val taskId: String

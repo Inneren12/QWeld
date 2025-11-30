@@ -13,6 +13,7 @@ plugins {
   id("org.jetbrains.kotlin.plugin.compose")
   id("app.cash.licensee")
   id("org.cyclonedx.bom")
+    id("com.google.gms.google-services")
 }
 
 val hasGoogleServices =
@@ -41,6 +42,20 @@ val buildTimestamp = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).app
   timeZone = TimeZone.getTimeZone("UTC")
 }.format(Date())
 
+if (hasGoogleServices) {
+      // Плагины уже объявлены в корне с apply false → здесь просто применяем
+      apply(plugin = "com.google.gms.google-services")
+      apply(plugin = "com.google.firebase.crashlytics")
+      logger.lifecycle("GMS/Crashlytics applied (google-services.json present or -PwithGoogleServices=true)")
+      // Страховка: маппинги загружаем только если GMS включён
+      tasks.matching { it.name.contains("uploadCrashlyticsMappingFile", ignoreCase = true) }
+        .configureEach { onlyIf { hasGoogleServices } }
+    } else {
+      logger.lifecycle("GMS/Crashlytics skipped (no google-services.json and without -PwithGoogleServices)")
+      // На CI/локально без GMS — никаких upload-тасков
+      tasks.matching { it.name.contains("uploadCrashlyticsMappingFile", ignoreCase = true) }.configureEach { onlyIf { false } }
+    }
+
 android {
   namespace = "com.qweld.app"
   compileSdk = 35
@@ -58,17 +73,17 @@ android {
     resourceConfigurations += setOf("en", "ru")
     buildConfigField("String", "BUILD_TIME", "\"$buildTimestamp\"")
     buildConfigField("String", "GIT_SHA", "\"${gitShaProvider.get()}\"")
-    buildConfigField("Boolean", "PREWARM_ENABLED", "true")
-    buildConfigField("Int", "PREWARM_MAX_CONCURRENCY", "3")
-    buildConfigField("Long", "PREWARM_TIMEOUT_MS", "2000L")
+    buildConfigField("boolean", "PREWARM_ENABLED", "true")
+    buildConfigField("int", "PREWARM_MAX_CONCURRENCY", "3")
+    buildConfigField("long", "PREWARM_TIMEOUT_MS", "2000L")
   }
 
   buildTypes {
-    debug { buildConfigField("Boolean", "ENABLE_ANALYTICS", enableAnalyticsDebug.toString()) }
+    debug { buildConfigField("boolean", "ENABLE_ANALYTICS", enableAnalyticsDebug.toString()) }
     release {
       isMinifyEnabled = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      buildConfigField("Boolean", "ENABLE_ANALYTICS", "true")
+      buildConfigField("boolean", "ENABLE_ANALYTICS", "true")
     }
   }
 
@@ -107,7 +122,7 @@ dependencies {
   implementation(project(":core-common"))
   implementation(project(":feature-exam"))
   implementation(project(":feature-auth"))
-
+    implementation("androidx.appcompat:appcompat:1.7.0")
   implementation("androidx.core:core-ktx:1.15.0")
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
   implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")

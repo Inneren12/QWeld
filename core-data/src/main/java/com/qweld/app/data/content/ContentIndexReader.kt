@@ -1,20 +1,19 @@
 package com.qweld.app.data.content
 
 import android.content.Context
-import com.qweld.app.data.content.questions.AssetIntegrityGuard
-import com.qweld.app.data.content.questions.IndexParser
-import com.qweld.app.data.content.questions.IntegrityMismatchException
 import java.io.FileNotFoundException
 import java.io.InputStream
-import java.util.LinkedHashMap
 import java.util.Locale
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.parseToJsonElement
-import kotlinx.serialization.json.put
+import kotlinx.serialization.json.jsonPrimitive
 import timber.log.Timber
 
 class ContentIndexReader
@@ -22,7 +21,6 @@ class ContentIndexReader
 constructor(
   private val assetLoader: AssetLoader,
   private val json: Json = DEFAULT_JSON,
-  private val parser: IndexParser = IndexParser(json),
 ) {
 
   interface AssetLoader {
@@ -47,38 +45,21 @@ constructor(
       }
     },
     json = json,
-    parser = IndexParser(json),
   )
 
   class Result internal constructor(
     val locales: Map<String, Locale>,
     val rawJson: String,
-    internal val manifests: Map<String, IndexParser.Manifest>,
   ) {
     data class Locale(
-      val manifestPath: String,
       val blueprintId: String?,
       val bankVersion: String?,
-      val files: List<FileEntry>,
-    )
-  }
-
-  data class FileEntry(
-    val path: String,
-    val sha256: String,
-  )
-
-  data class Mismatch(
-    val locale: String?,
-    val path: String,
-    val expectedHash: String?,
-    val actualHash: String?,
-    val reason: Reason,
-  ) {
-    enum class Reason {
-      INDEX_MISSING,
-      FILE_MISSING,
-      HASH_MISMATCH,
+      val taskIds: List<String>,
+      val hasBank: Boolean,
+      val hasTaskLabels: Boolean,
+    ) {
+      val filesCount: Int
+        get() = taskIds.size + if (hasBank) 1 else 0 + if (hasTaskLabels) 1 else 0
     }
   }
 
@@ -86,192 +67,118 @@ constructor(
     val candidates =
       assetLoader
         .list(QUESTIONS_ROOT)
-        .filter { isLocaleCandidate(it) }
+        .map { it.lowercase(Locale.US) }
+        .filter { locale -> isLocaleCandidate(locale) && SUPPORTED_LOCALES.contains(locale) }
         .sorted()
     if (candidates.isEmpty()) {
       Timber.w("[content_index] no locale directories under %s", QUESTIONS_ROOT)
       return null
     }
 
-    val locales = LinkedHashMap<String, Result.Locale>()
-    val manifests = LinkedHashMap<String, IndexParser.Manifest>()
-    val elements = LinkedHashMap<String, JsonObject>()
+    val locales = mutableMapOf<String, Result.Locale>()
 
     candidates.forEach { candidate ->
-      val manifestPath = manifestPath(candidate)
       val localeCode = candidate.lowercase(Locale.US)
-      val payload =
-        try {
-          assetLoader.open(manifestPath).use { stream ->
-            stream.bufferedReader().use { reader -> reader.readText() }
-          }
-        } catch (error: FileNotFoundException) {
-          Timber.w(
-            error,
-            "[content_index] missing manifest locale=%s path=%s",
-            localeCode,
-            manifestPath,
-          )
-          return@forEach
-        } catch (error: Exception) {
-          Timber.e(
-            error,
-            "[content_index] failed to read manifest locale=%s path=%s",
-            localeCode,
-            manifestPath,
-          )
-          return@forEach
-        }
-
-      val manifest =
-        try {
-          parser.parse(payload)
-        } catch (error: Exception) {
-          Timber.e(
-            error,
-            "[content_index] failed to parse manifest locale=%s",
-            localeCode,
-          )
-          return@forEach
-        }
-
-      val files =
-        manifest
-          .expectedMap()
-          .entries
-          .map { (path, hash) -> FileEntry(path = path, sha256 = hash) }
-          .sortedBy { it.path }
-
-      locales[localeCode] =
-        Result.Locale(
-          manifestPath = manifestPath,
-          blueprintId = manifest.blueprintId,
-          bankVersion = manifest.bankVersion,
-          files = files,
-        )
-      manifests[localeCode] = manifest
-      runCatching { json.parseToJsonElement(payload).jsonObject }
-        .onSuccess { element -> elements[localeCode] = element }
-        .onFailure { error ->
-          Timber.w(
-            error,
-            "[content_index] failed to parse manifest locale=%s for aggregation",
-            localeCode,
-          )
-        }
+      val basePath = "$QUESTIONS_ROOT/$localeCode"
+      val info = readLocale(basePath)
+      locales[localeCode] = info
     }
 
     if (locales.isEmpty()) {
-      Timber.w("[content_index] unable to load any locale manifests candidates=%s", candidates)
+      Timber.w("[content_index] unable to load any locale info candidates=%s", candidates)
       return null
     }
 
     val aggregated =
       buildJsonObject {
         locales.keys.sorted().forEach { locale ->
-          elements[locale]?.let { element -> put(locale, element) }
+          val info = locales[locale] ?: return@forEach
+          put(
+            locale,
+            buildJsonObject {
+              info.blueprintId?.let { put("blueprintId", JsonPrimitive(it)) }
+              info.bankVersion?.let { put("bankVersion", JsonPrimitive(it)) }
+              put("tasks", json.encodeToJsonElement(info.taskIds))
+              put("hasBank", JsonPrimitive(info.hasBank))
+              put("hasTaskLabels", JsonPrimitive(info.hasTaskLabels))
+              put("files", JsonPrimitive(info.filesCount))
+            },
+          )
         }
       }
     val rawJson = json.encodeToString(JsonObject.serializer(), aggregated)
-    return Result(locales = locales, rawJson = rawJson, manifests = manifests)
+    return Result(locales = locales, rawJson = rawJson)
   }
 
-  fun verify(result: Result? = read()): List<Mismatch> {
-    val mismatches = mutableListOf<Mismatch>()
-    val localeSources =
-      assetLoader
-        .list(QUESTIONS_ROOT)
-        .filter { isLocaleCandidate(it) }
-        .associateBy({ it.lowercase(Locale.US) }, { it })
-
-    if (localeSources.isEmpty()) {
-      mismatches +=
-        Mismatch(
-          locale = null,
-          path = QUESTIONS_ROOT,
-          expectedHash = null,
-          actualHash = null,
-          reason = Mismatch.Reason.INDEX_MISSING,
-        )
-      Timber.w("[content_verify] ok=false mismatches=%d", mismatches.size)
-      return mismatches
+  fun logContentInfo(result: Result) {
+    result.locales.forEach { (locale, info) ->
+      Timber.i(
+        "[content_info] locale=%s blueprint=%s bankVersion=%s files=%d",
+        locale,
+        info.blueprintId ?: "unknown",
+        info.bankVersion ?: "unknown",
+        info.filesCount,
+      )
     }
-
-    val resolved = result
-    if (resolved == null) {
-      localeSources.forEach { (locale, source) ->
-        mismatches +=
-          Mismatch(
-            locale = locale,
-            path = manifestPath(source),
-            expectedHash = null,
-            actualHash = null,
-            reason = Mismatch.Reason.INDEX_MISSING,
-          )
-      }
-      Timber.w("[content_verify] ok=false mismatches=%d", mismatches.size)
-      return mismatches
-    }
-
-    localeSources.forEach { (locale, source) ->
-      val manifest = resolved.manifests[locale]
-      val localeInfo = resolved.locales[locale]
-      if (manifest == null || localeInfo == null) {
-        mismatches +=
-          Mismatch(
-            locale = locale,
-            path = manifestPath(source),
-            expectedHash = null,
-            actualHash = null,
-            reason = Mismatch.Reason.INDEX_MISSING,
-          )
-        return@forEach
-      }
-
-      val guard =
-        AssetIntegrityGuard(
-          manifest = manifest,
-          opener = { path -> assetLoader.open(path) },
-        )
-
-      manifest.paths().forEach { path ->
-        try {
-          guard.readVerified(path)
-        } catch (error: IntegrityMismatchException) {
-          val reason =
-            if (error.actual.isNullOrBlank()) {
-              Mismatch.Reason.FILE_MISSING
-            } else {
-              Mismatch.Reason.HASH_MISMATCH
-            }
-          mismatches +=
-            Mismatch(
-              locale = locale,
-              path = error.path,
-              expectedHash = error.expected,
-              actualHash = error.actual,
-              reason = reason,
-            )
-        } catch (error: Exception) {
-          Timber.e(error, "[content_verify] failed to verify path=%s locale=%s", path, locale)
-          mismatches +=
-            Mismatch(
-              locale = locale,
-              path = path,
-              expectedHash = manifest.expectedFor(path),
-              actualHash = null,
-              reason = Mismatch.Reason.FILE_MISSING,
-            )
-        }
-      }
-    }
-
-    Timber.i("[content_verify] ok=%s mismatches=%d", mismatches.isEmpty(), mismatches.size)
-    return mismatches
   }
 
-  private fun manifestPath(source: String): String {
-    return "$QUESTIONS_ROOT/$source/$INDEX_FILENAME"
+  private fun readLocale(basePath: String): Result.Locale {
+    val indexMeta = readIndexMeta(basePath)
+    val tasks = assetLoader.list("$basePath/$TASKS_DIR").filter { it.endsWith(JSON_SUFFIX) }
+    val taskIds = tasks.map { it.removeSuffix(JSON_SUFFIX) }.sorted()
+    val hasBank = assetExists("$basePath/$BANK_FILE")
+    val hasTaskLabels = assetExists("$basePath/$META_DIR/$TASK_LABELS_FILE")
+    return Result.Locale(
+      blueprintId = indexMeta?.blueprintId,
+      bankVersion = indexMeta?.bankVersion,
+      taskIds = taskIds,
+      hasBank = hasBank,
+      hasTaskLabels = hasTaskLabels,
+    )
+  }
+
+  private fun readIndexMeta(basePath: String): IndexMeta? {
+    val path = "$basePath/$INDEX_FILENAME"
+    val payload =
+      try {
+        assetLoader.open(path).use { stream -> stream.bufferedReader().use { it.readText() } }
+      } catch (_: FileNotFoundException) {
+        return null
+      } catch (error: Exception) {
+        Timber.w(error, "[content_index] failed to read manifest path=%s", path)
+        return null
+      }
+    return runCatching { parseIndexMeta(payload) }
+      .onFailure { Timber.w(it, "[content_index] failed to parse manifest path=%s", path) }
+      .getOrNull()
+  }
+
+  private fun parseIndexMeta(payload: String): IndexMeta {
+    val obj = json.parseToJsonElement(payload).jsonObject
+    val blueprintId = STRING_BLUEPRINT_PATHS.firstNotNullOfOrNull { path -> obj.findString(path) }
+    val bankVersion = STRING_BANK_VERSION_PATHS.firstNotNullOfOrNull { path -> obj.findString(path) }
+    return IndexMeta(blueprintId = blueprintId, bankVersion = bankVersion)
+  }
+
+  private fun JsonObject.findString(path: List<String>): String? {
+    var current: JsonElement = this
+    for (segment in path) {
+      val next = when (current) {
+        is JsonObject -> current[segment]
+        else -> null
+      } ?: return null
+      current = next
+    }
+    return current.jsonPrimitive.contentOrNull
+  }
+
+  private fun assetExists(path: String): Boolean {
+    return try {
+      assetLoader.open(path).use { }
+      true
+    } catch (_: Exception) {
+      false
+    }
   }
 
   private fun isLocaleCandidate(name: String): Boolean {
@@ -290,14 +197,39 @@ constructor(
     return letterCount >= 2
   }
 
+  private data class IndexMeta(val blueprintId: String?, val bankVersion: String?)
+
   companion object {
+    private val SUPPORTED_LOCALES = setOf("en")
     private const val QUESTIONS_ROOT = "questions"
     private const val INDEX_FILENAME = "index.json"
+    private const val TASKS_DIR = "tasks"
+    private const val META_DIR = "meta"
+    private const val TASK_LABELS_FILE = "task_labels.json"
+    private const val BANK_FILE = "bank.v1.json"
+    private const val JSON_SUFFIX = ".json"
 
     private val DEFAULT_JSON =
       Json {
         ignoreUnknownKeys = true
         prettyPrint = true
       }
+
+    private val STRING_BLUEPRINT_PATHS =
+      listOf(
+        listOf("blueprintId"),
+        listOf("blueprint"),
+        listOf("blueprint", "id"),
+        listOf("metadata", "blueprintId"),
+        listOf("metadata", "blueprint", "id"),
+      )
+
+    private val STRING_BANK_VERSION_PATHS =
+      listOf(
+        listOf("bankVersion"),
+        listOf("bank", "version"),
+        listOf("metadata", "bankVersion"),
+        listOf("version"),
+      )
   }
 }

@@ -64,60 +64,44 @@ fun TopBarMenus(
 
 @Composable
 private fun OverflowMenu(
-  currentLocaleTag: String,
-  onLocaleSelected: (String) -> Unit,
-  onNavigateToSettings: () -> Unit,
-  onNavigateToAbout: () -> Unit,
-  onExportLogs: (() -> Unit)?,
+    currentLocaleTag: String,                // оставляем для совместимости вызова
+    onLocaleSelected: (String) -> Unit,      // оставляем для совместимости вызова
+    onNavigateToSettings: () -> Unit,
+    onNavigateToAbout: () -> Unit,
+    onExportLogs: (() -> Unit)?,
 ) {
-  var expanded by remember { mutableStateOf(false) }
-  var showLanguageDialog by remember { mutableStateOf(false) }
-  IconButton(onClick = { expanded = true }) {
-    Icon(imageVector = Icons.Outlined.MoreVert, contentDescription = null)
-  }
-  DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-    DropdownMenuItem(
-      text = { Text(text = stringResource(id = R.string.language)) },
-      onClick = {
-        expanded = false
-        showLanguageDialog = true
-      },
-    )
-    DropdownMenuItem(
-      text = { Text(text = stringResource(id = R.string.menu_settings)) },
-      onClick = {
-        expanded = false
-        onNavigateToSettings()
-      },
-    )
-    DropdownMenuItem(
-      text = { Text(text = stringResource(id = R.string.menu_about)) },
-      onClick = {
-        expanded = false
-        onNavigateToAbout()
-      },
-    )
-    onExportLogs?.let { exportLogs ->
-      DropdownMenuItem(
-        text = { Text(text = stringResource(id = R.string.menu_export_logs)) },
-        onClick = {
-          expanded = false
-          exportLogs()
-        },
-      )
+    var expanded by remember { mutableStateOf(false) }
+    IconButton(onClick = { expanded = true }) {
+        Icon(imageVector = Icons.Outlined.MoreVert, contentDescription = null)
     }
-  }
-  if (showLanguageDialog) {
-    LanguageSelectionDialog(
-      currentLocaleTag = currentLocaleTag,
-      onDismissRequest = { showLanguageDialog = false },
-      onTagSelected = { tag ->
-        showLanguageDialog = false
-        onLocaleSelected(tag)
-      },
-    )
-  }
+    DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+        // ❌ Language — УДАЛЁН, чтобы не дублировать настройки языка
+        DropdownMenuItem(
+            text = { Text(text = stringResource(id = R.string.menu_settings)) },
+            onClick = {
+                expanded = false
+                onNavigateToSettings()
+            },
+        )
+        DropdownMenuItem(
+            text = { Text(text = stringResource(id = R.string.menu_about)) },
+            onClick = {
+                expanded = false
+                onNavigateToAbout()
+            },
+        )
+        onExportLogs?.let { exportLogs ->
+            DropdownMenuItem(
+                text = { Text(text = stringResource(id = R.string.menu_export_logs)) },
+                onClick = {
+                    expanded = false
+                    exportLogs()
+                },
+            )
+        }
+    }
 }
+
 
 @Composable
 private fun LanguageSelectionDialog(

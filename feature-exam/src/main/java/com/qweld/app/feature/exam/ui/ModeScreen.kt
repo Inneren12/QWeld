@@ -1,6 +1,5 @@
 package com.qweld.app.feature.exam.ui
 
-import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import java.util.Locale
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -49,7 +49,6 @@ import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.RepeatMistakesAvailability
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.Locale
 import timber.log.Timber
 
 @Composable
@@ -58,6 +57,7 @@ fun ModeScreen(
   viewModel: ExamViewModel,
   practiceShortcuts: PracticeShortcuts,
   practiceConfig: PracticeConfig = PracticeConfig(),
+  contentLocale: String,
   modifier: Modifier = Modifier,
   navController: NavHostController,
   onPracticeSizeCommit: (Int) -> Unit = {},
@@ -77,7 +77,7 @@ fun ModeScreen(
   val coroutineScope = rememberCoroutineScope()
   var showPracticeScope by remember { mutableStateOf(false) }
   var practiceScope by remember { mutableStateOf(practiceConfig.scope) }
-  val resolvedLanguage = remember(configuration) { resolveLanguage(configuration) }
+  val resolvedLanguage = remember(configuration, contentLocale) { contentLocale }
   val practiceBlueprint = remember(viewModel) { viewModel.practiceBlueprint() }
   val taskLabels = remember(practiceBlueprint, resolvedLanguage) {
     repository.loadTaskLabels(resolvedLanguage)
@@ -113,12 +113,12 @@ fun ModeScreen(
 
   LaunchedEffect(resolvedLanguage, prewarmDisabled) {
     if (!prewarmDisabled) {
-      viewModel.startPrewarmForIpMock(resolvedLanguage)
+      viewModel.startPrewarmForIpMock()
     }
   }
 
   LaunchedEffect(viewModel, resolvedLanguage) {
-    viewModel.detectResume(resolvedLanguage)
+    viewModel.detectResume()
   }
 
   LaunchedEffect(practiceShortcuts) { practiceShortcuts.refresh() }
@@ -185,7 +185,7 @@ fun ModeScreen(
             role = Role.Button
           },
         enabled = startEnabled,
-        onClick = { viewModel.startAttempt(ExamMode.IP_MOCK, resolvedLanguage) },
+        onClick = { viewModel.startAttempt(ExamMode.IP_MOCK) },
       ) {
         Text(text = stringResource(id = R.string.start_exam))
       }
@@ -281,7 +281,6 @@ fun ModeScreen(
         } else {
           val launched =
             viewModel.startPractice(
-              locale = resolvedLanguage,
               config = practiceConfig.copy(scope = scope, size = selectedSize),
               preset = preset,
             )
@@ -301,8 +300,6 @@ fun ModeScreen(
       onContinue = { option ->
         viewModel.resumeAttempt(
           attemptId = resumeDialog.attemptId,
-          localeOption = option,
-          deviceLocale = resolvedLanguage,
         )
       },
       onDiscard = { viewModel.discardAttempt(resumeDialog.attemptId) },
@@ -345,12 +342,3 @@ private suspend fun showBankMissingMessage(
   snackbarHostState.showSnackbar(message)
 }
 
-private fun resolveLanguage(configuration: android.content.res.Configuration): String {
-  val language = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-    configuration.locales.takeIf { it.size() > 0 }?.get(0)?.language
-  } else {
-    @Suppress("DEPRECATION")
-    configuration.locale?.language
-  }
-  return language?.takeIf { it.isNotBlank() } ?: Locale.ENGLISH.language
-}
