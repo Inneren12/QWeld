@@ -8,7 +8,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.parseToJsonElement
 
 class ContentIndexReaderTest {
 
