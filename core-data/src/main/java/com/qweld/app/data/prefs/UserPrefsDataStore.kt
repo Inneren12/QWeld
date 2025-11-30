@@ -28,19 +28,9 @@ class UserPrefsDataStore internal constructor(
   @JvmOverloads
   constructor(
     context: Context,
-    scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
-    storeName: String = DATA_STORE_NAME,
-  ) : this(
-      PreferenceDataStoreFactory.create(
-        corruptionHandler =
-          ReplaceFileCorruptionHandler { throwable ->
-            Log.w(TAG, "[datastore_recover] store=$storeName cause=corruption", throwable)
-            defaultPreferences()
-          },
-        scope = scope,
-        produceFile = { context.preferencesDataStoreFile(storeName) },
-      ),
-    )
+    @Suppress("UNUSED_PARAMETER") scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
+    @Suppress("UNUSED_PARAMETER") storeName: String = DATA_STORE_NAME,
+      ) : this(context.applicationContext.userPrefsDataStore)
 
   val analyticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[ANALYTICS_ENABLED_KEY] ?: DEFAULT_ANALYTICS_ENABLED
@@ -75,7 +65,7 @@ class UserPrefsDataStore internal constructor(
   }
 
   fun appLocaleFlow(): Flow<String> {
-    return dataStore.data.map { preferences -> preferences[APP_LOCALE_KEY] ?: DEFAULT_APP_LOCALE }
+    return dataStore.data.map { DEFAULT_APP_LOCALE }
   }
 
   val wrongBiased: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -139,7 +129,7 @@ class UserPrefsDataStore internal constructor(
   }
 
   suspend fun setAppLocale(tag: String) {
-    dataStore.edit { preferences -> preferences[APP_LOCALE_KEY] = tag }
+    // Locale selection disabled – keep existing preference intact
   }
 
   suspend fun saveLastPracticeScope(
@@ -175,11 +165,11 @@ class UserPrefsDataStore internal constructor(
     const val DEFAULT_FALLBACK_TO_EN: Boolean = false
     const val DEFAULT_HAPTICS_ENABLED: Boolean = true
     const val DEFAULT_SOUNDS_ENABLED: Boolean = false
-    const val DEFAULT_APP_LOCALE: String = "system"
+    const val DEFAULT_APP_LOCALE: String = "en"
 
     val PRACTICE_SIZE_PRESETS: Set<Int> = setOf(10, 20, 30)
 
-    private const val DATA_STORE_NAME = "user_prefs"
+      internal const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
     private val PREWARM_DISABLED_KEY = booleanPreferencesKey("prewarm_disabled")
     private val PRACTICE_SIZE_KEY = intPreferencesKey("practice_size")

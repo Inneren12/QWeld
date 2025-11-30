@@ -1,8 +1,8 @@
 pluginManagement {
   repositories {
-    gradlePluginPortal()
-    google()
-    mavenCentral()
+      gradlePluginPortal()
+      google()
+      mavenCentral()
   }
   plugins {
     id("com.android.application") version "8.5.2"
@@ -14,18 +14,11 @@ pluginManagement {
     id("org.jetbrains.kotlinx.kover") version "0.7.6"
     id("com.diffplug.spotless") version "6.25.0"
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
-    id("com.google.gms.google-services") version "4.4.2"
     id("com.google.firebase.crashlytics") version "2.9.9"
     id("app.cash.licensee") version "1.7.0"
     id("org.cyclonedx.bom") version "1.9.0"
     id("me.champeau.jmh") version "0.7.3"
-  }
-  resolutionStrategy {
-    eachPlugin {
-      if (requested.id.id == "me.champeau.jmh" && requested.version != null) {
-        useModule("me.champeau.jmh:me.champeau.jmh.gradle.plugin:${requested.version}")
-      }
-    }
+      id("com.google.gms.google-services") version "4.4.4"
   }
 }
 

@@ -29,6 +29,8 @@ kotlin {
 
 dependencies {
   implementation("com.jakewharton.timber:timber:5.0.1")
+  implementation("androidx.appcompat:appcompat:1.7.0")
+  implementation("androidx.core:core-ktx:1.15.0")
 
   testImplementation(kotlin("test"))
 }

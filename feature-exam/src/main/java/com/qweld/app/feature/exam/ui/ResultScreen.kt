@@ -294,7 +294,7 @@ internal fun rememberAttemptExportLauncher(viewModel: ResultViewModel): () -> Un
   return remember(fileName, launcher) { { launcher.launch(fileName) } }
 }
 
-private data class LogExportActions(
+internal data class LogExportActions(
   val exportText: () -> Unit,
   val exportJson: () -> Unit,
 )

@@ -32,10 +32,11 @@ import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
 import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
-import java.util.Locale
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
+
+private const val CONTENT_LOCALE_EN = "en"
 
 object ExamDestinations {
   const val MODE = "exam_mode"
@@ -113,6 +114,7 @@ fun ExamNavGraph(
         viewModel = examViewModel,
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
+        contentLocale = CONTENT_LOCALE_EN,
         navController = navController,
         onPracticeSizeCommit = { size ->
           coroutineScope.launch { userPrefs.setPracticeSize(size) }
@@ -120,7 +122,6 @@ fun ExamNavGraph(
         onRepeatMistakes = { locale, blueprint, config ->
           val launched = examViewModel.startAttempt(
             mode = ExamMode.PRACTICE,
-            locale = locale,
             practiceConfig = config,
             blueprintOverride = blueprint,
           )
@@ -163,13 +164,11 @@ fun ExamNavGraph(
             }
             ExamViewModel.ExamEffect.RestartWithSameConfig -> {
               val config = examViewModel.uiState.value.lastPracticeConfig
-              val locale = examViewModel.uiState.value.lastLocale
-                ?: Locale.getDefault().language.lowercase(Locale.US)
               if (config == null) {
                 examViewModel.notifyRestartFailure("Missing practice configuration.")
                 return@collectLatest
               }
-              val launched = examViewModel.startPractice(locale, config)
+              val launched = examViewModel.startPractice(config)
               if (!launched) {
                 examViewModel.notifyRestartFailure("Unable to restart practice.")
               }

@@ -1,5 +1,6 @@
 package com.qweld.app.feature.exam.ui
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -99,7 +100,13 @@ fun ReviewScreen(
   var isGlossaryLoading by remember { mutableStateOf(false) }
   var glossaryError by remember { mutableStateOf(false) }
   val context = LocalContext.current
-  val glossaryLocale = remember(locale) { Locale(locale.ifBlank { Locale.getDefault().language }) }
+  val glossaryLocale =
+    remember(locale) {
+      val appLocale =
+        AppCompatDelegate.getApplicationLocales().get(0)?.language?.takeIf { it.isNotBlank() }
+      val resolved = locale.ifBlank { appLocale ?: Locale.getDefault().language }
+      Locale(resolved.lowercase(Locale.US))
+    }
 
   LaunchedEffect(resultData.attemptId) {
     val totalQuestions = reviewQuestions.size

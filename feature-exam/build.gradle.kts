@@ -45,11 +45,13 @@ dependencies {
   implementation("androidx.navigation:navigation-compose:2.8.3")
   implementation("com.jakewharton.timber:timber:5.0.1")
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("androidx.appcompat:appcompat:1.7.0")
 
-  debugImplementation("androidx.compose.ui:ui-tooling:1.7.1")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.7.1")
   debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.1")
 
   testImplementation("junit:junit:4.13.2")
+  testImplementation(kotlin("test"))
   testImplementation("androidx.test:core:1.6.1")
   testImplementation("androidx.room:room-testing:2.6.1")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")

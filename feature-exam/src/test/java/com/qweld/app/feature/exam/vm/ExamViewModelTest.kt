@@ -217,7 +217,7 @@ class ExamViewModelTest {
         mapOf("questions/en/bank.v1.json" to questions.toByteArray()),
       )
     return AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+      assetReader = AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )
@@ -279,6 +279,10 @@ private class FakeAnswerDao : AnswerDao {
 
   override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> {
     return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
+  }
+
+  override suspend fun listWrongByAttempt(attemptId: String): List<String> {
+    return answers.filter { it.attemptId == attemptId && !it.isCorrect }.map { it.questionId }
   }
 
   override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {

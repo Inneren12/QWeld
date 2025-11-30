@@ -2,13 +2,13 @@ package com.qweld.app.feature.exam.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,9 +30,9 @@ fun ExamTopBarMenu(
   modifier: Modifier = Modifier,
 ) {
   var expanded by remember { mutableStateOf(false) }
-  TopAppBar(
+  CenterAlignedTopAppBar(
     modifier = modifier,
-    title = { },
+    title = { Text(text = stringResource(id = R.string.exam_title)) },
     actions = {
       val exitLabel = stringResource(id = R.string.exit)
       val exitCd = stringResource(id = R.string.menu_exit)

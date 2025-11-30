@@ -164,7 +164,7 @@ class ExamViewModelPersistTest {
         mapOf("questions/en/bank.v1.json" to questions.toByteArray()),
       )
     return AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+      assetReader = AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )

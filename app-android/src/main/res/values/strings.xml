@@ -62,6 +62,10 @@
     <string name="settings_content_locale_title">%1$s bundle</string>
     <string name="settings_content_blueprint">Blueprint: %1$s</string>
     <string name="settings_content_bank_version">Bank version: %1$s</string>
+    <string name="settings_content_files_count">Files: %1$d (tasks: %2$d)</string>
+    <string name="settings_content_bank_present">Includes bank.v1.json</string>
+    <string name="settings_content_labels_present">Includes meta/task_labels.json</string>
+    <string name="settings_content_tasks_list">Tasks: %1$s</string>
     <string name="settings_content_files_title">Files</string>
     <string name="settings_content_file_entry">%1$s — %2$s</string>
     <string name="settings_content_copy_json">Copy index JSON</string>
