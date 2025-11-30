@@ -2,7 +2,11 @@
   {
     "id": "Q-A-3_burn_first_aid_20000036",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "For a minor thermal burn, initial first aid usually involves:",
     "choices": [
       {
@@ -24,7 +28,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Cooling the area with cool running water and seeking care if needed"
+=======
       "CHOICE-2": "Cool the burn with water; avoid ointments/grease initially."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -52,7 +60,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "19.5–23.5% oxygen"
+=======
       "CHOICE-2": "Atmospheres between ~19.5% and 23.5% oxygen are considered acceptable for entry."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -80,13 +92,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Separated from fuel gases by distance or a barrier"
+=======
       "CHOICE-2": "Separate oxygen from fuel gases to reduce fire/explosion risk."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_cylinder_transport_20000030",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "When transporting gas cylinders within the shop, you should:",
     "choices": [
       {
@@ -108,7 +128,11 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "Use a proper cylinder cart with cap installed"
+=======
       "CHOICE-3": "Use cylinder carts and keep protective caps on during transport."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -136,7 +160,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Select an extinguisher rated for the fire class (e.g., ABC for many shop fires)"
+=======
       "CHOICE-2": "Use extinguishers suitable for the fire class; do not use water on energized circuits."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -151,11 +179,19 @@
       },
       {
         "id": "CHOICE-2",
+<<<<<<< Updated upstream
+        "text": "At least 60 minutes"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only while cutting/welding is in progress"
+=======
         "text": "At least 30 minutes"
       },
       {
         "id": "CHOICE-3",
         "text": "Only while cutting is in progress"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-4",
@@ -164,7 +200,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "At least 60 minutes"
+=======
       "CHOICE-2": "A post‑work fire watch of ~30 minutes is common practice to catch smoldering ignition."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -192,7 +232,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Remove or shield them and test the atmosphere if required"
+=======
       "CHOICE-2": "Remove/cover combustibles and verify atmosphere per permit controls."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -220,13 +264,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "A check valve or flashback arrestor"
+=======
       "CHOICE-2": "Check valves/flashback arrestors reduce flashback risk."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_fr_clothing_2000002e",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Which clothing is most appropriate for welding?",
     "choices": [
       {
@@ -248,13 +300,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Flame‑resistant cotton or leather"
+=======
       "CHOICE-2": "FR cotton or leather resists ignition and melting."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_glove_condition_2000002f",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Before welding, gloves should be:",
     "choices": [
       {
@@ -276,13 +336,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Dry and free of holes or tears"
+=======
       "CHOICE-2": "Dry, intact gloves protect from heat and electrical hazards."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_grinding_ppe_10000008",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "What eye and face protection is appropriate for grinding?",
     "choices": [
       {
@@ -304,14 +372,23 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "Safety glasses and a face shield together"
+=======
       "CHOICE-3": "Use both safety glasses and a face shield to protect against high‑energy debris."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_hearing_protection_2000002c",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+    "stem": "When noise levels are high during grinding/gouging, workers should:",
+=======
     "difficulty": "easy",
     "stem": "When noise levels are high during grinding and gouging, workers should:",
+>>>>>>> Stashed changes
     "choices": [
       {
         "id": "CHOICE-1",
@@ -323,7 +400,11 @@
       },
       {
         "id": "CHOICE-3",
+<<<<<<< Updated upstream
+        "text": "Wear sunglasses"
+=======
         "text": "Use sunglasses"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-4",
@@ -332,13 +413,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Use hearing protection"
+=======
       "CHOICE-2": "Hearing protection reduces risk of noise‑induced hearing loss."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_hot_metal_mark_2000003c",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "After cutting/welding, a good practice for newly heated parts is to:",
     "choices": [
       {
@@ -360,7 +449,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Mark or tag them as 'HOT' and control the area"
+=======
       "CHOICE-2": "Marking hot parts helps prevent contact burns to others."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -388,13 +481,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "A hot work permit"
+=======
       "CHOICE-2": "A hot work permit controls ignition sources and verifies precautions."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_housekeeping_hoses_20000032",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "How can trip hazards from leads and hoses be reduced?",
     "choices": [
       {
@@ -416,13 +517,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Lift them overhead or cover/cross at protected points"
+=======
       "CHOICE-2": "Route overhead or cover crossings to reduce tripping."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_local_exhaust_20000029",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "What is an effective method to control welding fume at the source?",
     "choices": [
       {
@@ -444,7 +553,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Use local exhaust/hoods positioned near the arc"
+=======
       "CHOICE-2": "Capture at the source with local exhaust is most effective."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -472,7 +585,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Attempt a start to verify zero energy"
+=======
       "CHOICE-2": "Verification by attempting a start confirms all energy sources are neutralized."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -500,13 +617,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "They can contain manganese and other metal oxides that require control"
+=======
       "CHOICE-2": "Many processes produce metal oxide fumes; control exposure with ventilation and PPE."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_muster_point_2000003b",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "In case of an emergency evacuation, workers should:",
     "choices": [
       {
@@ -528,7 +653,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Go to the designated muster/assembly point"
+=======
       "CHOICE-2": "Assemble at the designated muster point for a headcount."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -556,6 +685,9 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Open it fully back‑seated per manufacturer guidance"
+=======
       "CHOICE-2": "Oxygen valves are designed to be fully opened to seat the packing."
     }
   },
@@ -585,11 +717,24 @@
     "correctId": "CHOICE-3",
     "rationales": {
       "CHOICE-3": "Use both safety glasses and a face shield for grinding tasks."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_protect_hoses_hot_20000034",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+    "stem": "Oxy‑fuel/welding hoses should be kept:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "On sharp edges and hot surfaces"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Away from hot/walking areas and protected from damage"
+=======
     "difficulty": "easy",
     "stem": "Oxy‑fuel and welding hoses should be kept:",
     "choices": [
@@ -600,6 +745,7 @@
       {
         "id": "CHOICE-2",
         "text": "Away from hot/walking surfaces and protected from damage"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-3",
@@ -607,18 +753,30 @@
       },
       {
         "id": "CHOICE-4",
+<<<<<<< Updated upstream
+        "text": "Painted to improve wear resistance"
+=======
         "text": "Painted to prevent wear"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Away from hot/walking areas and protected from damage"
+=======
       "CHOICE-2": "Protect hoses from cuts, heat, and traffic."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_regulator_remove_move_2000003f",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Before moving a cylinder to another location, you should:",
     "choices": [
       {
@@ -640,7 +798,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Remove the regulator and install the valve cap"
+=======
       "CHOICE-2": "Remove regulators and install caps before transport."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -651,7 +813,11 @@
     "choices": [
       {
         "id": "CHOICE-1",
+<<<<<<< Updated upstream
+        "text": "Have facial hair where the seal sits"
+=======
         "text": "Have facial hair under the seal"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-2",
@@ -668,7 +834,11 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "Be clean‑shaven where the seal contacts the face"
+=======
       "CHOICE-3": "Facial hair interferes with the seal; fit testing and clean‑shaven seals are required."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -696,7 +866,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "According to amperage and process tables"
+=======
       "CHOICE-2": "Select shade per tables/guidance for the process and current."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -724,13 +898,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Hexavalent chromium in fumes"
+=======
       "CHOICE-2": "Stainless welding can produce Cr(VI); use controls and PPE per requirements."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_stub_bucket_20000033",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Where should SMAW electrode stubs be placed?",
     "choices": [
       {
@@ -752,13 +934,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "In a designated stub bucket or container"
+=======
       "CHOICE-2": "Use a stub bucket to control sharp waste and keep floors clear."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_welding_area_sign_20000035",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "What helps protect bystanders from arc flash in open areas?",
     "choices": [
       {
@@ -771,7 +961,11 @@
       },
       {
         "id": "CHOICE-3",
+<<<<<<< Updated upstream
+        "text": "Point the arc toward coworkers"
+=======
         "text": "Point arc toward coworkers"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-4",
@@ -780,17 +974,40 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Use welding curtains/screens and post warning signs"
+=======
       "CHOICE-2": "Screens and signage warn and shield others from arc flash."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-3_welding_screens_1000000c",
     "taskId": "A-3",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Why are welding screens used around a work area?",
     "choices": [
       {
         "id": "CHOICE-1",
+<<<<<<< Updated upstream
+        "text": "Only to improve the welder’s visibility"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To protect others from arc flash and flying sparks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To reduce fumes below limits by themselves"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "To replace personal protective equipment"
+=======
         "text": "They only improve the welder’s visibility"
       },
       {
@@ -804,11 +1021,16 @@
       {
         "id": "CHOICE-4",
         "text": "They replace personal protective equipment"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "To protect others from arc flash and flying sparks"
+=======
       "CHOICE-2": "Screens help shield bystanders from UV radiation and ejected particles."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -827,7 +1049,11 @@
       },
       {
         "id": "CHOICE-3",
+<<<<<<< Updated upstream
+        "text": "Remove gloves to feel the heat better"
+=======
         "text": "Remove gloves to feel the heat"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-4",
@@ -836,7 +1062,235 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Use GFCI protection, dry platforms, and extra insulation"
+    }
+  },
+  {
+    "id": "Q-A-3P_oxyfuel_startup_20000101",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Before lighting an oxy‑fuel torch, your first actions should be:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Open both torch valves and light with a lighter"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Back out regulator screws, slowly and fully open the oxygen cylinder valve, then set pressures and purge lines individually"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Fully open the acetylene cylinder valve immediately"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Grease threads/fittings for better sealing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Back out regulator screws, slowly and fully open the oxygen cylinder valve, then set pressures and purge lines individually"
+    }
+  },
+  {
+    "id": "Q-A-3P_oxyfuel_fuel_valve_turns_20000102",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "When working with acetylene cylinders, the cylinder valve is typically opened:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Fully to the stop"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "About 1/2–1 1/2 turns so it can be closed quickly (per manufacturer guidance)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "To any random position—it doesn’t matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Only when moving the cylinder"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "About 1/2–1 1/2 turns so it can be closed quickly (per manufacturer guidance)"
+    }
+  },
+  {
+    "id": "Q-A-3P_confined_space_gas_test_20000104",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "Gas testing in a confined space shows O₂ = 19.2% and 10% LEL. Your decision:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Enter; values are close enough to normal"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not enter; ventilate, eliminate vapor sources, and retest until O₂ ≥ 19.5% and LEL is below the threshold"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Enter with a filtering respirator"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Have a coworker stand by with an extinguisher"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Do not enter; ventilate, eliminate vapor sources, and retest until O₂ ≥ 19.5% and LEL is below the threshold"
+    }
+  },
+  {
+    "id": "Q-A-3P_LEV_position_20000105",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "During welding in the shop, the extraction hood/arm should be positioned:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Well away from the arc so it doesn’t block view"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "As close as possible to the fume source without placing yourself between the arc and the intake"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Above the welder’s head so hot air rises into it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Anywhere—general ventilation is enough"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "As close as possible to the fume source without placing yourself between the arc and the intake"
+    }
+  },
+  {
+    "id": "Q-A-3P_hexchrome_controls_20000107",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "You are welding stainless steel (GMAW) indoors. The most appropriate primary controls are:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Open the doors and rely on a draft"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use local exhaust at the arc; add a suitable respirator if the risk assessment requires it"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase amperage to reduce fume"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use only short tacks"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use local exhaust at the arc; add a suitable respirator if the risk assessment requires it"
+    }
+  },
+  {
+    "id": "Q-A-3P_cylinder_storage_sep_20000108",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "You are laying out a cylinder storage area. A correct solution for O₂ and fuel gases is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Store them together for convenience"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Separate by at least 6.1 m (20 ft) or by a 1.5 m (5 ft) barrier with ~30‑min fire rating"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lay cylinders horizontally and roll them to a wall"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Oil the threads for better sealing"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Separate by at least 6.1 m (20 ft) or by a 1.5 m (5 ft) barrier with ~30‑min fire rating"
+    }
+  },
+  {
+    "id": "Q-A-3P_gfci_wet_grinder_20000111",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "You need to dress a part quickly on a bench grinder in a damp area. The safe choice is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No protection—it’s just a minute"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safety glasses + face shield; power through GFCI; dry the work area"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Safety glasses only and no extraction"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sunglasses and fingerless gloves"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Safety glasses + face shield; power through GFCI; dry the work area"
+    }
+  },
+  {
+    "id": "Q-A-3P_resp_fit_practical_20000112",
+    "taskId": "A-3",
+    "difficulty": "medium",
+    "stem": "For tight‑fitting respirators used while welding stainless, practical must‑haves are:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Stubble under the mask is fine if straps are tight"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Be clean‑shaven where the mask seals and complete fit testing per the program"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "A general room fan is enough"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tighten straps hard over a beard"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Be clean‑shaven where the mask seals and complete fit testing per the program"
+=======
       "CHOICE-2": "Use dry platforms, GFCI, and insulation to reduce shock risk."
+>>>>>>> Stashed changes
     }
   }
 ]

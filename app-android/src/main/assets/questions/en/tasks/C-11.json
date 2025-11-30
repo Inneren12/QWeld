@@ -1,5 +1,27 @@
 [
   {
+<<<<<<< Updated upstream
+    "id": "Q-C-11_polarity_caca_10000042",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Which polarity is standard for air carbon arc gouging (CAC‑A) with DC?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "DCEN (straight polarity)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "DCEP (reverse polarity)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "AC only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any polarity is fine"
+=======
     "id": "Q-C-11_ac_electrode_type_v1_04_300000d6",
     "taskId": "C-11",
     "difficulty": "medium",
@@ -20,10 +42,14 @@
       {
         "id": "CHOICE-4",
         "text": "A wooden dowel"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "DCEP helps blow molten metal out of the groove effectively."
+=======
       "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
     }
   },
@@ -221,12 +247,17 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "A high-volume stream of dry compressed air clears molten metal."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-C-11_air_volume_dry_v2_05_300000e2",
     "taskId": "C-11",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "What air supply is required for CAC-A?",
     "choices": [
       {
@@ -280,6 +311,28 @@
     }
   },
   {
+<<<<<<< Updated upstream
+    "id": "Q-C-11_ac_electrode_type_v1_04_300000d6",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "If CAC-A must be performed on AC, you should use:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Standard DC gouging carbons"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "AC-rated gouging electrodes designed for AC"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any carbon rod available"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A wooden dowel"
+=======
     "id": "Q-C-11_lead_angle_v1_02_300000d4",
     "taskId": "C-11",
     "difficulty": "medium",
@@ -300,10 +353,14 @@
       {
         "id": "CHOICE-4",
         "text": "Point straight down"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
+=======
       "CHOICE-2": "A small lead angle directs molten metal out of the gouge."
     }
   },
@@ -529,12 +586,17 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "DCEP helps project molten metal out of the groove."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-C-11_ppe_caca_10000045",
     "taskId": "C-11",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Which PPE is most appropriate for CAC‑A?",
     "choices": [
       {
@@ -560,6 +622,56 @@
     }
   },
   {
+<<<<<<< Updated upstream
+    "id": "Q-C-11P_EN_0001",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "You need to back‑gouge a 10 mm root on carbon steel with CAC‑A. Which carbon and current range is the most appropriate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Ø6 mm (1/4 in) carbon at 150–250 A"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Ø8 mm (5/16 in) carbon at 200–350 A"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ø10 mm (3/8 in) carbon at 300–450 A"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ø13 mm (1/2 in) carbon at 550–700 A"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A 3/8 in carbon and ~300–450 A gives a controllable, ~10–12 mm wide gouge suitable for a 10 mm root."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0002",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Polarity for DC CAC‑A with copper‑coated carbons is typically:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "DCEN (straight polarity)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "DCEP (reverse polarity)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "AC only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Either AC or DCEN only"
+=======
     "id": "Q-C-11_ppe_heavy_v1_03_300000d5",
     "taskId": "C-11",
     "difficulty": "easy",
@@ -580,10 +692,65 @@
       {
         "id": "CHOICE-4",
         "text": "Sunglasses are sufficient"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Standard DC CAC‑A uses DCEP for stable arc and proper carbon consumption."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0003",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Air pressure measured at the torch during gouging with Ø10 mm (3/8 in) carbon should be about:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "35–50 psi (240–345 kPa)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "60–80 psi (415–550 kPa)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "90–110 psi (620–760 kPa)"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": ">140 psi (965 kPa)"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Most torches and 3/8 in carbons perform well with ~90–110 psi dynamic pressure at the torch."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0004",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "When starting the gouge, what sequence helps avoid carbon smearing and blowback?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Strike arc first, then open air"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Open air fully, then strike and move immediately"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Start without air for 20 s to warm the carbon"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Feather the air on/off repeatedly while stationary"
+=======
       "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
     }
   },
@@ -608,10 +775,37 @@
       {
         "id": "CHOICE-4",
         "text": "Sunglasses are sufficient"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Having air on before the strike clears molten metal immediately and reduces carbon deposits in the groove."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0005",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Typical torch/work angle for a controlled back‑gouge is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "5–10° drag angle"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "15–30° drag angle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "45–60° drag angle"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Torch straight up (90°)"
+=======
       "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
     }
   },
@@ -636,10 +830,37 @@
       {
         "id": "CHOICE-4",
         "text": "Sunglasses are sufficient"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "A 15–30° drag angle gives directional control and helps the air jet lift molten metal."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0006",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "You observe carbon streaks left in the gouged groove on stainless. What’s the correct action before welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Weld over them; they’ll burn out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Grind/clean to bright metal and re‑gouge lightly if needed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Brush with carbon steel wire only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Spray water to cool and weld immediately"
+=======
       "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
     }
   },
@@ -664,11 +885,408 @@
       {
         "id": "CHOICE-4",
         "text": "Sunglasses are sufficient"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Carbon contamination must be removed on stainless to avoid embrittlement/porosity—grind to bright metal."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0007",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Your compressor delivers 35 scfm at 100 psi. The torch spec for 1/2 in carbon needs ~50–60 scfm. What’s the practical solution?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use 1/2 in carbon anyway at reduced current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Manifold more compressor capacity or step down to a smaller carbon"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Increase pressure to 150 psi with the same compressor"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Reduce air hose ID to boost velocity"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Air volume limits carbon size; add air capacity or choose a smaller carbon to match available flow."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0008",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Which power source is preferred for CAC‑A?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Constant voltage (CV) MIG power source"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Constant current (CC) DC welder with high duty cycle"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Small AC buzz‑box only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Battery charger with jumper cables"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "CAC‑A requires a robust CC/DC source with ample current and duty cycle."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0009",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "When feathering the end of a gouge to avoid a crater, the correct move is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Lift to increase arc length and reduce current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Lower the torch and close the air"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Stop abruptly to avoid over‑gouge"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn off power first, then air"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Slightly increasing arc length while moving off reduces depth gradually and prevents a sharp crater."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0010",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "You must remove a crack stop‑hole without undercutting base metal. Best technique:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start inside the hole, tight circle, shallow passes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Single deep pass across the hole"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Grind only—never gouge stop‑holes"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike beside the hole and ‘punch’ through vertically"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Controlled, shallow circular feathering avoids sudden undercut and keeps geometry accurate."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0011",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "A common cause of ‘spitting’ and poor metal ejection during gouging is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Air filter/moisture separator missing or saturated"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Too much air pressure"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Overly short air hose"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ground clamp too close"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Moisture/oil in the air stream destabilizes the arc and ejection; keep air dry and filtered."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0012",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Which PPE addition is most critical for CAC‑A compared to typical welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Hearing protection (very high noise)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "None—same as welding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tyvek suit only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Light cotton gloves only"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Noise levels can exceed 100 dBA; hearing protection is essential along with face/eye and fume control."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0013",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Back‑gouging a root on a double‑V joint, where should you place the work (return) lead to minimize arc blow?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Directly behind the arc on the same member"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Far away on a different structure"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "On the bench only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No effect from lead placement"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Short current paths close to the gouge help reduce magnetic arc blow and stabilize the arc."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0014",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "You need a narrow, shallow gouge for cap removal without damaging the toe. Which adjustment helps most?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use a smaller carbon and reduce current"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase carbon size but move faster"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use the same carbon and increase air pressure only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Hold the torch vertical"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Smaller diameter and lower current give finer control and shallower penetration."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0015",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "During a long pass your torch gets hot and the carbon holder O‑rings show damage. Best immediate action:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Continue—normal wear"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Stop, cool down, inspect/replace O‑rings, and verify air flow path"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduce current and keep going"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Wrap with tape and finish the job"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Damaged seals affect air jet direction and safety; correct the fault before proceeding."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0016",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "For AC gouging you should use:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Copper‑coated DC carbons"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Special AC‑coated carbons designed for AC"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Any carbon—no difference"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Graphite rod from a pencil"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "AC requires carbons with a special coating to stabilize the arc; DC carbons are for DCEP."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0017",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "You’re gouging in a corner joint and ejecta keeps bouncing back into the groove. What change helps most?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase drag angle and redirect the air jet out of the corner"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Reduce air pressure to lessen blowout"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Shorten the arc length to zero"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch polarity"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Adjusting angle directs the stream away from the corner so molten metal can escape."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0018",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "Which hose setup is most suitable for CAC‑A with high air demand?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Long 1/4 in ID air hose with quick‑connects"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Short 3/8–1/2 in ID air hose with full‑flow fittings"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Garden hose with adapter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any size—length and fittings don’t matter"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Large‑ID, short runs and full‑flow fittings minimize pressure drop and keep volume up."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0019",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "You must back‑gouge inside a tank. What must be in place before starting?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing extra—same as open shop"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Confined‑space entry, ventilation, gas testing, and a hot‑work permit"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Only a fan blowing air in"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Just a fire extinguisher nearby"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "CAC‑A in confined spaces requires formal controls: permit, atmospheric testing, ventilation, standby, etc."
+    }
+  },
+  {
+    "id": "Q-C-11P_EN_0020",
+    "taskId": "C-11",
+    "difficulty": "medium",
+    "stem": "While removing a fillet weld, you keep digging into the base plate near the toe. What technique change helps?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Flatten the angle and move faster with lighter, overlapping passes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Increase current and slow down"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hold vertical and pulse the air"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Switch to a bigger carbon for stability"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A shallower angle with quicker, light passes reduces bite‑in and lets you ‘skim’ the weld metal off."
+=======
       "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
+>>>>>>> Stashed changes
     }
   }
 ]
