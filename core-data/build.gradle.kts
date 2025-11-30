@@ -1,8 +1,8 @@
 plugins {
   id("com.android.library")
   id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
   id("org.jetbrains.kotlin.kapt")
-  id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -57,8 +57,10 @@ dependencies {
     api("androidx.room:room-ktx:2.6.1")
   kapt("androidx.room:room-compiler:2.6.1")
 
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
   implementation("androidx.datastore:datastore-preferences:1.1.1")
-  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
   implementation("com.jakewharton.timber:timber:5.0.1")
   implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
   implementation("com.google.firebase:firebase-analytics-ktx")

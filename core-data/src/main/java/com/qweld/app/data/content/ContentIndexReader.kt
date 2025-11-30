@@ -16,6 +16,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
 import timber.log.Timber
 
+
 class ContentIndexReader
 @JvmOverloads
 constructor(
