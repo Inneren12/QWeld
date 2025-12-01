@@ -6,8 +6,7 @@ import hashlib
 from pathlib import Path
 from typing import Dict, List, Any
 
-
-# Конфиг — при необходимости подправь под себя
+# Конфиг — подправь, если нужно
 BLUEPRINT_ID = "welder_ip_sk_202404"
 BANK_VERSION = "v1"
 LOCALES = ["en", "ru"]
@@ -24,6 +23,7 @@ def sha256_of_file(path: Path) -> str:
 
 
 def load_task_questions(task_path: Path, locale: str, task_id: str) -> List[Dict[str, Any]]:
+    """Читает questions/<locale>/tasks/<taskId>.json и проверяет базовые инварианты."""
     with task_path.open("r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -37,13 +37,12 @@ def load_task_questions(task_path: Path, locale: str, task_id: str) -> List[Dict
         if not isinstance(q, dict):
             raise ValueError(f"{task_path}: question #{idx} is not an object")
 
-        # Обязательные поля
+        # Обязательные поля на уровне вопроса
         missing = [k for k in ("id", "taskId", "stem", "choices", "correctId") if k not in q]
         if missing:
             raise ValueError(f"{task_path}: question #{idx} is missing required fields: {missing}")
 
         if q.get("taskId") != task_id:
-            # taskId в payload должен совпадать с именем файла
             raise ValueError(
                 f"{task_path}: question #{idx} has taskId={q.get('taskId')!r}, "
                 f"expected {task_id!r}"
@@ -94,9 +93,10 @@ def build_banks_and_indexes(questions_root: Path) -> None:
 
         app-android/src/main/assets/questions/<locale>/bank.v1.json
         app-android/src/main/assets/questions/<locale>/index.json
-        app-android/src/main/assets/questions/index.json
+        app-android/src/main/assets/questions/index.json (root агрегатор)
     """
-    locale_summaries = {}
+    # Для root-индекса: locale -> map path->sha
+    root_locale_files: Dict[str, Dict[str, str]] = {}
 
     for locale in LOCALES:
         tasks_dir = questions_root / locale / "tasks"
@@ -116,6 +116,7 @@ def build_banks_and_indexes(questions_root: Path) -> None:
             continue
 
         all_questions: List[Dict[str, Any]] = []
+        # task meta нужно только для статистики и root-индекса, но sha мы всё равно считаем
         tasks_meta: List[Dict[str, Any]] = []
 
         for task_file in task_files:
@@ -132,118 +133,70 @@ def build_banks_and_indexes(questions_root: Path) -> None:
                 }
             )
 
-        # Сортировка: по id, затем по taskId
+        # Сортируем плоский банк по id / taskId
         all_questions.sort(
             key=lambda q: (str(q.get("id", "")), str(q.get("taskId", "")))
         )
 
-        # Пишем банк как плоский массив вопросов
+        # Пишем банк
         bank_path.parent.mkdir(parents=True, exist_ok=True)
         with bank_path.open("w", encoding="utf-8") as f:
             json.dump(all_questions, f, ensure_ascii=False, indent=2)
 
         bank_sha = sha256_of_file(bank_path)
 
-        # Meta labels (если есть)
+        # files: map path -> sha (именно это ждёт IndexParser.collectFiles)
+        files_map: Dict[str, str] = {}
+
+        # meta/task_labels.json (если есть)
         labels_path = meta_dir / "task_labels.json"
-        labels_entry = None
-        labels_sha = None
         if labels_path.is_file():
             labels_sha = sha256_of_file(labels_path)
-            labels_entry = {
-                "kind": "meta",
-                "path": f"questions/{locale}/meta/task_labels.json",
-                "sha256": labels_sha,
-            }
+            files_map[f"questions/{locale}/meta/task_labels.json"] = labels_sha
         else:
             print(
                 f"[WARN] Locale {locale!r}: no meta/task_labels.json at {labels_path}"
             )
 
-        # Локальный index.json для локали
-        files_entries: List[Dict[str, Any]] = []
+        # банк
+        files_map[f"questions/{locale}/bank.v1.json"] = bank_sha
 
-        if labels_entry is not None:
-            files_entries.append(labels_entry)
-
-        files_entries.append(
-            {
-                "kind": "bank",
-                "path": f"questions/{locale}/bank.v1.json",
-                "sha256": bank_sha,
-            }
-        )
-
+        # все task-бандлы
         for t in tasks_meta:
-            files_entries.append(
-                {
-                    "kind": "task",
-                    "taskId": t["taskId"],
-                    "path": t["path"],
-                    "sha256": t["sha256"],
-                    "questionCount": t["questionCount"],
-                }
-            )
+            files_map[t["path"]] = t["sha256"]
 
+        # per-locale index.json в формате, который понимает IndexParser
         locale_index = {
             "schema": "questions-locale-index-v1",
             "locale": locale,
             "blueprintId": BLUEPRINT_ID,
             "bankVersion": BANK_VERSION,
-            "files": files_entries,
+            "files": files_map,  # ВАЖНО: именно объект, а не массив
         }
 
         locale_index_path.parent.mkdir(parents=True, exist_ok=True)
         with locale_index_path.open("w", encoding="utf-8") as f:
             json.dump(locale_index, f, ensure_ascii=False, indent=2)
 
-        # Сводка для корневого индекса
-        locale_summaries[locale] = {
-            "tasks": tasks_meta,
-            "bankPath": f"questions/{locale}/bank.v1.json",
-            "bankSha256": bank_sha,
-            "labelsPath": labels_entry["path"] if labels_entry else None,
-            "labelsSha256": labels_sha,
-            "questionCount": len(all_questions),
-        }
+        # копим для root-индекса
+        root_locale_files[locale] = files_map
 
-    # Корневой questions/index.json
-    if not locale_summaries:
+    # root questions/index.json (агрегатор по локалям)
+    if not root_locale_files:
         print("[WARN] No locales processed, root index will not be written")
         return
 
-    locales_entries: List[Dict[str, Any]] = []
-    for locale, summary in sorted(locale_summaries.items()):
-        entry: Dict[str, Any] = {
-            "locale": locale,
-            "tasks": len(summary["tasks"]),
-            "questions": summary["questionCount"],
-            "bank": {
-                "path": summary["bankPath"],
-                "sha256": summary["bankSha256"],
-            },
+    locales_obj: Dict[str, Any] = {}
+    for locale, files_map in sorted(root_locale_files.items()):
+        locales_obj[locale] = {
+            "files": files_map
         }
-        if summary["labelsPath"] and summary["labelsSha256"]:
-            entry["meta"] = {
-                "path": summary["labelsPath"],
-                "sha256": summary["labelsSha256"],
-            }
-        entry["taskBundles"] = [
-            {
-                "taskId": t["taskId"],
-                "path": t["path"],
-                "sha256": t["sha256"],
-                "questionCount": t["questionCount"],
-            }
-            for t in summary["tasks"]
-        ]
-        locales_entries.append(entry)
 
     root_index = {
         "schema": "questions-index-v1",
         "blueprintId": BLUEPRINT_ID,
         "bankVersion": BANK_VERSION,
-        "locales": locales_entries,
+        "locales": locales_obj,
     }
 
     root_index_path = questions_root / "index.json"
@@ -254,7 +207,7 @@ def build_banks_and_indexes(questions_root: Path) -> None:
 
 
 def main() -> None:
-    # Предполагаем, что скрипт лежит в <repo>/tools/
+    # Скрипт предполагает, что лежит в <repo>/tools/
     # и запускается из корня репо.
     repo_root = Path(__file__).resolve().parents[1]
     questions_root = repo_root / "app-android" / "src" / "main" / "assets" / "questions"
