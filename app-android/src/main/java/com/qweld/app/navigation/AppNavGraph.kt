@@ -267,6 +267,7 @@ fun AppNavGraph(
           appVersion = appVersion,
           analytics = analytics,
           userPrefs = userPrefs,
+          appLocaleTag = appLocale,
             prewarmConfig =
                 PrewarmConfig(
                     enabled = BuildConfig.PREWARM_ENABLED,

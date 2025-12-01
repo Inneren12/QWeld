@@ -56,6 +56,7 @@ fun ExamNavGraph(
   analytics: Analytics,
   userPrefs: UserPrefsDataStore,
   prewarmConfig: PrewarmConfig = PrewarmConfig(),
+  appLocaleTag: String,
   modifier: Modifier = Modifier,
 ) {
   val attemptExporter =
@@ -114,6 +115,7 @@ fun ExamNavGraph(
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
         navController = navController,
+        appLocaleTag = appLocaleTag,
         onPracticeSizeCommit = { size ->
           coroutineScope.launch { userPrefs.setPracticeSize(size) }
         },

@@ -5,7 +5,7 @@
   "bankVersion": "v1",
   "files": {
     "questions/ru/meta/task_labels.json": "413195d5a474edaf3aa89bac661b500c25e6997791e32a929c39adf7e784c36c",
-    "questions/ru/bank.v1.json": "0b31748a57d25b8669e4c3595244749ddc5b878ccf1b2f77ef6e16ab27a79165",
+    "questions/ru/bank.v1.json": "704933b65447c9ecd84b1029941c7b217c343ab7c5e0758673b05d6abca3aee7",
     "questions/ru/tasks/A-1.json": "e4cd7018507a72770b06d139f542c913b71159ff8481d502eeca7f35b7823575",
     "questions/ru/tasks/A-2.json": "748bccfc5abe51b091d163b07f9075c321f4406b9a88efbf05a915a299319412",
     "questions/ru/tasks/A-3.json": "56ef65cb39cc7b0cf84620b51980b2806e367c86a6a8f42cf139ecd917dcc490",
@@ -18,7 +18,7 @@
     "questions/ru/tasks/C-8.json": "9f4e7ec3825020527a670aae3eb7fc4e1a99b6846daaa2e5b9c89d912c1cc8e9",
     "questions/ru/tasks/C-9.json": "253b3dde0c40b6c811727e1e9705d033df2450be1bcff496197096612bfa3ac6",
     "questions/ru/tasks/D-12.json": "b18483652261ba6aaa05b2b8eb4b17d0feddf0b67eca4b0963f8b0f0c91a38fc",
-    "questions/ru/tasks/D-13.json": "f30ea5e05c4acb59dd5dcd76bb9040424371ab2d285bc914869a71b10f11920e",
+    "questions/ru/tasks/D-13.json": "9a6416ea50d58f35458f9d91e05958e9e974f053ae26f76f438f89140413a541",
     "questions/ru/tasks/D-14.json": "05ceac8f95ec90d902f1ca7bbde546eb9074436e39fad3fd8f2d8684034efe58",
     "questions/ru/tasks/D-15.json": "3d63093462d16cc317c90d7032db373d24c055816a2ffe5605de0364539eeb9a"
   }

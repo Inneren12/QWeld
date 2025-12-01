@@ -24,8 +24,12 @@ def sha256_of_file(path: Path) -> str:
 
 def load_task_questions(task_path: Path, locale: str, task_id: str) -> List[Dict[str, Any]]:
     """Читает questions/<locale>/tasks/<taskId>.json и проверяет базовые инварианты."""
-    with task_path.open("r", encoding="utf-8") as f:
-        data = json.load(f)
+    try:
+        with task_path.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        # Чтобы сразу увидеть, какой файл битый и где
+        raise RuntimeError(f"Invalid JSON in {task_path}: {e}") from e
 
     if not isinstance(data, list):
         raise ValueError(
@@ -80,7 +84,6 @@ def load_task_questions(task_path: Path, locale: str, task_id: str) -> List[Dict
         questions.append(q)
 
     return questions
-
 
 def build_banks_and_indexes(questions_root: Path) -> None:
     """
