@@ -60,6 +60,7 @@ fun ModeScreen(
   practiceConfig: PracticeConfig = PracticeConfig(),
   modifier: Modifier = Modifier,
   navController: NavHostController,
+  appLocaleTag: String = UserPrefsDataStore.DEFAULT_APP_LOCALE,
   onPracticeSizeCommit: (Int) -> Unit = {},
   onRepeatMistakes: (String, ExamBlueprint, PracticeConfig) -> Unit = { _, _, _ -> },
   onResumeAttempt: () -> Unit = {},
@@ -77,7 +78,9 @@ fun ModeScreen(
   val coroutineScope = rememberCoroutineScope()
   var showPracticeScope by remember { mutableStateOf(false) }
   var practiceScope by remember { mutableStateOf(practiceConfig.scope) }
-  val resolvedLanguage = remember(configuration) { resolveLanguage(configuration) }
+  val resolvedLanguage = remember(configuration, appLocaleTag) {
+    resolvedLanguageFromLocaleTag(configuration, appLocaleTag)
+  }
   val practiceBlueprint = remember(viewModel) { viewModel.practiceBlueprint() }
   val taskLabels = remember(practiceBlueprint, resolvedLanguage) {
     repository.loadTaskLabels(resolvedLanguage)
@@ -344,6 +347,19 @@ private suspend fun showBankMissingMessage(
   val message = context.getString(R.string.mode_bank_missing, displayLocale)
   snackbarHostState.showSnackbar(message)
 }
+
+private fun resolvedLanguageFromLocaleTag(
+    configuration: android.content.res.Configuration,
+    appLocaleTag: String,
+): String {
+    return when (appLocaleTag) {
+        "en" -> "en"
+        "ru" -> "ru"
+        "system" -> resolveLanguage(configuration)
+        else -> resolveLanguage(configuration)
+    }
+}
+
 
 private fun resolveLanguage(configuration: android.content.res.Configuration): String {
   val language = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

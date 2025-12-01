@@ -52,7 +52,7 @@ android {
 
   defaultConfig {
     applicationId = "com.qweld.app"
-    minSdk = 24
+    minSdk = 26
     targetSdk = 35
     versionCode = extra["autoVersionCode"] as Int
     versionName = "1.0.0"

@@ -52,17 +52,17 @@ index f1b2e5cdf51e1957695bca7296446939bdc3d22a..1773c9a80bc8a05da6e630ccc1aa8c29
  .idea/
  *.iml
  .local/
- 
+
  # Python virtual environments
  .venv/
  __pycache__/
- 
+
  # macOS
  .DS_Store
- 
+
  # Logs
  *.log
- 
+
  logs/
 +.gradle/
 +local.properties
@@ -72,15 +72,15 @@ index 0c2a4cae1fe0ec6d4a196356a7a47b759b68ee3f..ab5a0c9e47e687e9a3de01125cd668f3
 +++ b/README.md
 @@ -1,14 +1,26 @@
  # QWeld
- 
+
  ## Structure & scripts
- 
+
  - Monorepo modules: `app-android`, `core-model`, `core-data`, `core-domain`, feature modules (`feature-exam`, `feature-practice`, `feature-auth`).
  - Content and schema assets live in `content/blueprints`, `content/questions`, and `schemas`.
  - Tooling resides in `tools/generator-python` and shared standards in `docs/standards`.
  - Bootstrap with `scripts/bootstrap.sh` and validate with `scripts/verify-structure.sh` or `scripts/tests/test_verify.sh`.
  - Run `bash scripts/validate-blueprint.sh` to lint blueprints against the JSON schema and quota totals.
- 
+
  ## Policy v1.0 & Blueprint
  - Policy: see `docs/content-policy.md` (version 1.0) and blueprint rules in `docs/blueprint-rules.md`.
  - Active blueprint: `content/blueprints/welder_ip_sk_202404.json` (blueprintVersion 1.0.0, policyVersion 1.0).
@@ -115,7 +115,7 @@ index 0000000000000000000000000000000000000000..267d8710f73590d052eedbfd4c5f581b
 +
 +  defaultConfig {
 +    applicationId = "com.qweld.app"
-+    minSdk = 24
++    minSdk = 26
 +    targetSdk = 36
 +    versionCode = 1
 +    versionName = "0.1.0"
@@ -453,7 +453,7 @@ index 0000000000000000000000000000000000000000..3e32435cb177455a6b8a7fb6d06525f4
 +  compileSdk = 36
 +
 +  defaultConfig {
-+    minSdk = 24
++    minSdk = 26
 +    consumerProguardFiles("consumer-rules.pro")
 +    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 +  }
@@ -492,7 +492,7 @@ index 0000000000000000000000000000000000000000..8ed4b80753a254b6b9697642a429ccab
 +  compileSdk = 36
 +
 +  defaultConfig {
-+    minSdk = 24
++    minSdk = 26
 +    consumerProguardFiles("consumer-rules.pro")
 +    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 +  }
@@ -531,7 +531,7 @@ index 0000000000000000000000000000000000000000..63e998e24926157e988382f206c18e3c
 +  compileSdk = 36
 +
 +  defaultConfig {
-+    minSdk = 24
++    minSdk = 26
 +    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 +    consumerProguardFiles("consumer-rules.pro")
 +  }
