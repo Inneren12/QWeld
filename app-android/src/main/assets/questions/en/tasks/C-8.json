@@ -1,5 +1,27 @@
 [
   {
+<<<<<<< Updated upstream
+    "id": "Q-C-8_wire_wheel_ppe_v1_09_30000086",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "What PPE is appropriate when using a powered wire wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "No eye protection; bristles are soft"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Safety glasses and a face shield"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Earplugs only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "A dust mask only"
+=======
     "id": "Q-C-8_blotter_use_v1_03_30000080",
     "taskId": "C-8",
     "difficulty": "medium",
@@ -20,10 +42,37 @@
       {
         "id": "CHOICE-4",
         "text": "They trap oil for lubrication"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Wire bristles can eject; use both glasses and a shield."
+    }
+  },
+  {
+    "id": "Q-C-8_wheel_storage_10000034",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "How should bonded abrasive wheels be stored?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "In a damp area to keep cool"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry, flat, and protected from dropping"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hanging by the arbor hole"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Stacked with heavy weights"
+=======
       "CHOICE-2": "Blotters spread load and reduce stress concentrations."
     }
   },
@@ -48,10 +97,37 @@
       {
         "id": "CHOICE-4",
         "text": "They trap oil for lubrication"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Moisture and impacts damage wheels; keep them dry and supported."
+    }
+  },
+  {
+    "id": "Q-C-8_cutoff_side_grind_10000031",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "What is the safe use rule for cut‑off wheels?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Side‑grind with heavy pressure for speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not side‑grind with cut‑off wheels"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use on stainless only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It is fine with the guard removed"
+=======
       "CHOICE-2": "Blotters spread load and reduce stress concentrations."
     }
   },
@@ -76,11 +152,184 @@
       {
         "id": "CHOICE-4",
         "text": "They trap oil for lubrication"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Cut‑off wheels are not designed for side loads and can shatter."
+    }
+  },
+  {
+    "id": "Q-C-8_ring_test_v1_02_3000007f",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Before mounting a bonded grinding wheel, a recommended check is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spin it up on the grinder first"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Perform a ring test and inspect for cracks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Soak it in oil"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike it with a hammer forcefully"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A ring (sound) test helps detect hidden cracks."
+    }
+  },
+  {
+    "id": "Q-C-8_tool_rest_clearance_v1_06_30000083",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "On a bench grinder, the tool rest should be kept:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "As far from the wheel as possible"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "As close as practical (about 3 mm / 1⁄8 in) from the wheel"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Removed entirely"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Touching the wheel"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Small clearance reduces the chance of workpiece jamming."
+    }
+  },
+  {
+    "id": "Q-C-8_guard_position_10000033",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "How should a grinder guard be positioned?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Aim sparks toward coworkers"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Place the guard between the wheel and the operator"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Remove the guard for visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Open the guard for cooling"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The guard should block fragments and direct debris away from the user."
+    }
+  },
+  {
+    "id": "Q-C-8_rpm_rating_10000035",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "How should wheel RPM ratings relate to tool RPM?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wheel rating may be below tool speed"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Wheel rating must meet or exceed the tool’s maximum RPM"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "RPMs do not matter"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any mismatch is fine for brief use"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A wheel must be rated for at least the tool’s maximum rotational speed."
+    }
+  },
+  {
+    "id": "Q-C-8_dress_wheel_v1_07_30000084",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Dressing a grinding wheel primarily:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Clogs the wheel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Restores shape and exposes sharp abrasive"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Reduces balance"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Is only cosmetic"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Dressing trues the wheel and renews cutting action."
+    }
+  },
+  {
+    "id": "Q-C-8_spark_test_v1_08_30000085",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "A quick spark test during grinding can help to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Measure voltage"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Identify general steel type by spark pattern"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Check gas flow rate"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Calibrate the grinder"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Spark patterns give a rough indication of carbon/alloy content."
+=======
       "CHOICE-2": "Blotters spread load and reduce stress concentrations."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -112,6 +361,76 @@
     }
   },
   {
+<<<<<<< Updated upstream
+    "id": "Q-C-8P_tool_rest_gap_40000201",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "On a bench grinder, what is the correct tool rest clearance to the wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "About 3 mm (1/8 in)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "About 6 mm (1/4 in)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Flush against the wheel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "More than 10 mm (3/8 in)"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "A small ~3 mm (1/8 in) gap reduces the chance of the workpiece jamming the wheel."
+    }
+  },
+  {
+    "id": "Q-C-8P_tongue_guard_gap_40000202",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "After dressing a bench grinder wheel, what is the recommended maximum gap between the wheel and the top tongue guard (spark arrestor)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "About 6 mm (1/4 in)"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "About 3 mm (1/8 in)"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Zero — guard must touch the wheel"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any distance is fine"
+      }
+    ],
+    "correctId": "CHOICE-1",
+    "rationales": {
+      "CHOICE-1": "Keep the tongue guard close (≈6 mm) to limit debris ejection as the wheel wears."
+    }
+  },
+  {
+    "id": "Q-C-8P_cutoff_sidegrind_40000203",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Which practice is correct for cut‑off wheels on handheld grinders?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Side‑grind with heavy pressure to speed the cut"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use only radial loads; do not side‑grind with cut‑off wheels"
+=======
     "id": "Q-C-8_cutoff_side_grind_10000031",
     "taskId": "C-8",
     "difficulty": "easy",
@@ -152,6 +471,7 @@
       {
         "id": "CHOICE-2",
         "text": "Do not side-grind with cut-off wheels"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-3",
@@ -159,11 +479,41 @@
       },
       {
         "id": "CHOICE-4",
+<<<<<<< Updated upstream
+        "text": "Lubricate the wheel with oil while cutting"
+=======
         "text": "Lubricate the wheel with oil"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Cut‑off wheels are not designed for side loading and can shatter if side‑ground."
+    }
+  },
+  {
+    "id": "Q-C-8P_wheel_rpm_rating_40000204",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Your angle grinder is rated at 11,000 rpm (no‑load). Which wheel rating is acceptable?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "10,000 rpm"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "11,000 rpm"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "9,500 rpm"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "8,500 rpm"
+=======
       "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
     }
   },
@@ -188,10 +538,37 @@
       {
         "id": "CHOICE-4",
         "text": "Lubricate the wheel with oil"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "A wheel’s maximum rpm must meet or exceed the grinder’s rated speed."
+    }
+  },
+  {
+    "id": "Q-C-8P_ring_test_before_mount_40000205",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Before mounting a vitrified grinding wheel, what check should be performed?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Spin it at full speed on the grinder first"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Perform a ring test and visually inspect for cracks"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Soak it in oil for lubrication"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Strike it hard with a steel hammer"
+=======
       "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
     }
   },
@@ -216,10 +593,37 @@
       {
         "id": "CHOICE-4",
         "text": "Lubricate the wheel with oil"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "A ring (sound) test plus visual inspection helps detect hidden cracks before use."
+    }
+  },
+  {
+    "id": "Q-C-8P_guard_position_40000206",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "When using a handheld grinder, how should the guard be positioned relative to the operator?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Removed for better access"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Between the wheel and the operator to deflect debris away"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Opened to increase cooling airflow"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Aimed to direct sparks toward coworkers"
+=======
       "CHOICE-2": "Cut-off wheels are not designed for side loads and can shatter."
     }
   },
@@ -244,10 +648,29 @@
       {
         "id": "CHOICE-4",
         "text": "Is only cosmetic"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "The guard should block fragments and direct sparks away from the operator and others."
+    }
+  },
+  {
+    "id": "Q-C-8P_storage_resin_bond_40000207",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "How should resin‑bonded abrasive wheels be stored?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "In damp areas to keep cool"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dry, flat, and protected from impact"
+=======
       "CHOICE-2": "Dressing trues the wheel and renews cutting action."
     }
   },
@@ -712,6 +1135,7 @@
       {
         "id": "CHOICE-2",
         "text": "Dry, flat, and protected from dropping"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-3",
@@ -719,11 +1143,41 @@
       },
       {
         "id": "CHOICE-4",
+<<<<<<< Updated upstream
+        "text": "Stacked under heavy weights"
+=======
         "text": "Stacked with heavy weights"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Moisture and impacts degrade resin‑bonded wheels; store them dry, flat, and supported."
+    }
+  },
+  {
+    "id": "Q-C-8P_flange_blotter_use_40000208",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Which statement about mounting flanges and blotters is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Mismatched, small flanges increase pressure and are preferred"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use matched flanges with blotter labels per manufacturer instructions"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Blotters are optional on vitrified wheels"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Any washer can substitute for a flange"
+=======
       "CHOICE-2": "Moisture and impacts damage wheels; keep them dry and supported."
     }
   },
@@ -748,10 +1202,37 @@
       {
         "id": "CHOICE-4",
         "text": "Under heavy weights"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Proper, matched flanges and blotters distribute clamping forces and protect the wheel."
+    }
+  },
+  {
+    "id": "Q-C-8P_dress_glazed_wheel_40000209",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "A bench grinder wheel shows glazing and burn marks during use. What is the correct action?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Increase pressure to force material removal"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Dress the wheel to expose fresh abrasive and true the face"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Quench the wheel in water while it spins"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Sand the wheel face with sandpaper"
+=======
       "CHOICE-2": "Moisture/impacts damage wheels; keep them dry and supported."
     }
   },
@@ -776,10 +1257,25 @@
       {
         "id": "CHOICE-4",
         "text": "Under heavy weights"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Dressing removes glazing, restores cutting ability, and trues the wheel."
+    }
+  },
+  {
+    "id": "Q-C-8P_wire_wheel_ppe_40000210",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "What eye/face protection is appropriate when using a powered wire wheel?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Safety glasses only"
+=======
       "CHOICE-2": "Moisture/impacts damage wheels; keep them dry and supported."
     }
   },
@@ -792,6 +1288,7 @@
       {
         "id": "CHOICE-1",
         "text": "No eye protection; bristles are soft"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-2",
@@ -799,15 +1296,49 @@
       },
       {
         "id": "CHOICE-3",
+<<<<<<< Updated upstream
+        "text": "Face shield only"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "No eye protection for quick jobs"
+=======
         "text": "Earplugs only"
       },
       {
         "id": "CHOICE-4",
         "text": "A dust mask only"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Wire bristles can eject at high energy; use both safety glasses and a face shield."
+    }
+  },
+  {
+    "id": "Q-C-8P_kickback_bind_40000211",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "During a cut with a thin cut‑off wheel, the kerf closes and the wheel binds. What is the safest immediate response?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Twist the grinder to free the wheel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Release the trigger, keep the tool aligned, and wait for the wheel to stop"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Push harder to force the cut through"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Open the guard to relieve pressure"
+=======
       "CHOICE-2": "Wire bristles can eject; use both glasses and a shield."
     }
   },
@@ -832,11 +1363,128 @@
       {
         "id": "CHOICE-4",
         "text": "A dust mask only"
+>>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Let the wheel stop under control; twisting or forcing increases kickback and fracture risk."
+    }
+  },
+  {
+    "id": "Q-C-8P_change_disc_power_iso_40000212",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Before changing a wheel on a grinder, you should:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave it plugged in and use the trigger lock"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Disconnect power (unplug/remove battery) and lock the spindle before loosening"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hold the wheel by hand while spinning to loosen"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tap the nut with a hammer to break it free"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Isolate energy and use the proper spindle lock/wrench to change accessories safely."
+    }
+  },
+  {
+    "id": "Q-C-8P_spark_direction_controls_40000213",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "You must grind near stored combustibles. Which control is appropriate?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Aim sparks toward floor drains"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use spark shields/curtains and aim sparks away from combustibles"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cover the wheel with cardboard"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Turn off local exhaust to avoid pulling sparks"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Shield and redirect sparks away from combustibles; maintain ventilation if required."
+    }
+  },
+  {
+    "id": "Q-C-8P_clamp_small_parts_40000214",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "Best practice for stabilizing small workpieces during handheld grinding is to:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Hold the parts by hand"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Clamp the work in a vise/jig before grinding"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Balance them on your knee for control"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Grip with pliers only"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Secure clamping prevents loss of control, kickback, and injury."
+    }
+  },
+  {
+    "id": "Q-C-8P_tight_corner_guard_choice_40000215",
+    "taskId": "C-8",
+    "difficulty": "medium",
+    "stem": "In a tight corner, the guard blocks access for your grinder. What is the correct approach?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Remove the guard and proceed carefully"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use a smaller tool/wheel or a different process that fits with the guard in place"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Hold the grinder at 90° to bypass the guard"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Loosen the guard so it hangs out of the way"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Never defeat guards; select tooling/process that allows guarded operation."
+=======
       "CHOICE-2": "Wire bristles can eject; use both glasses and a shield."
+>>>>>>> Stashed changes
     }
   }
 ]

@@ -24,7 +24,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "An engineered or structural anchorage point"
+=======
       "CHOICE-2": "Use only engineered/structural anchor points rated for fall arrest."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -52,7 +56,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Links stretched or bent"
+=======
       "CHOICE-2": "Deformation or stretch indicates overload—remove the sling from service."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -80,7 +88,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Has lower capacity"
+=======
       "CHOICE-2": "Choker hitches reduce capacity due to bending and friction at the choke."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -108,13 +120,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "The hook is directly above or slightly past the COG toward the heavy end"
+=======
       "CHOICE-2": "Suspending above/just past the COG helps the load hang level without tipping."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_crane_stop_signal_10000006",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Which statement about crane hand signals is correct?",
     "choices": [
       {
@@ -127,7 +147,11 @@
       },
       {
         "id": "CHOICE-3",
+<<<<<<< Updated upstream
+        "text": "Two hands above head always mean 'speed up'"
+=======
         "text": "Two hands above head always means 'speed up'"
+>>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-4",
@@ -136,13 +160,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Anyone may give the universal emergency stop signal"
+=======
       "CHOICE-2": "The emergency stop is universal and may be given by any person observing danger."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_forklift_carry_low_2000001d",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "When traveling with a load on a forklift, you should:",
     "choices": [
       {
@@ -164,7 +196,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Carry the load low and tilted back"
+=======
       "CHOICE-2": "Keep the load low and tilted back for stability and visibility."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -192,7 +228,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Check the brake/pawl function with a light test lift"
+=======
       "CHOICE-2": "Verify the brake holds with a small test lift before proceeding."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -220,13 +260,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Check webbing, stitching, and hardware; remove if damaged"
+=======
       "CHOICE-2": "Inspect harness components and remove damaged gear from service."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_ladder_3points_20000014",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "When climbing a ladder, which practice is correct?",
     "choices": [
       {
@@ -248,13 +296,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Maintain three points of contact"
+=======
       "CHOICE-2": "Keep two hands and one foot or two feet and one hand in contact while climbing."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_ladder_angle_10000004",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "What is the recommended setup angle for a straight ladder?",
     "choices": [
       {
@@ -276,7 +332,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "4:1 (about 75°) slope from the base to the support"
+=======
       "CHOICE-2": "The 4:1 rule provides stable footing and proper contact with the support."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -304,13 +364,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Extend above the landing and secure it to prevent movement"
+=======
       "CHOICE-2": "Extend above the landing and tie off/secure to prevent movement."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_metal_ladder_electric_20000017",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Around electrical hazards, which ladder choice is safest?",
     "choices": [
       {
@@ -332,13 +400,21 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "Fiberglass ladder in good condition"
+=======
       "CHOICE-3": "Non‑conductive fiberglass ladders reduce shock risk near electricity."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_no_ride_hook_20000025",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Which statement about crane operations is correct?",
     "choices": [
       {
@@ -360,13 +436,21 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "No one may ride the hook or suspended load"
+=======
       "CHOICE-3": "Riding hooks or loads is prohibited; use approved man‑lifts instead."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_pedestrian_exclusion_2000001e",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "During a lift with a crane or hoist, bystanders should:",
     "choices": [
       {
@@ -388,7 +472,11 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "Stay out of the fall zone and use barriers/tag lines"
+=======
       "CHOICE-3": "Keep people out of the fall zone; use tag lines to control the load."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -416,13 +504,21 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "Remove it from service and have it inspected"
+=======
       "CHOICE-3": "Unknown or suspect gear must be inspected or discarded."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_scaffold_guardrails_20000019",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "On platforms at height, which protection is appropriate?",
     "choices": [
       {
@@ -444,7 +540,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Guardrails and toeboards as required"
+=======
       "CHOICE-2": "Guardrails/toeboards help prevent falls and falling objects."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -472,7 +572,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Check that it’s tagged/inspected by a competent person"
+=======
       "CHOICE-2": "Use only inspected scaffolds with proper tags and guardrails in place."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -500,7 +604,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Place the bow on the sling side to reduce side‑loading the pin"
+=======
       "CHOICE-2": "The bow provides more space and reduces side loading on the pin."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -528,7 +636,11 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "To reduce forces on the body during a fall"
+=======
       "CHOICE-2": "Energy‑absorbing devices limit peak forces transmitted to the user."
+>>>>>>> Stashed changes
     }
   },
   {
@@ -556,13 +668,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Smaller angles increase tension in each leg"
+=======
       "CHOICE-2": "As the angle from horizontal decreases, leg tension rises significantly."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_sling_edge_protect_20000021",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "How should synthetic web slings be protected on sharp edges?",
     "choices": [
       {
@@ -584,13 +704,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Use padding/edge protectors"
+=======
       "CHOICE-2": "Use corner pads/guards to prevent cutting of webbing."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_stepladder_top_step_20000016",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "Which statement about stepladders is correct?",
     "choices": [
       {
@@ -612,13 +740,21 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-3": "Do not stand on the top or top step unless designed for it"
+=======
       "CHOICE-3": "Avoid the top/top step unless the ladder is specifically designed for standing there."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_tag_lines_2000001f",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "What is the primary purpose of using tag lines on suspended loads?",
     "choices": [
       {
@@ -640,13 +776,21 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "To steer and control load swing at a distance"
+=======
       "CHOICE-2": "Tag lines let workers control rotation/swing while staying clear."
+>>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-2_trial_lift_10000007",
     "taskId": "A-2",
+<<<<<<< Updated upstream
+    "difficulty": "medium",
+=======
     "difficulty": "easy",
+>>>>>>> Stashed changes
     "stem": "When the exact weight of a load is unknown, what is the safest approach?",
     "choices": [
       {
@@ -668,7 +812,403 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
+<<<<<<< Updated upstream
+      "CHOICE-2": "Use rated slings and perform a short, controlled trial lift"
+    }
+  },
+  {
+    "id": "Q-A-2P1_sling_tension_calc_30deg_20000201",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Two‑leg lift of 1.2 t; each leg at 30° from horizontal. What is the tension in one leg? (round to 0.1 t; use T = W/(2·sinθ))",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.6 t"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.8 t"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1.2 t"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2.4 t"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "1.2 t"
+    }
+  },
+  {
+    "id": "Q-A-2P1_sling_tension_calc_60deg_20000202",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Load 1.0 t lifted by two legs at 60° from horizontal. Tension per leg? (round to 0.01 t)",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.50 t"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "0.58 t"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "0.87 t"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "1.00 t"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "0.58 t"
+    }
+  },
+  {
+    "id": "Q-A-2P1_fall_clearance_calc_20000203",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Calculate required fall clearance: lanyard 1.8 m + deceleration 1.1 m + D‑ring‑to‑sole 1.5 m + sag 0.3 m + safety margin 1.0 m. Total?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "3.6 m"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "4.3 m"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "5.7 m"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "6.7 m"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "5.7 m"
+    }
+  },
+  {
+    "id": "Q-A-2P1_ladder_4to1_base_20000204",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Access height to support is 4.0 m. What base setback is required by the 4:1 rule?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.5 m"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1.0 m"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "2.0 m"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "4.0 m"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1.0 m"
+    }
+  },
+  {
+    "id": "Q-A-2P1_choker_derate_factor_20000205",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "A sling’s straight (vertical) WLL is 2.0 t. As a choker (~80% typical), the approximate allowable load is:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "2.0 t"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1.6 t"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1.2 t"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2.8 t"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "1.6 t"
+    }
+  },
+  {
+    "id": "Q-A-2P2_trial_lift_sequence_20000221",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "A part of unknown weight must be lifted. Choose the best sequence.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Go straight to full lift—no time to wait"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Verify slings/shackles/angles → set exclusion zone and tag lines → short trial lift a few cm to check balance/brakes → correct as needed → only then proceed"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Ask someone to stand on the load for balance"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lift quickly and drive over people to save time"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Verify slings/shackles/angles → set exclusion zone and tag lines → short trial lift a few cm to check balance/brakes → correct as needed → only then proceed"
+    }
+  },
+  {
+    "id": "Q-A-2P2_jha_rig_plate_steps_20000222",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "For a JHA/toolbox talk before rigging a plate, which step‑wise plan is best?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Rig and pull immediately; discussion wastes time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Identify sharp edges/splinters (gloves, edge pads) → pinch hazards during sling assembly (hands out of pinch plane) → fall zone/swing (tag lines, barriers) → comms with operator/signal person → balance check on trial lift"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Play music so everyone can hear"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Rely on experience without discussion"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Identify sharp edges/splinters (gloves, edge pads) → pinch hazards during sling assembly (hands out of pinch plane) → fall zone/swing (tag lines, barriers) → comms with operator/signal person → balance check on trial lift"
+    }
+  },
+  {
+    "id": "Q-A-2P2_scaffold_tag_response_20000223",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "You encounter a scaffold with a missing/red tag. Proper action:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Proceed if it looks ‘OK’"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Do not use; barricade/notify; request inspection by a competent person and correct tagging"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Add a board and keep working"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove guardrails so they don’t interfere"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Do not use; barricade/notify; request inspection by a competent person and correct tagging"
+    }
+  },
+  {
+    "id": "Q-A-2P2_fall_work_plan_20000224",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Work at height on a beam is planned. Best pre‑work plan:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Clip to the nearest pipe"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Select a rated anchor and verify fall clearance → inspect harness/lanyard/carabiner → plan post‑fall rescue → protect against sharp edges (lanyard extenders/edge‑rated gear) → then tie‑off and work"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Use knots to shorten the lanyard"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Remove the energy absorber—it gets in the way"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Select a rated anchor and verify fall clearance → inspect harness/lanyard/carabiner → plan post‑fall rescue → protect against sharp edges (lanyard extenders/edge‑rated gear) → then tie‑off and work"
+    }
+  },
+  {
+    "id": "Q-A-2P2_forklift_ramp_20000225",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Driving a forklift on a ramp with a load. What is correct?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Turn on the slope to save time"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Keep the load uphill, low, and tilted back; travel slowly; do not turn on the slope"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Always reverse downhill regardless of visibility"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Raise the load high for better view"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Keep the load uphill, low, and tilted back; travel slowly; do not turn on the slope"
+    }
+  },
+  {
+    "id": "Q-A-2P2_hand_hoist_preuse_20000226",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Before tensioning with a lever hoist, choose the correct pre‑use sequence:",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Grease the brake, wrap chain over the hook, then pull"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Inspect hook/latch and chain for twist/wear → ensure straight‑line pull → light trial lift to verify brake → then work within WLL"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Load to the limit immediately; the brake will self‑check"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use a pipe cheater on the handle"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Inspect hook/latch and chain for twist/wear → ensure straight‑line pull → light trial lift to verify brake → then work within WLL"
+    }
+  },
+  {
+    "id": "Q-A-2P3_three_leg_load_calc_20000311",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "A 3‑leg bridle is used, but due to geometry only TWO legs carry the load. Load weight is 2.0 t. Each loaded leg is at 45° from horizontal. What is the tension in one loaded leg? (use T = W/(2·sinθ); round to 0.01 t)",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "0.71 t"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "1.00 t"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "1.41 t"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "2.00 t"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "1.41 t"
+    }
+  },
+  {
+    "id": "Q-A-2P3_four_leg_bridle_plan_20000312",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "You must lift a rectangular frame with a 4‑leg bridle; two legs will carry the load and two will stabilize. Choose the best plan.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use very small angles to the horizontal (<30°) so slings are tight; grab thin edges without protection"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Treat the lift as a 2‑leg calculation; equalize leg lengths with a master link/spreader; keep angle to horizontal ≥60° (or to vertical ≤30°); protect edges; use tag lines to stabilize; avoid side‑loading the shackle pin"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Choke the frame around thin flanges for a ‘better grip’"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lift without tag lines—stabilization is unnecessary"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Treat the lift as a 2‑leg calculation; equalize leg lengths with a master link/spreader; keep angle to horizontal ≥60° (or to vertical ≤30°); protect edges; use tag lines to stabilize; avoid side‑loading the shackle pin"
+    }
+  },
+  {
+    "id": "Q-A-2P3_forklift_visibility_reverse_20000341",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "A load on a forklift completely blocks forward view; an aisle intersection is ahead. Choose the correct actions.",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Drive forward with the load raised to see over it"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Travel in reverse with the load low and tilted back; sound the horn at the intersection; slow down; if visibility is limited, use a spotter"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Cut through a pedestrian zone without signaling to avoid delays"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Have a coworker walk directly in front of the forks as a guide"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Travel in reverse with the load low and tilted back; sound the horn at the intersection; slow down; if visibility is limited, use a spotter"
+=======
       "CHOICE-2": "A brief trial lift lets you verify balance and capacity while staying within control."
+>>>>>>> Stashed changes
     }
   }
 ]
