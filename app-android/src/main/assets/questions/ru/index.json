@@ -1,23 +1,123 @@
 {
+  "schema": "questions-locale-index-v1",
+  "locale": "ru",
   "blueprintId": "welder_ip_sk_202404",
   "bankVersion": "v1",
-  "files": {
-    "questions/ru/bank.v1.json": { "sha256": "16234d66ad606cb437dfef42eff591d3ea797fc230ba312f9d7982ee587e41c3" },
-    "questions/ru/meta/task_labels.json": { "sha256": "fd123aa4fafdef2a284f5fba08902436bc97dff4b49a286ad2f91a65ca531590" },
-    "questions/ru/tasks/A-1.json": { "sha256": "7c39099c3e69e677e7c7335e880a736552cabc14698f734310abd61180e7a6df" },
-    "questions/ru/tasks/A-2.json": { "sha256": "0cfc4b23636197629b1be883ae8bf4b1f40844cadc7394c3d8bd39ad4432e973" },
-    "questions/ru/tasks/A-3.json": { "sha256": "1dad0fc288cb09aa5bee360e0007d12ed9d00a62ebd8e99779d9d58c55e6de7c" },
-    "questions/ru/tasks/A-4.json": { "sha256": "54d97941ad4d25ce3942ce11d0c18e6bab8f9c8333f510c2d7f289022164e58a" },
-    "questions/ru/tasks/A-5.json": { "sha256": "c90e7395e628b4b0d5c12640fe5200308ebdd5b8c48057253fc3175065c76b5d" },
-    "questions/ru/tasks/B-6.json": { "sha256": "c3b096d6c6cfa85cc6c6afdfcbfc43d5858308cfa5e957ff21b06460169cbaad" },
-    "questions/ru/tasks/B-7.json": { "sha256": "e1f22279dfda5dd83b3208494a86e111f20b43cbcd1ec0212f2f6bbe6ad0a997" },
-    "questions/ru/tasks/C-8.json": { "sha256": "73af9273acef9f66ae9f53c4baf2dbaf8cf1cc70eac16c84018be1509d83c926" },
-    "questions/ru/tasks/C-9.json": { "sha256": "b7d3865f6f95c304b089472507930b02515681e4d4e7eae408477e0332539b4d" },
-    "questions/ru/tasks/C-10.json": { "sha256": "b8189f0eb1077350b48f23fe00640624c142806a6292832afe541933f026dd34" },
-    "questions/ru/tasks/C-11.json": { "sha256": "744ada8f1051da4bbd18fa6dcfcaca69fe03ead17ca1fdb0803f57fdd7fe423b" },
-    "questions/ru/tasks/D-12.json": { "sha256": "634d69ec4e1c3a2d6d7f65c366742638c289cd997ddc4d162253b27241ade044" },
-    "questions/ru/tasks/D-13.json": { "sha256": "9dcff75f706c01af47c09d2b1808f34860c6f73d36f0b340830480219b8e3cb5" },
-    "questions/ru/tasks/D-14.json": { "sha256": "310823a8257ac2743a474a0946326042f131319f6a7e00ef0777c15520dbab41" },
-    "questions/ru/tasks/D-15.json": { "sha256": "e0a55703115c44f8e69e3a96d89dd48aecc2aec8599ca3f602aaf1bb4309b5a0" }
-  }
+  "files": [
+    {
+      "kind": "meta",
+      "path": "questions/ru/meta/task_labels.json",
+      "sha256": "413195d5a474edaf3aa89bac661b500c25e6997791e32a929c39adf7e784c36c"
+    },
+    {
+      "kind": "bank",
+      "path": "questions/ru/bank.v1.json",
+      "sha256": "0b31748a57d25b8669e4c3595244749ddc5b878ccf1b2f77ef6e16ab27a79165"
+    },
+    {
+      "kind": "task",
+      "taskId": "A-1",
+      "path": "questions/ru/tasks/A-1.json",
+      "sha256": "e4cd7018507a72770b06d139f542c913b71159ff8481d502eeca7f35b7823575",
+      "questionCount": 59
+    },
+    {
+      "kind": "task",
+      "taskId": "A-2",
+      "path": "questions/ru/tasks/A-2.json",
+      "sha256": "748bccfc5abe51b091d163b07f9075c321f4406b9a88efbf05a915a299319412",
+      "questionCount": 38
+    },
+    {
+      "kind": "task",
+      "taskId": "A-3",
+      "path": "questions/ru/tasks/A-3.json",
+      "sha256": "56ef65cb39cc7b0cf84620b51980b2806e367c86a6a8f42cf139ecd917dcc490",
+      "questionCount": 37
+    },
+    {
+      "kind": "task",
+      "taskId": "A-4",
+      "path": "questions/ru/tasks/A-4.json",
+      "sha256": "b901a6916fd3756c20aec6afe97d3e033fbd13432d703ac0d4277c81c72ee7b0",
+      "questionCount": 31
+    },
+    {
+      "kind": "task",
+      "taskId": "A-5",
+      "path": "questions/ru/tasks/A-5.json",
+      "sha256": "287100a048efc888ef48db6203f2f2d2c13a64808615f977cc60864259175f64",
+      "questionCount": 65
+    },
+    {
+      "kind": "task",
+      "taskId": "B-6",
+      "path": "questions/ru/tasks/B-6.json",
+      "sha256": "d1c5269ddee1ec3bb091bc8c9c1273acaa5bbf66e75fe482f5fd402e6f801d3e",
+      "questionCount": 17
+    },
+    {
+      "kind": "task",
+      "taskId": "B-7",
+      "path": "questions/ru/tasks/B-7.json",
+      "sha256": "557a423d107d3ab295b6d13811f35d8c5e6e1c9f0eec4535327b5c161c2f3f39",
+      "questionCount": 75
+    },
+    {
+      "kind": "task",
+      "taskId": "C-10",
+      "path": "questions/ru/tasks/C-10.json",
+      "sha256": "2c892218cf35ebd4a6f1be5d115e4173231d47f42b8a46904db16bdaddec4a99",
+      "questionCount": 30
+    },
+    {
+      "kind": "task",
+      "taskId": "C-11",
+      "path": "questions/ru/tasks/C-11.json",
+      "sha256": "8bee1b8d5ac690203969ab32d1464c267f38bd5e571cf0c0a7daffb639bcd3d6",
+      "questionCount": 25
+    },
+    {
+      "kind": "task",
+      "taskId": "C-8",
+      "path": "questions/ru/tasks/C-8.json",
+      "sha256": "9f4e7ec3825020527a670aae3eb7fc4e1a99b6846daaa2e5b9c89d912c1cc8e9",
+      "questionCount": 25
+    },
+    {
+      "kind": "task",
+      "taskId": "C-9",
+      "path": "questions/ru/tasks/C-9.json",
+      "sha256": "253b3dde0c40b6c811727e1e9705d033df2450be1bcff496197096612bfa3ac6",
+      "questionCount": 31
+    },
+    {
+      "kind": "task",
+      "taskId": "D-12",
+      "path": "questions/ru/tasks/D-12.json",
+      "sha256": "b18483652261ba6aaa05b2b8eb4b17d0feddf0b67eca4b0963f8b0f0c91a38fc",
+      "questionCount": 80
+    },
+    {
+      "kind": "task",
+      "taskId": "D-13",
+      "path": "questions/ru/tasks/D-13.json",
+      "sha256": "f30ea5e05c4acb59dd5dcd76bb9040424371ab2d285bc914869a71b10f11920e",
+      "questionCount": 19
+    },
+    {
+      "kind": "task",
+      "taskId": "D-14",
+      "path": "questions/ru/tasks/D-14.json",
+      "sha256": "05ceac8f95ec90d902f1ca7bbde546eb9074436e39fad3fd8f2d8684034efe58",
+      "questionCount": 55
+    },
+    {
+      "kind": "task",
+      "taskId": "D-15",
+      "path": "questions/ru/tasks/D-15.json",
+      "sha256": "3d63093462d16cc317c90d7032db373d24c055816a2ffe5605de0364539eeb9a",
+      "questionCount": 28
+    }
+  ]
 }
