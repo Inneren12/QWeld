@@ -3,11 +3,11 @@
     "id": "Q-A-1_cable_lug_crimp_20000011",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "What is the correct method to attach lugs to welding cables?",
+    "stem": "Что такое the correct method to attach lugs to сварки cables?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Hammer‑crimp and tape"
+        "text": "Hammer-crimp and tape"
       },
       {
         "id": "CHOICE-2",
@@ -31,11 +31,11 @@
     "id": "Q-A-1_compressor_drain_20000013",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Why should a shop air receiver/compressor be drained regularly?",
+    "stem": "Почему следует a shop air receiver/compressor be drained regularly?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To increase humidity for welding"
+        "text": "To increase humidity for сварки"
       },
       {
         "id": "CHOICE-2",
@@ -52,22 +52,22 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Draining removes accumulated water that can harm tools and welding quality."
+      "CHOICE-2": "Draining removes accumulated water that can harm tools and сварки quality."
     }
   },
   {
     "id": "Q-A-1_cylinder_cap_move_20000002",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Before moving a compressed gas cylinder, what should you do?",
+    "stem": "Перед перемещением a compressed gas баллона, what should you do?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Remove the cap for better grip"
+        "text": "Удалить the cap for better grip"
       },
       {
         "id": "CHOICE-2",
-        "text": "Leave the regulator installed"
+        "text": "Leave the редуктора installed"
       },
       {
         "id": "CHOICE-3",
@@ -80,14 +80,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Fit the protective cap and move cylinders with approved carts—never by rolling."
+      "CHOICE-3": "Fit the protective cap and move баллонаs with approved carts-never by rolling."
     }
   },
   {
     "id": "Q-A-1_cylinder_chain_storage_20000001",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "How should compressed gas cylinders be stored when not in use?",
+    "stem": "Как следует compressed gas баллонаs be stored when not in use?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -115,7 +115,7 @@
     "id": "Q-A-1_cylinder_separation_2000000f",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "How should oxygen and fuel gas cylinders be stored relative to each other?",
+    "stem": "Как следует кислородного and топливного газа баллонаs be stored relative to each other?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -123,7 +123,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Separated by distance or a non‑combustible barrier"
+        "text": "Separated by distance or a non-combustible barrier"
       },
       {
         "id": "CHOICE-3",
@@ -136,14 +136,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Oxygen must be separated from fuel gases to reduce fire risk."
+      "CHOICE-2": "Oxygen must be separated from топливного газаes to reduce fire risk."
     }
   },
   {
     "id": "Q-A-1_damaged_cord_10000001",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "What should you do if a power tool’s cord insulation is damaged?",
+    "stem": "Что следует сделать, если a электроинструмента’s cord insulation — damaged?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -151,7 +151,35 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Use it only on GFCI-protected outlets"
+        "text": "Use it только on GFCI-protected outlets"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Tag it out and remove it from service until repaired"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Flip the plug to restore the ground"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Defective tools must be removed from service and tagged until properly repaired."
+    }
+  },
+  {
+    "id": "Q-A-1_damaged_cord_10000001",
+    "taskId": "A-1",
+    "difficulty": "easy",
+    "stem": "Что следует сделать, если a электроинструмента’s cord insulation — damaged?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Wrap it with tape and continue working"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use it только on GFCI-protected outlets"
       },
       {
         "id": "CHOICE-3",
@@ -171,15 +199,15 @@
     "id": "Q-A-1_extension_cord_gauge_20000007",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "For a long extension cord feeding a welder, which practice is best?",
+    "stem": "For a long extension cord feeding a сварочного источника, which practice is best?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Use the smallest gauge to save weight"
+        "text": "Использовать the smallest gauge to save weight"
       },
       {
         "id": "CHOICE-2",
-        "text": "Use a larger (heavier) gauge to minimize voltage drop"
+        "text": "Use a larger (heavier) gauge to minimize падения напряжения"
       },
       {
         "id": "CHOICE-3",
@@ -192,18 +220,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Long runs need heavier‑gauge cords to limit voltage drop and heating."
+      "CHOICE-2": "Long runs need heavier‑gauge cords to limit падения напряжения and heating."
     }
   },
   {
     "id": "Q-A-1_flowmeter_vertical_20000004",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "How should a ball‑type flowmeter be positioned for an accurate reading?",
+    "stem": "Как следует a ball‑type расходомера be positioned for an accurate reading?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "At any angle; it self‑levels"
+        "text": "At any angle; it self-levels"
       },
       {
         "id": "CHOICE-2",
@@ -220,14 +248,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Ball‑type flowmeters are read in a vertical position."
+      "CHOICE-3": "Ball‑type расходомераs are read in a vertical position."
     }
   },
   {
     "id": "Q-A-1_fume_extractor_filter_2000000a",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "Why maintain fume extractor filters per the indicator or schedule?",
+    "stem": "Почему maintain дымососа/улавливателя паров filters per the indicator or schedule?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -255,11 +283,11 @@
     "id": "Q-A-1_gfci_use_20000008",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "When using portable electric tools in damp areas, what should be used?",
+    "stem": "При использовании portable electric tools in damp areas, what should be used?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Non‑grounded two‑prong adapters"
+        "text": "Non-grounded two-prong adapters"
       },
       {
         "id": "CHOICE-2",
@@ -267,7 +295,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "A GFCI‑protected supply"
+        "text": "A УЗО (GFCI)‑protected supply"
       },
       {
         "id": "CHOICE-4",
@@ -276,14 +304,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "GFCI protection reduces shock risk in damp or outdoor locations."
+      "CHOICE-3": "УЗО (GFCI) protection reduces shock risk in damp or outdoor locations."
     }
   },
   {
     "id": "Q-A-1_grinder_inspect_10000000",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Before using a portable angle grinder, which check is mandatory?",
+    "stem": "Перед использованием переносной угловой шлифмашины, какое check — mandatory?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -295,7 +323,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Verify the guard is fitted and the wheel RPM rating meets or exceeds tool RPM"
+        "text": "Verify the guard — fitted and the wheel RPM rating meets or exceeds tool RPM"
       },
       {
         "id": "CHOICE-4",
@@ -304,14 +332,42 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "A properly fitted guard and a wheel rated for the tool speed prevent wheel burst."
+      "CHOICE-3": "A properly fitted guard and a wheel rated for the tool speed предотвращает wheel burst."
+    }
+  },
+  {
+    "id": "Q-A-1_grinder_inspect_10000000",
+    "taskId": "A-1",
+    "difficulty": "easy",
+    "stem": "Перед использованием переносной угловой шлифмашины, какое check — mandatory?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Удалить the guard to access tight spots"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать any wheel that fits the arbor"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Verify the guard — fitted and the wheel RPM rating meets or exceeds tool RPM"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lubricate the wheel with oil for a smoother cut"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "A properly fitted guard and a wheel rated for the tool speed предотвращает wheel burst."
     }
   },
   {
     "id": "Q-A-1_gun_nozzle_clean_2000000c",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Why should a MIG gun nozzle be kept free of spatter?",
+    "stem": "Почему следует a MIG gun сопла be kept free of брызг?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -319,7 +375,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "To maintain gas coverage and reduce porosity"
+        "text": "To maintain gas coverage and reduce пористости"
       },
       {
         "id": "CHOICE-3",
@@ -327,27 +383,27 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "So the nozzle runs hotter"
+        "text": "So the сопла runs hotter"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Spatter in the nozzle disrupts gas shielding and can cause porosity."
+      "CHOICE-2": "Spatter in the сопла disrupts gas shielding and can cause пористости."
     }
   },
   {
     "id": "Q-A-1_holder_maintenance_10000003",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Which is correct for maintaining an electrode holder?",
+    "stem": "Что верно for maintaining an электрод holder?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Minor cracks in insulation are acceptable"
+        "text": "Minor cracks in insulation — acceptable"
       },
       {
         "id": "CHOICE-2",
-        "text": "Jaws should be oily to reduce sticking"
+        "text": "Jaws should be oily to уменьшить sticking"
       },
       {
         "id": "CHOICE-3",
@@ -360,14 +416,42 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Sound insulation and clean jaws prevent shock and overheating."
+      "CHOICE-3": "Sound insulation and clean jaws предотвращает shock and overheating."
+    }
+  },
+  {
+    "id": "Q-A-1_holder_maintenance_10000003",
+    "taskId": "A-1",
+    "difficulty": "easy",
+    "stem": "Что верно for maintaining an электрод holder?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Minor cracks in insulation — acceptable"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Jaws should be oily to уменьшить sticking"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Insulation must be intact and jaws clean with no exposed conductors"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Cool the holder in water after heavy use"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Sound insulation and clean jaws предотвращает shock and overheating."
     }
   },
   {
     "id": "Q-A-1_hose_inspection_20000005",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Which finding requires removing an oxy‑fuel hose from service?",
+    "stem": "Какое finding requires removing an кислородно‑топливных рукава from service?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -395,7 +479,7 @@
     "id": "Q-A-1_lowhyd_storage_20000010",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "Between uses, low‑hydrogen electrodes (e.g., E7018) should be:",
+    "stem": "Between uses, low‑hydrogen электродов (e.g., E7018) should be:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -416,14 +500,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Dry, heated storage prevents moisture pickup and hydrogen cracking."
+      "CHOICE-2": "Dry, heated storage предотвращает moisture pickup and hydrogen cracking."
     }
   },
   {
     "id": "Q-A-1_machine_vent_clear_20000009",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Which is correct regarding welder power source ventilation?",
+    "stem": "Какое is correct regarding сварочного источника power source ventilation?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -435,11 +519,11 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Keep inlet/outlet vents clear of obstructions"
+        "text": "Держать/сохранять inlet/outlet vents clear of obstructions"
       },
       {
         "id": "CHOICE-4",
-        "text": "Cover the fan guard during welding"
+        "text": "Cover the fan guard during сварки"
       }
     ],
     "correctId": "CHOICE-3",
@@ -451,7 +535,7 @@
     "id": "Q-A-1_mig_liner_replace_2000000b",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "A sign that a GMAW gun liner may need replacement is:",
+    "stem": "Признак того, что a GMAW gun канала подачи (лайнера) may need replacement is:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -472,14 +556,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Drag from a worn/dirty liner can cause feeding issues and birdnesting."
+      "CHOICE-2": "Drag from a worn/dirty канала подачи (лайнера) can cause feeding issues and birdnesting."
     }
   },
   {
     "id": "Q-A-1_oxyfuel_leak_check_2000000e",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "How should oxy‑fuel connections be checked for leaks after assembly?",
+    "stem": "Как следует кислородно‑топливных connections be checked for leaks after assembly?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -491,7 +575,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "With a leak‑detecting (soapy) solution"
+        "text": "With a leak-detecting (soapy) solution"
       },
       {
         "id": "CHOICE-4",
@@ -500,18 +584,18 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Use a leak‑detecting solution; never use flame to check for leaks."
+      "CHOICE-3": "Use a leak-detecting solution; never use flame to check for leaks."
     }
   },
   {
     "id": "Q-A-1_power_fan_obstruction_20000012",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "What should be avoided around welder cooling fans?",
+    "stem": "What should be avoided around сварочного источника cooling fans?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Keeping the area clear"
+        "text": "Держать/сохранятьing the area clear"
       },
       {
         "id": "CHOICE-2",
@@ -535,11 +619,11 @@
     "id": "Q-A-1_regulator_gauge_cracked_20000003",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "What should be done with a regulator that has a cracked or missing gauge lens?",
+    "stem": "Что следует сделать with a редуктора that has a cracked or missing gauge lens?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Use it carefully until a replacement arrives"
+        "text": "Использовать it carefully until a replacement arrives"
       },
       {
         "id": "CHOICE-2",
@@ -547,7 +631,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Remove from service and have it repaired or replaced"
+        "text": "Удалить from service and have it repaired or replaced"
       },
       {
         "id": "CHOICE-4",
@@ -556,22 +640,22 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Damaged regulators must be removed from service and repaired or replaced."
+      "CHOICE-3": "Damaged редуктораs must be removed from service and repaired or replaced."
     }
   },
   {
     "id": "Q-A-1_ring_test_wheel_20000000",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "Before mounting a new bonded grinding wheel, which check is recommended?",
+    "stem": "Перед установкой a new bonded шлифования wheel, which check is recommended?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Spin it up on the grinder at full speed"
+        "text": "Spin it up on the шлифмашины at full speed"
       },
       {
         "id": "CHOICE-2",
-        "text": "Perform a ring test and inspect for cracks"
+        "text": "Perform a звуковая проверка («ринг‑тест») and inspect for cracks"
       },
       {
         "id": "CHOICE-3",
@@ -591,7 +675,7 @@
     "id": "Q-A-1_spatter_spray_use_2000000d",
     "taskId": "A-1",
     "difficulty": "easy",
-    "stem": "What is an appropriate use of anti‑spatter compound?",
+    "stem": "Что такое an appropriate use of anti‑брызг compound?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -599,27 +683,27 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "On regulator threads"
+        "text": "On редуктора threads"
       },
       {
         "id": "CHOICE-3",
-        "text": "Lightly on nozzles/fixtures per manufacturer’s guidance"
+        "text": "Lightly on соплаs/fixtures per manufacturer’s guidance"
       },
       {
         "id": "CHOICE-4",
-        "text": "On the contact tip bore"
+        "text": "On the токоподводящий наконечник bore"
       }
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Used correctly on nozzles/fixtures, anti‑spatter helps reduce buildup."
+      "CHOICE-3": "Used correctly on соплаs/fixtures, anti‑брызг helps reduce buildup."
     }
   },
   {
     "id": "Q-A-1_work_clamp_surface_20000006",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "To ensure a good return path, the work clamp should be attached to:",
+    "stem": "To ensure a good электрической цепи обратного провода, the зажима массы should be attached to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -640,26 +724,26 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Clamp to clean, bare metal close to the weld to reduce resistance and arc blow."
+      "CHOICE-3": "Clamp to clean, bare metal close to the weld to reduce resistance and магнитный срыв дуги."
     }
   },
   {
     "id": "Q-A-1_work_lead_10000002",
     "taskId": "A-1",
     "difficulty": "medium",
-    "stem": "Why should welding work leads and connections be tight and clean?",
+    "stem": "Почему следует welding work leads and connections be tight and clean?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Loose leads improve arc stability"
+        "text": "Loose leads улучшить arc stability"
       },
       {
         "id": "CHOICE-2",
-        "text": "Painted contact surfaces reduce spatter"
+        "text": "Painted контактный surfaces уменьшить spatter"
       },
       {
         "id": "CHOICE-3",
-        "text": "They reduce voltage drop and overheating at the connections"
+        "text": "They уменьшить напряжение drop and overheating at the connections"
       },
       {
         "id": "CHOICE-4",
@@ -668,7 +752,35 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Good electrical contact minimizes resistance, heat buildup, and erratic arc behavior."
+      "CHOICE-3": "Good electrical контактный minimizes resistance, heat buildup, and erratic arc behavior."
+    }
+  },
+  {
+    "id": "Q-A-1_work_lead_10000002",
+    "taskId": "A-1",
+    "difficulty": "medium",
+    "stem": "Почему следует welding work leads and connections be tight and clean?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Loose leads улучшить arc stability"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Painted контактный surfaces уменьшить spatter"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "They уменьшить напряжение drop and overheating at the connections"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Smaller cable always saves weight without consequences"
+      }
+    ],
+    "correctId": "CHOICE-3",
+    "rationales": {
+      "CHOICE-3": "Good electrical контактный minimizes resistance, heat buildup, and erratic arc behavior."
     }
   }
 ]

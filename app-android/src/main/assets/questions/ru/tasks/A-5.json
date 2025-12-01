@@ -3,15 +3,15 @@
     "id": "Q-A-5_anti_spatter_fixtures_20000066",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "Applying anti‑spatter to jigs/fixtures can:",
+    "stem": "Applying anti‑брызг to jigs/fixtures can:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increase porosity"
+        "text": "Increase пористости"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduce spatter adhesion and cleanup time"
+        "text": "Reduce брызг adhesion and cleanup time"
       },
       {
         "id": "CHOICE-3",
@@ -24,7 +24,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Anti‑spatter on non‑weld surfaces reduces cleanup."
+      "CHOICE-2": "Anti‑брызг on non‑weld surfaces reduces cleanup."
     }
   },
   {
@@ -35,7 +35,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Improves shielding and reduces spatter"
+        "text": "Improves shielding and reduces брызг"
       },
       {
         "id": "CHOICE-2",
@@ -59,28 +59,28 @@
     "id": "Q-A-5_arc_strike_location_20000077",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "To avoid hard spots and cracking from stray arc strikes, where should arc strikes be made?",
+    "stem": "Чтобы избежать наклёпа и трещин от случайных поджигов дуги, где следует выполнять поджиг?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Anywhere on the base metal and ground later"
+        "text": "В любом месте на основном металле, затем зашлифовать"
       },
       {
         "id": "CHOICE-2",
-        "text": "Only within the joint area or on run‑on tabs"
+        "text": "Только в зоне шва или на планках разгона"
       },
       {
         "id": "CHOICE-3",
-        "text": "On machined surfaces away from the joint"
+        "text": "На обработанных поверхностях вдали от шва"
       },
       {
         "id": "CHOICE-4",
-        "text": "On painted areas to protect the steel"
+        "text": "На окрашенных участках для защиты стали"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Arc strikes can create hard spots/cracks; strike within the joint or on tabs, and remove any stray strikes per procedure."
+      "CHOICE-2": "Случайные поджиги вызывают наклёп/трещины; поджиг выполнять в зоне шва или на планках разгона, а посторонние поджиги удалять по процедуре."
     }
   },
   {
@@ -95,11 +95,11 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Remove and grind smooth per drawing/WPS after welding"
+        "text": "Remove and grind smooth per drawing/WPS (спецификации сварочного процесса) after сварки"
       },
       {
         "id": "CHOICE-3",
-        "text": "Remove only on one side"
+        "text": "Удалить only on one side"
       },
       {
         "id": "CHOICE-4",
@@ -108,14 +108,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Follow drawings/WPS for backing removal and finishing."
+      "CHOICE-2": "Follow drawings/WPS (спецификации сварочного процесса) for backing removal and finishing."
     }
   },
   {
     "id": "Q-A-5_bevel_angle_access_20000059",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Choosing an appropriate bevel angle helps to:",
+    "stem": "Choosing an appropriate угол скоса кромок helps to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -123,7 +123,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Allow electrode/torch access and proper penetration"
+        "text": "Allow электрода/torch access and proper penetration"
       },
       {
         "id": "CHOICE-3",
@@ -164,22 +164,22 @@
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Use a shallow angle and controlled blows to avoid base‑metal damage."
+      "CHOICE-1": "Use a shallow angle and controlled blows to avoid base-metal damage."
     }
   },
   {
     "id": "Q-A-5_clamp_to_control_gap_20000069",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "To maintain a consistent root gap during fit‑up, you should use:",
+    "stem": "To maintain a consistent root gap during fit-up, you should use:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Only hand pressure"
+        "text": "Только hand pressure"
       },
       {
         "id": "CHOICE-2",
-        "text": "Clamps, spacers/shims, and fixtures"
+        "text": "Clamps, spacers/прокладки (шимы), and fixtures"
       },
       {
         "id": "CHOICE-3",
@@ -192,14 +192,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use clamps and shims to set and hold uniform gaps."
+      "CHOICE-2": "Use clamps and прокладки (шимы) to set and hold uniform gaps."
     }
   },
   {
     "id": "Q-A-5_cleanliness_needed_20000057",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "Why remove mill scale, paint, and oil before welding?",
+    "stem": "Почему remove mill scale, paint, and oil before сварки?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -207,7 +207,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "They can cause porosity and lack of fusion"
+        "text": "They can cause пористости and недостаточного сплавления"
       },
       {
         "id": "CHOICE-3",
@@ -215,7 +215,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "They reduce spatter"
+        "text": "They reduce брызг"
       }
     ],
     "correctId": "CHOICE-2",
@@ -231,7 +231,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increase porosity"
+        "text": "Increase пористости"
       },
       {
         "id": "CHOICE-2",
@@ -255,11 +255,11 @@
     "id": "Q-A-5_crater_fill_10000016",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "What should be done at the end of a weld bead?",
+    "stem": "Что следует сделать at the end of a weld bead?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Leave the crater as‑is"
+        "text": "Leave the crater as- —"
       },
       {
         "id": "CHOICE-2",
@@ -276,14 +276,42 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Filling craters reduces the risk of crater cracking."
+      "CHOICE-2": "Filling craters снижает риск crater растрескивание."
+    }
+  },
+  {
+    "id": "Q-A-5_crater_fill_10000016",
+    "taskId": "A-5",
+    "difficulty": "easy",
+    "stem": "Что следует сделать at the end of a weld bead?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Leave the crater as- —"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Blend and fill the crater before stopping"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Strike a new arc on the finished face"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Никогда grind defects"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Filling craters снижает риск crater растрескивание."
     }
   },
   {
     "id": "Q-A-5_crater_fill_end_2000005d",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "At the end of a weld bead, a good practice is to:",
+    "stem": "В конце a weld bead, a good practice is to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -299,23 +327,23 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Switch off shielding gas early"
+        "text": "Switch off защитного газа early"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Filling the crater helps avoid cracking and underfill."
+      "CHOICE-2": "Filling the crater помогает avoid cracking and underfill."
     }
   },
   {
     "id": "Q-A-5_cup_size_selection_20000073",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Selecting a larger gas cup/nozzle in GTAW generally:",
+    "stem": "Selecting a larger керамической чашки/сопла/сопла in GTAW generally:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Improves coverage for larger stickout if flow is adequate"
+        "text": "Improves coverage for larger вылет проволоки if flow is adequate"
       },
       {
         "id": "CHOICE-2",
@@ -323,7 +351,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Eliminates the need for a gas lens"
+        "text": "Eliminates the need for a газовая линза"
       },
       {
         "id": "CHOICE-4",
@@ -332,14 +360,14 @@
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Bigger cups can cover more area with proper flow and often with a gas lens."
+      "CHOICE-1": "Bigger cups can cover more area with proper flow and often with a газовая линза."
     }
   },
   {
     "id": "Q-A-5_electrode_dia_position_2000006d",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "For out‑of‑position welding, using a smaller electrode diameter often:",
+    "stem": "For out‑of‑position сварки, using a smaller электрода diameter often:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -360,14 +388,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Smaller electrodes help control the puddle overhead/vertical."
+      "CHOICE-2": "Smaller электродов help control the puddle overhead/vertical."
     }
   },
   {
     "id": "Q-A-5_feather_tacks_20000070",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Before welding over tack welds, you should:",
+    "stem": "Before сварки over tack welds, you should:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -375,7 +403,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Feather/clean them to avoid lack of fusion"
+        "text": "Feather/clean them to avoid недостаточного сплавления"
       },
       {
         "id": "CHOICE-3",
@@ -395,7 +423,7 @@
     "id": "Q-A-5_fillet_angles_practice_20000062",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "To avoid undercut on flat fillet welds, a common practice is to hold:",
+    "stem": "Чтобы избежать undercut on flat угловой шовs, a common practice is to hold:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -423,11 +451,39 @@
     "id": "Q-A-5_fillet_gauge_10000011",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "What does a fillet‑weld gauge measure?",
+    "stem": "Что a калибра для угловых швов measure?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Porosity size"
+        "text": "Пористость size"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Fillet leg size or effective throat"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Preheat temperature"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tensile strength"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Fillet gauges verify leg length and throat to drawing or code requirements."
+    }
+  },
+  {
+    "id": "Q-A-5_fillet_gauge_10000011",
+    "taskId": "A-5",
+    "difficulty": "easy",
+    "stem": "Что a калибра для угловых швов measure?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Пористость size"
       },
       {
         "id": "CHOICE-2",
@@ -451,7 +507,7 @@
     "id": "Q-A-5_fillet_gauge_use_20000064",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "A fillet‑weld gauge is used to measure:",
+    "stem": "A калибра для угловых швов is used to measure:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -479,7 +535,7 @@
     "id": "Q-A-5_galvanized_remove_20000067",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Before welding galvanized steel, you should:",
+    "stem": "Before сварки galvanized steel, you should:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -487,27 +543,27 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Remove zinc coating locally and ensure ventilation"
+        "text": "Удалить zinc coating locally and ensure ventilation"
       },
       {
         "id": "CHOICE-3",
-        "text": "Use water as shielding"
+        "text": "Использовать water as shielding"
       },
       {
         "id": "CHOICE-4",
-        "text": "Switch to AC only"
+        "text": "Switch to Только AC (переменный ток)"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Removing zinc and ventilating reduces fume hazards and defects."
+      "CHOICE-2": "Removing zinc and ventilating уменьшает fume hazards and defects."
     }
   },
   {
     "id": "Q-A-5_hi_lo_measure_2000006a",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Internal misalignment (hi‑lo) can be checked with:",
+    "stem": "Internal misalignment (hi-lo) can be checked with:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -515,7 +571,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "A hi‑lo gauge or calipers"
+        "text": "A hi-lo gauge or calipers"
       },
       {
         "id": "CHOICE-3",
@@ -535,7 +591,7 @@
     "id": "Q-A-5_interpass_control_20000056",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Controlling interpass temperature primarily helps to:",
+    "stem": "Controlling межслойной температуры primarily helps to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -551,7 +607,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Eliminate fit‑up checks"
+        "text": "Eliminate fit-up checks"
       }
     ],
     "correctId": "CHOICE-2",
@@ -571,11 +627,11 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Lightly on intermediate passes only if permitted by code/WPS"
+        "text": "Lightly on intermediate passes only if permitted by code/WPS (спецификации сварочного процесса)"
       },
       {
         "id": "CHOICE-3",
-        "text": "Never under any circumstances"
+        "text": "Никогда under any circumstances"
       },
       {
         "id": "CHOICE-4",
@@ -584,14 +640,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Peening can relieve stress but is restricted—avoid on root/final unless allowed."
+      "CHOICE-2": "Peening can relieve stress but is restricted-avoid on root/final unless allowed."
     }
   },
   {
     "id": "Q-A-5_polarity_change_wps_2000006c",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Changing welding polarity from what the WPS specifies may:",
+    "stem": "Changing сварки polarity from what the WPS (спецификации сварочного процесса) specifies may:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -599,15 +655,15 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Cause lack of fusion or instability"
+        "text": "Cause недостаточного сплавления or instability"
       },
       {
         "id": "CHOICE-3",
-        "text": "Always improve penetration"
+        "text": "Всегда improve penetration"
       },
       {
         "id": "CHOICE-4",
-        "text": "Only change bead color"
+        "text": "Только change bead color"
       }
     ],
     "correctId": "CHOICE-2",
@@ -619,11 +675,11 @@
     "id": "Q-A-5_polarity_setup_10000017",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "How should power source polarity be chosen?",
+    "stem": "Как следует power source полярность be chosen?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Use the same polarity for all processes"
+        "text": "Use the same полярность for all processes"
       },
       {
         "id": "CHOICE-2",
@@ -635,19 +691,47 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Use DCEN for every job"
+        "text": "Use DCEN (прямая полярность) (прямая полярность) for every job"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Different processes and wires/rods require specific polarity for proper fusion."
+      "CHOICE-2": "Different processes and wires/rods require specific полярность for proper сплавление."
+    }
+  },
+  {
+    "id": "Q-A-5_polarity_setup_10000017",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Как следует power source полярность be chosen?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Use the same полярность for all processes"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Follow the WPS and consumable manufacturer requirements"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Choose the quietest arc sound"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Use DCEN (прямая полярность) (прямая полярность) for every job"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Different processes and wires/rods require specific полярность for proper сплавление."
     }
   },
   {
     "id": "Q-A-5_porosity_troubleshoot_20000075",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "If unexpected porosity appears, a first troubleshooting step is to:",
+    "stem": "If unexpected пористости appears, a first troubleshooting step is to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -668,18 +752,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Verify shielding gas and cleanliness before changing parameters."
+      "CHOICE-2": "Verify защитного газа and cleanliness before changing parameters."
     }
   },
   {
     "id": "Q-A-5_positioner_use_20000063",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Why rotate parts on a positioner/turntable when possible?",
+    "stem": "Почему rotate parts on a позиционера/turntable when possible?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To make welding harder"
+        "text": "To make сварки harder"
       },
       {
         "id": "CHOICE-2",
@@ -687,23 +771,23 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "To remove the need for fit‑up"
+        "text": "To remove the need for fit-up"
       },
       {
         "id": "CHOICE-4",
-        "text": "To eliminate shielding gas"
+        "text": "To eliminate защитного газа"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Flat‑position welding improves control and productivity."
+      "CHOICE-2": "Flat‑position сварки improves control and productivity."
     }
   },
   {
     "id": "Q-A-5_practice_bead_20000071",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "Before production welding on a new setup, a good approach is to:",
+    "stem": "Before production сварки on a new setup, a good approach is to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -719,7 +803,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Use random settings"
+        "text": "Использовать random settings"
       }
     ],
     "correctId": "CHOICE-2",
@@ -731,7 +815,7 @@
     "id": "Q-A-5_preheat_check_10000013",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "How should preheat be verified?",
+    "stem": "Как следует предварительного подогрева be verified?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -739,7 +823,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "With temperature‑indicating crayons or a thermometer"
+        "text": "With temperature-indicating crayons or a thermometer"
       },
       {
         "id": "CHOICE-3",
@@ -752,18 +836,46 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use objective temperature indicators to confirm required preheat."
+      "CHOICE-2": "Use objective temperature indicators to confirm required предварительного подогрева."
+    }
+  },
+  {
+    "id": "Q-A-5_preheat_check_10000013",
+    "taskId": "A-5",
+    "difficulty": "easy",
+    "stem": "Как следует предварительного подогрева be verified?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "By hand feel"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "With temperature-indicating crayons or a thermometer"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "By metal color alone"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Trust the machine panel temperature"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Use objective temperature indicators to confirm required предварительного подогрева."
     }
   },
   {
     "id": "Q-A-5_preheat_excess_20000076",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Excessive preheat beyond WPS requirements may:",
+    "stem": "Excessive предварительный подогрев beyond WPS (спецификации сварочного процесса) requirements may:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Always improve toughness"
+        "text": "Всегда improve toughness"
       },
       {
         "id": "CHOICE-2",
@@ -780,14 +892,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Too much preheat can coarsen microstructure and increase distortion."
+      "CHOICE-2": "Too much предварительный подогрев can coarsen microstructure and increase distortion."
     }
   },
   {
     "id": "Q-A-5_preheat_verify_20000055",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "What is a reliable way to verify preheat temperature?",
+    "stem": "Что такое a reliable way to verify предварительный подогрев temperature?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -795,7 +907,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Using temperature‑indicating crayons or a thermometer"
+        "text": "Using temperature-indicating crayons or a thermometer"
       },
       {
         "id": "CHOICE-3",
@@ -808,14 +920,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use objective temperature indicators to confirm preheat."
+      "CHOICE-2": "Use objective temperature indicators to confirm предварительный подогрев."
     }
   },
   {
     "id": "Q-A-5_root_face_land_20000058",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "What is the purpose of a root face (land) on a groove?",
+    "stem": "Что такое the purpose of a root face (land) on a groove?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -836,14 +948,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "A small land helps control root penetration and bead shape."
+      "CHOICE-2": "A small land помогает control root penetration and bead shape."
     }
   },
   {
     "id": "Q-A-5_runoff_tabs_use_2000005e",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Run‑on/run‑off tabs are installed to:",
+    "stem": "Run-on/run-off tabs are installed to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -851,7 +963,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Start/stop off the part and achieve full fusion at tie‑ins"
+        "text": "Start/stop off the part and achieve full fusion at tie-ins"
       },
       {
         "id": "CHOICE-3",
@@ -859,19 +971,19 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Replace preheat"
+        "text": "Replace предварительный подогрев"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Tabs allow full penetration and clean tie‑ins without damaging part edges."
+      "CHOICE-2": "Tabs allow full penetration and clean tie-ins without damaging part edges."
     }
   },
   {
     "id": "Q-A-5_shield_gas_flow_20000072",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Shielding gas flow for GMAW/GTAW should be set to:",
+    "stem": "Shielding gas flow for GMAW (MIG/MAG)/GTAW (TIG) should be set to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -887,7 +999,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "A fixed value for all nozzles"
+        "text": "A fixed value for all соплаs"
       }
     ],
     "correctId": "CHOICE-2",
@@ -899,7 +1011,7 @@
     "id": "Q-A-5_skip_sequence_2000005b",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "Skip or back‑step welding sequences are used mainly to:",
+    "stem": "Skip or back‑step сварки sequences are used mainly to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -920,14 +1032,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Heat distribution reduces distortion and residual stress."
+      "CHOICE-2": "Heat distribution уменьшает distortion and residual stress."
     }
   },
   {
     "id": "Q-A-5_slag_between_passes_10000015",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "What should be done between weld passes with flux‑shielded processes?",
+    "stem": "Что следует сделать between weld passes with флюс-shielded processes?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -935,27 +1047,55 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Remove slag and heavy spatter"
+        "text": "Remove шлак and heavy spatter"
       },
       {
         "id": "CHOICE-3",
-        "text": "Only chip the final cap"
+        "text": "Только chip the final cap"
       },
       {
         "id": "CHOICE-4",
-        "text": "Water‑quench slag to speed the job"
+        "text": "Water-quench шлак to speed the job"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Cleaning between passes prevents slag inclusions and improves fusion."
+      "CHOICE-2": "Cleaning between passes предотвращает шлак inclusions and улучшает сплавление."
+    }
+  },
+  {
+    "id": "Q-A-5_slag_between_passes_10000015",
+    "taskId": "A-5",
+    "difficulty": "easy",
+    "stem": "Что следует сделать between weld passes with флюс-shielded processes?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Nothing; inclusions burn out"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Remove шлак and heavy spatter"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Только chip the final cap"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Water-quench шлак to speed the job"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Cleaning between passes предотвращает шлак inclusions and улучшает сплавление."
     }
   },
   {
     "id": "Q-A-5_slag_clean_between_2000005c",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "Between passes with flux‑shielded processes you should:",
+    "stem": "Между проходами with flux‑shielded processes you should:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -963,7 +1103,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Remove slag and heavy spatter"
+        "text": "Remove slag and heavy брызг"
       },
       {
         "id": "CHOICE-3",
@@ -971,12 +1111,12 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Water‑quench the joint"
+        "text": "Water-quench the joint"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Cleaning prevents slag inclusions and promotes fusion."
+      "CHOICE-2": "Cleaning предотвращает slag inclusions and promotes fusion."
     }
   },
   {
@@ -991,7 +1131,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Dedicated stainless‑only"
+        "text": "Dedicated stainless-only"
       },
       {
         "id": "CHOICE-3",
@@ -1004,14 +1144,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Avoid cross‑contamination; use stainless‑only brushes on stainless."
+      "CHOICE-2": "Avoid cross-contamination; use stainless-only brushes on stainless."
     }
   },
   {
     "id": "Q-A-5_stringer_vs_weave_20000060",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "For low‑hydrogen electrodes on many applications, it is preferable to use:",
+    "stem": "For low‑hydrogen электродов on many applications, it is preferable to use:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -1019,7 +1159,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Stringer beads or limited weave per WPS"
+        "text": "Stringer beads or limited weave per WPS (спецификации сварочного процесса)"
       },
       {
         "id": "CHOICE-3",
@@ -1039,7 +1179,7 @@
     "id": "Q-A-5_surface_clean_10000012",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "Why remove oil, rust, paint, and mill scale before welding?",
+    "stem": "Зачем удалять oil, rust, paint, and mill scale before welding?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -1047,11 +1187,11 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "To reduce porosity and lack of fusion"
+        "text": "To уменьшить пористости and lack of сплавление"
       },
       {
         "id": "CHOICE-3",
-        "text": "Paint improves arc stability"
+        "text": "Paint улучшает arc stability"
       },
       {
         "id": "CHOICE-4",
@@ -1060,14 +1200,42 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Contaminants cause gas generation and prevent fusion at the interface."
+      "CHOICE-2": "Contaminants cause gas generation and предотвращает сплавление at the interface."
+    }
+  },
+  {
+    "id": "Q-A-5_surface_clean_10000012",
+    "taskId": "A-5",
+    "difficulty": "easy",
+    "stem": "Зачем удалять oil, rust, paint, and mill scale before welding?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Mill scale never affects quality"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To уменьшить пористости and lack of сплавление"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Paint улучшает arc stability"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Dirt adds helpful alloying elements"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Contaminants cause gas generation and предотвращает сплавление at the interface."
     }
   },
   {
     "id": "Q-A-5_tack_balance_10000014",
     "taskId": "A-5",
     "difficulty": "medium",
-    "stem": "How should tack welds be placed to control distortion?",
+    "stem": "Как следует tack welds be placed to control деформации?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -1079,23 +1247,51 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Very large tacks prevent cracking"
+        "text": "Very large tacks предотвращает растрескивание"
       },
       {
         "id": "CHOICE-4",
-        "text": "Tacks are forbidden in fabrication"
+        "text": "Tacks — forbidden in fabrication"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Balanced, adequate tacks hold fit‑up and reduce distortion during welding."
+      "CHOICE-2": "Balanced, adequate tacks hold fit-up and уменьшить деформации during welding."
+    }
+  },
+  {
+    "id": "Q-A-5_tack_balance_10000014",
+    "taskId": "A-5",
+    "difficulty": "medium",
+    "stem": "Как следует tack welds be placed to control деформации?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "All tacks on one side of the joint"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Balanced around the joint to hold alignment"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Very large tacks предотвращает растрескивание"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Tacks — forbidden in fabrication"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Balanced, adequate tacks hold fit-up and уменьшить деформации during welding."
     }
   },
   {
     "id": "Q-A-5_tack_fuse_in_2000005a",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "How should tack welds be prepared for incorporation into the final weld?",
+    "stem": "Как следует tack welds be prepared for incorporation into the final weld?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -1107,7 +1303,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Always grind them out"
+        "text": "Всегда grind them out"
       },
       {
         "id": "CHOICE-4",
@@ -1116,7 +1312,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Feathered, clean tacks reduce lack‑of‑fusion at tie‑ins."
+      "CHOICE-2": "Feathered, clean tacks reduce lack-of-fusion at tie-ins."
     }
   },
   {
@@ -1144,14 +1340,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Higher travel speed reduces heat input and penetration."
+      "CHOICE-2": "Higher travel speed уменьшает heat input and penetration."
     }
   },
   {
     "id": "Q-A-5_wire_brush_ppe_2000006e",
     "taskId": "A-5",
     "difficulty": "easy",
-    "stem": "When using powered wire brushes, wear:",
+    "stem": "При использовании powered wire brushes, wear:",
     "choices": [
       {
         "id": "CHOICE-1",

@@ -3,15 +3,15 @@
     "id": "Q-D-15_ac_usage_reason_v1_03_40000102",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Why might AC be used for high‑current SAW?",
+    "stem": "Почему might AC (переменный ток) be used for high-ток SAW (под флюсом)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To reduce arc blow and allow higher current"
+        "text": "To reduce магнитного срыва дуги (arc blow) and allow higher ток"
       },
       {
         "id": "CHOICE-2",
-        "text": "To increase arc blow"
+        "text": "To increase магнитного срыва дуги (arc blow)"
       },
       {
         "id": "CHOICE-3",
@@ -19,27 +19,27 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "To eliminate flux"
+        "text": "To eliminate флюса"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "AC reduces magnetic arc blow at high currents."
+      "CHOICE-1": "AC (переменный ток) reduces magnetic магнитного срыва дуги (arc blow) at high токs."
     }
   },
   {
     "id": "Q-D-15_ac_usage_reason_v2_01_4000010a",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Why might AC be used for high‑current SAW?",
+    "stem": "Почему might AC (переменный ток) be used for high-ток SAW (под флюсом)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To reduce arc blow and allow higher current"
+        "text": "To reduce магнитного срыва дуги (arc blow) and allow higher ток"
       },
       {
         "id": "CHOICE-2",
-        "text": "To increase arc blow"
+        "text": "To increase магнитного срыва дуги (arc blow)"
       },
       {
         "id": "CHOICE-3",
@@ -47,27 +47,27 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "To eliminate flux"
+        "text": "To eliminate флюса"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "AC reduces magnetic arc blow at high currents."
+      "CHOICE-1": "AC (переменный ток) reduces magnetic магнитного срыва дуги (arc blow) at high токs."
     }
   },
   {
     "id": "Q-D-15_ac_usage_reason_v2_09_40000112",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Why might AC be used for high‑current SAW?",
+    "stem": "Почему might AC (переменный ток) be used for high-ток SAW (под флюсом)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To reduce arc blow and allow higher current"
+        "text": "To reduce магнитного срыва дуги (arc blow) and allow higher ток"
       },
       {
         "id": "CHOICE-2",
-        "text": "To increase arc blow"
+        "text": "To increase магнитного срыва дуги (arc blow)"
       },
       {
         "id": "CHOICE-3",
@@ -75,27 +75,27 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "To eliminate flux"
+        "text": "To eliminate флюса"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "AC reduces magnetic arc blow at high currents."
+      "CHOICE-1": "AC (переменный ток) reduces magnetic магнитного срыва дуги (arc blow) at high токs."
     }
   },
   {
     "id": "Q-D-15_flux_coverage_v1_06_40000105",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "During SAW, the arc should be:",
+    "stem": "During SAW (под флюсом), the arc should be:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Fully covered by flux"
+        "text": "Fully covered by флюса"
       },
       {
         "id": "CHOICE-2",
-        "text": "Barely covered by flux"
+        "text": "Barely covered by флюса"
       },
       {
         "id": "CHOICE-3",
@@ -108,22 +108,22 @@
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Full flux coverage provides shielding and slag formation."
+      "CHOICE-1": "Full флюса coverage provides защитного газа and шлака formation."
     }
   },
   {
     "id": "Q-D-15_flux_coverage_v2_04_4000010d",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "During SAW, the arc should be:",
+    "stem": "During SAW (под флюсом), the arc should be:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Fully covered by flux"
+        "text": "Fully covered by флюса"
       },
       {
         "id": "CHOICE-2",
-        "text": "Barely covered by flux"
+        "text": "Barely covered by флюса"
       },
       {
         "id": "CHOICE-3",
@@ -136,14 +136,14 @@
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Full flux coverage provides shielding and slag formation."
+      "CHOICE-1": "Full флюса coverage provides защитного газа and шлака formation."
     }
   },
   {
     "id": "Q-D-15_flux_function_1000007c",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "What does SAW flux primarily provide?",
+    "stem": "Что SAW (под флюсом) флюс primarily provide?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -151,27 +151,27 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Shielding and slag formation around the weld pool"
+        "text": "Shielding and шлак formation around the weld pool"
       },
       {
         "id": "CHOICE-3",
-        "text": "Electrical insulation only"
+        "text": "Electrical insulation только"
       },
       {
         "id": "CHOICE-4",
-        "text": "Extra alloying only"
+        "text": "Extra alloying только"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Granular flux supplies shielding, slag, and sometimes alloying elements."
+      "CHOICE-2": "Granular флюс supplies shielding, шлак, and sometimes alloying elements."
     }
   },
   {
     "id": "Q-D-15_flux_function_v1_01_40000100",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "What does SAW flux primarily provide?",
+    "stem": "Что does SAW (под флюсом) флюса primarily provide?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -179,7 +179,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Shielding and slag formation"
+        "text": "Shielding and шлака formation"
       },
       {
         "id": "CHOICE-3",
@@ -192,14 +192,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Granular flux provides shielding/slag and sometimes alloying."
+      "CHOICE-2": "Granular флюса provides защитного газа/шлака and sometimes alloying."
     }
   },
   {
     "id": "Q-D-15_flux_function_v1_09_40000108",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "What does SAW flux primarily provide?",
+    "stem": "Что does SAW (под флюсом) флюса primarily provide?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -207,7 +207,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Shielding and slag formation"
+        "text": "Shielding and шлака formation"
       },
       {
         "id": "CHOICE-3",
@@ -220,14 +220,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Granular flux provides shielding/slag and sometimes alloying."
+      "CHOICE-2": "Granular флюса provides защитного газа/шлака and sometimes alloying."
     }
   },
   {
     "id": "Q-D-15_flux_function_v2_07_40000110",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "What does SAW flux primarily provide?",
+    "stem": "Что does SAW (под флюсом) флюса primarily provide?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -235,7 +235,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Shielding and slag formation"
+        "text": "Shielding and шлака formation"
       },
       {
         "id": "CHOICE-3",
@@ -248,14 +248,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Granular flux provides shielding/slag and sometimes alloying."
+      "CHOICE-2": "Granular флюса provides защитного газа/шлака and sometimes alloying."
     }
   },
   {
     "id": "Q-D-15_flux_moisture_1000007a",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "How should SAW flux be handled to avoid porosity?",
+    "stem": "Как следует SAW (под флюсом) флюс be handled to avoid пористости?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -263,7 +263,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Keep dry; bake per manufacturer if moisture‑contaminated"
+        "text": "Keep dry; bake per manufacturer if moisture-contaminated"
       },
       {
         "id": "CHOICE-3",
@@ -276,14 +276,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture in flux introduces hydrogen and causes porosity; keep flux dry."
+      "CHOICE-2": "Moisture in флюс introduces водород and causes пористости; keep флюс dry."
     }
   },
   {
     "id": "Q-D-15_flux_moisture_care_v1_02_40000101",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "How should SAW flux be handled to avoid porosity?",
+    "stem": "Как следует SAW (под флюсом) флюса be handled to avoid пористости?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -304,14 +304,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture introduces hydrogen; keep flux dry."
+      "CHOICE-2": "Moisture introduces hydrogen; keep флюса dry."
     }
   },
   {
     "id": "Q-D-15_flux_moisture_care_v2_00_40000109",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "How should SAW flux be handled to avoid porosity?",
+    "stem": "Как следует SAW (под флюсом) флюса be handled to avoid пористости?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -332,14 +332,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture introduces hydrogen; keep flux dry."
+      "CHOICE-2": "Moisture introduces hydrogen; keep флюса dry."
     }
   },
   {
     "id": "Q-D-15_flux_moisture_care_v2_08_40000111",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "How should SAW flux be handled to avoid porosity?",
+    "stem": "Как следует SAW (под флюсом) флюса be handled to avoid пористости?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -360,74 +360,74 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture introduces hydrogen; keep flux dry."
+      "CHOICE-2": "Moisture introduces hydrogen; keep флюса dry."
     }
   },
   {
     "id": "Q-D-15_multi_wire_saw_v1_05_40000104",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "A benefit of multi‑wire SAW systems is:",
+    "stem": "A benefit of multi-проволока SAW (под флюсом) systems is:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Lower deposition rate"
+        "text": "Lower deположение rate"
       },
       {
         "id": "CHOICE-2",
-        "text": "Higher deposition rate and productivity"
+        "text": "Higher deположение rate and productivity"
       },
       {
         "id": "CHOICE-3",
-        "text": "Elimination of flux"
+        "text": "Elimination of флюса"
       },
       {
         "id": "CHOICE-4",
-        "text": "All‑position capability"
+        "text": "All-положение capability"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Multiple wires increase deposition/productivity."
+      "CHOICE-2": "Multiple проволокаs increase deположение/productivity."
     }
   },
   {
     "id": "Q-D-15_multi_wire_saw_v2_03_4000010c",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "A benefit of multi‑wire SAW systems is:",
+    "stem": "A benefit of multi-проволока SAW (под флюсом) systems is:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Lower deposition rate"
+        "text": "Lower deположение rate"
       },
       {
         "id": "CHOICE-2",
-        "text": "Higher deposition rate and productivity"
+        "text": "Higher deположение rate and productivity"
       },
       {
         "id": "CHOICE-3",
-        "text": "Elimination of flux"
+        "text": "Elimination of флюса"
       },
       {
         "id": "CHOICE-4",
-        "text": "All‑position capability"
+        "text": "All-положение capability"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Multiple wires increase deposition/productivity."
+      "CHOICE-2": "Multiple проволокаs increase deположение/productivity."
     }
   },
   {
     "id": "Q-D-15_positions_common_v1_00_400000ff",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "Which of the following positions are typical for submerged arc welding (SAW)?",
+    "stem": "Какой из следующих положениеs are typical for submerged arc welding (SAW (под флюсом))?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "All positions"
+        "text": "All положениеs"
       },
       {
         "id": "CHOICE-2",
@@ -435,7 +435,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Vertical‑down only"
+        "text": "Vertical-down only"
       },
       {
         "id": "CHOICE-4",
@@ -444,18 +444,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Flux and high deposition suit flat/horizontal welding."
+      "CHOICE-2": "Flux and high deположение suit flat/horizontal welding."
     }
   },
   {
     "id": "Q-D-15_positions_common_v1_08_40000107",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "Which positions are typical for submerged arc welding (SAW)?",
+    "stem": "Какое положениеs are typical for submerged arc welding (SAW (под флюсом))?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "All positions"
+        "text": "All положениеs"
       },
       {
         "id": "CHOICE-2",
@@ -463,7 +463,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Vertical‑down only"
+        "text": "Vertical-down only"
       },
       {
         "id": "CHOICE-4",
@@ -472,18 +472,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Flux and high deposition suit flat/horizontal welding."
+      "CHOICE-2": "Flux and high deположение suit flat/horizontal welding."
     }
   },
   {
     "id": "Q-D-15_positions_common_v2_06_4000010f",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "Which positions are typical for submerged arc welding (SAW)?",
+    "stem": "Какое положениеs are typical for submerged arc welding (SAW (под флюсом))?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "All positions"
+        "text": "All положениеs"
       },
       {
         "id": "CHOICE-2",
@@ -491,7 +491,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Vertical‑down only"
+        "text": "Vertical-down only"
       },
       {
         "id": "CHOICE-4",
@@ -500,22 +500,22 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Flux and high deposition suit flat/horizontal welding."
+      "CHOICE-2": "Flux and high deположение suit flat/horizontal welding."
     }
   },
   {
     "id": "Q-D-15_saw_ac_dc_1000007b",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Why might AC be used for high‑current SAW?",
+    "stem": "Почему может AC (переменный ток) be used for high-ток SAW (под флюсом)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "To reduce arc blow and allow higher currents"
+        "text": "To уменьшить arc blow and allow higher currents"
       },
       {
         "id": "CHOICE-2",
-        "text": "To increase arc blow"
+        "text": "To увеличивает arc blow"
       },
       {
         "id": "CHOICE-3",
@@ -523,23 +523,23 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "To eliminate the need for flux"
+        "text": "To eliminate the need for флюс"
       }
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Alternating current reduces magnetic arc blow and supports very high currents."
+      "CHOICE-1": "Alternating ток уменьшает magnetic arc blow and supports very high currents."
     }
   },
   {
     "id": "Q-D-15_saw_positions_10000079",
     "taskId": "D-15",
     "difficulty": "easy",
-    "stem": "Which positions are typical for submerged arc welding (SAW)?",
+    "stem": "Какие положения типичны для submerged arc welding (SAW (под флюсом))?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "All positions"
+        "text": "Во всех положениях"
       },
       {
         "id": "CHOICE-2",
@@ -547,31 +547,31 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Vertical‑down only"
+        "text": "Vertical-down только"
       },
       {
         "id": "CHOICE-4",
-        "text": "Overhead only"
+        "text": "Только потолочное"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The granular flux and high deposition rate suit flat/horizontal welding."
+      "CHOICE-2": "The granular флюс and high deposition rate suit flat/horizontal welding."
     }
   },
   {
     "id": "Q-D-15_travel_speed_effect_v1_07_40000106",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Increasing travel speed in SAW typically:",
+    "stem": "Increasing скорость перемещения in SAW (под флюсом) typically:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Widens the bead"
+        "text": "Widens the валик"
       },
       {
         "id": "CHOICE-2",
-        "text": "Narrows the bead and reduces penetration"
+        "text": "Narrows the валик and reduces проплавление"
       },
       {
         "id": "CHOICE-3",
@@ -584,22 +584,22 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Higher speed lowers heat input and penetration."
+      "CHOICE-2": "Higher speed lowers тепловложение and проплавление."
     }
   },
   {
     "id": "Q-D-15_travel_speed_effect_v2_05_4000010e",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Increasing travel speed in SAW typically:",
+    "stem": "Increasing скорость перемещения in SAW (под флюсом) typically:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Widens the bead"
+        "text": "Widens the валик"
       },
       {
         "id": "CHOICE-2",
-        "text": "Narrows the bead and reduces penetration"
+        "text": "Narrows the валик and reduces проплавление"
       },
       {
         "id": "CHOICE-3",
@@ -612,22 +612,22 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Higher speed lowers heat input and penetration."
+      "CHOICE-2": "Higher speed lowers тепловложение and проплавление."
     }
   },
   {
     "id": "Q-D-15_wire_stickout_v1_04_40000103",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Excessive SAW wire stickout generally:",
+    "stem": "Чрезмерный SAW (под флюсом) проволока вылета generally:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increases current"
+        "text": "Increases ток"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces current and penetration due to resistive heating"
+        "text": "Reduces ток and проплавление due to resistive heating"
       },
       {
         "id": "CHOICE-3",
@@ -635,27 +635,27 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Improves bead shape"
+        "text": "Improves валик shape"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Long stickout heats wire, lowering current at the arc."
+      "CHOICE-2": "Long вылета heats проволока, lowering ток at the arc."
     }
   },
   {
     "id": "Q-D-15_wire_stickout_v2_02_4000010b",
     "taskId": "D-15",
     "difficulty": "medium",
-    "stem": "Excessive SAW wire stickout generally:",
+    "stem": "Чрезмерный SAW (под флюсом) проволока вылета generally:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Increases current"
+        "text": "Increases ток"
       },
       {
         "id": "CHOICE-2",
-        "text": "Reduces current and penetration due to resistive heating"
+        "text": "Reduces ток and проплавление due to resistive heating"
       },
       {
         "id": "CHOICE-3",
@@ -663,12 +663,12 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Improves bead shape"
+        "text": "Improves валик shape"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Long stickout heats wire, lowering current at the arc."
+      "CHOICE-2": "Long вылета heats проволока, lowering ток at the arc."
     }
   }
 ]
