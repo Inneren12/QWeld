@@ -3,23 +3,51 @@
     "id": "Q-A-4_5s_housekeeping_1000000f",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "Why apply 5S/housekeeping in a welding shop?",
+    "stem": "Почему apply 5S/бережливого хозяйствования in a welding shop?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "It adds non‑value work"
+        "text": "It adds non-value work"
       },
       {
         "id": "CHOICE-2",
-        "text": "It reduces waste and improves safety"
+        "text": "It уменьшает waste and улучшает safety"
       },
       {
         "id": "CHOICE-3",
-        "text": "It is only for offices"
+        "text": "It — только for offices"
       },
       {
         "id": "CHOICE-4",
-        "text": "It means sweeping at the end of the day only"
+        "text": "It means sweeping at the end of the day только"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Orderly workplaces cut search time, trip hazards, and defects."
+    }
+  },
+  {
+    "id": "Q-A-4_5s_housekeeping_1000000f",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "Почему apply 5S/бережливого производства in a welding shop?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "It adds non-value work"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "It уменьшает waste and улучшает safety"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "It — только for offices"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "It means sweeping at the end of the day только"
       }
     ],
     "correctId": "CHOICE-2",
@@ -35,7 +63,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Match the WPS classification and size"
+        "text": "Match the WPS (спецификации сварочного процесса) classification and size"
       },
       {
         "id": "CHOICE-2",
@@ -52,22 +80,22 @@
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-      "CHOICE-1": "Confirm wire/rod classification and sizes match the WPS."
+      "CHOICE-1": "Confirm wire/rod classification and sizes match the WPS (спецификации сварочного процесса)."
     }
   },
   {
     "id": "Q-A-4_datum_on_drawing_20000048",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "When measuring from drawings, a good practice is to:",
+    "stem": "Когда measuring from drawings, a good practice is to:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Use any convenient edge as a baseline"
+        "text": "Использовать any convenient edge as a baseline"
       },
       {
         "id": "CHOICE-2",
-        "text": "Measure from the designated datum(s) shown"
+        "text": "Measure from the designated база отсчёта(s) shown"
       },
       {
         "id": "CHOICE-3",
@@ -80,14 +108,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Use the specified datums to control tolerance stack‑up."
+      "CHOICE-2": "Use the specified база отсчётаs to control накопление допусков."
     }
   },
   {
     "id": "Q-A-4_distortion_plan_2000004e",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Why should weld sequence and fixturing be planned before welding?",
+    "stem": "Почему следует weld sequence and fixturing be planned before сварки?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -108,7 +136,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Sequencing/fixturing helps control shrinkage and alignment."
+      "CHOICE-2": "Sequencing/fixturing помогает control shrinkage and alignment."
     }
   },
   {
@@ -143,7 +171,7 @@
     "id": "Q-A-4_drawing_revision_1000000e",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "Which practice is correct when using fabrication drawings?",
+    "stem": "Какой подход верен когда using чертежей изготовления?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -155,7 +183,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Older revisions are safer"
+        "text": "Older revisions — safer"
       },
       {
         "id": "CHOICE-4",
@@ -164,30 +192,58 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Always confirm and work to the current drawing revision to avoid rework."
+      "CHOICE-2": "Always confirm and work to the ток drawing revision to avoid rework."
+    }
+  },
+  {
+    "id": "Q-A-4_drawing_revision_1000000e",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "Какой подход верен когда using чертежей изготовления?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Использовать any drawing you have"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Использовать the latest revision listed in the title block"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Older revisions — safer"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Let the shop choose per day"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Always confirm and work to the ток drawing revision to avoid rework."
     }
   },
   {
     "id": "Q-A-4_gas_ready_check_20000050",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "Before production welding, a good readiness check is to:",
+    "stem": "Before production сварки, a good readiness check is to:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Assume gas cylinders are full"
+        "text": "Assume gas баллонаs are full"
       },
       {
         "id": "CHOICE-2",
-        "text": "Verify gas type, pressure, regulators, and spares"
+        "text": "Verify gas type, pressure, редуктораs, and spares"
       },
       {
         "id": "CHOICE-3",
-        "text": "Start welding and check later"
+        "text": "Start сварки and check later"
       },
       {
         "id": "CHOICE-4",
-        "text": "Use any gas available"
+        "text": "Использовать any gas available"
       }
     ],
     "correctId": "CHOICE-2",
@@ -199,7 +255,7 @@
     "id": "Q-A-4_jha_risk_20000051",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "A Job Hazard Analysis (JHA) is used to:",
+    "stem": "A оценки опасностей (JHA) is used to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -231,7 +287,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Collected ad‑hoc during welding"
+        "text": "Collected ad‑hoc during сварки"
       },
       {
         "id": "CHOICE-2",
@@ -248,18 +304,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Kitting/staging reduces lost time and missing parts."
+      "CHOICE-2": "Kitting/staging уменьшает lost time and missing parts."
     }
   },
   {
     "id": "Q-A-4_material_labeling_2000004f",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "To prevent mix‑ups between similar materials, you should:",
+    "stem": "To prevent mix-ups between similar materials, you should:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Remove all markings"
+        "text": "Удалить all markings"
       },
       {
         "id": "CHOICE-2",
@@ -271,12 +327,12 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Use color only"
+        "text": "Использовать color only"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Clear labels and segregation prevent material mix‑ups."
+      "CHOICE-2": "Clear labels and segregation prevent material mix-ups."
     }
   },
   {
@@ -295,7 +351,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Only visual estimates"
+        "text": "Только visual estimates"
       },
       {
         "id": "CHOICE-4",
@@ -311,7 +367,7 @@
     "id": "Q-A-4_mtr_check_20000043",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Why are Mill Test Reports (MTRs) reviewed before fabrication?",
+    "stem": "Почему сертификатов МК (MTR) (MTRs) reviewed before fabrication?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -327,19 +383,19 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "To pick welding position"
+        "text": "To pick сварки position"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "MTRs confirm grade and heat/chemistry meet the job requirements."
+      "CHOICE-2": "сертификаты заводских испытаний (MTR) confirm grade and heat/chemistry meet the job requirements."
     }
   },
   {
     "id": "Q-A-4_plan_sequence_10000010",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "Which is a sound sequence for organizing a welding job?",
+    "stem": "Какова верная последовательность for organizing a welding job?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -351,35 +407,63 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Skip fit‑up to save time"
+        "text": "Skip fit-up to save time"
       },
       {
         "id": "CHOICE-4",
-        "text": "Ignore distortion until final inspection"
+        "text": "Ignore деформации until final inspection"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Planning with the current WPS/drawings and confirmed materials prevents delays and rework."
+      "CHOICE-2": "Planning with the ток WPS/drawings and confirmed materials предотвращает delays and rework."
+    }
+  },
+  {
+    "id": "Q-A-4_plan_sequence_10000010",
+    "taskId": "A-4",
+    "difficulty": "medium",
+    "stem": "Какова верная последовательность for organizing a welding job?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Start welding, then look for parts"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Skip fit-up to save time"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ignore деформации until final inspection"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "Planning with the ток WPS/drawings and confirmed materials предотвращает delays and rework."
     }
   },
   {
     "id": "Q-A-4_quality_over_speed_20000052",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "If schedule pressure conflicts with WPS requirements, you should:",
+    "stem": "If schedule pressure conflicts with WPS (спецификации сварочного процесса) requirements, you should:",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Skip preheat to save time"
+        "text": "Skip предварительный подогрев to save time"
       },
       {
         "id": "CHOICE-2",
-        "text": "Follow the WPS and escalate schedule concerns"
+        "text": "Follow the WPS (спецификации сварочного процесса) and escalate schedule concerns"
       },
       {
         "id": "CHOICE-3",
-        "text": "Use any electrode available"
+        "text": "Use any электрода available"
       },
       {
         "id": "CHOICE-4",
@@ -388,7 +472,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "WPS requirements take precedence; raise timing issues to supervision."
+      "CHOICE-2": "WPS (спецификации сварочного процесса) requirements take precedence; raise timing issues to supervision."
     }
   },
   {
@@ -427,7 +511,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Keep notes private"
+        "text": "Держать/сохранять notes private"
       },
       {
         "id": "CHOICE-2",
@@ -439,7 +523,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Hide in‑process parts"
+        "text": "Hide in-process parts"
       }
     ],
     "correctId": "CHOICE-2",
@@ -479,7 +563,7 @@
     "id": "Q-A-4_symbol_fillet_basic_20000041",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "On welding drawings, the basic triangular weld symbol indicates a:",
+    "stem": "На сварочных чертежах, the basic triangular weld symbol indicates a:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -500,7 +584,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The triangular symbol denotes a fillet weld per common drafting standards."
+      "CHOICE-2": "The triangular symbol denotes a угловой шов per common drafting standards."
     }
   },
   {
@@ -539,7 +623,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Used regardless of calibration status"
+        "text": "Использоватьd regardless of calibration status"
       },
       {
         "id": "CHOICE-2",
@@ -563,7 +647,7 @@
     "id": "Q-A-4_toolbox_talk_2000004d",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "A short pre‑job briefing (toolbox talk) helps to:",
+    "stem": "A short pre-job briefing (toolbox talk) helps to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -579,7 +663,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Avoid using the WPS"
+        "text": "Avoid using the WPS (спецификации сварочного процесса)"
       }
     ],
     "correctId": "CHOICE-2",
@@ -591,7 +675,7 @@
     "id": "Q-A-4_traceability_transfer_20000047",
     "taskId": "A-4",
     "difficulty": "medium",
-    "stem": "When cutting a marked plate, you should maintain heat/lot traceability by:",
+    "stem": "Когда cutting a marked plate, you should maintain heat/lot traceability by:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -619,7 +703,7 @@
     "id": "Q-A-4_units_consistency_2000004b",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "When drawings mix units (mm/in), the best practice is to:",
+    "stem": "Когда drawings mix units (mm/in), the best practice is to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -631,11 +715,11 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Always convert to inches"
+        "text": "Всегда convert to inches"
       },
       {
         "id": "CHOICE-4",
-        "text": "Always convert to millimeters"
+        "text": "Всегда convert to millimeters"
       }
     ],
     "correctId": "CHOICE-2",
@@ -647,7 +731,7 @@
     "id": "Q-A-4_wps_purpose_1000000d",
     "taskId": "A-4",
     "difficulty": "easy",
-    "stem": "What is the primary purpose of a Welding Procedure Specification (WPS)?",
+    "stem": "Какова основная цель a Спецификация сварочного процесса (WPS)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -659,7 +743,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "For inspectors only; welders need not read it"
+        "text": "For inspectors только; welders need not read it"
       },
       {
         "id": "CHOICE-4",
@@ -668,7 +752,35 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as current, position, and preheat."
+      "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as ток, положение, and предварительного подогрева."
+    }
+  },
+  {
+    "id": "Q-A-4_wps_purpose_1000000d",
+    "taskId": "A-4",
+    "difficulty": "easy",
+    "stem": "Какова основная цель a Спецификация сварочного процесса (WPS)?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "To replace the PQR entirely"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "To define essential variables and parameters for production welds"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "For inspectors только; welders need not read it"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Optional for code work"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as ток, положение, and предварительного подогрева."
     }
   }
 ]

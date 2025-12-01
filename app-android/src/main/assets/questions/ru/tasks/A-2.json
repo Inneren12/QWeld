@@ -3,7 +3,7 @@
     "id": "Q-A-2_anchor_point_2000001c",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "An acceptable anchorage for a fall‑arrest system is typically:",
+    "stem": "Допустимая anchorage for a fall‑arrest system is typically:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -31,7 +31,7 @@
     "id": "Q-A-2_chain_sling_reject_20000022",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Which condition requires removing a chain sling from service?",
+    "stem": "Какое condition requires removing a цепного стропа from service?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -52,7 +52,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Deformation or stretch indicates overload—remove the sling from service."
+      "CHOICE-2": "Deformation or stretch indicates overload-remove the sling from service."
     }
   },
   {
@@ -87,7 +87,7 @@
     "id": "Q-A-2_cog_estimate_20000024",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Before lifting an irregular load, you should locate the center of gravity so that:",
+    "stem": "Before lifting an irregular load, you should locate the центра тяжести so that:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -108,18 +108,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Suspending above/just past the COG helps the load hang level without tipping."
+      "CHOICE-2": "Suspending above/just past the COG помогает the load hang level without tipping."
     }
   },
   {
     "id": "Q-A-2_crane_stop_signal_10000006",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "Which statement about crane hand signals is correct?",
+    "stem": "Какое утверждение о кран hand signals — верно?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Only the operator may signal a stop"
+        "text": "Только the operator may signal a stop"
       },
       {
         "id": "CHOICE-2",
@@ -131,19 +131,47 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "There are no standard hand signals for cranes"
+        "text": "There — no standard hand signals for cranes"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The emergency stop is universal and may be given by any person observing danger."
+      "CHOICE-2": "The emergency stop — universal and may be given by any person observing danger."
+    }
+  },
+  {
+    "id": "Q-A-2_crane_stop_signal_10000006",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "Какое утверждение о кран hand signals — верно?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Только the operator may signal a stop"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Anyone may give the universal emergency stop signal"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Two hands above head always means 'speed up'"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "There — no standard hand signals for cranes"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The emergency stop — universal and may be given by any person observing danger."
     }
   },
   {
     "id": "Q-A-2_forklift_carry_low_2000001d",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "When traveling with a load on a forklift, you should:",
+    "stem": "При использовании with a load on a forklift, you should:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -183,11 +211,11 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Remove the nameplate to reduce weight"
+        "text": "Удалить the nameplate to reduce weight"
       },
       {
         "id": "CHOICE-4",
-        "text": "Use a cheater bar on the lever"
+        "text": "Использовать a cheater bar on the lever"
       }
     ],
     "correctId": "CHOICE-2",
@@ -199,7 +227,7 @@
     "id": "Q-A-2_harness_inspect_2000001a",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Before using a full‑body harness, you should:",
+    "stem": "Before using a full-body harness, you should:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -215,7 +243,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Use any carabiner from the hardware store"
+        "text": "Использовать any carabiner from the hardware store"
       }
     ],
     "correctId": "CHOICE-2",
@@ -227,7 +255,7 @@
     "id": "Q-A-2_ladder_3points_20000014",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "When climbing a ladder, which practice is correct?",
+    "stem": "При использовании a ladder, which practice is correct?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -255,7 +283,7 @@
     "id": "Q-A-2_ladder_angle_10000004",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "What is the recommended setup angle for a straight ladder?",
+    "stem": "Какова рекомендуемая setup angle for a straight лестницы?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -276,14 +304,42 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The 4:1 rule provides stable footing and proper contact with the support."
+      "CHOICE-2": "The 4:1 rule обеспечивает stable footing and proper контактный with the support."
+    }
+  },
+  {
+    "id": "Q-A-2_ladder_angle_10000004",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "Какова рекомендуемая setup angle for a straight лестницы?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "1:1 (about 45°) against the support"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "4:1 (about 75°) slope from the base to the support"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Lean as steep as possible to save space"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Lay it nearly horizontal for stability"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "The 4:1 rule обеспечивает stable footing and proper контактный with the support."
     }
   },
   {
     "id": "Q-A-2_ladder_extend_secure_20000015",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "When a portable ladder is used for access to a higher level, you should:",
+    "stem": "Когда a portable ladder is used for access to a higher level, you should:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -332,14 +388,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Non‑conductive fiberglass ladders reduce shock risk near electricity."
+      "CHOICE-3": "Non-conductive fiberglass ladders reduce shock risk near electricity."
     }
   },
   {
     "id": "Q-A-2_no_ride_hook_20000025",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "Which statement about crane operations is correct?",
+    "stem": "Какое statement about crane operations is correct?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -347,7 +403,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Only supervisors may ride the load"
+        "text": "Только supervisors may ride the load"
       },
       {
         "id": "CHOICE-3",
@@ -360,14 +416,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Riding hooks or loads is prohibited; use approved man‑lifts instead."
+      "CHOICE-3": "Riding hooks or loads is prohibited; use approved man-lifts instead."
     }
   },
   {
     "id": "Q-A-2_pedestrian_exclusion_2000001e",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "During a lift with a crane or hoist, bystanders should:",
+    "stem": "During a lift with a crane or hoist, посторонних should:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -379,7 +435,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Stay out of the fall zone and use barriers/tag lines"
+        "text": "Stay out of the fall zone and use barriers/оттяжек"
       },
       {
         "id": "CHOICE-4",
@@ -388,7 +444,7 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-      "CHOICE-3": "Keep people out of the fall zone; use tag lines to control the load."
+      "CHOICE-3": "Keep people out of the fall zone; use оттяжек to control the load."
     }
   },
   {
@@ -399,7 +455,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Use it for a light lift first"
+        "text": "Использовать it for a light lift first"
       },
       {
         "id": "CHOICE-2",
@@ -407,7 +463,7 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Remove it from service and have it inspected"
+        "text": "Удалить it from service and have it inspected"
       },
       {
         "id": "CHOICE-4",
@@ -467,7 +523,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Remove guardrails to work faster"
+        "text": "Удалить guardrails to work faster"
       }
     ],
     "correctId": "CHOICE-2",
@@ -479,7 +535,7 @@
     "id": "Q-A-2_shackle_orientation_20000020",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "For a two‑leg sling connection using a shackle, a good practice is:",
+    "stem": "For a two‑leg sling connection using a скобы (шэкла), a good practice is:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -487,27 +543,27 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Place the bow on the sling side to reduce side‑loading the pin"
+        "text": "Place the bow on the sling side to reduce side-loading the pin"
       },
       {
         "id": "CHOICE-3",
-        "text": "Use any random orientation"
+        "text": "Использовать any random orientation"
       },
       {
         "id": "CHOICE-4",
-        "text": "Replace shackles with padlocks"
+        "text": "Replace скобы (шэкла)s with padlocks"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "The bow provides more space and reduces side loading on the pin."
+      "CHOICE-2": "The bow обеспечивает more space and уменьшает side loading on the pin."
     }
   },
   {
     "id": "Q-A-2_shock_lanyard_use_2000001b",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "Why use a shock‑absorbing lanyard in fall arrest?",
+    "stem": "Зачем использовать a shock‑absorbing lanyard in fall arrest?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -528,22 +584,22 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Energy‑absorbing devices limit peak forces transmitted to the user."
+      "CHOICE-2": "Energy-absorbing devices limit peak forces transmitted to the user."
     }
   },
   {
     "id": "Q-A-2_sling_angle_10000005",
     "taskId": "A-2",
     "difficulty": "medium",
-    "stem": "How does sling angle affect tension in a two-leg lift?",
+    "stem": "Как влияет строп angle affect tension in a two-leg подъём?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Smaller angles reduce tension in each leg"
+        "text": "Smaller angles уменьшить tension in each leg"
       },
       {
         "id": "CHOICE-2",
-        "text": "Smaller angles increase tension in each leg"
+        "text": "Smaller angles увеличивает tension in each leg"
       },
       {
         "id": "CHOICE-3",
@@ -551,7 +607,35 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Larger angles always increase tension"
+        "text": "Larger angles always увеличивает tension"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "As the angle from horizontal decreases, leg tension rises significantly."
+    }
+  },
+  {
+    "id": "Q-A-2_sling_angle_10000005",
+    "taskId": "A-2",
+    "difficulty": "medium",
+    "stem": "Как влияет строп angle affect tension in a two-leg подъём?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Smaller angles уменьшить tension in each leg"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Smaller angles увеличивает tension in each leg"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Angle has no effect on leg tension"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Larger angles always увеличивает tension"
       }
     ],
     "correctId": "CHOICE-2",
@@ -563,7 +647,7 @@
     "id": "Q-A-2_sling_edge_protect_20000021",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "How should synthetic web slings be protected on sharp edges?",
+    "stem": "Как следует текстильных строп be protected on sharp edges?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -571,7 +655,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Use padding/edge protectors"
+        "text": "Использовать padding/edge protectors"
       },
       {
         "id": "CHOICE-3",
@@ -591,7 +675,7 @@
     "id": "Q-A-2_stepladder_top_step_20000016",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "Which statement about stepladders is correct?",
+    "stem": "Какое statement about stepladders is correct?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -599,7 +683,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Use them closed like a straight ladder"
+        "text": "Использовать them closed like a straight ladder"
       },
       {
         "id": "CHOICE-3",
@@ -607,7 +691,7 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Always lean them against walls"
+        "text": "Всегда lean them against walls"
       }
     ],
     "correctId": "CHOICE-3",
@@ -619,7 +703,7 @@
     "id": "Q-A-2_tag_lines_2000001f",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "What is the primary purpose of using tag lines on suspended loads?",
+    "stem": "Что такое the primary purpose of using оттяжек on suspended loads?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -647,7 +731,7 @@
     "id": "Q-A-2_trial_lift_10000007",
     "taskId": "A-2",
     "difficulty": "easy",
-    "stem": "When the exact weight of a load is unknown, what is the safest approach?",
+    "stem": "Когда the exact weight of a load — unknown, что — the safest approach?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -655,11 +739,11 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Use rated slings and perform a short, controlled trial lift"
+        "text": "Use rated slings and perform a short, controlled пробный подъём"
       },
       {
         "id": "CHOICE-3",
-        "text": "Lift quickly to avoid swinging"
+        "text": "Подъём quickly to avoid swinging"
       },
       {
         "id": "CHOICE-4",
@@ -668,7 +752,35 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "A brief trial lift lets you verify balance and capacity while staying within control."
+      "CHOICE-2": "A brief пробный подъём lets you verify balance and capacity while staying within control."
+    }
+  },
+  {
+    "id": "Q-A-2_trial_lift_10000007",
+    "taskId": "A-2",
+    "difficulty": "easy",
+    "stem": "Когда the exact weight of a load — unknown, что — the safest approach?",
+    "choices": [
+      {
+        "id": "CHOICE-1",
+        "text": "Guess the weight by the size of the load"
+      },
+      {
+        "id": "CHOICE-2",
+        "text": "Use rated slings and perform a short, controlled пробный подъём"
+      },
+      {
+        "id": "CHOICE-3",
+        "text": "Подъём quickly to avoid swinging"
+      },
+      {
+        "id": "CHOICE-4",
+        "text": "Ride on the load to watch clearances"
+      }
+    ],
+    "correctId": "CHOICE-2",
+    "rationales": {
+      "CHOICE-2": "A brief пробный подъём lets you verify balance and capacity while staying within control."
     }
   }
 ]

@@ -3,7 +3,7 @@
     "id": "Q-C-10_air_quality_10000040",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "Why use dry, clean compressed air for PAC?",
+    "stem": "Зачем использовать dry, clean compressed air for PAC?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -11,15 +11,15 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Dry, clean air reduces wear and improves cut quality"
+        "text": "Dry, clean air уменьшает wear and улучшает cut quality"
       },
       {
         "id": "CHOICE-3",
-        "text": "Air quality is irrelevant"
+        "text": "Air quality — irrelevant"
       },
       {
         "id": "CHOICE-4",
-        "text": "Nitrogen is always required instead of air"
+        "text": "Nitrogen — always required instead of air"
       }
     ],
     "correctId": "CHOICE-2",
@@ -31,7 +31,7 @@
     "id": "Q-C-10_air_quality_need_v1_03_300000bc",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "What is the benefit of using dry, clean compressed air for PAC?",
+    "stem": "Что is the benefit of using dry, clean compressed air for PAC (переменный ток)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -39,7 +39,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Dry, clean air reduces wear and improves cut quality"
+        "text": "Dry, clean air уменьшает wear and улучшает cut quality"
       },
       {
         "id": "CHOICE-3",
@@ -52,14 +52,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture/oil contaminate the plasma and damage consumables."
+      "CHOICE-2": "Moisture/oil contaminate the plasma and damage расходников."
     }
   },
   {
     "id": "Q-C-10_air_quality_need_v2_02_300000c6",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "Why use dry, clean compressed air for PAC?",
+    "stem": "Зачем использовать dry, clean compressed air for PAC (переменный ток)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -67,7 +67,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Dry, clean air reduces wear and improves cut quality"
+        "text": "Dry, clean air уменьшает wear and улучшает cut quality"
       },
       {
         "id": "CHOICE-3",
@@ -80,14 +80,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture/oil contaminate the plasma and damage consumables."
+      "CHOICE-2": "Moisture/oil contaminate the plasma and damage расходников."
     }
   },
   {
     "id": "Q-C-10_air_quality_need_v3_01_300000d0",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "Why use dry, clean compressed air for PAC?",
+    "stem": "Зачем использовать dry, clean compressed air for PAC (переменный ток)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -95,7 +95,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Dry, clean air reduces wear and improves cut quality"
+        "text": "Dry, clean air уменьшает wear and улучшает cut quality"
       },
       {
         "id": "CHOICE-3",
@@ -108,14 +108,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Moisture/oil contaminate the plasma and damage consumables."
+      "CHOICE-2": "Moisture/oil contaminate the plasma and damage расходников."
     }
   },
   {
     "id": "Q-C-10_arc_stretch_gap_v1_09_300000c2",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Excessive standoff/gap in PAC typically:",
+    "stem": "Excessive вылета/зазора/gap in PAC (переменный ток) typically:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -136,14 +136,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Too much gap increases bevel angle and slag."
+      "CHOICE-2": "Too much gap увеличиваетs bevel angle and slag."
     }
   },
   {
     "id": "Q-C-10_arc_stretch_gap_v2_08_300000cc",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Excessive standoff/gap in PAC typically:",
+    "stem": "Excessive вылета/зазора/gap in PAC (переменный ток) typically:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -164,14 +164,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Too much gap increases bevel angle and slag."
+      "CHOICE-2": "Too much gap увеличиваетs bevel angle and slag."
     }
   },
   {
     "id": "Q-C-10_consumable_change_v1_08_300000c1",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "A sign PAC consumables need replacement is:",
+    "stem": "A sign PAC (переменный ток) расходников need replacement is:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -179,7 +179,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Erratic arc, widening kerf, and dross"
+        "text": "Erratic arc, widening пропил (kerf), and dross"
       },
       {
         "id": "CHOICE-3",
@@ -199,7 +199,7 @@
     "id": "Q-C-10_consumable_change_v2_07_300000cb",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "A sign PAC consumables need replacement is:",
+    "stem": "A sign PAC (переменный ток) расходников need replacement is:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -207,7 +207,7 @@
       },
       {
         "id": "CHOICE-2",
-        "text": "Erratic arc, widening kerf, and dross"
+        "text": "Erratic arc, widening пропил (kerf), and dross"
       },
       {
         "id": "CHOICE-3",
@@ -311,7 +311,7 @@
     "id": "Q-C-10_dross_speed_1000003e",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Heavy bottom dross is usually a sign of what?",
+    "stem": "Heavy bottom пригар — usually a sign of что?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -323,23 +323,23 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Current set too high only"
+        "text": "Ток set too high только"
       },
       {
         "id": "CHOICE-4",
-        "text": "Shielding gas type is wrong"
+        "text": "Shielding gas type — wrong"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Slow travel lets molten metal solidify on the lower edge, forming heavy dross."
+      "CHOICE-2": "Slow travel lets molten metal solidify on the lower edge, forming heavy пригар."
     }
   },
   {
     "id": "Q-C-10_good_side_kerf_v1_06_300000bf",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Due to kerf angle in PAC, a good practice is to place the 'good side' of the cut:",
+    "stem": "Due to пропил (kerf) angle in PAC (переменный ток), a good practice is to place the 'good side' of the cut:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -367,7 +367,7 @@
     "id": "Q-C-10_good_side_kerf_v2_05_300000c9",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Due to kerf angle in PAC, a good practice is to place the 'good side' of the cut:",
+    "stem": "Due to пропил (kerf) angle in PAC (переменный ток), a good practice is to place the 'good side' of the cut:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -395,7 +395,7 @@
     "id": "Q-C-10_lag_lines_v1_07_300000c0",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Prominent lag lines trailing far behind the torch usually indicate:",
+    "stem": "Prominent линиий отставания (lag lines) trailing far behind the torch usually indicate:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -416,14 +416,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Excess speed increases lag/drag lines; adjust speed or current."
+      "CHOICE-2": "Excess speed увеличиваетs lag/drag lines; adjust speed or current."
     }
   },
   {
     "id": "Q-C-10_lag_lines_v2_06_300000ca",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Prominent lag lines trailing far behind the torch usually indicate:",
+    "stem": "Prominent линиий отставания (lag lines) trailing far behind the torch usually indicate:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -444,14 +444,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Excess speed increases lag/drag lines; adjust speed or current."
+      "CHOICE-2": "Excess speed увеличиваетs lag/drag lines; adjust speed or current."
     }
   },
   {
     "id": "Q-C-10_pierce_height_v1_05_300000be",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "A good practice for piercing with PAC is to:",
+    "stem": "Хороший приём for piercing with PAC (переменный ток) is to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -467,19 +467,19 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Never pierce—edge start only"
+        "text": "Никогда pierce—edge start only"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Higher pierce height protects consumables from molten blowback."
+      "CHOICE-2": "Higher pierce height protects расходников from molten blowback."
     }
   },
   {
     "id": "Q-C-10_pierce_height_v2_04_300000c8",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "A good practice for piercing with PAC is to:",
+    "stem": "Хороший приём for piercing with PAC (переменный ток) is to:",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -495,19 +495,19 @@
       },
       {
         "id": "CHOICE-4",
-        "text": "Never pierce—edge start only"
+        "text": "Никогда pierce—edge start only"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Higher pierce height protects consumables from molten blowback."
+      "CHOICE-2": "Higher pierce height protects расходников from molten blowback."
     }
   },
   {
     "id": "Q-C-10_pilot_arc_start_v1_04_300000bd",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "What is the advantage of pilot-arc or HF start in PAC?",
+    "stem": "В чём преимущество пилотной дуги or ВЧ‑поджига in PAC (переменный ток)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -535,7 +535,7 @@
     "id": "Q-C-10_pilot_arc_start_v2_03_300000c7",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "What is the advantage of pilot-arc or HF start in PAC?",
+    "stem": "В чём преимущество пилотной дуги or ВЧ‑поджига in PAC (переменный ток)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -563,7 +563,7 @@
     "id": "Q-C-10_pilot_arc_start_v3_02_300000d1",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "What is the advantage of pilot-arc or HF start in PAC?",
+    "stem": "В чём преимущество пилотной дуги or ВЧ‑поджига in PAC (переменный ток)?",
     "choices": [
       {
         "id": "CHOICE-1",
@@ -591,19 +591,19 @@
     "id": "Q-C-10_polarity_common_v1_02_300000bb",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Which polarity is typical for air plasma cutting systems?",
+    "stem": "Какая полярность is typical for air plasma cutting systems?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "AC only"
+        "text": "AC (переменный ток) only"
       },
       {
         "id": "CHOICE-2",
-        "text": "DCEN (electrode negative)"
+        "text": "DCEN (прямая полярность) (electrode negative)"
       },
       {
         "id": "CHOICE-3",
-        "text": "DCEP (electrode positive)"
+        "text": "DCEP (обратная полярность) (electrode positive)"
       },
       {
         "id": "CHOICE-4",
@@ -612,26 +612,26 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Air plasma torches commonly use DCEN (electrode negative)."
+      "CHOICE-2": "Air plasma torches commonly use DCEN (прямая полярность) (electrode negative)."
     }
   },
   {
     "id": "Q-C-10_polarity_common_v2_01_300000c5",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Which polarity is typical for air plasma cutting systems?",
+    "stem": "Какая полярность is typical for air plasma cutting systems?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "AC only"
+        "text": "AC (переменный ток) only"
       },
       {
         "id": "CHOICE-2",
-        "text": "DCEN (electrode negative)"
+        "text": "DCEN (прямая полярность) (electrode negative)"
       },
       {
         "id": "CHOICE-3",
-        "text": "DCEP (electrode positive)"
+        "text": "DCEP (обратная полярность) (electrode positive)"
       },
       {
         "id": "CHOICE-4",
@@ -640,26 +640,26 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Air plasma torches commonly use DCEN (electrode negative)."
+      "CHOICE-2": "Air plasma torches commonly use DCEN (прямая полярность) (electrode negative)."
     }
   },
   {
     "id": "Q-C-10_polarity_common_v3_00_300000cf",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Which polarity is typical for air plasma cutting systems?",
+    "stem": "Какая полярность is typical for air plasma cutting systems?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "AC only"
+        "text": "AC (переменный ток) only"
       },
       {
         "id": "CHOICE-2",
-        "text": "DCEN (electrode negative)"
+        "text": "DCEN (прямая полярность) (electrode negative)"
       },
       {
         "id": "CHOICE-3",
-        "text": "DCEP (electrode positive)"
+        "text": "DCEP (обратная полярность) (electrode positive)"
       },
       {
         "id": "CHOICE-4",
@@ -668,46 +668,46 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Air plasma torches commonly use DCEN (electrode negative)."
+      "CHOICE-2": "Air plasma torches commonly use DCEN (прямая полярность) (electrode negative)."
     }
   },
   {
     "id": "Q-C-10_polarity_pac_1000003f",
     "taskId": "C-10",
     "difficulty": "medium",
-    "stem": "Which polarity is typical for air plasma cutting systems?",
+    "stem": "Какая полярность — typical for air plasma cutting systems?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "AC only"
+        "text": "Только AC (переменный ток) (переменный ток)"
       },
       {
         "id": "CHOICE-2",
-        "text": "DCEN (electrode negative)"
+        "text": "DCEN (прямая полярность) (прямая полярность) (электрод negative)"
       },
       {
         "id": "CHOICE-3",
-        "text": "DCEP (electrode positive)"
+        "text": "DCEP (обратная полярность) (обратная полярность) (электрод positive)"
       },
       {
         "id": "CHOICE-4",
-        "text": "Either polarity with no effect"
+        "text": "Either полярность with no effect"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Air plasma torches commonly use DCEN: electrode negative, work positive."
+      "CHOICE-2": "Air plasma torches commonly use DCEN (прямая полярность) (прямая полярность): электрод negative, work positive."
     }
   },
   {
     "id": "Q-C-10_standoff_1000003d",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
+    "stem": "Как следует torch standoff be managed in plasma arc cutting (PAC)?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Always drag the tip regardless of torch design"
+        "text": "Always drag the наконечник regardless of torch design"
       },
       {
         "id": "CHOICE-2",
@@ -715,31 +715,31 @@
       },
       {
         "id": "CHOICE-3",
-        "text": "Closer is always better"
+        "text": "Closer — always better"
       },
       {
         "id": "CHOICE-4",
-        "text": "Farther is always better"
+        "text": "Farther — always better"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
+      "CHOICE-2": "Верно standoff предотвращает сопло damage and preserves cut quality."
     }
   },
   {
     "id": "Q-C-10_standoff_control_v1_00_300000b9",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
+    "stem": "Как следует torch вылета/зазора be managed in plasma arc cutting (PAC (переменный ток))?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Always drag the tip regardless of design"
+        "text": "Всегда drag the сопла regardless of design"
       },
       {
         "id": "CHOICE-2",
-        "text": "Maintain the proper standoff/drag per torch design to protect consumables"
+        "text": "Maintain the proper вылета/зазора/drag per torch design to protect расходников"
       },
       {
         "id": "CHOICE-3",
@@ -752,22 +752,22 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
+      "CHOICE-2": "Correct вылета/зазора предотвращает nozzle damage and preserves cut quality."
     }
   },
   {
     "id": "Q-C-10_standoff_control_v1_10_300000c3",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
+    "stem": "Как следует torch вылета/зазора be managed in plasma arc cutting (PAC (переменный ток))?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Always drag the tip regardless of design"
+        "text": "Всегда drag the сопла regardless of design"
       },
       {
         "id": "CHOICE-2",
-        "text": "Maintain the proper standoff/drag per torch design to protect consumables"
+        "text": "Maintain the proper вылета/зазора/drag per torch design to protect расходников"
       },
       {
         "id": "CHOICE-3",
@@ -780,22 +780,22 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
+      "CHOICE-2": "Correct вылета/зазора предотвращает nozzle damage and preserves cut quality."
     }
   },
   {
     "id": "Q-C-10_standoff_control_v2_09_300000cd",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
+    "stem": "Как следует torch вылета/зазора be managed in plasma arc cutting (PAC (переменный ток))?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "Always drag the tip regardless of design"
+        "text": "Всегда drag the сопла regardless of design"
       },
       {
         "id": "CHOICE-2",
-        "text": "Maintain the proper standoff/drag per torch design to protect consumables"
+        "text": "Maintain the proper вылета/зазора/drag per torch design to protect расходников"
       },
       {
         "id": "CHOICE-3",
@@ -808,35 +808,35 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
+      "CHOICE-2": "Correct вылета/зазора предотвращает nozzle damage and preserves cut quality."
     }
   },
   {
     "id": "Q-C-10_start_methods_10000041",
     "taskId": "C-10",
     "difficulty": "easy",
-    "stem": "What is the advantage of pilot‑arc or HF start in PAC?",
+    "stem": "Что — the advantage of pilot-arc or HF start in PAC?",
     "choices": [
       {
         "id": "CHOICE-1",
-        "text": "They require scraping the nozzle on the work"
+        "text": "They require scraping the сопло on the work"
       },
       {
         "id": "CHOICE-2",
-        "text": "They initiate the arc without dragging the nozzle"
+        "text": "They initiate the arc without dragging the сопло"
       },
       {
         "id": "CHOICE-3",
-        "text": "They reduce the need for shielding"
+        "text": "They уменьшить the need for shielding"
       },
       {
         "id": "CHOICE-4",
-        "text": "They increase consumable wear"
+        "text": "They увеличивает consumable wear"
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-      "CHOICE-2": "Non‑contact starts protect the nozzle and improve reliability."
+      "CHOICE-2": "Non-контактный starts protect the сопло and улучшить reliability."
     }
   }
 ]
