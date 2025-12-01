@@ -7,11 +7,7 @@
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Hammer-crimp and tape"
-=======
-        "text": "Hammer‑crimp and tape"
->>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-2",
@@ -28,21 +24,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Proper crimping/soldering per manufacturer with insulation"
-=======
-      "CHOICE-2": "Use proper lugs and crimp/solder tools; insulate to prevent shorts."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_compressor_drain_20000013",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Why should a shop air receiver/compressor be drained regularly?",
     "choices": [
       {
@@ -64,21 +52,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "To remove moisture that can damage tools and processes"
-=======
-      "CHOICE-2": "Draining removes accumulated water that can harm tools and welding quality."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_cylinder_cap_move_20000002",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Before moving a compressed gas cylinder, what should you do?",
     "choices": [
       {
@@ -100,21 +80,13 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Install the protective cap and use a proper cart"
-=======
-      "CHOICE-3": "Fit the protective cap and move cylinders with approved carts—never by rolling."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_cylinder_chain_storage_20000001",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "How should compressed gas cylinders be stored when not in use?",
     "choices": [
       {
@@ -136,11 +108,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Upright and secured with a chain or strap"
-=======
-      "CHOICE-2": "Cylinders must be upright and restrained to prevent tipping."
->>>>>>> Stashed changes
     }
   },
   {
@@ -155,11 +123,7 @@
       },
       {
         "id": "CHOICE-2",
-<<<<<<< Updated upstream
         "text": "Separated by distance or a non-combustible barrier"
-=======
-        "text": "Separated by distance or a non‑combustible barrier"
->>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-3",
@@ -172,21 +136,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Separated by distance or a non-combustible barrier"
-=======
-      "CHOICE-2": "Oxygen must be separated from fuel gases to reduce fire risk."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_damaged_cord_10000001",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What should you do if a power tool’s cord insulation is damaged?",
     "choices": [
       {
@@ -208,11 +164,7 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Tag it out and remove it from service until repaired"
-=======
-      "CHOICE-3": "Defective tools must be removed from service and tagged until properly repaired."
->>>>>>> Stashed changes
     }
   },
   {
@@ -240,31 +192,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Use a larger (heavier) gauge to minimize voltage drop"
-=======
-      "CHOICE-2": "Long runs need heavier‑gauge cords to limit voltage drop and heating."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_flowmeter_vertical_20000004",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
     "stem": "How should a ball-type flowmeter be positioned for an accurate reading?",
     "choices": [
       {
         "id": "CHOICE-1",
         "text": "At any angle; it self-levels"
-=======
-    "difficulty": "easy",
-    "stem": "How should a ball‑type flowmeter be positioned for an accurate reading?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "At any angle; it self‑levels"
->>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-2",
@@ -281,11 +220,7 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Vertically, with the tube upright"
-=======
-      "CHOICE-3": "Ball‑type flowmeters are read in a vertical position."
->>>>>>> Stashed changes
     }
   },
   {
@@ -313,30 +248,18 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "It ensures airflow and capture efficiency"
-=======
-      "CHOICE-2": "Clogged filters reduce airflow; maintenance preserves capture efficiency."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_gfci_use_20000008",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "When using portable electric tools in damp areas, what should be used?",
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Non-grounded two-prong adapters"
-=======
-        "text": "Non‑grounded two‑prong adapters"
->>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-2",
@@ -344,11 +267,7 @@
       },
       {
         "id": "CHOICE-3",
-<<<<<<< Updated upstream
         "text": "A GFCI-protected supply"
-=======
-        "text": "A GFCI‑protected supply"
->>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-4",
@@ -357,21 +276,13 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "A GFCI-protected supply"
-=======
-      "CHOICE-3": "GFCI protection reduces shock risk in damp or outdoor locations."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_grinder_inspect_10000000",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Before using a portable angle grinder, which check is mandatory?",
     "choices": [
       {
@@ -393,21 +304,13 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Verify the guard is fitted and the wheel RPM rating meets or exceeds tool RPM"
-=======
-      "CHOICE-3": "A properly fitted guard and a wheel rated for the tool speed prevent wheel burst."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_gun_nozzle_clean_2000000c",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Why should a MIG gun nozzle be kept free of spatter?",
     "choices": [
       {
@@ -429,21 +332,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "To maintain gas coverage and reduce porosity"
-=======
-      "CHOICE-2": "Spatter in the nozzle disrupts gas shielding and can cause porosity."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_holder_maintenance_10000003",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Which is correct for maintaining an electrode holder?",
     "choices": [
       {
@@ -465,23 +360,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Insulation must be intact and jaws clean with no exposed conductors"
-=======
-      "CHOICE-3": "Sound insulation and clean jaws prevent shock and overheating."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_hose_inspection_20000005",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
     "stem": "Which finding requires removing an oxy-fuel hose from service?",
-=======
-    "difficulty": "easy",
-    "stem": "Which finding requires removing an oxy‑fuel hose from service?",
->>>>>>> Stashed changes
     "choices": [
       {
         "id": "CHOICE-1",
@@ -502,22 +388,14 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Blistering, cuts, or dry rot"
-=======
-      "CHOICE-3": "Hoses with cuts, blisters, or rot must be replaced."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_lowhyd_storage_20000010",
     "taskId": "A-1",
     "difficulty": "medium",
-<<<<<<< Updated upstream
     "stem": "Between uses, low-hydrogen electrodes (e.g., E7018) should be:",
-=======
-    "stem": "Between uses, low‑hydrogen electrodes (e.g., E7018) should be:",
->>>>>>> Stashed changes
     "choices": [
       {
         "id": "CHOICE-1",
@@ -538,21 +416,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Kept in a heated rod oven or sealed container per manufacturer"
-=======
-      "CHOICE-2": "Dry, heated storage prevents moisture pickup and hydrogen cracking."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_machine_vent_clear_20000009",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Which is correct regarding welder power source ventilation?",
     "choices": [
       {
@@ -574,11 +444,7 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Keep inlet/outlet vents clear of obstructions"
-=======
-      "CHOICE-3": "Adequate airflow is needed to cool internal components."
->>>>>>> Stashed changes
     }
   },
   {
@@ -606,23 +472,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Increased feeding resistance and birdnesting"
-=======
-      "CHOICE-2": "Drag from a worn/dirty liner can cause feeding issues and birdnesting."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_oxyfuel_leak_check_2000000e",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
     "stem": "How should oxy-fuel connections be checked for leaks after assembly?",
-=======
-    "difficulty": "easy",
-    "stem": "How should oxy‑fuel connections be checked for leaks after assembly?",
->>>>>>> Stashed changes
     "choices": [
       {
         "id": "CHOICE-1",
@@ -634,11 +491,7 @@
       },
       {
         "id": "CHOICE-3",
-<<<<<<< Updated upstream
         "text": "With a leak-detecting (soapy) solution"
-=======
-        "text": "With a leak‑detecting (soapy) solution"
->>>>>>> Stashed changes
       },
       {
         "id": "CHOICE-4",
@@ -647,21 +500,13 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "With a leak-detecting (soapy) solution"
-=======
-      "CHOICE-3": "Use a leak‑detecting solution; never use flame to check for leaks."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_power_fan_obstruction_20000012",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What should be avoided around welder cooling fans?",
     "choices": [
       {
@@ -683,21 +528,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Blocking the intake to reduce noise"
-=======
-      "CHOICE-2": "Obstructions at the fan/vents can cause overheating and failure."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_regulator_gauge_cracked_20000003",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What should be done with a regulator that has a cracked or missing gauge lens?",
     "choices": [
       {
@@ -719,21 +556,13 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Remove from service and have it repaired or replaced"
-=======
-      "CHOICE-3": "Damaged regulators must be removed from service and repaired or replaced."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_ring_test_wheel_20000000",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Before mounting a new bonded grinding wheel, which check is recommended?",
     "choices": [
       {
@@ -755,23 +584,14 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Perform a ring test and inspect for cracks"
-=======
-      "CHOICE-2": "A ring (sound) test and visual inspection help detect hidden cracks before use."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-1_spatter_spray_use_2000000d",
     "taskId": "A-1",
-<<<<<<< Updated upstream
     "difficulty": "medium",
     "stem": "What is an appropriate use of anti-spatter compound?",
-=======
-    "difficulty": "easy",
-    "stem": "What is an appropriate use of anti‑spatter compound?",
->>>>>>> Stashed changes
     "choices": [
       {
         "id": "CHOICE-1",
@@ -792,11 +612,7 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Lightly on nozzles/fixtures per manufacturer’s guidance"
-=======
-      "CHOICE-3": "Used correctly on nozzles/fixtures, anti‑spatter helps reduce buildup."
->>>>>>> Stashed changes
     }
   },
   {
@@ -824,11 +640,7 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "Clean bare metal near the weld area"
-=======
-      "CHOICE-3": "Clamp to clean, bare metal close to the weld to reduce resistance and arc blow."
->>>>>>> Stashed changes
     }
   },
   {
@@ -856,7 +668,6 @@
     ],
     "correctId": "CHOICE-3",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-3": "They reduce voltage drop and overheating at the connections"
     }
   },
@@ -1838,9 +1649,6 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "Separate for airflow, use a single heavier-gauge cord instead of several, and remove coils/reels"
-=======
-      "CHOICE-3": "Good electrical contact minimizes resistance, heat buildup, and erratic arc behavior."
->>>>>>> Stashed changes
     }
   }
 ]

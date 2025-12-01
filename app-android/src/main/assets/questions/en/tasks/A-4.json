@@ -2,11 +2,7 @@
   {
     "id": "Q-A-4_5s_housekeeping_1000000f",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Why apply 5S/housekeeping in a welding shop?",
     "choices": [
       {
@@ -28,21 +24,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "It reduces waste and improves safety"
-=======
-      "CHOICE-2": "Orderly workplaces cut search time, trip hazards, and defects."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_consumable_vs_wps_20000044",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Before starting, consumables should be checked to ensure they:",
     "choices": [
       {
@@ -64,11 +52,7 @@
     ],
     "correctId": "CHOICE-1",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-1": "Match the WPS classification and size"
-=======
-      "CHOICE-1": "Confirm wire/rod classification and sizes match the WPS."
->>>>>>> Stashed changes
     }
   },
   {
@@ -96,11 +80,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Measure from the designated datum(s) shown"
-=======
-      "CHOICE-2": "Use the specified datums to control tolerance stack‑up."
->>>>>>> Stashed changes
     }
   },
   {
@@ -128,21 +108,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "To minimize distortion and rework"
-=======
-      "CHOICE-2": "Sequencing/fixturing helps control shrinkage and alignment."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_do_not_scale_2000004a",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "'Do not scale drawing' means you should:",
     "choices": [
       {
@@ -164,21 +136,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Rely on stated dimensions and notes, not scaling"
-=======
-      "CHOICE-2": "Use listed dimensions; printed scale may distort."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_drawing_revision_1000000e",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Which practice is correct when using fabrication drawings?",
     "choices": [
       {
@@ -200,21 +164,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Use the latest revision listed in the title block"
-=======
-      "CHOICE-2": "Always confirm and work to the current drawing revision to avoid rework."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_gas_ready_check_20000050",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Before production welding, a good readiness check is to:",
     "choices": [
       {
@@ -236,11 +192,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Verify gas type, pressure, regulators, and spares"
-=======
-      "CHOICE-2": "Confirm the correct gas type, pressure, and equipment before starting."
->>>>>>> Stashed changes
     }
   },
   {
@@ -268,21 +220,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Identify hazards and controls for each task step"
-=======
-      "CHOICE-2": "JHAs break down tasks to identify hazards and define controls."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_kitting_2000004c",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "To reduce delays at the bench, parts and hardware should be:",
     "choices": [
       {
@@ -304,21 +248,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Kitted and staged before setup"
-=======
-      "CHOICE-2": "Kitting/staging reduces lost time and missing parts."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_material_labeling_2000004f",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "To prevent mix‑ups between similar materials, you should:",
     "choices": [
       {
@@ -340,11 +276,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Label clearly and segregate storage locations"
-=======
-      "CHOICE-2": "Clear labels and segregation prevent material mix‑ups."
->>>>>>> Stashed changes
     }
   },
   {
@@ -372,11 +304,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Standardized tools, fixtures, and methods"
-=======
-      "CHOICE-2": "Standardized methods reduce variation among measurements."
->>>>>>> Stashed changes
     }
   },
   {
@@ -404,11 +332,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "To verify material grade/heat meets specifications"
-=======
-      "CHOICE-2": "MTRs confirm grade and heat/chemistry meet the job requirements."
->>>>>>> Stashed changes
     }
   },
   {
@@ -436,11 +360,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Confirm materials/tools, review WPS & drawings, plan sequence, then set up"
-=======
-      "CHOICE-2": "Planning with the current WPS/drawings and confirmed materials prevents delays and rework."
->>>>>>> Stashed changes
     }
   },
   {
@@ -468,11 +388,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Follow the WPS and escalate schedule concerns"
-=======
-      "CHOICE-2": "WPS requirements take precedence; raise timing issues to supervision."
->>>>>>> Stashed changes
     }
   },
   {
@@ -500,21 +416,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Required inspections/approvals before proceeding"
-=======
-      "CHOICE-2": "Hold points require inspection/approval prior to continuing work."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_shift_handover_20000054",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "At shift handover, a good practice is to:",
     "choices": [
       {
@@ -536,11 +444,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Document status, issues, and next steps for continuity"
-=======
-      "CHOICE-2": "Clear handover notes maintain continuity and quality."
->>>>>>> Stashed changes
     }
   },
   {
@@ -568,21 +472,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Arrow side of the joint"
-=======
-      "CHOICE-2": "Below the reference line = arrow side; above = other side (per common standards)."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_symbol_fillet_basic_20000041",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "On welding drawings, the basic triangular weld symbol indicates a:",
     "choices": [
       {
@@ -604,21 +500,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Fillet weld"
-=======
-      "CHOICE-2": "The triangular symbol denotes a fillet weld per common drafting standards."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_tolerance_basic_20000049",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "The symbol '±' on a dimension means:",
     "choices": [
       {
@@ -640,11 +528,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Allowed variation around the nominal size"
-=======
-      "CHOICE-2": "± indicates the permitted deviation from nominal."
->>>>>>> Stashed changes
     }
   },
   {
@@ -672,21 +556,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Within calibration date and zeroed before use"
-=======
-      "CHOICE-2": "Use calibrated tools and verify zero to ensure valid measurements."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_toolbox_talk_2000004d",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "A short pre‑job briefing (toolbox talk) helps to:",
     "choices": [
       {
@@ -708,11 +584,7 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Align the team on hazards, sequence, and responsibilities"
-=======
-      "CHOICE-2": "Briefings align safety and work plans before starting."
->>>>>>> Stashed changes
     }
   },
   {
@@ -740,21 +612,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Transferring heat numbers to each piece and documenting"
-=======
-      "CHOICE-2": "Transfer and record heat numbers to preserve traceability."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_units_consistency_2000004b",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "When drawings mix units (mm/in), the best practice is to:",
     "choices": [
       {
@@ -776,21 +640,13 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Follow the units stated for each dimension and avoid mixing"
-=======
-      "CHOICE-2": "Use the units indicated; avoid conversion mistakes."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-A-4_wps_purpose_1000000d",
     "taskId": "A-4",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What is the primary purpose of a Welding Procedure Specification (WPS)?",
     "choices": [
       {
@@ -812,7 +668,6 @@
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "To define essential variables and parameters for production welds"
     }
   },
@@ -1514,9 +1369,6 @@
     "correctId": "CHOICE-2",
     "rationales": {
       "CHOICE-2": "Stop work, segregate the part, raise an NCR; choose disposition—rework to drawing size, or use‑as‑is ONLY with engineering approval, or scrap; record the decision on the router/traveler before continuing"
-=======
-      "CHOICE-2": "The WPS guides the welder with qualified ranges for variables such as current, position, and preheat."
->>>>>>> Stashed changes
     }
   }
 ]

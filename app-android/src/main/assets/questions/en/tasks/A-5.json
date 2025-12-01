@@ -2,11 +2,7 @@
   {
     "id": "Q-A-5_anti_spatter_fixtures_20000066",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Applying anti‑spatter to jigs/fixtures can:",
     "choices": [
       {
@@ -34,11 +30,7 @@
   {
     "id": "Q-A-5_arc_length_short_20000061",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Maintaining a short arc length generally:",
     "choices": [
       {
@@ -150,11 +142,7 @@
   {
     "id": "Q-A-5_chipping_hammer_angle_2000006f",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "To remove slag without damaging the base metal, a chipping hammer should be used at:",
     "choices": [
       {
@@ -182,11 +170,7 @@
   {
     "id": "Q-A-5_clamp_to_control_gap_20000069",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "To maintain a consistent root gap during fit‑up, you should use:",
     "choices": [
       {
@@ -214,11 +198,7 @@
   {
     "id": "Q-A-5_cleanliness_needed_20000057",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Why remove mill scale, paint, and oil before welding?",
     "choices": [
       {
@@ -246,11 +226,7 @@
   {
     "id": "Q-A-5_consistent_speed_arc_20000074",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Maintaining consistent travel speed and arc length helps to:",
     "choices": [
       {
@@ -278,11 +254,7 @@
   {
     "id": "Q-A-5_crater_fill_10000016",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What should be done at the end of a weld bead?",
     "choices": [
       {
@@ -308,37 +280,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
-=======
-    "id": "Q-A-5_crater_fill_end_2000005d",
-    "taskId": "A-5",
-    "difficulty": "easy",
-    "stem": "At the end of a weld bead, a good practice is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Stop abruptly"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fill and blend the crater before stopping"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Strike off to the side and leave a crater"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Switch off shielding gas early"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Filling the crater helps avoid cracking and underfill."
-    }
-  },
-  {
->>>>>>> Stashed changes
     "id": "Q-A-5_cup_size_selection_20000073",
     "taskId": "A-5",
     "difficulty": "medium",
@@ -425,11 +366,7 @@
   {
     "id": "Q-A-5_fillet_angles_practice_20000062",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "To avoid undercut on flat fillet welds, a common practice is to hold:",
     "choices": [
       {
@@ -457,11 +394,7 @@
   {
     "id": "Q-A-5_fillet_gauge_10000011",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What does a fillet‑weld gauge measure?",
     "choices": [
       {
@@ -487,37 +420,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
-=======
-    "id": "Q-A-5_fillet_gauge_use_20000064",
-    "taskId": "A-5",
-    "difficulty": "easy",
-    "stem": "A fillet‑weld gauge is used to measure:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Voltage"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Fillet leg size/effective throat"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Gas flow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Surface roughness"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Gauges verify fillet size against requirements."
-    }
-  },
-  {
->>>>>>> Stashed changes
     "id": "Q-A-5_galvanized_remove_20000067",
     "taskId": "A-5",
     "difficulty": "medium",
@@ -744,11 +646,7 @@
   {
     "id": "Q-A-5_practice_bead_20000071",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Before production welding on a new setup, a good approach is to:",
     "choices": [
       {
@@ -776,11 +674,7 @@
   {
     "id": "Q-A-5_preheat_check_10000013",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "How should preheat be verified?",
     "choices": [
       {
@@ -834,37 +728,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
-=======
-    "id": "Q-A-5_preheat_verify_20000055",
-    "taskId": "A-5",
-    "difficulty": "easy",
-    "stem": "What is a reliable way to verify preheat temperature?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "By hand feel"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Using temperature‑indicating crayons or a thermometer"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Watching for color change only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Assuming room temperature is enough"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Use objective temperature indicators to confirm preheat."
-    }
-  },
-  {
->>>>>>> Stashed changes
     "id": "Q-A-5_root_face_land_20000058",
     "taskId": "A-5",
     "difficulty": "medium",
@@ -979,11 +842,7 @@
   {
     "id": "Q-A-5_slag_between_passes_10000015",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What should be done between weld passes with flux‑shielded processes?",
     "choices": [
       {
@@ -1009,37 +868,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
-=======
-    "id": "Q-A-5_slag_clean_between_2000005c",
-    "taskId": "A-5",
-    "difficulty": "easy",
-    "stem": "Between passes with flux‑shielded processes you should:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Leave slag; it will burn out"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Remove slag and heavy spatter"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Add solvent"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Water‑quench the joint"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Cleaning prevents slag inclusions and promotes fusion."
-    }
-  },
-  {
->>>>>>> Stashed changes
     "id": "Q-A-5_stainless_brush_dedicated_20000065",
     "taskId": "A-5",
     "difficulty": "medium",
@@ -1096,37 +924,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
-=======
-    "id": "Q-A-5_surface_clean_10000012",
-    "taskId": "A-5",
-    "difficulty": "easy",
-    "stem": "Why remove oil, rust, paint, and mill scale before welding?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Mill scale never affects quality"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "To reduce porosity and lack of fusion"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Paint improves arc stability"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Dirt adds helpful alloying elements"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Contaminants cause gas generation and prevent fusion at the interface."
-    }
-  },
-  {
->>>>>>> Stashed changes
     "id": "Q-A-5_tack_balance_10000014",
     "taskId": "A-5",
     "difficulty": "medium",
@@ -1157,11 +954,7 @@
   {
     "id": "Q-A-5_tack_fuse_in_2000005a",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "How should tack welds be prepared for incorporation into the final weld?",
     "choices": [
       {
@@ -1217,11 +1010,7 @@
   {
     "id": "Q-A-5_wire_brush_ppe_2000006e",
     "taskId": "A-5",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "When using powered wire brushes, wear:",
     "choices": [
       {
@@ -1245,7 +1034,6 @@
     "rationales": {
       "CHOICE-2": "Wire bristles can eject; use both glasses and a face shield."
     }
-<<<<<<< Updated upstream
   },
   {
     "id": "Q-A-5P1_cfh_to_lpm_20_20000151",
@@ -2086,7 +1874,5 @@
     "rationales": {
       "CHOICE-2": "Interpass control influences grain size and toughness."
     }
-=======
->>>>>>> Stashed changes
   }
 ]

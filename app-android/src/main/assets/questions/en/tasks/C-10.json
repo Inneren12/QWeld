@@ -2,11 +2,7 @@
   {
     "id": "Q-C-10_air_quality_10000040",
     "taskId": "C-10",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Why use dry, clean compressed air for PAC?",
     "choices": [
       {
@@ -34,16 +30,11 @@
   {
     "id": "Q-C-10_air_quality_need_v1_03_300000bc",
     "taskId": "C-10",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What is the benefit of using dry, clean compressed air for PAC?",
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Better splash lubrication of the torch"
       },
       {
@@ -57,86 +48,11 @@
       {
         "id": "CHOICE-4",
         "text": "Mandatory nitrogen substitution in all cases"
-=======
-        "text": "Wet/oily air extends consumable life"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Dry, clean air reduces wear and improves cut quality"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Air quality is irrelevant"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Nitrogen is required instead of air"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Dry, oil‑free air prevents contamination of the arc and orifices."
-=======
-      "CHOICE-2": "Moisture/oil contaminate the plasma and damage consumables."
-    }
-  },
-  {
-    "id": "Q-C-10_air_quality_need_v2_02_300000c6",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "Why use dry, clean compressed air for PAC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wet/oily air extends consumable life"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Dry, clean air reduces wear and improves cut quality"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Air quality is irrelevant"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Nitrogen is required instead of air"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture/oil contaminate the plasma and damage consumables."
-    }
-  },
-  {
-    "id": "Q-C-10_air_quality_need_v3_01_300000d0",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "Why use dry, clean compressed air for PAC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Wet/oily air extends consumable life"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Dry, clean air reduces wear and improves cut quality"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Air quality is irrelevant"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Nitrogen is required instead of air"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Moisture/oil contaminate the plasma and damage consumables."
->>>>>>> Stashed changes
     }
   },
   {
@@ -147,7 +63,6 @@
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Improves cut squareness"
       },
       {
@@ -161,73 +76,21 @@
       {
         "id": "CHOICE-4",
         "text": "Has no effect on the cut"
-=======
-        "text": "Improves cut quality"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Stretches the arc, increasing bevel and dross"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cools the cut"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "A long arc increases divergence and heat loss, worsening dross and angle."
-=======
-      "CHOICE-2": "Too much gap increases bevel angle and slag."
-    }
-  },
-  {
-    "id": "Q-C-10_arc_stretch_gap_v2_08_300000cc",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Excessive standoff/gap in PAC typically:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improves cut quality"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Stretches the arc, increasing bevel and dross"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Has no effect"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Cools the cut"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Too much gap increases bevel angle and slag."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-C-10_consumable_change_v1_08_300000c1",
     "taskId": "C-10",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "A sign PAC consumables need replacement is:",
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Sharper kerf and less bevel"
       },
       {
@@ -241,58 +104,11 @@
       {
         "id": "CHOICE-4",
         "text": "No change at all after many hours"
-=======
-        "text": "Improved cut squareness"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Erratic arc, widening kerf, and dross"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower noise and smoother arc"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Less bevel angle"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Worn nozzle/electrode degrade jet focus and arc stability."
-=======
-      "CHOICE-2": "Worn parts cause unstable arcs and poor cuts."
-    }
-  },
-  {
-    "id": "Q-C-10_consumable_change_v2_07_300000cb",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "A sign PAC consumables need replacement is:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Improved cut squareness"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Erratic arc, widening kerf, and dross"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Lower noise and smoother arc"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Less bevel angle"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Worn parts cause unstable arcs and poor cuts."
->>>>>>> Stashed changes
     }
   },
   {
@@ -303,7 +119,6 @@
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Travel speed too slow or too low amperage"
       },
       {
@@ -322,82 +137,6 @@
     "correctId": "CHOICE-1",
     "rationales": {
       "CHOICE-1": "Too slow or too cold allows molten metal to solidify along the bottom edge."
-=======
-        "text": "Travel speed too fast"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Travel speed too slow"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Current too high only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Wrong shielding gas only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slow travel allows molten metal to solidify along the lower edge."
-    }
-  },
-  {
-    "id": "Q-C-10_dross_slow_speed_v2_00_300000c4",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Heavy bottom dross is usually a sign of:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Travel speed too fast"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Travel speed too slow"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Current too high only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Wrong shielding gas only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slow travel allows molten metal to solidify along the lower edge."
-    }
-  },
-  {
-    "id": "Q-C-10_dross_slow_speed_v2_10_300000ce",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Heavy bottom dross is usually a sign of:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Travel speed too fast"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Travel speed too slow"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Current too high only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Wrong shielding gas only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slow travel allows molten metal to solidify along the lower edge."
->>>>>>> Stashed changes
     }
   },
   {
@@ -408,7 +147,6 @@
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Too slow a travel speed or insufficient current"
       },
       {
@@ -427,26 +165,6 @@
     "correctId": "CHOICE-1",
     "rationales": {
       "CHOICE-1": "Slow/cold cuts leave adherent bottom dross."
-=======
-        "text": "Travel speed too fast"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Travel speed too slow"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Current set too high only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Shielding gas type is wrong"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Slow travel lets molten metal solidify on the lower edge, forming heavy dross."
->>>>>>> Stashed changes
     }
   },
   {
@@ -461,7 +179,6 @@
       },
       {
         "id": "CHOICE-2",
-<<<<<<< Updated upstream
         "text": "On the workpiece side that must meet size/tolerance"
       },
       {
@@ -471,54 +188,11 @@
       {
         "id": "CHOICE-4",
         "text": "Always on the operator’s left"
-=======
-        "text": "On the side where squareness is most critical"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Opposite the direction of travel always"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It does not matter"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "PAC kerf is not perfectly square; orient the torch so the true edge is on the kept side."
-=======
-      "CHOICE-2": "Plan cut direction so the squarer edge is on the finished side."
-    }
-  },
-  {
-    "id": "Q-C-10_good_side_kerf_v2_05_300000c9",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Due to kerf angle in PAC, a good practice is to place the 'good side' of the cut:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "On the scrap side"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "On the side where squareness is most critical"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Opposite the direction of travel always"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "It does not matter"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Plan cut direction so the squarer edge is on the finished side."
->>>>>>> Stashed changes
     }
   },
   {
@@ -529,7 +203,6 @@
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Correct travel speed"
       },
       {
@@ -543,58 +216,11 @@
       {
         "id": "CHOICE-4",
         "text": "Perfect angularity"
-=======
-        "text": "Correct speed and current"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Travel speed too fast"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Travel speed too slow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Proper height only"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "If the jet lags too far, travel is too fast for full penetration."
-=======
-      "CHOICE-2": "Excess speed increases lag/drag lines; adjust speed or current."
-    }
-  },
-  {
-    "id": "Q-C-10_lag_lines_v2_06_300000ca",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Prominent lag lines trailing far behind the torch usually indicate:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Correct speed and current"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Travel speed too fast"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Travel speed too slow"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Proper height only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Excess speed increases lag/drag lines; adjust speed or current."
->>>>>>> Stashed changes
     }
   },
   {
@@ -605,7 +231,6 @@
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "Start right on the plate surface to reduce blowback"
       },
       {
@@ -619,73 +244,21 @@
       {
         "id": "CHOICE-4",
         "text": "Lower amperage to minimum and drag the tip"
-=======
-        "text": "Pierce at cut height to save time"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Pierce at a higher pierce height, then lower to cut height"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Pierce with the nozzle touching"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Never pierce—edge start only"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Piercing higher/angled directs molten ejecta away from the orifices."
-=======
-      "CHOICE-2": "Higher pierce height protects consumables from molten blowback."
-    }
-  },
-  {
-    "id": "Q-C-10_pierce_height_v2_04_300000c8",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "A good practice for piercing with PAC is to:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Pierce at cut height to save time"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Pierce at a higher pierce height, then lower to cut height"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Pierce with the nozzle touching"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Never pierce—edge start only"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Higher pierce height protects consumables from molten blowback."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-C-10_pilot_arc_start_v1_04_300000bd",
     "taskId": "C-10",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What is the advantage of pilot-arc or HF start in PAC?",
     "choices": [
       {
         "id": "CHOICE-1",
-<<<<<<< Updated upstream
         "text": "No need for a power source"
       },
       {
@@ -699,86 +272,11 @@
       {
         "id": "CHOICE-4",
         "text": "Allows cutting of any non‑conductive materials"
-=======
-        "text": "Requires scraping the nozzle on the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Initiates the arc without dragging the nozzle"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduces need for PPE"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increases consumable wear"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Pilot/HF start lights the arc without tip contact, reducing wear."
-=======
-      "CHOICE-2": "Non-contact starts protect the nozzle and improve reliability."
-    }
-  },
-  {
-    "id": "Q-C-10_pilot_arc_start_v2_03_300000c7",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "What is the advantage of pilot-arc or HF start in PAC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Requires scraping the nozzle on the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Initiates the arc without dragging the nozzle"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduces need for PPE"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increases consumable wear"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Non-contact starts protect the nozzle and improve reliability."
-    }
-  },
-  {
-    "id": "Q-C-10_pilot_arc_start_v3_02_300000d1",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "What is the advantage of pilot-arc or HF start in PAC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Requires scraping the nozzle on the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Initiates the arc without dragging the nozzle"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Reduces need for PPE"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Increases consumable wear"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Non-contact starts protect the nozzle and improve reliability."
->>>>>>> Stashed changes
     }
   },
   {
@@ -810,99 +308,9 @@
     }
   },
   {
-<<<<<<< Updated upstream
     "id": "Q-C-10_standoff_1000003d",
     "taskId": "C-10",
     "difficulty": "medium",
-=======
-    "id": "Q-C-10_polarity_common_v2_01_300000c5",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Which polarity is typical for air plasma cutting systems?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEN (electrode negative)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (electrode positive)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either polarity with no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Air plasma torches commonly use DCEN (electrode negative)."
-    }
-  },
-  {
-    "id": "Q-C-10_polarity_common_v3_00_300000cf",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Which polarity is typical for air plasma cutting systems?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEN (electrode negative)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (electrode positive)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either polarity with no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Air plasma torches commonly use DCEN (electrode negative)."
-    }
-  },
-  {
-    "id": "Q-C-10_polarity_pac_1000003f",
-    "taskId": "C-10",
-    "difficulty": "medium",
-    "stem": "Which polarity is typical for air plasma cutting systems?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEN (electrode negative)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "DCEP (electrode positive)"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Either polarity with no effect"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Air plasma torches commonly use DCEN: electrode negative, work positive."
-    }
-  },
-  {
-    "id": "Q-C-10_standoff_1000003d",
-    "taskId": "C-10",
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
     "choices": [
       {
@@ -928,7 +336,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
     "id": "Q-C-10P_0001",
     "taskId": "C-10",
     "difficulty": "medium",
@@ -977,33 +384,10 @@
       {
         "id": "CHOICE-4",
         "text": "Reduce the standoff to zero"
-=======
-    "id": "Q-C-10_standoff_control_v1_00_300000b9",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Always drag the tip regardless of design"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Maintain the proper standoff/drag per torch design to protect consumables"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Closer is always better"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Farther is always better"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "A pressure drop under load points to inadequate flow or a restrictive/undersized air supply path."
     }
   },
@@ -1056,37 +440,10 @@
       {
         "id": "CHOICE-4",
         "text": "Pierce on the very edge of the part"
-=======
-      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
-    }
-  },
-  {
-    "id": "Q-C-10_standoff_control_v1_10_300000c3",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Always drag the tip regardless of design"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Maintain the proper standoff/drag per torch design to protect consumables"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Closer is always better"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Farther is always better"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Extra height and a slight tilt during the pierce reduce molten blowback onto the nozzle and extend consumable life."
     }
   },
@@ -1111,37 +468,10 @@
       {
         "id": "CHOICE-4",
         "text": "No lead‑in at all — start right on the contour"
-=======
-      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
-    }
-  },
-  {
-    "id": "Q-C-10_standoff_control_v2_09_300000cd",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "How should torch standoff be managed in plasma arc cutting (PAC)?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Always drag the tip regardless of design"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Maintain the proper standoff/drag per torch design to protect consumables"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Closer is always better"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Farther is always better"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Place lead‑in/out on the scrap side so start/stop defects never land on the finished edge."
     }
   },
@@ -1222,37 +552,10 @@
       {
         "id": "CHOICE-4",
         "text": "Increase standoff to 5–6 mm"
-=======
-      "CHOICE-2": "Correct standoff prevents nozzle damage and preserves cut quality."
-    }
-  },
-  {
-    "id": "Q-C-10_start_methods_10000041",
-    "taskId": "C-10",
-    "difficulty": "easy",
-    "stem": "What is the advantage of pilot‑arc or HF start in PAC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "They require scraping the nozzle on the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "They initiate the arc without dragging the nozzle"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "They reduce the need for shielding"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "They increase consumable wear"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "In corners/exits the jet loses energy; a brief slow‑down keeps the jet trailing under control and reduces dross."
     }
   },
@@ -1534,9 +837,6 @@
     "correctId": "CHOICE-1",
     "rationales": {
       "CHOICE-1": "A mechanical stand‑off helps hold a constant height during manual cutting, improving cut quality."
-=======
-      "CHOICE-2": "Non‑contact starts protect the nozzle and improve reliability."
->>>>>>> Stashed changes
     }
   }
 ]

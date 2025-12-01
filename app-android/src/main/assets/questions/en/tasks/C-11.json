@@ -1,6 +1,5 @@
 [
   {
-<<<<<<< Updated upstream
     "id": "Q-C-11_polarity_caca_10000042",
     "taskId": "C-11",
     "difficulty": "medium",
@@ -21,243 +20,17 @@
       {
         "id": "CHOICE-4",
         "text": "Any polarity is fine"
-=======
-    "id": "Q-C-11_ac_electrode_type_v1_04_300000d6",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "If CAC-A must be performed on AC, you should use:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Standard DC gouging carbons"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC-rated gouging electrodes designed for AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any carbon rod available"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A wooden dowel"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "DCEP helps blow molten metal out of the groove effectively."
-=======
-      "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
-    }
-  },
-  {
-    "id": "Q-C-11_ac_electrode_type_v1_09_300000db",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "If CAC-A must be performed on AC, you should use:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Standard DC gouging carbons"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC-rated gouging electrodes designed for AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any carbon rod available"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A wooden dowel"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
-    }
-  },
-  {
-    "id": "Q-C-11_ac_electrode_type_v2_03_300000e0",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "If CAC-A must be performed on AC, you should use:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Standard DC gouging carbons"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC-rated gouging electrodes designed for AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any carbon rod available"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A wooden dowel"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
-    }
-  },
-  {
-    "id": "Q-C-11_ac_electrode_type_v2_08_300000e5",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "If CAC-A must be performed on AC, you should use:",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Standard DC gouging carbons"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "AC-rated gouging electrodes designed for AC"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Any carbon rod available"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "A wooden dowel"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
-    }
-  },
-  {
-    "id": "Q-C-11_air_supply_10000043",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "What air supply is required for CAC‑A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Low‑volume air works best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High‑volume, dry air to blow molten metal clear"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No air is needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Use oxygen for faster gouging"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A high‑volume stream of dry compressed air clears molten metal from the groove."
-    }
-  },
-  {
-    "id": "Q-C-11_air_volume_dry_v1_01_300000d3",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "What air supply is required for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Low-volume air works best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-volume, dry air to blow molten metal clear"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No air is needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Use oxygen for faster gouging"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A high-volume stream of dry compressed air clears molten metal."
-    }
-  },
-  {
-    "id": "Q-C-11_air_volume_dry_v1_06_300000d8",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "What air supply is required for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Low-volume air works best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-volume, dry air to blow molten metal clear"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No air is needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Use oxygen for faster gouging"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A high-volume stream of dry compressed air clears molten metal."
-    }
-  },
-  {
-    "id": "Q-C-11_air_volume_dry_v2_00_300000dd",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "What air supply is required for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Low-volume air works best"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "High-volume, dry air to blow molten metal clear"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No air is needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Use oxygen for faster gouging"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A high-volume stream of dry compressed air clears molten metal."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-C-11_air_volume_dry_v2_05_300000e2",
     "taskId": "C-11",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "What air supply is required for CAC-A?",
     "choices": [
       {
@@ -311,7 +84,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
     "id": "Q-C-11_ac_electrode_type_v1_04_300000d6",
     "taskId": "C-11",
     "difficulty": "medium",
@@ -332,271 +104,17 @@
       {
         "id": "CHOICE-4",
         "text": "A wooden dowel"
-=======
-    "id": "Q-C-11_lead_angle_v1_02_300000d4",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "What is a typical electrode lead angle for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Push 90° straight into the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lead the electrode about 15–20° in the travel direction"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Drag opposite the travel 45°"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Special AC-rated carbons are required for stable AC gouging."
-=======
-      "CHOICE-2": "A small lead angle directs molten metal out of the gouge."
-    }
-  },
-  {
-    "id": "Q-C-11_lead_angle_v1_07_300000d9",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "What is a typical electrode lead angle for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Push 90° straight into the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lead the electrode about 15–20° in the travel direction"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Drag opposite the travel 45°"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A small lead angle directs molten metal out of the gouge."
-    }
-  },
-  {
-    "id": "Q-C-11_lead_angle_v2_01_300000de",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "What is a typical electrode lead angle for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Push 90° straight into the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lead the electrode about 15–20° in the travel direction"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Drag opposite the travel 45°"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A small lead angle directs molten metal out of the gouge."
-    }
-  },
-  {
-    "id": "Q-C-11_lead_angle_v2_06_300000e3",
-    "taskId": "C-11",
-    "difficulty": "medium",
-    "stem": "What is a typical electrode lead angle for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Push 90° straight into the work"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Lead the electrode about 15–20° in the travel direction"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "Drag opposite the travel 45°"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Point straight down"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "A small lead angle directs molten metal out of the gouge."
-    }
-  },
-  {
-    "id": "Q-C-11_polarity_caca_10000042",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for air carbon arc gouging (CAC‑A) with DC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (straight polarity)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (reverse polarity)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any polarity is fine"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "DCEP helps blow molten metal out of the groove effectively."
-    }
-  },
-  {
-    "id": "Q-C-11_polarity_dcep_v1_00_300000d2",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for air carbon arc gouging (CAC-A) with DC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (straight polarity)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (reverse polarity)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any polarity is fine"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "DCEP helps project molten metal out of the groove."
-    }
-  },
-  {
-    "id": "Q-C-11_polarity_dcep_v1_05_300000d7",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for air carbon arc gouging (CAC-A) with DC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (straight polarity)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (reverse polarity)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any polarity is fine"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "DCEP helps project molten metal out of the groove."
-    }
-  },
-  {
-    "id": "Q-C-11_polarity_dcep_v1_10_300000dc",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for air carbon arc gouging (CAC-A) with DC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (straight polarity)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (reverse polarity)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any polarity is fine"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "DCEP helps project molten metal out of the groove."
-    }
-  },
-  {
-    "id": "Q-C-11_polarity_dcep_v2_04_300000e1",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which polarity is standard for air carbon arc gouging (CAC-A) with DC?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "DCEN (straight polarity)"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "DCEP (reverse polarity)"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "AC only"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Any polarity is fine"
-      }
-    ],
-    "correctId": "CHOICE-2",
-    "rationales": {
-      "CHOICE-2": "DCEP helps project molten metal out of the groove."
->>>>>>> Stashed changes
     }
   },
   {
     "id": "Q-C-11_ppe_caca_10000045",
     "taskId": "C-11",
-<<<<<<< Updated upstream
     "difficulty": "medium",
-=======
-    "difficulty": "easy",
->>>>>>> Stashed changes
     "stem": "Which PPE is most appropriate for CAC‑A?",
     "choices": [
       {
@@ -622,7 +140,6 @@
     }
   },
   {
-<<<<<<< Updated upstream
     "id": "Q-C-11P_EN_0001",
     "taskId": "C-11",
     "difficulty": "medium",
@@ -671,33 +188,10 @@
       {
         "id": "CHOICE-4",
         "text": "Either AC or DCEN only"
-=======
-    "id": "Q-C-11_ppe_heavy_v1_03_300000d5",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which PPE is most appropriate for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Light gloves and safety glasses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Heavy PPE: face shield, hearing protection, leathers"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No hearing protection needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Sunglasses are sufficient"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Standard DC CAC‑A uses DCEP for stable arc and proper carbon consumption."
     }
   },
@@ -750,37 +244,10 @@
       {
         "id": "CHOICE-4",
         "text": "Feather the air on/off repeatedly while stationary"
-=======
-      "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
-    }
-  },
-  {
-    "id": "Q-C-11_ppe_heavy_v1_08_300000da",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which PPE is most appropriate for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Light gloves and safety glasses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Heavy PPE: face shield, hearing protection, leathers"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No hearing protection needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Sunglasses are sufficient"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Having air on before the strike clears molten metal immediately and reduces carbon deposits in the groove."
     }
   },
@@ -805,37 +272,10 @@
       {
         "id": "CHOICE-4",
         "text": "Torch straight up (90°)"
-=======
-      "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
-    }
-  },
-  {
-    "id": "Q-C-11_ppe_heavy_v2_02_300000df",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which PPE is most appropriate for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Light gloves and safety glasses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Heavy PPE: face shield, hearing protection, leathers"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No hearing protection needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Sunglasses are sufficient"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "A 15–30° drag angle gives directional control and helps the air jet lift molten metal."
     }
   },
@@ -860,37 +300,10 @@
       {
         "id": "CHOICE-4",
         "text": "Spray water to cool and weld immediately"
-=======
-      "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
-    }
-  },
-  {
-    "id": "Q-C-11_ppe_heavy_v2_07_300000e4",
-    "taskId": "C-11",
-    "difficulty": "easy",
-    "stem": "Which PPE is most appropriate for CAC-A?",
-    "choices": [
-      {
-        "id": "CHOICE-1",
-        "text": "Light gloves and safety glasses"
-      },
-      {
-        "id": "CHOICE-2",
-        "text": "Heavy PPE: face shield, hearing protection, leathers"
-      },
-      {
-        "id": "CHOICE-3",
-        "text": "No hearing protection needed"
-      },
-      {
-        "id": "CHOICE-4",
-        "text": "Sunglasses are sufficient"
->>>>>>> Stashed changes
       }
     ],
     "correctId": "CHOICE-2",
     "rationales": {
-<<<<<<< Updated upstream
       "CHOICE-2": "Carbon contamination must be removed on stainless to avoid embrittlement/porosity—grind to bright metal."
     }
   },
@@ -1284,9 +697,6 @@
     "correctId": "CHOICE-1",
     "rationales": {
       "CHOICE-1": "A shallower angle with quicker, light passes reduces bite‑in and lets you ‘skim’ the weld metal off."
-=======
-      "CHOICE-2": "CAC-A is loud and ejects hot metal; robust PPE is required."
->>>>>>> Stashed changes
     }
   }
 ]
