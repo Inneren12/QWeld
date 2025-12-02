@@ -310,7 +310,6 @@ internal fun ExamScreenContent(
         modifier = Modifier
           .fillMaxSize()
           .padding(paddingValues)
-          .padding(WindowInsets.systemBars.asPaddingValues())
           .imePadding(),
         contentAlignment = Alignment.Center,
       ) {
@@ -329,8 +328,6 @@ internal fun ExamScreenContent(
         modifier = Modifier
           .fillMaxSize()
           .padding(paddingValues)
-          .padding(WindowInsets.systemBars.asPaddingValues())
-          .padding(horizontal = 20.dp, vertical = 16.dp)
           .verticalScroll(scrollState)
           .imePadding()
           .testTag("exam-content"),

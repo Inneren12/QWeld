@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+
 import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,6 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -78,6 +80,8 @@ fun AppNavGraph(
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
   val user by authService.currentUser.collectAsStateWithLifecycle(initialValue = null)
   val context = LocalContext.current
   val scope = rememberCoroutineScope()
@@ -179,38 +183,40 @@ fun AppNavGraph(
   Scaffold(
     modifier = modifier,
     topBar = {
-      TopBarMenus(
-        user = user,
-        onNavigateToSync = {
-          Timber.i("[ui_nav] screen=Sync")
-          navController.navigate(Routes.SYNC) { launchSingleTop = true }
-        },
-        onNavigateToSettings = {
-          Timber.i("[ui_nav] screen=Settings")
-          navController.navigate(Routes.SETTINGS) { launchSingleTop = true }
-        },
-        onNavigateToAbout = {
-          Timber.i("[ui_nav] screen=About")
-          navController.navigate(Routes.ABOUT) { launchSingleTop = true }
-        },
-        onSignOut = {
-          scope.launch {
-            runCatching { authService.signOut() }
-              .onSuccess { navigateToAuth() }
-              .onFailure { Timber.e(it, "Sign out failed") }
-          }
-        },
-        onExportLogs =
-          if (logExportActions != null) {
-            {
-              showLogDialog = true
-            }
-          } else {
-            null
-          },
-        currentLocaleTag = appLocale,
-        onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
-      )
+        if (currentRoute != Routes.EXAM) {
+            TopBarMenus(
+                user = user,
+                onNavigateToSync = {
+                    Timber.i("[ui_nav] screen=Sync")
+                    navController.navigate(Routes.SYNC) { launchSingleTop = true }
+                                   },
+                onNavigateToSettings = {
+                    Timber.i("[ui_nav] screen=Settings")
+                    navController.navigate(Routes.SETTINGS) { launchSingleTop = true }
+                                       },
+                onNavigateToAbout = {
+                    Timber.i("[ui_nav] screen=About")
+                    navController.navigate(Routes.ABOUT) { launchSingleTop = true }
+                                    },
+                onSignOut = {
+                    scope.launch {
+                        runCatching { authService.signOut() }
+                            .onSuccess { navigateToAuth() }
+                            .onFailure { Timber.e(it, "Sign out failed") }
+                    }
+                            },
+                onExportLogs =
+                    if (logExportActions != null) {
+                        {
+                            showLogDialog = true
+                        }
+                    } else {
+                        null
+                           },
+                currentLocaleTag = appLocale,
+                onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
+                )
+        }
     },
   ) { innerPadding ->
     NavHost(
