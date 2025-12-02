@@ -1,8 +1,5 @@
 package com.qweld.app.navigation
 
-import android.app.Activity
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,9 +31,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.qweld.app.BuildConfig
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
@@ -48,6 +42,9 @@ import com.qweld.app.data.logging.writeTo
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.auth.AuthService
+import com.qweld.app.feature.auth.DefaultGoogleCredentialSignInManager
+import com.qweld.app.feature.auth.GoogleCredentialSignInManager
+import com.qweld.app.feature.auth.GoogleSignInCancelledException
 import com.qweld.app.feature.auth.R
 import com.qweld.app.feature.auth.ui.LinkAccountScreen
 import com.qweld.app.feature.auth.ui.SignInScreen
@@ -90,14 +87,12 @@ fun AppNavGraph(
   val missingTokenText = stringResource(id = R.string.auth_error_missing_token)
   var isLoading by remember { mutableStateOf(false) }
   var errorMessage by remember { mutableStateOf<String?>(null) }
-  var pendingGoogleAction by remember { mutableStateOf<GoogleAction?>(null) }
-  val googleSignInClient = remember {
-    val options =
-      GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(context.getString(com.qweld.app.R.string.default_web_client_id))
-        .requestEmail()
-        .build()
-    GoogleSignIn.getClient(context, options)
+
+  // Initialize Google Credential Sign-In Manager
+  val googleCredentialSignInManager: GoogleCredentialSignInManager = remember {
+    DefaultGoogleCredentialSignInManager(
+      serverClientId = context.getString(com.qweld.app.R.string.default_web_client_id)
+    )
   }
 
   val appLocale by userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
@@ -120,46 +115,48 @@ fun AppNavGraph(
     }
   }
 
-  val googleLauncher =
-    rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-      val action = pendingGoogleAction
-      pendingGoogleAction = null
-      if (result.resultCode == Activity.RESULT_OK && action != null) {
-        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-        try {
-          val account = task.getResult(ApiException::class.java)
-          val idToken = account?.idToken
-          if (idToken != null) {
-            runAuthAction(
-              scope = scope,
-              setLoading = { isLoading = it },
-              setError = { errorMessage = it },
-              defaultError = genericErrorText,
-            ) {
+  // Function to handle Google Sign-In using Credential Manager
+  fun startGoogle(action: GoogleAction) {
+    errorMessage = null
+    isLoading = true
+    scope.launch {
+      try {
+        // Get Google ID token via Credential Manager
+        val result = googleCredentialSignInManager.signInWithGoogleIdToken(context)
+
+        result.fold(
+          onSuccess = { idToken ->
+            // Use the existing auth service methods
+            try {
               when (action) {
                 GoogleAction.SignIn -> authService.signInWithGoogle(idToken)
                 GoogleAction.Link -> authService.linkAnonymousToGoogle(idToken)
               }
+              errorMessage = null
+            } catch (exception: Exception) {
+              Timber.e(exception, "Firebase auth failed")
+              errorMessage = exception.localizedMessage?.takeIf { it.isNotBlank() }
+                ?: genericErrorText
             }
-            return@rememberLauncherForActivityResult
-          } else {
-            errorMessage = missingTokenText
+          },
+          onFailure = { exception ->
+            when (exception) {
+              is GoogleSignInCancelledException -> {
+                Timber.d("User cancelled Google Sign-In")
+                errorMessage = googleCancelledText
+              }
+              else -> {
+                Timber.e(exception, "Google Sign-In failed")
+                errorMessage = exception.localizedMessage?.takeIf { it.isNotBlank() }
+                  ?: genericErrorText
+              }
+            }
           }
-        } catch (exception: ApiException) {
-          Timber.e(exception, "Google sign-in failed")
-          errorMessage = exception.localizedMessage ?: googleCancelledText
-        }
-      } else if (action != null) {
-        errorMessage = googleCancelledText
+        )
+      } finally {
+        isLoading = false
       }
-      isLoading = false
     }
-
-  fun startGoogle(action: GoogleAction) {
-    pendingGoogleAction = action
-    errorMessage = null
-    isLoading = true
-    googleLauncher.launch(googleSignInClient.signInIntent)
   }
 
   LaunchedEffect(user) {
