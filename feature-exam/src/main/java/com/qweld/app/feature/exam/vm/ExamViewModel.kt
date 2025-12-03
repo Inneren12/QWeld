@@ -1462,7 +1462,6 @@ class ExamViewModel(
     private const val IP_MOCK_PASS_THRESHOLD = 70
     private const val AUTOSAVE_INTERVAL_SEC = 10
 
-    @VisibleForTesting
     internal fun resolvePracticeTasks(
       blueprint: ExamBlueprint,
       scope: PracticeScope,
@@ -1491,7 +1490,6 @@ class ExamViewModel(
       return ordered
     }
 
-    @VisibleForTesting
     internal fun resolvePracticeQuotas(
       blueprint: ExamBlueprint,
       scope: PracticeScope,

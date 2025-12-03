@@ -200,7 +200,7 @@ private fun highlightGlossaryText(
   }
 }
 
-internal suspend fun loadGlossaryFromAssets(
+internal fun loadGlossaryFromAssets(
   context: Context,
   locale: Locale,
   json: Json = defaultGlossaryJson,

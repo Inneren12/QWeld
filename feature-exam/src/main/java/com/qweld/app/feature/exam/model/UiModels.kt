@@ -44,7 +44,6 @@ data class ExamAttemptUiState(
 
   fun canGoPrevious(): Boolean = mode != ExamMode.IP_MOCK && currentIndex > 0
 
-  fun progressLabel(): String = if (questions.isEmpty()) "0 / 0" else "${currentIndex + 1} / ${questions.size}"
 }
 
 data class ExamQuestionUiModel(

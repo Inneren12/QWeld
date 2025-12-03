@@ -3,7 +3,6 @@ package com.qweld.app.feature.exam.ui
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -14,6 +13,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.testTag
+import androidx.compose.material.icons.automirrored.outlined.ExitToApp
 
 @Composable
 internal fun ExitTopBarAction(
@@ -27,7 +27,7 @@ internal fun ExitTopBarAction(
       .testTag("btn-exit")
       .semantics { role = Role.Button },
   ) {
-    Icon(imageVector = Icons.Outlined.ExitToApp, contentDescription = null)
+      Icon(imageVector = Icons.AutoMirrored.Outlined.ExitToApp, contentDescription = null)
     Spacer(modifier = Modifier.width(8.dp))
     Text(text = label)
   }

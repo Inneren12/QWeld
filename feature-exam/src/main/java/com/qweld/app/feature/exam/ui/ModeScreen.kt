@@ -1,6 +1,5 @@
 package com.qweld.app.feature.exam.ui
 
-import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,16 +29,16 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.qweld.app.feature.exam.R
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
-import com.qweld.app.data.prefs.UserPrefsDataStore
+import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository.LoadResult
 import com.qweld.app.feature.exam.navigation.ExamDestinations
@@ -49,16 +48,16 @@ import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.RepeatMistakesAvailability
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.Locale
 import timber.log.Timber
+import java.util.Locale
 
 @Composable
 fun ModeScreen(
   repository: AssetQuestionRepository,
   viewModel: ExamViewModel,
   practiceShortcuts: PracticeShortcuts,
-  practiceConfig: PracticeConfig = PracticeConfig(),
   modifier: Modifier = Modifier,
+  practiceConfig: PracticeConfig = PracticeConfig(),
   navController: NavHostController,
   appLocaleTag: String = UserPrefsDataStore.DEFAULT_APP_LOCALE,
   onPracticeSizeCommit: (Int) -> Unit = {},
@@ -200,14 +199,14 @@ fun ModeScreen(
           prewarmState.isRunning -> stringResource(id = R.string.mode_status_preparing)
           else -> null
         }
-      if (!prewarmDisabled && prewarmState.isRunning) {
-        LinearProgressIndicator(
-          progress = prewarmState.progressFraction,
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp),
-        )
-      }
+        if (!prewarmDisabled && prewarmState.isRunning) {
+            LinearProgressIndicator(
+                progress = { prewarmState.progressFraction },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+            )
+        }
       if (statusText != null) {
         Text(
           modifier = Modifier
@@ -362,11 +361,8 @@ private fun resolvedLanguageFromLocaleTag(
 
 
 private fun resolveLanguage(configuration: android.content.res.Configuration): String {
-  val language = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-    configuration.locales.takeIf { it.size() > 0 }?.get(0)?.language
-  } else {
-    @Suppress("DEPRECATION")
-    configuration.locale?.language
-  }
-  return language?.takeIf { it.isNotBlank() } ?: Locale.ENGLISH.language
+    val language =
+        configuration.locales.takeIf { it.size() > 0 }?.get(0)?.language
+
+    return language?.takeIf { it.isNotBlank() } ?: Locale.ENGLISH.language
 }

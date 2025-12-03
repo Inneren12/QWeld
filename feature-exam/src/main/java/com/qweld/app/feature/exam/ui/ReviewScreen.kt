@@ -16,10 +16,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
@@ -50,7 +50,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.qweld.app.data.analytics.Analytics
@@ -60,18 +59,18 @@ import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.model.ReviewChoiceUiModel
 import com.qweld.app.feature.exam.model.ReviewQuestionUiModel
-import com.qweld.app.feature.exam.vm.ReviewSearchHighlights
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModel
+import com.qweld.app.feature.exam.vm.ReviewFilters
 import com.qweld.app.feature.exam.vm.ReviewListItem
+import com.qweld.app.feature.exam.vm.ReviewSearchHighlights
+import com.qweld.app.feature.exam.vm.ReviewTotals
 import com.qweld.app.feature.exam.vm.ReviewViewModel
 import com.qweld.app.feature.exam.vm.ReviewViewModelFactory
-import com.qweld.app.feature.exam.vm.ReviewFilters
-import com.qweld.app.feature.exam.vm.ReviewTotals
-import timber.log.Timber
-import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -486,7 +485,7 @@ private fun ReviewQuestionCard(
           ChoiceSummary(choice = choice, highlightedText = choiceText)
         }
       }
-      Divider()
+        HorizontalDivider()
       if (selectedChoice != null) {
         Text(
           text = stringResource(
@@ -514,7 +513,7 @@ private fun ReviewQuestionCard(
         )
       }
       question.rationale?.let { rationale ->
-        Divider()
+        HorizontalDivider()
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
           Text(
             text = stringResource(id = R.string.review_rationale_label),

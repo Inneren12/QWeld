@@ -46,6 +46,7 @@ object ExamDestinations {
 
 @Composable
 fun ExamNavGraph(
+    modifier: Modifier = Modifier,
   navController: NavHostController,
   repository: AssetQuestionRepository,
   explanationRepository: AssetExplanationRepository,
@@ -57,7 +58,6 @@ fun ExamNavGraph(
   userPrefs: UserPrefsDataStore,
   prewarmConfig: PrewarmConfig = PrewarmConfig(),
   appLocaleTag: String,
-  modifier: Modifier = Modifier,
 ) {
   val attemptExporter =
     remember(attemptsRepository, answersRepository, appVersion) {
