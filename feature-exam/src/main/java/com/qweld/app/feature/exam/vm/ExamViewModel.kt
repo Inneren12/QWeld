@@ -63,6 +63,32 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
 
+/**
+ * ViewModel responsible for managing the exam/practice flow.
+ *
+ * ## Responsibilities:
+ * 1. **Exam Assembly & Starting**: Load questions, assemble exams, handle errors
+ * 2. **Resume Logic**: Detect and resume unfinished attempts with timer restoration
+ * 3. **Navigation**: Handle question navigation with mode-specific rules
+ * 4. **Answer Handling**: Submit and persist answers with time tracking
+ * 5. **Finishing**: Calculate scores, persist results, navigate to result screen
+ * 6. **Timer Management**: Start/resume/stop timers for timed exams (IP_MOCK)
+ * 7. **Autosave**: Periodic background persistence of answers
+ * 8. **Prewarming**: Pre-cache questions before starting exams
+ * 9. **Abort/Restart**: Abandon or restart current attempts
+ * 10. **State Management**: Convert domain models to UI state
+ *
+ * ## Architecture:
+ * - Uses separate controllers for autosave (AutosaveController) and prewarming (PrewarmController)
+ * - Uses separate use cases for resume logic (ResumeUseCase) and prewarming (PrewarmUseCase)
+ * - Timer logic uses TimerController from domain layer
+ * - Repositories handle persistence (AttemptsRepository, AnswersRepository)
+ *
+ * ## Testing:
+ * - All dependencies are injectable for testability
+ * - Providers (seedProvider, nowProvider, etc.) allow deterministic testing
+ * - IO operations use injected dispatcher for test control
+ */
 class ExamViewModel(
   private val repository: AssetQuestionRepository,
   private val attemptsRepository: AttemptsRepository,
@@ -125,6 +151,8 @@ class ExamViewModel(
 
   val lastPracticeScope = userPrefs.readLastPracticeScope()
 
+  // region Session Management
+
   private fun recordLastSession(
     mode: ExamMode,
     locale: String,
@@ -154,6 +182,17 @@ class ExamViewModel(
     }
   }
 
+  // endregion
+
+  // region Exam Assembly & Starting
+
+  /**
+   * Starts a new exam or practice attempt.
+   * Loads questions, assembles the exam, and initializes state.
+   * For IP_MOCK exams, starts the timer automatically.
+   *
+   * @return true if the attempt was successfully started, false otherwise
+   */
   fun startAttempt(
     mode: ExamMode,
     locale: String,
@@ -400,6 +439,14 @@ class ExamViewModel(
     return false
   }
 
+  // endregion
+
+  // region Resume Logic
+
+  /**
+   * Detects if there's an unfinished attempt and shows resume dialog.
+   * Handles locale mismatches and expired timers.
+   */
   fun detectResume(deviceLocale: String) {
     viewModelScope.launch {
       val unfinished = withContext(ioDispatcher) { attemptsRepository.getUnfinished() }
@@ -619,6 +666,15 @@ class ExamViewModel(
     }
   }
 
+  // endregion
+
+  // region Answer Handling
+
+  /**
+   * Submits an answer for the current question.
+   * Answers are locked after first submission (cannot be changed).
+   * Automatically persists via autosave controller.
+   */
   fun submitAnswer(choiceId: String) {
     val attemptResult = currentAttempt ?: return
     val assembledQuestion = attemptResult.attempt.questions.getOrNull(attemptResult.currentIndex) ?: return
@@ -668,6 +724,14 @@ class ExamViewModel(
     refreshState()
   }
 
+  // endregion
+
+  // region Finishing
+
+  /**
+   * Finishes the current exam, calculates score, and persists results.
+   * Stops timer, flushes autosave, and navigates to result screen.
+   */
   fun finishExam() {
     val attemptResult = currentAttempt ?: return
     if (hasFinished) return
@@ -721,6 +785,14 @@ class ExamViewModel(
     _events.tryEmit(ExamEvent.NavigateToResult)
   }
 
+  // endregion
+
+  // region Navigation
+
+  /**
+   * Navigates to the next question.
+   * Does nothing if already at the last question.
+   */
   fun nextQuestion() {
     val attemptResult = currentAttempt ?: return
     val attempt = attemptResult.attempt
@@ -730,6 +802,11 @@ class ExamViewModel(
     refreshState()
   }
 
+  /**
+   * Navigates to the previous question.
+   * Only allowed in PRACTICE mode (disabled for IP_MOCK).
+   * Does nothing if already at the first question.
+   */
   fun previousQuestion() {
     val attemptResult = currentAttempt ?: return
     if (attemptResult.attempt.mode == ExamMode.IP_MOCK) return
@@ -738,6 +815,10 @@ class ExamViewModel(
     currentAttempt = attemptResult.copy(currentIndex = prevIndex)
     refreshState()
   }
+
+  // endregion
+
+  // region UI State Management
 
   fun dismissDeficitDialog() {
     _uiState.value = _uiState.value.copy(deficitDialog = null)
@@ -751,6 +832,15 @@ class ExamViewModel(
     _effects.emit(ExamEffect.NavigateToMode)
   }
 
+  // endregion
+
+  // region Abort & Restart
+
+  /**
+   * Restarts the current attempt with the same configuration.
+   * For PRACTICE mode, emits effect to restart with stored config.
+   * For IP_MOCK mode, starts a new attempt immediately.
+   */
   fun restartAttempt() {
     val attemptResult = currentAttempt
     if (attemptResult == null) {
@@ -801,6 +891,14 @@ class ExamViewModel(
     _effects.tryEmit(ExamEffect.ShowError(message))
   }
 
+  // endregion
+
+  // region State Refresh & UI Mapping
+
+  /**
+   * Refreshes UI state from current attempt data.
+   * Converts domain models to UI models and updates mutable state.
+   */
   private fun refreshState() {
     val attemptResult = currentAttempt
     if (attemptResult == null) {
@@ -848,6 +946,14 @@ class ExamViewModel(
     currentAttempt = attemptResult.copy(currentIndex = index)
   }
 
+  // endregion
+
+  // region Prewarming
+
+  /**
+   * Pre-caches questions for IP_MOCK exams to improve start performance.
+   * Only runs if prewarming is not disabled in user preferences.
+   */
   fun startPrewarmForIpMock(locale: String) {
     if (_prewarmDisabled.value) return
     val normalizedLocale = locale.lowercase(Locale.US)
@@ -982,10 +1088,18 @@ class ExamViewModel(
     questionSeenAt.putIfAbsent(questionId, nowProvider())
   }
 
+  // endregion
+
+  // region Timer Management
+
   fun requireLatestResult(): ExamResultData {
     return checkNotNull(latestResult) { "Result is not available" }
   }
 
+  /**
+   * Starts a new timer for IP_MOCK exams.
+   * Timer runs for 4 hours and automatically finishes exam when expired.
+   */
   private fun startTimer() {
     stopTimer(clearLabel = true)
     manualTimerRemaining = null
@@ -1012,6 +1126,10 @@ class ExamViewModel(
     }
   }
 
+  /**
+   * Resumes a timer with the given remaining duration.
+   * Used when resuming an interrupted IP_MOCK exam.
+   */
   private fun resumeTimer(initialRemaining: Duration) {
     stopTimer(clearLabel = true)
     manualTimerRemaining = initialRemaining
@@ -1041,6 +1159,9 @@ class ExamViewModel(
     }
   }
 
+  /**
+   * Stops the timer and optionally clears the timer label from UI.
+   */
   private fun stopTimer(clearLabel: Boolean) {
     timerJob?.cancel()
     timerJob = null
@@ -1058,6 +1179,14 @@ class ExamViewModel(
     }
   }
 
+  // endregion
+
+  // region Helper Methods
+
+  /**
+   * Finalizes an expired attempt by calculating score from saved answers.
+   * Used when resume is attempted but timer has expired.
+   */
   private suspend fun finalizeExpiredAttempt(
     attempt: AttemptEntity,
     mode: ExamMode,
@@ -1212,6 +1341,56 @@ class ExamViewModel(
       wrongBiased,
     )
   }
+
+  // endregion
+
+  // region Autosave
+
+  fun autosaveFlush(force: Boolean = true) {
+    autosaveController?.flush(force)
+  }
+
+  private fun prepareAutosave(attemptId: String) {
+    autosaveController?.flush(force = true)
+    stopAutosaveTicker()
+    val controller =
+      AutosaveController(
+        attemptId = attemptId,
+        answersRepository = answersRepository,
+        scope = viewModelScope,
+        ioDispatcher = ioDispatcher,
+      )
+    controller.configure(AUTOSAVE_INTERVAL_SEC)
+    autosaveController = controller
+    startAutosaveTicker()
+  }
+
+  private fun startAutosaveTicker() {
+    stopAutosaveTicker()
+    val controller = autosaveController ?: return
+    autosaveTickerJob =
+      viewModelScope.launch {
+        while (isActive) {
+          delay(controller.intervalMillis)
+          controller.onTick()
+        }
+      }
+  }
+
+  private fun stopAutosaveTicker() {
+    autosaveTickerJob?.cancel()
+    autosaveTickerJob = null
+  }
+
+  override fun onCleared() {
+    autosaveController?.flush(force = true)
+    stopAutosaveTicker()
+    super.onCleared()
+  }
+
+  // endregion
+
+  // region Events & Effects
 
   sealed interface ExamEvent {
     data object NavigateToResult : ExamEvent
@@ -1411,49 +1590,6 @@ class ExamViewModel(
       }
       return Outcome.Ok(questions.filter { it.taskId == taskId && it.locale.equals("en", ignoreCase = true) })
     }
-  }
-
-
-  fun autosaveFlush(force: Boolean = true) {
-    autosaveController?.flush(force)
-  }
-
-  private fun prepareAutosave(attemptId: String) {
-    autosaveController?.flush(force = true)
-    stopAutosaveTicker()
-    val controller =
-      AutosaveController(
-        attemptId = attemptId,
-        answersRepository = answersRepository,
-        scope = viewModelScope,
-        ioDispatcher = ioDispatcher,
-      )
-    controller.configure(AUTOSAVE_INTERVAL_SEC)
-    autosaveController = controller
-    startAutosaveTicker()
-  }
-
-  private fun startAutosaveTicker() {
-    stopAutosaveTicker()
-    val controller = autosaveController ?: return
-    autosaveTickerJob =
-      viewModelScope.launch {
-        while (isActive) {
-          delay(controller.intervalMillis)
-          controller.onTick()
-        }
-      }
-  }
-
-  private fun stopAutosaveTicker() {
-    autosaveTickerJob?.cancel()
-    autosaveTickerJob = null
-  }
-
-  override fun onCleared() {
-    autosaveController?.flush(force = true)
-    stopAutosaveTicker()
-    super.onCleared()
   }
 
   companion object {
