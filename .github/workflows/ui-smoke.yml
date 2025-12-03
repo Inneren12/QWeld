@@ -1,68 +1,76 @@
 name: Android UI smoke
 
 on:
-    push:
-        branches:
-            - main
-            - feature/android-skeleton
-            - feature/f8-hardening
-    pull_request:
-        branches:
-            - '*'
+  push:
+    branches:
+      - main
+      - feature/android-skeleton
+      - feature/f8-hardening
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
-    ui-smoke:
-        runs-on: ubuntu-latest
-        continue-on-error: true
-        timeout-minutes: 45
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Prepare google-services.json
-              if: ${{ secrets.GOOGLE_SERVICES_JSON_B64 != '' }}
-              env:
-                  GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
-              run: |
-                  set -euo pipefail
-                  mkdir -p app-android
-                  echo "${GOOGLE_SERVICES_JSON_B64}" | base64 -d > app-android/google-services.json
-            - name: Export ANDROID_SDK_ROOT
-              run: echo "ANDROID_SDK_ROOT=$RUNNER_TEMP/android-sdk" >> $GITHUB_ENV
-            - name: Guard ANDROID_SDK_ROOT is resolvable
-              run: |
-                  echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
-                  test -d "$RUNNER_TEMP"
-                  test "$ANDROID_SDK_ROOT" != "/android-sdk"
-            - name: Verify no bidi chars in workflows
-              run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
+  ui-smoke:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 45
 
-            - name: Set up JDK 21
-              uses: actions/setup-java@v4
-              with:
-                  distribution: temurin
-                  java-version: '21'
+    env:
+      # Прокидываем secret в env
+      GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
 
-            - name: Setup Gradle
-              uses: gradle/actions/setup-gradle@v3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Setup Android SDK
-              uses: android-actions/setup-android@v3
-              with:
-                  packages: ''
+      - name: Prepare google-services.json
+        # Условие уже по env, а не по secrets
+        if: ${{ env.GOOGLE_SERVICES_JSON_B64 != '' }}
+        run: |
+          set -euo pipefail
+          mkdir -p app-android
+          echo "${GOOGLE_SERVICES_JSON_B64}" | base64 -d > app-android/google-services.json
 
-            - name: Remove local.properties
-              run: rm -f local.properties
+      - name: Export ANDROID_SDK_ROOT
+        run: echo "ANDROID_SDK_ROOT=$RUNNER_TEMP/android-sdk" >> $GITHUB_ENV
 
-            - name: Grant execute permission for gradlew
-              run: chmod +x gradlew
+      - name: Guard ANDROID_SDK_ROOT is resolvable
+        run: |
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          test -d "$RUNNER_TEMP"
+          test "$ANDROID_SDK_ROOT" != "/android-sdk"
 
-            - name: Run UI smoke tests
-              uses: reactivecircus/android-emulator-runner@v2
-              with:
-                  api-level: 36
-                  system-image-api-level: 34
-                  target: google_apis
-                  arch: x86_64
-                  profile: pixel_6
-                  emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-                  script: ./gradlew :app-android:assembleDebug :app-android:assembleDebugAndroidTest connectedDebugAndroidTest -x lint -x test --no-daemon --stacktrace
+      - name: Verify no bidi chars in workflows
+        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+
+      - name: Remove local.properties
+        run: rm -f local.properties
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run UI smoke tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          system-image-api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          script: ./gradlew :app-android:assembleDebug :app-android:assembleDebugAndroidTest connectedDebugAndroidTest -x lint -x test --no-daemon --stacktrace
