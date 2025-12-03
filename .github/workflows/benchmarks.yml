@@ -28,7 +28,7 @@ jobs:
       - name: Setup Gradle (cache & config)
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Sanity: verify plugin repository resolution
+      - name: "Sanity: verify plugin repository resolution"
         run: |
           grep -n "gradlePluginPortal" settings.gradle.kts || (echo "gradlePluginPortal missing" && exit 1)
           ./gradlew --version --no-daemon
