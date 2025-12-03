@@ -10,15 +10,8 @@ import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
-import java.io.InputStream
-import java.time.Clock
-import java.time.Instant
-import java.time.ZoneOffset
-import java.util.Locale
-import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.annotations.BenchmarkMode
@@ -29,10 +22,17 @@ import org.openjdk.jmh.annotations.Scope
 import org.openjdk.jmh.annotations.Setup
 import org.openjdk.jmh.annotations.State
 import org.openjdk.jmh.infra.Blackhole
+import java.io.InputStream
+import java.time.Clock
+import java.time.Instant
+import java.time.ZoneOffset
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Suppress("unused") // used by JMH via reflection
 open class ExamAssemblyBenchmark {
   private val json = Json { ignoreUnknownKeys = true }
   private lateinit var blueprint: ExamBlueprint

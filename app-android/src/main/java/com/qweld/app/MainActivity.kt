@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
     lifecycleScope.launch {
       userPrefs.analyticsEnabled.collect { enabled -> analytics.setEnabled(enabled) }
     }
-    Firebase.crashlytics.setCrashlyticsCollectionEnabled(BuildConfig.ENABLE_ANALYTICS)
+      Firebase.crashlytics.isCrashlyticsCollectionEnabled = BuildConfig.ENABLE_ANALYTICS
     setContent { QWeldAppRoot(analytics = analytics, userPrefs = userPrefs) }
   }
 }

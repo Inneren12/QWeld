@@ -1,19 +1,20 @@
 package com.qweld.app.navigation
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-
-import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -26,20 +27,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.qweld.app.BuildConfig
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
-import com.qweld.app.data.repo.AnswersRepository
-import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogExportFormat
 import com.qweld.app.data.logging.writeTo
 import com.qweld.app.data.prefs.UserPrefsDataStore
+import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.auth.AuthService
 import com.qweld.app.feature.auth.DefaultGoogleCredentialSignInManager
@@ -59,7 +61,6 @@ import com.qweld.app.ui.TopBarMenus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppNavGraph(
@@ -115,51 +116,54 @@ fun AppNavGraph(
     }
   }
 
-  // Function to handle Google Sign-In using Credential Manager
-  fun startGoogle(action: GoogleAction) {
-    errorMessage = null
-    isLoading = true
-    scope.launch {
-      try {
-        // Get Google ID token via Credential Manager
-        val result = googleCredentialSignInManager.signInWithGoogleIdToken(context)
-
-        result.fold(
-          onSuccess = { idToken ->
-            // Use the existing auth service methods
+    fun startGoogle(action: GoogleAction) {
+        errorMessage = null
+        isLoading = true
+        scope.launch {
             try {
-              when (action) {
-                GoogleAction.SignIn -> authService.signInWithGoogle(idToken)
-                GoogleAction.Link -> authService.linkAnonymousToGoogle(idToken)
-              }
-              errorMessage = null
-            } catch (exception: Exception) {
-              Timber.e(exception, "Firebase auth failed")
-              errorMessage = exception.localizedMessage?.takeIf { it.isNotBlank() }
-                ?: genericErrorText
-            }
-          },
-          onFailure = { exception ->
-            when (exception) {
-              is GoogleSignInCancelledException -> {
-                Timber.d("User cancelled Google Sign-In")
-                errorMessage = googleCancelledText
-              }
-              else -> {
-                Timber.e(exception, "Google Sign-In failed")
-                errorMessage = exception.localizedMessage?.takeIf { it.isNotBlank() }
-                  ?: genericErrorText
-              }
-            }
-          }
-        )
-      } finally {
-        isLoading = false
-      }
-    }
-  }
+                val result = googleCredentialSignInManager.signInWithGoogleIdToken(context)
 
-  LaunchedEffect(user) {
+                result.fold(
+                    onSuccess = { idToken ->
+                        val token = idToken.takeIf { it.isNotBlank() }
+                        if (token == null) {
+                            Timber.e("[auth] Missing idToken from Google sign-in result")
+                            errorMessage = missingTokenText
+                        } else {
+                            try {
+                                when (action) {
+                                    GoogleAction.SignIn -> authService.signInWithGoogle(token)
+                                    GoogleAction.Link -> authService.linkAnonymousToGoogle(token)
+                                }
+                                errorMessage = null
+                            } catch (exception: Exception) {
+                                Timber.e(exception, "Firebase auth failed")
+                                errorMessage =
+                                    exception.localizedMessage?.takeIf { it.isNotBlank() } ?: genericErrorText
+                            }
+                        }
+                    },
+                    onFailure = { exception ->
+                        when (exception) {
+                            is GoogleSignInCancelledException -> {
+                                Timber.d("User cancelled Google Sign-In")
+                                errorMessage = googleCancelledText
+                            }
+                            else -> {
+                                Timber.e(exception, "Google Sign-In failed")
+                                errorMessage =
+                                    exception.localizedMessage?.takeIf { it.isNotBlank() } ?: genericErrorText
+                            }
+                        }
+                    },
+                )
+            } finally {
+                isLoading = false
+            }
+        }
+    }
+
+    LaunchedEffect(user) {
     val currentRoute = navController.currentBackStackEntry?.destination?.route
     val u = user
     if (u == null) {

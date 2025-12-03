@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -33,7 +33,7 @@ fun AboutScreen(
     verticalArrangement = Arrangement.spacedBy(24.dp),
   ) {
     Text(text = stringResource(id = R.string.about_title), style = MaterialTheme.typography.headlineMedium)
-    Divider()
+      HorizontalDivider()
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
       val privacyUrl = stringResource(R.string.privacy_url)
       val contentPolicyUrl = stringResource(R.string.content_policy_url)
@@ -49,7 +49,7 @@ fun AboutScreen(
         Text(text = stringResource(id = R.string.about_contact))
       }
     }
-    Divider()
+      HorizontalDivider()
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
       Text(text = stringResource(R.string.about_diagnostics_title), style = MaterialTheme.typography.titleMedium)
       Text(
