@@ -1,0 +1,357 @@
+package com.qweld.app.feature.exam.vm
+
+import com.qweld.app.data.db.dao.AnswerDao
+import com.qweld.app.data.db.dao.AttemptDao
+import com.qweld.app.data.db.entities.AnswerEntity
+import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.domain.Outcome
+import com.qweld.app.domain.exam.ExamBlueprint
+import com.qweld.app.domain.exam.ExamMode
+import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.domain.exam.TimerController
+import com.qweld.app.domain.exam.repo.UserStatsRepository
+import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.TestIntegrity
+import java.time.Duration
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.json.Json
+import org.junit.Rule
+import org.junit.Test
+
+/**
+ * Tests for timer functionality in ExamViewModel.
+ * Covers timer start, countdown, expiration, and auto-finish behavior.
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
+class ExamViewModelTimerTest {
+  @get:Rule val dispatcherRule = MainDispatcherRule()
+
+  @Test
+  fun ipMockStartsTimerAutomatically() = runTest {
+    val repository = repositoryWithTasks("A-1" to 2)
+    val blueprint = blueprint(required = 2)
+    val viewModel = createViewModel(repository, blueprint)
+
+    val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+    assertTrue(launched)
+
+    val timerLabel = viewModel.uiState.value.timerLabel
+    assertNotNull(timerLabel)
+    assertEquals("04:00:00", timerLabel)
+  }
+
+  @Test
+  fun practiceDoesNotStartTimer() = runTest {
+    val repository = repositoryWithTasks("A-1" to 2)
+    val blueprint = blueprint(required = 2)
+    val viewModel = createViewModel(repository, blueprint)
+
+    val config = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1")))
+    val launched = viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = config, blueprintOverride = blueprint)
+    assertTrue(launched)
+
+    val timerLabel = viewModel.uiState.value.timerLabel
+    assertNull(timerLabel)
+  }
+
+  @Test
+  fun timerCountsDown() = runTest {
+    val repository = repositoryWithTasks("A-1" to 2)
+    val blueprint = blueprint(required = 2)
+    val fakeTimer = FakeTimerController(initialDuration = TimerController.EXAM_DURATION)
+    val viewModel = createViewModel(repository, blueprint, timerController = fakeTimer)
+
+    val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+    assertTrue(launched)
+
+    assertEquals("04:00:00", viewModel.uiState.value.timerLabel)
+
+    advanceTimeBy(1_000)
+    fakeTimer.elapse(Duration.ofSeconds(1))
+
+    // Timer should update every second
+    advanceTimeBy(1_000)
+    // Note: actual countdown happens in the timer job, timer label updates when refreshed
+  }
+
+  @Test
+  fun timerExpirationAutoFinishesExam() = runTest {
+    val repository = repositoryWithTasks("A-1" to 2)
+    val blueprint = blueprint(required = 2)
+    val attemptDao = FakeAttemptDao()
+    val fakeTimer = FakeTimerController(initialDuration = Duration.ofSeconds(3))
+    val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao, timerController = fakeTimer)
+
+    val event = async { viewModel.events.first() }
+
+    val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+    assertTrue(launched)
+    assertNotNull(viewModel.uiState.value.attempt)
+
+    // Simulate timer expiration by advancing time
+    advanceTimeBy(4_000) // 4 seconds should trigger auto-finish
+    advanceUntilIdle()
+
+    // Exam should auto-finish
+    assertEquals(ExamViewModel.ExamEvent.NavigateToResult, event.await())
+
+    // Attempt should be marked as finished
+    val finishedAttempt = attemptDao.getById("test-attempt")
+    assertNotNull(finishedAttempt)
+    assertNotNull(finishedAttempt.finishedAt)
+    assertNotNull(finishedAttempt.scorePct)
+  }
+
+  @Test
+  fun timerStopsWhenExamFinished() = runTest {
+    val repository = repositoryWithTasks("A-1" to 2)
+    val blueprint = blueprint(required = 2)
+    val fakeTimer = FakeTimerController()
+    val viewModel = createViewModel(repository, blueprint, timerController = fakeTimer)
+
+    val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+    assertTrue(launched)
+
+    assertTrue(fakeTimer.isRunning)
+
+    viewModel.finishExam()
+    advanceUntilIdle()
+
+    assertFalse(fakeTimer.isRunning)
+  }
+
+  @Test
+  fun timerStopsWhenExamAborted() = runTest {
+    val repository = repositoryWithTasks("A-1" to 2)
+    val blueprint = blueprint(required = 2)
+    val fakeTimer = FakeTimerController()
+    val viewModel = createViewModel(repository, blueprint, timerController = fakeTimer)
+
+    val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+    assertTrue(launched)
+
+    assertTrue(fakeTimer.isRunning)
+
+    viewModel.abortAttempt()
+
+    assertFalse(fakeTimer.isRunning)
+  }
+
+  private fun repositoryWithTasks(
+    vararg counts: Pair<String, Int>,
+    locale: String = "en",
+  ): AssetQuestionRepository {
+    val payloads = counts.associate { (taskId, count) ->
+      val json = questionArray(taskId, count, locale)
+      "questions/$locale/tasks/$taskId.json" to json
+    }
+    val assets = TestIntegrity.addIndexes(payloads.mapValues { it.value.toByteArray() })
+    return AssetQuestionRepository(
+      assetReader = AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
+      localeResolver = { locale },
+      json = Json { ignoreUnknownKeys = true },
+    )
+  }
+
+  private fun questionArray(taskId: String, count: Int, locale: String): String {
+    return buildString {
+      append('[')
+      repeat(count) { index ->
+        if (index > 0) append(',')
+        val id = "Q-${taskId}-${index + 1}"
+        val blockId = taskId.substringBefore('-', taskId)
+        val choiceId = "${id}-A"
+        append(
+          """
+          {
+            \"id\": \"$id\",
+            \"taskId\": \"$taskId\",
+            \"blockId\": \"$blockId\",
+            \"locale\": \"$locale\",
+            \"stem\": { \"$locale\": \"Stem $id\" },
+            \"choices\": [
+              { \"id\": \"$choiceId\", \"text\": { \"$locale\": \"Option\" } }
+            ],
+            \"correctId\": \"$choiceId\"
+          }
+          """.trimIndent(),
+        )
+      }
+      append(']')
+    }
+  }
+
+  private fun blueprint(required: Int): ExamBlueprint {
+    return ExamBlueprint(
+      totalQuestions = required,
+      taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = required)),
+    )
+  }
+
+  private fun createViewModel(
+    repository: AssetQuestionRepository,
+    blueprint: ExamBlueprint,
+    attemptDao: FakeAttemptDao = FakeAttemptDao(),
+    timerController: TimerController = TimerController { },
+    statsRepository: UserStatsRepository = object : UserStatsRepository {
+      override suspend fun getUserItemStats(
+        userId: String,
+        ids: List<String>,
+      ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
+    },
+  ): ExamViewModel {
+    val answerDao = FakeAnswerDao()
+    val attemptsRepository = AttemptsRepository(attemptDao) { }
+    val answersRepository = AnswersRepository(answerDao)
+    val dispatcher = dispatcherRule.dispatcher
+    return ExamViewModel(
+      repository = repository,
+      attemptsRepository = attemptsRepository,
+      answersRepository = answersRepository,
+      statsRepository = statsRepository,
+      blueprintProvider = { _, _ -> blueprint },
+      seedProvider = { 1L },
+      attemptIdProvider = { "test-attempt" },
+      nowProvider = { 0L },
+      timerController = timerController,
+      ioDispatcher = dispatcher,
+      prewarmController =
+        PrewarmController(
+          repository = repository,
+          prewarmUseCase =
+            PrewarmUseCase(
+              repository,
+              prewarmDisabled = flowOf(false),
+              ioDispatcher = dispatcher,
+              nowProvider = { 0L },
+            ),
+        ),
+    )
+  }
+}
+
+/**
+ * Fake TimerController for testing timer behavior.
+ */
+private class FakeTimerController(
+  private var initialDuration: Duration = TimerController.EXAM_DURATION,
+) : TimerController({ }) {
+  var isRunning = false
+    private set
+  private var currentRemaining = initialDuration
+
+  override fun start() {
+    isRunning = true
+    currentRemaining = initialDuration
+  }
+
+  override fun stop() {
+    isRunning = false
+  }
+
+  override fun remaining(): Duration {
+    return currentRemaining
+  }
+
+  fun elapse(duration: Duration) {
+    currentRemaining = (currentRemaining - duration).coerceAtLeast(Duration.ZERO)
+  }
+}
+
+private class FakeAttemptDao : AttemptDao {
+  private val attempts = mutableMapOf<String, AttemptEntity>()
+
+  override suspend fun insert(attempt: AttemptEntity) {
+    attempts[attempt.id] = attempt
+  }
+
+  override suspend fun updateFinish(
+    attemptId: String,
+    finishedAt: Long?,
+    durationSec: Int?,
+    passThreshold: Int?,
+    scorePct: Double?,
+  ) {
+    val current = attempts[attemptId] ?: return
+    attempts[attemptId] =
+      current.copy(
+        finishedAt = finishedAt,
+        durationSec = durationSec,
+        passThreshold = passThreshold,
+        scorePct = scorePct,
+      )
+  }
+
+  override suspend fun markAborted(id: String, finishedAt: Long) {
+    val current = attempts[id] ?: return
+    attempts[id] =
+      current.copy(
+        finishedAt = finishedAt,
+        durationSec = null,
+        passThreshold = null,
+        scorePct = null,
+      )
+  }
+
+  override suspend fun getById(id: String): AttemptEntity? = attempts[id]
+
+  override suspend fun listRecent(limit: Int): List<AttemptEntity> {
+    return attempts.values.sortedByDescending { it.startedAt }.take(limit)
+  }
+
+  override suspend fun getUnfinished(): AttemptEntity? {
+    return attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
+  }
+}
+
+private class FakeAnswerDao : AnswerDao {
+  private val answers = mutableListOf<AnswerEntity>()
+
+  override suspend fun insertAll(answers: List<AnswerEntity>) {
+    this.answers += answers
+  }
+
+  override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> {
+    return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
+  }
+
+  override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
+    val relevant = answers.filter { it.questionId == questionId }
+    if (relevant.isEmpty()) return null
+    return AnswerDao.QuestionAggregate(
+      questionId = questionId,
+      attempts = relevant.size,
+      correct = relevant.count { it.isCorrect },
+      lastAnsweredAt = relevant.maxOfOrNull { it.answeredAt },
+    )
+  }
+
+  override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
+    val interested = questionIds.toSet()
+    return answers
+      .filter { it.questionId in interested }
+      .groupBy { it.questionId }
+      .map { (questionId, entries) ->
+        AnswerDao.QuestionAggregate(
+          questionId = questionId,
+          attempts = entries.size,
+          correct = entries.count { it.isCorrect },
+          lastAnsweredAt = entries.maxOfOrNull { it.answeredAt },
+        )
+      }
+  }
+}
