@@ -1,41 +1,50 @@
 name: Android CI
 
 on:
-    push:
-        branches:
-            - feature/android-skeleton
-            - main
-    pull_request:
-        branches:
-            - '*'
+  push:
+    branches:
+      - feature/android-skeleton
+      - main
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Validate Gradle Wrapper
-              uses: gradle/wrapper-validation-action@v2
-            - name: Prepare google-services.json
-              if: ${{ secrets.GOOGLE_SERVICES_JSON_B64 != '' }}
-              env:
-                  GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
-              run: |
-                  set -euo pipefail
-                  mkdir -p app-android
-                  echo "${GOOGLE_SERVICES_JSON_B64}" | base64 -d > app-android/google-services.json
-            - name: Export ANDROID_SDK_ROOT
-              run: echo "ANDROID_SDK_ROOT=$RUNNER_TEMP/android-sdk" >> $GITHUB_ENV
-            - name: Verify no bidi chars in workflows
-              run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
+  build:
+    runs-on: ubuntu-latest
 
-            - name: Set up JDK 21
-              uses: actions/setup-java@v4
-              with:
-                  distribution: temurin
-                  java-version: '21'
-                  cache: gradle
+    # Прокидываем secret в env на уровне job
+    env:
+      GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v2
+
+      - name: Prepare google-services.json
+        # Условие уже по env, не по secrets
+        if: ${{ env.GOOGLE_SERVICES_JSON_B64 != '' }}
+        run: |
+          set -euo pipefail
+          mkdir -p app-android
+          echo "${GOOGLE_SERVICES_JSON_B64}" | base64 -d > app-android/google-services.json
+
+      - name: Export ANDROID_SDK_ROOT
+        run: echo "ANDROID_SDK_ROOT=$RUNNER_TEMP/android-sdk" >> $GITHUB_ENV
+
+      # дальше всё как у тебя…
+      - name: Verify no bidi chars in workflows
+        run: '! grep -P "[\x{200E}\x{200F}\x{202A}-\x{202E}]" -R .github/workflows'
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
 
             - name: Verify Java toolchain
               run: |
