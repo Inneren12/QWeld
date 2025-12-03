@@ -6,7 +6,6 @@ import android.os.Build
 import com.qweld.app.data.content.questions.AssetIntegrityGuard
 import com.qweld.app.data.content.questions.IndexParser
 import com.qweld.app.data.content.questions.IntegrityMismatchException
-import com.qweld.app.feature.exam.data.Io
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
 import java.io.FileNotFoundException
@@ -187,16 +186,22 @@ class AssetQuestionRepository internal constructor(
         )
       }
       is AssetPayload.Error -> {
-        val reason = outcome.throwable.toReason(prefix = "bank_asset_error")
+        val bankPath = "questions/$resolvedLocale/bank.v1.json"
+        val error = ContentLoadError.fromThrowable(
+          throwable = outcome.throwable,
+          context = "bank_loading",
+          locale = resolvedLocale,
+          path = bankPath,
+        )
         Logx.e(
           LogTag.LOAD,
           "bank_error",
           outcome.throwable,
           "locale" to resolvedLocale,
           "task" to "*",
-          "reason" to reason,
+          "error" to error.diagnosticMessage,
         )
-        return LoadResult.Corrupt(reason)
+        return LoadResult.Corrupt(error)
       }
     }
 
@@ -224,16 +229,21 @@ class AssetQuestionRepository internal constructor(
         LoadResult.Missing
       }
       is AssetPayload.Error -> {
-        val reason = outcome.throwable.toReason(prefix = "raw_asset_error")
+        val error = ContentLoadError.fromThrowable(
+          throwable = outcome.throwable,
+          context = "raw_files_loading",
+          locale = resolvedLocale,
+          path = "questions/$resolvedLocale",
+        )
         Logx.e(
           LogTag.LOAD,
           "raw_error",
           outcome.throwable,
           "locale" to resolvedLocale,
           "task" to "*",
-          "reason" to reason,
+          "error" to error.diagnosticMessage,
         )
-        LoadResult.Corrupt(reason)
+        LoadResult.Corrupt(error)
       }
     }
   }
@@ -390,6 +400,13 @@ class AssetQuestionRepository internal constructor(
             val bytes = stream.use { it.readBytes() }
             AssetPayload.Success(reader(bytes))
           } catch (throwable: Throwable) {
+            Logx.w(
+              LogTag.LOAD,
+              "asset_read_error",
+              throwable,
+              "path" to path,
+              "locale" to "none",
+            )
             AssetPayload.Error(throwable)
           }
         }
@@ -400,10 +417,33 @@ class AssetQuestionRepository internal constructor(
           val bytes = integrity.guard.readVerified(preferred, fallback)
           AssetPayload.Success(reader(bytes))
         } catch (error: FileNotFoundException) {
+          Logx.w(
+            LogTag.LOAD,
+            "asset_not_found",
+            "path" to path,
+            "locale" to locale,
+          )
           AssetPayload.Missing
         } catch (error: IntegrityMismatchException) {
+          Logx.e(
+            LogTag.LOAD,
+            "integrity_failed",
+            error,
+            "path" to path,
+            "locale" to locale,
+            "expected" to (error.expected ?: "none"),
+            "actual" to (error.actual ?: "none"),
+          )
           AssetPayload.Error(error)
         } catch (error: Throwable) {
+          Logx.e(
+            LogTag.LOAD,
+            "asset_error",
+            error,
+            "path" to path,
+            "locale" to locale,
+            "type" to error.javaClass.simpleName,
+          )
           AssetPayload.Error(error)
         }
       }
@@ -426,9 +466,31 @@ class AssetQuestionRepository internal constructor(
       if (cached != null) return cached
 
       val indexPath = "$QUESTIONS_ROOT/$locale/index.json"
-      val manifest =
-        assetReader.open(indexPath)?.use { stream -> integrityParser.parse(stream) }
-          ?: throw FileNotFoundException(indexPath)
+      val stream = assetReader.open(indexPath)
+      if (stream == null) {
+        Logx.w(
+          LogTag.INTEGRITY,
+          "manifest_missing",
+          "locale" to locale,
+          "path" to indexPath,
+        )
+        throw FileNotFoundException(indexPath)
+      }
+
+      val manifest = try {
+        stream.use { integrityParser.parse(it) }
+      } catch (error: Exception) {
+        Logx.e(
+          LogTag.INTEGRITY,
+          "manifest_parse_error",
+          error,
+          "locale" to locale,
+          "path" to indexPath,
+          "type" to error.javaClass.simpleName,
+        )
+        throw error
+      }
+
       val guard =
         AssetIntegrityGuard(
           manifest = manifest,
@@ -527,7 +589,16 @@ class AssetQuestionRepository internal constructor(
 
     object Missing : LoadResult()
 
-    data class Corrupt(val reason: String) : LoadResult()
+    /**
+     * Content is present but corrupted, invalid, or otherwise unusable.
+     *
+     * @param error Typed error information for diagnostics and UI presentation
+     * @param reason Backward-compatible string reason (derived from error.diagnosticMessage)
+     */
+    data class Corrupt(
+      val error: ContentLoadError,
+      val reason: String = error.diagnosticMessage,
+    ) : LoadResult()
   }
 
   private fun Throwable.toReason(prefix: String): String {

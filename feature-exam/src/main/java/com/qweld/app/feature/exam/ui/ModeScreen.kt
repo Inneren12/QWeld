@@ -105,10 +105,27 @@ fun ModeScreen(
   LaunchedEffect(resolvedLanguage, repository) {
     when (val result = repository.loadQuestions(resolvedLanguage)) {
       is LoadResult.Success -> Unit
-      LoadResult.Missing -> showBankMissingMessage(snackbarHostState, context, resolvedLanguage)
+      LoadResult.Missing -> {
+        Timber.w("[mode_bank_missing] locale=%s", resolvedLanguage)
+        showContentErrorMessage(
+          snackbarHostState = snackbarHostState,
+          context = context,
+          locale = resolvedLanguage,
+          message = context.getString(R.string.mode_bank_missing, resolvedLanguage.uppercase(Locale.US)),
+        )
+      }
       is LoadResult.Corrupt -> {
-        Timber.w("[mode_bank_corrupt] locale=%s reason=%s", resolvedLanguage, result.reason)
-        showBankMissingMessage(snackbarHostState, context, resolvedLanguage)
+        Timber.e(
+          "[mode_bank_corrupt] locale=%s error=%s",
+          resolvedLanguage,
+          result.error.diagnosticMessage,
+        )
+        showContentErrorMessage(
+          snackbarHostState = snackbarHostState,
+          context = context,
+          locale = resolvedLanguage,
+          message = result.error.toUserFriendlyMessage(context, resolvedLanguage),
+        )
       }
     }
   }
@@ -337,14 +354,57 @@ fun ModeScreen(
   }
 }
 
-private suspend fun showBankMissingMessage(
+private suspend fun showContentErrorMessage(
   snackbarHostState: SnackbarHostState,
   context: android.content.Context,
   locale: String,
+  message: String,
 ) {
-  val displayLocale = locale.uppercase(Locale.US)
-  val message = context.getString(R.string.mode_bank_missing, displayLocale)
   snackbarHostState.showSnackbar(message)
+}
+
+/**
+ * Converts ContentLoadError to a user-friendly message suitable for UI display.
+ * Provides specific guidance based on error type while avoiding technical jargon.
+ */
+private fun com.qweld.app.feature.exam.data.ContentLoadError.toUserFriendlyMessage(
+  context: android.content.Context,
+  currentLocale: String,
+): String {
+  val displayLocale = currentLocale.uppercase(Locale.US)
+  return when (this) {
+    is com.qweld.app.feature.exam.data.ContentLoadError.MissingManifest ->
+      "Content index missing for $displayLocale. Please reinstall the app."
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.InvalidManifest ->
+      "Content index corrupted for $displayLocale. Please reinstall the app."
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.MissingTaskFile ->
+      "Questions for task $taskId not found. Please reinstall the app."
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.TaskFileReadError ->
+      "Cannot read questions for task $taskId. Please reinstall the app."
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.IntegrityMismatch ->
+      "Content verification failed for $displayLocale. App data may be corrupted. Please reinstall."
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.InvalidJson ->
+      "Question data corrupted for $displayLocale. Please reinstall the app."
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.UnsupportedLocale -> {
+      val available = availableLocales.joinToString(", ") { it.uppercase(Locale.US) }
+      "Language $displayLocale not supported. Available: $available"
+    }
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.MissingBank ->
+      context.getString(R.string.mode_bank_missing, displayLocale)
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.BankFileError ->
+      "Question bank corrupted for $displayLocale. Please reinstall the app."
+
+    is com.qweld.app.feature.exam.data.ContentLoadError.Unknown ->
+      "Unexpected error loading questions for $displayLocale. Please try again or reinstall the app."
+  }
 }
 
 private fun resolvedLanguageFromLocaleTag(

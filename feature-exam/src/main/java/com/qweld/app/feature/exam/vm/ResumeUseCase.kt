@@ -65,11 +65,42 @@ class ResumeUseCase(
         }
         AssetQuestionRepository.LoadResult.Missing ->
           return Outcome.Err.ContentNotFound("questions/$normalizedLocale")
-        is AssetQuestionRepository.LoadResult.Corrupt ->
-          return Outcome.Err.SchemaViolation(
-            path = "questions/$normalizedLocale",
-            reason = questionsResult.reason,
-          )
+        is AssetQuestionRepository.LoadResult.Corrupt -> {
+          // Map ContentLoadError to appropriate Outcome.Err type
+          return when (val error = questionsResult.error) {
+            is com.qweld.app.feature.exam.data.ContentLoadError.IntegrityMismatch ->
+              Outcome.Err.SchemaViolation(
+                path = error.path,
+                reason = "Integrity check failed: expected=${error.expectedHash} actual=${error.actualHash}",
+              )
+            is com.qweld.app.feature.exam.data.ContentLoadError.InvalidJson,
+            is com.qweld.app.feature.exam.data.ContentLoadError.InvalidManifest ->
+              Outcome.Err.SchemaViolation(
+                path = when (error) {
+                  is com.qweld.app.feature.exam.data.ContentLoadError.InvalidJson -> error.path
+                  is com.qweld.app.feature.exam.data.ContentLoadError.InvalidManifest -> error.path
+                  else -> "questions/$normalizedLocale"
+                },
+                reason = error.diagnosticMessage,
+              )
+            is com.qweld.app.feature.exam.data.ContentLoadError.MissingManifest,
+            is com.qweld.app.feature.exam.data.ContentLoadError.MissingTaskFile,
+            is com.qweld.app.feature.exam.data.ContentLoadError.MissingBank ->
+              Outcome.Err.ContentNotFound(
+                when (error) {
+                  is com.qweld.app.feature.exam.data.ContentLoadError.MissingManifest -> error.path
+                  is com.qweld.app.feature.exam.data.ContentLoadError.MissingTaskFile -> error.path
+                  is com.qweld.app.feature.exam.data.ContentLoadError.MissingBank -> error.path
+                  else -> "questions/$normalizedLocale"
+                }
+              )
+            else ->
+              Outcome.Err.SchemaViolation(
+                path = "questions/$normalizedLocale",
+                reason = error.diagnosticMessage,
+              )
+          }
+        }
       }
 
     val assembler =
