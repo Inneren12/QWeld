@@ -154,7 +154,7 @@ class AssetIntegrityGuard(
   private fun readBytes(path: String): ByteArray? {
     return try {
       opener(path).use { stream -> stream.readBytes() }
-    } catch (error: FileNotFoundException) {
+    } catch (_: FileNotFoundException) {
       null
     } catch (error: Exception) {
       Logx.e(
@@ -178,7 +178,7 @@ class AssetIntegrityGuard(
     return builder.toString()
   }
 
-  private data class VerificationResult(
+  private class VerificationResult(
     val path: String,
     val bytes: ByteArray?,
     val expected: String?,

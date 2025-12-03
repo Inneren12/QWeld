@@ -139,9 +139,7 @@ class AutosaveController(
     }
   }
 
-  suspend fun pendingSize(): Int = mutex.withLock { pending.size }
-
-  private suspend fun markClean(ids: List<String>) {
+    private suspend fun markClean(ids: List<String>) {
     mutex.withLock { ids.forEach { id -> pending[id]?.dirty = false } }
   }
 

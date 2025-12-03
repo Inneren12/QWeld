@@ -10,6 +10,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -25,6 +26,7 @@ class PrewarmUseCase(
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val config: PrewarmConfig = PrewarmConfig(),
 ) {
+    @OptIn(ExperimentalCoroutinesApi::class)
   suspend fun prewarm(
     locale: String,
     tasks: Set<String>,
@@ -190,7 +192,7 @@ class PrewarmUseCase(
         "task" to missing.taskId,
         "path" to missing.path,
       )
-    } catch (timeout: TimeoutCancellationException) {
+    } catch (_: TimeoutCancellationException) {
       hadError.set(true)
       Logx.w(
         LogTag.PREWARM,

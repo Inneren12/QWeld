@@ -6,9 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
@@ -18,10 +18,10 @@ import com.qweld.app.domain.exam.ExamAssembler
 import com.qweld.app.domain.exam.ExamAssemblyConfig
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
-import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.QuotaDistributor
 import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -31,33 +31,24 @@ import com.qweld.app.feature.exam.model.ExamAttemptUiState
 import com.qweld.app.feature.exam.model.ExamChoiceUiModel
 import com.qweld.app.feature.exam.model.ExamQuestionUiModel
 import com.qweld.app.feature.exam.model.ExamUiState
-import com.qweld.app.feature.exam.vm.Distribution
-import com.qweld.app.feature.exam.vm.PracticeScope
-import com.qweld.app.feature.exam.vm.ResumeUseCase
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
-import java.time.Duration
-import java.util.Locale
-import java.util.UUID
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.random.Random
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
@@ -65,7 +56,12 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonPrimitive
 import timber.log.Timber
-import kotlinx.coroutines.runBlocking
+import java.time.Duration
+import java.util.Locale
+import java.util.UUID
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.random.Random
 
 class ExamViewModel(
   private val repository: AssetQuestionRepository,
@@ -904,7 +900,7 @@ class ExamViewModel(
       else -> 1
     }
     val clampedLoaded = loaded.coerceIn(0, safeTotal)
-    val isReady = clampedLoaded >= safeTotal && safeTotal > 0
+    val isReady = clampedLoaded >= safeTotal
     updatePrewarmState(
       locale = locale,
       loaded = clampedLoaded,

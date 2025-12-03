@@ -1,5 +1,6 @@
 package com.qweld.core.common.logging
 
+import android.annotation.SuppressLint
 import timber.log.Timber
 
 enum class LogTag(val raw: String) {
@@ -35,6 +36,7 @@ object Logx {
   fun e(tag: LogTag, event: String, throwable: Throwable, vararg kv: Pair<String, Any?>) =
     log(Level.ERROR, tag, event, throwable, kv)
 
+  @SuppressLint("TimberExceptionLogging")
   private fun log(
     level: Level,
     tag: LogTag,

@@ -8,6 +8,7 @@ import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.explain.ExplanationRepositoryImpl
 import com.qweld.app.feature.exam.model.ReviewChoiceUiModel
 import com.qweld.app.feature.exam.model.ReviewQuestionUiModel
+import kotlinx.coroutines.FlowPreview
 import java.util.LinkedHashMap
 import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@OptIn(FlowPreview::class)
 class ReviewViewModel(
   resultData: ExamViewModel.ExamResultData,
   private val analytics: Analytics,

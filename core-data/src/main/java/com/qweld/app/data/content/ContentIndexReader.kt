@@ -4,17 +4,14 @@ import android.content.Context
 import com.qweld.app.data.content.questions.AssetIntegrityGuard
 import com.qweld.app.data.content.questions.IndexParser
 import com.qweld.app.data.content.questions.IntegrityMismatchException
-import java.io.FileNotFoundException
-import java.io.InputStream
-import java.util.LinkedHashMap
-import java.util.Locale
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.put
 import timber.log.Timber
+import java.io.FileNotFoundException
+import java.io.InputStream
+import java.util.Locale
 
 
 class ContentIndexReader

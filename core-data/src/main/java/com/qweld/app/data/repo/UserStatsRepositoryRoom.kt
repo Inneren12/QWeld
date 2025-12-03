@@ -1,16 +1,16 @@
 package com.qweld.app.data.repo
 
-import android.util.Log
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import java.time.Instant
 import kotlinx.coroutines.CancellationException
+import timber.log.Timber
 
 class UserStatsRepositoryRoom(
   private val answerDao: AnswerDao,
-  private val logger: (String) -> Unit = { Log.i(TAG, it) },
+  private val logger: (String) -> Unit = { Timber.tag(TAG).i(it) },
 ) : UserStatsRepository {
   override suspend fun getUserItemStats(
     userId: String,

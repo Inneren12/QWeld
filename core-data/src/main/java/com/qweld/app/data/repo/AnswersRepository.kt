@@ -4,10 +4,6 @@ import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.entities.AnswerEntity
 
 class AnswersRepository(private val answerDao: AnswerDao) {
-  suspend fun saveAll(answers: List<AnswerEntity>) {
-    if (answers.isEmpty()) return
-    answerDao.insertAll(answers)
-  }
 
   suspend fun upsert(answers: List<AnswerEntity>) {
     if (answers.isEmpty()) return

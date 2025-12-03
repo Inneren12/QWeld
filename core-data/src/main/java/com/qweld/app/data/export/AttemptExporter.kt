@@ -1,17 +1,18 @@
 package com.qweld.app.data.export
 
-import android.util.Log
+import android.annotation.SuppressLint
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.mapTaskToBlock
-import java.time.Clock
-import java.time.Instant
-import java.time.format.DateTimeFormatter
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import timber.log.Timber
+import java.time.Clock
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 class AttemptExporter(
   private val attemptsRepository: AttemptsRepository,
@@ -20,7 +21,7 @@ class AttemptExporter(
   private val clock: Clock = Clock.systemUTC(),
   private val versionProvider: () -> String = { "" },
   private val errorLogger: (String, Throwable) -> Unit = { message, throwable ->
-    Log.e(TAG, message, throwable)
+      Timber.tag(TAG).e(throwable, message)
   },
 ) {
   suspend fun exportAttemptJson(attemptId: String): String {
@@ -152,6 +153,7 @@ class AttemptExporter(
   }
 }
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 private data class AttemptExportPayload(
   val schema: String,
@@ -161,6 +163,7 @@ private data class AttemptExportPayload(
   val meta: MetaJson,
 )
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 private data class AttemptSection(
   val id: String,
@@ -175,6 +178,7 @@ private data class AttemptSection(
   val passThreshold: Int?,
 )
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 private data class AnswerJson(
   val schema: String,
@@ -193,18 +197,21 @@ private data class AnswerJson(
   val telemetry: AnswerTelemetryJson,
 )
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 private data class AnswerTelemetryJson(
   val shuffledChoiceOrder: List<String> = listOf("A", "B", "C", "D"),
   val fallbackLocaleUsed: Boolean = false,
 )
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 private data class SummariesJson(
   val byBlock: Map<String, SummaryJson>,
   val byTask: Map<String, SummaryJson>,
 )
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 private data class SummaryJson(
   val total: Int,
@@ -212,6 +219,7 @@ private data class SummaryJson(
   val pct: Double,
 )
 
+@SuppressLint("UnsafeOptInUsageError")
 @Serializable
 private data class MetaJson(
   val appVersion: String,

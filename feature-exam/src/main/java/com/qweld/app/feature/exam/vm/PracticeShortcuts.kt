@@ -10,16 +10,15 @@ import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.mapTaskToBlock
-import java.util.Locale
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.util.Locale
 
 class PracticeShortcuts(
   private val attemptsRepository: AttemptsRepository,

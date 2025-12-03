@@ -1,7 +1,6 @@
 package com.qweld.app.data.prefs
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
@@ -9,8 +8,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.preferencesOf
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.qweld.core.data.BuildConfig
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.util.LinkedHashSet
+import timber.log.Timber
 import java.util.Locale
 
 class UserPrefsDataStore internal constructor(
@@ -34,7 +33,7 @@ class UserPrefsDataStore internal constructor(
       PreferenceDataStoreFactory.create(
         corruptionHandler =
           ReplaceFileCorruptionHandler { throwable ->
-            Log.w(TAG, "[datastore_recover] store=$storeName cause=corruption", throwable)
+              Timber.tag(TAG).w(throwable, "[datastore_recover] store=%s cause=corruption", storeName)
             defaultPreferences()
           },
         scope = scope,
@@ -97,9 +96,6 @@ class UserPrefsDataStore internal constructor(
     }
   }
 
-  @Deprecated("Use fallbackToEN instead", replaceWith = ReplaceWith("fallbackToEN"))
-  val allowFallbackToEN: Flow<Boolean> = fallbackToEN
-
   suspend fun setAnalyticsEnabled(value: Boolean) {
     dataStore.edit { preferences -> preferences[ANALYTICS_ENABLED_KEY] = value }
   }
@@ -120,10 +116,6 @@ class UserPrefsDataStore internal constructor(
 
   suspend fun setFallbackToEN(value: Boolean) {
     dataStore.edit { preferences -> preferences[FALLBACK_TO_EN_KEY] = value }
-  }
-
-  suspend fun setAllowFallbackToEN(value: Boolean) {
-    setFallbackToEN(value)
   }
 
   suspend fun setHapticsEnabled(value: Boolean) {
@@ -177,9 +169,7 @@ class UserPrefsDataStore internal constructor(
     const val DEFAULT_SOUNDS_ENABLED: Boolean = false
     const val DEFAULT_APP_LOCALE: String = "system"
 
-    val PRACTICE_SIZE_PRESETS: Set<Int> = setOf(10, 20, 30)
-
-    private const val DATA_STORE_NAME = "user_prefs"
+      private const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
     private val PREWARM_DISABLED_KEY = booleanPreferencesKey("prewarm_disabled")
     private val PRACTICE_SIZE_KEY = intPreferencesKey("practice_size")

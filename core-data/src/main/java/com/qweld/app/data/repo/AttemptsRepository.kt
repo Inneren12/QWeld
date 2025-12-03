@@ -1,12 +1,12 @@
 package com.qweld.app.data.repo
 
-import android.util.Log
 import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AttemptEntity
+import timber.log.Timber
 
 class AttemptsRepository(
-  private val attemptDao: AttemptDao,
-  private val logger: (String) -> Unit = { Log.i(TAG, it) },
+    private val attemptDao: AttemptDao,
+    private val logger: (String) -> Unit = { Timber.tag(TAG).i(it) },
 ) {
   suspend fun save(attempt: AttemptEntity) {
     attemptDao.insert(attempt)

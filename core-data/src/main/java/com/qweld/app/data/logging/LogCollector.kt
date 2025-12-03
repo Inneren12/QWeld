@@ -1,5 +1,6 @@
 package com.qweld.app.data.logging
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.ContentResolver
 import android.net.Uri
@@ -76,9 +77,7 @@ class LogCollector(
     return "QWeld_Logs_${timestamp}.${format.extension}"
   }
 
-  fun entryCount(): Int = lock.withLock { entries.size }
-
-  private fun normalizeTag(tag: String?): String {
+    private fun normalizeTag(tag: String?): String {
     return tag?.takeIf { it.isNotBlank() } ?: DEFAULT_TAG
   }
 
@@ -136,6 +135,7 @@ class LogCollector(
     val throwable: ThrowableSummary?,
   )
 
+  @SuppressLint("UnsafeOptInUsageError")
   @Serializable
   private data class LogExportPayload(
     val schema: String,
@@ -143,6 +143,7 @@ class LogCollector(
     val entries: List<LogJsonEntry>,
   )
 
+  @SuppressLint("UnsafeOptInUsageError")
   @Serializable
   private data class LogJsonEntry(
     val timestamp: String,
@@ -152,6 +153,7 @@ class LogCollector(
     val error: ThrowableSummary? = null,
   )
 
+  @SuppressLint("UnsafeOptInUsageError")
   @Serializable
   data class ThrowableSummary(
     val type: String,
