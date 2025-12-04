@@ -15,6 +15,7 @@ import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.repo.UserStatsRepository
@@ -55,7 +56,7 @@ fun ExamNavGraph(
   statsRepository: UserStatsRepository,
   appVersion: String,
   analytics: Analytics,
-  userPrefs: UserPrefsDataStore,
+  userPrefs: UserPrefs,
   prewarmConfig: PrewarmConfig = PrewarmConfig(),
   appLocaleTag: String,
 ) {

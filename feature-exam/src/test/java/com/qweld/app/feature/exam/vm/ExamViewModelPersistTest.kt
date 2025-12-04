@@ -10,6 +10,7 @@ import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
 import kotlin.test.assertEquals
@@ -98,7 +99,9 @@ class ExamViewModelPersistTest {
     assertNotNull(questionStats)
     assertEquals(1, questionStats.attempts)
     assertEquals(1, questionStats.correct)
-    assertEquals(5_000L, questionStats.lastAnsweredAt.toEpochMilli())
+    val lastAnsweredAt = questionStats.lastAnsweredAt
+    assertNotNull(lastAnsweredAt)
+    assertEquals(5_000L, lastAnsweredAt.toEpochMilli())
   }
 
   private fun createViewModel(repository: AssetQuestionRepository): ExamViewModel {
@@ -111,6 +114,7 @@ class ExamViewModelPersistTest {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
+      userPrefs = FakeUserPrefs(),
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 1L },
       attemptIdProvider = { TEST_ATTEMPT_ID },

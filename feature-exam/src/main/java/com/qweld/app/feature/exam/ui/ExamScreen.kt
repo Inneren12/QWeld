@@ -71,6 +71,7 @@ import com.qweld.app.data.analytics.logAnswerSubmit
 import com.qweld.app.data.analytics.logDeficitDialog
 import com.qweld.app.data.analytics.logExamFinish
 import com.qweld.app.data.analytics.logExamStart
+import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.feature.exam.R
@@ -86,7 +87,7 @@ fun ExamScreen(
   viewModel: ExamViewModel,
   onNavigateToResult: () -> Unit,
   analytics: Analytics,
-  userPrefs: UserPrefsDataStore,
+  userPrefs: UserPrefs,
   modifier: Modifier = Modifier,
 ) {
   val uiState by viewModel.uiState

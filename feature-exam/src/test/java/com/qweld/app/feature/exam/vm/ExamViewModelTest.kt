@@ -1,9 +1,5 @@
 package com.qweld.app.feature.exam.vm
 
-import com.qweld.app.data.db.dao.AnswerDao
-import com.qweld.app.data.db.dao.AttemptDao
-import com.qweld.app.data.db.entities.AnswerEntity
-import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
@@ -13,7 +9,9 @@ import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
-import com.qweld.app.feature.exam.vm.PracticeConfig
+import com.qweld.app.feature.exam.fakes.FakeAnswerDao
+import com.qweld.app.feature.exam.fakes.FakeAttemptDao
+import com.qweld.app.feature.exam.FakeUserPrefs
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -165,6 +163,7 @@ class ExamViewModelTest {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
+      userPrefs = FakeUserPrefs(),
       blueprintProvider = blueprintProvider,
       seedProvider = { 1L },
       nowProvider = { 0L },
@@ -221,111 +220,5 @@ class ExamViewModelTest {
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )
-  }
-}
-
-private class FakeAttemptDao : AttemptDao {
-  private val attempts = mutableMapOf<String, AttemptEntity>()
-
-  override suspend fun insert(attempt: AttemptEntity) {
-    attempts[attempt.id] = attempt
-  }
-
-  override suspend fun updateFinish(
-    attemptId: String,
-    finishedAt: Long?,
-    durationSec: Int?,
-    passThreshold: Int?,
-    scorePct: Double?,
-  ) {
-    val current = attempts[attemptId] ?: return
-    attempts[attemptId] =
-      current.copy(
-        finishedAt = finishedAt,
-        durationSec = durationSec,
-        passThreshold = passThreshold,
-        scorePct = scorePct,
-      )
-  }
-
-  override suspend fun markAborted(id: String, finishedAt: Long) {
-    val current = attempts[id] ?: return
-    attempts[id] =
-      current.copy(
-        finishedAt = finishedAt,
-        durationSec = null,
-        passThreshold = null,
-        scorePct = null,
-      )
-  }
-
-  override suspend fun getById(id: String): AttemptEntity? = attempts[id]
-
-  override suspend fun listRecent(limit: Int): List<AttemptEntity> {
-    return attempts.values.sortedByDescending { it.startedAt }.take(limit)
-  }
-
-  override suspend fun getUnfinished(): AttemptEntity? {
-    return attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
-  }
-
-  override suspend fun getLastFinished(): AttemptEntity? {
-    return attempts.values.filter { it.finishedAt != null }.maxByOrNull { it.finishedAt ?: 0L }
-  }
-
-  override suspend fun clearAll() {
-    attempts.clear()
-  }
-}
-
-private class FakeAnswerDao : AnswerDao {
-  private val answers = mutableListOf<AnswerEntity>()
-
-  override suspend fun insertAll(answers: List<AnswerEntity>) {
-    this.answers += answers
-  }
-
-  override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> {
-    return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
-  }
-
-  override suspend fun listWrongByAttempt(attemptId: String): List<String> {
-    return answers.filter { it.attemptId == attemptId && !it.isCorrect }
-      .sortedBy { it.displayIndex }
-      .map { it.questionId }
-  }
-
-  override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
-    val relevant = answers.filter { it.questionId == questionId }
-    if (relevant.isEmpty()) return null
-    val lastEntry = relevant.maxByOrNull { it.answeredAt }
-    return AnswerDao.QuestionAggregate(
-      questionId = questionId,
-      attempts = relevant.size,
-      correct = relevant.count { it.isCorrect },
-      lastAnsweredAt = relevant.maxOfOrNull { it.answeredAt },
-      lastIsCorrect = lastEntry?.isCorrect,
-    )
-  }
-
-  override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
-    val interested = questionIds.toSet()
-    return answers
-      .filter { it.questionId in interested }
-      .groupBy { it.questionId }
-      .map { (questionId, entries) ->
-        val lastEntry = entries.maxByOrNull { it.answeredAt }
-        AnswerDao.QuestionAggregate(
-          questionId = questionId,
-          attempts = entries.size,
-          correct = entries.count { it.isCorrect },
-          lastAnsweredAt = entries.maxOfOrNull { it.answeredAt },
-          lastIsCorrect = lastEntry?.isCorrect,
-        )
-      }
-  }
-
-  override suspend fun clearAll() {
-    answers.clear()
   }
 }

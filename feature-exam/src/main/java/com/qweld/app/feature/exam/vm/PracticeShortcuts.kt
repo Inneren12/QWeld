@@ -4,7 +4,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.qweld.app.data.prefs.UserPrefsDataStore
+import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.ExamBlueprint
@@ -23,7 +23,7 @@ import java.util.Locale
 class PracticeShortcuts(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
-  private val userPrefs: UserPrefsDataStore,
+  private val userPrefs: UserPrefs,
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
   private val logger: (String) -> Unit = { message -> Timber.i(message) },
 ) : ViewModel() {
@@ -198,7 +198,7 @@ data class RepeatMistakesState(
 class PracticeShortcutsFactory(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
-  private val userPrefs: UserPrefsDataStore,
+  private val userPrefs: UserPrefs,
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModelProvider.Factory {
 

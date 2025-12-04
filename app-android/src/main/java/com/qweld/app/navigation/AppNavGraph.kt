@@ -39,6 +39,7 @@ import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogExportFormat
 import com.qweld.app.data.logging.writeTo
+import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -73,7 +74,7 @@ fun AppNavGraph(
   appVersion: String,
   analytics: Analytics,
   logCollector: LogCollector?,
-  userPrefs: UserPrefsDataStore,
+  userPrefs: UserPrefs,
   contentIndexReader: ContentIndexReader,
   modifier: Modifier = Modifier,
 ) {
