@@ -1,10 +1,9 @@
 package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
-import com.qweld.app.feature.exam.data.TestIntegrity
 import org.junit.Assert.assertEquals
-import kotlin.test.assertIs
 import org.junit.Test
+import kotlin.test.assertIs
 
 class AssetRepoLocaleSwitchTest {
   private val json = Json { ignoreUnknownKeys = true }

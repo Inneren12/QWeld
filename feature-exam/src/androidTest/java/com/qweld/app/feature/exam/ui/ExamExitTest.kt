@@ -27,7 +27,7 @@ import com.qweld.app.feature.exam.navigation.ExamDestinations
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.test.assertEquals
+import org.junit.Assert.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 class ExamExitTest {
@@ -38,13 +38,16 @@ class ExamExitTest {
     val context = InstrumentationRegistry.getInstrumentation().targetContext
     val navController = TestNavHostController(context).apply {
       navigatorProvider.addNavigator(ComposeNavigator())
-      setGraph(
-        createGraph(startDestination = ExamDestinations.MODE) {
-          composable(ExamDestinations.MODE) {}
-          composable(ExamDestinations.EXAM) {}
-        },
-      )
-      navigate(ExamDestinations.EXAM)
+        val navController = TestNavHostController(context).apply {
+            navigatorProvider.addNavigator(ComposeNavigator())
+
+            graph = createGraph(startDestination = ExamDestinations.MODE) {
+                composable(ExamDestinations.MODE) {}
+                composable(ExamDestinations.RESULT) {}
+            }
+
+            navigate(ExamDestinations.RESULT)
+        }
     }
 
     composeTestRule.setContent {

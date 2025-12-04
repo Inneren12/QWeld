@@ -45,13 +45,13 @@ class UserPrefsDataStoreLastScopeTest {
     assertEquals("Even", stored.distribution)
   }
 
-  private fun TestScope.newDataStore(): UserPrefsDataStore {
-    val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
-    val dataStore =
-      PreferenceDataStoreFactory.createWithPath(
-        scope = backgroundScope,
-        produceFile = { file },
-      )
-    return UserPrefsDataStore(dataStore)
-  }
+    private fun TestScope.newDataStore(): UserPrefsDataStore {
+        val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
+        val dataStore =
+            PreferenceDataStoreFactory.create(
+                scope = backgroundScope,
+                produceFile = { file.toFile() }, // 👈 превращаем Path в File
+            )
+        return UserPrefsDataStore(dataStore)
+    }
 }

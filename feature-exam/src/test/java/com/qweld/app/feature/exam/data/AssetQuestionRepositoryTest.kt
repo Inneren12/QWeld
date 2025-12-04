@@ -1,12 +1,11 @@
 package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
-import com.qweld.app.data.content.questions.IndexParser
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import kotlin.test.assertIs
 import org.junit.Test
 import java.security.MessageDigest
+import kotlin.test.assertIs
 
 /**
  * Tests for AssetQuestionRepository with focus on error handling and content integrity.

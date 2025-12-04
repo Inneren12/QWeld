@@ -12,11 +12,6 @@ import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
 import com.qweld.app.feature.exam.fakes.FakeAnswerDao
 import com.qweld.app.feature.exam.fakes.FakeAttemptDao
-import kotlin.test.assertEquals
-import kotlin.test.assertIs
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
@@ -26,6 +21,10 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 /**
  * Tests for exam finishing functionality in ExamViewModel.

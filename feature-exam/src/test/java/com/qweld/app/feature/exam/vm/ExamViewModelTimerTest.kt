@@ -8,23 +8,13 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.UserStatsRepository
-import com.qweld.app.feature.exam.fakes.FakeAnswerDao
-import com.qweld.app.feature.exam.fakes.FakeAttemptDao
 import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
-import java.time.Clock
-import java.time.Duration
-import java.time.Instant
-import java.time.ZoneId
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import com.qweld.app.feature.exam.fakes.FakeAnswerDao
+import com.qweld.app.feature.exam.fakes.FakeAttemptDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.advanceTimeBy
@@ -33,6 +23,14 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Rule
 import org.junit.Test
+import java.time.Clock
+import java.time.Duration
+import java.time.Instant
+import java.time.ZoneId
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 /**
  * Tests for timer functionality in ExamViewModel.

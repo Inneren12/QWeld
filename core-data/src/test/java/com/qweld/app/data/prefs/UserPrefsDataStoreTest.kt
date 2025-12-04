@@ -102,13 +102,13 @@ class UserPrefsDataStoreTest {
     assertEquals(UserPrefsDataStore.MAX_LRU_CACHE_SIZE, prefs.lruCacheSizeFlow().first())
   }
 
-  private fun TestScope.newDataStore(): UserPrefsDataStore {
-    val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
-    val dataStore =
-      PreferenceDataStoreFactory.createWithPath(
-        scope = backgroundScope,
-        produceFile = { file },
-      )
-    return UserPrefsDataStore(dataStore)
-  }
+    private fun TestScope.newDataStore(): UserPrefsDataStore {
+        val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
+        val dataStore =
+            PreferenceDataStoreFactory.create(
+                scope = backgroundScope,
+                produceFile = { file.toFile() },   // 👈 тут уже java.io.File, всё ОК
+            )
+        return UserPrefsDataStore(dataStore)
+    }
 }

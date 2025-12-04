@@ -1,12 +1,7 @@
 package com.qweld.app.feature.exam.vm
 
-import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.dao.AttemptDao
-import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
-import com.qweld.app.data.prefs.UserPrefs
-import com.qweld.app.feature.exam.fakes.FakeAnswerDao
-import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
@@ -14,15 +9,12 @@ import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.repo.UserStatsRepository
+import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
-import kotlin.test.assertEquals
-import kotlin.test.assertIs
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import com.qweld.app.feature.exam.fakes.FakeAnswerDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runCurrent
@@ -30,6 +22,10 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertIs
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ExamViewModelAbortRestartTest {

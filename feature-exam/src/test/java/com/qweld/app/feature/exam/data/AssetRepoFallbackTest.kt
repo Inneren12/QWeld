@@ -1,12 +1,11 @@
 package com.qweld.app.feature.exam.data
 
+import kotlinx.serialization.json.Json
+import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
-import org.junit.Test
-import kotlinx.serialization.json.Json
-import com.qweld.app.feature.exam.data.TestIntegrity
 
 class AssetRepoFallbackTest {
   @Test

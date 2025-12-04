@@ -1,7 +1,6 @@
 package com.qweld.app.feature.exam.data
 
 import kotlinx.serialization.json.Json
-import com.qweld.app.feature.exam.data.TestIntegrity
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test

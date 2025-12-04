@@ -123,28 +123,32 @@ class AutosaveControllerTest {
     assertEquals(setOf("q1", "q2"), forced.map { it.questionId }.toSet())
   }
 
-  private class FakeAnswerDao(
-    private val failureSequence: MutableList<Boolean> = mutableListOf(),
-  ) : AnswerDao {
-    val calls = mutableListOf<List<AnswerEntity>>()
+    private class FakeAnswerDao(
+        private val failureSequence: MutableList<Boolean> = mutableListOf(),
+    ) : AnswerDao {
+        val calls = mutableListOf<List<AnswerEntity>>()
 
-    override suspend fun insertAll(answers: List<AnswerEntity>) {
-      val shouldFail = if (failureSequence.isNotEmpty()) failureSequence.removeAt(0) else false
-      if (shouldFail) {
-        throw RuntimeException("simulated failure")
-      }
-      calls += answers.map { it.copy() }
+        override suspend fun insertAll(answers: List<AnswerEntity>) {
+            val shouldFail = if (failureSequence.isNotEmpty()) failureSequence.removeAt(0) else false
+            if (shouldFail) {
+                throw RuntimeException("simulated failure")
+            }
+            calls += answers.map { it.copy() }
+        }
+
+        override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> =
+            throw UnsupportedOperationException()
+
+        override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? =
+            throw UnsupportedOperationException()
+
+        override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> =
+            throw UnsupportedOperationException()
+
+        override suspend fun listWrongByAttempt(attemptId: String): List<String> =
+            emptyList() // 👈 добавили новый метод
+
+        override suspend fun clearAll() =
+            throw UnsupportedOperationException()
     }
-
-    override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> =
-      throw UnsupportedOperationException()
-
-    override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? =
-      throw UnsupportedOperationException()
-
-    override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> =
-      throw UnsupportedOperationException()
-
-    override suspend fun clearAll() = throw UnsupportedOperationException()
-  }
 }
