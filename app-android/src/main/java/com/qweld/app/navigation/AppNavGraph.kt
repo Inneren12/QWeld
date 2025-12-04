@@ -302,7 +302,7 @@ fun AppNavGraph(
       }
       composable(Routes.SETTINGS) {
         SettingsScreen(
-          userPrefs = userPrefs,
+          userPrefs = userPrefs as UserPrefsDataStore,
           attemptsRepository = attemptsRepository,
           answersRepository = answersRepository,
           questionRepository = questionRepository,
