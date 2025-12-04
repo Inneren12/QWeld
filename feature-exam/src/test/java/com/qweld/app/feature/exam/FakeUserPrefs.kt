@@ -43,11 +43,11 @@ class FakeUserPrefs(
   }
 
   override suspend fun setPracticeSize(value: Int) {
-    _practiceSize.value = UserPrefsDataStore.sanitizePracticeSize(value)
+    _practiceSize.value = sanitizePracticeSize(value)
   }
 
   override suspend fun setLruCacheSize(value: Int) {
-    _lruCacheSize.value = UserPrefsDataStore.sanitizeLruCacheSize(value)
+    _lruCacheSize.value = sanitizeLruCacheSize(value)
   }
 
   override suspend fun setFallbackToEN(value: Boolean) {
@@ -93,5 +93,21 @@ class FakeUserPrefs(
     _appLocale.value = UserPrefsDataStore.DEFAULT_APP_LOCALE
     _wrongBiased.value = UserPrefsDataStore.DEFAULT_WRONG_BIASED
     _lastScope.value = null
+  }
+
+  // Replicate validation logic from UserPrefsDataStore without calling internal methods
+  private fun sanitizePracticeSize(value: Int): Int {
+    return value.coerceIn(MIN_PRACTICE_SIZE, MAX_PRACTICE_SIZE)
+  }
+
+  private fun sanitizeLruCacheSize(value: Int): Int {
+    return value.coerceIn(MIN_LRU_CACHE_SIZE, MAX_LRU_CACHE_SIZE)
+  }
+
+  companion object {
+    private const val MIN_PRACTICE_SIZE = 5
+    private const val MAX_PRACTICE_SIZE = 125
+    private const val MIN_LRU_CACHE_SIZE = 4
+    private const val MAX_LRU_CACHE_SIZE = 32
   }
 }

@@ -12,9 +12,15 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.UserStatsRepository
+import com.qweld.app.feature.exam.FakeAnswerDao
+import com.qweld.app.feature.exam.FakeAttemptDao
+import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
+import java.time.Clock
 import java.time.Duration
+import java.time.Instant
+import java.time.ZoneId
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -236,6 +242,7 @@ class ExamViewModelTimerTest {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
+      userPrefs = FakeUserPrefs(),
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 1L },
       attemptIdProvider = { "test-attempt" },
@@ -261,118 +268,21 @@ class ExamViewModelTimerTest {
  * Fake Clock for testing timer behavior.
  * Allows manual advancement of time for deterministic testing.
  */
-private class FakeClock(private var instant: Instant = Instant.EPOCH) : Clock() {
-  override fun getZone() = java.time.ZoneOffset.UTC
-  override fun withZone(zone: java.time.ZoneId?) = this
-  override fun instant(): Instant = instant
+private class FakeClock(
+  private var currentInstant: Instant = Instant.EPOCH,
+  private val zoneId: ZoneId = ZoneId.systemDefault()
+) : Clock() {
+  override fun getZone(): ZoneId = zoneId
+
+  override fun withZone(zone: ZoneId): Clock = FakeClock(currentInstant, zone)
+
+  override fun instant(): Instant = currentInstant
 
   fun advance(duration: Duration) {
-    instant = instant.plus(duration)
+    currentInstant = currentInstant.plus(duration)
   }
 
   fun setInstant(newInstant: Instant) {
-    instant = newInstant
-  }
-}
-
-private class FakeAttemptDao : AttemptDao {
-  private val attempts = mutableMapOf<String, AttemptEntity>()
-
-  override suspend fun insert(attempt: AttemptEntity) {
-    attempts[attempt.id] = attempt
-  }
-
-  override suspend fun updateFinish(
-    attemptId: String,
-    finishedAt: Long?,
-    durationSec: Int?,
-    passThreshold: Int?,
-    scorePct: Double?,
-  ) {
-    val current = attempts[attemptId] ?: return
-    attempts[attemptId] =
-      current.copy(
-        finishedAt = finishedAt,
-        durationSec = durationSec,
-        passThreshold = passThreshold,
-        scorePct = scorePct,
-      )
-  }
-
-  override suspend fun markAborted(id: String, finishedAt: Long) {
-    val current = attempts[id] ?: return
-    attempts[id] =
-      current.copy(
-        finishedAt = finishedAt,
-        durationSec = null,
-        passThreshold = null,
-        scorePct = null,
-      )
-  }
-
-  override suspend fun getById(id: String): AttemptEntity? = attempts[id]
-
-  override suspend fun listRecent(limit: Int): List<AttemptEntity> {
-    return attempts.values.sortedByDescending { it.startedAt }.take(limit)
-  }
-
-  override suspend fun getUnfinished(): AttemptEntity? {
-    return attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
-  }
-
-  override suspend fun getLastFinished(): AttemptEntity? {
-    return attempts.values.filter { it.finishedAt != null }.maxByOrNull { it.finishedAt ?: 0L }
-  }
-
-  override suspend fun clearAll() {
-    attempts.clear()
-  }
-}
-
-private class FakeAnswerDao : AnswerDao {
-  private val answers = mutableListOf<AnswerEntity>()
-
-  override suspend fun insertAll(answers: List<AnswerEntity>) {
-    this.answers += answers
-  }
-
-  override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> {
-    return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
-  }
-
-  override suspend fun listWrongByAttempt(attemptId: String): List<String> {
-    return answers.filter { it.attemptId == attemptId && !it.isCorrect }
-      .sortedBy { it.displayIndex }
-      .map { it.questionId }
-  }
-
-  override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
-    val relevant = answers.filter { it.questionId == questionId }
-    if (relevant.isEmpty()) return null
-    val lastEntry = relevant.maxByOrNull { it.answeredAt }
-    return AnswerDao.QuestionAggregate(
-      questionId = questionId,
-      attempts = relevant.size,
-      correct = relevant.count { it.isCorrect },
-      lastAnsweredAt = relevant.maxOfOrNull { it.answeredAt },
-      lastIsCorrect = lastEntry?.isCorrect,
-    )
-  }
-
-  override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
-    val interested = questionIds.toSet()
-    return answers
-      .filter { it.questionId in interested }
-      .groupBy { it.questionId }
-      .map { (questionId, entries) ->
-        val lastEntry = entries.maxByOrNull { it.answeredAt }
-        AnswerDao.QuestionAggregate(
-          questionId = questionId,
-          attempts = entries.size,
-          correct = entries.count { it.isCorrect },
-          lastAnsweredAt = entries.maxOfOrNull { it.answeredAt },
-      lastIsCorrect = lastEntry?.isCorrect,
-        )
-      }
+    currentInstant = newInstant
   }
 }
