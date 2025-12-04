@@ -1,9 +1,5 @@
 package com.qweld.app.feature.exam.vm
 
-import com.qweld.app.data.db.dao.AnswerDao
-import com.qweld.app.data.db.dao.AttemptDao
-import com.qweld.app.data.db.entities.AnswerEntity
-import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -15,6 +11,8 @@ import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.feature.exam.fakes.FakeAnswerDao
+import com.qweld.app.feature.exam.fakes.FakeAttemptDao
 import com.qweld.app.feature.exam.model.PassStatus
 import java.time.Duration
 import kotlin.test.Test
@@ -23,36 +21,12 @@ import kotlin.test.assertNull
 
 class ResultViewModelTest {
 
+  private val attemptDao = FakeAttemptDao()
+  private val answerDao = FakeAnswerDao()
   private val dummyExporter: AttemptExporter =
     AttemptExporter(
-      attemptsRepository = AttemptsRepository(object : AttemptDao {
-        override suspend fun insert(attempt: AttemptEntity) = throw UnsupportedOperationException()
-
-        override suspend fun updateFinish(
-          attemptId: String,
-          finishedAt: Long?,
-          durationSec: Int?,
-          passThreshold: Int?,
-          scorePct: Double?,
-        ) = throw UnsupportedOperationException()
-
-        override suspend fun markAborted(id: String, finishedAt: Long) = throw UnsupportedOperationException()
-
-        override suspend fun getById(id: String): AttemptEntity? = throw UnsupportedOperationException()
-
-        override suspend fun listRecent(limit: Int): List<AttemptEntity> = emptyList()
-      }) { },
-      answersRepository = AnswersRepository(
-        object : AnswerDao {
-          override suspend fun insertAll(answers: List<AnswerEntity>) = Unit
-
-          override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = emptyList()
-
-          override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? = null
-
-          override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> = emptyList()
-        }
-      ),
+      attemptsRepository = AttemptsRepository(attemptDao) { },
+      answersRepository = AnswersRepository(answerDao),
       versionProvider = { "" },
       errorLogger = { _, _ -> },
     )

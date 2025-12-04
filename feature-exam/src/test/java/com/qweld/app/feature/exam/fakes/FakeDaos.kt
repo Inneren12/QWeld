@@ -1,4 +1,4 @@
-package com.qweld.app.feature.exam
+package com.qweld.app.feature.exam.fakes
 
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.dao.AttemptDao

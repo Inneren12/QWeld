@@ -1,18 +1,14 @@
 package com.qweld.app.feature.exam.vm
 
-import com.qweld.app.data.db.dao.AnswerDao
-import com.qweld.app.data.db.dao.AttemptDao
-import com.qweld.app.feature.exam.FakeAnswerDao
-import com.qweld.app.feature.exam.FakeAttemptDao
-import com.qweld.app.feature.exam.FakeUserPrefs
-import com.qweld.app.data.db.entities.AnswerEntity
-import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.feature.exam.FakeUserPrefs
+import com.qweld.app.feature.exam.fakes.FakeAnswerDao
+import com.qweld.app.feature.exam.fakes.FakeAttemptDao
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity

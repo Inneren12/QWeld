@@ -5,7 +5,7 @@ import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.prefs.UserPrefs
-import com.qweld.app.feature.exam.FakeAnswerDao
+import com.qweld.app.feature.exam.fakes.FakeAnswerDao
 import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository

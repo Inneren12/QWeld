@@ -9,6 +9,7 @@ import com.qweld.app.data.repo.UserStatsRepositoryRoom
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
@@ -230,6 +231,7 @@ class ExamViewModelExitResumeTest {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
+      userPrefs = FakeUserPrefs(),
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 7L },
       attemptIdProvider = { "test-attempt-exit-resume" },

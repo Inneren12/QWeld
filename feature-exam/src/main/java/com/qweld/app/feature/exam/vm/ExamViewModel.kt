@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -94,7 +95,7 @@ class ExamViewModel(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
-  private val userPrefs: UserPrefsDataStore,
+  private val userPrefs: UserPrefs,
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = ::defaultBlueprintForMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
   private val userIdProvider: () -> String = { DEFAULT_USER_ID },
@@ -1738,7 +1739,7 @@ class ExamViewModelFactory(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
-  private val userPrefs: UserPrefsDataStore,
+  private val userPrefs: UserPrefs,
   private val prewarmConfig: PrewarmConfig = PrewarmConfig(),
 ) : ViewModelProvider.Factory {
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
