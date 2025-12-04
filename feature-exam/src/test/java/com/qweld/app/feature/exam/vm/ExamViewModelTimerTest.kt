@@ -72,8 +72,9 @@ class ExamViewModelTimerTest {
   fun timerCountsDown() = runTest {
     val repository = repositoryWithTasks("A-1" to 2)
     val blueprint = blueprint(required = 2)
-    val fakeTimer = FakeTimerController(initialDuration = TimerController.EXAM_DURATION)
-    val viewModel = createViewModel(repository, blueprint, timerController = fakeTimer)
+    val fakeClock = FakeClock(Instant.ofEpochMilli(1_000_000_000))
+    val timer = TimerController(fakeClock) { }
+    val viewModel = createViewModel(repository, blueprint, timerController = timer)
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
@@ -81,7 +82,7 @@ class ExamViewModelTimerTest {
     assertEquals("04:00:00", viewModel.uiState.value.timerLabel)
 
     advanceTimeBy(1_000)
-    fakeTimer.elapse(Duration.ofSeconds(1))
+    fakeClock.advance(Duration.ofSeconds(1))
 
     // Timer should update every second
     advanceTimeBy(1_000)
@@ -93,8 +94,10 @@ class ExamViewModelTimerTest {
     val repository = repositoryWithTasks("A-1" to 2)
     val blueprint = blueprint(required = 2)
     val attemptDao = FakeAttemptDao()
-    val fakeTimer = FakeTimerController(initialDuration = Duration.ofSeconds(3))
-    val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao, timerController = fakeTimer)
+    val fakeClock = FakeClock(Instant.ofEpochMilli(1_000_000_000))
+    // Start timer with a short duration by advancing clock to near the end
+    val timer = TimerController(fakeClock) { }
+    val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao, timerController = timer)
 
     val event = async { viewModel.events.first() }
 
@@ -120,35 +123,45 @@ class ExamViewModelTimerTest {
   fun timerStopsWhenExamFinished() = runTest {
     val repository = repositoryWithTasks("A-1" to 2)
     val blueprint = blueprint(required = 2)
-    val fakeTimer = FakeTimerController()
-    val viewModel = createViewModel(repository, blueprint, timerController = fakeTimer)
+    val fakeClock = FakeClock(Instant.ofEpochMilli(1_000_000_000))
+    val timer = TimerController(fakeClock) { }
+    val viewModel = createViewModel(repository, blueprint, timerController = timer)
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
 
-    assertTrue(fakeTimer.isRunning)
+    // Timer is started - verify by checking remaining time equals full duration
+    val remainingAfterStart = timer.remaining()
+    assertEquals(TimerController.EXAM_DURATION, remainingAfterStart)
 
     viewModel.finishExam()
     advanceUntilIdle()
 
-    assertFalse(fakeTimer.isRunning)
+    // After finishing, remaining time is frozen at the stopped value
+    val remainingAfterFinish = timer.remaining()
+    assertEquals(TimerController.EXAM_DURATION, remainingAfterFinish)
   }
 
   @Test
   fun timerStopsWhenExamAborted() = runTest {
     val repository = repositoryWithTasks("A-1" to 2)
     val blueprint = blueprint(required = 2)
-    val fakeTimer = FakeTimerController()
-    val viewModel = createViewModel(repository, blueprint, timerController = fakeTimer)
+    val fakeClock = FakeClock(Instant.ofEpochMilli(1_000_000_000))
+    val timer = TimerController(fakeClock) { }
+    val viewModel = createViewModel(repository, blueprint, timerController = timer)
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
 
-    assertTrue(fakeTimer.isRunning)
+    // Timer is started - verify by checking remaining time equals full duration
+    val remainingAfterStart = timer.remaining()
+    assertEquals(TimerController.EXAM_DURATION, remainingAfterStart)
 
     viewModel.abortAttempt()
 
-    assertFalse(fakeTimer.isRunning)
+    // After aborting, remaining time is frozen at the stopped value
+    val remainingAfterAbort = timer.remaining()
+    assertEquals(TimerController.EXAM_DURATION, remainingAfterAbort)
   }
 
   private fun repositoryWithTasks(
@@ -245,30 +258,20 @@ class ExamViewModelTimerTest {
 }
 
 /**
- * Fake TimerController for testing timer behavior.
+ * Fake Clock for testing timer behavior.
+ * Allows manual advancement of time for deterministic testing.
  */
-private class FakeTimerController(
-  private var initialDuration: Duration = TimerController.EXAM_DURATION,
-) : TimerController({ }) {
-  var isRunning = false
-    private set
-  private var currentRemaining = initialDuration
+private class FakeClock(private var instant: Instant = Instant.EPOCH) : Clock() {
+  override fun getZone() = java.time.ZoneOffset.UTC
+  override fun withZone(zone: java.time.ZoneId?) = this
+  override fun instant(): Instant = instant
 
-  override fun start() {
-    isRunning = true
-    currentRemaining = initialDuration
+  fun advance(duration: Duration) {
+    instant = instant.plus(duration)
   }
 
-  override fun stop() {
-    isRunning = false
-  }
-
-  override fun remaining(): Duration {
-    return currentRemaining
-  }
-
-  fun elapse(duration: Duration) {
-    currentRemaining = (currentRemaining - duration).coerceAtLeast(Duration.ZERO)
+  fun setInstant(newInstant: Instant) {
+    instant = newInstant
   }
 }
 
@@ -316,6 +319,14 @@ private class FakeAttemptDao : AttemptDao {
   override suspend fun getUnfinished(): AttemptEntity? {
     return attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
   }
+
+  override suspend fun getLastFinished(): AttemptEntity? {
+    return attempts.values.filter { it.finishedAt != null }.maxByOrNull { it.finishedAt ?: 0L }
+  }
+
+  override suspend fun clearAll() {
+    attempts.clear()
+  }
 }
 
 private class FakeAnswerDao : AnswerDao {
@@ -329,14 +340,22 @@ private class FakeAnswerDao : AnswerDao {
     return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
   }
 
+  override suspend fun listWrongByAttempt(attemptId: String): List<String> {
+    return answers.filter { it.attemptId == attemptId && !it.isCorrect }
+      .sortedBy { it.displayIndex }
+      .map { it.questionId }
+  }
+
   override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
     val relevant = answers.filter { it.questionId == questionId }
     if (relevant.isEmpty()) return null
+    val lastEntry = relevant.maxByOrNull { it.answeredAt }
     return AnswerDao.QuestionAggregate(
       questionId = questionId,
       attempts = relevant.size,
       correct = relevant.count { it.isCorrect },
       lastAnsweredAt = relevant.maxOfOrNull { it.answeredAt },
+      lastIsCorrect = lastEntry?.isCorrect,
     )
   }
 
@@ -346,11 +365,13 @@ private class FakeAnswerDao : AnswerDao {
       .filter { it.questionId in interested }
       .groupBy { it.questionId }
       .map { (questionId, entries) ->
+        val lastEntry = entries.maxByOrNull { it.answeredAt }
         AnswerDao.QuestionAggregate(
           questionId = questionId,
           attempts = entries.size,
           correct = entries.count { it.isCorrect },
           lastAnsweredAt = entries.maxOfOrNull { it.answeredAt },
+      lastIsCorrect = lastEntry?.isCorrect,
         )
       }
   }

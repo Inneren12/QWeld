@@ -52,6 +52,7 @@ dependencies {
     implementation("androidx.compose.foundation:foundation-layout:1.7.1")
     implementation("androidx.compose.ui:ui-geometry:1.7.1")
 
+  testImplementation(kotlin("test"))
   testImplementation("junit:junit:4.13.2")
   testImplementation("androidx.test:core:1.6.1")
   testImplementation("androidx.room:room-testing:2.6.1")

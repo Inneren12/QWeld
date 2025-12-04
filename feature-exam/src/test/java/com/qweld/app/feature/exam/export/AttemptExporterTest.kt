@@ -161,6 +161,13 @@ class AttemptExporterTest {
 
     override suspend fun getUnfinished(): AttemptEntity? =
       attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
+
+    override suspend fun getLastFinished(): AttemptEntity? =
+      attempts.values.filter { it.finishedAt != null }.maxByOrNull { it.finishedAt ?: 0L }
+
+    override suspend fun clearAll() {
+      attempts.clear()
+    }
   }
 
   private class InMemoryAnswerDao : AnswerDao {
@@ -174,12 +181,21 @@ class AttemptExporterTest {
     override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> =
       answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
 
+    override suspend fun listWrongByAttempt(attemptId: String): List<String> =
+      answers.filter { it.attemptId == attemptId && !it.isCorrect }
+        .sortedBy { it.displayIndex }
+        .map { it.questionId }
+
     override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
       throw UnsupportedOperationException()
     }
 
     override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
       throw UnsupportedOperationException()
+    }
+
+    override suspend fun clearAll() {
+      answers.clear()
     }
   }
 }

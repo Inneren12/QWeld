@@ -21,7 +21,7 @@ class AssetRepoLocaleSwitchTest {
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
-            open = { path -> assets[path]?.inputStream() },
+            opener = { path -> assets[path]?.inputStream() },
           ),
         localeResolver = { "en" },
         json = json,

@@ -217,7 +217,7 @@ class ExamViewModelTest {
         mapOf("questions/en/bank.v1.json" to questions.toByteArray()),
       )
     return AssetQuestionRepository(
-      assetReader = AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+      assetReader = AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
       localeResolver = { "en" },
       json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true },
     )
@@ -268,6 +268,14 @@ private class FakeAttemptDao : AttemptDao {
   override suspend fun getUnfinished(): AttemptEntity? {
     return attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
   }
+
+  override suspend fun getLastFinished(): AttemptEntity? {
+    return attempts.values.filter { it.finishedAt != null }.maxByOrNull { it.finishedAt ?: 0L }
+  }
+
+  override suspend fun clearAll() {
+    attempts.clear()
+  }
 }
 
 private class FakeAnswerDao : AnswerDao {
@@ -281,14 +289,22 @@ private class FakeAnswerDao : AnswerDao {
     return answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
   }
 
+  override suspend fun listWrongByAttempt(attemptId: String): List<String> {
+    return answers.filter { it.attemptId == attemptId && !it.isCorrect }
+      .sortedBy { it.displayIndex }
+      .map { it.questionId }
+  }
+
   override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
     val relevant = answers.filter { it.questionId == questionId }
     if (relevant.isEmpty()) return null
+    val lastEntry = relevant.maxByOrNull { it.answeredAt }
     return AnswerDao.QuestionAggregate(
       questionId = questionId,
       attempts = relevant.size,
       correct = relevant.count { it.isCorrect },
       lastAnsweredAt = relevant.maxOfOrNull { it.answeredAt },
+      lastIsCorrect = lastEntry?.isCorrect,
     )
   }
 
@@ -298,12 +314,18 @@ private class FakeAnswerDao : AnswerDao {
       .filter { it.questionId in interested }
       .groupBy { it.questionId }
       .map { (questionId, entries) ->
+        val lastEntry = entries.maxByOrNull { it.answeredAt }
         AnswerDao.QuestionAggregate(
           questionId = questionId,
           attempts = entries.size,
           correct = entries.count { it.isCorrect },
           lastAnsweredAt = entries.maxOfOrNull { it.answeredAt },
+          lastIsCorrect = lastEntry?.isCorrect,
         )
       }
+  }
+
+  override suspend fun clearAll() {
+    answers.clear()
   }
 }

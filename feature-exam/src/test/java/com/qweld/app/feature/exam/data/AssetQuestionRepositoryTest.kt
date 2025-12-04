@@ -52,7 +52,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -106,7 +106,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -130,7 +130,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -163,7 +163,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -186,7 +186,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -226,7 +226,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -251,7 +251,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -288,7 +288,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -322,7 +322,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -342,7 +342,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
@@ -370,7 +370,7 @@ class AssetQuestionRepositoryTest {
     val repository =
       AssetQuestionRepository(
         assetReader =
-          AssetQuestionRepository.AssetReader(open = { path -> assets[path]?.inputStream() }),
+          AssetQuestionRepository.AssetReader(opener = { path -> assets[path]?.inputStream() }),
         localeResolver = { "en" },
         json = Json { ignoreUnknownKeys = true },
       )
