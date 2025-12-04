@@ -22,7 +22,7 @@ class AssetRepoPerTaskTest {
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
-            open = { path ->
+            opener = { path ->
               if (!path.endsWith("/index.json")) opened += path
               assets[path]?.inputStream()
             },
@@ -60,7 +60,7 @@ class AssetRepoPerTaskTest {
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
-            open = { path ->
+            opener = { path ->
               if (!path.endsWith("/index.json")) opened += path
               assets[path]?.inputStream()
             },

@@ -22,7 +22,7 @@ class AssetRepoLocaleCacheClearTest {
       AssetQuestionRepository(
         assetReader =
           AssetQuestionRepository.AssetReader(
-            open = { path ->
+            opener = { path ->
               if (!path.endsWith("/index.json")) opened += path
               assets[path]?.inputStream()
             },

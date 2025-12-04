@@ -22,7 +22,7 @@ import java.util.Locale
 
 class UserPrefsDataStore internal constructor(
   private val dataStore: DataStore<Preferences>,
-) {
+) : UserPrefs {
 
   @JvmOverloads
   constructor(
@@ -41,47 +41,47 @@ class UserPrefsDataStore internal constructor(
       ),
     )
 
-  val analyticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
+  override val analyticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[ANALYTICS_ENABLED_KEY] ?: DEFAULT_ANALYTICS_ENABLED
   }
 
-  val prewarmDisabled: Flow<Boolean> = dataStore.data.map { preferences ->
+  override val prewarmDisabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[PREWARM_DISABLED_KEY] ?: DEFAULT_PREWARM_DISABLED
   }
 
-  fun practiceSizeFlow(): Flow<Int> {
+  override fun practiceSizeFlow(): Flow<Int> {
     return dataStore.data.map { preferences ->
       sanitizePracticeSize(preferences[PRACTICE_SIZE_KEY] ?: DEFAULT_PRACTICE_SIZE)
     }
   }
 
-  fun lruCacheSizeFlow(): Flow<Int> {
+  override fun lruCacheSizeFlow(): Flow<Int> {
     return dataStore.data.map { preferences ->
       sanitizeLruCacheSize(preferences[LRU_CACHE_SIZE_KEY] ?: DEFAULT_LRU_CACHE_SIZE)
     }
   }
 
-  val fallbackToEN: Flow<Boolean> = dataStore.data.map { preferences ->
+  override val fallbackToEN: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[FALLBACK_TO_EN_KEY] ?: DEFAULT_FALLBACK_TO_EN
   }
 
-  val hapticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
+  override val hapticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[HAPTICS_ENABLED_KEY] ?: DEFAULT_HAPTICS_ENABLED
   }
 
-  val soundsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
+  override val soundsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[SOUNDS_ENABLED_KEY] ?: DEFAULT_SOUNDS_ENABLED
   }
 
-  fun appLocaleFlow(): Flow<String> {
+  override fun appLocaleFlow(): Flow<String> {
     return dataStore.data.map { preferences -> preferences[APP_LOCALE_KEY] ?: DEFAULT_APP_LOCALE }
   }
 
-  val wrongBiased: Flow<Boolean> = dataStore.data.map { preferences ->
+  override val wrongBiased: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[WRONG_BIASED_KEY] ?: DEFAULT_WRONG_BIASED
   }
 
-  fun readLastPracticeScope(): Flow<LastScope?> {
+  override fun readLastPracticeScope(): Flow<LastScope?> {
     return dataStore.data.map { preferences ->
       val blocksRaw = preferences[LAST_SCOPE_BLOCKS_KEY].orEmpty()
       val tasksRaw = preferences[LAST_SCOPE_TASKS_KEY].orEmpty()
@@ -96,45 +96,45 @@ class UserPrefsDataStore internal constructor(
     }
   }
 
-  suspend fun setAnalyticsEnabled(value: Boolean) {
+  override suspend fun setAnalyticsEnabled(value: Boolean) {
     dataStore.edit { preferences -> preferences[ANALYTICS_ENABLED_KEY] = value }
   }
 
-  suspend fun setPrewarmDisabled(value: Boolean) {
+  override suspend fun setPrewarmDisabled(value: Boolean) {
     dataStore.edit { preferences -> preferences[PREWARM_DISABLED_KEY] = value }
   }
 
-  suspend fun setPracticeSize(value: Int) {
+  override suspend fun setPracticeSize(value: Int) {
     val sanitized = sanitizePracticeSize(value)
     dataStore.edit { preferences -> preferences[PRACTICE_SIZE_KEY] = sanitized }
   }
 
-  suspend fun setLruCacheSize(value: Int) {
+  override suspend fun setLruCacheSize(value: Int) {
     val sanitized = sanitizeLruCacheSize(value)
     dataStore.edit { preferences -> preferences[LRU_CACHE_SIZE_KEY] = sanitized }
   }
 
-  suspend fun setFallbackToEN(value: Boolean) {
+  override suspend fun setFallbackToEN(value: Boolean) {
     dataStore.edit { preferences -> preferences[FALLBACK_TO_EN_KEY] = value }
   }
 
-  suspend fun setHapticsEnabled(value: Boolean) {
+  override suspend fun setHapticsEnabled(value: Boolean) {
     dataStore.edit { preferences -> preferences[HAPTICS_ENABLED_KEY] = value }
   }
 
-  suspend fun setSoundsEnabled(value: Boolean) {
+  override suspend fun setSoundsEnabled(value: Boolean) {
     dataStore.edit { preferences -> preferences[SOUNDS_ENABLED_KEY] = value }
   }
 
-  suspend fun setWrongBiased(value: Boolean) {
+  override suspend fun setWrongBiased(value: Boolean) {
     dataStore.edit { preferences -> preferences[WRONG_BIASED_KEY] = value }
   }
 
-  suspend fun setAppLocale(tag: String) {
+  override suspend fun setAppLocale(tag: String) {
     dataStore.edit { preferences -> preferences[APP_LOCALE_KEY] = tag }
   }
 
-  suspend fun saveLastPracticeScope(
+  override suspend fun saveLastPracticeScope(
     blocks: Set<String>,
     tasks: Set<String>,
     distribution: String,
@@ -149,7 +149,7 @@ class UserPrefsDataStore internal constructor(
     }
   }
 
-  suspend fun clear() {
+  override suspend fun clear() {
     dataStore.edit { it.clear() }
   }
 

@@ -245,10 +245,20 @@ class ExamViewModel(
       is AssetQuestionRepository.LoadResult.Corrupt -> {
         questionRationales = emptyMap()
         Timber.e(
-          "[exam_start] cancelled reason=corrupt locale=%s details=%s",
+          "[exam_start] cancelled reason=corrupt locale=%s error=%s",
           normalizedLocale,
-          result.reason,
+          result.error.diagnosticMessage,
         )
+        // Store the error for potential UI display
+        currentAttempt = null
+        val previous = _uiState.value
+        _uiState.value =
+          previous.copy(
+            isLoading = false,
+            attempt = null,
+            deficitDialog = null,
+            errorMessage = result.error.toUserMessage(),
+          )
         return false
       }
     }
@@ -1589,6 +1599,44 @@ class ExamViewModel(
         return Outcome.Ok(primary)
       }
       return Outcome.Ok(questions.filter { it.taskId == taskId && it.locale.equals("en", ignoreCase = true) })
+    }
+  }
+
+  /**
+   * Converts ContentLoadError to a user-friendly message.
+   * Provides specific guidance based on error type while avoiding technical jargon.
+   */
+  private fun com.qweld.app.feature.exam.data.ContentLoadError.toUserMessage(): String {
+    return when (this) {
+      is com.qweld.app.feature.exam.data.ContentLoadError.MissingManifest ->
+        "Content manifest is missing for locale: ${locale.uppercase(Locale.US)}. Please check your installation."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.InvalidManifest ->
+        "Content manifest is invalid for locale: ${locale.uppercase(Locale.US)}. Please reinstall the app."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.MissingTaskFile ->
+        "Question file for task $taskId is missing. Please check your installation."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.TaskFileReadError ->
+        "Unable to read questions for task $taskId. Please reinstall the app."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.IntegrityMismatch ->
+        "Content verification failed. The app data may be corrupted. Please reinstall the app."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.InvalidJson ->
+        "Question data is invalid or corrupted. Please reinstall the app."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.UnsupportedLocale ->
+        "Language ${requestedLocale.uppercase(Locale.US)} is not supported. Available languages: ${availableLocales.joinToString { it.uppercase(Locale.US) }}"
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.MissingBank ->
+        "Question bank is missing for locale: ${locale.uppercase(Locale.US)}. Please check your installation."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.BankFileError ->
+        "Question bank is corrupted or invalid. Please reinstall the app."
+
+      is com.qweld.app.feature.exam.data.ContentLoadError.Unknown ->
+        "An unexpected error occurred while loading questions. Please try again or reinstall the app."
     }
   }
 

@@ -2,6 +2,8 @@ package com.qweld.app.feature.exam.export
 
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.dao.AttemptDao
+import com.qweld.app.feature.exam.FakeAnswerDao
+import com.qweld.app.feature.exam.FakeAttemptDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.export.AttemptExporter
@@ -21,8 +23,8 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
 class AttemptExporterTest {
-  private val attemptDao = InMemoryAttemptDao()
-  private val answerDao = InMemoryAnswerDao()
+  private val attemptDao = FakeAttemptDao()
+  private val answerDao = FakeAnswerDao()
   private val attemptsRepository = AttemptsRepository(attemptDao) { }
   private val answersRepository = AnswersRepository(answerDao)
   private val clock = Clock.fixed(Instant.parse("2024-01-01T00:00:00Z"), ZoneOffset.UTC)
@@ -118,70 +120,6 @@ class AttemptExporterTest {
     assertEquals("1.2.3", meta.requirePrimitive("appVersion").content)
     assertEquals("2024-01-01T00:00:00Z", meta.requirePrimitive("exportedAt").content)
   }
-
-  private class InMemoryAttemptDao : AttemptDao {
-    private val attempts = mutableMapOf<String, AttemptEntity>()
-
-    override suspend fun insert(attempt: AttemptEntity) {
-      attempts[attempt.id] = attempt
-    }
-
-    override suspend fun updateFinish(
-      attemptId: String,
-      finishedAt: Long?,
-      durationSec: Int?,
-      passThreshold: Int?,
-      scorePct: Double?,
-    ) {
-      val existing = attempts[attemptId] ?: return
-      attempts[attemptId] =
-        existing.copy(
-          finishedAt = finishedAt,
-          durationSec = durationSec,
-          passThreshold = passThreshold,
-          scorePct = scorePct,
-        )
-    }
-
-    override suspend fun markAborted(id: String, finishedAt: Long) {
-      val existing = attempts[id] ?: return
-      attempts[id] =
-        existing.copy(
-          finishedAt = finishedAt,
-          durationSec = null,
-          passThreshold = null,
-          scorePct = null,
-        )
-    }
-
-    override suspend fun getById(id: String): AttemptEntity? = attempts[id]
-
-    override suspend fun listRecent(limit: Int): List<AttemptEntity> =
-      attempts.values.sortedByDescending { it.startedAt }.take(limit)
-
-    override suspend fun getUnfinished(): AttemptEntity? =
-      attempts.values.filter { it.finishedAt == null }.maxByOrNull { it.startedAt }
-  }
-
-  private class InMemoryAnswerDao : AnswerDao {
-    private val answers = mutableListOf<AnswerEntity>()
-
-    override suspend fun insertAll(answers: List<AnswerEntity>) {
-      this.answers.removeAll { existing -> answers.any { it.attemptId == existing.attemptId && it.displayIndex == existing.displayIndex } }
-      this.answers += answers
-    }
-
-    override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> =
-      answers.filter { it.attemptId == attemptId }.sortedBy { it.displayIndex }
-
-    override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? {
-      throw UnsupportedOperationException()
-    }
-
-    override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
-      throw UnsupportedOperationException()
-    }
-  }
 }
 
 private fun JsonObject.requireObject(key: String): JsonObject =
@@ -193,11 +131,16 @@ private fun JsonObject.requireArray(key: String): List<JsonElement> =
 private fun JsonObject.requirePrimitive(key: String) =
   this[key]?.jsonPrimitive ?: error("Missing primitive $key")
 
+// Helper extensions for parsing JSON primitives
+private fun String.intOrNull(): Int? = this.toIntOrNull()
+private fun String.longOrNull(): Long? = this.toLongOrNull()
+private fun String.doubleOrNull(): Double? = this.toDoubleOrNull()
+
 private val kotlinx.serialization.json.JsonPrimitive.int: Int
-  get() = this.intOrNull ?: error("Expected int")
+  get() = this.content.intOrNull() ?: error("Expected int")
 
 private val kotlinx.serialization.json.JsonPrimitive.long: Long
-  get() = this.longOrNull ?: error("Expected long")
+  get() = this.content.longOrNull() ?: error("Expected long")
 
 private val kotlinx.serialization.json.JsonPrimitive.double: Double
-  get() = this.doubleOrNull ?: error("Expected double")
+  get() = this.content.doubleOrNull() ?: error("Expected double")
