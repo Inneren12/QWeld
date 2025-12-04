@@ -22,7 +22,7 @@ import java.util.Locale
 
 class UserPrefsDataStore internal constructor(
   private val dataStore: DataStore<Preferences>,
-) {
+) : UserPrefs {
 
   @JvmOverloads
   constructor(

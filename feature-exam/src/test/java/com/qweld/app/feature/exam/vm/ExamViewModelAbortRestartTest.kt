@@ -4,7 +4,9 @@ import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
-import com.qweld.app.data.prefs.UserPrefsDataStore
+import com.qweld.app.data.prefs.UserPrefs
+import com.qweld.app.feature.exam.FakeAnswerDao
+import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
@@ -112,7 +114,7 @@ class ExamViewModelAbortRestartTest {
   ): ExamViewModel {
     val repository = repositoryWithTasks("A-1" to 3)
     val attemptsRepository = AttemptsRepository(attemptDao)
-    val answersRepository = AnswersRepository(InMemoryAnswerDao())
+    val answersRepository = AnswersRepository(FakeAnswerDao())
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(
       repository = repository,
@@ -124,18 +126,7 @@ class ExamViewModelAbortRestartTest {
           ids: List<String>,
         ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
       },
-      userPrefs = object : UserPrefsDataStore {
-        override val prewarmDisabled: Flow<Boolean> = flowOf(true)
-        override val hapticsEnabled: Flow<Boolean> = flowOf(true)
-        override val soundsEnabled: Flow<Boolean> = flowOf(true)
-        override val wrongBiased: Flow<Boolean> = flowOf(false)
-        override suspend fun setPracticeSize(size: Int) = Unit
-        override suspend fun setWrongBiased(enabled: Boolean) = Unit
-        override suspend fun setPrewarmDisabled(disabled: Boolean) = Unit
-        override suspend fun saveLastPracticeScope(blocks: Set<String>, tasks: Set<String>, distribution: String) = Unit
-        override fun practiceSizeFlow(): Flow<Int> = flowOf(PracticeConfig.DEFAULT_SIZE)
-        override fun readLastPracticeScope(): Flow<PracticeScope> = flowOf(PracticeScope())
-      },
+      userPrefs = FakeUserPrefs(),
       blueprintProvider = { _, _ -> ipBlueprint(required = 1) },
       seedProvider = { 1L },
       attemptIdProvider = { attemptIds.removeFirst() },
@@ -212,20 +203,6 @@ class ExamViewModelAbortRestartTest {
       totalQuestions = required,
       taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = required)),
     )
-  }
-
-  private class InMemoryAnswerDao : AnswerDao {
-    private val answers = mutableListOf<AnswerEntity>()
-
-    override suspend fun insertAll(answers: List<AnswerEntity>) {
-      this.answers += answers
-    }
-
-    override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = answers.filter { it.attemptId == attemptId }
-
-    override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? = null
-
-    override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> = emptyList()
   }
 
   private class RecordingAttemptDao : AttemptDao {
