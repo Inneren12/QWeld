@@ -1,5 +1,7 @@
 package com.qweld.app.feature.exam.data
 
+import com.qweld.app.domain.exam.ExamBlueprint
+import com.qweld.app.domain.exam.TaskQuota
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.test.Test
@@ -8,6 +10,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.jsonPrimitive
 
 class ContentCoverageTest {
@@ -20,11 +23,13 @@ class ContentCoverageTest {
     val blueprint = loadBlueprint()
     val countsByLocale = supportedLocales.associateWith { locale -> countQuestions(locale) }
 
-    val deficits = mutableListOf<String>()
-    blueprint.taskQuotas.forEach { quota ->
+    val quotas: List<TaskQuota> = blueprint.taskQuotas
+    val deficits: List<String> = quotas.mapNotNull { quota ->
       val available = supportedLocales.sumOf { locale -> countsByLocale[locale].orEmpty().countForTask(quota.taskId) }
       if (available < quota.required) {
-        deficits += "${quota.taskId}: required=${quota.required}, available=$available"
+        "${quota.taskId}: required=${quota.required}, available=$available"
+      } else {
+        null
       }
     }
 
@@ -41,7 +46,7 @@ class ContentCoverageTest {
     val enCounts = countQuestions("en")
     val ruCounts = countQuestions("ru")
 
-    val missingRu = blueprint.taskQuotas.mapNotNull { quota ->
+    val missingRu: List<String> = blueprint.taskQuotas.mapNotNull { quota ->
       val ruCount = ruCounts.countForTask(quota.taskId)
       if (ruCount == 0) {
         val enCount = enCounts.countForTask(quota.taskId)
@@ -60,12 +65,13 @@ class ContentCoverageTest {
   }
 
   private fun loadBlueprint(): ExamBlueprint {
-    val resourcePath = "blueprints/welder_ip_sk_202404.json"
-    val stream = requireNotNull(javaClass.classLoader.getResourceAsStream(resourcePath)) {
-      "Blueprint resource not found on classpath: $resourcePath"
-    }
-    val jsonContent = stream.bufferedReader().use { reader -> reader.readText() }
+    val jsonContent = loadResourceAsString(BLUEPRINT_RESOURCE_PATH)
     return loader.decode(jsonContent)
+  }
+
+  private fun loadResourceAsString(path: String): String {
+    val stream = requireNotNull(javaClass.getResourceAsStream(path)) { "Blueprint resource not found: $path" }
+    return stream.bufferedReader().use { reader -> reader.readText() }
   }
 
   private fun countQuestions(locale: String): Map<String, Int> {
@@ -117,5 +123,9 @@ class ContentCoverageTest {
   private fun taskSuffix(taskId: String): String? {
     val suffix = taskId.substringAfter('-', missingDelimiterValue = "")
     return suffix.takeIf { it.isNotBlank() }
+  }
+
+  companion object {
+    private const val BLUEPRINT_RESOURCE_PATH = "/blueprints/welder_ip_sk_202404.json"
   }
 }
