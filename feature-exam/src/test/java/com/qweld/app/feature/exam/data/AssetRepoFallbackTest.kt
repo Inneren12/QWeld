@@ -131,6 +131,22 @@ class AssetRepoFallbackTest {
     assertEquals(1, recorder.openCount(perTaskPath("en", "A-1")))
   }
 
+  @Test
+  fun fallsBackToDefaultLocaleWhenRequestedLocaleIsMissing() {
+    val (repository, recorder) =
+      repository(
+        payloads = mapOf(perTaskPath("en", "A-1") to questionArray("A-1" to 1, locale = "en")),
+        localeResolver = { "en" },
+      )
+
+    val result = repository.loadQuestions(locale = "ru", tasks = setOf("A-1"))
+    val success = assertIs<AssetQuestionRepository.LoadResult.Success>(result)
+    assertEquals("en", success.locale)
+    assertEquals(1, success.questions.size)
+    assertEquals(1, recorder.openCount(perTaskPath("en", "A-1")))
+    assertEquals(0, recorder.openCount(perTaskPath("ru", "A-1")))
+  }
+
   private fun repository(
     payloads: Map<String, String>,
     listings: Map<String, List<String>> = emptyMap(),

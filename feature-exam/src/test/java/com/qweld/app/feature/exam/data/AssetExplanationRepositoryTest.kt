@@ -53,6 +53,34 @@ class AssetExplanationRepositoryTest {
     assertNull(explanation)
   }
 
+  @Test
+  fun `loadExplanation falls back to default locale when requested locale missing`() {
+    val capturedPaths = mutableListOf<String>()
+    val repository = AssetExplanationRepository(
+      assetReader = AssetExplanationRepository.AssetReader { path ->
+        capturedPaths += path
+        when (path) {
+          "explanations/en/A-1/A-1_sample__explain_en.json" ->
+            ByteArrayInputStream(sampleExplanationJson.toByteArray())
+          else -> null
+        }
+      },
+      json = json,
+    )
+
+    val explanation = repository.loadExplanation(locale = "ru", taskId = "A-1", questionId = "Q-A-1_sample")
+
+    assertNotNull(explanation)
+    assertEquals("A-1_sample", explanation.id)
+    assertEquals(
+      listOf(
+        "explanations/ru/A-1/A-1_sample__explain_ru.json",
+        "explanations/en/A-1/A-1_sample__explain_en.json",
+      ),
+      capturedPaths,
+    )
+  }
+
   private val sampleExplanationJson =
     """
     {
