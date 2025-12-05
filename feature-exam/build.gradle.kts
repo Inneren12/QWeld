@@ -23,6 +23,15 @@ android {
   }
 
   kotlinOptions { jvmTarget = "21" }
+
+  sourceSets {
+    getByName("test") {
+      resources.srcDir(rootProject.file("content"))
+    }
+    getByName("testDebug") {
+      resources.srcDir(rootProject.file("content"))
+    }
+  }
 }
 
 kotlin {

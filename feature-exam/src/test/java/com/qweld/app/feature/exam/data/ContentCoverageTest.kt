@@ -59,13 +59,19 @@ class ContentCoverageTest {
     assertTrue(blueprint.taskQuotas.isNotEmpty())
   }
 
-  private fun loadBlueprint() =
-    loader.decode(
-      Files.readString(Path.of("content", "blueprints", "welder_ip_sk_202404.json")),
-    )
+  private fun loadBlueprint(): ExamBlueprint {
+    val resourcePath = "blueprints/welder_ip_sk_202404.json"
+    val stream = requireNotNull(javaClass.classLoader.getResourceAsStream(resourcePath)) {
+      "Blueprint resource not found on classpath: $resourcePath"
+    }
+    val jsonContent = stream.bufferedReader().use { reader -> reader.readText() }
+    return loader.decode(jsonContent)
+  }
 
   private fun countQuestions(locale: String): Map<String, Int> {
-    val basePath = Path.of("content", "questions", locale)
+    val resourcePath = "questions/$locale"
+    val basePath = javaClass.classLoader.getResource(resourcePath)?.toURI()?.let { uri -> Path.of(uri) }
+      ?: return emptyMap()
     if (!Files.exists(basePath)) return emptyMap()
 
     val counts = mutableMapOf<String, Int>()
