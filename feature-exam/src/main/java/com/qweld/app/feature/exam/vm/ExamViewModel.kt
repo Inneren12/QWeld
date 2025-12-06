@@ -97,6 +97,7 @@ class ExamViewModel(
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
   private val userPrefs: UserPrefs,
+  private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   private val blueprintResolver: BlueprintResolver = BlueprintResolver(StaticBlueprintProvider()),
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = blueprintResolver::forMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
@@ -840,8 +841,7 @@ class ExamViewModel(
 
   /**
    * Reports the current question with a reason and optional comment.
-   * In E2, this only logs the report. In E3, it will populate full context
-   * and send to QuestionReportRepository.
+   * E3: Populates a full QuestionReport with context and submits to Firestore.
    *
    * @param reason The reason for reporting the question
    * @param userComment Optional comment from the user
@@ -850,20 +850,123 @@ class ExamViewModel(
     reason: com.qweld.app.feature.exam.model.QuestionReportReason,
     userComment: String?,
   ) {
-    val attemptResult = currentAttempt ?: return
-    val assembledQuestion = attemptResult.attempt.questions.getOrNull(attemptResult.currentIndex) ?: return
-    val questionId = assembledQuestion.question.id
-    val attempt = attemptResult.attempt
+    val report = buildQuestionReport(reason, userComment)
+    if (report == null) {
+      Timber.w("[question_report] cannot build report, missing context")
+      return
+    }
 
-    // E2: For now, just log the report
-    // E3 will populate full QuestionReport and call QuestionReportRepository.submitReport(...)
-    Timber.i(
-      "[question_report] questionId=%s reason=%s comment=%s mode=%s locale=%s",
-      questionId,
-      reason.code,
-      userComment?.take(50) ?: "(none)",
-      attempt.mode.name,
-      attempt.locale,
+    viewModelScope.launch {
+      try {
+        questionReportRepository.submitReport(report)
+        Timber.i(
+          "[question_report] submitted questionId=%s reason=%s mode=%s",
+          report.questionId,
+          report.reasonCode,
+          report.mode,
+        )
+      } catch (e: Exception) {
+        Timber.e(e, "[question_report] submit failed for questionId=%s", report.questionId)
+        // User continues exam even if report fails
+      }
+    }
+  }
+
+  /**
+   * Builds a QuestionReport from current ExamViewModel state.
+   * Returns null if essential context is missing.
+   */
+  private fun buildQuestionReport(
+    reason: com.qweld.app.feature.exam.model.QuestionReportReason,
+    userComment: String?,
+  ): com.qweld.app.data.reports.QuestionReport? {
+    val attemptResult = currentAttempt ?: return null
+    val assembledQuestion = attemptResult.attempt.questions.getOrNull(attemptResult.currentIndex) ?: return null
+    val attempt = attemptResult.attempt
+    val question = assembledQuestion.question
+    val blueprint = attempt.blueprint
+
+    // Get selected and correct choice indices
+    val selectedChoiceId = attemptResult.answers[question.id]
+    val selectedChoiceIndex = assembledQuestion.choices.indexOfFirst { it.id == selectedChoiceId }
+      .takeIf { it >= 0 }
+    val correctChoiceIndex = assembledQuestion.correctIndex
+
+    // Find blueprint quota for this task
+    val taskQuota = blueprint.taskQuotas.find { it.taskId == question.taskId }?.required
+
+    // Get app version and build info (using feature-exam's BuildConfig)
+    val appVersionName = try {
+      com.qweld.app.feature.exam.BuildConfig.VERSION_NAME
+    } catch (e: Exception) {
+      null
+    }
+    val appVersionCode = try {
+      com.qweld.app.feature.exam.BuildConfig.VERSION_CODE
+    } catch (e: Exception) {
+      null
+    }
+    val buildType = try {
+      com.qweld.app.feature.exam.BuildConfig.BUILD_TYPE
+    } catch (e: Exception) {
+      null
+    }
+
+    // Get device info
+    val osVersion = try {
+      android.os.Build.VERSION.RELEASE
+    } catch (e: Exception) {
+      null
+    }
+    val deviceModel = try {
+      android.os.Build.MODEL
+    } catch (e: Exception) {
+      null
+    }
+
+    return com.qweld.app.data.reports.QuestionReport(
+      // Core identifiers
+      questionId = question.id,
+      taskId = question.taskId,
+      blockId = question.blockId,
+      blueprintId = "blueprint_${attempt.mode.name.lowercase()}", // e.g., "blueprint_ip_mock"
+
+      // Localization & mode
+      locale = attempt.locale,
+      mode = attempt.mode.name,
+
+      // Reason
+      reasonCode = reason.code,
+      reasonDetail = null,
+      userComment = userComment,
+
+      // Position/context within attempt
+      questionIndex = attemptResult.currentIndex,
+      totalQuestions = attempt.questions.size,
+      selectedChoiceIds = selectedChoiceIndex?.let { listOf(it) },
+      correctChoiceIds = listOf(correctChoiceIndex),
+      blueprintTaskQuota = taskQuota,
+
+      // Versions & environment
+      contentIndexSha = null, // Not available in current context
+      blueprintVersion = "blueprint_${attempt.mode.name.lowercase()}", // Same as blueprintId
+      appVersionName = appVersionName,
+      appVersionCode = appVersionCode,
+      buildType = buildType,
+      platform = "android",
+      osVersion = osVersion,
+      deviceModel = deviceModel,
+
+      // Session/attempt context (no PII)
+      sessionId = null, // Not tracked currently
+      attemptId = attemptResult.attemptId,
+      seed = attempt.seed.value,
+      attemptKind = attempt.mode.name, // e.g., "IP_MOCK", "PRACTICE", "ADAPTIVE"
+
+      // Admin / workflow
+      status = "OPEN",
+      createdAt = null, // Firestore will set serverTimestamp
+      review = null,
     )
   }
 
@@ -1753,6 +1856,7 @@ class ExamViewModelFactory(
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
   private val userPrefs: UserPrefs,
+  private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   private val blueprintProvider: BlueprintProvider = StaticBlueprintProvider(),
   private val blueprintResolver: BlueprintResolver = BlueprintResolver(blueprintProvider),
   private val prewarmConfig: PrewarmConfig = PrewarmConfig(),
@@ -1773,6 +1877,7 @@ class ExamViewModelFactory(
         answersRepository = answersRepository,
         statsRepository = statsRepository,
         userPrefs = userPrefs,
+        questionReportRepository = questionReportRepository,
         blueprintResolver = blueprintResolver,
         blueprintProvider = blueprintResolver::forMode,
         prewarmController = prewarmController,

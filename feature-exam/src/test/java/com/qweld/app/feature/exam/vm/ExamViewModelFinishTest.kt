@@ -276,6 +276,11 @@ class ExamViewModelFinishTest {
     val answerDao = FakeAnswerDao()
     val attemptsRepository = AttemptsRepository(attemptDao) { }
     val answersRepository = AnswersRepository(answerDao)
+    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
+      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
+        // No-op for tests
+      }
+    }
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(
       repository = repository,
@@ -283,6 +288,7 @@ class ExamViewModelFinishTest {
       answersRepository = answersRepository,
       statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
+      questionReportRepository = questionReportRepository,
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 1L },
       attemptIdProvider = { "test-attempt" },

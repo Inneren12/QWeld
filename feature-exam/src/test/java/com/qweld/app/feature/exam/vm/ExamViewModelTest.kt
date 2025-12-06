@@ -157,6 +157,11 @@ class ExamViewModelTest {
         ids: List<String>,
       ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
     }
+    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
+      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
+        // No-op for tests
+      }
+    }
     val dispatcher = StandardTestDispatcher()
     return ExamViewModel(
       repository = repository,
@@ -164,6 +169,7 @@ class ExamViewModelTest {
       answersRepository = answersRepository,
       statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
+      questionReportRepository = questionReportRepository,
       blueprintProvider = blueprintProvider,
       seedProvider = { 1L },
       nowProvider = { 0L },

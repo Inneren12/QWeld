@@ -111,6 +111,11 @@ class ExamViewModelAbortRestartTest {
     val repository = repositoryWithTasks("A-1" to 3)
     val attemptsRepository = AttemptsRepository(attemptDao)
     val answersRepository = AnswersRepository(FakeAnswerDao())
+    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
+      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
+        // No-op for tests
+      }
+    }
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(
       repository = repository,
@@ -123,6 +128,7 @@ class ExamViewModelAbortRestartTest {
         ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
       },
       userPrefs = FakeUserPrefs(),
+      questionReportRepository = questionReportRepository,
       blueprintProvider = { _, _ -> ipBlueprint(required = 1) },
       seedProvider = { 1L },
       attemptIdProvider = { attemptIds.removeFirst() },
