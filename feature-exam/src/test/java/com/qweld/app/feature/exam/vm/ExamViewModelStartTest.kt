@@ -91,7 +91,7 @@ class ExamViewModelStartTest {
   }
 
   @Test
-  fun startAdaptiveUsesAdaptiveModeAndBlueprint() = runTest {
+  fun startAdaptiveEmitsNavigationEffectOnSuccess() = runTest {
     val repository = repositoryWithTasks("A-1" to 2, "B-1" to 2)
     val adaptiveBlueprint =
       ExamBlueprint(
