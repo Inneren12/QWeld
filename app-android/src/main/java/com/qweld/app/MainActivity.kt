@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
@@ -21,6 +22,7 @@ import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
+import com.qweld.app.data.reports.FirestoreQuestionReportRepository
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
 import com.qweld.app.feature.exam.data.AppRulesLoader
@@ -80,6 +82,7 @@ fun QWeldAppRoot(
   val attemptsRepository = remember(database) { AttemptsRepository(database.attemptDao()) }
   val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
   val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
+  val questionReportRepository = remember { FirestoreQuestionReportRepository(Firebase.firestore) }
   val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance(), analytics) }
   val logCollector: LogCollector? = remember(appContext) {
     (appContext as? LogCollectorOwner)?.logCollector
