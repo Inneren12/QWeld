@@ -64,6 +64,8 @@ dependencies {
   implementation("com.jakewharton.timber:timber:5.0.1")
   implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
   implementation("com.google.firebase:firebase-analytics-ktx")
+  implementation("com.google.firebase:firebase-firestore-ktx")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
 
   testImplementation(kotlin("test"))
   testImplementation(project(":core-domain"))
