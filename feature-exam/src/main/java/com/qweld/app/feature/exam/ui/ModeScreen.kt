@@ -246,6 +246,19 @@ fun ModeScreen(
       ) {
         Text(text = stringResource(id = R.string.mode_practice))
       }
+      val adaptiveCd = stringResource(id = R.string.mode_adaptive_cd)
+      Button(
+        modifier = Modifier
+          .fillMaxWidth()
+          .heightIn(min = minHeight)
+          .semantics {
+            contentDescription = adaptiveCd
+            role = Role.Button
+          },
+        onClick = { viewModel.startAttempt(ExamMode.ADAPTIVE, resolvedLanguage) },
+      ) {
+        Text(text = stringResource(id = R.string.mode_adaptive))
+      }
       val repeatCd = stringResource(id = R.string.mode_repeat_mistakes)
       Button(
         modifier = Modifier

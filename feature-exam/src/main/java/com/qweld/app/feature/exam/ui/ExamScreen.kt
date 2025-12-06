@@ -512,6 +512,6 @@ private fun DeficitDialog(
 
 internal fun shouldConfirmExit(mode: ExamMode?): Boolean =
   when (mode) {
-    ExamMode.IP_MOCK, ExamMode.PRACTICE -> true
+    ExamMode.IP_MOCK, ExamMode.PRACTICE, ExamMode.ADAPTIVE -> true
     else -> false
   }

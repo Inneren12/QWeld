@@ -34,7 +34,8 @@ fun ConfirmExitDialog(
 ) {
   val (titleRes, messageRes) =
     when (mode) {
-      ExamMode.PRACTICE -> R.string.dialog_exit_practice_title to R.string.dialog_exit_practice_msg
+      ExamMode.PRACTICE, ExamMode.ADAPTIVE ->
+        R.string.dialog_exit_practice_title to R.string.dialog_exit_practice_msg
       else -> R.string.dialog_exit_exam_title to R.string.dialog_exit_exam_msg
     }
   AlertDialog(
