@@ -154,4 +154,17 @@
     <string name="resume_dialog_keep">Keep original (%1$s)</string>
     <string name="resume_dialog_switch">Switch to %1$s &amp; rebuild</string>
     <string name="resume_dialog_remaining">Time left: %1$s</string>
+    <string name="report_question_button">Report question</string>
+    <string name="report_question_title">Report question</string>
+    <string name="report_question_reason_label">Select a reason:</string>
+    <string name="report_question_comment_label">Additional details (optional):</string>
+    <string name="report_question_comment_hint">Please describe the issue…</string>
+    <string name="report_question_submit">Submit</string>
+    <string name="report_reason_wrong_answer">Wrong answer / key</string>
+    <string name="report_reason_outdated_content">Outdated content</string>
+    <string name="report_reason_bad_wording">Bad wording / ambiguous</string>
+    <string name="report_reason_typo">Typo / grammar</string>
+    <string name="report_reason_translation_issue">Translation / language issue</string>
+    <string name="report_reason_ui_issue">UI / layout issue</string>
+    <string name="report_reason_other">Other</string>
 </resources>
