@@ -27,10 +27,33 @@ class AssetExplanationRepository internal constructor(
     val normalizedLocale = locale.ifBlank { DEFAULT_LOCALE }.lowercase(Locale.US)
     val sanitizedTask = taskId.ifBlank { return null }
     val baseId = sanitizeQuestionId(questionId)
-    val assetPath = "explanations/$normalizedLocale/$sanitizedTask/${baseId}__explain_${normalizedLocale}.json"
+    return loadFromLocale(normalizedLocale, sanitizedTask, baseId)
+      ?: loadFallback(baseId, sanitizedTask, normalizedLocale)
+  }
+
+  private fun loadFallback(
+    baseId: String,
+    taskId: String,
+    attemptedLocale: String,
+  ): Explanation? {
+    if (attemptedLocale == DEFAULT_LOCALE) return null
+
+    val fallback = loadFromLocale(DEFAULT_LOCALE, taskId, baseId)
+    if (fallback != null) {
+      Timber.w(
+        "[explain_fetch] id=%s locale=%s ok=true source=fallback",
+        baseId,
+        DEFAULT_LOCALE,
+      )
+    }
+    return fallback
+  }
+
+  private fun loadFromLocale(locale: String, taskId: String, baseId: String): Explanation? {
+    val assetPath = "explanations/$locale/$taskId/${baseId}__explain_${locale}.json"
     val stream = assetReader.open(assetPath)
     if (stream == null) {
-      Timber.w("[explain_fetch] id=%s locale=%s ok=false source=assets", baseId, normalizedLocale)
+      Timber.w("[explain_fetch] id=%s locale=%s ok=false source=assets", baseId, locale)
       return null
     }
 
@@ -38,10 +61,10 @@ class AssetExplanationRepository internal constructor(
       val payload = input.bufferedReader().use { reader -> reader.readText() }
       runCatching {
         val dto = json.decodeFromString(ExplanationDTO.serializer(), payload)
-        Timber.i("[explain_fetch] id=%s locale=%s ok=true source=assets", baseId, normalizedLocale)
+        Timber.i("[explain_fetch] id=%s locale=%s ok=true source=assets", baseId, locale)
         dto.toDomain()
       }.getOrElse { throwable ->
-        Timber.e(throwable, "[explain_fetch] id=%s locale=%s ok=false source=assets", baseId, normalizedLocale)
+        Timber.e(throwable, "[explain_fetch] id=%s locale=%s ok=false source=assets", baseId, locale)
         null
       }
     }

@@ -129,34 +129,60 @@ class AssetQuestionRepository internal constructor(
     }
   }
 
+  /**
+   * Loads questions using the following deterministic order:
+   * 1. Try the requested locale (per-task -> bank -> raw files).
+   * 2. If the requested locale is missing, retry the same order using the default locale [DEFAULT_LOCALE].
+   *
+   * Corrupt assets in the requested locale are surfaced as errors instead of silently falling back.
+   */
   fun loadQuestions(locale: String? = null, tasks: Set<String>? = null): LoadResult {
     val resolvedLocale = resolveLocale(locale)
     val normalizedTasks = tasks?.filter { it.isNotBlank() }?.toSet()?.takeIf { it.isNotEmpty() }
 
-    if (normalizedTasks != null) {
-      val orderedTasks = normalizedTasks.sorted()
+    val primaryResult = loadQuestionsForLocale(resolvedLocale, normalizedTasks)
+    if (primaryResult !is LoadResult.Missing || resolvedLocale == DEFAULT_LOCALE) {
+      return primaryResult
+    }
+
+    val fallbackResult = loadQuestionsForLocale(DEFAULT_LOCALE, normalizedTasks)
+    if (fallbackResult is LoadResult.Success) {
+      Logx.w(
+        LogTag.LOAD,
+        "locale_fallback",
+        "requested" to resolvedLocale,
+        "resolved" to fallbackResult.locale,
+        "task" to (normalizedTasks?.sorted()?.joinToString(",", prefix = "[", postfix = "]")
+          ?: "*"),
+      )
+    }
+    return fallbackResult
+  }
+
+  private fun loadQuestionsForLocale(locale: String, tasks: Set<String>?): LoadResult {
+    val orderedTasks = tasks?.sorted()
+    if (orderedTasks != null) {
       val tasksLog = orderedTasks.joinToString(separator = ",", prefix = "[", postfix = "]")
       var perTaskResult: PerTaskLoadResult? = null
-      val elapsed =
-        measureTimeMillis { perTaskResult = loadFromPerTask(resolvedLocale, orderedTasks) }
+      val elapsed = measureTimeMillis { perTaskResult = loadFromPerTask(locale, orderedTasks) }
       if (perTaskResult != null) {
         val perTask = perTaskResult!!
         val questionList = perTask.questions
         Logx.i(
           LogTag.LOAD,
           "per_task_success",
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to tasksLog,
           "count" to questionList.size,
           "elapsedMs" to elapsed,
           "cacheHits" to perTask.cacheHits,
         )
-        return LoadResult.Success(locale = resolvedLocale, questions = questionList)
+        return LoadResult.Success(locale = locale, questions = questionList)
       } else {
         Logx.w(
           LogTag.LOAD,
           "per_task_fallback",
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to tasksLog,
           "fallback" to "bank",
         )
@@ -164,40 +190,40 @@ class AssetQuestionRepository internal constructor(
     }
 
     var bankOutcome: AssetPayload<List<QuestionDTO>> = AssetPayload.Missing
-    val bankElapsed = measureTimeMillis { bankOutcome = loadFromBank(resolvedLocale) }
+    val bankElapsed = measureTimeMillis { bankOutcome = loadFromBank(locale) }
     when (val outcome = bankOutcome) {
       is AssetPayload.Success -> {
         Logx.i(
           LogTag.LOAD,
           "bank_success",
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to "*",
           "count" to outcome.value.size,
           "elapsedMs" to bankElapsed,
         )
-        return LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
+        return LoadResult.Success(locale = locale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
         Logx.w(
           LogTag.LOAD,
           "bank_missing",
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to "*",
         )
       }
       is AssetPayload.Error -> {
-        val bankPath = "questions/$resolvedLocale/bank.v1.json"
+        val bankPath = "questions/$locale/bank.v1.json"
         val error = ContentLoadError.fromThrowable(
           throwable = outcome.throwable,
           context = "bank_loading",
-          locale = resolvedLocale,
+          locale = locale,
           path = bankPath,
         )
         Logx.e(
           LogTag.LOAD,
           "bank_error",
           outcome.throwable,
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to "*",
           "error" to error.diagnosticMessage,
         )
@@ -206,24 +232,24 @@ class AssetQuestionRepository internal constructor(
     }
 
     var singlesOutcome: AssetPayload<List<QuestionDTO>> = AssetPayload.Missing
-    val singlesElapsed = measureTimeMillis { singlesOutcome = loadFromSingleFiles(resolvedLocale) }
+    val singlesElapsed = measureTimeMillis { singlesOutcome = loadFromSingleFiles(locale) }
     return when (val outcome = singlesOutcome) {
       is AssetPayload.Success -> {
         Logx.i(
           LogTag.LOAD,
           "raw_success",
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to "*",
           "count" to outcome.value.size,
           "elapsedMs" to singlesElapsed,
         )
-        LoadResult.Success(locale = resolvedLocale, questions = outcome.value)
+        LoadResult.Success(locale = locale, questions = outcome.value)
       }
       AssetPayload.Missing -> {
         Logx.w(
           LogTag.LOAD,
           "raw_missing",
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to "*",
         )
         LoadResult.Missing
@@ -232,14 +258,14 @@ class AssetQuestionRepository internal constructor(
         val error = ContentLoadError.fromThrowable(
           throwable = outcome.throwable,
           context = "raw_files_loading",
-          locale = resolvedLocale,
-          path = "questions/$resolvedLocale",
+          locale = locale,
+          path = "questions/$locale",
         )
         Logx.e(
           LogTag.LOAD,
           "raw_error",
           outcome.throwable,
-          "locale" to resolvedLocale,
+          "locale" to locale,
           "task" to "*",
           "error" to error.diagnosticMessage,
         )
