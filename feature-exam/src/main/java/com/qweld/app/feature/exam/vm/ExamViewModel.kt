@@ -358,8 +358,8 @@ class ExamViewModel(
           stopTimer(clearLabel = true)
         }
         refreshState()
-        if (mode == ExamMode.IP_MOCK) {
-          Timber.i("[exam_start] ready=125")
+        if (shouldNavigateToExam(mode)) {
+          Timber.i("[exam_start] ready=125 mode=%s", mode)
           _effects.tryEmit(ExamEffect.NavigateToExam)
         }
         true
@@ -419,6 +419,12 @@ class ExamViewModel(
         )
     }
   }
+
+  private fun shouldNavigateToExam(mode: ExamMode): Boolean =
+    when (mode) {
+      ExamMode.IP_MOCK, ExamMode.ADAPTIVE -> true
+      ExamMode.PRACTICE -> false
+    }
 
   private fun handleAssemblyFailure(
     mode: ExamMode,

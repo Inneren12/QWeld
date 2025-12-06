@@ -104,9 +104,12 @@ class ExamViewModelStartTest {
       )
     val viewModel = createViewModel(repository, adaptiveBlueprint)
 
+    val effect = async { viewModel.effects.first() }
+
     val launched = viewModel.startAttempt(ExamMode.ADAPTIVE, locale = "en")
 
     assertTrue(launched)
+    assertEquals(ExamViewModel.ExamEffect.NavigateToExam, effect.await())
     val attempt = viewModel.uiState.value.attempt
     assertNotNull(attempt)
     assertEquals(ExamMode.ADAPTIVE, attempt.mode)
