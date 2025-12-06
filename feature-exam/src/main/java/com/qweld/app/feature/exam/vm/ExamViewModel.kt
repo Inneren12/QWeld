@@ -358,7 +358,7 @@ class ExamViewModel(
           stopTimer(clearLabel = true)
         }
         refreshState()
-        if (shouldNavigateToExam(mode)) {
+        if (mode == ExamMode.IP_MOCK || mode == ExamMode.ADAPTIVE) {
           Timber.i("[exam_start] ready=125 mode=%s", mode)
           _effects.tryEmit(ExamEffect.NavigateToExam)
         }
