@@ -95,6 +95,7 @@ fun QWeldAppRoot(
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
+      questionReportRepository = questionReportRepository,
       appVersion = BuildConfig.VERSION_NAME,
       analytics = analytics,
       logCollector = logCollector,

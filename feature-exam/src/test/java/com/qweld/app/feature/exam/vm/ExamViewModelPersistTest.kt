@@ -109,12 +109,18 @@ class ExamViewModelPersistTest {
       totalQuestions = 1,
       taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 1)),
     )
+    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
+      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
+        // No-op for tests
+      }
+    }
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
+      questionReportRepository = questionReportRepository,
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 1L },
       attemptIdProvider = { TEST_ATTEMPT_ID },

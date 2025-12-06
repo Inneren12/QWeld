@@ -225,12 +225,18 @@ class ExamViewModelExitResumeTest {
 
   private fun createViewModel(repository: AssetQuestionRepository): ExamViewModel {
     val blueprint = practiceBlueprint(3)
+    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
+      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
+        // No-op for tests
+      }
+    }
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
+      questionReportRepository = questionReportRepository,
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 7L },
       attemptIdProvider = { "test-attempt-exit-resume" },

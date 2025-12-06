@@ -118,6 +118,11 @@ class ExamViewModelResumeTest {
       taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 2)),
     )
       val userPrefs = FakeUserPrefs()
+    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
+      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
+        // No-op for tests
+      }
+    }
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
@@ -141,6 +146,7 @@ class ExamViewModelResumeTest {
             ),
         ),
         userPrefs = userPrefs,
+        questionReportRepository = questionReportRepository,
     )
   }
 
