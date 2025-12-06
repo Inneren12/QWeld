@@ -422,8 +422,7 @@ class ExamViewModel(
 
   private fun shouldNavigateToExam(mode: ExamMode): Boolean =
     when (mode) {
-      ExamMode.IP_MOCK, ExamMode.ADAPTIVE -> true
-      ExamMode.PRACTICE -> false
+      ExamMode.IP_MOCK, ExamMode.ADAPTIVE, ExamMode.PRACTICE -> true
     }
 
   private fun handleAssemblyFailure(
@@ -1581,7 +1580,6 @@ class ExamViewModel(
         scopeTasksLog,
         resolvedConfig.scope.distribution.name,
       )
-      _effects.tryEmit(ExamEffect.NavigateToExam)
     }
     return launched
   }
