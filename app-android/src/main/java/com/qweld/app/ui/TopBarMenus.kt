@@ -40,6 +40,7 @@ fun TopBarMenus(
   onNavigateToAbout: () -> Unit,
   onSignOut: () -> Unit,
   onExportLogs: (() -> Unit)? = null,
+  onNavigateToAdminReports: (() -> Unit)? = null,
   currentLocaleTag: String,
   onLocaleSelected: (String) -> Unit,
 ) {
@@ -52,6 +53,7 @@ fun TopBarMenus(
         onNavigateToSettings = onNavigateToSettings,
         onNavigateToAbout = onNavigateToAbout,
         onExportLogs = onExportLogs,
+        onNavigateToAdminReports = onNavigateToAdminReports,
       )
       AccountMenu(
         user = user,
@@ -69,6 +71,7 @@ private fun OverflowMenu(
   onNavigateToSettings: () -> Unit,
   onNavigateToAbout: () -> Unit,
   onExportLogs: (() -> Unit)?,
+  onNavigateToAdminReports: (() -> Unit)?,
 ) {
   var expanded by remember { mutableStateOf(false) }
   var showLanguageDialog by remember { mutableStateOf(false) }
@@ -103,6 +106,15 @@ private fun OverflowMenu(
         onClick = {
           expanded = false
           exportLogs()
+        },
+      )
+    }
+    onNavigateToAdminReports?.let { navigateToAdmin ->
+      DropdownMenuItem(
+        text = { Text(text = "Admin: Question Reports") },
+        onClick = {
+          expanded = false
+          navigateToAdmin()
         },
       )
     }
