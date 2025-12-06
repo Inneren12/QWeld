@@ -133,4 +133,17 @@
     <string name="explain_tips">Подсказки</string>
     <string name="explain_rationale_label">Краткое объяснение</string>
     <string name="explain_not_available">Подробное пояснение недоступно.</string>
+    <string name="report_question_button">Сообщить о проблеме</string>
+    <string name="report_question_title">Сообщить о проблеме с вопросом</string>
+    <string name="report_question_reason_label">Выберите причину:</string>
+    <string name="report_question_comment_label">Дополнительные детали (опционально):</string>
+    <string name="report_question_comment_hint">Опишите проблему…</string>
+    <string name="report_question_submit">Отправить</string>
+    <string name="report_reason_wrong_answer">Неправильный ответ / ключ</string>
+    <string name="report_reason_outdated_content">Устаревший контент</string>
+    <string name="report_reason_bad_wording">Неясная формулировка / двусмысленность</string>
+    <string name="report_reason_typo">Опечатка / грамматика</string>
+    <string name="report_reason_translation_issue">Проблема перевода / языка</string>
+    <string name="report_reason_ui_issue">Проблема UI / верстки</string>
+    <string name="report_reason_other">Другое</string>
 </resources>

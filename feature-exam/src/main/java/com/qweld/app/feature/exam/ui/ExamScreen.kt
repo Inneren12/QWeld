@@ -96,6 +96,7 @@ fun ExamScreen(
   val confirmExitEnabled = shouldConfirmExit(attempt?.mode)
   var showConfirmExitDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
   var showConfirmRestartDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
+  var showReportDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
   val hapticFeedback = LocalHapticFeedback.current
   val view = LocalView.current
   val lifecycleOwner = LocalLifecycleOwner.current
@@ -215,6 +216,7 @@ fun ExamScreen(
     onFinish = viewModel::finishExam,
     onShowRestart = { showConfirmRestartDialog = true },
     onShowExit = { showConfirmExitDialog = true },
+    onReportQuestionClick = { showReportDialog = true },
   )
 
   if (showConfirmExitDialog) {
@@ -243,6 +245,15 @@ fun ExamScreen(
       onRestart = {
         showConfirmRestartDialog = false
         viewModel.restartAttempt()
+      },
+    )
+  }
+  if (showReportDialog) {
+    ReportQuestionDialog(
+      onDismiss = { showReportDialog = false },
+      onSubmit = { reason, comment ->
+        showReportDialog = false
+        viewModel.reportCurrentQuestion(reason, comment)
       },
     )
   }
@@ -276,6 +287,7 @@ internal fun ExamScreenContent(
   onFinish: () -> Unit,
   onShowRestart: () -> Unit,
   onShowExit: () -> Unit,
+  onReportQuestionClick: () -> Unit,
 ) {
   Scaffold(
     modifier = modifier
@@ -359,6 +371,13 @@ internal fun ExamScreenContent(
               text = question.stem,
               style = MaterialTheme.typography.headlineSmall,
             )
+            // Report question button
+            TextButton(
+              onClick = onReportQuestionClick,
+              modifier = Modifier.padding(vertical = 4.dp),
+            ) {
+              Text(text = stringResource(id = R.string.report_question_button))
+            }
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
               question.choices.forEach { choice ->
                 val choiceDescription = stringResource(

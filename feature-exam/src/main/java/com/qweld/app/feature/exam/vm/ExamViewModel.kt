@@ -836,6 +836,39 @@ class ExamViewModel(
 
   // endregion
 
+  // region Question Reporting
+
+  /**
+   * Reports the current question with a reason and optional comment.
+   * In E2, this only logs the report. In E3, it will populate full context
+   * and send to QuestionReportRepository.
+   *
+   * @param reason The reason for reporting the question
+   * @param userComment Optional comment from the user
+   */
+  fun reportCurrentQuestion(
+    reason: com.qweld.app.feature.exam.model.QuestionReportReason,
+    userComment: String?,
+  ) {
+    val attemptResult = currentAttempt ?: return
+    val assembledQuestion = attemptResult.attempt.questions.getOrNull(attemptResult.currentIndex) ?: return
+    val questionId = assembledQuestion.question.id
+    val attempt = attemptResult.attempt
+
+    // E2: For now, just log the report
+    // E3 will populate full QuestionReport and call QuestionReportRepository.submitReport(...)
+    Timber.i(
+      "[question_report] questionId=%s reason=%s comment=%s mode=%s locale=%s",
+      questionId,
+      reason.code,
+      userComment?.take(50) ?: "(none)",
+      attempt.mode.name,
+      attempt.locale,
+    )
+  }
+
+  // endregion
+
   // region UI State Management
 
   fun dismissDeficitDialog() {
