@@ -2,8 +2,10 @@
     <string name="mode_screen_title">Choose exam mode</string>
     <string name="mode_ip_mock">IP Mock</string>
     <string name="mode_practice">Practice</string>
+    <string name="mode_adaptive">Adaptive</string>
     <string name="mode_ip_mock_cd">Start an IP Mock exam</string>
     <string name="mode_practice_cd">Start a practice exam</string>
+    <string name="mode_adaptive_cd">Start an adaptive exam</string>
     <string name="practice_scope_title">Practice scope</string>
     <string name="practice_scope_blocks">Blocks</string>
     <string name="practice_scope_presets">Presets</string>

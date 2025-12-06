@@ -63,47 +63,18 @@ class ExamAssembler(
       timer.start()
 
       val now = clock.instant()
-      val allSelected = mutableListOf<Question>()
-      val deficits = mutableListOf<DeficitDetail>()
-      for (quota in blueprint.taskQuotas) {
-        val pool =
-          when (val questions = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)) {
-            is Outcome.Ok -> questions.value
-            is Outcome.Err -> return@withContext questions
-          }
-        val stats =
-          when (val statsOutcome = statsRepository.getUserItemStats(userId, pool.map { it.id })) {
-            is Outcome.Ok -> statsOutcome.value
-            is Outcome.Err -> return@withContext statsOutcome
-          }
-        val selectionResult =
-          when (mode) {
-            ExamMode.IP_MOCK -> selectUniform(pool, stats, quota, seed, now, locale)
-            ExamMode.PRACTICE,
-            ExamMode.ADAPTIVE -> selectWeighted(pool, stats, quota, seed, now, locale, mode)
-          }
-        val selected = selectionResult.questions
-        logger(
-          "[exam_pick] taskId=${quota.taskId} need=${quota.required} pool=${pool.size} " +
-            "selected=${selected.size} fresh=${selectionResult.fresh} reused=${selectionResult.reused}"
-        )
-        if (selectionResult.deficitDetail != null) {
-          val detail = selectionResult.deficitDetail
-          logger("[deficit] taskId=${detail.taskId} required=${detail.required} have=${detail.have} seed=${seed.value}")
-          deficits += detail
-        } else {
-          allSelected += selected
+      val selectionOutcome =
+        when (mode) {
+          ExamMode.ADAPTIVE -> selectAdaptive(blueprint, userId, locale, allowFallback, seed, now)
+          else -> selectNonAdaptive(blueprint, userId, locale, allowFallback, seed, now, mode)
         }
-      }
-
-      if (deficits.isNotEmpty()) {
-        val first = deficits.first()
-        return@withContext Outcome.Err.QuotaExceeded(
-          taskId = first.taskId,
-          required = first.required,
-          have = first.have,
-        )
-      }
+      val selection =
+        when (selectionOutcome) {
+          is Outcome.Err -> return@withContext selectionOutcome
+          is Outcome.Ok -> selectionOutcome.value
+        }
+      val allSelected = selection.questions
+      val effectiveBlueprint = selection.blueprint
 
       val orderSeed = Hash64.hash(seed.value, "ORDER")
       val orderRng = randomProvider.pcg32(orderSeed)
@@ -157,7 +128,7 @@ class ExamAssembler(
 
       val timeLeftDuration = timer.remaining()
       val formattedTimeLeft = TimerController.formatDuration(timeLeftDuration)
-      logger("[exam_finish] correct=0/${blueprint.totalQuestions} score=0 timeLeft=$formattedTimeLeft")
+      logger("[exam_finish] correct=0/${effectiveBlueprint.totalQuestions} score=0 timeLeft=$formattedTimeLeft")
 
       Outcome.Ok(
         Assembly(
@@ -167,12 +138,114 @@ class ExamAssembler(
               locale = locale,
               seed = seed,
               questions = assembledQuestions,
-              blueprint = blueprint,
+              blueprint = effectiveBlueprint,
             ),
           seed = seed.value,
         )
       )
     }
+
+  private suspend fun selectNonAdaptive(
+    blueprint: ExamBlueprint,
+    userId: String,
+    locale: String,
+    allowFallback: Boolean,
+    seed: AttemptSeed,
+    now: Instant,
+    mode: ExamMode,
+  ): Outcome<SelectionBundle> {
+    val allSelected = mutableListOf<Question>()
+    for (quota in blueprint.taskQuotas) {
+      val pool =
+        when (val questions = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)) {
+          is Outcome.Ok -> questions.value
+          is Outcome.Err -> return questions
+        }
+      val stats =
+        when (val statsOutcome = statsRepository.getUserItemStats(userId, pool.map { it.id })) {
+          is Outcome.Ok -> statsOutcome.value
+          is Outcome.Err -> return statsOutcome
+        }
+      val selectionResult =
+        when (mode) {
+          ExamMode.IP_MOCK -> selectUniform(pool, stats, quota, seed, now, locale)
+          ExamMode.PRACTICE,
+          ExamMode.ADAPTIVE -> selectWeighted(pool, stats, quota, seed, now, locale, mode)
+        }
+      val selected = selectionResult.questions
+      logger(
+        "[exam_pick] taskId=${quota.taskId} need=${quota.required} pool=${pool.size} " +
+          "selected=${selected.size} fresh=${selectionResult.fresh} reused=${selectionResult.reused}"
+      )
+      if (selectionResult.deficitDetail != null) {
+        val detail = selectionResult.deficitDetail
+        logger("[deficit] taskId=${detail.taskId} required=${detail.required} have=${detail.have} seed=${seed.value}")
+        return Outcome.Err.QuotaExceeded(taskId = detail.taskId, required = detail.required, have = detail.have)
+      }
+      allSelected += selected
+    }
+    return Outcome.Ok(SelectionBundle(allSelected, blueprint))
+  }
+
+  private suspend fun selectAdaptive(
+    blueprint: ExamBlueprint,
+    userId: String,
+    locale: String,
+    allowFallback: Boolean,
+    seed: AttemptSeed,
+    now: Instant,
+  ): Outcome<SelectionBundle> {
+    val contexts = mutableListOf<TaskContext>()
+    for (quota in blueprint.taskQuotas) {
+      val pool =
+        when (val questions = questionRepository.listByTaskAndLocale(quota.taskId, locale, allowFallback)) {
+          is Outcome.Ok -> questions.value
+          is Outcome.Err -> return questions
+        }
+      val stats =
+        when (val statsOutcome = statsRepository.getUserItemStats(userId, pool.map { it.id })) {
+          is Outcome.Ok -> statsOutcome.value
+          is Outcome.Err -> return statsOutcome
+        }
+      contexts += TaskContext(quota = quota, pool = pool, stats = stats)
+    }
+    val allocator = AdaptiveQuotaAllocator(randomProvider)
+    val snapshots =
+      contexts.map { context ->
+        AdaptiveQuotaAllocator.TaskSnapshot(
+          quota = context.quota,
+          available = context.pool.size,
+          weakness = allocator.weakness(context.stats),
+        )
+      }
+    val allocatedBlueprint =
+      when (val allocation = allocator.allocate(blueprint, snapshots, seed)) {
+        is AdaptiveQuotaAllocator.AllocationResult.Ok -> allocation.blueprint
+        is AdaptiveQuotaAllocator.AllocationResult.Err ->
+          return Outcome.Err.QuotaExceeded(
+            taskId = allocation.deficit.taskId,
+            required = allocation.deficit.required,
+            have = allocation.deficit.available,
+          )
+      }
+    val contextByTask = contexts.associateBy { it.quota.taskId }
+    val allSelected = mutableListOf<Question>()
+    for (quota in allocatedBlueprint.taskQuotas) {
+      val context = contextByTask[quota.taskId] ?: continue
+      val selectionResult = selectWeighted(context.pool, context.stats, quota, seed, now, locale, ExamMode.ADAPTIVE)
+      logger(
+        "[exam_pick] taskId=${quota.taskId} need=${quota.required} pool=${context.pool.size} " +
+          "selected=${selectionResult.questions.size} fresh=${selectionResult.fresh} reused=${selectionResult.reused}"
+      )
+      if (selectionResult.deficitDetail != null) {
+        val detail = selectionResult.deficitDetail
+        logger("[deficit] taskId=${detail.taskId} required=${detail.required} have=${detail.have} seed=${seed.value}")
+        return Outcome.Err.QuotaExceeded(taskId = detail.taskId, required = detail.required, have = detail.have)
+      }
+      allSelected += selectionResult.questions
+    }
+    return Outcome.Ok(SelectionBundle(allSelected, allocatedBlueprint))
+  }
 
   private fun selectUniform(
     pool: List<Question>,
@@ -236,14 +309,22 @@ class ExamAssembler(
     val entries: List<WeightedEntry<Question>> =
       sampler.order(pool) { question ->
         val statsForQuestion = stats[question.id]
-        val bias =
+        val practiceBias =
           if (mode == ExamMode.PRACTICE && config.practiceWrongBiased && statsForQuestion?.lastAnswerCorrect == false) {
             biasApplied += 1
             config.weights.wrongBoost
           } else {
             1.0
           }
-        computeWeight(statsForQuestion, config, now, bias)
+        val adaptiveBias =
+          if (mode == ExamMode.ADAPTIVE) {
+            val accuracy =
+              statsForQuestion?.takeIf { it.attempts > 0 }?.let { it.correct.toDouble() / it.attempts.toDouble() }
+            1.0 + (1.0 - (accuracy ?: 0.0))
+          } else {
+            1.0
+          }
+        computeWeight(statsForQuestion, config, now, practiceBias * adaptiveBias)
       }
     if (mode == ExamMode.PRACTICE && config.practiceWrongBiased) {
       logger("[weights.bias] wrongBoost=${config.weights.wrongBoost} applied=$biasApplied")
@@ -325,6 +406,17 @@ class ExamAssembler(
     val fresh: Int,
     val reused: Int,
     val deficitDetail: DeficitDetail?,
+  )
+
+  private data class TaskContext(
+    val quota: TaskQuota,
+    val pool: List<Question>,
+    val stats: Map<String, ItemStats>,
+  )
+
+  private data class SelectionBundle(
+    val questions: List<Question>,
+    val blueprint: ExamBlueprint,
   )
 
   private data class DeficitDetail(

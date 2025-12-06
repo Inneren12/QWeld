@@ -26,6 +26,7 @@ import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.blueprint.BlueprintProvider
 import com.qweld.app.feature.exam.model.DeficitDetailUiModel
 import com.qweld.app.feature.exam.model.DeficitDialogUiModel
 import com.qweld.app.feature.exam.model.ExamAttemptUiState
@@ -96,7 +97,8 @@ class ExamViewModel(
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
   private val userPrefs: UserPrefs,
-  private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = ::defaultBlueprintForMode,
+  private val blueprintResolver: BlueprintResolver = BlueprintResolver(StaticBlueprintProvider()),
+  private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = blueprintResolver::forMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
   private val userIdProvider: () -> String = { DEFAULT_USER_ID },
   private val attemptIdProvider: () -> String = { UUID.randomUUID().toString() },
@@ -213,13 +215,13 @@ class ExamViewModel(
     pendingResume = null
     manualTimerRemaining = null
     _uiState.value = _uiState.value.copy(resumeDialog = null)
-    val resolvedPracticeSize =
-      if (mode == ExamMode.PRACTICE && blueprintOverride == null) {
-        normalizedPracticeConfig.size
-      } else {
-        DEFAULT_PRACTICE_SIZE
+    val blueprintSize =
+      when {
+        mode == ExamMode.PRACTICE && blueprintOverride == null -> normalizedPracticeConfig.size
+        mode == ExamMode.ADAPTIVE -> DEFAULT_ADAPTIVE_SIZE
+        else -> DEFAULT_PRACTICE_SIZE
       }
-    val blueprint = blueprintOverride ?: blueprintProvider(mode, resolvedPracticeSize)
+    val blueprint = blueprintOverride ?: blueprintProvider(mode, blueprintSize)
     if (mode == ExamMode.PRACTICE) {
       Timber.i(
         "[practice_config] size=%d wrongBiased=%s",
@@ -356,8 +358,8 @@ class ExamViewModel(
           stopTimer(clearLabel = true)
         }
         refreshState()
-        if (mode == ExamMode.IP_MOCK) {
-          Timber.i("[exam_start] ready=125")
+        if (shouldNavigateToExam(mode)) {
+          Timber.i("[exam_start] ready=125 mode=%s", mode)
           _effects.tryEmit(ExamEffect.NavigateToExam)
         }
         true
@@ -417,6 +419,12 @@ class ExamViewModel(
         )
     }
   }
+
+  private fun shouldNavigateToExam(mode: ExamMode): Boolean =
+    when (mode) {
+      ExamMode.IP_MOCK, ExamMode.ADAPTIVE -> true
+      ExamMode.PRACTICE -> false
+    }
 
   private fun handleAssemblyFailure(
     mode: ExamMode,
@@ -1344,7 +1352,7 @@ class ExamViewModel(
       when (mode) {
         ExamMode.IP_MOCK -> "IPMock"
         ExamMode.PRACTICE -> "Practice"
-        else -> mode.name
+        ExamMode.ADAPTIVE -> "Adaptive"
       },
       resolvedSize,
       scopeLog,
@@ -1643,6 +1651,7 @@ class ExamViewModel(
 
   companion object {
     private const val DEFAULT_PRACTICE_SIZE = PracticeConfig.DEFAULT_SIZE
+    private const val DEFAULT_ADAPTIVE_SIZE = BlueprintResolver.DEFAULT_ADAPTIVE_SIZE
     private const val DEFAULT_USER_ID = "local_user"
     private const val IP_MOCK_PASS_THRESHOLD = 70
     private const val AUTOSAVE_INTERVAL_SEC = 10
@@ -1704,33 +1713,6 @@ class ExamViewModel(
       return ordered
     }
 
-    private fun defaultBlueprintForMode(mode: ExamMode, practiceSize: Int): ExamBlueprint {
-      return when (mode) {
-        ExamMode.PRACTICE -> buildPracticeBlueprint(practiceSize)
-        else -> ExamBlueprint.default()
-      }
-    }
-
-    private fun buildPracticeBlueprint(practiceSize: Int): ExamBlueprint {
-      val sanitizedSize = practiceSize.coerceAtLeast(1)
-      val base = ExamBlueprint.default()
-      if (sanitizedSize >= base.totalQuestions) return base
-      var remaining = sanitizedSize
-      val quotas = mutableListOf<TaskQuota>()
-      for (quota in base.taskQuotas) {
-        if (remaining <= 0) break
-        val take = min(remaining, quota.required)
-        if (take > 0) {
-          quotas += TaskQuota(quota.taskId, quota.blockId, take)
-          remaining -= take
-        }
-      }
-      if (remaining > 0) {
-        val last = base.taskQuotas.last()
-        quotas += TaskQuota(last.taskId, last.blockId, remaining)
-      }
-      return ExamBlueprint(totalQuestions = sanitizedSize, taskQuotas = quotas)
-    }
   }
 }
 
@@ -1740,6 +1722,8 @@ class ExamViewModelFactory(
   private val answersRepository: AnswersRepository,
   private val statsRepository: UserStatsRepository,
   private val userPrefs: UserPrefs,
+  private val blueprintProvider: BlueprintProvider = StaticBlueprintProvider(),
+  private val blueprintResolver: BlueprintResolver = BlueprintResolver(blueprintProvider),
   private val prewarmConfig: PrewarmConfig = PrewarmConfig(),
 ) : ViewModelProvider.Factory {
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -1758,6 +1742,8 @@ class ExamViewModelFactory(
         answersRepository = answersRepository,
         statsRepository = statsRepository,
         userPrefs = userPrefs,
+        blueprintResolver = blueprintResolver,
+        blueprintProvider = blueprintResolver::forMode,
         prewarmController = prewarmController,
       ) as T
     }

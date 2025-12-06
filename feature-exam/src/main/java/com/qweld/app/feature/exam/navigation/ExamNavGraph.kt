@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -21,12 +22,14 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.blueprint.AssetBlueprintProvider
 import com.qweld.app.feature.exam.ui.ModeScreen
 import com.qweld.app.feature.exam.ui.ExamScreen
 import com.qweld.app.feature.exam.ui.ResultScreen
 import com.qweld.app.feature.exam.ui.ReviewScreen
 import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.ExamViewModelFactory
+import com.qweld.app.feature.exam.vm.BlueprintResolver
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
@@ -60,6 +63,31 @@ fun ExamNavGraph(
   prewarmConfig: PrewarmConfig = PrewarmConfig(),
   appLocaleTag: String,
 ) {
+  val context = LocalContext.current.applicationContext
+  val blueprintProvider = remember(context) { AssetBlueprintProvider(context) }
+  val blueprintResolver = remember(blueprintProvider) { BlueprintResolver(blueprintProvider) }
+  val examViewModelFactory =
+    remember(
+      repository,
+      attemptsRepository,
+      answersRepository,
+      statsRepository,
+      userPrefs,
+      blueprintProvider,
+      blueprintResolver,
+      prewarmConfig,
+    ) {
+      ExamViewModelFactory(
+        repository = repository,
+        attemptsRepository = attemptsRepository,
+        answersRepository = answersRepository,
+        statsRepository = statsRepository,
+        userPrefs = userPrefs,
+        blueprintProvider = blueprintProvider,
+        blueprintResolver = blueprintResolver,
+        prewarmConfig = prewarmConfig,
+      )
+    }
   val attemptExporter =
     remember(attemptsRepository, answersRepository, appVersion) {
       AttemptExporter(
@@ -76,15 +104,7 @@ fun ExamNavGraph(
     composable(route = ExamDestinations.MODE) {
       val examViewModel: ExamViewModel =
         viewModel(
-          factory =
-            ExamViewModelFactory(
-              repository = repository,
-              attemptsRepository = attemptsRepository,
-              answersRepository = answersRepository,
-              statsRepository = statsRepository,
-              userPrefs = userPrefs,
-              prewarmConfig = prewarmConfig,
-            ),
+          factory = examViewModelFactory,
         )
       val practiceShortcuts: PracticeShortcuts =
         viewModel(
@@ -141,15 +161,7 @@ fun ExamNavGraph(
       val examViewModel: ExamViewModel =
         viewModel(
           parentEntry,
-          factory =
-            ExamViewModelFactory(
-              repository = repository,
-              attemptsRepository = attemptsRepository,
-              answersRepository = answersRepository,
-              statsRepository = statsRepository,
-              userPrefs = userPrefs,
-              prewarmConfig = prewarmConfig,
-            ),
+          factory = examViewModelFactory,
         )
       LaunchedEffect(examViewModel, navController) {
         examViewModel.effects.collectLatest { effect ->
@@ -196,15 +208,7 @@ fun ExamNavGraph(
       val examViewModel: ExamViewModel =
         viewModel(
           parentEntry,
-          factory =
-            ExamViewModelFactory(
-              repository = repository,
-              attemptsRepository = attemptsRepository,
-              answersRepository = answersRepository,
-              statsRepository = statsRepository,
-              userPrefs = userPrefs,
-              prewarmConfig = prewarmConfig,
-            ),
+          factory = examViewModelFactory,
         )
       val resultViewModel: ResultViewModel =
         viewModel(
@@ -235,15 +239,7 @@ fun ExamNavGraph(
       val examViewModel: ExamViewModel =
         viewModel(
           parentEntry,
-          factory =
-            ExamViewModelFactory(
-              repository = repository,
-              attemptsRepository = attemptsRepository,
-              answersRepository = answersRepository,
-              statsRepository = statsRepository,
-              userPrefs = userPrefs,
-              prewarmConfig = prewarmConfig,
-            ),
+          factory = examViewModelFactory,
         )
       val resultViewModel: ResultViewModel =
         viewModel(

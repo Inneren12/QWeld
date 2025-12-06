@@ -90,6 +90,33 @@ class ExamViewModelStartTest {
     assertEquals("stats failed", viewModel.uiState.value.errorMessage)
   }
 
+  @Test
+  fun startAdaptiveUsesAdaptiveModeAndBlueprint() = runTest {
+    val repository = repositoryWithTasks("A-1" to 2, "B-1" to 2)
+    val adaptiveBlueprint =
+      ExamBlueprint(
+        totalQuestions = 3,
+        taskQuotas =
+          listOf(
+            TaskQuota("A-1", "A", 2),
+            TaskQuota("B-1", "B", 1),
+          ),
+      )
+    val viewModel = createViewModel(repository, adaptiveBlueprint)
+
+    val effect = async { viewModel.effects.first() }
+
+    val launched = viewModel.startAttempt(ExamMode.ADAPTIVE, locale = "en")
+
+    assertTrue(launched)
+    assertEquals(ExamViewModel.ExamEffect.NavigateToExam, effect.await())
+    val attempt = viewModel.uiState.value.attempt
+    assertNotNull(attempt)
+    assertEquals(ExamMode.ADAPTIVE, attempt.mode)
+    assertEquals(adaptiveBlueprint.totalQuestions, attempt.totalQuestions)
+    assertEquals(adaptiveBlueprint.taskQuotas.size, attempt.blueprint.taskQuotas.size)
+  }
+
   private fun repositoryWithTasks(
     vararg counts: Pair<String, Int>,
     locale: String = "en",
