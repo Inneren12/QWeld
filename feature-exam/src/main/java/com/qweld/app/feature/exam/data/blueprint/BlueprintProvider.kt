@@ -1,8 +1,10 @@
 package com.qweld.app.feature.exam.data.blueprint
 
+import android.R.attr.path
 import android.content.Context
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.feature.exam.data.BlueprintJsonLoader
+import timber.log.Timber
 import java.io.InputStream
 
 /** Identifies a concrete blueprint variant that can be loaded from assets or other sources. */
@@ -13,7 +15,7 @@ enum class BlueprintId {
 
 /** Simple abstraction for retrieving decoded [ExamBlueprint] instances. */
 fun interface BlueprintProvider {
-  fun load(id: BlueprintId = BlueprintCatalog.DEFAULT_ID): ExamBlueprint
+    fun load(id: BlueprintId): ExamBlueprint
 }
 
 /**
@@ -51,7 +53,11 @@ class AssetBlueprintProvider(
 
   override fun load(id: BlueprintId): ExamBlueprint {
     return cache.getOrPut(id) {
+        Timber.i("[blueprint] loading id=%s from asset=%s", id, path)
       loader.loadFromAssets(assetOpener, BlueprintCatalog.pathFor(id))
     }
   }
 }
+/** Convenience helper to load the default blueprint. */
+fun BlueprintProvider.loadDefault(): ExamBlueprint =
+    load(BlueprintCatalog.DEFAULT_ID)

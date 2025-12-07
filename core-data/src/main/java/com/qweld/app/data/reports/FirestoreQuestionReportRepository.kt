@@ -4,8 +4,8 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.jakewharton.timber.log.Timber
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
 
 /**
  * Firestore implementation of [QuestionReportRepository].

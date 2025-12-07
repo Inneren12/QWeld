@@ -64,7 +64,7 @@ dependencies {
   implementation("com.jakewharton.timber:timber:5.0.1")
   implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
   implementation("com.google.firebase:firebase-analytics-ktx")
-  implementation("com.google.firebase:firebase-firestore-ktx")
+  //implementation("com.google.firebase:firebase-firestore-ktx")
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
 
   testImplementation(kotlin("test"))
@@ -75,8 +75,12 @@ dependencies {
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
   testImplementation(project(":feature-exam"))
 
+    api("com.google.firebase:firebase-firestore-ktx")
+
   androidTestImplementation("androidx.room:room-testing:2.6.1")
   androidTestImplementation("androidx.test:core-ktx:1.5.0")
   androidTestImplementation("androidx.test.ext:junit:1.1.5")
   androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
 }

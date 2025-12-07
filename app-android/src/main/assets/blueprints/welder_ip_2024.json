@@ -1,106 +1,106 @@
 {
-  "trade": "Industrial Welder",
-  "blueprintVersion": "2024.1",
-  "totalQuestions": 125,
-  "blocks": [
-    {
-      "code": "A",
-      "title": "Safety and Compliance",
-      "tasks": [
+    "trade": "Industrial Welder",
+    "blueprintVersion": "2024.1",
+    "totalQuestions": 125,
+    "blocks": [
         {
-          "id": "A-1",
-          "title": "Workplace safety protocols",
-          "quota": 8
+            "code": "A",
+            "title": "Common Occupational Skills",
+            "tasks": [
+                {
+                    "id": "A-1",
+                    "title": "Maintains tools and equipment",
+                    "quota": 4
+                },
+                {
+                    "id": "A-2",
+                    "title": "Uses access and material handling equipment",
+                    "quota": 4
+                },
+                {
+                    "id": "A-3",
+                    "title": "Performs safety-related activities",
+                    "quota": 5
+                },
+                {
+                    "id": "A-4",
+                    "title": "Organizes work",
+                    "quota": 7
+                },
+                {
+                    "id": "A-5",
+                    "title": "Performs routine trade activities",
+                    "quota": 4
+                }
+            ]
         },
         {
-          "id": "A-2",
-          "title": "Regulatory compliance and documentation",
-          "quota": 10
+            "code": "B",
+            "title": "Fabrication & Preparation",
+            "tasks": [
+                {
+                    "id": "B-6",
+                    "title": "Performs layout",
+                    "quota": 10
+                },
+                {
+                    "id": "B-7",
+                    "title": "Fabricates components",
+                    "quota": 15
+                }
+            ]
         },
         {
-          "id": "A-3",
-          "title": "Personal protective equipment",
-          "quota": 7
+            "code": "C",
+            "title": "Cutting & Gouging",
+            "tasks": [
+                {
+                    "id": "C-8",
+                    "title": "Non‑thermal cutting & grinding",
+                    "quota": 5
+                },
+                {
+                    "id": "C-9",
+                    "title": "Oxy‑fuel gas cutting",
+                    "quota": 7
+                },
+                {
+                    "id": "C-10",
+                    "title": "Plasma arc cutting",
+                    "quota": 5
+                },
+                {
+                    "id": "C-11",
+                    "title": "Air carbon arc cutting",
+                    "quota": 4
+                }
+            ]
         },
         {
-          "id": "A-4",
-          "title": "Hazard identification and mitigation",
-          "quota": 10
+            "code": "D",
+            "title": "Welding Processes",
+            "tasks": [
+                {
+                    "id": "D-12",
+                    "title": "SMAW",
+                    "quota": 18
+                },
+                {
+                    "id": "D-13",
+                    "title": "FCAW/MCAW/GMAW",
+                    "quota": 21
+                },
+                {
+                    "id": "D-14",
+                    "title": "GTAW",
+                    "quota": 12
+                },
+                {
+                    "id": "D-15",
+                    "title": "SAW",
+                    "quota": 4
+                }
+            ]
         }
-      ]
-    },
-    {
-      "code": "B",
-      "title": "Materials and Preparation",
-      "tasks": [
-        {
-          "id": "B-1",
-          "title": "Metallurgy fundamentals",
-          "quota": 12
-        },
-        {
-          "id": "B-2",
-          "title": "Joint preparation and fit-up",
-          "quota": 10
-        },
-        {
-          "id": "B-3",
-          "title": "Filler metals and consumables",
-          "quota": 11
-        },
-        {
-          "id": "B-4",
-          "title": "Preheat and postheat treatment",
-          "quota": 12
-        }
-      ]
-    },
-    {
-      "code": "C",
-      "title": "Welding Processes",
-      "tasks": [
-        {
-          "id": "C-1",
-          "title": "Shielded metal arc welding",
-          "quota": 8
-        },
-        {
-          "id": "C-2",
-          "title": "Gas metal arc welding",
-          "quota": 7
-        },
-        {
-          "id": "C-3",
-          "title": "Gas tungsten arc welding",
-          "quota": 9
-        },
-        {
-          "id": "C-4",
-          "title": "Flux-cored arc welding",
-          "quota": 8
-        }
-      ]
-    },
-    {
-      "code": "D",
-      "title": "Inspection and Quality Assurance",
-      "tasks": [
-        {
-          "id": "D-1",
-          "title": "Visual inspection criteria",
-          "quota": 5
-        },
-        {
-          "id": "D-2",
-          "title": "Non-destructive testing methods",
-          "quota": 4
-        },
-        {
-          "id": "D-3",
-          "title": "Defect analysis and remediation",
-          "quota": 4
-        }
-      ]
-    }
-  ]
+    ]
 }

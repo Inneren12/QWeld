@@ -30,101 +30,101 @@
   ],
   "blocks": [
     {
-      "id": "A",
-      "title": "Safety, Tools, and Shop Practice",
+      "code": "A",
+      "title": "Common Occupational Skills",
       "tasks": [
         {
           "id": "A-1",
-          "title": "Follow welding safety legislation and PPE requirements",
-          "quota": 8
+          "title": "Maintains tools and equipment",
+          "quota": 4
         },
         {
           "id": "A-2",
-          "title": "Inspect and maintain welding tools and equipment",
-          "quota": 6
+          "title": "Uses access and material handling equipment",
+          "quota": 4
         },
         {
           "id": "A-3",
-          "title": "Interpret welding documentation and symbols",
-          "quota": 6
+          "title": "Performs safety-related activities",
+          "quota": 5
         },
         {
           "id": "A-4",
-          "title": "Plan shop workflows and material handling",
-          "quota": 5
+          "title": "Organizes work",
+          "quota": 7
+        },
+        {
+          "id": "A-5",
+          "title": "Performs routine trade activities",
+          "quota": 4
         }
       ]
     },
     {
-      "id": "B",
-      "title": "Material Preparation and Fit-up",
+      "code": "B",
+      "title": "Fabrication & Preparation",
       "tasks": [
         {
-          "id": "B-5",
-          "title": "Select consumables and filler materials",
-          "quota": 8
-        },
-        {
           "id": "B-6",
-          "title": "Prepare joints and bevels for welding",
-          "quota": 9
+          "title": "Performs layout",
+          "quota": 10
         },
         {
           "id": "B-7",
-          "title": "Assemble components and ensure dimensional accuracy",
-          "quota": 8
-        },
-        {
-          "id": "B-8",
-          "title": "Inspect fit-up and perform tack welding",
-          "quota": 8
+          "title": "Fabricates components",
+          "quota": 15
         }
       ]
     },
     {
-      "id": "C",
-      "title": "Welding Processes and Quality Control",
+      "code": "C",
+      "title": "Cutting & Gouging",
       "tasks": [
         {
+          "id": "C-8",
+          "title": "Non‑thermal cutting & grinding",
+          "quota": 5
+        },
+        {
           "id": "C-9",
-          "title": "Perform SMAW operations across positions",
-          "quota": 9
+          "title": "Oxy‑fuel gas cutting",
+          "quota": 7
         },
         {
           "id": "C-10",
-          "title": "Perform GMAW/FCAW operations across materials",
-          "quota": 9
+          "title": "Plasma arc cutting",
+          "quota": 5
         },
         {
           "id": "C-11",
-          "title": "Perform GTAW and specialized processes",
-          "quota": 9
-        },
-        {
-          "id": "C-12",
-          "title": "Apply weld quality assurance and inspection techniques",
-          "quota": 9
+          "title": "Air carbon arc cutting",
+          "quota": 4
         }
       ]
     },
     {
-      "id": "D",
-      "title": "Fabrication and Repair Applications",
+      "code": "D",
+      "title": "Welding Processes",
       "tasks": [
         {
+          "id": "D-12",
+          "title": "SMAW",
+          "quota": 18
+        },
+        {
           "id": "D-13",
-          "title": "Fabricate structural components and assemblies",
-          "quota": 11
+          "title": "FCAW/MCAW/GMAW",
+          "quota": 21
         },
         {
           "id": "D-14",
-          "title": "Repair and restore welded components",
-          "quota": 10
+          "title": "GTAW",
+          "quota": 12
         },
         {
           "id": "D-15",
-          "title": "Coordinate workflow, documentation, and client requirements",
-          "quota": 10
+          "title": "SAW",
+          "quota": 4
         }
       ]
     }
