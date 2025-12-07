@@ -40,13 +40,15 @@ interface QuestionReportRepository {
    *
    * @param reportId The Firestore document ID
    * @param status New status value (e.g., "OPEN", "IN_REVIEW", "RESOLVED")
-   * @param review Optional review metadata (assignee, resolutionCode, resolutionComment, resolvedAt)
+   * @param resolutionCode Optional resolution code when closing a report
+   * @param resolutionComment Optional resolution comment when closing a report
    * @throws Exception if the update fails
    */
   suspend fun updateReportStatus(
     reportId: String,
     status: String,
-    review: Map<String, Any?>? = null
+    resolutionCode: String? = null,
+    resolutionComment: String? = null
   )
 }
 
