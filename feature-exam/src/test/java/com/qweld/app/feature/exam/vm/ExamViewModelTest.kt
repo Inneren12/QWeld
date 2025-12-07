@@ -170,6 +170,7 @@ class ExamViewModelTest {
       statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
+      appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
       blueprintProvider = blueprintProvider,
       seedProvider = { 1L },
       nowProvider = { 0L },

@@ -51,6 +51,7 @@ import com.qweld.app.feature.auth.GoogleSignInCancelledException
 import com.qweld.app.feature.auth.R
 import com.qweld.app.feature.auth.ui.LinkAccountScreen
 import com.qweld.app.feature.auth.ui.SignInScreen
+import com.qweld.app.env.AppEnvImpl
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
@@ -59,6 +60,7 @@ import com.qweld.app.i18n.LocaleController
 import com.qweld.app.ui.AboutScreen
 import com.qweld.app.ui.SettingsScreen
 import com.qweld.app.ui.TopBarMenus
+import com.qweld.core.common.AppEnv
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -266,6 +268,7 @@ fun AppNavGraph(
       }
       composable(Routes.EXAM) {
         val examNavController = rememberNavController()
+        val appEnv: AppEnv = remember { AppEnvImpl() }
         ExamNavGraph(
           navController = examNavController,
           repository = questionRepository,
@@ -274,6 +277,7 @@ fun AppNavGraph(
           answersRepository = answersRepository,
           statsRepository = statsRepository,
           questionReportRepository = questionReportRepository,
+          appEnv = appEnv,
           appVersion = appVersion,
           analytics = analytics,
           userPrefs = userPrefs,

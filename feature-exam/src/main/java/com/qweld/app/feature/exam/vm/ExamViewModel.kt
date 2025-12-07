@@ -36,6 +36,7 @@ import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
+import com.qweld.core.common.AppEnv
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
 import kotlinx.coroutines.CancellationException
@@ -98,6 +99,7 @@ class ExamViewModel(
   private val statsRepository: UserStatsRepository,
   private val userPrefs: UserPrefs,
   private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
+  private val appEnv: AppEnv,
   private val blueprintResolver: BlueprintResolver = BlueprintResolver(StaticBlueprintProvider()),
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = blueprintResolver::forMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
@@ -895,22 +897,10 @@ class ExamViewModel(
     // Find blueprint quota for this task
     val taskQuota = blueprint.taskQuotas.find { it.taskId == question.taskId }?.required
 
-    // Get app version and build info (using feature-exam's BuildConfig)
-    val appVersionName = try {
-      com.qweld.app.feature.exam.BuildConfig.VERSION_NAME
-    } catch (e: Exception) {
-      null
-    }
-    val appVersionCode = try {
-      com.qweld.app.feature.exam.BuildConfig.VERSION_CODE
-    } catch (e: Exception) {
-      null
-    }
-    val buildType = try {
-      com.qweld.app.feature.exam.BuildConfig.BUILD_TYPE
-    } catch (e: Exception) {
-      null
-    }
+    // Get app version and build info from injected AppEnv
+    val appVersionName = appEnv.appVersionName
+    val appVersionCode = appEnv.appVersionCode
+    val buildType = appEnv.buildType
 
     // Get device info
     val osVersion = try {
@@ -1857,6 +1847,7 @@ class ExamViewModelFactory(
   private val statsRepository: UserStatsRepository,
   private val userPrefs: UserPrefs,
   private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
+  private val appEnv: AppEnv,
   private val blueprintProvider: BlueprintProvider = StaticBlueprintProvider(),
   private val blueprintResolver: BlueprintResolver = BlueprintResolver(blueprintProvider),
   private val prewarmConfig: PrewarmConfig = PrewarmConfig(),
@@ -1878,6 +1869,7 @@ class ExamViewModelFactory(
         statsRepository = statsRepository,
         userPrefs = userPrefs,
         questionReportRepository = questionReportRepository,
+        appEnv = appEnv,
         blueprintResolver = blueprintResolver,
         blueprintProvider = blueprintResolver::forMode,
         prewarmController = prewarmController,

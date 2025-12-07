@@ -147,6 +147,7 @@ class ExamViewModelResumeTest {
         ),
         userPrefs = userPrefs,
         questionReportRepository = questionReportRepository,
+        appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
     )
   }
 
