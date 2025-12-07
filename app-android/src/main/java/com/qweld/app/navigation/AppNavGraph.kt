@@ -190,48 +190,49 @@ fun AppNavGraph(
   Scaffold(
     modifier = modifier,
     topBar = {
-        if (currentRoute != Routes.EXAM) {
-            TopBarMenus(
-                user = user,
-                onNavigateToSync = {
-                    Timber.i("[ui_nav] screen=Sync")
-                    navController.navigate(Routes.SYNC) { launchSingleTop = true }
-                                   },
-                onNavigateToSettings = {
-                    Timber.i("[ui_nav] screen=Settings")
-                    navController.navigate(Routes.SETTINGS) { launchSingleTop = true }
-                                       },
-                onNavigateToAbout = {
-                    Timber.i("[ui_nav] screen=About")
-                    navController.navigate(Routes.ABOUT) { launchSingleTop = true }
-                                    },
-                onSignOut = {
-                    scope.launch {
-                        runCatching { authService.signOut() }
-                            .onSuccess { navigateToAuth() }
-                            .onFailure { Timber.e(it, "Sign out failed") }
-                    }
-                            },
-                onExportLogs =
-                    if (logExportActions != null) {
-                        {
-                            showLogDialog = true
-                        }
-                    } else {
-                        null
-                           },
-                onNavigateToAdminReports = if (BuildConfig.DEBUG) {
-                    {
-                        Timber.i("[ui_nav] screen=AdminReports")
-                        navController.navigate(Routes.ADMIN_REPORTS) { launchSingleTop = true }
-                    }
-                } else {
-                    null
-                },
-                currentLocaleTag = appLocale,
-                onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
-                )
-        }
+      val hideTopBarRoutes = setOf(Routes.AUTH)
+      if (currentRoute !in hideTopBarRoutes) {
+        TopBarMenus(
+          user = user,
+          onNavigateToSync = {
+            Timber.i("[ui_nav] screen=Sync")
+            navController.navigate(Routes.SYNC) { launchSingleTop = true }
+          },
+          onNavigateToSettings = {
+            Timber.i("[ui_nav] screen=Settings")
+            navController.navigate(Routes.SETTINGS) { launchSingleTop = true }
+          },
+          onNavigateToAbout = {
+            Timber.i("[ui_nav] screen=About")
+            navController.navigate(Routes.ABOUT) { launchSingleTop = true }
+          },
+          onSignOut = {
+            scope.launch {
+              runCatching { authService.signOut() }
+                .onSuccess { navigateToAuth() }
+                .onFailure { Timber.e(it, "Sign out failed") }
+            }
+          },
+          onExportLogs =
+            if (logExportActions != null) {
+              {
+                showLogDialog = true
+              }
+            } else {
+              null
+            },
+          onNavigateToAdminReports = if (BuildConfig.DEBUG) {
+            {
+              Timber.i("[ui_nav] screen=AdminReports")
+              navController.navigate(Routes.ADMIN_REPORTS) { launchSingleTop = true }
+            }
+          } else {
+            null
+          },
+          currentLocaleTag = appLocale,
+          onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
+        )
+      }
     },
   ) { innerPadding ->
     NavHost(
