@@ -92,8 +92,19 @@ class FirestoreQuestionReportRepository(
         "status" to status
       )
 
+      // Build review fields with automatic resolvedAt timestamp for terminal statuses
       if (review != null) {
-        updates["review"] = review
+        val reviewFields = review.toMutableMap()
+
+        // Auto-set resolvedAt timestamp when moving to RESOLVED or WONT_FIX
+        if (status == "RESOLVED" || status == "WONT_FIX") {
+          reviewFields["resolvedAt"] = FieldValue.serverTimestamp()
+        }
+
+        // Update each review field individually to support partial updates
+        reviewFields.forEach { (key, value) ->
+          updates["review.$key"] = value
+        }
       }
 
       firestore.collection(COLLECTION_NAME)
