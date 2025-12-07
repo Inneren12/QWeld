@@ -85,26 +85,30 @@ class FirestoreQuestionReportRepository(
   override suspend fun updateReportStatus(
     reportId: String,
     status: String,
-    review: Map<String, Any?>?
+    resolutionCode: String?,
+    resolutionComment: String?,
   ) {
     try {
       val updates = mutableMapOf<String, Any?>(
         "status" to status
       )
 
-      // Build review fields with automatic resolvedAt timestamp for terminal statuses
-      if (review != null) {
-        val reviewFields = review.toMutableMap()
+      val reviewUpdates = mutableMapOf<String, Any?>()
 
-        // Auto-set resolvedAt timestamp when moving to RESOLVED or WONT_FIX
-        if (status == "RESOLVED" || status == "WONT_FIX") {
-          reviewFields["resolvedAt"] = FieldValue.serverTimestamp()
-        }
+      if (resolutionCode != null) {
+        reviewUpdates["resolutionCode"] = resolutionCode
+      }
 
-        // Update each review field individually to support partial updates
-        reviewFields.forEach { (key, value) ->
-          updates["review.$key"] = value
-        }
+      if (resolutionComment != null) {
+        reviewUpdates["resolutionComment"] = resolutionComment
+      }
+
+      if (status == "RESOLVED" || status == "WONT_FIX") {
+        reviewUpdates["resolvedAt"] = FieldValue.serverTimestamp()
+      }
+
+      if (reviewUpdates.isNotEmpty()) {
+        updates["review"] = reviewUpdates
       }
 
       firestore.collection(COLLECTION_NAME)
