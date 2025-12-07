@@ -15,6 +15,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -218,6 +220,14 @@ fun AppNavGraph(
                     } else {
                         null
                            },
+                onNavigateToAdminReports = if (BuildConfig.DEBUG) {
+                    {
+                        Timber.i("[ui_nav] screen=AdminReports")
+                        navController.navigate(Routes.ADMIN_REPORTS) { launchSingleTop = true }
+                    }
+                } else {
+                    null
+                },
                 currentLocaleTag = appLocale,
                 onLocaleSelected = { tag -> handleLocaleSelection(tag, "topbar") },
                 )
@@ -334,6 +344,34 @@ fun AppNavGraph(
             } else {
               null
             },
+        )
+      }
+      composable(Routes.ADMIN_REPORTS) {
+        val viewModel = remember {
+          com.qweld.app.admin.QuestionReportsViewModel(questionReportRepository)
+        }
+        com.qweld.app.admin.QuestionReportsScreen(
+          viewModel = viewModel,
+          onNavigateToDetail = { reportId ->
+            navController.navigate(Routes.adminReportDetail(reportId))
+          },
+          onBack = { navController.popBackStack() }
+        )
+      }
+      composable(
+        route = Routes.ADMIN_REPORT_DETAIL,
+        arguments = listOf(navArgument("reportId") { type = NavType.StringType })
+      ) { backStackEntry ->
+        val reportId = backStackEntry.arguments?.getString("reportId") ?: return@composable
+        val viewModel = remember(reportId) {
+          com.qweld.app.admin.QuestionReportDetailViewModel(
+            repository = questionReportRepository,
+            reportId = reportId
+          )
+        }
+        com.qweld.app.admin.QuestionReportDetailScreen(
+          viewModel = viewModel,
+          onBack = { navController.popBackStack() }
         )
       }
     }
@@ -494,6 +532,10 @@ private object Routes {
   const val SYNC = "sync"
   const val SETTINGS = "settings"
   const val ABOUT = "about"
+  const val ADMIN_REPORTS = "admin/reports"
+  const val ADMIN_REPORT_DETAIL = "admin/reports/{reportId}"
+
+  fun adminReportDetail(reportId: String) = "admin/reports/$reportId"
 }
 
 @Composable
