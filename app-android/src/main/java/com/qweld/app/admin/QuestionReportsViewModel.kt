@@ -100,13 +100,13 @@ class QuestionReportDetailViewModel(
     }
   }
 
-  fun updateStatus(newStatus: String, resolutionComment: String?) {
+  fun updateStatus(newStatus: String, resolutionCode: String?, resolutionComment: String?) {
     viewModelScope.launch {
       try {
         val currentState = _uiState.value
         if (currentState !is UiState.Success) return@launch
 
-        val review = buildReviewMap(resolutionComment)
+        val review = buildReviewMap(resolutionCode, resolutionComment)
         repository.updateReportStatus(reportId, newStatus, review)
 
         Timber.d("[admin_report_update] id=$reportId status=$newStatus")
@@ -120,13 +120,24 @@ class QuestionReportDetailViewModel(
     }
   }
 
-  private fun buildReviewMap(resolutionComment: String?): Map<String, Any?>? {
-    if (resolutionComment.isNullOrBlank()) return null
+  private fun buildReviewMap(resolutionCode: String?, resolutionComment: String?): Map<String, Any?>? {
+    // Return null if both are blank (no review data to update)
+    if (resolutionCode.isNullOrBlank() && resolutionComment.isNullOrBlank()) {
+      return null
+    }
 
-    return mapOf(
-      "resolutionComment" to resolutionComment,
-      "resolvedAt" to Timestamp.now()
-    )
+    val reviewMap = mutableMapOf<String, Any?>()
+
+    if (!resolutionCode.isNullOrBlank()) {
+      reviewMap["resolutionCode"] = resolutionCode
+    }
+
+    if (!resolutionComment.isNullOrBlank()) {
+      reviewMap["resolutionComment"] = resolutionComment
+    }
+
+    // Note: resolvedAt is automatically set by the repository when status is RESOLVED or WONT_FIX
+    return reviewMap
   }
 
   sealed class UiState {

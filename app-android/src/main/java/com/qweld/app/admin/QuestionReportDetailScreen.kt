@@ -54,8 +54,8 @@ fun QuestionReportDetailScreen(
       is QuestionReportDetailViewModel.UiState.Success -> {
         ReportDetailContent(
           reportWithId = state.report,
-          onUpdateStatus = { status, comment ->
-            viewModel.updateStatus(status, comment)
+          onUpdateStatus = { status, resolutionCode, comment ->
+            viewModel.updateStatus(status, resolutionCode, comment)
           },
           modifier = Modifier.padding(paddingValues)
         )
@@ -90,7 +90,7 @@ fun QuestionReportDetailScreen(
 @Composable
 private fun ReportDetailContent(
   reportWithId: QuestionReportWithId,
-  onUpdateStatus: (String, String?) -> Unit,
+  onUpdateStatus: (String, String?, String?) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val report = reportWithId.report
@@ -126,6 +126,7 @@ private fun ReportDetailContent(
               "OPEN" -> MaterialTheme.colorScheme.error
               "IN_REVIEW" -> MaterialTheme.colorScheme.tertiary
               "RESOLVED" -> MaterialTheme.colorScheme.primary
+              "WONT_FIX" -> MaterialTheme.colorScheme.secondary
               else -> MaterialTheme.colorScheme.onSurface
             }
           )
@@ -242,8 +243,8 @@ private fun ReportDetailContent(
     StatusUpdateDialog(
       currentStatus = report.status,
       onDismiss = { showStatusDialog = false },
-      onConfirm = { newStatus, comment ->
-        onUpdateStatus(newStatus, comment)
+      onConfirm = { newStatus, resolutionCode, comment ->
+        onUpdateStatus(newStatus, resolutionCode, comment)
         showStatusDialog = false
       }
     )
@@ -290,12 +291,13 @@ private fun DetailRow(label: String, value: String) {
 private fun StatusUpdateDialog(
   currentStatus: String,
   onDismiss: () -> Unit,
-  onConfirm: (String, String?) -> Unit
+  onConfirm: (String, String?, String?) -> Unit
 ) {
   var selectedStatus by remember { mutableStateOf(currentStatus) }
+  var resolutionCode by remember { mutableStateOf("") }
   var comment by remember { mutableStateOf("") }
 
-  val statuses = listOf("OPEN", "IN_REVIEW", "RESOLVED")
+  val statuses = listOf("OPEN", "IN_REVIEW", "RESOLVED", "WONT_FIX")
 
   AlertDialog(
     onDismissRequest = onDismiss,
@@ -315,11 +317,20 @@ private fun StatusUpdateDialog(
               onClick = { selectedStatus = status }
             )
             Text(
-              text = status,
+              text = status.replace("_", " "),
               modifier = Modifier.padding(start = 8.dp)
             )
           }
         }
+
+        // Resolution code
+        OutlinedTextField(
+          value = resolutionCode,
+          onValueChange = { resolutionCode = it },
+          label = { Text("Resolution Code (optional)") },
+          modifier = Modifier.fillMaxWidth(),
+          placeholder = { Text("e.g., FIXED, DUPLICATE, NO_ACTION") }
+        )
 
         // Resolution comment
         OutlinedTextField(
@@ -336,6 +347,7 @@ private fun StatusUpdateDialog(
         onClick = {
           onConfirm(
             selectedStatus,
+            resolutionCode.takeIf { it.isNotBlank() },
             comment.takeIf { it.isNotBlank() }
           )
         }

@@ -143,7 +143,8 @@ private fun StatusFilterRow(
     null to "All",
     "OPEN" to "Open",
     "IN_REVIEW" to "In Review",
-    "RESOLVED" to "Resolved"
+    "RESOLVED" to "Resolved",
+    "WONT_FIX" to "Won't Fix"
   )
 
   Row(
@@ -247,6 +248,7 @@ private fun StatusBadge(status: String, modifier: Modifier = Modifier) {
     "OPEN" -> MaterialTheme.colorScheme.errorContainer to MaterialTheme.colorScheme.onErrorContainer
     "IN_REVIEW" -> MaterialTheme.colorScheme.tertiaryContainer to MaterialTheme.colorScheme.onTertiaryContainer
     "RESOLVED" -> MaterialTheme.colorScheme.primaryContainer to MaterialTheme.colorScheme.onPrimaryContainer
+    "WONT_FIX" -> MaterialTheme.colorScheme.secondaryContainer to MaterialTheme.colorScheme.onSecondaryContainer
     else -> MaterialTheme.colorScheme.surfaceVariant to MaterialTheme.colorScheme.onSurfaceVariant
   }
 
