@@ -243,6 +243,7 @@ class ExamViewModelTimerTest {
       statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
+      appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 1L },
       attemptIdProvider = { "test-attempt" },

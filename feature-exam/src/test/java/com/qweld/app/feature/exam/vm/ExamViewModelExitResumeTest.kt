@@ -237,6 +237,7 @@ class ExamViewModelExitResumeTest {
       statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
+      appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 7L },
       attemptIdProvider = { "test-attempt-exit-resume" },

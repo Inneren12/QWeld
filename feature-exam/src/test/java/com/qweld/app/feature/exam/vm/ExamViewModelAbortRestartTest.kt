@@ -129,6 +129,7 @@ class ExamViewModelAbortRestartTest {
       },
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
+      appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
       blueprintProvider = { _, _ -> ipBlueprint(required = 1) },
       seedProvider = { 1L },
       attemptIdProvider = { attemptIds.removeFirst() },
