@@ -93,22 +93,16 @@ class FirestoreQuestionReportRepository(
         "status" to status
       )
 
-      val reviewUpdates = mutableMapOf<String, Any?>()
-
       if (resolutionCode != null) {
-        reviewUpdates["resolutionCode"] = resolutionCode
+        updates["review.resolutionCode"] = resolutionCode
       }
 
       if (resolutionComment != null) {
-        reviewUpdates["resolutionComment"] = resolutionComment
+        updates["review.resolutionComment"] = resolutionComment
       }
 
       if (status == "RESOLVED" || status == "WONT_FIX") {
-        reviewUpdates["resolvedAt"] = FieldValue.serverTimestamp()
-      }
-
-      if (reviewUpdates.isNotEmpty()) {
-        updates["review"] = reviewUpdates
+        updates["review.resolvedAt"] = FieldValue.serverTimestamp()
       }
 
       firestore.collection(COLLECTION_NAME)
