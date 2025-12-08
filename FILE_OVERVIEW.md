@@ -78,6 +78,10 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Unit/UI tests for exam flows, loaders, and content validation.
   - **Edit guidelines:** Extend freely; ensure fixtures match content manifests.
+- `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/ExamSubmitResumeTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Compose instrumentation coverage for exam submit/resume flow assertions and timer label persistence.
+  - **Edit guidelines:** Extend with additional edge cases for lifecycle/resume behavior.
 
 ## feature-auth/
 
