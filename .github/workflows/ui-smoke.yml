@@ -58,6 +58,9 @@ jobs:
         with:
           packages: ''
 
+      - name: Install Android 35 platform
+        run: sdkmanager "platforms;android-35"
+
       - name: Remove local.properties
         run: rm -f local.properties
 
