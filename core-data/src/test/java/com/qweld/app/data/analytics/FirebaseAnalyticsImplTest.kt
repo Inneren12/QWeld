@@ -27,13 +27,12 @@ class FirebaseAnalyticsImplTest {
   fun log_whenEnabled_forwardsEvent() {
     val analytics = FirebaseAnalyticsImpl(backend, isEnabled = true)
 
-    analytics.log("exam_start", mapOf("mode" to "practice", "totals" to mapOf("questions" to 10)))
+    analytics.log("exam_start", mapOf("mode" to "practice", "questions" to 10))
 
     val recorded = backend.events.single()
     assertEquals("exam_start", recorded.first)
     assertEquals("practice", recorded.second.getString("mode"))
-    val totals = recorded.second.getBundle("totals")
-    assertEquals(10, totals?.getInt("questions"))
+    assertEquals(10, recorded.second.getInt("questions"))
   }
 
   private class RecordingBackend : AnalyticsBackend {
