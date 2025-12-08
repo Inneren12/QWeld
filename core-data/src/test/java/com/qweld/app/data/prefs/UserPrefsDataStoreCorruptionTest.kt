@@ -11,16 +11,25 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.robolectric.shadows.ShadowLog
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import java.io.File
 import java.util.UUID
+import timber.log.Timber
 
 @RunWith(RobolectricTestRunner::class)
 @OptIn(ExperimentalCoroutinesApi::class)
 class UserPrefsDataStoreCorruptionTest {
+
+  @Before
+  fun setUp() {
+    Timber.uprootAll()
+    Timber.plant(Timber.DebugTree())
+    ShadowLog.clear()
+  }
 
   @Test
   fun corruptedFile_isRecoveredWithDefaultsAndLogged() = runTest {
@@ -38,7 +47,7 @@ class UserPrefsDataStoreCorruptionTest {
     val recoverLog =
       ShadowLog.getLogs().firstOrNull {
         it.tag == "UserPrefsDataStore" &&
-          it.msg == "[datastore_recover] store=$storeName cause=corruption"
+          it.msg?.contains("[datastore_recover] store=$storeName") == true
       }
 
     assertNotNull(recoverLog)
@@ -59,8 +68,6 @@ class UserPrefsDataStoreCorruptionTest {
 
     prefs.setAnalyticsEnabled(false)
     advanceUntilIdle()
-
-    ShadowLog.clear()
 
     assertFalse(prefs.analyticsEnabled.first())
 

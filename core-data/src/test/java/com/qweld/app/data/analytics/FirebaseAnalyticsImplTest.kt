@@ -31,9 +31,9 @@ class FirebaseAnalyticsImplTest {
 
     val recorded = backend.events.single()
     assertEquals("exam_start", recorded.first)
-    assertEquals("practice", recorded.second["mode"])
-    val totals = recorded.second["totals"] as Bundle
-    assertEquals(10, totals.getInt("questions"))
+    assertEquals("practice", recorded.second.getString("mode"))
+    val totals = recorded.second.getBundle("totals")
+    assertEquals(10, totals?.getInt("questions"))
   }
 
   private class RecordingBackend : AnalyticsBackend {
