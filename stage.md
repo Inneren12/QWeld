@@ -23,6 +23,16 @@ Legend:
 - **Next tasks:**
   - [ ] Improve task selection UX (multi-select presets, clearer quotas).
   - [ ] Add saved presets/tests for frequent practice mixes.
+ 
+### EXAM-3 – Adaptive exam mode
+- **Status:** ⏳
+- **Summary:** Adaptive exam mode that adjusts the difficulty of subsequent questions based on the user’s performance (correct/incorrect streaks).
+- **Implemented in:** Planned for `core-domain` (adaptive sampler/strategy) and `feature-exam` (exam flow wiring and UI toggle).
+- **Next tasks:**
+  - [ ] Design adaptive rules: initial difficulty level, step size for increasing/decreasing difficulty, and min/max bounds.
+  - [ ] Implement adaptive question selection in the exam assembly pipeline using existing RNG/samplers.
+  - [ ] Add tests for key scenarios (streaks of correct answers, streaks of incorrect answers, alternating answers) to verify difficulty transitions.
+  - [ ] Add a user-facing toggle/flag for enabling adaptive mode (beta-only at first).
 
 ## Content & Localization
 
@@ -52,6 +62,16 @@ Legend:
   - [ ] Surface asset version/manifest details for QA.
   - [ ] Harden error displays for missing bundles.
 
+### ADMIN-2 – Admin/debug dashboard
+- **Status:** ⏳
+- **Summary:** Dedicated protected admin/debug panel that surfaces logs, basic usage stats, and storage state to simplify live diagnostics and feature verification.
+- **Implemented in:** Planned for `app-android` (admin screens/viewmodels) and `core-data` (exposing stats from DB/logs where available).
+- **Next tasks:**
+  - [ ] Define access model for the admin panel (debug build gate, hidden gesture, or auth-gated entry).
+  - [ ] Implement an admin screen showing recent log events, high-level user activity (attempt counts, completion rates), and basic DB state (total attempts, last attempt time).
+  - [ ] Add navigation entry to the admin/debug screen (hidden or debug-only) and verify it does not appear in normal user flows.
+
+
 ## Question Reporting & Error Handling
 
 ### REPORT-1 – Question report pipeline
@@ -62,12 +82,31 @@ Legend:
   - [ ] Add offline queue/retry for reports.
   - [ ] Include device/context metadata for triage.
 
+### REPORT-2 – In-app “Report issue” flow for questions
+- **Status:** ⏳
+- **Summary:** User-facing reporting flow that lets candidates flag problematic questions directly from exam/review screens, feeding into the existing Firestore pipeline.
+- **Implemented in:** Planned for `feature-exam` (question/review UI) using `QuestionReportRepository` from `core-data` and admin views in `app-android`.
+- **Next tasks:**
+  - [ ] Add a “Report issue” action on question and review screens that captures question ID, locale, and an optional free-text comment.
+  - [ ] Wire the UI action to `QuestionReportRepository` so reports are sent (or queued) with enough context for moderation.
+  - [ ] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
+
 ### ERROR-1 – Crash/analytics reporting
 - **Status:** ✅
 - **Summary:** Crashlytics and Analytics hooks are wired via `app-android` build config and guarded by debug flags.
 - **Implemented in:** `app-android` build config, `core-data` analytics helpers.
 - **Next tasks:**
   - [ ] Periodically validate Crashlytics symbol upload in CI.
+
+### ERROR-2 – User-facing error report dialog
+- **Status:** ⏳
+- **Summary:** A user-visible error reporting dialog layered on top of Crashlytics/analytics to capture context and feedback when something goes wrong.
+- **Implemented in:** Planned for a central error handler in `app-android` and logging/diagnostics helpers in `core-data`.
+- **Next tasks:**
+  - [ ] Introduce a central error handling path that can surface a friendly dialog when non-fatal errors occur in critical flows.
+  - [ ] Add a “Send report” action that attaches a short user comment and high-level context to Crashlytics/logging, respecting analytics/diagnostics opt-out.
+  - [ ] Verify that no PII or sensitive data is logged, and that error reporting behavior matches privacy expectations.
+
 
 ## Testing & QA
 
@@ -86,6 +125,15 @@ Legend:
 - **Next tasks:**
   - [ ] Add end-to-end exam/practice runs with answer submission.
   - [ ] Cover localization toggles and admin/report screens.
+
+### TEST-3 – Regression testing for admin/adaptive/reporting flows
+- **Status:** ⏳
+- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows.
+- **Implemented in:** Planned across `feature-exam` UI tests, domain tests in `core-domain`, and integration tests for reporting/error handling.
+- **Next tasks:**
+  - [ ] Add end-to-end tests covering an adaptive exam run (difficulty changes as expected for different answer patterns).
+  - [ ] Add tests for the admin/debug screen (data visibility, access control) and question reporting UI (report creation, basic validation).
+  - [ ] Manually exercise error paths to confirm Crashlytics/diagnostics and the in-app error dialog behave correctly.
 
 ## Architecture & Refactoring
 
@@ -110,3 +158,16 @@ Legend:
 - **Next tasks:**
   - [ ] Extract timers/prewarm/autosave into focused controllers.
   - [ ] Add contract tests around the split to avoid regressions.
+
+## Documentation
+
+### DOCS-1 – Update documentation for new features
+- **Status:** ⏳
+- **Summary:** Keep high-level and internal docs in sync with the new admin/debug tools, adaptive exam mode, question reporting, and error reporting behavior.
+- **Implemented in:** `PROJECT_OVERVIEW.md`, `MODULES.md`, `CONTENT_GUIDE.md`, `stage.md`, `FILE_OVERVIEW.md` (and any feature-specific docs).
+- **Next tasks:**
+  - [ ] Document how the adaptive exam mode works (difficulty rules, enabling/disabling, limitations) and where it is implemented.
+  - [ ] Describe the admin/debug panel (how to open it, what data it shows, and who should use it).
+  - [ ] Document the question reporting flow (UI entry points, how reports are stored, how to review them) and the in-app error report dialog.
+  - [ ] Add any necessary notes on Crashlytics/analytics configuration and deployment steps for these features.
+
