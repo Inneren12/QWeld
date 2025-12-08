@@ -1,0 +1,239 @@
+# File Overview
+
+This document gives a high-level overview of important files in the QWeld repo, their roles, and how safe they are to modify.
+
+Importance legend:
+- 🔴 Critical – core logic or APIs; changes require extra care and tests.
+- 🟡 Important – commonly used support code; safe to modify with tests.
+- ⚪ Support – small helpers, UI cosmetics, etc.; generally safe.
+- 🧪 Test – test-only code and data.
+- ⚙️ Build/CI – Gradle/CI scripts; changes affect the build pipeline.
+
+## app-android/
+
+- `app-android/src/main/java/com/qweld/app/MainActivity.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Launcher activity setting the Compose hierarchy and hosting the app navigation graph.
+  - **Edit guidelines:** Safe to adjust navigation wiring/top-level UI; keep intent handling and start destinations intact.
+- `app-android/src/main/java/com/qweld/app/navigation/AppNavGraph.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Defines app-level routes and stitches feature destinations together with guards.
+  - **Edit guidelines:** Add new routes here; change existing route IDs cautiously to avoid breaking deep links/tests.
+- `app-android/src/main/java/com/qweld/app/QWeldApp.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Application class initializing logging, locale controller, and analytics toggles.
+  - **Edit guidelines:** Keep initialization lightweight; ensure flags match build variants.
+- `app-android/src/main/java/com/qweld/app/i18n/LocaleController.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Handles locale selection/fallback and exposes locale state to features.
+  - **Edit guidelines:** Verify changes against asset locales and DataStore keys.
+- `app-android/src/main/java/com/qweld/app/ui/SettingsScreen.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** User-facing settings (locale, analytics opt-out, etc.).
+  - **Edit guidelines:** Keep preference keys consistent with `UserPrefsDataStore`.
+- `app-android/src/main/java/com/qweld/app/admin/QuestionReportsViewModel.kt` and related admin screens
+  - **Importance:** 🟡 Important
+  - **Role:** Internal tooling for reviewing submitted question reports.
+  - **Edit guidelines:** UI changes are safe; be careful with Firestore/reporting toggles.
+- `app-android/build.gradle.kts`
+  - **Importance:** ⚙️ Build/CI
+  - **Role:** App module build config, Crashlytics/Analytics wiring, asset packaging tasks (`verifyAssets`).
+  - **Edit guidelines:** Change only when updating dependencies/build behavior; watch CI.
+
+## feature-exam/
+
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/navigation/ExamNavGraph.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Feature-level navigation graph for exam and practice flows.
+  - **Edit guidelines:** Add destinations here when expanding flows; keep route constants stable.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ExamViewModel.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Central ViewModel managing exam/practice assembly, timers, autosave, and submission.
+  - **Edit guidelines:** Prefer extracting helpers over adding complexity; maintain timer/autosave invariants.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ResultViewModel.kt` and `ReviewViewModel.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Drive results summary and review filtering/search.
+  - **Edit guidelines:** Keep derived stats consistent with persisted attempts.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/PrewarmUseCase.kt` and `PrewarmController.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Preloads question bundles before entering an attempt to avoid UI stalls.
+  - **Edit guidelines:** Ensure coroutine scope/dispatcher usage stays aligned with UI lifecycle.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/data/AssetQuestionRepository.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Loads task bundles/monolithic banks from assets with locale fallback and caching.
+  - **Edit guidelines:** Keep manifest paths and fallback order aligned with `content/` structure; add tests for new behaviors.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/data/BlueprintJsonLoader.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Parses blueprint JSON into domain models for assembly.
+  - **Edit guidelines:** Validate version/locale handling when changing parsing logic.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/explain/ExplanationRepositoryImpl.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Reads per-question explanations from assets and exposes them to UI.
+  - **Edit guidelines:** Maintain consistency with question IDs/locales.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/ui/*.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Compose screens and dialogs for exam/practice, review, explanations, and reporting.
+  - **Edit guidelines:** UI tweaks are safe; keep state contracts with ViewModels intact.
+- `feature-exam/src/test/...`
+  - **Importance:** 🧪 Test
+  - **Role:** Unit/UI tests for exam flows, loaders, and content validation.
+  - **Edit guidelines:** Extend freely; ensure fixtures match content manifests.
+
+## feature-auth/
+
+- `feature-auth/src/main/java/com/qweld/app/feature/auth/AuthService.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Abstraction for authentication actions consumed by UI screens.
+  - **Edit guidelines:** Keep API stable for consumers; document new auth flows.
+- `feature-auth/src/main/java/com/qweld/app/feature/auth/firebase/FirebaseAuthService.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Firebase-backed implementation handling sign-in/link flows.
+  - **Edit guidelines:** Validate auth providers/scopes when modifying.
+- `feature-auth/src/main/java/com/qweld/app/feature/auth/GoogleCredentialSignInManager.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Manages Google credential retrieval and token exchange.
+  - **Edit guidelines:** Keep intent contracts and request codes stable.
+- `feature-auth/src/main/java/com/qweld/app/feature/auth/ui/*.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Compose screens for sign-in and account linking.
+  - **Edit guidelines:** UI adjustments are safe; avoid breaking auth callback wiring.
+
+## core-domain/
+
+- `core-domain/src/main/java/com/qweld/app/domain/exam/ExamAssembler.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Builds exam/practice sessions by applying quotas, shufflers, and samplers to question sources.
+  - **Edit guidelines:** Keep deterministic behavior; update tests when changing assembly rules.
+- `core-domain/src/main/java/com/qweld/app/domain/exam/QuotaDistributor.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Allocates question counts across blocks/tasks according to blueprint quotas and practice configs.
+  - **Edit guidelines:** Cover edge cases (rounding, overflow) with tests.
+- `core-domain/src/main/java/com/qweld/app/domain/exam/TaskBlockMapper.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Maps tasks to blocks and exposes metadata used by UI and scoring.
+  - **Edit guidelines:** Keep mappings in sync with blueprint versions.
+- `core-domain/src/main/java/com/qweld/app/domain/exam/TimerController.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Timer utilities for tracking elapsed/remaining time per attempt.
+  - **Edit guidelines:** Ensure time math aligns with UI expectations and autosave/resume logic.
+- `core-domain/src/main/java/com/qweld/app/domain/exam/util/{WeightedSampler,RandomProvider,Pcg32,Shufflers}.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Deterministic RNG and sampling utilities used during assembly.
+  - **Edit guidelines:** Maintain determinism and seeding behavior; adjust tests when tuning algorithms.
+- `core-domain/src/test/...`
+  - **Importance:** 🧪 Test
+  - **Role:** Coverage for quota distribution, RNG, and sampler correctness.
+  - **Edit guidelines:** Extend freely to guard new logic.
+
+## core-data/
+
+- `core-data/src/main/java/com/qweld/app/data/db/QWeldDb.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Room database definition including entities and migrations for attempts/answers.
+  - **Edit guidelines:** Update version/migrations carefully; keep schema in sync with DAOs.
+- `core-data/src/main/java/com/qweld/app/data/db/dao/{AttemptDao,AnswerDao}.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Read/write APIs for persisted attempts and answers.
+  - **Edit guidelines:** Add queries with care; update tests and migrations when schema changes.
+- `core-data/src/main/java/com/qweld/app/data/repo/{AttemptsRepository,AnswersRepository,UserStatsRepositoryRoom}.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Repository layer exposing persistence operations to features.
+  - **Edit guidelines:** Keep transaction boundaries and threading consistent.
+- `core-data/src/main/java/com/qweld/app/data/prefs/UserPrefsDataStore.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Stores user preferences (locale, practice presets, analytics opt-out) in DataStore.
+  - **Edit guidelines:** Keep keys stable; handle migrations when renaming fields.
+- `core-data/src/main/java/com/qweld/app/data/content/questions/{IndexParser,AssetIntegrityGuard}.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Validates and resolves question bundle manifests and asset integrity checks.
+  - **Edit guidelines:** Preserve manifest schema compatibility.
+- `core-data/src/main/java/com/qweld/app/data/reports/FirestoreQuestionReportRepository.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Sends question issue reports to Firestore when enabled.
+  - **Edit guidelines:** Guard network calls/credentials; respect user privacy toggles.
+- `core-data/src/main/java/com/qweld/app/data/analytics/Analytics.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Analytics hooks and event logging wrappers.
+  - **Edit guidelines:** Avoid logging PII; keep debug flags in mind.
+- `core-data/src/test/...`
+  - **Importance:** 🧪 Test
+  - **Role:** Tests for repositories, DataStore, and content loaders.
+  - **Edit guidelines:** Safe to extend; ensure deterministic fixtures.
+
+## core-common/
+
+- `core-common/src/main/java/com/qweld/app/common/AppEnv.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Environment/config helpers shared across modules.
+  - **Edit guidelines:** Keep API minimal to avoid tight coupling.
+- `core-common/src/main/java/com/qweld/app/common/logging/Logx.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Logging utilities wrapping Timber.
+  - **Edit guidelines:** Safe to adjust formatting; avoid heavy dependencies here.
+
+## core-model/
+
+- `core-model/src/main/java/com/qweld/app/model/GreetingProvider.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Placeholder/shared model class.
+  - **Edit guidelines:** Minimal impact; safe to extend as shared models grow.
+
+## content/
+
+- `content/blueprints/welder_ip_2024.json` and `welder_ip_sk_202404.json`
+  - **Importance:** 🔴 Critical
+  - **Role:** Source-of-truth blueprints for exam assembly (blocks, tasks, quotas, metadata).
+  - **Edit guidelines:** Validate with content scripts; keep version/policy metadata accurate.
+- `content/questions/en/*`
+  - **Importance:** 🔴 Critical
+  - **Role:** English per-task question banks; each JSON contains prompts/answers/rationales.
+  - **Edit guidelines:** Keep IDs stable; run validators after edits.
+- `content/questions/ru/*`
+  - **Importance:** 🔴 Critical
+  - **Role:** Russian localized question sets with locale fallback to English when missing.
+  - **Edit guidelines:** Ensure translation quality and ID parity with English files.
+- `content/questions/sample_welder_question.json`
+  - **Importance:** 🧪 Test
+  - **Role:** Sample question used for tests/examples.
+  - **Edit guidelines:** Safe to adjust for documentation/tests.
+- `assets/` and `app-android/src/main/assets/`
+  - **Importance:** 🟡 Important
+  - **Role:** Bundled runtime assets (blueprints, task bundles, manifests) used by loaders.
+  - **Edit guidelines:** Regenerate via scripts when updating source content.
+
+## .github/
+
+- `.github/workflows/android.yml`
+  - **Importance:** ⚙️ Build/CI
+  - **Role:** Main CI pipeline running formatting, lint, unit tests, and assembleDebug.
+  - **Edit guidelines:** Update when build matrix or required checks change.
+- `.github/workflows/content-validators.yml` and `content-validators-full.yml`
+  - **Importance:** ⚙️ Build/CI
+  - **Role:** Validate blueprints/questions for schema and locale coverage.
+  - **Edit guidelines:** Keep in sync with content schema changes.
+- `.github/workflows/dist-summary.yml`
+  - **Importance:** ⚙️ Build/CI
+  - **Role:** Publishes dist summaries for content PRs.
+  - **Edit guidelines:** Adjust only when dist generation changes.
+- `.github/workflows/ui-smoke.yml`
+  - **Importance:** ⚙️ Build/CI
+  - **Role:** Optional UI smoke tests.
+  - **Edit guidelines:** Update device/emulator settings carefully.
+
+## benchmarks-jvm/
+
+- `benchmarks-jvm/build.gradle.kts`
+  - **Importance:** ⚙️ Build/CI
+  - **Role:** Gradle config for JMH benchmarks scaffold.
+  - **Edit guidelines:** Safe to extend when adding benchmarks; isolated from app code.
+
+## tools/ and scripts/
+
+- `scripts/build-questions-dist.mjs`
+  - **Importance:** 🟡 Important
+  - **Role:** Builds question bundle distributions for packaging into assets.
+  - **Edit guidelines:** Verify Node dependencies and output paths when modifying.
+- `tools/` helpers
+  - **Importance:** ⚪ Support
+  - **Role:** Misc utilities for development/validation.
+  - **Edit guidelines:** Safe to evolve as workflows grow.

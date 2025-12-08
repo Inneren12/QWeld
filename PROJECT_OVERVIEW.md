@@ -19,6 +19,22 @@
 - **Common/model layers** expose shared utilities (`core-common`) and simple models (`core-model`).
 - **Exam assembly pipeline:** blueprint JSON + localized question bank/per-task bundles → domain assembler (quota distribution, shufflers, RNG) → feature ViewModels render questions, capture answers, and write attempts to Room.
 
+### Layer relationships
+- **UI shell:** `app-android` hosts the top-level navigation graph, theme, and settings/admin surfaces while consuming feature modules.
+- **Features:** `feature-exam` (and `feature-auth`) present user flows and depend on domain/data/common for business logic and persistence.
+- **Domain:** `core-domain` encapsulates pure exam logic; it is consumed by data repositories and feature ViewModels without Android dependencies.
+- **Data:** `core-data` bridges storage and integrations, depending on `core-domain`/`core-common` and exposing repositories to features.
+- **Shared:** `core-common` and `core-model` provide utilities and light models used across all layers.
+
+### Key components
+- **ExamViewModel** – orchestrates exam and practice attempts: assembly, timers, autosave/resume, navigation, and persistence.
+- **ResultViewModel** – summarizes attempt outcomes and drives post-attempt review flows.
+- **AssetQuestionRepository** – loads question content from bundled assets with locale fallback, caching, and task-bundle preference.
+- **PrewarmUseCase / PrewarmController** – preloads task bundles before an attempt to avoid UI stalls when entering the exam.
+- **BlueprintJsonLoader** – reads and parses blueprint JSON files describing blocks, tasks, quotas, and metadata.
+- **UserPrefsDataStore** – persists user preferences such as locale, practice defaults, and analytics toggles.
+- **FirestoreQuestionReportRepository** – submits question issue reports to Firestore when remote reporting is enabled.
+
 ## Key User Flows
 - **Exam mode:** Home/Mode selector → choose exam → pre-warm assets if needed → full 125-question attempt with timers → submission → results and review (per-question answers, rationales, explanations where present).
 - **Practice mode:** Open practice sheet → pick blocks/tasks and question count → sampler builds a weighted set (proportional or even) → run practice session → finish → review with filtering (wrong/flagged/by task) and explanations.
@@ -41,6 +57,20 @@
 2. Ensure question assets are present under `app-android/src/main/assets/questions/` (run `node scripts/build-questions-dist.mjs` and copy from `dist/questions/` if missing).
 3. Build from the command line with `./gradlew assembleDebug` (or `./gradlew spotlessCheck detekt test assembleDebug` to mirror CI).
 4. Deploy the debug APK from `app-android/build/outputs/apk/debug/` to an emulator/device; analytics are disabled in debug by default unless overridden.
+
+## Glossary
+- **Blueprint** – JSON file describing the exam structure, including blocks, tasks, quotas, total question count, and metadata (`version`, `locale`, `policyVersion`).
+- **Block** – High-level grouping of tasks in a blueprint (e.g., sections A–D) used for quota distribution and practice selection presets.
+- **Task** – Smallest structural unit in a blueprint (e.g., A-1); maps to subsets of the question bank and task bundles.
+- **Question Bank** – Localized JSON set of questions used to build exam/practice sessions; present as monolithic banks and per-task bundles.
+- **Task Bundle** – Per-task aggregated question bundle (prebuilt during dist generation) that the asset repository prefers for efficient loading.
+- **Attempt** – A single exam or practice run containing user answers, timers, autosave snapshots, and a final result.
+- **Exam Mode** – Full-length session strictly following blueprint quotas, timers, and block sequencing.
+- **Practice Mode** – Configurable session with user-chosen tasks, quotas, and counts; less strict than exam mode.
+- **Locale Fallback** – Logic that falls back from a requested locale (e.g., `ru`) to the default (`en`) when localized content is missing or incomplete.
+- **Question Bank Manifest** – Index files that describe available locales, banks, and bundles for loaders to resolve correct assets.
+- **Question Report** – Report about a problematic question (content issue, ambiguity, translation) sent to Firestore for moderation.
+- **Admin / Debug tools** – Internal screens and utilities for content inspection, logs, and question reports; not part of the main user flow.
 
 ## Future Directions (short)
 - Broader localization coverage and content parity checks beyond EN/RU.
