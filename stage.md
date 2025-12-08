@@ -10,11 +10,11 @@ Legend:
 
 ### EXAM-1 – Exam mode (full IP blueprint)
 - **Status:** ✅
-- **Summary:** Full-length exam runs follow the Interprovincial blueprint with timers, autosave/resume, and results/review screens.
+- **Summary:** Full-length exam runs follow the Interprovincial blueprint with timers, autosave/resume, and results/review screens. Added UI/instrumentation coverage around submit/resume plus timer stability checks.
 - **Implemented in:** `feature-exam` (`ExamViewModel`, `ResultViewModel`, `ReviewViewModel`), `core-domain` (quota distribution, timers), asset blueprints under `content/blueprints/`.
 - **Next tasks:**
-  - [ ] Add more UI/instrumentation coverage for submit/resume edge cases.
-  - [ ] Verify timer stability across background/rotation events.
+  - [ ] Exercise timer alignment through full activity recreation/backgrounded emulator runs (beyond unit coverage).
+  - [ ] Cover Room-backed resume after process death to ensure autosave snapshots and timer restore correctly.
 
 ### EXAM-2 – Practice mode (configurable)
 - **Status:** ✅
@@ -120,10 +120,10 @@ Legend:
 
 ### TEST-2 – UI/instrumentation coverage
 - **Status:** ⚠️
-- **Summary:** Limited Compose/UI tests exist; navigation and error handling paths need broader coverage.
+- **Summary:** Limited Compose/UI tests exist; navigation and error handling paths need broader coverage. Exam submit/resume flows now have Compose instrumentation plus timer label persistence checks.
 - **Implemented in:** `feature-exam` UI tests (partial).
 - **Next tasks:**
-  - [ ] Add end-to-end exam/practice runs with answer submission.
+  - [ ] Add end-to-end practice runs with answer submission and review.
   - [ ] Cover localization toggles and admin/report screens.
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
