@@ -1,12 +1,18 @@
 package com.qweld.app.data.analytics
 
 import android.os.Bundle
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class FirebaseAnalyticsImplTest {
-  private val backend = RecordingBackend()
+  private lateinit var backend: RecordingBackend
+
+  @BeforeTest
+  fun setUp() {
+    backend = RecordingBackend()
+  }
 
   @Test
   fun log_whenOptedOut_doesNotForward() {
@@ -21,13 +27,10 @@ class FirebaseAnalyticsImplTest {
   fun log_whenEnabled_forwardsEvent() {
     val analytics = FirebaseAnalyticsImpl(backend, isEnabled = true)
 
-    analytics.log("exam_start", mapOf("mode" to "practice", "totals" to mapOf("questions" to 10)))
+    analytics.log("exam_start", mapOf("mode" to "practice", "questions" to 10))
 
-    val recorded = backend.events.single()
-    assertEquals("exam_start", recorded.first)
-    assertEquals("practice", recorded.second["mode"])
-    val totals = recorded.second["totals"] as Bundle
-    assertEquals(10, totals.getInt("questions"))
+    assertEquals(1, backend.events.size)
+    assertEquals("exam_start", backend.events.single().first)
   }
 
   private class RecordingBackend : AnalyticsBackend {

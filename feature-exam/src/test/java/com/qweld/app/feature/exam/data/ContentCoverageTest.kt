@@ -4,6 +4,7 @@ import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.TaskQuota
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.io.path.readText
 import kotlin.test.Test
 import kotlin.test.assertTrue
 import kotlinx.serialization.json.Json
@@ -93,7 +94,7 @@ class ContentCoverageTest {
   }
 
   private fun extractTaskIds(path: Path): List<String> {
-    val payload = Files.readString(path)
+    val payload = path.readText()
     val element = runCatching { json.parseToJsonElement(payload) }
       .getOrElse { throwable -> error("Failed to parse ${path.toUri()}: ${throwable.message}") }
     return when (element) {

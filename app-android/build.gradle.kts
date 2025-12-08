@@ -150,6 +150,9 @@ licensee {
   allowUrl("https://developer.android.com/guide/playcore/license")
   allowUrl("https://developer.android.com/google/play/integrity/overview#tos")
   allowUrl("https://source.android.com/license")
+  allowUrl("https://spdx.org/licenses/MIT.txt") {
+    because("MIT license used by org.codehaus.mojo:animal-sniffer-annotations:1.23")
+  }
 }
 
 tasks.named<CycloneDxTask>("cyclonedxBom") {

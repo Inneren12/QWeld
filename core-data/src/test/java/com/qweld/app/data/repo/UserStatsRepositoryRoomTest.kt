@@ -8,6 +8,7 @@ import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.domain.Outcome
 import java.io.IOException
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -16,7 +17,11 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class UserStatsRepositoryRoomTest {
   private lateinit var context: Context
   private lateinit var db: QWeldDb
