@@ -96,6 +96,26 @@ class UserPrefsDataStore internal constructor(
     }
   }
 
+  override fun readLastPracticeConfig(): Flow<LastPracticeConfig?> {
+    return dataStore.data.map { preferences ->
+      val scope = preferences[LAST_SCOPE_DISTRIBUTION_KEY].orEmpty()
+      val size = preferences[LAST_PRACTICE_SIZE_KEY] ?: 0
+      val wrongBiased = preferences[LAST_PRACTICE_WRONG_BIASED_KEY]
+      if (scope.isBlank()) return@map null
+      val distribution = normalizeDistribution(scope) ?: return@map null
+      val blocks = toNormalizedSet(preferences[LAST_SCOPE_BLOCKS_KEY].orEmpty())
+      val tasks = toNormalizedSet(preferences[LAST_SCOPE_TASKS_KEY].orEmpty())
+      val sanitizedSize = sanitizePracticeSize(size)
+      LastPracticeConfig(
+        blocks = blocks,
+        tasks = tasks,
+        distribution = distribution,
+        size = sanitizedSize,
+        wrongBiased = wrongBiased ?: DEFAULT_WRONG_BIASED,
+      )
+    }
+  }
+
   override suspend fun setAnalyticsEnabled(value: Boolean) {
     dataStore.edit { preferences -> preferences[ANALYTICS_ENABLED_KEY] = value }
   }
@@ -139,13 +159,32 @@ class UserPrefsDataStore internal constructor(
     tasks: Set<String>,
     distribution: String,
   ) {
+    saveLastPracticeConfig(
+      blocks = blocks,
+      tasks = tasks,
+      distribution = distribution,
+      size = DEFAULT_PRACTICE_SIZE,
+      wrongBiased = DEFAULT_WRONG_BIASED,
+    )
+  }
+
+  override suspend fun saveLastPracticeConfig(
+    blocks: Set<String>,
+    tasks: Set<String>,
+    distribution: String,
+    size: Int,
+    wrongBiased: Boolean,
+  ) {
     val normalizedDistribution = normalizeDistribution(distribution) ?: return
     val normalizedBlocks = normalizeAndJoin(blocks)
     val normalizedTasks = normalizeAndJoin(tasks)
+    val sanitizedSize = sanitizePracticeSize(size)
     dataStore.edit { preferences ->
       preferences[LAST_SCOPE_BLOCKS_KEY] = normalizedBlocks
       preferences[LAST_SCOPE_TASKS_KEY] = normalizedTasks
       preferences[LAST_SCOPE_DISTRIBUTION_KEY] = normalizedDistribution
+      preferences[LAST_PRACTICE_SIZE_KEY] = sanitizedSize
+      preferences[LAST_PRACTICE_WRONG_BIASED_KEY] = wrongBiased
     }
   }
 
@@ -168,6 +207,7 @@ class UserPrefsDataStore internal constructor(
     const val DEFAULT_HAPTICS_ENABLED: Boolean = true
     const val DEFAULT_SOUNDS_ENABLED: Boolean = false
     const val DEFAULT_APP_LOCALE: String = "system"
+    const val DEFAULT_LAST_PRACTICE_SIZE: Int = DEFAULT_PRACTICE_SIZE
 
       private const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
@@ -182,6 +222,8 @@ class UserPrefsDataStore internal constructor(
     private val LAST_SCOPE_BLOCKS_KEY = stringPreferencesKey("last_scope_blocks")
     private val LAST_SCOPE_TASKS_KEY = stringPreferencesKey("last_scope_tasks")
     private val LAST_SCOPE_DISTRIBUTION_KEY = stringPreferencesKey("last_scope_distribution")
+    private val LAST_PRACTICE_SIZE_KEY = intPreferencesKey("last_practice_size")
+    private val LAST_PRACTICE_WRONG_BIASED_KEY = booleanPreferencesKey("last_practice_wrong_biased")
 
     internal fun defaultPreferences(): Preferences {
       return preferencesOf(
@@ -197,6 +239,8 @@ class UserPrefsDataStore internal constructor(
         LAST_SCOPE_BLOCKS_KEY to "",
         LAST_SCOPE_TASKS_KEY to "",
         LAST_SCOPE_DISTRIBUTION_KEY to "",
+        LAST_PRACTICE_SIZE_KEY to DEFAULT_LAST_PRACTICE_SIZE,
+        LAST_PRACTICE_WRONG_BIASED_KEY to DEFAULT_WRONG_BIASED,
       )
     }
 
@@ -240,5 +284,13 @@ class UserPrefsDataStore internal constructor(
     val blocks: Set<String>,
     val tasks: Set<String>,
     val distribution: String,
+  )
+
+  data class LastPracticeConfig(
+    val blocks: Set<String>,
+    val tasks: Set<String>,
+    val distribution: String,
+    val size: Int,
+    val wrongBiased: Boolean,
   )
 }

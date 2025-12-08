@@ -31,6 +31,7 @@ class UserPrefsDataStoreLastScopeTest {
     val prefs = newDataStore()
 
     assertNull(prefs.readLastPracticeScope().first())
+    assertNull(prefs.readLastPracticeConfig().first())
 
     prefs.saveLastPracticeScope(
       blocks = setOf("b", "A"),
@@ -45,13 +46,34 @@ class UserPrefsDataStoreLastScopeTest {
     assertEquals("Even", stored.distribution)
   }
 
-    private fun TestScope.newDataStore(): UserPrefsDataStore {
-        val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
-        val dataStore =
-            PreferenceDataStoreFactory.create(
-                scope = backgroundScope,
-                produceFile = { file.toFile() }, // 👈 превращаем Path в File
-            )
-        return UserPrefsDataStore(dataStore)
-    }
+  @Test
+  fun saveAndReadLastPracticeConfig() = runTest {
+    val prefs = newDataStore()
+
+    prefs.saveLastPracticeConfig(
+      blocks = setOf("C"),
+      tasks = setOf("C-1"),
+      distribution = "Proportional",
+      size = 7,
+      wrongBiased = true,
+    )
+
+    val stored = prefs.readLastPracticeConfig().first()
+    requireNotNull(stored)
+    assertEquals(setOf("C"), stored.blocks)
+    assertEquals(setOf("C-1"), stored.tasks)
+    assertEquals("Proportional", stored.distribution)
+    assertEquals(7, stored.size)
+    assertEquals(true, stored.wrongBiased)
+  }
+
+  private fun TestScope.newDataStore(): UserPrefsDataStore {
+    val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
+    val dataStore =
+      PreferenceDataStoreFactory.create(
+        scope = backgroundScope,
+        produceFile = { file.toFile() },
+      )
+    return UserPrefsDataStore(dataStore)
+  }
 }

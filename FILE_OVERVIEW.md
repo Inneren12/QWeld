@@ -82,6 +82,10 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Compose instrumentation coverage for exam submit/resume flow assertions and timer label persistence.
   - **Edit guidelines:** Extend with additional edge cases for lifecycle/resume behavior.
+- `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/PracticeHappyPathTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Compose instrumentation happy-path coverage for practice runs (answering questions and reaching results).
+  - **Edit guidelines:** Keep scenario short/deterministic; extend with additional practice UI assertions if flows expand.
 
 ## feature-auth/
 
@@ -128,6 +132,10 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Coverage for quota distribution, RNG, and sampler correctness.
   - **Edit guidelines:** Extend freely to guard new logic.
+- `core-domain/src/test/java/com/qweld/app/domain/exam/QuotaDistributorEdgeCaseTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Edge-case coverage for quota distribution rounding, even splits, and guardrails against invalid allocations.
+  - **Edit guidelines:** Keep fixtures deterministic and totals aligned with blueprint expectations.
 
 ## core-data/
 

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.test.assertExists
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasText
@@ -123,5 +124,47 @@ class PracticeScopeSheetTest {
       .onNode(hasScrollAction())
       .performScrollToNode(hasText(context.getString(R.string.practice_scope_select_tasks)))
     composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_start)).assertIsDisplayed()
+  }
+
+  @Test
+  fun selectAllAndClearChangesSummary() {
+    val context = InstrumentationRegistry.getInstrumentation().targetContext
+    val totalTasks = blueprint.taskQuotas.size
+
+    composeTestRule.setContent {
+      MaterialTheme(colorScheme = lightColorScheme()) {
+        PracticeScopeSheet(
+          size = 15,
+          tasksByBlock = tasksByBlock,
+          blockLabels = labeledBlocks,
+          taskLabels = labeledTasks,
+          scope = PracticeScope(),
+          blueprint = blueprint,
+          lastScope = null,
+          onDismiss = {},
+          onConfirm = { _, _, _ -> false },
+        )
+      }
+    }
+
+    composeTestRule
+      .onNodeWithText(
+        context.getString(R.string.practice_scope_selected_tasks, totalTasks, totalTasks),
+      )
+      .assertExists()
+
+    composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_clear_all)).performClick()
+
+    composeTestRule
+      .onNodeWithText(context.getString(R.string.practice_scope_selected_tasks, 0, totalTasks))
+      .assertIsDisplayed()
+
+    composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_select_all_tasks)).performClick()
+
+    composeTestRule
+      .onNodeWithText(
+        context.getString(R.string.practice_scope_selected_tasks, totalTasks, totalTasks),
+      )
+      .assertIsDisplayed()
   }
 }

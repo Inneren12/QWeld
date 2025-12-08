@@ -18,6 +18,7 @@ interface UserPrefs {
   fun lruCacheSizeFlow(): Flow<Int>
   fun appLocaleFlow(): Flow<String>
   fun readLastPracticeScope(): Flow<UserPrefsDataStore.LastScope?>
+  fun readLastPracticeConfig(): Flow<UserPrefsDataStore.LastPracticeConfig?>
 
   suspend fun setAnalyticsEnabled(value: Boolean)
   suspend fun setPrewarmDisabled(value: Boolean)
@@ -29,5 +30,12 @@ interface UserPrefs {
   suspend fun setWrongBiased(value: Boolean)
   suspend fun setAppLocale(tag: String)
   suspend fun saveLastPracticeScope(blocks: Set<String>, tasks: Set<String>, distribution: String)
+  suspend fun saveLastPracticeConfig(
+    blocks: Set<String>,
+    tasks: Set<String>,
+    distribution: String,
+    size: Int,
+    wrongBiased: Boolean,
+  )
   suspend fun clear()
 }

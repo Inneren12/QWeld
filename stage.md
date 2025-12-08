@@ -21,8 +21,9 @@ Legend:
 - **Summary:** Practice sessions allow selecting tasks/blocks and question counts with proportional or even sampling and review filters.
 - **Implemented in:** `feature-exam` (`ExamViewModel`, practice config UI/models), `core-domain` samplers.
 - **Next tasks:**
-  - [ ] Improve task selection UX (multi-select presets, clearer quotas).
-  - [ ] Add saved presets/tests for frequent practice mixes.
+  - [x] Improve task selection UX (multi-select presets, clearer quotas).
+  - [x] Add saved presets/tests for frequent practice mixes.
+  - [ ] Expand preset management beyond “last used” (named presets, sharing).
  
 ### EXAM-3 – Adaptive exam mode
 - **Status:** ⏳
@@ -115,7 +116,7 @@ Legend:
 - **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators.
 - **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests.
 - **Next tasks:**
-  - [ ] Expand quota distribution edge-case coverage.
+  - [x] Expand quota distribution edge-case coverage.
   - [ ] Automate snapshot tests for blueprint manifests.
 
 ### TEST-2 – UI/instrumentation coverage
@@ -123,7 +124,7 @@ Legend:
 - **Summary:** Limited Compose/UI tests exist; navigation and error handling paths need broader coverage. Exam submit/resume flows now have Compose instrumentation plus timer label persistence checks.
 - **Implemented in:** `feature-exam` UI tests (partial).
 - **Next tasks:**
-  - [ ] Add end-to-end practice runs with answer submission and review.
+  - [x] Add end-to-end practice runs with answer submission and review.
   - [ ] Cover localization toggles and admin/report screens.
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
