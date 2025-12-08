@@ -9,6 +9,10 @@ import androidx.compose.ui.test.onNode
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.qweld.app.domain.exam.ExamMode
@@ -33,12 +37,16 @@ class ExamSubmitResumeTest {
   @Test
   fun happyPathExamRunShowsResults() {
     val context = InstrumentationRegistry.getInstrumentation().targetContext
-    var state = ExamUiState(attempt = sampleAttempt(), timerLabel = "04:00:00")
-    var resultState: ResultUiState? = null
-    var scoreLabel = ""
+    val attempt = sampleAttempt()
 
     composeTestRule.setContent {
       MaterialTheme(colorScheme = lightColorScheme()) {
+        var state by remember {
+          mutableStateOf(ExamUiState(attempt = attempt, timerLabel = "04:00:00"))
+        }
+        var resultState by remember { mutableStateOf<ResultUiState?>(null) }
+        var scoreLabel by remember { mutableStateOf("") }
+
         if (resultState == null) {
           ExamScreenContent(
             state = state,
@@ -102,12 +110,12 @@ class ExamSubmitResumeTest {
   @Test
   fun resumedExamShowsAnsweredStateAndTimer() {
     val context = InstrumentationRegistry.getInstrumentation().targetContext
-    var state = ExamUiState(attempt = answeredAttempt(), timerLabel = "03:30:00")
+    val state = mutableStateOf(ExamUiState(attempt = answeredAttempt(), timerLabel = "03:30:00"))
 
     composeTestRule.setContent {
       MaterialTheme(colorScheme = lightColorScheme()) {
         ExamScreenContent(
-          state = state,
+          state = state.value,
           onChoiceSelected = {},
           onNext = {},
           onPrevious = {},
@@ -128,7 +136,7 @@ class ExamSubmitResumeTest {
       .onNodeWithText(context.getString(R.string.exam_timer_label, "03:30:00"))
       .assertIsDisplayed()
 
-    composeTestRule.runOnIdle { state = state.copy(timerLabel = "03:29:50") }
+    composeTestRule.runOnIdle { state.value = state.value.copy(timerLabel = "03:29:50") }
 
     composeTestRule
       .onNodeWithText(context.getString(R.string.exam_timer_label, "03:29:50"))
