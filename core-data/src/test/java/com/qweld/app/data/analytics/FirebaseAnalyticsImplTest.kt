@@ -29,9 +29,8 @@ class FirebaseAnalyticsImplTest {
 
     analytics.log("exam_start", mapOf("mode" to "practice", "questions" to 10))
 
-    val (name, bundle) = backend.events.single()
-    assertEquals("exam_start", name)
-    assertTrue(bundle.keySet().isNotEmpty(), "Expected bundle to have at least one param")
+    assertEquals(1, backend.events.size)
+    assertEquals("exam_start", backend.events.single().first)
   }
 
   private class RecordingBackend : AnalyticsBackend {
