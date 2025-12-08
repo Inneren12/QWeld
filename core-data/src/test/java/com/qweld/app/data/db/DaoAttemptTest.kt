@@ -4,13 +4,18 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AttemptEntity
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class DaoAttemptTest {
   private lateinit var context: Context
   private lateinit var db: QWeldDb

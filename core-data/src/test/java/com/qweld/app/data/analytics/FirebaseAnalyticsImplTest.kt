@@ -1,12 +1,18 @@
 package com.qweld.app.data.analytics
 
 import android.os.Bundle
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class FirebaseAnalyticsImplTest {
-  private val backend = RecordingBackend()
+  private lateinit var backend: RecordingBackend
+
+  @BeforeTest
+  fun setUp() {
+    backend = RecordingBackend()
+  }
 
   @Test
   fun log_whenOptedOut_doesNotForward() {

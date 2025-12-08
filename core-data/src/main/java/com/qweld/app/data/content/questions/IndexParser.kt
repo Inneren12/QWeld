@@ -39,6 +39,8 @@ class IndexParser(private val json: Json = DEFAULT_JSON) {
         yield(normalized)
         if (stripped != normalized) {
           yield(stripped)
+        } else {
+          yield("$QUESTIONS_PREFIX$normalized")
         }
       }
     }
