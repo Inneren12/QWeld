@@ -182,11 +182,32 @@ class ExamViewModelStartTest {
     val answerDao = FakeAnswerDao()
     val attemptsRepository = AttemptsRepository(attemptDao) { }
     val answersRepository = AnswersRepository(answerDao)
-    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
-      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
-        // No-op for tests
+    val questionReportRepository =
+      object : com.qweld.app.data.reports.QuestionReportRepository {
+        override suspend fun submitReport(
+          report: com.qweld.app.data.reports.QuestionReport,
+        ) {
+          // No-op for tests
+        }
+
+        override suspend fun listReports(
+          status: String?,
+          limit: Int,
+        ): List<com.qweld.app.data.reports.QuestionReportWithId> = emptyList()
+
+        override suspend fun getReportById(
+          reportId: String,
+        ): com.qweld.app.data.reports.QuestionReportWithId? = null
+
+        override suspend fun updateReportStatus(
+          reportId: String,
+          status: String,
+          resolutionCode: String?,
+          resolutionComment: String?,
+        ) {
+          // No-op for tests
+        }
       }
-    }
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(
       repository = repository,
