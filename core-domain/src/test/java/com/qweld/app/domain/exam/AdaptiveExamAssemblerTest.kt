@@ -51,7 +51,7 @@ class AdaptiveExamAssemblerTest {
 
   @Test
   fun `adaptive selection is deterministic for the same seed`() {
-    val blueprint = ExamBlueprint(totalQuestions = 3, taskQuotas = listOf(TaskQuota("A-1", "A", 2)))
+    val blueprint = ExamBlueprint(totalQuestions = 3, taskQuotas = listOf(TaskQuota("A-1", "A", 3)))
     val questions = generateQuestions("A-1", 5)
     val assembler =
       ExamAssembler(
