@@ -115,7 +115,11 @@ class ExamViewModelStartTest {
     assertNotNull(attempt)
     assertEquals(ExamMode.ADAPTIVE, attempt.mode)
     assertEquals(adaptiveBlueprint.totalQuestions, attempt.totalQuestions)
-    assertEquals(adaptiveBlueprint.taskQuotas.size, attempt.blueprint.taskQuotas.size)
+    val distinctTasks =
+      attempt.questions
+        .mapNotNull { question -> question.id.substringAfter("Q-", "").substringBeforeLast("-", "").takeIf { it.isNotBlank() } }
+        .distinct()
+    assertEquals(adaptiveBlueprint.taskQuotas.size, distinctTasks.size)
   }
 
   private fun repositoryWithTasks(
