@@ -13,6 +13,7 @@ import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
 import com.qweld.app.feature.exam.fakes.FakeAnswerDao
+import com.qweld.app.feature.exam.fakes.FakeQuestionReportRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
@@ -111,11 +112,7 @@ class ExamViewModelAbortRestartTest {
     val repository = repositoryWithTasks("A-1" to 3)
     val attemptsRepository = AttemptsRepository(attemptDao)
     val answersRepository = AnswersRepository(FakeAnswerDao())
-    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
-      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
-        // No-op for tests
-      }
-    }
+    val questionReportRepository = FakeQuestionReportRepository()
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(
       repository = repository,

@@ -12,6 +12,7 @@ import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
 import com.qweld.app.feature.exam.fakes.FakeAnswerDao
 import com.qweld.app.feature.exam.fakes.FakeAttemptDao
+import com.qweld.app.feature.exam.fakes.FakeQuestionReportRepository
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -228,11 +229,7 @@ class ExamViewModelNavigationTest {
     val answerDao = FakeAnswerDao()
     val attemptsRepository = AttemptsRepository(attemptDao) { }
     val answersRepository = AnswersRepository(answerDao)
-    val questionReportRepository = object : com.qweld.app.data.reports.QuestionReportRepository {
-      override suspend fun submitReport(report: com.qweld.app.data.reports.QuestionReport) {
-        // No-op for tests
-      }
-    }
+    val questionReportRepository = FakeQuestionReportRepository()
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(
       repository = repository,
