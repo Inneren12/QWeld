@@ -12,6 +12,7 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.jsonPrimitive
+import kotlin.io.path.readText
 
 class ContentCoverageTest {
   private val json = Json { ignoreUnknownKeys = true }
@@ -93,7 +94,7 @@ class ContentCoverageTest {
   }
 
   private fun extractTaskIds(path: Path): List<String> {
-    val payload = Files.readString(path)
+      val payload = path.readText()
     val element = runCatching { json.parseToJsonElement(payload) }
       .getOrElse { throwable -> error("Failed to parse ${path.toUri()}: ${throwable.message}") }
     return when (element) {
