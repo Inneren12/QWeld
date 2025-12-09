@@ -66,6 +66,7 @@ class PracticeScopeSheetTest {
             distribution = "Proportional",
           ),
           onDismiss = {},
+          onConfigChange = { _, _ -> },
           onConfirm = { _, _, _ -> false },
         )
       }
@@ -88,6 +89,7 @@ class PracticeScopeSheetTest {
           blueprint = blueprint,
           lastScope = null,
           onDismiss = {},
+          onConfigChange = { _, _ -> },
           onConfirm = { _, _, _ -> false },
         )
       }
@@ -116,6 +118,7 @@ class PracticeScopeSheetTest {
             blueprint = blueprint,
             lastScope = null,
             onDismiss = {},
+            onConfigChange = { _, _ -> },
             onConfirm = { _, _, _ -> false },
           )
         }
@@ -145,6 +148,7 @@ class PracticeScopeSheetTest {
           blueprint = blueprint,
           lastScope = null,
           onDismiss = {},
+          onConfigChange = { _, _ -> },
           onConfirm = { _, _, _ -> false },
         )
       }
@@ -152,21 +156,38 @@ class PracticeScopeSheetTest {
 
     composeTestRule
       .onNodeWithText(
-        context.getString(R.string.practice_scope_selected_tasks, totalTasks, totalTasks),
+        context.getString(
+          R.string.practice_scope_selected_tasks,
+          totalTasks,
+          totalTasks,
+          15,
+        ),
       )
       .assertExists()
 
     composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_clear_all)).performClick()
 
     composeTestRule
-      .onNodeWithText(context.getString(R.string.practice_scope_selected_tasks, 0, totalTasks))
+      .onNodeWithText(
+        context.getString(
+          R.string.practice_scope_selected_tasks,
+          0,
+          totalTasks,
+          15,
+        ),
+      )
       .assertIsDisplayed()
 
     composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_select_all_tasks)).performClick()
 
     composeTestRule
       .onNodeWithText(
-        context.getString(R.string.practice_scope_selected_tasks, totalTasks, totalTasks),
+        context.getString(
+          R.string.practice_scope_selected_tasks,
+          totalTasks,
+          totalTasks,
+          15,
+        ),
       )
       .assertIsDisplayed()
   }

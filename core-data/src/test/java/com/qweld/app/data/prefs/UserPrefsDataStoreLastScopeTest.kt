@@ -81,6 +81,27 @@ class UserPrefsDataStoreLastScopeTest {
     assertNull(stored)
   }
 
+  @Test
+  fun lastPracticeConfigSanitizesAndNormalizes() = runTest {
+    val prefs = newDataStore()
+
+    prefs.saveLastPracticeConfig(
+      blocks = setOf(" c ", "b"),
+      tasks = setOf("b-1", " C-2"),
+      distribution = "even",
+      size = UserPrefsDataStore.MAX_PRACTICE_SIZE + 50,
+      wrongBiased = false,
+    )
+
+    val stored = prefs.readLastPracticeConfig().first()
+    requireNotNull(stored)
+    assertEquals(setOf("B", "C"), stored.blocks)
+    assertEquals(setOf("B-1", "C-2"), stored.tasks)
+    assertEquals(UserPrefsDataStore.MAX_PRACTICE_SIZE, stored.size)
+    assertEquals("Even", stored.distribution)
+    assertEquals(false, stored.wrongBiased)
+  }
+
   private fun TestScope.newDataStore(): UserPrefsDataStore {
     val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
     val dataStore =

@@ -305,6 +305,13 @@ fun ModeScreen(
       blueprint = practiceBlueprint,
       lastScope = lastScope,
       onDismiss = { showPracticeScope = false },
+      onConfigChange = { updatedScope, updatedSize ->
+        viewModel.persistPracticeConfig(
+          scope = updatedScope,
+          size = updatedSize,
+          wrongBiased = practiceConfig.wrongBiased,
+        )
+      },
       onConfirm = { scope, selectedSize, preset ->
         val selected = ExamViewModel.resolvePracticeTasks(practiceBlueprint, scope)
         if (selected.isEmpty()) {

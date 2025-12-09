@@ -193,6 +193,46 @@ class ExamViewModel(
       )
   }
 
+  fun persistPracticeConfig(
+    scope: PracticeScope,
+    size: Int,
+    wrongBiased: Boolean,
+  ) {
+    val normalizedBlocks =
+      scope.blocks.mapNotNull { value ->
+        val normalized = value.trim().uppercase(Locale.US)
+        normalized.takeIf { it.isNotBlank() }
+      }
+    val normalizedTasks =
+      scope.taskIds.mapNotNull { value ->
+        val normalized = value.trim().uppercase(Locale.US)
+        normalized.takeIf { it.isNotBlank() }
+      }
+    val normalizedScope =
+      PracticeScope(
+        blocks = normalizedBlocks.toSet(),
+        taskIds = normalizedTasks.toSet(),
+        distribution = scope.distribution,
+      )
+    val resolvedSize = PracticeConfig.sanitizeSize(size)
+    val updatedConfig =
+      PracticeConfig(
+        size = resolvedSize,
+        scope = normalizedScope,
+        wrongBiased = wrongBiased,
+      )
+    _uiState.value = _uiState.value.copy(lastPracticeConfig = updatedConfig)
+    viewModelScope.launch(ioDispatcher) {
+      userPrefs.saveLastPracticeConfig(
+        blocks = normalizedScope.blocks,
+        tasks = normalizedScope.taskIds,
+        distribution = normalizedScope.distribution.name,
+        size = resolvedSize,
+        wrongBiased = wrongBiased,
+      )
+    }
+  }
+
   init {
     viewModelScope.launch {
       userPrefs.prewarmDisabled.collect { disabled ->

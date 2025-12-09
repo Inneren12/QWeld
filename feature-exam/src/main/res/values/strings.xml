@@ -39,7 +39,7 @@
     <string name="practice_scope_clear_block">Clear</string>
     <string name="practice_scope_select_all_tasks">Select all tasks</string>
     <string name="practice_scope_clear_all">Clear all</string>
-    <string name="practice_scope_selected_tasks">Selected tasks: %1$d / %2$d</string>
+    <string name="practice_scope_selected_tasks">Selected tasks: %1$d / %2$d · Planned questions: %3$d</string>
     <string name="mode_repeat_mistakes">Repeat mistakes</string>
     <string name="mode_repeat_mistakes_empty">No finished attempts yet</string>
     <string name="mode_prewarm_preparing">Preparing questions…</string>

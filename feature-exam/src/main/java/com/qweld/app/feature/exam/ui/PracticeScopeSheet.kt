@@ -74,6 +74,7 @@ fun PracticeScopeSheet(
   blueprint: ExamBlueprint,
   lastScope: UserPrefsDataStore.LastScope?,
   onDismiss: () -> Unit,
+  onConfigChange: (PracticeScope, Int) -> Unit,
   onConfirm: (PracticeScope, Int, PracticeScopePresetName?) -> Boolean,
 ) {
   val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -177,6 +178,20 @@ fun PracticeScopeSheet(
       }
     }
   val totalTasksCount = remember(blueprint) { blueprint.taskQuotas.size }
+
+  val notifyConfigChange = remember(onConfigChange, selectedBlocks, selectedTasks, distribution, effectiveSize) {
+    {
+      val currentScope =
+        PracticeScope(
+          blocks = selectedBlocks,
+          taskIds = selectedTasks,
+          distribution = distribution,
+        )
+      onConfigChange(currentScope, effectiveSize)
+    }
+  }
+
+  LaunchedEffect(notifyConfigChange) { notifyConfigChange() }
 
   fun updatePresetFromSelection() {
     val currentScope =
@@ -386,6 +401,7 @@ fun PracticeScopeSheet(
                   id = R.string.practice_scope_selected_tasks,
                   selectedTaskCount,
                   totalTasksCount,
+                  previewSize,
                 ),
               style = MaterialTheme.typography.bodyMedium,
             )
