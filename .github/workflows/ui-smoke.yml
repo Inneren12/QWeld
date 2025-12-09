@@ -61,6 +61,10 @@ jobs:
       - name: Install Android 35 platform
         run: sdkmanager "platforms;android-35"
 
+      - name: Install Android Build Tools 34.0.0
+        run: |
+          yes | "${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" "build-tools;34.0.0"
+
       - name: Remove local.properties
         run: rm -f local.properties
 
