@@ -19,6 +19,18 @@ class QuotaDistributorEdgeCaseTest {
   }
 
   @Test
+  fun nonDivisiblePercentagesDistributeRemainderDeterministically() {
+    val quotas = mapOf("A-1" to 33, "B-1" to 33, "C-1" to 34)
+
+    val allocation = QuotaDistributor.proportional(quotas, quotas.keys, total = 125)
+
+    assertEquals(125, allocation.values.sum())
+    assertEquals(41, allocation.getValue("A-1"))
+    assertEquals(41, allocation.getValue("B-1"))
+    assertEquals(43, allocation.getValue("C-1"))
+  }
+
+  @Test
   fun evenSplitHandlesSmallTotals() {
     val chosen = setOf("A-1", "B-2", "C-3")
 
@@ -46,5 +58,29 @@ class QuotaDistributorEdgeCaseTest {
 
     assertEquals(10, allocation.values.sum())
     assertTrue(allocation.getValue("A-1") >= 8)
+  }
+
+  @Test
+  fun smallQuotaTasksRetainShareWhenDominatedByLargeWeight() {
+    val quotas = mapOf("A-1" to 90, "B-1" to 5, "C-1" to 5)
+
+    val allocation = QuotaDistributor.proportional(quotas, quotas.keys, total = 125)
+
+    assertEquals(125, allocation.values.sum())
+    assertEquals(113, allocation.getValue("A-1"))
+    assertEquals(6, allocation.getValue("B-1"))
+    assertEquals(6, allocation.getValue("C-1"))
+  }
+
+  @Test
+  fun tinyTotalsDistributeLeftoverWithoutDroppingCount() {
+    val quotas = mapOf("A-1" to 1, "B-1" to 1, "C-1" to 1)
+
+    val allocation = QuotaDistributor.proportional(quotas, quotas.keys, total = 7)
+
+    assertEquals(7, allocation.values.sum())
+    assertEquals(3, allocation.getValue("A-1"))
+    assertEquals(2, allocation.getValue("B-1"))
+    assertEquals(2, allocation.getValue("C-1"))
   }
 }
