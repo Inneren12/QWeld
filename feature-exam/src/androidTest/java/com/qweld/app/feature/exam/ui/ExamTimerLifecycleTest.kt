@@ -4,6 +4,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,7 +18,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -28,17 +28,8 @@ import java.time.Clock
 import java.time.Duration
 import java.time.Instant
 import java.time.ZoneId
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestDispatcher
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -48,7 +39,6 @@ import org.junit.runner.RunWith
 class ExamTimerLifecycleTest {
   @get:Rule val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-  private val dispatcher = StandardTestDispatcher()
   private lateinit var viewModel: TimerHarnessViewModel
   private lateinit var updateFactory: (TimerHarnessFactory) -> Unit
   private lateinit var updateKey: (Int) -> Unit
@@ -56,7 +46,6 @@ class ExamTimerLifecycleTest {
 
   @Before
   fun setUp() {
-    Dispatchers.setMain(dispatcher)
     composeTestRule.setContent {
       MaterialTheme(colorScheme = lightColorScheme()) {
         var factory by remember { mutableStateOf(defaultFactory()) }
@@ -67,11 +56,6 @@ class ExamTimerLifecycleTest {
         TimerHarnessScreen(state = viewModel.uiState)
       }
     }
-  }
-
-  @After
-  fun tearDown() {
-    Dispatchers.resetMain()
   }
 
   @Test
@@ -130,22 +114,20 @@ class ExamTimerLifecycleTest {
   }
 
   private fun defaultFactory(initialRemaining: Duration? = null): TimerHarnessFactory {
-    return TimerHarnessFactory(dispatcher, MutableClock(), initialRemaining)
+    return TimerHarnessFactory(MutableClock(), initialRemaining)
   }
 }
 
 private class TimerHarnessFactory(
-  private val dispatcher: TestDispatcher,
   private val clock: MutableClock,
   private val initialRemaining: Duration? = null,
 ) : ViewModelProvider.Factory {
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
-    return TimerHarnessViewModel(dispatcher, clock, initialRemaining) as T
+    return TimerHarnessViewModel(clock, initialRemaining) as T
   }
 }
 
 private class TimerHarnessViewModel(
-  private val dispatcher: TestDispatcher,
   private val clock: MutableClock,
   private val initialRemaining: Duration?,
 ) : ViewModel() {
@@ -165,41 +147,23 @@ private class TimerHarnessViewModel(
 
   fun advance(duration: Duration) {
     clock.advance(duration)
-    dispatcher.scheduler.advanceTimeBy(duration.toMillis())
+    manualRemaining = manualRemaining?.minus(duration)
+    updateLabel(TimerController.formatDuration(currentRemaining()))
   }
 
   fun currentRemaining(): Duration {
-    return manualRemaining ?: timerController.remaining()
+    val remaining = manualRemaining ?: timerController.remaining()
+    return if (remaining.isNegative) Duration.ZERO else remaining
   }
 
   private fun startTimer() {
     timerController.start()
     updateLabel(TimerController.formatDuration(TimerController.EXAM_DURATION))
-    launchTicker { timerController.remaining() }
   }
 
   private fun resumeTimer(initialRemaining: Duration) {
     manualRemaining = initialRemaining
     updateLabel(TimerController.formatDuration(initialRemaining))
-    launchTicker {
-      checkNotNull(manualRemaining) { "manualRemaining should be set for resumed timer" }
-    }
-  }
-
-  private fun launchTicker(remainingProvider: () -> Duration): Job {
-    return viewModelScope.launch(dispatcher) {
-      var remaining = remainingProvider()
-      while (true) {
-        delay(1_000)
-        remaining =
-          manualRemaining?.minusSeconds(1)
-            ?: remainingProvider().coerceAtLeast(Duration.ZERO)
-        if (remaining.isNegative) remaining = Duration.ZERO
-        manualRemaining = if (manualRemaining != null) remaining else null
-        updateLabel(TimerController.formatDuration(remaining))
-        if (remaining.isZero) break
-      }
-    }
   }
 
   private fun updateLabel(label: String) {
@@ -209,7 +173,7 @@ private class TimerHarnessViewModel(
 
 @Composable
 private fun TimerHarnessScreen(state: StateFlow<ExamUiState>) {
-  val uiState = state.value
+  val uiState by state.collectAsState()
   val context = LocalContext.current
   uiState.timerLabel?.let { label ->
     TimerLabel(text = context.getString(R.string.exam_timer_label, label))

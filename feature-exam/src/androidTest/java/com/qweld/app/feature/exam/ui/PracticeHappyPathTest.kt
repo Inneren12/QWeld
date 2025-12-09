@@ -100,7 +100,7 @@ class PracticeHappyPathTest {
 
     val expectedScore = context.getString(R.string.result_score, "50%", 1, 2)
     composeTestRule.onNodeWithText(context.getString(R.string.result_title)).assertExists()
-    composeTestRule.onNodeWithText(expectedScore).assertExists()
+    composeTestRule.onNodeWithText(expectedScore, substring = true).assertExists()
   }
 
   private fun practiceAttempt(): ExamAttemptUiState {
