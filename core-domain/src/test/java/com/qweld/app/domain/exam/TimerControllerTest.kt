@@ -45,6 +45,20 @@ class TimerControllerTest {
   }
 
   @Test
+  fun pausedSnapshotBalancesElapsedAndTotal() {
+    val clock = FakeClock()
+    val timer = TimerController(clock = clock) { }
+
+    timer.start()
+    val elapsed = Duration.ofMinutes(75)
+    clock.advance(elapsed)
+
+    val remaining = timer.remaining()
+
+    assertEquals(TimerController.EXAM_DURATION, remaining.plus(elapsed))
+  }
+
+  @Test
   fun remainingDoesNotGoNegative() {
     val clock = FakeClock()
     val timer = TimerController(clock = clock) { }
