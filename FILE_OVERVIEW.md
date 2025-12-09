@@ -82,6 +82,10 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Compose instrumentation coverage for exam submit/resume flow assertions and timer label persistence.
   - **Edit guidelines:** Extend with additional edge cases for lifecycle/resume behavior.
+- `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/ExamTimerLifecycleTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Compose instrumentation coverage validating exam timer stability across backgrounding, configuration changes, and resume-from-remaining scenarios.
+  - **Edit guidelines:** Keep scenarios short/deterministic (use fake clocks/dispatchers) to avoid flakiness in CI emulators.
 - `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/PracticeHappyPathTest.kt`
   - **Importance:** 🧪 Test
   - **Role:** Compose instrumentation happy-path coverage for practice runs (answering questions and reaching results).
