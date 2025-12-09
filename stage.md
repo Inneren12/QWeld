@@ -18,7 +18,7 @@ Legend:
 
 ### EXAM-2 – Practice mode (configurable)
 - **Status:** ✅
-- **Summary:** Practice sessions allow selecting tasks/blocks and question counts with proportional or even sampling and review filters.
+- **Summary:** Practice sessions allow selecting tasks/blocks and question counts with proportional or even sampling and review filters, now with clearer selection helpers (select/clear all, selection count hints) and automatic persistence of the last used setup for quick reuse.
 - **Implemented in:** `feature-exam` (`ExamViewModel`, practice config UI/models), `core-domain` samplers.
 - **Next tasks:**
   - [x] Improve task selection UX (multi-select presets, clearer quotas).
