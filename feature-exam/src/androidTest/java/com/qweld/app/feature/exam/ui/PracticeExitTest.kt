@@ -10,6 +10,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onLast
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.ComposeNavigator
@@ -48,9 +50,9 @@ class PracticeExitTest {
             navigatorProvider.addNavigator(ComposeNavigator())
             graph = createGraph(startDestination = ExamDestinations.MODE) {
               composable(ExamDestinations.MODE) {}
-              composable(ExamDestinations.EXAM) {}
+              composable(ExamDestinations.PRACTICE) {}
             }
-            navigate(ExamDestinations.EXAM)
+            navigate(ExamDestinations.PRACTICE)
           }
         }
 
@@ -70,22 +72,26 @@ class PracticeExitTest {
           )
         }
         ExamScreenContent(
-            state = ExamUiState(attempt = createAttempt(ExamMode.PRACTICE)),
-            onChoiceSelected = {},
-            onNext = {},
-            onPrevious = {},
-            onDismissDeficit = {},
-            onFinish = {},
-            onShowRestart = {},
-            onShowExit = { showDialog = true },
-            onReportQuestionClick = {}
-          )
+          state = ExamUiState(attempt = createAttempt(ExamMode.PRACTICE)),
+          onChoiceSelected = {},
+          onNext = {},
+          onPrevious = {},
+          onDismissDeficit = {},
+          onFinish = {},
+          onShowRestart = {},
+          onShowExit = { showDialog = true },
+          onReportQuestionClick = {},
+        )
       }
     }
 
     composeTestRule.onNodeWithTag("btn-exit").assertIsDisplayed().performClick()
     composeTestRule.onNodeWithText(context.getString(R.string.dialog_exit_practice_title)).assertIsDisplayed()
-    composeTestRule.onNodeWithText(context.getString(R.string.exit)).performClick()
+    composeTestRule
+      .onAllNodesWithText(context.getString(R.string.exit))
+      .onLast()
+      .assertIsDisplayed()
+      .performClick()
 
     composeTestRule.runOnIdle {
       assertEquals(ExamDestinations.MODE, navController.currentDestination?.route)

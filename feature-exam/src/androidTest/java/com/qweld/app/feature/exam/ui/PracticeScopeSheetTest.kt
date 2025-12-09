@@ -95,6 +95,9 @@ class PracticeScopeSheetTest {
 
     composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_block_label, "A")).assertExists()
     composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_custom_tasks)).performClick()
+    composeTestRule
+      .onNode(hasScrollAction())
+      .performScrollToNode(hasText("A-1", substring = true))
     composeTestRule.onNodeWithText("A-1", substring = true).assertExists()
   }
 
