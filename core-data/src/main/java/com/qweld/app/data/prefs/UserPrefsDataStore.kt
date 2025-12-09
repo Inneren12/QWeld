@@ -99,7 +99,7 @@ class UserPrefsDataStore internal constructor(
   override fun readLastPracticeConfig(): Flow<LastPracticeConfig?> {
     return dataStore.data.map { preferences ->
       val scope = preferences[LAST_SCOPE_DISTRIBUTION_KEY].orEmpty()
-      val size = preferences[LAST_PRACTICE_SIZE_KEY] ?: 0
+      val size = preferences[LAST_PRACTICE_SIZE_KEY] ?: return@map null
       val wrongBiased = preferences[LAST_PRACTICE_WRONG_BIASED_KEY]
       if (scope.isBlank()) return@map null
       val distribution = normalizeDistribution(scope) ?: return@map null

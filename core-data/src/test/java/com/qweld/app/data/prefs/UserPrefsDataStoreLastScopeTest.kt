@@ -67,6 +67,20 @@ class UserPrefsDataStoreLastScopeTest {
     assertEquals(true, stored.wrongBiased)
   }
 
+  @Test
+  fun lastPracticeConfigNotRestoredWhenSizeMissing() = runTest {
+    val prefs = newDataStore()
+
+    prefs.saveLastPracticeScope(
+      blocks = setOf("D"),
+      tasks = setOf("D-1"),
+      distribution = "Even",
+    )
+
+    val stored = prefs.readLastPracticeConfig().first()
+    assertNull(stored)
+  }
+
   private fun TestScope.newDataStore(): UserPrefsDataStore {
     val file = Files.createTempFile(tempDir, "prefs", ".preferences_pb")
     val dataStore =
