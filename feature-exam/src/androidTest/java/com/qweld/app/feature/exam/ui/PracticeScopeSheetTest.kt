@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.test.assertExists
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasText
@@ -23,10 +22,12 @@ import com.qweld.app.feature.exam.vm.PracticeScope
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import androidx.activity.ComponentActivity
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 
 @RunWith(AndroidJUnit4::class)
 class PracticeScopeSheetTest {
-  @get:Rule val composeTestRule = createComposeRule()
+  @get:Rule val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
   private val blueprint = ExamBlueprint.default()
   private val tasksByBlock = blueprint.taskQuotas.groupBy { it.blockId }.mapValues { entry ->

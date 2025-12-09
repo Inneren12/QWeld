@@ -10,6 +10,7 @@ android {
   compileSdk = 35
 
   defaultConfig {
+      testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     minSdk = 26
   }
 
@@ -67,6 +68,10 @@ dependencies {
   testImplementation("androidx.room:room-testing:2.6.1")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
   testImplementation(project(":core-data"))
+
+    androidTestImplementation("androidx.test:runner:<та же версия, что в app-android>")
+    androidTestImplementation("androidx.test.ext:junit:<та же версия>")
+    androidTestImplementation("androidx.test.espresso:espresso-core:<та же версия>")
 
   androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.7.1")
   androidTestImplementation("androidx.test.ext:junit:1.2.1")

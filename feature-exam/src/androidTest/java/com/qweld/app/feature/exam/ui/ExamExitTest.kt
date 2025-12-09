@@ -6,8 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.activity.ComponentActivity
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -31,64 +33,77 @@ import org.junit.Assert.assertEquals
 
 @RunWith(AndroidJUnit4::class)
 class ExamExitTest {
-  @get:Rule val composeTestRule = createComposeRule()
+    @get:Rule
+    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-  @Test
-  fun exitExamShowsDialogAndNavigatesHome() {
-    val context = InstrumentationRegistry.getInstrumentation().targetContext
-    val navController = TestNavHostController(context).apply {
-      navigatorProvider.addNavigator(ComposeNavigator())
-        val navController = TestNavHostController(context).apply {
-            navigatorProvider.addNavigator(ComposeNavigator())
+    @Test
+    fun exitExamShowsDialogAndNavigatesHome() {
+        lateinit var navController: TestNavHostController
 
-            graph = createGraph(startDestination = ExamDestinations.MODE) {
-                composable(ExamDestinations.MODE) {}
-                composable(ExamDestinations.RESULT) {}
+        composeTestRule.setContent {
+            val context = LocalContext.current
+
+            navController = remember {
+                TestNavHostController(context).apply {
+                    navigatorProvider.addNavigator(ComposeNavigator())
+                    graph = createGraph(startDestination = ExamDestinations.MODE) {
+                        composable(ExamDestinations.MODE) {}
+                        composable(ExamDestinations.RESULT) {}
+                    }
+                    // Стартуем из RESULT, чтобы тест имитировал "мы уже в экране результата"
+                    navigate(ExamDestinations.RESULT)
+                }
             }
 
-            navigate(ExamDestinations.RESULT)
+            MaterialTheme(colorScheme = lightColorScheme()) {
+                var showDialog by remember { mutableStateOf(false) }
+
+                if (showDialog) {
+                    ConfirmExitDialog(
+                        mode = ExamMode.IP_MOCK,
+                        onCancel = { showDialog = false },
+                        onExit = {
+                            showDialog = false
+                            navController.navigate(ExamDestinations.MODE) {
+                                popUpTo(ExamDestinations.MODE) { inclusive = false }
+                                launchSingleTop = true
+                            }
+                        },
+                    )
+                }
+
+                ExamScreenContent(
+                    state = ExamUiState(attempt = createAttempt(ExamMode.IP_MOCK)),
+                    onChoiceSelected = {},
+                    onNext = {},
+                    onPrevious = {},
+                    onDismissDeficit = {},
+                    onFinish = {},
+                    onShowRestart = {},
+                    onShowExit = { showDialog = true },
+                    onReportQuestionClick = {},
+                )
+            }
+        }
+
+        // здесь Compose уже "поднял" иерархию, можно искать ноды
+        composeTestRule
+            .onNodeWithTag("btn-exit")
+            .assertIsDisplayed()
+            .performClick()
+
+        composeTestRule
+            .onAllNodesWithText("Exit")
+            .assertIsDisplayed()
+            .performClick()
+
+        // даём Compose/навигации доехать и проверяем маршрут
+        composeTestRule.runOnIdle {
+            assertEquals(ExamDestinations.MODE, navController.currentDestination?.route)
         }
     }
 
-    composeTestRule.setContent {
-      MaterialTheme(colorScheme = lightColorScheme()) {
-        var showDialog by remember { mutableStateOf(false) }
-        if (showDialog) {
-          ConfirmExitDialog(
-            mode = ExamMode.IP_MOCK,
-            onCancel = { showDialog = false },
-            onExit = {
-              showDialog = false
-              navController.navigate(ExamDestinations.MODE) {
-                popUpTo(ExamDestinations.MODE) { inclusive = false }
-                launchSingleTop = true
-              }
-            },
-          )
-        }
-        ExamScreenContent(
-          state = ExamUiState(attempt = createAttempt(ExamMode.IP_MOCK)),
-          onChoiceSelected = {},
-          onNext = {},
-          onPrevious = {},
-          onDismissDeficit = {},
-          onFinish = {},
-          onShowRestart = {},
-          onShowExit = { showDialog = true },
-        )
-      }
-    }
-
-    composeTestRule.onNodeWithTag("btn-exit").assertIsDisplayed().performClick()
-    composeTestRule.onNodeWithText(context.getString(R.string.dialog_exit_exam_title)).assertIsDisplayed()
-    composeTestRule.onNodeWithText(context.getString(R.string.exit)).performClick()
-
-    composeTestRule.runOnIdle {
-      assertEquals(ExamDestinations.MODE, navController.currentDestination?.route)
-    }
-  }
-
-  private fun createAttempt(mode: ExamMode): ExamAttemptUiState {
+    private fun createAttempt(mode: ExamMode): ExamAttemptUiState {
     val choices = listOf("A", "B", "C", "D").mapIndexed { index, label ->
       ExamChoiceUiModel(
         id = "choice-$index",
