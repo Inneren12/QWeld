@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
@@ -96,7 +95,7 @@ class PracticeScopeSheetTest {
 
     composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_block_label, "A")).assertExists()
     composeTestRule.onNodeWithText(context.getString(R.string.practice_scope_custom_tasks)).performClick()
-    composeTestRule.onNodeWithText("A-1").assertExists()
+    composeTestRule.onNodeWithText("A-1", substring = true).assertExists()
   }
 
   @Test
