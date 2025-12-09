@@ -159,13 +159,16 @@ class UserPrefsDataStore internal constructor(
     tasks: Set<String>,
     distribution: String,
   ) {
-    saveLastPracticeConfig(
-      blocks = blocks,
-      tasks = tasks,
-      distribution = distribution,
-      size = DEFAULT_PRACTICE_SIZE,
-      wrongBiased = DEFAULT_WRONG_BIASED,
-    )
+    val normalizedDistribution = normalizeDistribution(distribution) ?: return
+    val normalizedBlocks = normalizeAndJoin(blocks)
+    val normalizedTasks = normalizeAndJoin(tasks)
+    dataStore.edit { preferences ->
+      preferences[LAST_SCOPE_BLOCKS_KEY] = normalizedBlocks
+      preferences[LAST_SCOPE_TASKS_KEY] = normalizedTasks
+      preferences[LAST_SCOPE_DISTRIBUTION_KEY] = normalizedDistribution
+      preferences.remove(LAST_PRACTICE_SIZE_KEY)
+      preferences.remove(LAST_PRACTICE_WRONG_BIASED_KEY)
+    }
   }
 
   override suspend fun saveLastPracticeConfig(
