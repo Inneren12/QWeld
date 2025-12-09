@@ -113,7 +113,7 @@ Legend:
 
 ### TEST-1 – Domain & content unit tests
 - **Status:** ✅
-- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators.
+- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators, including edge-case quota distribution (rounding/large-small quotas).
 - **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests.
 - **Next tasks:**
   - [x] Expand quota distribution edge-case coverage.
