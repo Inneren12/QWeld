@@ -73,6 +73,7 @@ class PracticeExitTest {
           onFinish = {},
           onShowRestart = {},
           onShowExit = { showDialog = true },
+          onReportQuestionClick = {},
         )
       }
     }
