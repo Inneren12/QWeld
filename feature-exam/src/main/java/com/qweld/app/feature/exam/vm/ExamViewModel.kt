@@ -49,6 +49,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -156,6 +157,23 @@ class ExamViewModel(
   val prewarmDisabled = _prewarmDisabled.asStateFlow()
 
   val lastPracticeScope = userPrefs.readLastPracticeScope()
+
+  val lastPracticeConfig =
+    userPrefs.readLastPracticeConfig().map { saved ->
+      saved?.let {
+        val distribution =
+          when (it.distribution) {
+            Distribution.Proportional.name -> Distribution.Proportional
+            Distribution.Even.name -> Distribution.Even
+            else -> Distribution.Proportional
+          }
+        PracticeConfig(
+          size = PracticeConfig.sanitizeSize(it.size),
+          scope = PracticeScope(blocks = it.blocks, taskIds = it.tasks, distribution = distribution),
+          wrongBiased = it.wrongBiased,
+        )
+      }
+    }
 
   // region Session Management
 
@@ -1694,10 +1712,12 @@ class ExamViewModel(
       )
     if (launched) {
       viewModelScope.launch(ioDispatcher) {
-        userPrefs.saveLastPracticeScope(
+        userPrefs.saveLastPracticeConfig(
           blocks = resolvedConfig.scope.blocks,
           tasks = resolvedConfig.scope.taskIds,
           distribution = resolvedConfig.scope.distribution.name,
+          size = resolvedConfig.size,
+          wrongBiased = resolvedConfig.wrongBiased,
         )
       }
       Timber.i(

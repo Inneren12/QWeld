@@ -20,6 +20,8 @@ class FakeUserPrefs(
   private val _appLocale: MutableStateFlow<String> = MutableStateFlow(UserPrefsDataStore.DEFAULT_APP_LOCALE),
   private val _wrongBiased: MutableStateFlow<Boolean> = MutableStateFlow(UserPrefsDataStore.DEFAULT_WRONG_BIASED),
   private val _lastScope: MutableStateFlow<UserPrefsDataStore.LastScope?> = MutableStateFlow(null),
+  private val _lastPracticeConfig:
+    MutableStateFlow<UserPrefsDataStore.LastPracticeConfig?> = MutableStateFlow(null),
 ) : UserPrefs {
 
   override val analyticsEnabled: Flow<Boolean> = _analyticsEnabled
@@ -33,6 +35,7 @@ class FakeUserPrefs(
   override fun lruCacheSizeFlow(): Flow<Int> = _lruCacheSize
   override fun appLocaleFlow(): Flow<String> = _appLocale
   override fun readLastPracticeScope(): Flow<UserPrefsDataStore.LastScope?> = _lastScope
+  override fun readLastPracticeConfig(): Flow<UserPrefsDataStore.LastPracticeConfig?> = _lastPracticeConfig
 
   override suspend fun setAnalyticsEnabled(value: Boolean) {
     _analyticsEnabled.value = value
@@ -82,6 +85,24 @@ class FakeUserPrefs(
     )
   }
 
+  override suspend fun saveLastPracticeConfig(
+    blocks: Set<String>,
+    tasks: Set<String>,
+    distribution: String,
+    size: Int,
+    wrongBiased: Boolean,
+  ) {
+    saveLastPracticeScope(blocks = blocks, tasks = tasks, distribution = distribution)
+    _lastPracticeConfig.value =
+      UserPrefsDataStore.LastPracticeConfig(
+        blocks = blocks,
+        tasks = tasks,
+        distribution = distribution,
+        size = size,
+        wrongBiased = wrongBiased,
+      )
+  }
+
   override suspend fun clear() {
     _analyticsEnabled.value = UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED
     _prewarmDisabled.value = UserPrefsDataStore.DEFAULT_PREWARM_DISABLED
@@ -93,6 +114,7 @@ class FakeUserPrefs(
     _appLocale.value = UserPrefsDataStore.DEFAULT_APP_LOCALE
     _wrongBiased.value = UserPrefsDataStore.DEFAULT_WRONG_BIASED
     _lastScope.value = null
+    _lastPracticeConfig.value = null
   }
 
   // Replicate validation logic from UserPrefsDataStore without calling internal methods

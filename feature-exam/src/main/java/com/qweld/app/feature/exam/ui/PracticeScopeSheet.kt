@@ -118,6 +118,10 @@ fun PracticeScopeSheet(
   var selectedTasks by remember { mutableStateOf(normalizeSet(scope.taskIds)) }
   var distribution by remember { mutableStateOf(scope.distribution) }
   var showCustom by remember { mutableStateOf(scope.taskIds.isNotEmpty()) }
+  val allBlocks = remember(tasksByBlock) { tasksByBlock.keys.map(::normalizeValue).toSet() }
+  val allTasks = remember(tasksByBlock) {
+    tasksByBlock.values.flatten().map(::normalizeValue).toSet()
+  }
   var selectedPreset by remember {
     mutableStateOf(
       detectPresetForScope(scope, lastScope).takeIf { it == PracticeScopePresetName.LAST_USED },
@@ -149,14 +153,30 @@ fun PracticeScopeSheet(
           blocks = selectedBlocks,
           taskIds = selectedTasks,
           distribution = distribution,
-        )
+      )
       ExamViewModel.resolvePracticeQuotas(
-        blueprint = blueprint,
-        scope = previewScope,
-        total = effectiveSize,
-      ).values.sum()
+          blueprint = blueprint,
+          scope = previewScope,
+          total = effectiveSize,
+        )
+        .values
+        .sum()
     }
   }
+
+  val selectedTaskCount by
+    remember(selectedBlocks, selectedTasks, distribution, blueprint) {
+      derivedStateOf {
+        val previewScope =
+          PracticeScope(
+            blocks = selectedBlocks,
+            taskIds = selectedTasks,
+            distribution = distribution,
+          )
+        ExamViewModel.resolvePracticeTasks(blueprint, previewScope).size
+      }
+    }
+  val totalTasksCount = remember(blueprint) { blueprint.taskQuotas.size }
 
   fun updatePresetFromSelection() {
     val currentScope =
@@ -336,6 +356,38 @@ fun PracticeScopeSheet(
             Text(
               text = stringResource(id = R.string.practice_scope_blocks),
               style = MaterialTheme.typography.titleMedium,
+            )
+            Row(
+              modifier = Modifier.fillMaxWidth(),
+              horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+              TextButton(onClick = {
+                selectedBlocks = allBlocks
+                selectedTasks = allTasks
+                showCustom = true
+                updatePresetFromSelection()
+              }, enabled = allTasks.isNotEmpty()) {
+                Text(text = stringResource(id = R.string.practice_scope_select_all_tasks))
+              }
+              TextButton(
+                onClick = {
+                  selectedBlocks = emptySet()
+                  selectedTasks = emptySet()
+                  updatePresetFromSelection()
+                },
+                enabled = selectedBlocks.isNotEmpty() || selectedTasks.isNotEmpty(),
+              ) {
+                Text(text = stringResource(id = R.string.practice_scope_clear_all))
+              }
+            }
+            Text(
+              text =
+                stringResource(
+                  id = R.string.practice_scope_selected_tasks,
+                  selectedTaskCount,
+                  totalTasksCount,
+                ),
+              style = MaterialTheme.typography.bodyMedium,
             )
             for (blockId in blockOrder) {
               val hasTasks = tasksByBlock[blockId].orEmpty().isNotEmpty()

@@ -131,12 +131,15 @@ fun ExamNavGraph(
         userPrefs.wrongBiased.collectAsState(
           initial = UserPrefsDataStore.DEFAULT_WRONG_BIASED,
         )
-      val practiceConfig = remember(practiceSize, wrongBiased) {
-        PracticeConfig(
-          size = PracticeConfig.sanitizeSize(practiceSize),
-          wrongBiased = wrongBiased,
-        )
-      }
+      val lastPracticeConfig by examViewModel.lastPracticeConfig.collectAsState(initial = null)
+      val practiceConfig =
+        remember(practiceSize, wrongBiased, lastPracticeConfig) {
+          lastPracticeConfig
+            ?: PracticeConfig(
+              size = PracticeConfig.sanitizeSize(practiceSize),
+              wrongBiased = wrongBiased,
+            )
+        }
       ModeScreen(
         repository = repository,
         viewModel = examViewModel,
