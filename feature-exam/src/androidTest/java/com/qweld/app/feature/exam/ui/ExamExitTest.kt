@@ -30,6 +30,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.assertEquals
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onLast
 
 @RunWith(AndroidJUnit4::class)
 class ExamExitTest {
@@ -94,6 +96,7 @@ class ExamExitTest {
 
         composeTestRule
             .onAllNodesWithText("Exit")
+            .onLast()
             .assertIsDisplayed()
             .performClick()
 
