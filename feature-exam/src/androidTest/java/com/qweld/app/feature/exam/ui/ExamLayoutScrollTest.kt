@@ -54,6 +54,7 @@ class ExamLayoutScrollTest {
           onFinish = {},
           onShowRestart = {},
           onShowExit = {},
+          onReportQuestionClick = {},
         )
       }
     }

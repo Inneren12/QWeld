@@ -75,6 +75,7 @@ class ExamExitTest {
           onFinish = {},
           onShowRestart = {},
           onShowExit = { showDialog = true },
+          onReportQuestionClick = {},
         )
       }
     }
