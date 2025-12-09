@@ -30,7 +30,6 @@ import java.time.Instant
 import java.time.ZoneId
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -44,8 +43,7 @@ class ExamTimerLifecycleTest {
   private lateinit var updateKey: (Int) -> Unit
   private var currentKey = 0
 
-  @Before
-  fun setUp() {
+  private fun setTimerContent() {
     composeTestRule.setContent {
       MaterialTheme(colorScheme = lightColorScheme()) {
         var factory by remember { mutableStateOf(defaultFactory()) }
@@ -60,6 +58,7 @@ class ExamTimerLifecycleTest {
 
   @Test
   fun timerContinuesWhenBackgrounded() {
+    setTimerContent()
     val context = InstrumentationRegistry.getInstrumentation().targetContext
     val resumedLabel = context.getString(R.string.exam_timer_label, "04:00:00")
     composeTestRule.onNodeWithText(resumedLabel).assertIsDisplayed()
@@ -78,12 +77,14 @@ class ExamTimerLifecycleTest {
 
   @Test
   fun timerSurvivesConfigurationChange() {
+    setTimerContent()
     val context = InstrumentationRegistry.getInstrumentation().targetContext
     composeTestRule.runOnIdle { viewModel.advance(Duration.ofSeconds(3)) }
     composeTestRule.onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:57"))
       .assertIsDisplayed()
 
     composeTestRule.activityRule.scenario.recreate()
+    setTimerContent()
 
     composeTestRule.onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:57"))
       .assertIsDisplayed()
@@ -95,6 +96,7 @@ class ExamTimerLifecycleTest {
 
   @Test
   fun timerRestoresFromSavedRemaining() {
+    setTimerContent()
     val context = InstrumentationRegistry.getInstrumentation().targetContext
     composeTestRule.runOnIdle { viewModel.advance(Duration.ofSeconds(120)) }
     val remaining = composeTestRule.runOnIdle { viewModel.currentRemaining() }

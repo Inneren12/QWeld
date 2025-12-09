@@ -47,6 +47,7 @@ object ExamDestinations {
   const val EXAM = "exam_take"
   const val RESULT = "exam_result"
   const val REVIEW = "exam_review"
+  const val PRACTICE = "exam_practice"
 }
 
 @Composable

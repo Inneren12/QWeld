@@ -6,12 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.model.BlockSummaryUiModel
@@ -35,7 +33,7 @@ class PracticeHappyPathTest {
 
   @Test
   fun practiceRunCompletesAndShowsSummary() {
-    val context = InstrumentationRegistry.getInstrumentation().targetContext
+    val context = composeTestRule.activity
     val attempt = practiceAttempt()
 
     composeTestRule.setContent {
