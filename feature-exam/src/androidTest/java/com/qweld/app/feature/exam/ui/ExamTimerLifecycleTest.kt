@@ -79,18 +79,31 @@ class ExamTimerLifecycleTest {
   fun timerSurvivesConfigurationChange() {
     setTimerContent()
     val context = InstrumentationRegistry.getInstrumentation().targetContext
-    composeTestRule.runOnIdle { viewModel.advance(Duration.ofSeconds(3)) }
-    composeTestRule.onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:57"))
+
+    // Дадим таймеру "пройти" 3 секунды
+    composeTestRule.runOnIdle {
+      viewModel.advance(Duration.ofSeconds(3))
+    }
+    composeTestRule
+      .onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:57"))
       .assertIsDisplayed()
 
-    composeTestRule.activityRule.scenario.recreate()
-    setTimerContent()
+    // Эмулируем конфигурационное изменение: пересобираем ViewModel с тем же remaining,
+    // НО без второго setContent (ComposeRule запрещает setContent дважды за тест)
+    val remaining = composeTestRule.runOnIdle { viewModel.currentRemaining() }
+    composeTestRule.runOnIdle {
+      currentKey += 1
+      updateFactory.invoke(defaultFactory(initialRemaining = remaining))
+      updateKey.invoke(currentKey)
+    }
 
-    composeTestRule.onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:57"))
+    composeTestRule
+      .onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:57"))
       .assertIsDisplayed()
 
     composeTestRule.runOnIdle { viewModel.advance(Duration.ofSeconds(3)) }
-    composeTestRule.onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:54"))
+    composeTestRule
+      .onNodeWithText(context.getString(R.string.exam_timer_label, "03:59:54"))
       .assertIsDisplayed()
   }
 
