@@ -1,63 +1,57 @@
 {
-  "schema": "questions-index-v1",
-  "generatedAt": "2025-12-08T20:00:00Z",
-  "locales": {
-    "en": {
-      "blueprintId": "welder_ip_sk_202404",
-      "bankVersion": "v1",
-      "files": {
-        "questions/en/meta/task_labels.json": {
-          "sha256": "fd63a8ab0e5baaf2def16239f339fd151b7b9ecc32b8a1c7ae3f50e12cdd8342"
-        },
-        "questions/en/bank.v1.json": {
-          "sha256": "3cd4858d142ed041c5ff2ee3e86b0373894d279c3378f1f8d37c515b0b61ae30"
-        },
-        "questions/en/tasks/A-1.json": {
-          "sha256": "2e77a653f5c0e62a970d308e4aaf5ec26d00cb332323186e6021afaa6b754fdc"
-        },
-        "questions/en/tasks/A-2.json": {
-          "sha256": "5e459b301fb6a7c68e96bfbdc3ca72e87b0e51b81b41e6f8b8baeb653a670b80"
-        },
-        "questions/en/tasks/A-3.json": {
-          "sha256": "0dcef322866c6de7a12b47732f04a2a2cf6f79fe46ddba789e94dc3a7d8d2b46"
-        },
-        "questions/en/tasks/A-4.json": {
-          "sha256": "a2a6f97d3336ca739f247aaedaf444291865f2c98c73d8aa170c91d1587c8da9"
-        },
-        "questions/en/tasks/A-5.json": {
-          "sha256": "5b2913cad06bd9fde66abf627fa60e2312a74ea4eafc2536ee493ebd717ab720"
-        },
-        "questions/en/tasks/B-6.json": {
-          "sha256": "4f7b23b1558dd1983c68b2cc1ed66c00af884b0bb7370428f760a6a6e649a5ad"
-        },
-        "questions/en/tasks/B-7.json": {
-          "sha256": "4dcdea6c6b0ba59ee1eca3101dc13014d048bcb69d1c8fb036a0f36ccff46487"
-        },
-        "questions/en/tasks/C-10.json": {
-          "sha256": "7d920cfeb80bef9ee3230b1dfb5d8ebee9812134257486caff6904bddc2bcb76"
-        },
-        "questions/en/tasks/C-11.json": {
-          "sha256": "413b04390428783ec0cd4a178c7976304fec1cae151975729e7635fe79fe25cb"
-        },
-        "questions/en/tasks/C-8.json": {
-          "sha256": "b916ff0f00405725218aca7e5a1c0d2a4be6d3626f27ca6237b098b376ea47bb"
-        },
-        "questions/en/tasks/C-9.json": {
-          "sha256": "dc8e8608119b7e5b91eb1f82bb1d298ed503f656f636520fd50ea256ebe15396"
-        },
-        "questions/en/tasks/D-12.json": {
-          "sha256": "817cf6b5f4aefc75133a4c6332521735f3c8c8320826424cae1bac08cf1e66be"
-        },
-        "questions/en/tasks/D-13.json": {
-          "sha256": "edc6a5a6e87de9a92e952fdfffbc6815f4541525fb1c5f54a71ce265ee05d090"
-        },
-        "questions/en/tasks/D-14.json": {
-          "sha256": "7d9100f2fdec2e2f4292c43a8a6d12f09294dad48c3b997e933e478e6a8008ff"
-        },
-        "questions/en/tasks/D-15.json": {
-          "sha256": "cfa9c8497b17c6effd0ce6fe9f05bba144f2afdec1704b7501ad8f9ca4c20702"
-        }
-      }
+  "blueprintId": "welder_ip_sk_202404",
+  "bankVersion": "v1",
+  "files": {
+    "questions/en/meta/task_labels.json": {
+      "sha256": "fd63a8ab0e5baaf2def16239f339fd151b7b9ecc32b8a1c7ae3f50e12cdd8342"
+    },
+    "questions/en/bank.v1.json": {
+      "sha256": "3cd4858d142ed041c5ff2ee3e86b0373894d279c3378f1f8d37c515b0b61ae30"
+    },
+    "questions/en/tasks/A-1.json": {
+      "sha256": "2e77a653f5c0e62a970d308e4aaf5ec26d00cb332323186e6021afaa6b754fdc"
+    },
+    "questions/en/tasks/A-2.json": {
+      "sha256": "5e459b301fb6a7c68e96bfbdc3ca72e87b0e51b81b41e6f8b8baeb653a670b80"
+    },
+    "questions/en/tasks/A-3.json": {
+      "sha256": "0dcef322866c6de7a12b47732f04a2a2cf6f79fe46ddba789e94dc3a7d8d2b46"
+    },
+    "questions/en/tasks/A-4.json": {
+      "sha256": "a2a6f97d3336ca739f247aaedaf444291865f2c98c73d8aa170c91d1587c8da9"
+    },
+    "questions/en/tasks/A-5.json": {
+      "sha256": "5b2913cad06bd9fde66abf627fa60e2312a74ea4eafc2536ee493ebd717ab720"
+    },
+    "questions/en/tasks/B-6.json": {
+      "sha256": "4f7b23b1558dd1983c68b2cc1ed66c00af884b0bb7370428f760a6a6e649a5ad"
+    },
+    "questions/en/tasks/B-7.json": {
+      "sha256": "4dcdea6c6b0ba59ee1eca3101dc13014d048bcb69d1c8fb036a0f36ccff46487"
+    },
+    "questions/en/tasks/C-10.json": {
+      "sha256": "7d920cfeb80bef9ee3230b1dfb5d8ebee9812134257486caff6904bddc2bcb76"
+    },
+    "questions/en/tasks/C-11.json": {
+      "sha256": "413b04390428783ec0cd4a178c7976304fec1cae151975729e7635fe79fe25cb"
+    },
+    "questions/en/tasks/C-8.json": {
+      "sha256": "b916ff0f00405725218aca7e5a1c0d2a4be6d3626f27ca6237b098b376ea47bb"
+    },
+    "questions/en/tasks/C-9.json": {
+      "sha256": "dc8e8608119b7e5b91eb1f82bb1d298ed503f656f636520fd50ea256ebe15396"
+    },
+    "questions/en/tasks/D-12.json": {
+      "sha256": "817cf6b5f4aefc75133a4c6332521735f3c8c8320826424cae1bac08cf1e66be"
+    },
+    "questions/en/tasks/D-13.json": {
+      "sha256": "edc6a5a6e87de9a92e952fdfffbc6815f4541525fb1c5f54a71ce265ee05d090"
+    },
+    "questions/en/tasks/D-14.json": {
+      "sha256": "7d9100f2fdec2e2f4292c43a8a6d12f09294dad48c3b997e933e478e6a8008ff"
+    },
+    "questions/en/tasks/D-15.json": {
+      "sha256": "cfa9c8497b17c6effd0ce6fe9f05bba144f2afdec1704b7501ad8f9ca4c20702"
     }
   }
 }
