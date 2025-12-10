@@ -39,6 +39,13 @@ kotlin {
   jvmToolchain(21)
 }
 
+tasks.withType<Test>().configureEach {
+  val ruCoverageMin = project.findProperty("localeCoverage.ru.min") as String?
+  if (ruCoverageMin != null) {
+    systemProperty("localeCoverage.ru.min", ruCoverageMin)
+  }
+}
+
 dependencies {
   implementation(project(":core-domain"))
   implementation(project(":core-data"))

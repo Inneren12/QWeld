@@ -78,6 +78,11 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Unit/UI tests for exam flows, loaders, and content validation.
   - **Edit guidelines:** Extend freely; ensure fixtures match content manifests.
+- `feature-exam/src/test/java/com/qweld/app/feature/exam/data/LocaleCoverageTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Computes EN→RU locale coverage from source content, logs per-task gaps, and optionally enforces a minimum coverag
+e threshold (via `localeCoverage.ru.min`).
+  - **Edit guidelines:** Keep parsing tolerant of arrays/singleton question files; adjust thresholds in CI when coverage shifts.
 - `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/ExamSubmitResumeTest.kt`
   - **Importance:** 🧪 Test
   - **Role:** Compose instrumentation coverage for exam submit/resume flow assertions and timer label persistence.

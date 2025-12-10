@@ -51,7 +51,7 @@ Legend:
 - **Implemented in:** `content/questions/ru/` plus locale fallback in `AssetQuestionRepository`.
 - **Next tasks:**
   - [ ] Close missing translations and sync blueprint metadata.
-  - [ ] Add locale-completeness checks to CI.
+  - [x] Add locale-completeness checks to CI.
 
 ## Admin & Debug Tools
 
@@ -118,6 +118,7 @@ Legend:
 - **Next tasks:**
   - [x] Expand quota distribution edge-case coverage.
   - [ ] Automate snapshot tests for blueprint manifests.
+  - [x] Enforce RU locale coverage via CI gate.
 
 ### TEST-2 – UI/instrumentation coverage
 - **Status:** ✅
