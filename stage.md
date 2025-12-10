@@ -80,7 +80,7 @@ Legend:
 - **Summary:** Firestore-backed repository exists; UI can submit reports when enabled, but moderation workflow is light.
 - **Implemented in:** `core-data` (`FirestoreQuestionReportRepository`), admin/report screens in `app-android`.
 - **Next tasks:**
-  - [ ] Add offline queue/retry for reports.
+  - [x] Add offline queue/retry for reports.
   - [ ] Include device/context metadata for triage.
 
 ### REPORT-2 – In-app “Report issue” flow for questions

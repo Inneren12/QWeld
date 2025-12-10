@@ -152,6 +152,14 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🔴 Critical
   - **Role:** Room database definition including entities and migrations for attempts/answers.
   - **Edit guidelines:** Update version/migrations carefully; keep schema in sync with DAOs.
+- `core-data/src/main/java/com/qweld/app/data/db/entities/QueuedQuestionReportEntity.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Room entity storing queued question reports for offline retries (REPORT-1).
+  - **Edit guidelines:** Add migrations when altering columns; keep payload format aligned with `QueuedQuestionReportPayload`.
+- `core-data/src/main/java/com/qweld/app/data/db/dao/QueuedQuestionReportDao.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** DAO for enqueuing, listing, and updating queued question reports before retrying uploads.
+  - **Edit guidelines:** Keep ordering/indexes consistent with retry policy; update migrations/schema on query changes.
 - `core-data/src/main/java/com/qweld/app/data/db/dao/{AttemptDao,AnswerDao}.kt`
   - **Importance:** 🔴 Critical
   - **Role:** Read/write APIs for persisted attempts and answers.

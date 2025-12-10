@@ -4,7 +4,12 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.qweld.app.data.db.dao.QueuedQuestionReportDao
+import com.qweld.app.data.db.entities.QueuedQuestionReportEntity
 import kotlinx.coroutines.tasks.await
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import timber.log.Timber
 
 /**
@@ -12,29 +17,82 @@ import timber.log.Timber
  * Writes and manages question reports in the "question_reports" collection.
  */
 class FirestoreQuestionReportRepository(
-  private val firestore: FirebaseFirestore,
+  private val firestore: FirebaseFirestore?,
+  private val queuedReportDao: QueuedQuestionReportDao,
+  private val reportSender: ReportSender = firestore?.let { FirestoreReportSender(it) }
+    ?: throw IllegalArgumentException("Firestore instance is required when no ReportSender is provided"),
+  private val json: Json = Json { encodeDefaults = true },
+  private val clock: () -> Long = { System.currentTimeMillis() },
 ) : QuestionReportRepository {
 
   override suspend fun submitReport(report: QuestionReport) {
     val data = buildReportData(report)
 
     try {
-      val docRef = firestore.collection(COLLECTION_NAME)
-        .add(data)
-        .await()
-
-      Timber.tag(TAG).d(
-        "[report_submit] id=${docRef.id} question=${report.questionId} reason=${report.reasonCode}"
-      )
+      reportSender.send(report.questionId, data)
     } catch (e: Exception) {
-      Timber.tag(TAG).e(e, "[report_submit_error] question=${report.questionId}")
+      Timber.tag(TAG).w(e, "[report_submit_error_queue] question=${report.questionId}")
+      queueReport(report)
       throw e
     }
   }
 
+  override suspend fun retryQueuedReports(
+    maxAttempts: Int,
+    batchSize: Int,
+  ): QuestionReportRetryResult {
+    var sent = 0
+    var dropped = 0
+
+    while (true) {
+      val queued = queuedReportDao.listOldest(limit = batchSize)
+      if (queued.isEmpty()) break
+
+      queued.forEach { entity ->
+        val report = decodeQueuedReport(entity)
+        if (report == null) {
+          queuedReportDao.deleteById(entity.id)
+          dropped++
+          return@forEach
+        }
+
+        try {
+          reportSender.send(report.questionId, buildReportData(report))
+          queuedReportDao.deleteById(entity.id)
+          sent++
+        } catch (e: Exception) {
+          val attempts = entity.attemptCount + 1
+          val now = clock()
+          if (attempts >= maxAttempts) {
+            Timber.tag(TAG).w(
+              e,
+              "[report_retry_drop] question=%s attempts=%d",
+              report.questionId,
+              attempts,
+            )
+            queuedReportDao.deleteById(entity.id)
+            dropped++
+          } else {
+            queuedReportDao.incrementAttempt(entity.id, now)
+            Timber.tag(TAG).w(
+              e,
+              "[report_retry_defer] question=%s attempts=%d",
+              report.questionId,
+              attempts,
+            )
+          }
+        }
+      }
+
+      if (queued.size < batchSize) break
+    }
+
+    return QuestionReportRetryResult(sent = sent, dropped = dropped)
+  }
+
   override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> {
     try {
-      var query: Query = firestore.collection(COLLECTION_NAME)
+      var query: Query = firestoreOrThrow().collection(COLLECTION_NAME)
         .orderBy("createdAt", Query.Direction.DESCENDING)
         .limit(limit.toLong())
 
@@ -63,7 +121,7 @@ class FirestoreQuestionReportRepository(
 
   override suspend fun getReportById(reportId: String): QuestionReportWithId? {
     try {
-      val doc = firestore.collection(COLLECTION_NAME)
+      val doc = firestoreOrThrow().collection(COLLECTION_NAME)
         .document(reportId)
         .get()
         .await()
@@ -105,7 +163,7 @@ class FirestoreQuestionReportRepository(
         updates["review.resolvedAt"] = FieldValue.serverTimestamp()
       }
 
-      firestore.collection(COLLECTION_NAME)
+      firestoreOrThrow().collection(COLLECTION_NAME)
         .document(reportId)
         .update(updates)
         .await()
@@ -115,6 +173,40 @@ class FirestoreQuestionReportRepository(
       Timber.tag(TAG).e(e, "[report_update_error] id=$reportId")
       throw e
     }
+  }
+
+  private suspend fun queueReport(report: QuestionReport) {
+    val payload = QueuedQuestionReportPayload.fromReport(report)
+    val entity =
+      QueuedQuestionReportEntity(
+        questionId = report.questionId,
+        locale = report.locale,
+        reasonCode = report.reasonCode,
+        payload = json.encodeToString(payload),
+        attemptCount = 0,
+        lastAttemptAt = null,
+        createdAt = clock(),
+      )
+    queuedReportDao.insert(entity)
+    Timber.tag(TAG).i(
+      "[report_queued] question=%s reason=%s",
+      report.questionId,
+      report.reasonCode,
+    )
+  }
+
+  private fun decodeQueuedReport(entity: QueuedQuestionReportEntity): QuestionReport? {
+    return runCatching {
+      json.decodeFromString<QueuedQuestionReportPayload>(entity.payload)
+        .toQuestionReport()
+    }.onFailure { error ->
+      Timber.tag(TAG).w(error, "[report_queue_decode_error] id=${entity.id}")
+    }.getOrNull()
+  }
+
+  private fun firestoreOrThrow(): FirebaseFirestore {
+    return firestore
+      ?: throw IllegalStateException("Firestore instance is required for read/update operations")
   }
 
   private fun buildReportData(report: QuestionReport): Map<String, Any?> {
@@ -211,6 +303,20 @@ class FirestoreQuestionReportRepository(
       createdAt = data["createdAt"] as? Timestamp,
       review = data["review"] as? Map<String, Any?>,
     )
+  }
+
+  interface ReportSender {
+    suspend fun send(questionId: String, data: Map<String, Any?>)
+  }
+
+  private class FirestoreReportSender(private val firestore: FirebaseFirestore) : ReportSender {
+    override suspend fun send(questionId: String, data: Map<String, Any?>) {
+      val docRef = firestore.collection(COLLECTION_NAME)
+        .add(data)
+        .await()
+
+      Timber.tag(TAG).d("[report_submit] id=${docRef.id} question=$questionId")
+    }
   }
 
   companion object {

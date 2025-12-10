@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -22,9 +23,9 @@ import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
-import com.qweld.app.data.reports.FirestoreQuestionReportRepository
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
+import com.qweld.app.data.reports.FirestoreQuestionReportRepository
 import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -82,10 +83,16 @@ fun QWeldAppRoot(
   val attemptsRepository = remember(database) { AttemptsRepository(database.attemptDao()) }
   val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
   val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
-  val questionReportRepository = remember { FirestoreQuestionReportRepository(Firebase.firestore) }
+  val questionReportRepository = remember(database) {
+    FirestoreQuestionReportRepository(Firebase.firestore, database.queuedQuestionReportDao())
+  }
   val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance(), analytics) }
   val logCollector: LogCollector? = remember(appContext) {
     (appContext as? LogCollectorOwner)?.logCollector
+  }
+
+  LaunchedEffect(questionReportRepository) {
+    questionReportRepository.retryQueuedReports()
   }
   QWeldTheme {
     AppNavGraph(
