@@ -176,6 +176,7 @@ This task runs automatically before `assemble*` and fails the build when `bank.v
 - Analytics and crash reporting are wired through the app module with a shared feature flag: `BuildConfig.ENABLE_ANALYTICS`.
 - Debug builds disable both collectors by default, so no events or crashes leave the device unless you opt in.
 - To re-enable telemetry in debug (for DebugView, Crashlytics verification, etc.), pass `-PenableAnalyticsDebug=true` when invoking Gradle or add `enableAnalyticsDebug=true` to `local.properties` before running `./gradlew :app-android:assembleDebug`.
+- To manually verify Crashlytics symbol upload, install a debug build with analytics enabled, open **Settings → Tools → Test crash (debug only)**, trigger the crash, then relaunch so the fatal report can be sent to Firebase.
 
 ### Analytics funnel & deficit
 - Use Firebase DebugView by running `adb shell setprop debug.firebase.analytics.app com.qweld.app` before launching a debug build (for example, via `./gradlew :app-android:assembleDebug`).

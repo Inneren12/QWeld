@@ -42,6 +42,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
+import com.qweld.app.BuildConfig
 import com.qweld.app.R
 import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.prefs.UserPrefsDataStore
@@ -93,6 +96,8 @@ fun SettingsScreen(
   val lruCacheSize by userPrefs.lruCacheSizeFlow().collectAsState(
     initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
   )
+  val isDebugBuild = BuildConfig.DEBUG
+  val crashlyticsEnabled = BuildConfig.ENABLE_ANALYTICS
   var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
   var contentIntegrity by remember { mutableStateOf<List<ContentIndexReader.Mismatch>?>(null) }
   val clipboardManager = LocalClipboardManager.current
@@ -318,6 +323,16 @@ fun SettingsScreen(
               }
           }
         },
+        crashlyticsEnabled = crashlyticsEnabled,
+        onTriggerTestCrash =
+          if (isDebugBuild) {
+            {
+              Firebase.crashlytics.log("[debug] settings_test_crash")
+              throw RuntimeException("Test crash (debug-only)")
+            }
+          } else {
+            null
+          },
         onExportClickLogged = {
           Timber.i("[settings_action] action=export_logs result=ok")
         },
@@ -588,6 +603,8 @@ private fun SettingsToolsSection(
   onClearCache: () -> Unit,
   onClearLocaleEn: () -> Unit,
   onClearLocaleRu: () -> Unit,
+  crashlyticsEnabled: Boolean,
+  onTriggerTestCrash: (() -> Unit)?,
   onExportClickLogged: () -> Unit,
 ) {
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -658,6 +675,33 @@ private fun SettingsToolsSection(
     }
     Button(onClick = onClearLocaleRu, modifier = Modifier.fillMaxWidth()) {
       Text(text = stringResource(id = R.string.settings_clear_cache_ru))
+    }
+    if (onTriggerTestCrash != null) {
+      Divider()
+      Text(
+        text = stringResource(id = R.string.settings_section_debug),
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+      Text(
+        text = stringResource(id = R.string.settings_test_crash_note),
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+      Button(
+        onClick = onTriggerTestCrash,
+        enabled = crashlyticsEnabled,
+        modifier = Modifier.fillMaxWidth(),
+      ) {
+        Text(text = stringResource(id = R.string.settings_test_crash))
+      }
+      if (!crashlyticsEnabled) {
+        Text(
+          text = stringResource(id = R.string.settings_test_crash_disabled),
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.error,
+        )
+      }
     }
   }
 }

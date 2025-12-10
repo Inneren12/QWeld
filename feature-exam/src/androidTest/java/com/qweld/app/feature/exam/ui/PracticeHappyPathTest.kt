@@ -96,8 +96,10 @@ class PracticeHappyPathTest {
     composeTestRule.onNodeWithText("Practice choice 2A").performClick()
     composeTestRule.onNodeWithTag("btn-finish").performClick()
 
-    // Проверяем, что экран результата показан…
+    val expectedScore = context.getString(R.string.result_score, "100%", 2, 2)
+
     composeTestRule.onNodeWithText(context.getString(R.string.result_title)).assertExists()
+    composeTestRule.onNodeWithText(expectedScore).assertExists()
   }
 
   private fun practiceAttempt(): ExamAttemptUiState {

@@ -96,4 +96,8 @@
     <string name="about_diagnostics_summary">Метрики прогрева записываются локально — можно посмотреть время холодного/тёплого запуска, размер кэша и число прогретых задач.</string>
     <string name="about_export_diagnostics">Экспорт диагностики</string>
     <string name="about_diagnostics_unavailable">Экспорт диагностики недоступен.</string>
+    <string name="settings_section_debug">Отладка</string>
+    <string name="settings_test_crash">Тестовый крэш (только debug)</string>
+    <string name="settings_test_crash_note">Используйте в debug-сборках для проверки Crashlytics. Соберите с -PenableAnalyticsDebug=true, чтобы отчёты отправились.</string>
+    <string name="settings_test_crash_disabled">Пересоберите с включённой аналитикой (enableAnalyticsDebug=true), чтобы отправить отчёты Crashlytics.</string>
 </resources>
