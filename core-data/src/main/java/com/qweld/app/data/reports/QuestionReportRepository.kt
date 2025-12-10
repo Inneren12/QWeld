@@ -50,6 +50,18 @@ interface QuestionReportRepository {
     resolutionCode: String? = null,
     resolutionComment: String? = null
   )
+
+  /**
+   * Retries any queued question reports that failed to send previously.
+   *
+   * @param maxAttempts Maximum attempts before a queued report is dropped
+   * @param batchSize Number of queued reports to process per invocation
+   * @return Counts for successfully sent and dropped reports
+   */
+  suspend fun retryQueuedReports(
+    maxAttempts: Int = DEFAULT_MAX_RETRY_ATTEMPTS,
+    batchSize: Int = DEFAULT_RETRY_BATCH_SIZE,
+  ): QuestionReportRetryResult
 }
 
 /**
@@ -60,3 +72,11 @@ data class QuestionReportWithId(
   val id: String,
   val report: QuestionReport
 )
+
+data class QuestionReportRetryResult(
+  val sent: Int,
+  val dropped: Int,
+)
+
+const val DEFAULT_MAX_RETRY_ATTEMPTS = 5
+const val DEFAULT_RETRY_BATCH_SIZE = 25

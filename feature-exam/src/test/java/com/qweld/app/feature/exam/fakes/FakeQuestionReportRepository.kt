@@ -2,6 +2,7 @@ package com.qweld.app.feature.exam.fakes
 
 import com.qweld.app.data.reports.QuestionReport
 import com.qweld.app.data.reports.QuestionReportRepository
+import com.qweld.app.data.reports.QuestionReportRetryResult
 import com.qweld.app.data.reports.QuestionReportWithId
 
 /**
@@ -25,4 +26,9 @@ class FakeQuestionReportRepository : QuestionReportRepository {
   ) {
     // No-op for tests
   }
+
+  override suspend fun retryQueuedReports(
+    maxAttempts: Int,
+    batchSize: Int,
+  ) = QuestionReportRetryResult(sent = 0, dropped = 0)
 }
