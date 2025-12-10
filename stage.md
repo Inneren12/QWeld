@@ -94,7 +94,7 @@ Legend:
 
 ### ERROR-1 – Crash/analytics reporting
 - **Status:** ✅
-- **Summary:** Crashlytics and Analytics hooks are wired via `app-android` build config and guarded by debug flags.
+- **Summary:** Crashlytics and Analytics hooks are wired via `app-android` build config and guarded by debug flags, with a debug-only Crashlytics test crash entry in Settings to validate symbol uploads.
 - **Implemented in:** `app-android` build config, `core-data` analytics helpers.
 - **Next tasks:**
   - [ ] Periodically validate Crashlytics symbol upload in CI.
@@ -120,8 +120,8 @@ Legend:
   - [ ] Automate snapshot tests for blueprint manifests.
 
 ### TEST-2 – UI/instrumentation coverage
-- **Status:** ⚠️
-- **Summary:** Limited Compose/UI tests exist; navigation and error handling paths need broader coverage. Exam submit/resume flows now have Compose instrumentation plus timer label persistence checks, including timer lifecycle coverage for background/recreation scenarios.
+- **Status:** ✅
+- **Summary:** Compose/UI coverage now includes exam submit/resume flows (timer state, answered choices) and a full practice happy path alongside the exam happy path, asserting result screens and score labels.
 - **Implemented in:** `feature-exam` UI tests (partial).
 - **Next tasks:**
   - [x] Add end-to-end practice runs with answer submission and review.

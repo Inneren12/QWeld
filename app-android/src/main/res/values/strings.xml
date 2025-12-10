@@ -101,4 +101,8 @@
     <string name="privacy_url">https://www.qweld.app/privacy</string>
     <string name="content_policy_url">https://www.qweld.app/content-policy</string>
     <string name="contact_email">support@qweld.app</string>
+    <string name="settings_section_debug">Debug</string>
+    <string name="settings_test_crash">Trigger test crash (debug only)</string>
+    <string name="settings_test_crash_note">Use on debug builds to verify Crashlytics symbol upload. Build with -PenableAnalyticsDebug=true so reports are sent.</string>
+    <string name="settings_test_crash_disabled">Rebuild with analytics enabled (enableAnalyticsDebug=true) to send Crashlytics reports.</string>
 </resources>
