@@ -117,6 +117,7 @@ Legend:
 - **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests.
 - **Next tasks:**
   - [x] Expand quota distribution edge-case coverage.
+  - [x] Add explicit EN↔RU locale fallback tests for `AssetQuestionRepository`.
   - [ ] Automate snapshot tests for blueprint manifests.
   - [x] Enforce RU locale coverage via CI gate.
 

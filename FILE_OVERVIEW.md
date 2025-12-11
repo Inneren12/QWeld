@@ -78,6 +78,10 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Unit/UI tests for exam flows, loaders, and content validation.
   - **Edit guidelines:** Extend freely; ensure fixtures match content manifests.
+- `feature-exam/src/test/java/com/qweld/app/feature/exam/data/AssetQuestionRepositoryLocaleFallbackTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Verifies EN↔RU locale fallback behavior for `AssetQuestionRepository`, including missing/corrupt RU assets.
+  - **Edit guidelines:** Keep fixtures aligned with manifest expectations; preserve clear assertions for fallback vs corruption.
 - `feature-exam/src/test/java/com/qweld/app/feature/exam/data/LocaleCoverageTest.kt`
   - **Importance:** 🧪 Test
   - **Role:** Computes EN→RU locale coverage from source content, logs per-task gaps, and optionally enforces a minimum coverag
