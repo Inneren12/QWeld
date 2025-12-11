@@ -77,11 +77,11 @@ Legend:
 
 ### REPORT-1 – Question report pipeline
 - **Status:** ⚠️
-- **Summary:** Firestore-backed repository exists; UI can submit reports when enabled, but moderation workflow is light.
+- **Summary:** Firestore-backed repository exists; UI can submit reports when enabled, metadata is captured for triage, but moderation workflow is light.
 - **Implemented in:** `core-data` (`FirestoreQuestionReportRepository`), admin/report screens in `app-android`.
 - **Next tasks:**
   - [x] Add offline queue/retry for reports.
-  - [ ] Include device/context metadata for triage.
+  - [x] Include device/context metadata for triage.
 
 ### REPORT-2 – In-app “Report issue” flow for questions
 - **Status:** ⏳

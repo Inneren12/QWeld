@@ -13,6 +13,7 @@ import kotlinx.serialization.json.Json
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -99,6 +100,54 @@ class FirestoreQuestionReportRepositoryTest {
     assertEquals(1, result.dropped)
   }
 
+  @Test
+  fun payloadBuilderAddsMetadataWithoutPii() {
+    val builder = QuestionReportPayloadBuilder(createdAtValueProvider = { "ts" })
+    val payload = builder.build(sampleReport(contentVersion = "v1"))
+
+    val expectedKeys =
+      setOf(
+        "questionId",
+        "taskId",
+        "blockId",
+        "blueprintId",
+        "blueprintVersion",
+        "locale",
+        "mode",
+        "reasonCode",
+        "reasonDetail",
+        "userComment",
+        "questionIndex",
+        "totalQuestions",
+        "selectedChoiceIds",
+        "correctChoiceIds",
+        "blueprintTaskQuota",
+        "contentVersion",
+        "contentIndexSha",
+        "appVersionName",
+        "appVersionCode",
+        "appVersion",
+        "buildType",
+        "platform",
+        "osVersion",
+        "deviceModel",
+        "sessionId",
+        "attemptId",
+        "seed",
+        "attemptKind",
+        "status",
+        "createdAt",
+      )
+
+    assertEquals(expectedKeys, payload.keys)
+    assertEquals("Q-1", payload["questionId"])
+    assertEquals("en", payload["locale"])
+    assertEquals("v1", payload["contentVersion"])
+    assertEquals("1.0 (1)", payload["appVersion"])
+    assertEquals("ts", payload["createdAt"])
+    assertTrue(payload.keys.none { it.contains("user", ignoreCase = true) && it != "userComment" })
+  }
+
   private fun buildRepository(
     sender: FirestoreQuestionReportRepository.ReportSender,
     clock: () -> Long = { 100L },
@@ -130,6 +179,7 @@ class FirestoreQuestionReportRepositoryTest {
   private fun sampleReport(
     questionId: String = "Q-1",
     reason: String = "wrong_answer",
+    contentVersion: String = "content_v1",
   ): QuestionReport {
     return QuestionReport(
       questionId = questionId,
@@ -148,6 +198,7 @@ class FirestoreQuestionReportRepositoryTest {
       blueprintTaskQuota = 8,
       contentIndexSha = "sha",
       blueprintVersion = "2024",
+      contentVersion = contentVersion,
       appVersionName = "1.0",
       appVersionCode = 1,
       buildType = "debug",

@@ -180,6 +180,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🟡 Important
   - **Role:** Sends question issue reports to Firestore when enabled.
   - **Edit guidelines:** Guard network calls/credentials; respect user privacy toggles.
+- `core-data/src/main/java/com/qweld/app/data/reports/QuestionReportPayloadBuilder.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Builds sanitized Firestore payloads for question reports, enriching them with locale, blueprint, app, and device metadata.
+  - **Edit guidelines:** Keep payload free of PII; update reporting tests when adding or removing fields.
 - `core-data/src/main/java/com/qweld/app/data/analytics/Analytics.kt`
   - **Importance:** 🟡 Important
   - **Role:** Analytics hooks and event logging wrappers.
