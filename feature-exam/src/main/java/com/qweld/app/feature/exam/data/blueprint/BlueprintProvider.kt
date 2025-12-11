@@ -34,6 +34,11 @@ object BlueprintCatalog {
       )
 
   fun pathFor(id: BlueprintId): String = pathMap[id] ?: error("No blueprint path for $id")
+
+  fun versionLabelFor(id: BlueprintId): String =
+    pathFor(id)
+      .substringAfterLast('/')
+      .removeSuffix(".json")
 }
 
 /**

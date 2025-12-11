@@ -23,10 +23,11 @@ class FirestoreQuestionReportRepository(
     ?: throw IllegalArgumentException("Firestore instance is required when no ReportSender is provided"),
   private val json: Json = Json { encodeDefaults = true },
   private val clock: () -> Long = { System.currentTimeMillis() },
+  private val payloadBuilder: QuestionReportPayloadBuilder = QuestionReportPayloadBuilder(),
 ) : QuestionReportRepository {
 
   override suspend fun submitReport(report: QuestionReport) {
-    val data = buildReportData(report)
+    val data = payloadBuilder.build(report)
 
     try {
       reportSender.send(report.questionId, data)
@@ -57,7 +58,7 @@ class FirestoreQuestionReportRepository(
         }
 
         try {
-          reportSender.send(report.questionId, buildReportData(report))
+          reportSender.send(report.questionId, payloadBuilder.build(report))
           queuedReportDao.deleteById(entity.id)
           sent++
         } catch (e: Exception) {
@@ -209,55 +210,6 @@ class FirestoreQuestionReportRepository(
       ?: throw IllegalStateException("Firestore instance is required for read/update operations")
   }
 
-  private fun buildReportData(report: QuestionReport): Map<String, Any?> {
-    val data = mutableMapOf<String, Any?>()
-
-    // Core identifiers
-    data["questionId"] = report.questionId
-    data["taskId"] = report.taskId
-    data["blockId"] = report.blockId
-    data["blueprintId"] = report.blueprintId
-
-    // Localization & mode
-    data["locale"] = report.locale
-    data["mode"] = report.mode
-
-    // Reason
-    data["reasonCode"] = report.reasonCode
-    report.reasonDetail?.let { data["reasonDetail"] = it }
-    report.userComment?.let { data["userComment"] = it }
-
-    // Position/context within attempt
-    report.questionIndex?.let { data["questionIndex"] = it }
-    report.totalQuestions?.let { data["totalQuestions"] = it }
-    report.selectedChoiceIds?.let { data["selectedChoiceIds"] = it }
-    report.correctChoiceIds?.let { data["correctChoiceIds"] = it }
-    report.blueprintTaskQuota?.let { data["blueprintTaskQuota"] = it }
-
-    // Versions & environment
-    report.contentIndexSha?.let { data["contentIndexSha"] = it }
-    report.blueprintVersion?.let { data["blueprintVersion"] = it }
-    report.appVersionName?.let { data["appVersionName"] = it }
-    report.appVersionCode?.let { data["appVersionCode"] = it }
-    report.buildType?.let { data["buildType"] = it }
-    report.platform?.let { data["platform"] = it }
-    report.osVersion?.let { data["osVersion"] = it }
-    report.deviceModel?.let { data["deviceModel"] = it }
-
-    // Session/attempt context (no PII)
-    report.sessionId?.let { data["sessionId"] = it }
-    report.attemptId?.let { data["attemptId"] = it }
-    report.seed?.let { data["seed"] = it }
-    report.attemptKind?.let { data["attemptKind"] = it }
-
-    // Admin / workflow
-    data["status"] = report.status
-    data["createdAt"] = FieldValue.serverTimestamp()
-    report.review?.let { data["review"] = it }
-
-    return data
-  }
-
   private fun parseReportFromDocument(data: Map<String, Any?>): QuestionReport {
     return QuestionReport(
       // Core identifiers (required)
@@ -285,6 +237,7 @@ class FirestoreQuestionReportRepository(
       // Versions & environment
       contentIndexSha = data["contentIndexSha"] as? String,
       blueprintVersion = data["blueprintVersion"] as? String,
+      contentVersion = data["contentVersion"] as? String,
       appVersionName = data["appVersionName"] as? String,
       appVersionCode = (data["appVersionCode"] as? Number)?.toInt(),
       buildType = data["buildType"] as? String,

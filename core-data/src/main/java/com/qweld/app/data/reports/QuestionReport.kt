@@ -33,6 +33,7 @@ data class QuestionReport(
   // Versions & environment
   val contentIndexSha: String? = null,
   val blueprintVersion: String? = null,
+  val contentVersion: String? = null,
   val appVersionName: String? = null,
   val appVersionCode: Int? = null,
   val buildType: String? = null,

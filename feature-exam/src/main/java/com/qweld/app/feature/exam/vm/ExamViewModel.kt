@@ -26,6 +26,7 @@ import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
+import com.qweld.app.feature.exam.data.blueprint.BlueprintCatalog
 import com.qweld.app.feature.exam.data.blueprint.BlueprintProvider
 import com.qweld.app.feature.exam.model.DeficitDetailUiModel
 import com.qweld.app.feature.exam.model.DeficitDialogUiModel
@@ -945,6 +946,8 @@ class ExamViewModel(
     val attempt = attemptResult.attempt
     val question = assembledQuestion.question
     val blueprint = attempt.blueprint
+    val blueprintId = BlueprintCatalog.DEFAULT_ID.name.lowercase()
+    val blueprintVersion = BlueprintCatalog.versionLabelFor(BlueprintCatalog.DEFAULT_ID)
 
     // Get selected and correct choice indices
     val selectedChoiceId = attemptResult.answers[question.id]
@@ -977,7 +980,7 @@ class ExamViewModel(
       questionId = question.id,
       taskId = question.taskId,
       blockId = question.blockId,
-      blueprintId = "blueprint_${attempt.mode.name.lowercase()}", // e.g., "blueprint_ip_mock"
+      blueprintId = blueprintId,
 
       // Localization & mode
       locale = attempt.locale,
@@ -997,7 +1000,8 @@ class ExamViewModel(
 
       // Versions & environment
       contentIndexSha = null, // Not available in current context
-      blueprintVersion = "blueprint_${attempt.mode.name.lowercase()}", // Same as blueprintId
+      blueprintVersion = blueprintVersion,
+      contentVersion = blueprintVersion,
       appVersionName = appVersionName,
       appVersionCode = appVersionCode,
       buildType = buildType,
