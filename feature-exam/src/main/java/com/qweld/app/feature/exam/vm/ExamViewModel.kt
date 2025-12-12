@@ -973,7 +973,7 @@ class ExamViewModel(
     val buildType = appEnv.buildType
 
     // Get device info
-    val osVersion = try {
+    val androidVersion = try {
       android.os.Build.VERSION.RELEASE
     } catch (e: Exception) {
       null
@@ -1015,7 +1015,7 @@ class ExamViewModel(
       appVersionCode = appVersionCode,
       buildType = buildType,
       platform = "android",
-      osVersion = osVersion,
+      androidVersion = androidVersion,
       deviceModel = deviceModel,
 
       // Session/attempt context (no PII)

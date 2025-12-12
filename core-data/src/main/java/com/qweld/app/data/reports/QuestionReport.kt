@@ -38,7 +38,7 @@ data class QuestionReport(
   val appVersionCode: Int? = null,
   val buildType: String? = null,
   val platform: String? = "android",
-  val osVersion: String? = null,
+  val androidVersion: String? = null,
   val deviceModel: String? = null,
 
   // Session/attempt context (no PII)

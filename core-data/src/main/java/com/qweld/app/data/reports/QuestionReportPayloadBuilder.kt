@@ -4,9 +4,12 @@ import com.google.firebase.firestore.FieldValue
 
 internal class QuestionReportPayloadBuilder(
   private val createdAtValueProvider: () -> Any = { FieldValue.serverTimestamp() },
+  private val environmentMetadataProvider: ReportEnvironmentMetadataProvider =
+    EmptyReportEnvironmentMetadataProvider,
 ) {
   fun build(report: QuestionReport): Map<String, Any?> {
     val data = linkedMapOf<String, Any?>()
+    val environmentMetadata = environmentMetadataProvider.metadata()
 
     // Core identifiers
     data["questionId"] = report.questionId
@@ -32,16 +35,24 @@ internal class QuestionReportPayloadBuilder(
     report.blueprintTaskQuota.putIfNotNull(data, "blueprintTaskQuota")
 
     // Versions & environment
+    val appVersionName = report.appVersionName ?: environmentMetadata.appVersionName
+    val appVersionCode = report.appVersionCode ?: environmentMetadata.appVersionCode
+    val deviceModel = report.deviceModel ?: environmentMetadata.deviceModel
+    val androidVersion = report.androidVersion ?: environmentMetadata.androidVersion
+    val buildType = report.buildType ?: environmentMetadata.buildType
+    val environment = environmentMetadata.environment ?: buildType
+
     report.contentVersion.putIfNotNull(data, "contentVersion")
     report.contentIndexSha.putIfNotNull(data, "contentIndexSha")
-    report.appVersionName.putIfNotNull(data, "appVersionName")
-    report.appVersionCode.putIfNotNull(data, "appVersionCode")
-    buildAppVersionLabel(report.appVersionName, report.appVersionCode)
+    appVersionName.putIfNotNull(data, "appVersionName")
+    appVersionCode.putIfNotNull(data, "appVersionCode")
+    buildAppVersionLabel(appVersionName, appVersionCode)
       .putIfNotNull(data, "appVersion")
-    report.buildType.putIfNotNull(data, "buildType")
+    buildType.putIfNotNull(data, "buildType")
+    environment.putIfNotNull(data, "env")
     report.platform.putIfNotNull(data, "platform")
-    report.osVersion.putIfNotNull(data, "osVersion")
-    report.deviceModel.putIfNotNull(data, "deviceModel")
+    androidVersion.putIfNotNull(data, "androidVersion")
+    deviceModel.putIfNotNull(data, "deviceModel")
 
     // Session/attempt context (no PII)
     report.sessionId.putIfNotNull(data, "sessionId")
