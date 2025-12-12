@@ -65,13 +65,13 @@ Legend:
   - [ ] Add deeper blueprint-to-manifest cross-checks (e.g., quota-aware coverage hints).
 
 ### ADMIN-2 – Admin/debug dashboard
-- **Status:** ⏳
-- **Summary:** Dedicated protected admin/debug panel that surfaces logs, basic usage stats, and storage state to simplify live diagnostics and feature verification.
-- **Implemented in:** Planned for `app-android` (admin screens/viewmodels) and `core-data` (exposing stats from DB/logs where available).
+- **Status:** ⚠️
+- **Summary:** Debug-only admin dashboard reachable from Settings → Tools that surfaces attempt counts, last completion timestamp, failure totals, answer row counts, and DB version health.
+- **Implemented in:** `app-android` admin dashboard screen/viewmodel with guarded navigation; `core-data` attempt/answer stats queries.
 - **Next tasks:**
-  - [ ] Define access model for the admin panel (debug build gate, hidden gesture, or auth-gated entry).
-  - [ ] Implement an admin screen showing recent log events, high-level user activity (attempt counts, completion rates), and basic DB state (total attempts, last attempt time).
-  - [ ] Add navigation entry to the admin/debug screen (hidden or debug-only) and verify it does not appear in normal user flows.
+  - [ ] Layer in recent log snippets and queued-report visibility.
+  - [ ] Expand health checks beyond version (integrity checks, migration audit trail).
+  - [ ] Consider adding an even more hidden gesture for release builds if internal QA needs access.
 
 
 ## Question Reporting & Error Handling

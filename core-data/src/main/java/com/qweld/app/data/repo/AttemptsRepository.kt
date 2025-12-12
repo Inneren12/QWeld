@@ -35,6 +35,19 @@ class AttemptsRepository(
 
   suspend fun getLastFinishedAttempt(): AttemptEntity? = attemptDao.getLastFinished()
 
+  suspend fun getStats(): AttemptStats {
+    val row = attemptDao.getAttemptStats()
+    return AttemptStats(
+      totalCount = row.totalCount,
+      finishedCount = row.finishedCount,
+      inProgressCount = row.inProgressCount,
+      failedCount = row.failedCount,
+      lastFinishedAt = row.lastFinishedAt,
+    )
+  }
+
+  suspend fun getUserVersion(): Int = attemptDao.getUserVersion()
+
   suspend fun clearAll() {
     attemptDao.clearAll()
     logger("[attempt_clear_all]")
@@ -44,3 +57,11 @@ class AttemptsRepository(
     private const val TAG = "AttemptsRepository"
   }
 }
+
+data class AttemptStats(
+  val totalCount: Int,
+  val finishedCount: Int,
+  val inProgressCount: Int,
+  val failedCount: Int,
+  val lastFinishedAt: Long?,
+)

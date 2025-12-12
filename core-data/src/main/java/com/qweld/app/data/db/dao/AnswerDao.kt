@@ -75,6 +75,9 @@ interface AnswerDao {
   @Query("DELETE FROM answers")
   suspend fun clearAll()
 
+  @Query("SELECT COUNT(*) FROM answers")
+  suspend fun countAll(): Int
+
   data class QuestionAggregate(
     val questionId: String,
     val attempts: Int,

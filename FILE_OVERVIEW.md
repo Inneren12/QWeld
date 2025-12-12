@@ -35,6 +35,10 @@ Importance legend:
   - **Importance:** 🟡 Important
   - **Role:** Internal tooling for reviewing submitted question reports.
   - **Edit guidelines:** UI changes are safe; be careful with Firestore/reporting toggles.
+- `app-android/src/main/java/com/qweld/app/admin/AdminDashboardViewModel.kt` and `AdminDashboardScreen.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, and DB health.
+  - **Edit guidelines:** Keep `BuildConfig.DEBUG` gating intact and source stats through repositories instead of direct Room access.
 - `app-android/build.gradle.kts`
   - **Importance:** ⚙️ Build/CI
   - **Role:** App module build config, Crashlytics/Analytics wiring, asset packaging tasks (`verifyAssets`).

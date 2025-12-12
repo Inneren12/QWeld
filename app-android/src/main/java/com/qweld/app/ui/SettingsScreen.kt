@@ -76,6 +76,7 @@ fun SettingsScreen(
   appLocaleTag: String,
   onLocaleSelected: (String) -> Unit,
   onExportLogs: (() -> Unit)?,
+  onOpenAdminDashboard: (() -> Unit)? = null,
   onBack: () -> Unit,
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
@@ -353,6 +354,7 @@ fun SettingsScreen(
         onExportClickLogged = {
           Timber.i("[settings_action] action=export_logs result=ok")
         },
+        onOpenAdminDashboard = onOpenAdminDashboard,
       )
     }
   }
@@ -770,6 +772,7 @@ private fun SettingsToolsSection(
   crashlyticsEnabled: Boolean,
   onTriggerTestCrash: (() -> Unit)?,
   onExportClickLogged: () -> Unit,
+  onOpenAdminDashboard: (() -> Unit)?,
 ) {
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
     Text(text = stringResource(id = R.string.settings_section_tools), style = MaterialTheme.typography.titleMedium)
@@ -839,6 +842,11 @@ private fun SettingsToolsSection(
     }
     Button(onClick = onClearLocaleRu, modifier = Modifier.fillMaxWidth()) {
       Text(text = stringResource(id = R.string.settings_clear_cache_ru))
+    }
+    onOpenAdminDashboard?.let { navigateToAdmin ->
+      Button(onClick = navigateToAdmin, modifier = Modifier.fillMaxWidth()) {
+        Text(text = stringResource(id = R.string.settings_open_admin_dashboard))
+      }
     }
     if (onTriggerTestCrash != null) {
       Divider()
