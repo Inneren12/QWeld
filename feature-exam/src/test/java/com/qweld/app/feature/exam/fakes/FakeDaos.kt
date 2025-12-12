@@ -4,6 +4,7 @@ import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
+import androidx.sqlite.db.SupportSQLiteQuery
 
 /**
  * Shared in-memory fake implementation of AttemptDao for testing.
@@ -59,6 +60,30 @@ class FakeAttemptDao : AttemptDao {
     attempts.clear()
   }
 
+    override suspend fun getAttemptStats(): AttemptDao.AttemptStatsRow {
+        val all = attempts.values
+        val total = all.size
+        val finished = all.count { it.finishedAt != null }
+        val inProgress = all.count { it.finishedAt == null }
+        val failed = all.count { entity ->
+            val threshold = entity.passThreshold
+            val score = entity.scorePct
+            threshold != null && score != null && score < threshold.toDouble()
+        }
+        val lastFinishedAt = all.mapNotNull { it.finishedAt }.maxOrNull()
+
+        return AttemptDao.AttemptStatsRow(
+            totalCount = total,
+            finishedCount = finished,
+            inProgressCount = inProgress,
+            failedCount = failed,
+            lastFinishedAt = lastFinishedAt,
+            )
+    }
+
+    // Для unit-тестов достаточно заглушки: user_version тут не важен
+    override suspend fun getUserVersion(query: SupportSQLiteQuery): Int = 0
+
   /**
    * Test-only method to get all stored attempts.
    */
@@ -107,6 +132,8 @@ class FakeAnswerDao : AnswerDao {
   override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
     return questionIds.mapNotNull { countByQuestion(it) }
   }
+
+    override suspend fun countAll(): Int = answers.size
 
   override suspend fun clearAll() {
     answers.clear()

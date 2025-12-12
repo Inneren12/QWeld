@@ -15,6 +15,7 @@ import com.qweld.app.feature.exam.data.TestIntegrity
 import com.qweld.app.feature.exam.fakes.FakeAnswerDao
 import com.qweld.app.feature.exam.fakes.FakeQuestionReportRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
@@ -256,7 +257,30 @@ class ExamViewModelAbortRestartTest {
 
     override suspend fun getLastFinished(): AttemptEntity? = attempts.values.lastOrNull { it.finishedAt != null }
 
-    override suspend fun clearAll() {
+      override suspend fun getAttemptStats(): AttemptDao.AttemptStatsRow {
+          val all = attempts.values
+          val total = all.size
+          val finished = all.count { it.finishedAt != null }
+          val inProgress = all.count { it.finishedAt == null }
+          val failed = all.count { entity ->
+              val threshold = entity.passThreshold
+              val score = entity.scorePct
+              threshold != null && score != null && score < threshold.toDouble()
+          }
+          val lastFinishedAt = all.mapNotNull { it.finishedAt }.maxOrNull()
+
+          return AttemptDao.AttemptStatsRow(
+              totalCount = total,
+              finishedCount = finished,
+              inProgressCount = inProgress,
+              failedCount = failed,
+              lastFinishedAt = lastFinishedAt,
+              )
+      }
+
+      override suspend fun getUserVersion(query: SupportSQLiteQuery): Int = 0
+
+      override suspend fun clearAll() {
       attempts.clear()
       savedIds.clear()
       abortedIds.clear()
