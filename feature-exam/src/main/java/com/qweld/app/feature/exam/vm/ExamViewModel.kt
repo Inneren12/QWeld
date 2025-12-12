@@ -919,13 +919,22 @@ class ExamViewModel(
 
     viewModelScope.launch {
       try {
-        questionReportRepository.submitReport(report)
-        Timber.i(
-          "[question_report] submitted questionId=%s reason=%s mode=%s",
-          report.questionId,
-          report.reasonCode,
-          report.mode,
-        )
+        when (val result = questionReportRepository.submitReport(report)) {
+          is com.qweld.app.data.reports.QuestionReportSubmitResult.Sent ->
+            Timber.i(
+              "[question_report] submitted questionId=%s reason=%s mode=%s",
+              report.questionId,
+              report.reasonCode,
+              report.mode,
+            )
+          is com.qweld.app.data.reports.QuestionReportSubmitResult.Queued ->
+            Timber.w(
+              "[question_report] queued questionId=%s reason=%s error=%s",
+              report.questionId,
+              report.reasonCode,
+              result.error?.message ?: "unknown",
+            )
+        }
       } catch (e: Exception) {
         Timber.e(e, "[question_report] submit failed for questionId=%s", report.questionId)
         // User continues exam even if report fails

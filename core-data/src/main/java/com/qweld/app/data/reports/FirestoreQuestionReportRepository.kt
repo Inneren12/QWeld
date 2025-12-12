@@ -26,15 +26,16 @@ class FirestoreQuestionReportRepository(
   private val payloadBuilder: QuestionReportPayloadBuilder = QuestionReportPayloadBuilder(),
 ) : QuestionReportRepository {
 
-  override suspend fun submitReport(report: QuestionReport) {
+  override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult {
     val data = payloadBuilder.build(report)
 
     try {
       reportSender.send(report.questionId, data)
+      return QuestionReportSubmitResult.Sent
     } catch (e: Exception) {
       Timber.tag(TAG).w(e, "[report_submit_error_queue] question=${report.questionId}")
-      queueReport(report)
-      throw e
+      val queueId = queueReport(report)
+      return QuestionReportSubmitResult.Queued(queueId = queueId, error = e)
     }
   }
 
@@ -176,7 +177,7 @@ class FirestoreQuestionReportRepository(
     }
   }
 
-  private suspend fun queueReport(report: QuestionReport) {
+  private suspend fun queueReport(report: QuestionReport): Long {
     val payload = QueuedQuestionReportPayload.fromReport(report)
     val entity =
       QueuedQuestionReportEntity(
@@ -188,12 +189,13 @@ class FirestoreQuestionReportRepository(
         lastAttemptAt = null,
         createdAt = clock(),
       )
-    queuedReportDao.insert(entity)
+    val id = queuedReportDao.insert(entity)
     Timber.tag(TAG).i(
       "[report_queued] question=%s reason=%s",
       report.questionId,
       report.reasonCode,
     )
+    return id
   }
 
   private fun decodeQueuedReport(entity: QueuedQuestionReportEntity): QuestionReport? {

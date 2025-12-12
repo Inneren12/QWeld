@@ -47,7 +47,7 @@ Legend:
 
 ### CONTENT-2 – RU coverage
 - **Status:** ⚠️
-- **Summary:** Russian localization exists but has partial coverage; loaders fall back to English when gaps occur.
+- **Summary:** Russian localization exists but has partial coverage; loaders fall back to English when gaps occur, and CI now runs a locale coverage gate to prevent regressions.
 - **Implemented in:** `content/questions/ru/` plus locale fallback in `AssetQuestionRepository`.
 - **Next tasks:**
   - [ ] Close missing translations and sync blueprint metadata.
@@ -77,8 +77,8 @@ Legend:
 ## Question Reporting & Error Handling
 
 ### REPORT-1 – Question report pipeline
-- **Status:** ⚠️
-- **Summary:** Firestore-backed repository exists; UI can submit reports when enabled, metadata is captured for triage, but moderation workflow is light.
+- **Status:** ✅
+- **Summary:** Firestore-backed repository exists with offline queueing and retries on app start; UI can submit reports when enabled, metadata is captured for triage, and failed submissions are persisted for later delivery.
 - **Implemented in:** `core-data` (`FirestoreQuestionReportRepository`), admin/report screens in `app-android`.
 - **Next tasks:**
   - [x] Add offline queue/retry for reports.

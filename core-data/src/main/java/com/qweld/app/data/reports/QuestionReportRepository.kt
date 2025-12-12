@@ -9,9 +9,9 @@ interface QuestionReportRepository {
    * Submits a question report to Firestore.
    *
    * @param report The question report to submit
-   * @throws Exception if the submission fails
+   * @return [QuestionReportSubmitResult] describing whether the report was sent immediately or queued
    */
-  suspend fun submitReport(report: QuestionReport)
+  suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult
 
   /**
    * Lists question reports from Firestore, optionally filtered by status.
@@ -80,3 +80,8 @@ data class QuestionReportRetryResult(
 
 const val DEFAULT_MAX_RETRY_ATTEMPTS = 5
 const val DEFAULT_RETRY_BATCH_SIZE = 25
+
+sealed class QuestionReportSubmitResult {
+  data object Sent : QuestionReportSubmitResult()
+  data class Queued(val queueId: Long? = null, val error: Throwable? = null) : QuestionReportSubmitResult()
+}
