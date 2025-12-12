@@ -43,6 +43,23 @@ class AssetQuestionRepositoryLocaleFallbackTest {
   }
 
   @Test
+  fun ruMissingBankFallsBackToEnBank() {
+    val enBank = bankPath(locale = "en")
+    val (repository, recorder) =
+      repository(
+        payloads = mapOf(enBank to questionArray("A-1" to 2, locale = "en")),
+      )
+
+    val result = repository.loadQuestions(locale = "ru")
+
+    val success = assertIs<AssetQuestionRepository.LoadResult.Success>(result)
+    assertEquals("en", success.locale)
+    assertEquals(2, success.questions.size)
+    assertEquals(listOf("en"), success.questions.map { it.locale }.distinct())
+    assertEquals(1, recorder.openCount(enBank))
+  }
+
+  @Test
   fun ruCorruptBankDoesNotSilentlyFallback() {
     val ruBank = bankPath(locale = "ru")
     val enBank = bankPath(locale = "en")
