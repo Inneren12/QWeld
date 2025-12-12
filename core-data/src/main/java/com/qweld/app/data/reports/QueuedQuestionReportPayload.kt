@@ -1,5 +1,6 @@
 package com.qweld.app.data.reports
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -25,6 +26,8 @@ internal data class QueuedQuestionReportPayload(
   val appVersionCode: Int? = null,
   val buildType: String? = null,
   val platform: String? = null,
+  @SerialName("osVersion")
+  val legacyOsVersion: String? = null,
   val androidVersion: String? = null,
   val deviceModel: String? = null,
   val sessionId: String? = null,
@@ -57,7 +60,7 @@ internal data class QueuedQuestionReportPayload(
       appVersionCode = appVersionCode,
       buildType = buildType,
       platform = platform,
-      androidVersion = androidVersion,
+      androidVersion = androidVersion ?: legacyOsVersion,
       deviceModel = deviceModel,
       sessionId = sessionId,
       attemptId = attemptId,
