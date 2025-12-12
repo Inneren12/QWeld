@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -109,6 +110,7 @@ fun SettingsScreen(
   var contentIntegrity by remember { mutableStateOf<List<ContentIndexReader.Mismatch>?>(null) }
   var manifestResult by remember { mutableStateOf<ContentManifestDiagnostics.Result?>(null) }
   val clipboardManager = LocalClipboardManager.current
+  val appContext = LocalContext.current.applicationContext
   val manifestDiagnosticsReader = remember(appContext) { ContentManifestDiagnostics(appContext) }
 
   var lruCacheInput by remember(lruCacheSize) { mutableStateOf(lruCacheSize.toString()) }
@@ -524,6 +526,7 @@ private fun SettingsContentInfoSection(
   }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ManifestSummaryBlock(
   manifestSummary: ContentManifestDiagnostics.ManifestSummary?,
