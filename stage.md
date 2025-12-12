@@ -77,8 +77,8 @@ Legend:
 ## Question Reporting & Error Handling
 
 ### REPORT-1 – Question report pipeline
-- **Status:** ⚠️
-- **Summary:** Firestore-backed repository exists; UI can submit reports when enabled, metadata is captured for triage, but moderation workflow is light.
+- **Status:** ✅
+- **Summary:** Firestore-backed repository exists with offline queueing and retries on app start; UI can submit reports when enabled, metadata is captured for triage, and failed submissions are persisted for later delivery.
 - **Implemented in:** `core-data` (`FirestoreQuestionReportRepository`), admin/report screens in `app-android`.
 - **Next tasks:**
   - [x] Add offline queue/retry for reports.

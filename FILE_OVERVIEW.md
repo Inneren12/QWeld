@@ -192,6 +192,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🟡 Important
   - **Role:** Builds sanitized Firestore payloads for question reports, enriching them with locale, blueprint, app, and device metadata.
   - **Edit guidelines:** Keep payload free of PII; update reporting tests when adding or removing fields.
+- `core-data/src/main/java/com/qweld/app/data/reports/RetryQueuedQuestionReportsUseCase.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Thin use case invoking queued report retries with configurable attempt/batch limits.
+  - **Edit guidelines:** Keep defaults aligned with repository retry behavior; prefer invoking through this wrapper from app startup triggers.
 - `core-data/src/main/java/com/qweld/app/data/analytics/Analytics.kt`
   - **Importance:** 🟡 Important
   - **Role:** Analytics hooks and event logging wrappers.

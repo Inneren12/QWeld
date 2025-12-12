@@ -26,6 +26,7 @@ import com.qweld.app.data.repo.UserStatsRepositoryRoom
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
 import com.qweld.app.data.reports.FirestoreQuestionReportRepository
+import com.qweld.app.data.reports.RetryQueuedQuestionReportsUseCase
 import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -86,13 +87,16 @@ fun QWeldAppRoot(
   val questionReportRepository = remember(database) {
     FirestoreQuestionReportRepository(Firebase.firestore, database.queuedQuestionReportDao())
   }
+  val retryQueuedReports = remember(questionReportRepository) {
+    RetryQueuedQuestionReportsUseCase(questionReportRepository)
+  }
   val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance(), analytics) }
   val logCollector: LogCollector? = remember(appContext) {
     (appContext as? LogCollectorOwner)?.logCollector
   }
 
-  LaunchedEffect(questionReportRepository) {
-    questionReportRepository.retryQueuedReports()
+  LaunchedEffect(retryQueuedReports) {
+    retryQueuedReports()
   }
   QWeldTheme {
     AppNavGraph(

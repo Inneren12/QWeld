@@ -45,13 +45,26 @@ class FirestoreQuestionReportRepositoryTest {
     val repository = buildRepository(sender)
     val report = sampleReport()
 
-    runCatching { repository.submitReport(report) }
+    val result = repository.submitReport(report)
+    assertTrue(result is QuestionReportSubmitResult.Queued)
 
     val pending = dao.listOldest()
     assertEquals(1, pending.size)
     val payload = json.decodeFromString<QueuedQuestionReportPayload>(pending.first().payload)
     assertEquals(report.questionId, payload.questionId)
     assertEquals(report.reasonCode, payload.reasonCode)
+  }
+
+  @Test
+  fun submitReportReturnsSentWhenSenderSucceeds() = runTest {
+    val sender = RecordingReportSender()
+    val repository = buildRepository(sender)
+
+    val result = repository.submitReport(sampleReport())
+
+    assertTrue(result is QuestionReportSubmitResult.Sent)
+    assertEquals(1, sender.sent.size)
+    assertEquals(0, dao.count())
   }
 
   @Test
