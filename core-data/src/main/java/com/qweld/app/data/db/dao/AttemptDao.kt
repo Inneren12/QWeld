@@ -69,6 +69,41 @@ interface AttemptDao {
   )
   suspend fun getLastFinished(): AttemptEntity?
 
+  @Query(
+    """
+    SELECT
+      COUNT(*) AS totalCount,
+      COALESCE(SUM(CASE WHEN finished_at IS NOT NULL THEN 1 ELSE 0 END), 0) AS finishedCount,
+      COALESCE(SUM(CASE WHEN finished_at IS NULL THEN 1 ELSE 0 END), 0) AS inProgressCount,
+      COALESCE(
+        SUM(
+          CASE
+            WHEN finished_at IS NOT NULL
+              AND score_pct IS NOT NULL
+              AND pass_threshold IS NOT NULL
+              AND score_pct < pass_threshold THEN 1
+            ELSE 0
+          END
+        ),
+        0
+      ) AS failedCount,
+      MAX(finished_at) AS lastFinishedAt
+    FROM attempts
+    """,
+  )
+  suspend fun getAttemptStats(): AttemptStatsRow
+
+  @Query("PRAGMA user_version")
+  suspend fun getUserVersion(): Int
+
   @Query("DELETE FROM attempts")
   suspend fun clearAll()
+
+  data class AttemptStatsRow(
+    val totalCount: Int,
+    val finishedCount: Int,
+    val inProgressCount: Int,
+    val failedCount: Int,
+    val lastFinishedAt: Long?,
+  )
 }

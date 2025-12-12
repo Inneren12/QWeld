@@ -14,7 +14,7 @@ import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.db.entities.QueuedQuestionReportEntity
 import timber.log.Timber
 
-internal const val QWELD_DB_VERSION = 3
+const val QWELD_DB_VERSION = 3
 
 private val MIGRATION_1_2 =
   object : Migration(1, 2) {

@@ -20,6 +20,8 @@ class AnswersRepository(private val answerDao: AnswerDao) {
   suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> =
     answerDao.bulkCountByQuestions(questionIds)
 
+  suspend fun countAll(): Int = answerDao.countAll()
+
   suspend fun clearAll() {
     answerDao.clearAll()
   }

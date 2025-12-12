@@ -113,4 +113,23 @@
     <string name="settings_test_crash">Trigger test crash (debug only)</string>
     <string name="settings_test_crash_note">Use on debug builds to verify Crashlytics symbol upload. Build with -PenableAnalyticsDebug=true so reports are sent.</string>
     <string name="settings_test_crash_disabled">Rebuild with analytics enabled (enableAnalyticsDebug=true) to send Crashlytics reports.</string>
+    <string name="settings_open_admin_dashboard">Open admin dashboard</string>
+    <string name="admin_dashboard_title">Admin dashboard</string>
+    <string name="admin_dashboard_description">Debug-only surface for internal diagnostics.</string>
+    <string name="admin_dashboard_attempts_header">Attempt stats</string>
+    <string name="admin_dashboard_total_attempts">Total attempts</string>
+    <string name="admin_dashboard_finished_attempts">Completed attempts</string>
+    <string name="admin_dashboard_in_progress_attempts">In-progress/aborted</string>
+    <string name="admin_dashboard_failed_attempts">Below pass threshold</string>
+    <string name="admin_dashboard_answers_count">Answer rows</string>
+    <string name="admin_dashboard_last_finished">Last completed: %1$s</string>
+    <string name="admin_dashboard_db_header">Database health</string>
+    <string name="admin_dashboard_db_status_ok">DB version matches expected schema</string>
+    <string name="admin_dashboard_db_status_mismatch">DB version differs from expected schema</string>
+    <string name="admin_dashboard_db_version">Current version</string>
+    <string name="admin_dashboard_db_expected_version">Expected version</string>
+    <string name="admin_dashboard_refresh">Refresh stats</string>
+    <string name="admin_dashboard_retry">Retry</string>
+    <string name="admin_dashboard_unknown">Unknown</string>
+    <string name="admin_dashboard_unavailable">Admin dashboard is unavailable on this build.</string>
 </resources>

@@ -36,6 +36,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.qweld.app.BuildConfig
+import com.qweld.app.admin.AdminDashboardRoute
+import com.qweld.app.admin.AdminDashboardViewModel
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.logging.LogCollector
@@ -334,6 +336,15 @@ fun AppNavGraph(
             } else {
               null
             },
+          onOpenAdminDashboard =
+            if (BuildConfig.DEBUG) {
+              {
+                Timber.i("[ui_nav] screen=AdminDashboard")
+                navController.navigate(Routes.ADMIN_DASHBOARD) { launchSingleTop = true }
+              }
+            } else {
+              null
+            },
           onBack = { navController.popBackStack() },
         )
       }
@@ -358,6 +369,19 @@ fun AppNavGraph(
           },
           onBack = { navController.popBackStack() }
         )
+      }
+      composable(Routes.ADMIN_DASHBOARD) {
+        if (!BuildConfig.DEBUG) {
+          UnauthorizedAdminScreen(onBack = { navController.popBackStack() })
+        } else {
+          val viewModel = remember {
+            AdminDashboardViewModel(
+              attemptsRepository = attemptsRepository,
+              answersRepository = answersRepository,
+            )
+          }
+          AdminDashboardRoute(viewModel = viewModel, onBack = { navController.popBackStack() })
+        }
       }
       composable(
         route = Routes.ADMIN_REPORT_DETAIL,
@@ -535,6 +559,7 @@ private object Routes {
   const val ABOUT = "about"
   const val ADMIN_REPORTS = "admin/reports"
   const val ADMIN_REPORT_DETAIL = "admin/reports/{reportId}"
+  const val ADMIN_DASHBOARD = "admin/dashboard"
 
   fun adminReportDetail(reportId: String) = "admin/reports/$reportId"
 }
@@ -554,6 +579,26 @@ private fun SyncScreen(onBack: () -> Unit) {
     )
     Button(onClick = onBack, modifier = Modifier.padding(top = 16.dp)) {
       Text(text = stringResource(id = com.qweld.app.R.string.sync_back_to_exam))
+    }
+  }
+}
+
+@Composable
+private fun UnauthorizedAdminScreen(onBack: () -> Unit) {
+  Column(
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(24.dp),
+    verticalArrangement = Arrangement.Center,
+    horizontalAlignment = Alignment.CenterHorizontally,
+  ) {
+    Text(
+      text = stringResource(id = com.qweld.app.R.string.admin_dashboard_unavailable),
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
+    Button(onClick = onBack, modifier = Modifier.padding(top = 16.dp)) {
+      Text(text = stringResource(id = android.R.string.cancel))
     }
   }
 }
