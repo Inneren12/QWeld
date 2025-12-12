@@ -148,9 +148,99 @@ class FirestoreQuestionReportRepositoryTest {
     assertTrue(payload.keys.none { it.contains("user", ignoreCase = true) && it != "userComment" })
   }
 
+  @Test
+  fun submitReportSendsSanitizedPayloadWithRequiredFields() = runTest {
+    val sender = RecordingReportSender()
+    val builder = QuestionReportPayloadBuilder(createdAtValueProvider = { "2024-01-01T00:00:00Z" })
+    val repository = buildRepository(sender, payloadBuilder = builder)
+
+    repository.submitReport(sampleReport(questionId = "Q-100", locale = "ru"))
+
+    val payload = sender.sent.single()
+    val expectedKeys = setOf(
+      "questionId",
+      "taskId",
+      "blockId",
+      "blueprintId",
+      "blueprintVersion",
+      "locale",
+      "mode",
+      "reasonCode",
+      "reasonDetail",
+      "userComment",
+      "questionIndex",
+      "totalQuestions",
+      "selectedChoiceIds",
+      "correctChoiceIds",
+      "blueprintTaskQuota",
+      "contentVersion",
+      "contentIndexSha",
+      "appVersionName",
+      "appVersionCode",
+      "appVersion",
+      "buildType",
+      "platform",
+      "osVersion",
+      "deviceModel",
+      "sessionId",
+      "attemptId",
+      "seed",
+      "attemptKind",
+      "status",
+      "createdAt",
+    )
+
+    assertEquals(expectedKeys, payload.keys)
+    assertEquals("Q-100", payload["questionId"])
+    assertEquals("ru", payload["locale"])
+    assertEquals("android", payload["platform"])
+    assertEquals("2024-01-01T00:00:00Z", payload["createdAt"])
+    assertTrue(payload.keys.intersect(setOf("email", "userName", "fullName", "phone"))).isEmpty()
+  }
+
+  @Test
+  fun payloadBuilderOmitMissingMetadataAndKeepsStructure() {
+    val builder = QuestionReportPayloadBuilder(createdAtValueProvider = { "ts" })
+    val minimalReport = QuestionReport(
+      questionId = "Q-200",
+      taskId = "B-2",
+      blockId = "B",
+      blueprintId = "bp-2024",
+      locale = "en",
+      mode = "EXAM",
+      reasonCode = "typo",
+      userComment = null,
+      appVersionName = null,
+      appVersionCode = null,
+      platform = "android",
+    )
+
+    val payload = builder.build(minimalReport)
+
+    val expectedKeys = setOf(
+      "questionId",
+      "taskId",
+      "blockId",
+      "blueprintId",
+      "locale",
+      "mode",
+      "reasonCode",
+      "status",
+      "platform",
+      "createdAt",
+    )
+
+    assertEquals(expectedKeys, payload.keys)
+    assertEquals("bp-2024", payload["blueprintId"])
+    assertEquals("EXAM", payload["mode"])
+    assertEquals("android", payload["platform"])
+    assertTrue(payload.keys.intersect(setOf("email", "userName", "fullName", "phone"))).isEmpty()
+  }
+
   private fun buildRepository(
     sender: FirestoreQuestionReportRepository.ReportSender,
     clock: () -> Long = { 100L },
+    payloadBuilder: QuestionReportPayloadBuilder = QuestionReportPayloadBuilder(),
   ): FirestoreQuestionReportRepository {
     return FirestoreQuestionReportRepository(
       firestore = null,
@@ -158,6 +248,7 @@ class FirestoreQuestionReportRepositoryTest {
       reportSender = sender,
       json = json,
       clock = clock,
+      payloadBuilder = payloadBuilder,
     )
   }
 
@@ -180,13 +271,14 @@ class FirestoreQuestionReportRepositoryTest {
     questionId: String = "Q-1",
     reason: String = "wrong_answer",
     contentVersion: String = "content_v1",
+    locale: String = "en",
   ): QuestionReport {
     return QuestionReport(
       questionId = questionId,
       taskId = "A-1",
       blockId = "A",
       blueprintId = "blueprint_ip_mock",
-      locale = "en",
+      locale = locale,
       mode = "PRACTICE",
       reasonCode = reason,
       reasonDetail = "detail",
