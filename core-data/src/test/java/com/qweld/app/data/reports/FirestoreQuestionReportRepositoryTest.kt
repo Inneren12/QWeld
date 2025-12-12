@@ -114,52 +114,18 @@ class FirestoreQuestionReportRepositoryTest {
   }
 
   @Test
-  fun payloadBuilderAddsMetadataWithoutPii() {
+  fun payloadIncludesRequiredFieldsAndVersions() {
     val builder = QuestionReportPayloadBuilder(createdAtValueProvider = { "ts" })
     val payload = builder.build(sampleReport(contentVersion = "v1"))
 
-    val expectedKeys =
-      setOf(
-        "questionId",
-        "taskId",
-        "blockId",
-        "blueprintId",
-        "blueprintVersion",
-        "locale",
-        "mode",
-        "reasonCode",
-        "reasonDetail",
-        "userComment",
-        "questionIndex",
-        "totalQuestions",
-        "selectedChoiceIds",
-        "correctChoiceIds",
-        "blueprintTaskQuota",
-        "contentVersion",
-        "contentIndexSha",
-        "appVersionName",
-        "appVersionCode",
-        "appVersion",
-        "buildType",
-        "env",
-        "platform",
-        "androidVersion",
-        "deviceModel",
-        "sessionId",
-        "attemptId",
-        "seed",
-        "attemptKind",
-        "status",
-        "createdAt",
-      )
-
-    assertEquals(expectedKeys, payload.keys)
+    assertEquals(ALLOWED_PAYLOAD_KEYS, payload.keys)
     assertEquals("Q-1", payload["questionId"])
     assertEquals("en", payload["locale"])
     assertEquals("v1", payload["contentVersion"])
+    assertEquals("2024", payload["blueprintVersion"])
     assertEquals("1.0 (1)", payload["appVersion"])
     assertEquals("ts", payload["createdAt"])
-    assertTrue(payload.keys.none { it.contains("user", ignoreCase = true) && it != "userComment" })
+    assertNoPii(payload)
   }
 
   @Test
@@ -207,46 +173,12 @@ class FirestoreQuestionReportRepositoryTest {
     repository.submitReport(sampleReport(questionId = "Q-100", locale = "ru"))
 
     val payload = sender.sent.single()
-    val expectedKeys = setOf(
-      "questionId",
-      "taskId",
-      "blockId",
-      "blueprintId",
-      "blueprintVersion",
-      "locale",
-      "mode",
-      "reasonCode",
-      "reasonDetail",
-      "userComment",
-      "questionIndex",
-      "totalQuestions",
-      "selectedChoiceIds",
-      "correctChoiceIds",
-      "blueprintTaskQuota",
-      "contentVersion",
-      "contentIndexSha",
-      "appVersionName",
-      "appVersionCode",
-      "appVersion",
-      "buildType",
-      "env",
-      "platform",
-      "androidVersion",
-      "deviceModel",
-      "sessionId",
-      "attemptId",
-      "seed",
-      "attemptKind",
-      "status",
-      "createdAt",
-    )
-
-    assertEquals(expectedKeys, payload.keys)
+    assertEquals(ALLOWED_PAYLOAD_KEYS, payload.keys)
     assertEquals("Q-100", payload["questionId"])
     assertEquals("ru", payload["locale"])
     assertEquals("android", payload["platform"])
     assertEquals("2024-01-01T00:00:00Z", payload["createdAt"])
-    assertTrue(payload.keys.intersect(setOf("email", "userName", "fullName", "phone"))).isEmpty()
+    assertNoPii(payload)
   }
 
   @Test
@@ -285,7 +217,16 @@ class FirestoreQuestionReportRepositoryTest {
     assertEquals("bp-2024", payload["blueprintId"])
     assertEquals("EXAM", payload["mode"])
     assertEquals("android", payload["platform"])
-    assertTrue(payload.keys.intersect(setOf("email", "userName", "fullName", "phone"))).isEmpty()
+    assertNoPii(payload)
+  }
+
+  @Test
+  fun payloadExcludesPiiFields() {
+    val builder = QuestionReportPayloadBuilder(createdAtValueProvider = { "ts" })
+    val payload = builder.build(sampleReport())
+
+    assertEquals(ALLOWED_PAYLOAD_KEYS, payload.keys)
+    assertNoPii(payload)
   }
 
   private fun buildRepository(
@@ -357,6 +298,48 @@ class FirestoreQuestionReportRepositoryTest {
       seed = 123L,
       attemptKind = "practice",
     )
+  }
+
+  private fun assertNoPii(payload: Map<String, Any?>) {
+    val disallowedKeys = setOf("email", "userName", "fullName", "phone", "userId")
+    assertTrue(payload.keys.intersect(disallowedKeys).isEmpty())
+  }
+
+  companion object {
+    private val ALLOWED_PAYLOAD_KEYS =
+      setOf(
+        "questionId",
+        "taskId",
+        "blockId",
+        "blueprintId",
+        "blueprintVersion",
+        "locale",
+        "mode",
+        "reasonCode",
+        "reasonDetail",
+        "userComment",
+        "questionIndex",
+        "totalQuestions",
+        "selectedChoiceIds",
+        "correctChoiceIds",
+        "blueprintTaskQuota",
+        "contentVersion",
+        "contentIndexSha",
+        "appVersionName",
+        "appVersionCode",
+        "appVersion",
+        "buildType",
+        "env",
+        "platform",
+        "androidVersion",
+        "deviceModel",
+        "sessionId",
+        "attemptId",
+        "seed",
+        "attemptKind",
+        "status",
+        "createdAt",
+      )
   }
 }
 
