@@ -99,23 +99,24 @@ private val MIGRATION_3_4 =
         "CREATE INDEX IF NOT EXISTS idx_attempts_started_at ON attempts(started_at DESC)",
       )
 
-      // --- answers ---
-      db.execSQL(
-        """
+        // --- answers ---
+        db.execSQL(
+            """
         CREATE TABLE IF NOT EXISTS answers_new (
           attempt_id TEXT NOT NULL,
           display_index INTEGER NOT NULL,
           question_id TEXT NOT NULL,
-          selected_id TEXT,
-          correct_id TEXT,
+          selected_id TEXT NOT NULL,
+          correct_id TEXT NOT NULL,
           is_correct INTEGER NOT NULL,
           time_spent_sec INTEGER NOT NULL,
           seen_at INTEGER NOT NULL,
           answered_at INTEGER NOT NULL,
-          PRIMARY KEY(attempt_id, display_index)
+          PRIMARY KEY(attempt_id, display_index),
+          FOREIGN KEY(attempt_id) REFERENCES attempts(id) ON DELETE CASCADE
         )
         """.trimIndent(),
-      )
+            )
 
       db.execSQL(
         """
@@ -134,6 +135,14 @@ private val MIGRATION_3_4 =
 
       db.execSQL("DROP TABLE answers")
       db.execSQL("ALTER TABLE answers_new RENAME TO answers")
+
+        // Индексы как в текущей схеме Room
+        db.execSQL(
+            "CREATE INDEX IF NOT EXISTS index_answers_question_id ON answers(question_id)",
+            )
+        db.execSQL(
+            "CREATE UNIQUE INDEX IF NOT EXISTS index_answers_attempt_id_display_index ON answers(attempt_id, display_index)",
+            )
     }
   }
 
