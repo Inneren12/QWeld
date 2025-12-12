@@ -167,8 +167,11 @@ class FirestoreQuestionReportRepositoryTest {
   @Test
   fun submitReportSendsSanitizedPayloadWithRequiredFields() = runTest {
     val sender = RecordingReportSender()
-    val builder = QuestionReportPayloadBuilder(createdAtValueProvider = { "2024-01-01T00:00:00Z" })
-    val repository = buildRepository(sender, payloadBuilder = builder)
+      val repository =
+          buildRepository(
+              sender,
+              createdAtValueProvider = { "2024-01-01T00:00:00Z" },
+              )
 
     repository.submitReport(sampleReport(questionId = "Q-100", locale = "ru"))
 
@@ -229,24 +232,23 @@ class FirestoreQuestionReportRepositoryTest {
     assertNoPii(payload)
   }
 
-  private fun buildRepository(
-    sender: FirestoreQuestionReportRepository.ReportSender,
-    clock: () -> Long = { 100L },
-    environmentMetadataProvider: ReportEnvironmentMetadataProvider =
-      EmptyReportEnvironmentMetadataProvider,
-    payloadBuilder: QuestionReportPayloadBuilder =
-      QuestionReportPayloadBuilder(environmentMetadataProvider = environmentMetadataProvider),
-  ): FirestoreQuestionReportRepository {
-    return FirestoreQuestionReportRepository(
-      firestore = null,
-      queuedReportDao = dao,
-      reportSender = sender,
-      json = json,
-      clock = clock,
-      environmentMetadataProvider = environmentMetadataProvider,
-      payloadBuilder = payloadBuilder,
-    )
-  }
+    private fun buildRepository(
+        sender: FirestoreQuestionReportRepository.ReportSender,
+        clock: () -> Long = { 100L },
+        environmentMetadataProvider: ReportEnvironmentMetadataProvider =
+            EmptyReportEnvironmentMetadataProvider,
+        createdAtValueProvider: () -> String = { "ts" },
+        ): FirestoreQuestionReportRepository {
+        return FirestoreQuestionReportRepository(
+            firestore = null,
+            queuedReportDao = dao,
+                  reportSender = sender,
+            json = json,
+            clock = clock,
+            environmentMetadataProvider = environmentMetadataProvider,
+            createdAtValueProvider = createdAtValueProvider,
+            )
+    }
 
   private suspend fun enqueueReport(report: QuestionReport, attemptCount: Int = 0): Long {
     val payload = json.encodeToString(QueuedQuestionReportPayload.fromReport(report))

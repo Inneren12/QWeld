@@ -97,6 +97,8 @@ class UserStatsRepositoryRoomTest {
         throw IOException("boom")
       }
 
+        override suspend fun countAll(): Int = 0
+
       override suspend fun clearAll() = Unit
     }
 

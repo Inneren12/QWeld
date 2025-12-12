@@ -125,8 +125,8 @@ class AutosaveControllerTest {
 
     private class FakeAnswerDao(
         private val failureSequence: MutableList<Boolean> = mutableListOf(),
-    ) : AnswerDao {
-        val calls = mutableListOf<List<AnswerEntity>>()
+        ) : AnswerDao {
+            val calls = mutableListOf<List<AnswerEntity>>()
 
         override suspend fun insertAll(answers: List<AnswerEntity>) {
             val shouldFail = if (failureSequence.isNotEmpty()) failureSequence.removeAt(0) else false
@@ -144,6 +144,9 @@ class AutosaveControllerTest {
 
         override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> =
             throw UnsupportedOperationException()
+
+        override suspend fun countAll(): Int =
+            calls.sumOf { it.size }
 
         override suspend fun listWrongByAttempt(attemptId: String): List<String> =
             emptyList() // 👈 добавили новый метод

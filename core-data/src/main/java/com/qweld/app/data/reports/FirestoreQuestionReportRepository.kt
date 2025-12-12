@@ -17,24 +17,25 @@ import timber.log.Timber
  * Writes and manages question reports in the "question_reports" collection.
  */
 class FirestoreQuestionReportRepository(
-  private val firestore: FirebaseFirestore?,
-  private val queuedReportDao: QueuedQuestionReportDao,
-  private val reportSender: ReportSender = firestore?.let { FirestoreReportSender(it) }
-    ?: throw IllegalArgumentException("Firestore instance is required when no ReportSender is provided"),
-  private val json: Json = Json {
-    encodeDefaults = true
-    ignoreUnknownKeys = true
-  },
+    private val firestore: FirebaseFirestore?,
+    private val queuedReportDao: QueuedQuestionReportDao,
+    private val reportSender: ReportSender = firestore?.let { FirestoreReportSender(it) }
+        ?: throw IllegalArgumentException("Firestore instance is required when no ReportSender is provided"),
+    private val json: Json = Json {
+        encodeDefaults = true
+        ignoreUnknownKeys = true
+                                  },
   private val clock: () -> Long = { System.currentTimeMillis() },
   private val environmentMetadataProvider: ReportEnvironmentMetadataProvider =
-    EmptyReportEnvironmentMetadataProvider,
+      EmptyReportEnvironmentMetadataProvider,
+  private val createdAtValueProvider: () -> String = { System.currentTimeMillis().toString() },
 ) : QuestionReportRepository {
 
     private val payloadBuilder: QuestionReportPayloadBuilder =
         QuestionReportPayloadBuilder(
+            createdAtValueProvider = createdAtValueProvider,
             environmentMetadataProvider = environmentMetadataProvider,
-        )
-
+            )
   override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult {
     val data = payloadBuilder.build(report)
 

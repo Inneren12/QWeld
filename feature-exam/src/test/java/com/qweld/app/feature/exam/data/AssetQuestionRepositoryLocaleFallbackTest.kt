@@ -134,12 +134,19 @@ class AssetQuestionRepositoryLocaleFallbackTest {
   private fun questionJson(id: String, taskId: String, locale: String): String {
     val blockId = taskId.substringBefore("-", taskId)
     val choiceId = "${id}-A"
-    return """
-      {
-        \"id\": \"$id\",\n        \"taskId\": \"$taskId\",\n        \"blockId\": \"$blockId\",\n        \"locale\": \"$locale\",\n        \"stem\": { \"$locale\": \"Stem $id\" },\n        \"choices\": [\n          { \"id\": \"$choiceId\", \"text\": { \"$locale\": \"Option\" } }\n        ],\n        \"correctId\": \"$choiceId\"
-      }
-    """
-      .trimIndent()
+      return """
+              {
+      "id": "$id",
+      "taskId": "$taskId",
+      "blockId": "$blockId",
+      "locale": "$locale",
+      "stem": { "$locale": "Stem $id" },
+      "choices": [
+        { "id": "$choiceId", "text": { "$locale": "Option" } }
+      ],
+      "correctId": "$choiceId"
+    }
+  """.trimIndent()
   }
 
   private fun perTaskPath(locale: String, taskId: String) = "questions/$locale/tasks/$taskId.json"
