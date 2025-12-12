@@ -2,6 +2,7 @@ package com.qweld.app.feature.exam.fakes
 
 import com.qweld.app.data.reports.QuestionReport
 import com.qweld.app.data.reports.QuestionReportRepository
+import com.qweld.app.data.reports.QuestionReportSubmitResult
 import com.qweld.app.data.reports.QuestionReportRetryResult
 import com.qweld.app.data.reports.QuestionReportWithId
 
@@ -10,9 +11,8 @@ import com.qweld.app.data.reports.QuestionReportWithId
  * Provides no-op behaviors that satisfy interface requirements.
  */
 class FakeQuestionReportRepository : QuestionReportRepository {
-  override suspend fun submitReport(report: QuestionReport) {
-    // No-op for tests
-  }
+  override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult =
+    QuestionReportSubmitResult.Sent
 
   override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> = emptyList()
 
