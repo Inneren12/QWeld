@@ -47,7 +47,7 @@ Legend:
 
 ### CONTENT-2 – RU coverage
 - **Status:** ⚠️
-- **Summary:** Russian localization exists but has partial coverage; loaders fall back to English when gaps occur.
+- **Summary:** Russian localization exists but has partial coverage; loaders fall back to English when gaps occur, and CI now runs a locale coverage gate to prevent regressions.
 - **Implemented in:** `content/questions/ru/` plus locale fallback in `AssetQuestionRepository`.
 - **Next tasks:**
   - [ ] Close missing translations and sync blueprint metadata.
@@ -115,7 +115,7 @@ Legend:
 
 ### TEST-1 – Domain & content unit tests
 - **Status:** ✅
-- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators, including edge-case quota distribution (rounding/large-small quotas).
+- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators, including edge-case quota distribution (rounding/large-small quotas) and CI-enforced RU locale coverage.
 - **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests.
 - **Next tasks:**
   - [x] Expand quota distribution edge-case coverage.
