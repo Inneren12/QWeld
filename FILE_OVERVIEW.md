@@ -180,6 +180,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🟡 Important
   - **Role:** Validates and resolves question bundle manifests and asset integrity checks.
   - **Edit guidelines:** Preserve manifest schema compatibility.
+- `core-data/src/main/java/com/qweld/app/data/content/ContentManifestDiagnostics.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Reads the aggregated content manifest (`questions/index.json`) and computes admin-facing diagnostics/statuses.
+  - **Edit guidelines:** Keep required locale/task lists in sync with supported content; update diagnostics tests when rules change.
 - `core-data/src/main/java/com/qweld/app/data/reports/FirestoreQuestionReportRepository.kt`
   - **Importance:** 🟡 Important
   - **Role:** Sends question issue reports to Firestore when enabled.

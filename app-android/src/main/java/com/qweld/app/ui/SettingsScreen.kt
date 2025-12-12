@@ -3,16 +3,25 @@ package com.qweld.app.ui
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Error
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -37,9 +46,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.google.firebase.crashlytics.ktx.crashlytics
@@ -47,6 +53,7 @@ import com.google.firebase.ktx.Firebase
 import com.qweld.app.BuildConfig
 import com.qweld.app.R
 import com.qweld.app.data.content.ContentIndexReader
+import com.qweld.app.data.content.ContentManifestDiagnostics
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -100,7 +107,9 @@ fun SettingsScreen(
   val crashlyticsEnabled = BuildConfig.ENABLE_ANALYTICS
   var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
   var contentIntegrity by remember { mutableStateOf<List<ContentIndexReader.Mismatch>?>(null) }
+  var manifestResult by remember { mutableStateOf<ContentManifestDiagnostics.Result?>(null) }
   val clipboardManager = LocalClipboardManager.current
+  val manifestDiagnosticsReader = remember(appContext) { ContentManifestDiagnostics(appContext) }
 
   var lruCacheInput by remember(lruCacheSize) { mutableStateOf(lruCacheSize.toString()) }
   val lruCacheHint =
@@ -126,15 +135,19 @@ fun SettingsScreen(
   BackHandler(onBack = onBack)
 
   LaunchedEffect(Unit) { Timber.i("[settings_open]") }
-  LaunchedEffect(contentIndexReader) {
+  LaunchedEffect(contentIndexReader, manifestDiagnosticsReader) {
     contentIntegrity = null
-    val (indexResult, mismatches) =
+    manifestResult = null
+    val (indexResult, mismatches, manifest) =
       withContext(Dispatchers.IO) {
         val result = contentIndexReader.read()
-        result to contentIndexReader.verify(result)
+        val verifyResult = contentIndexReader.verify(result)
+        val manifestStatus = manifestDiagnosticsReader.load()
+        Triple(result, verifyResult, manifestStatus)
       }
     contentIndex = indexResult
     contentIntegrity = mismatches
+    manifestResult = manifest
   }
   LaunchedEffect(contentIndex) {
     contentIndex?.locales?.toSortedMap()?.forEach { (locale, info) ->
@@ -214,6 +227,8 @@ fun SettingsScreen(
 
       SettingsContentInfoSection(
         contentIndex = contentIndex,
+        manifestSummary = manifestResult?.summary,
+        manifestDiagnostics = manifestResult?.diagnostics,
         onCopyIndex = {
           contentIndex?.let { result ->
             clipboardManager.setText(AnnotatedString(result.rawJson))
@@ -460,10 +475,17 @@ private fun SettingsPracticeSection(
 @Composable
 private fun SettingsContentInfoSection(
   contentIndex: ContentIndexReader.Result?,
+  manifestSummary: ContentManifestDiagnostics.ManifestSummary?,
+  manifestDiagnostics: ContentManifestDiagnostics.Diagnostics?,
   onCopyIndex: () -> Unit,
 ) {
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
     Text(text = stringResource(id = R.string.settings_section_content_info), style = MaterialTheme.typography.titleMedium)
+    ManifestStatusCard(
+      manifestSummary = manifestSummary,
+      manifestDiagnostics = manifestDiagnostics,
+    )
+    ManifestSummaryBlock(manifestSummary = manifestSummary, contentIndex = contentIndex)
     val locales = contentIndex?.locales?.toSortedMap()
     if (locales.isNullOrEmpty()) {
       Text(
@@ -498,6 +520,145 @@ private fun SettingsContentInfoSection(
     }
     Button(onClick = onCopyIndex, enabled = !locales.isNullOrEmpty(), modifier = Modifier.fillMaxWidth()) {
       Text(text = stringResource(id = R.string.settings_content_copy_json))
+    }
+  }
+}
+
+@Composable
+private fun ManifestSummaryBlock(
+  manifestSummary: ContentManifestDiagnostics.ManifestSummary?,
+  contentIndex: ContentIndexReader.Result?,
+) {
+  Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    manifestSummary?.version?.let { version ->
+      Text(
+        text = stringResource(id = R.string.settings_content_manifest_version, version),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    }
+    manifestSummary?.generatedAt?.let { timestamp ->
+      Text(
+        text = stringResource(id = R.string.settings_content_generated_at, timestamp),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    }
+    val locales = manifestSummary?.locales ?: emptyMap()
+    if (locales.isNotEmpty()) {
+      FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        locales.toSortedMap().forEach { (locale, details) ->
+          details.total?.let { total ->
+            Text(
+              text = stringResource(
+                id = R.string.settings_content_total,
+                locale.uppercase(Locale.ROOT),
+                total,
+              ),
+              style = MaterialTheme.typography.bodyMedium,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+          }
+        }
+      }
+    } else if (contentIndex == null) {
+      Text(
+        text = stringResource(id = R.string.settings_content_status_loading),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    }
+  }
+}
+
+@Composable
+private fun ManifestStatusCard(
+  manifestSummary: ContentManifestDiagnostics.ManifestSummary?,
+  manifestDiagnostics: ContentManifestDiagnostics.Diagnostics?,
+) {
+  val status = manifestDiagnostics?.status
+  val (label, icon, color) =
+    when (status) {
+      ContentManifestDiagnostics.ManifestStatus.OK ->
+        Triple(
+          stringResource(id = R.string.settings_content_status_ok),
+          Icons.Default.CheckCircle,
+          MaterialTheme.colorScheme.tertiary,
+        )
+      ContentManifestDiagnostics.ManifestStatus.WARNING ->
+        Triple(
+          stringResource(id = R.string.settings_content_status_warning),
+          Icons.Default.Warning,
+          MaterialTheme.colorScheme.tertiary,
+        )
+      ContentManifestDiagnostics.ManifestStatus.ERROR ->
+        Triple(
+          stringResource(id = R.string.settings_content_status_error),
+          Icons.Default.Error,
+          MaterialTheme.colorScheme.error,
+        )
+      null ->
+        Triple(
+          stringResource(id = R.string.settings_content_status_loading),
+          Icons.Default.Warning,
+          MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+
+  Card {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(12.dp)) {
+      Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Icon(imageVector = icon, contentDescription = label, tint = color)
+        Text(text = label, style = MaterialTheme.typography.titleSmall, color = color)
+      }
+      val messages = manifestDiagnostics?.messages
+      if (messages.isNullOrEmpty()) {
+        Text(
+          text = stringResource(id = R.string.settings_content_status_loading),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+      } else {
+        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+          messages.forEach { message ->
+            Text(
+              text = message,
+              style = MaterialTheme.typography.bodySmall,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+          }
+        }
+      }
+      val missingLocales = manifestDiagnostics?.missingLocales.orEmpty()
+      val missingTasks = manifestDiagnostics?.missingTasks.orEmpty()
+      if (missingLocales.isNotEmpty()) {
+        Text(
+          text = stringResource(
+            id = R.string.settings_content_status_missing_locales,
+            missingLocales.joinToString(", ") { it.uppercase(Locale.ROOT) },
+          ),
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.error,
+        )
+      }
+      missingTasks.forEach { (locale, tasks) ->
+        Text(
+          text = stringResource(
+            id = R.string.settings_content_status_missing_tasks,
+            locale.uppercase(Locale.ROOT),
+            tasks.joinToString(", "),
+          ),
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.error,
+        )
+      }
+      if (manifestSummary == null && manifestDiagnostics == null) {
+        Text(
+          text = stringResource(id = R.string.settings_content_manifest_missing_hint),
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+      }
     }
   }
 }
