@@ -57,11 +57,12 @@ Legend:
 
 ### ADMIN-1 – Content info & asset diagnostics
 - **Status:** ⚠️
-- **Summary:** Internal screens show asset availability and question reports but are not part of the main user flow.
+- **Summary:** Internal screens show asset availability, manifest/version details, and question reports but are not part of the main user flow.
 - **Implemented in:** `app-android` admin screens/viewmodels.
 - **Next tasks:**
-  - [ ] Surface asset version/manifest details for QA.
-  - [ ] Harden error displays for missing bundles.
+  - [x] Surface asset version/manifest details for QA.
+  - [x] Harden error displays for missing bundles.
+  - [ ] Add deeper blueprint-to-manifest cross-checks (e.g., quota-aware coverage hints).
 
 ### ADMIN-2 – Admin/debug dashboard
 - **Status:** ⏳

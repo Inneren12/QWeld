@@ -62,6 +62,14 @@
     <string name="settings_content_locale_title">%1$s bundle</string>
     <string name="settings_content_blueprint">Blueprint: %1$s</string>
     <string name="settings_content_bank_version">Bank version: %1$s</string>
+    <string name="settings_content_manifest_version">Manifest version: %1$s</string>
+    <string name="settings_content_status_ok">Content manifest OK</string>
+    <string name="settings_content_status_warning">Content manifest warning</string>
+    <string name="settings_content_status_error">Content manifest error</string>
+    <string name="settings_content_status_loading">Loading manifest…</string>
+    <string name="settings_content_status_missing_locales">Missing locales: %1$s</string>
+    <string name="settings_content_status_missing_tasks">Missing tasks for %1$s: %2$s</string>
+    <string name="settings_content_manifest_missing_hint">Verify dist/index.json exists under assets.</string>
     <string name="settings_content_files_title">Files</string>
     <string name="settings_content_file_entry">%1$s — %2$s</string>
     <string name="settings_content_copy_json">Copy index JSON</string>
