@@ -248,7 +248,7 @@ class FirestoreQuestionReportRepositoryTest {
     )
   }
 
-  private fun enqueueReport(report: QuestionReport, attemptCount: Int = 0): Long {
+  private suspend fun enqueueReport(report: QuestionReport, attemptCount: Int = 0): Long {
     val payload = json.encodeToString(QueuedQuestionReportPayload.fromReport(report))
     return dao.insert(
       QueuedQuestionReportEntity(

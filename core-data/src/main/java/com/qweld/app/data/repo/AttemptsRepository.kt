@@ -1,5 +1,6 @@
 package com.qweld.app.data.repo
 
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AttemptEntity
 import timber.log.Timber
@@ -46,7 +47,10 @@ class AttemptsRepository(
     )
   }
 
-  suspend fun getUserVersion(): Int = attemptDao.getUserVersion()
+  suspend fun getUserVersion(): Int =
+    attemptDao.getUserVersion(
+      SimpleSQLiteQuery("PRAGMA user_version"),
+    )
 
   suspend fun clearAll() {
     attemptDao.clearAll()

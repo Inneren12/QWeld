@@ -28,9 +28,12 @@ class FirestoreQuestionReportRepository(
   private val clock: () -> Long = { System.currentTimeMillis() },
   private val environmentMetadataProvider: ReportEnvironmentMetadataProvider =
     EmptyReportEnvironmentMetadataProvider,
-  private val payloadBuilder: QuestionReportPayloadBuilder =
-    QuestionReportPayloadBuilder(environmentMetadataProvider = environmentMetadataProvider),
 ) : QuestionReportRepository {
+
+    private val payloadBuilder: QuestionReportPayloadBuilder =
+        QuestionReportPayloadBuilder(
+            environmentMetadataProvider = environmentMetadataProvider,
+        )
 
   override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult {
     val data = payloadBuilder.build(report)

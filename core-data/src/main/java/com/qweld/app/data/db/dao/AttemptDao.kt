@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.qweld.app.data.db.entities.AttemptEntity
 
 @Dao
@@ -93,8 +95,8 @@ interface AttemptDao {
   )
   suspend fun getAttemptStats(): AttemptStatsRow
 
-  @Query("PRAGMA user_version")
-  suspend fun getUserVersion(): Int
+  @RawQuery
+  suspend fun getUserVersion(query: SupportSQLiteQuery): Int
 
   @Query("DELETE FROM attempts")
   suspend fun clearAll()

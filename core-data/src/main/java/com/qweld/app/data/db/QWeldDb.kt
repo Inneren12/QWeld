@@ -43,12 +43,12 @@ private val MIGRATION_2_3 =
         """.trimIndent()
       )
 
-      db.execSQL(
-        "CREATE INDEX IF NOT EXISTS idx_queued_question_reports_created_at ON queued_question_reports(created_at ASC)",
-      )
-      db.execSQL(
-        "CREATE INDEX IF NOT EXISTS idx_queued_question_reports_question_id ON queued_question_reports(question_id)",
-      )
+        db.execSQL(
+            "CREATE INDEX IF NOT EXISTS index_queued_question_reports_created_at ON queued_question_reports(created_at ASC)",
+            )
+        db.execSQL(
+            "CREATE INDEX IF NOT EXISTS index_queued_question_reports_question_id ON queued_question_reports(question_id)",
+            )
     }
   }
 

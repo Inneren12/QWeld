@@ -168,7 +168,7 @@ constructor(
 
   private fun JsonElement?.asIntOrNull(): Int? {
     return when (this) {
-      is JsonPrimitive -> this.intOrNull
+      is JsonPrimitive -> this.contentOrNull?.toIntOrNull()
       else -> null
     }
   }

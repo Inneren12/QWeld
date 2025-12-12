@@ -36,7 +36,7 @@ class DefaultReportEnvironmentMetadataProvider(
   }
 }
 
-internal class DeviceInfoProvider(
+class DeviceInfoProvider(
   private val modelProvider: () -> String? = { Build.MODEL },
   private val androidVersionProvider: () -> String? = { Build.VERSION.RELEASE },
 ) {
