@@ -21,7 +21,10 @@ class FirestoreQuestionReportRepository(
   private val queuedReportDao: QueuedQuestionReportDao,
   private val reportSender: ReportSender = firestore?.let { FirestoreReportSender(it) }
     ?: throw IllegalArgumentException("Firestore instance is required when no ReportSender is provided"),
-  private val json: Json = Json { encodeDefaults = true },
+  private val json: Json = Json {
+    encodeDefaults = true
+    ignoreUnknownKeys = true
+  },
   private val clock: () -> Long = { System.currentTimeMillis() },
   private val environmentMetadataProvider: ReportEnvironmentMetadataProvider =
     EmptyReportEnvironmentMetadataProvider,
