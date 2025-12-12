@@ -82,6 +82,7 @@ Legend:
 - **Next tasks:**
   - [x] Add offline queue/retry for reports.
   - [x] Include device/context metadata for triage.
+  - [x] Testing: payload structure and PII constraints covered by unit tests.
 
 ### REPORT-2 – In-app “Report issue” flow for questions
 - **Status:** ⏳
