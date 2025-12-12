@@ -134,7 +134,7 @@ Legend:
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
 - **Status:** ⏳
-- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows.
+- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows. Payload structure/PII coverage for question reports now lives in unit tests; UI/admin coverage still pending.
 - **Implemented in:** Planned across `feature-exam` UI tests, domain tests in `core-domain`, and integration tests for reporting/error handling.
 - **Next tasks:**
   - [ ] Add end-to-end tests covering an adaptive exam run (difficulty changes as expected for different answer patterns).
