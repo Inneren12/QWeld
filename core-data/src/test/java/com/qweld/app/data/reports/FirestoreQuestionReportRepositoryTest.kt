@@ -141,8 +141,9 @@ class FirestoreQuestionReportRepositoryTest {
         "appVersionCode",
         "appVersion",
         "buildType",
+        "env",
         "platform",
-        "osVersion",
+        "androidVersion",
         "deviceModel",
         "sessionId",
         "attemptId",
@@ -159,6 +160,42 @@ class FirestoreQuestionReportRepositoryTest {
     assertEquals("1.0 (1)", payload["appVersion"])
     assertEquals("ts", payload["createdAt"])
     assertTrue(payload.keys.none { it.contains("user", ignoreCase = true) && it != "userComment" })
+  }
+
+  @Test
+  fun payloadBuilderAddsEnvironmentMetadataWhenMissingFromReport() {
+    val metadata =
+      ReportEnvironmentMetadata(
+        appVersionName = "2.0",
+        appVersionCode = 20,
+        buildType = "release",
+        deviceModel = "Pixel 9",
+        androidVersion = "35",
+        environment = "release",
+      )
+    val builder =
+      QuestionReportPayloadBuilder(
+        createdAtValueProvider = { "ts" },
+        environmentMetadataProvider = FakeMetadataProvider(metadata),
+      )
+
+    val payload =
+      builder.build(
+        sampleReport(contentVersion = "v1").copy(
+          appVersionName = null,
+          appVersionCode = null,
+          buildType = null,
+          androidVersion = null,
+          deviceModel = null,
+        ),
+      )
+
+    assertEquals("2.0", payload["appVersionName"])
+    assertEquals(20, payload["appVersionCode"])
+    assertEquals("2.0 (20)", payload["appVersion"])
+    assertEquals("Pixel 9", payload["deviceModel"])
+    assertEquals("35", payload["androidVersion"])
+    assertEquals("release", payload["env"])
   }
 
   @Test
@@ -192,8 +229,9 @@ class FirestoreQuestionReportRepositoryTest {
       "appVersionCode",
       "appVersion",
       "buildType",
+      "env",
       "platform",
-      "osVersion",
+      "androidVersion",
       "deviceModel",
       "sessionId",
       "attemptId",
@@ -253,7 +291,10 @@ class FirestoreQuestionReportRepositoryTest {
   private fun buildRepository(
     sender: FirestoreQuestionReportRepository.ReportSender,
     clock: () -> Long = { 100L },
-    payloadBuilder: QuestionReportPayloadBuilder = QuestionReportPayloadBuilder(),
+    environmentMetadataProvider: ReportEnvironmentMetadataProvider =
+      EmptyReportEnvironmentMetadataProvider,
+    payloadBuilder: QuestionReportPayloadBuilder =
+      QuestionReportPayloadBuilder(environmentMetadataProvider = environmentMetadataProvider),
   ): FirestoreQuestionReportRepository {
     return FirestoreQuestionReportRepository(
       firestore = null,
@@ -261,6 +302,7 @@ class FirestoreQuestionReportRepositoryTest {
       reportSender = sender,
       json = json,
       clock = clock,
+      environmentMetadataProvider = environmentMetadataProvider,
       payloadBuilder = payloadBuilder,
     )
   }
@@ -308,7 +350,7 @@ class FirestoreQuestionReportRepositoryTest {
       appVersionCode = 1,
       buildType = "debug",
       platform = "android",
-      osVersion = "34",
+      androidVersion = "34",
       deviceModel = "Pixel",
       sessionId = "session",
       attemptId = "attempt",
@@ -322,6 +364,12 @@ private class FailingReportSender : FirestoreQuestionReportRepository.ReportSend
   override suspend fun send(questionId: String, data: Map<String, Any?>) {
     error("send failed for $questionId")
   }
+}
+
+private class FakeMetadataProvider(
+  private val metadata: ReportEnvironmentMetadata,
+) : ReportEnvironmentMetadataProvider {
+  override fun metadata(): ReportEnvironmentMetadata = metadata
 }
 
 private class RecordingReportSender : FirestoreQuestionReportRepository.ReportSender {

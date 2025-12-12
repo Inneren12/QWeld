@@ -23,7 +23,10 @@ class FirestoreQuestionReportRepository(
     ?: throw IllegalArgumentException("Firestore instance is required when no ReportSender is provided"),
   private val json: Json = Json { encodeDefaults = true },
   private val clock: () -> Long = { System.currentTimeMillis() },
-  private val payloadBuilder: QuestionReportPayloadBuilder = QuestionReportPayloadBuilder(),
+  private val environmentMetadataProvider: ReportEnvironmentMetadataProvider =
+    EmptyReportEnvironmentMetadataProvider,
+  private val payloadBuilder: QuestionReportPayloadBuilder =
+    QuestionReportPayloadBuilder(environmentMetadataProvider = environmentMetadataProvider),
 ) : QuestionReportRepository {
 
   override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult {
@@ -244,7 +247,8 @@ class FirestoreQuestionReportRepository(
       appVersionCode = (data["appVersionCode"] as? Number)?.toInt(),
       buildType = data["buildType"] as? String,
       platform = data["platform"] as? String,
-      osVersion = data["osVersion"] as? String,
+      androidVersion = data["androidVersion"] as? String
+        ?: data["osVersion"] as? String,
       deviceModel = data["deviceModel"] as? String,
 
       // Session/attempt context

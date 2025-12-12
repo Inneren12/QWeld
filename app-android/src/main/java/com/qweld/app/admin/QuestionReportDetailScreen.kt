@@ -189,7 +189,7 @@ private fun ReportDetailContent(
       report.platform?.let {
         DetailRow("Platform", it)
       }
-      report.osVersion?.let {
+      report.androidVersion?.let {
         DetailRow("OS Version", it)
       }
       report.deviceModel?.let {

@@ -26,6 +26,7 @@ import com.qweld.app.data.repo.UserStatsRepositoryRoom
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
 import com.qweld.app.data.reports.FirestoreQuestionReportRepository
+import com.qweld.app.data.reports.DefaultReportEnvironmentMetadataProvider
 import com.qweld.app.data.reports.RetryQueuedQuestionReportsUseCase
 import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
@@ -34,6 +35,7 @@ import com.qweld.app.feature.auth.firebase.FirebaseAuthService
 import com.qweld.app.i18n.LocaleController
 import com.qweld.app.navigation.AppNavGraph
 import com.qweld.app.ui.theme.QWeldTheme
+import com.qweld.app.env.AppEnvImpl
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -85,7 +87,12 @@ fun QWeldAppRoot(
   val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
   val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
   val questionReportRepository = remember(database) {
-    FirestoreQuestionReportRepository(Firebase.firestore, database.queuedQuestionReportDao())
+    val environmentMetadataProvider = DefaultReportEnvironmentMetadataProvider(appEnv = AppEnvImpl())
+    FirestoreQuestionReportRepository(
+      Firebase.firestore,
+      database.queuedQuestionReportDao(),
+      environmentMetadataProvider = environmentMetadataProvider,
+    )
   }
   val retryQueuedReports = remember(questionReportRepository) {
     RetryQueuedQuestionReportsUseCase(questionReportRepository)
