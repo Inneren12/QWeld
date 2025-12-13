@@ -134,11 +134,11 @@ Legend:
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
 - **Status:** ⏳
-- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows. Payload structure/PII coverage for question reports now lives in unit tests; UI/admin coverage still pending.
+- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows. Payload structure/PII coverage for question reports now lives in unit tests; UI/admin coverage now includes instrumentation for reporting a question and viewing reports in the admin list/detail screens.
 - **Implemented in:** Planned across `feature-exam` UI tests, domain tests in `core-domain`, and integration tests for reporting/error handling.
 - **Next tasks:**
   - [ ] Add end-to-end tests covering an adaptive exam run (difficulty changes as expected for different answer patterns).
-  - [ ] Add tests for the admin/debug screen (data visibility, access control) and question reporting UI (report creation, basic validation).
+  - [x] Add tests for the admin/debug screen (data visibility, access control) and question reporting UI (report creation, basic validation).
   - [ ] Manually exercise error paths to confirm Crashlytics/diagnostics and the in-app error dialog behave correctly.
 
 ## Architecture & Refactoring

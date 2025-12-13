@@ -39,6 +39,10 @@ Importance legend:
   - **Importance:** 🟡 Important
   - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, and DB health.
   - **Edit guidelines:** Keep `BuildConfig.DEBUG` gating intact and source stats through repositories instead of direct Room access.
+- `app-android/src/androidTest/java/com/qweld/app/admin/AdminReportsUiTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Compose instrumentation coverage for navigating the admin reports list and verifying report details/comments in the detail view.
+  - **Edit guidelines:** Keep scenarios short with fake repositories to avoid network dependence.
 - `app-android/build.gradle.kts`
   - **Importance:** ⚙️ Build/CI
   - **Role:** App module build config, Crashlytics/Analytics wiring, asset packaging tasks (`verifyAssets`).
@@ -103,6 +107,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🧪 Test
   - **Role:** Compose instrumentation happy-path coverage for practice runs (answering questions and reaching results).
   - **Edit guidelines:** Keep scenario short/deterministic; extend with additional practice UI assertions if flows expand.
+- `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/QuestionReportUiTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** UI test for the question reporting flow from an exam screen, covering dialog interactions and comment submission.
+  - **Edit guidelines:** Use lightweight state and strings to avoid flakiness from full exam navigation.
 
 ## feature-auth/
 
