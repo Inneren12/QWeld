@@ -378,6 +378,7 @@ fun AppNavGraph(
             AdminDashboardViewModel(
               attemptsRepository = attemptsRepository,
               answersRepository = answersRepository,
+              questionReportRepository = questionReportRepository,
             )
           }
           AdminDashboardRoute(viewModel = viewModel, onBack = { navController.popBackStack() })

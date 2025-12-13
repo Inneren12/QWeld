@@ -11,6 +11,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import timber.log.Timber
+import java.util.LinkedHashMap
 
 /**
  * Firestore implementation of [QuestionReportRepository].
@@ -127,6 +128,79 @@ class FirestoreQuestionReportRepository(
       return reports
     } catch (e: Exception) {
       Timber.tag(TAG).e(e, "[report_list_error] status=$status")
+      throw e
+    }
+  }
+
+  override suspend fun listReportSummaries(limit: Int): List<QuestionReportSummary> {
+    try {
+      val snapshot =
+        firestoreOrThrow().collection(COLLECTION_NAME)
+          .orderBy("createdAt", Query.Direction.DESCENDING)
+          .limit(limit.toLong())
+          .get()
+          .await()
+
+      val grouped: LinkedHashMap<String, MutableList<QuestionReportWithId>> = LinkedHashMap()
+
+      snapshot.documents.forEach { doc ->
+        val data = doc.data ?: return@forEach
+        val report = runCatching { parseReportFromDocument(data) }
+          .onFailure { Timber.tag(TAG).w(it, "[report_summary_parse_error] id=${doc.id}") }
+          .getOrNull()
+          ?: return@forEach
+
+        val withId = QuestionReportWithId(id = doc.id, report = report)
+        val bucket = grouped.getOrPut(report.questionId) { mutableListOf() }
+        bucket.add(withId)
+      }
+
+      return grouped.values.map { reports ->
+        val latest = reports.first()
+        val latestComment = reports.firstNotNullOfOrNull { it.report.userComment?.takeIf { comment -> comment.isNotBlank() } }
+
+        QuestionReportSummary(
+          questionId = latest.report.questionId,
+          taskId = latest.report.taskId,
+          blockId = latest.report.blockId,
+          reportsCount = reports.size,
+          lastReportAt = latest.report.createdAt,
+          lastStatus = latest.report.status,
+          lastReasonCode = latest.report.reasonCode,
+          lastLocale = latest.report.locale,
+          latestUserComment = latestComment,
+        )
+      }.sortedByDescending { it.lastReportAt?.seconds ?: 0 }
+    } catch (e: Exception) {
+      Timber.tag(TAG).e(e, "[report_summary_error]")
+      throw e
+    }
+  }
+
+  override suspend fun listReportsForQuestion(
+    questionId: String,
+    limit: Int,
+  ): List<QuestionReportWithId> {
+    try {
+      val snapshot =
+        firestoreOrThrow().collection(COLLECTION_NAME)
+          .whereEqualTo("questionId", questionId)
+          .orderBy("createdAt", Query.Direction.DESCENDING)
+          .limit(limit.toLong())
+          .get()
+          .await()
+
+      return snapshot.documents.mapNotNull { doc ->
+        val data = doc.data ?: return@mapNotNull null
+        val report = runCatching { parseReportFromDocument(data) }
+          .onFailure { Timber.tag(TAG).w(it, "[report_parse_error] id=${doc.id}") }
+          .getOrNull()
+          ?: return@mapNotNull null
+
+        QuestionReportWithId(id = doc.id, report = report)
+      }
+    } catch (e: Exception) {
+      Timber.tag(TAG).e(e, "[report_by_question_error] questionId=$questionId")
       throw e
     }
   }

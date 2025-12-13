@@ -1,5 +1,7 @@
 package com.qweld.app.data.reports
 
+import com.google.firebase.Timestamp
+
 /**
  * Repository for submitting and managing question reports in Firestore.
  * Reports are written to the "question_reports" collection.
@@ -24,6 +26,21 @@ interface QuestionReportRepository {
   suspend fun listReports(
     status: String? = null,
     limit: Int = 50
+  ): List<QuestionReportWithId>
+
+  /**
+   * Lists reports grouped by question for quick triage in admin tooling.
+   *
+   * @param limit Maximum number of raw report documents to scan (newest first)
+   */
+  suspend fun listReportSummaries(limit: Int = 200): List<QuestionReportSummary>
+
+  /**
+   * Fetches the most recent reports for a specific question.
+   */
+  suspend fun listReportsForQuestion(
+    questionId: String,
+    limit: Int = 20,
   ): List<QuestionReportWithId>
 
   /**
@@ -71,6 +88,18 @@ interface QuestionReportRepository {
 data class QuestionReportWithId(
   val id: String,
   val report: QuestionReport
+)
+
+data class QuestionReportSummary(
+  val questionId: String,
+  val taskId: String?,
+  val blockId: String?,
+  val reportsCount: Int,
+  val lastReportAt: Timestamp?,
+  val lastStatus: String?,
+  val lastReasonCode: String?,
+  val lastLocale: String?,
+  val latestUserComment: String?,
 )
 
 data class QuestionReportRetryResult(

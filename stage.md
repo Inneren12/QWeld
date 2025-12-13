@@ -92,7 +92,7 @@ Legend:
 - **Next tasks:**
   - [ ] Add a “Report issue” action on question and review screens that captures question ID, locale, and an optional free-text comment.
   - [ ] Wire the UI action to `QuestionReportRepository` so reports are sent (or queued) with enough context for moderation.
-  - [ ] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
+  - [x] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
 
 ### ERROR-1 – Crash/analytics reporting
 - **Status:** ✅
