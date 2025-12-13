@@ -23,6 +23,8 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -68,6 +70,7 @@ import com.qweld.app.feature.exam.vm.ReviewTotals
 import com.qweld.app.feature.exam.vm.ReviewViewModel
 import com.qweld.app.feature.exam.vm.ReviewViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.util.Locale
@@ -79,6 +82,7 @@ fun ReviewScreen(
   explanationRepository: AssetExplanationRepository,
   onBack: () -> Unit,
   resultViewModel: ResultViewModel,
+  examViewModel: ExamViewModel,
   analytics: Analytics,
   modifier: Modifier = Modifier,
 ) {
@@ -99,6 +103,8 @@ fun ReviewScreen(
   var glossaryError by remember { mutableStateOf(false) }
   val context = LocalContext.current
   val glossaryLocale = remember(locale) { Locale(locale.ifBlank { Locale.getDefault().language }) }
+  val snackbarHostState = remember { SnackbarHostState() }
+  var reportQuestion by remember { mutableStateOf<ReviewQuestionUiModel?>(null) }
 
   LaunchedEffect(resultData.attemptId) {
     val totalQuestions = reviewQuestions.size
@@ -148,6 +154,18 @@ fun ReviewScreen(
     Timber.i("[a11y_fix] target=review_screen desc=touch_target>=48dp,cd=filters")
   }
 
+  LaunchedEffect(examViewModel, context) {
+    examViewModel.reportEvents.collectLatest { event ->
+      val messageId =
+        when (event) {
+          ExamViewModel.QuestionReportUiEvent.Sent -> R.string.report_question_sent
+          ExamViewModel.QuestionReportUiEvent.Queued -> R.string.report_question_queued
+          ExamViewModel.QuestionReportUiEvent.Failed -> R.string.report_question_failed
+        }
+      snackbarHostState.showSnackbar(context.getString(messageId))
+    }
+  }
+
   LaunchedEffect(isGlossaryOpen) {
     if (!isGlossaryOpen) return@LaunchedEffect
     Timber.i("[glossary_open] locale=%s", glossaryLocale.language.uppercase(Locale.US))
@@ -169,6 +187,7 @@ fun ReviewScreen(
 
   Scaffold(
     modifier = modifier,
+    snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     topBar = {
       TopAppBar(
         title = { Text(text = stringResource(id = R.string.review_title)) },
@@ -288,6 +307,7 @@ fun ReviewScreen(
                   total = item.total,
                   question = question,
                   onExplain = { sheetQuestion = question },
+                  onReport = { reportQuestion = question },
                   highlight = highlight,
                 )
               }
@@ -314,6 +334,16 @@ fun ReviewScreen(
           .padding(horizontal = 24.dp, vertical = 16.dp),
       )
     }
+  }
+
+  reportQuestion?.let { question ->
+    ReportQuestionDialog(
+      onDismiss = { reportQuestion = null },
+      onSubmit = { reason, comment ->
+        examViewModel.reportQuestionById(question.id, reason, comment)
+        reportQuestion = null
+      },
+    )
   }
 
   if (isGlossaryOpen) {
@@ -440,6 +470,7 @@ private fun ReviewQuestionCard(
   total: Int,
   question: ReviewQuestionUiModel,
   onExplain: () -> Unit,
+  onReport: () -> Unit,
   highlight: ReviewSearchHighlights?,
   modifier: Modifier = Modifier,
 ) {
@@ -475,6 +506,14 @@ private fun ReviewQuestionCard(
         text = stemText,
         style = MaterialTheme.typography.titleMedium,
       )
+      Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.End,
+      ) {
+        TextButton(onClick = onReport) {
+          Text(text = stringResource(id = R.string.report_question_button))
+        }
+      }
       Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         question.choices.forEach { choice ->
           val choiceText = highlightAnnotatedText(

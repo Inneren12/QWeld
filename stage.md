@@ -86,14 +86,14 @@ Legend:
   - [x] Testing: payload structure and PII constraints covered by unit tests.
 
 ### REPORT-2 – In-app “Report issue” flow for questions
-- **Status:** ⏳
-- **Summary:** User-facing reporting flow that lets candidates flag problematic questions directly from exam/review screens, feeding into the existing Firestore pipeline.
-- **Implemented in:** Planned for `feature-exam` (question/review UI) using `QuestionReportRepository` from `core-data` and admin views in `app-android`.
+- **Status:** ⚠️
+- **Summary:** User-facing reporting flow now surfaces on exam and review screens with a dialog for reasons/comments and snackbar feedback; submissions flow through `QuestionReportRepository` with queued fallback. Admin listing still pending.
+- **Implemented in:** `feature-exam` (question/review UI) using `QuestionReportRepository` from `core-data` and admin views in `app-android`.
 - **Next tasks:**
-  - [ ] Add a “Report issue” action on question and review screens that captures question ID, locale, and an optional free-text comment.
-  - [ ] Wire the UI action to `QuestionReportRepository` so reports are sent (or queued) with enough context for moderation.
   - [x] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
-
+  - [x] Add a “Report issue” action on question and review screens that captures question ID, locale, and an optional free-text comment.
+  - [x] Wire the UI action to `QuestionReportRepository` so reports are sent (or queued) with enough context for moderation.
+  
 ### ERROR-1 – Crash/analytics reporting
 - **Status:** ✅
 - **Summary:** Crashlytics and Analytics hooks are wired via `app-android` build config and guarded by debug flags, with a debug-only Crashlytics test crash entry in Settings to validate symbol uploads.
