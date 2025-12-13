@@ -32,6 +32,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -50,6 +52,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.platform.testTag
@@ -97,7 +100,9 @@ fun ExamScreen(
   var showConfirmExitDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
   var showConfirmRestartDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
   var showReportDialog by rememberSaveable(attempt?.attemptId) { mutableStateOf(false) }
+  val snackbarHostState = remember { SnackbarHostState() }
   val hapticFeedback = LocalHapticFeedback.current
+  val context = LocalContext.current
   val view = LocalView.current
   val lifecycleOwner = LocalLifecycleOwner.current
   val coroutineScope = rememberCoroutineScope()
@@ -187,6 +192,17 @@ fun ExamScreen(
       }
     }
   }
+  LaunchedEffect(viewModel, context) {
+    viewModel.reportEvents.collectLatest { event ->
+      val messageId =
+        when (event) {
+          ExamViewModel.QuestionReportUiEvent.Sent -> R.string.report_question_sent
+          ExamViewModel.QuestionReportUiEvent.Queued -> R.string.report_question_queued
+          ExamViewModel.QuestionReportUiEvent.Failed -> R.string.report_question_failed
+        }
+      snackbarHostState.showSnackbar(context.getString(messageId))
+    }
+  }
   val handleChoiceSelected: (String) -> Unit = { choiceId ->
     val attempt = uiState.attempt
     val question = attempt?.currentQuestion()
@@ -209,6 +225,7 @@ fun ExamScreen(
   ExamScreenContent(
     state = uiState,
     modifier = modifier,
+    snackbarHostState = snackbarHostState,
     onChoiceSelected = handleChoiceSelected,
     onNext = viewModel::nextQuestion,
     onPrevious = viewModel::previousQuestion,
@@ -280,6 +297,7 @@ internal fun performSubmitFeedback(
 internal fun ExamScreenContent(
   state: ExamUiState,
   modifier: Modifier = Modifier,
+  snackbarHostState: SnackbarHostState = SnackbarHostState(),
   onChoiceSelected: (String) -> Unit,
   onNext: () -> Unit,
   onPrevious: () -> Unit,
@@ -293,6 +311,7 @@ internal fun ExamScreenContent(
     modifier = modifier
       .fillMaxSize()
       .nestedScroll(rememberNestedScrollInteropConnection()),
+    snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     topBar = {
       if (state.attempt != null) {
         ExamTopBarMenu(

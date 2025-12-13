@@ -52,6 +52,11 @@ fun ReportQuestionDialog(
           .verticalScroll(rememberScrollState()),
       ) {
         Text(
+          text = stringResource(id = R.string.report_question_description),
+          style = MaterialTheme.typography.bodyMedium,
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
           text = stringResource(id = R.string.report_question_reason_label),
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.primary,

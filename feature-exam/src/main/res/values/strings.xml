@@ -159,10 +159,14 @@
     <string name="resume_dialog_remaining">Time left: %1$s</string>
     <string name="report_question_button">Report question</string>
     <string name="report_question_title">Report question</string>
+    <string name="report_question_description">Report a problem with this question. We’ll include the question ID and locale but no personal data.</string>
     <string name="report_question_reason_label">Select a reason:</string>
     <string name="report_question_comment_label">Additional details (optional):</string>
     <string name="report_question_comment_hint">Please describe the issue…</string>
     <string name="report_question_submit">Submit</string>
+    <string name="report_question_sent">Thanks for your feedback.</string>
+    <string name="report_question_queued">Report queued; we’ll send it when you’re back online.</string>
+    <string name="report_question_failed">Couldn’t send report. Please try again.</string>
     <string name="report_reason_wrong_answer">Wrong answer / key</string>
     <string name="report_reason_outdated_content">Outdated content</string>
     <string name="report_reason_bad_wording">Bad wording / ambiguous</string>

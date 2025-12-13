@@ -266,6 +266,7 @@ fun ExamNavGraph(
         explanationRepository = explanationRepository,
         onBack = { navController.popBackStack() },
         resultViewModel = resultViewModel,
+        examViewModel = examViewModel,
         analytics = analytics,
       )
     }

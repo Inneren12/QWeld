@@ -154,6 +154,9 @@ class ExamViewModel(
   private val _effects = MutableSharedFlow<ExamEffect>(extraBufferCapacity = 1)
   val effects: Flow<ExamEffect> = _effects.asSharedFlow()
 
+  private val _reportEvents = MutableSharedFlow<QuestionReportUiEvent>(extraBufferCapacity = 1)
+  val reportEvents: Flow<QuestionReportUiEvent> = _reportEvents.asSharedFlow()
+
   private val _prewarmDisabled = MutableStateFlow(UserPrefsDataStore.DEFAULT_PREWARM_DISABLED)
   val prewarmDisabled = _prewarmDisabled.asStateFlow()
 
@@ -900,18 +903,66 @@ class ExamViewModel(
 
   // region Question Reporting
 
-  /**
-   * Reports the current question with a reason and optional comment.
-   * E3: Populates a full QuestionReport with context and submits to Firestore.
-   *
-   * @param reason The reason for reporting the question
-   * @param userComment Optional comment from the user
-   */
+  private data class QuestionReportContext(
+    val attemptId: String?,
+    val attempt: com.qweld.app.domain.exam.ExamAttempt,
+    val answers: Map<String, String>,
+    val questionIndex: Int,
+  )
+
+  sealed class QuestionReportUiEvent {
+    data object Sent : QuestionReportUiEvent()
+    data object Queued : QuestionReportUiEvent()
+    data object Failed : QuestionReportUiEvent()
+  }
+
   fun reportCurrentQuestion(
     reason: com.qweld.app.feature.exam.model.QuestionReportReason,
     userComment: String?,
   ) {
-    val report = buildQuestionReport(reason, userComment)
+    val context = currentAttempt?.let { attemptResult ->
+      QuestionReportContext(
+        attemptId = attemptResult.attemptId,
+        attempt = attemptResult.attempt,
+        answers = attemptResult.answers,
+        questionIndex = attemptResult.currentIndex,
+      )
+    }
+    submitQuestionReport(context, reason, userComment)
+  }
+
+  fun reportQuestionById(
+    questionId: String,
+    reason: com.qweld.app.feature.exam.model.QuestionReportReason,
+    userComment: String?,
+  ) {
+    val result = latestResult
+    if (result == null) {
+      Timber.w("[question_report] skipped reason=no_result questionId=%s", questionId)
+      return
+    }
+    val questionIndex = result.attempt.questions.indexOfFirst { assembled ->
+      assembled.question.id == questionId
+    }
+    if (questionIndex < 0) {
+      Timber.w("[question_report] skipped reason=question_not_found questionId=%s", questionId)
+      return
+    }
+    val context = QuestionReportContext(
+      attemptId = result.attemptId,
+      attempt = result.attempt,
+      answers = result.answers,
+      questionIndex = questionIndex,
+    )
+    submitQuestionReport(context, reason, userComment)
+  }
+
+  private fun submitQuestionReport(
+    context: QuestionReportContext?,
+    reason: com.qweld.app.feature.exam.model.QuestionReportReason,
+    userComment: String?,
+  ) {
+    val report = buildQuestionReport(context, reason, userComment)
     if (report == null) {
       Timber.w("[question_report] cannot build report, missing context")
       return
@@ -920,23 +971,28 @@ class ExamViewModel(
     viewModelScope.launch {
       try {
         when (val result = questionReportRepository.submitReport(report)) {
-          is com.qweld.app.data.reports.QuestionReportSubmitResult.Sent ->
+          is com.qweld.app.data.reports.QuestionReportSubmitResult.Sent -> {
             Timber.i(
               "[question_report] submitted questionId=%s reason=%s mode=%s",
               report.questionId,
               report.reasonCode,
               report.mode,
             )
-          is com.qweld.app.data.reports.QuestionReportSubmitResult.Queued ->
+            _reportEvents.emit(QuestionReportUiEvent.Sent)
+          }
+          is com.qweld.app.data.reports.QuestionReportSubmitResult.Queued -> {
             Timber.w(
               "[question_report] queued questionId=%s reason=%s error=%s",
               report.questionId,
               report.reasonCode,
               result.error?.message ?: "unknown",
             )
+            _reportEvents.emit(QuestionReportUiEvent.Queued)
+          }
         }
       } catch (e: Exception) {
         Timber.e(e, "[question_report] submit failed for questionId=%s", report.questionId)
+        _reportEvents.emit(QuestionReportUiEvent.Failed)
         // User continues exam even if report fails
       }
     }
@@ -947,19 +1003,20 @@ class ExamViewModel(
    * Returns null if essential context is missing.
    */
   private fun buildQuestionReport(
+    context: QuestionReportContext?,
     reason: com.qweld.app.feature.exam.model.QuestionReportReason,
     userComment: String?,
   ): com.qweld.app.data.reports.QuestionReport? {
-    val attemptResult = currentAttempt ?: return null
-    val assembledQuestion = attemptResult.attempt.questions.getOrNull(attemptResult.currentIndex) ?: return null
-    val attempt = attemptResult.attempt
+    val context = context ?: return null
+    val assembledQuestion = context.attempt.questions.getOrNull(context.questionIndex) ?: return null
+    val attempt = context.attempt
     val question = assembledQuestion.question
     val blueprint = attempt.blueprint
     val blueprintId = BlueprintCatalog.DEFAULT_ID.name.lowercase()
     val blueprintVersion = BlueprintCatalog.versionLabelFor(BlueprintCatalog.DEFAULT_ID)
 
     // Get selected and correct choice indices
-    val selectedChoiceId = attemptResult.answers[question.id]
+    val selectedChoiceId = context.answers[question.id]
     val selectedChoiceIndex = assembledQuestion.choices.indexOfFirst { it.id == selectedChoiceId }
       .takeIf { it >= 0 }
     val correctChoiceIndex = assembledQuestion.correctIndex
@@ -1001,7 +1058,7 @@ class ExamViewModel(
       userComment = userComment,
 
       // Position/context within attempt
-      questionIndex = attemptResult.currentIndex,
+      questionIndex = context.questionIndex,
       totalQuestions = attempt.questions.size,
       selectedChoiceIds = selectedChoiceIndex?.let { listOf(it) },
       correctChoiceIds = listOf(correctChoiceIndex),
@@ -1020,7 +1077,7 @@ class ExamViewModel(
 
       // Session/attempt context (no PII)
       sessionId = null, // Not tracked currently
-      attemptId = attemptResult.attemptId,
+      attemptId = context.attemptId,
       seed = attempt.seed.value,
       attemptKind = attempt.mode.name, // e.g., "IP_MOCK", "PRACTICE", "ADAPTIVE"
 
