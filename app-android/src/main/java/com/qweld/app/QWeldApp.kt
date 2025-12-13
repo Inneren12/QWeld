@@ -3,12 +3,22 @@ package com.qweld.app
 import android.app.Application
 import android.util.Log
 import java.util.Locale
+import com.qweld.app.data.error.AppErrorHandlerImpl
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.logging.LogCollectorOwner
+import com.qweld.core.common.error.AppErrorHandler
+import com.qweld.core.common.error.AppErrorHandlerOwner
 import timber.log.Timber
 
-class QWeldApp : Application(), LogCollectorOwner {
+class QWeldApp : Application(), LogCollectorOwner, AppErrorHandlerOwner {
   override val logCollector: LogCollector by lazy { LogCollector() }
+
+  override val errorHandler: AppErrorHandler by lazy {
+    AppErrorHandlerImpl(
+      crashlyticsEnabled = BuildConfig.ENABLE_ANALYTICS,
+      isDebug = BuildConfig.DEBUG
+    )
+  }
 
   override fun onCreate() {
     super.onCreate()

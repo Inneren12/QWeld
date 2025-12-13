@@ -101,13 +101,22 @@ Legend:
 - **Next tasks:**
   - [ ] Periodically validate Crashlytics symbol upload in CI.
 
-### ERROR-2 – User-facing error report dialog
-- **Status:** ⏳
-- **Summary:** A user-visible error reporting dialog layered on top of Crashlytics/analytics to capture context and feedback when something goes wrong.
-- **Implemented in:** Planned for a central error handler in `app-android` and logging/diagnostics helpers in `core-data`.
+### ERROR-2 – Centralized non-fatal error handler
+- **Status:** ⚠️
+- **Summary:** A centralized error handling system that routes non-fatal errors to logging and Crashlytics, with hooks for future UI integration. Core infrastructure is complete; UI-facing error dialogs and user reporting flows are planned for future work.
+- **Implemented in:** `core-common` (`AppError`, `AppErrorHandler`, `ErrorContext`), `core-data` (`AppErrorHandlerImpl`), and `app-android` (`QWeldApp` wiring).
+- **Key components:**
+  - `AppError` sealed class with categories: Unexpected, Network, Reporting, Persistence, ContentLoad, Auth
+  - `ErrorContext` for capturing screen/action/extra metadata (PII-free)
+  - `AppErrorHandler` interface for centralized error routing
+  - `AppErrorHandlerImpl` routes errors to Timber logs and Firebase Crashlytics (respecting analytics opt-out)
+  - `UiErrorEvent` flow for future UI integration (dialogs, snackbars)
+  - Debug vs Release behavior: verbose logging in debug, minimal in release
 - **Next tasks:**
-  - [ ] Introduce a central error handling path that can surface a friendly dialog when non-fatal errors occur in critical flows.
-  - [ ] Add a “Send report” action that attaches a short user comment and high-level context to Crashlytics/logging, respecting analytics/diagnostics opt-out.
+  - [ ] Integrate error handler into feature code (ViewModels, repositories) to replace ad-hoc error logging
+  - [ ] Add a user-facing error report dialog that lets users attach comments and submit to Crashlytics
+  - [ ] Wire UI error events to top-level Scaffold/SnackbarHost for user feedback
+  - [ ] Add unit tests for error handler routing and Crashlytics integration
   - [ ] Verify that no PII or sensitive data is logged, and that error reporting behavior matches privacy expectations.
 
 

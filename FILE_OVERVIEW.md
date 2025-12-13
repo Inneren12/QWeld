@@ -21,7 +21,7 @@ Importance legend:
   - **Edit guidelines:** Add new routes here; change existing route IDs cautiously to avoid breaking deep links/tests.
 - `app-android/src/main/java/com/qweld/app/QWeldApp.kt`
   - **Importance:** 🟡 Important
-  - **Role:** Application class initializing logging, locale controller, and analytics toggles.
+  - **Role:** Application class initializing logging, locale controller, analytics toggles, and centralized error handler (ERROR-2).
   - **Edit guidelines:** Keep initialization lightweight; ensure flags match build variants.
 - `app-android/src/main/java/com/qweld/app/i18n/LocaleController.kt`
   - **Importance:** 🟡 Important
@@ -216,6 +216,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🟡 Important
   - **Role:** Analytics hooks and event logging wrappers.
   - **Edit guidelines:** Avoid logging PII; keep debug flags in mind.
+- `core-data/src/main/java/com/qweld/app/data/error/AppErrorHandlerImpl.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Centralized error handler implementation that routes non-fatal errors to Timber logs and Firebase Crashlytics (ERROR-2).
+  - **Edit guidelines:** Keep logging PII-free; respect analytics opt-out flags. UI error events are emitted for future integration with dialogs/snackbars.
 - `core-data/src/test/...`
   - **Importance:** 🧪 Test
   - **Role:** Tests for repositories, DataStore, and content loaders.
@@ -223,14 +227,22 @@ e threshold (via `localeCoverage.ru.min`).
 
 ## core-common/
 
-- `core-common/src/main/java/com/qweld/app/common/AppEnv.kt`
+- `core-common/src/main/java/com/qweld/core/common/AppEnv.kt`
   - **Importance:** 🟡 Important
   - **Role:** Environment/config helpers shared across modules.
   - **Edit guidelines:** Keep API minimal to avoid tight coupling.
-- `core-common/src/main/java/com/qweld/app/common/logging/Logx.kt`
+- `core-common/src/main/java/com/qweld/core/common/logging/Logx.kt`
   - **Importance:** ⚪ Support
   - **Role:** Logging utilities wrapping Timber.
   - **Edit guidelines:** Safe to adjust formatting; avoid heavy dependencies here.
+- `core-common/src/main/java/com/qweld/core/common/error/AppError.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Core error types and error handler interface for centralized non-fatal error handling (ERROR-2).
+  - **Edit guidelines:** Keep error categories stable; add new categories sparingly. Ensure ErrorContext remains PII-free.
+- `core-common/src/main/java/com/qweld/core/common/error/ErrorHandlerExtensions.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Convenience extensions for common error handling patterns.
+  - **Edit guidelines:** Safe to extend with new helpers; keep parameter defaults consistent.
 
 ## core-model/
 
