@@ -18,6 +18,7 @@ import com.qweld.app.data.reports.QuestionReport
 import com.qweld.app.data.reports.QuestionReportRepository
 import com.qweld.app.data.reports.QuestionReportRetryResult
 import com.qweld.app.data.reports.QuestionReportSubmitResult
+import com.qweld.app.data.reports.QuestionReportSummary
 import com.qweld.app.data.reports.QuestionReportWithId
 import org.junit.Rule
 import org.junit.Test
@@ -93,9 +94,24 @@ private class FakeQuestionReportRepository : QuestionReportRepository {
   override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult =
     QuestionReportSubmitResult.Sent
 
-  override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> {
-    return reports.filter { status == null || it.report.status == status }.take(limit)
-  }
+    override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> {
+        return reports.filter { status == null || it.report.status == status }.take(limit)
+    }
+
+    override suspend fun listReportSummaries(limit: Int): List<QuestionReportSummary> {
+        // В этом UI-тесте summary напрямую не используются, достаточно заглушки.
+        return emptyList()
+    }
+
+    override suspend fun listReportsForQuestion(
+        questionId: String,
+        limit: Int,
+        ): List<QuestionReportWithId> {
+            // На всякий случай делаем разумную реализацию по questionId.
+        return reports
+            .filter { it.report.questionId == questionId }
+            .take(limit)
+    }
 
   override suspend fun getReportById(reportId: String): QuestionReportWithId? {
     return reports.firstOrNull { it.id == reportId }
