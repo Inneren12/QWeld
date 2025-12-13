@@ -90,10 +90,10 @@ Legend:
 - **Summary:** User-facing reporting flow now surfaces on exam and review screens with a dialog for reasons/comments and snackbar feedback; submissions flow through `QuestionReportRepository` with queued fallback. Admin listing still pending.
 - **Implemented in:** `feature-exam` (question/review UI) using `QuestionReportRepository` from `core-data` and admin views in `app-android`.
 - **Next tasks:**
+  - [x] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
   - [x] Add a “Report issue” action on question and review screens that captures question ID, locale, and an optional free-text comment.
   - [x] Wire the UI action to `QuestionReportRepository` so reports are sent (or queued) with enough context for moderation.
-  - [ ] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
-
+  
 ### ERROR-1 – Crash/analytics reporting
 - **Status:** ✅
 - **Summary:** Crashlytics and Analytics hooks are wired via `app-android` build config and guarded by debug flags, with a debug-only Crashlytics test crash entry in Settings to validate symbol uploads.

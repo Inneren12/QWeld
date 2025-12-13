@@ -132,4 +132,13 @@
     <string name="admin_dashboard_retry">Retry</string>
     <string name="admin_dashboard_unknown">Unknown</string>
     <string name="admin_dashboard_unavailable">Admin dashboard is unavailable on this build.</string>
+    <string name="admin_dashboard_reports_header">Question reports</string>
+    <string name="admin_dashboard_reports_empty">No reports available yet.</string>
+    <string name="admin_dashboard_reports_error">Unable to load reports: %1$s</string>
+    <string name="admin_dashboard_reports_count_line">%1$d reports • Last: %2$s</string>
+    <string name="admin_dashboard_reports_comment_preview">Latest comment: %1$s</string>
+    <string name="admin_dashboard_reports_detail_header">Latest reports for %1$s</string>
+    <string name="admin_dashboard_reports_clear_selection">Close</string>
+    <string name="admin_dashboard_reports_detail_empty">No recent reports found for this question.</string>
+    <string name="admin_dashboard_reports_reason_line">Reason: %1$s • Status: %2$s</string>
 </resources>

@@ -5,6 +5,7 @@ import com.qweld.app.data.reports.QuestionReportRepository
 import com.qweld.app.data.reports.QuestionReportSubmitResult
 import com.qweld.app.data.reports.QuestionReportRetryResult
 import com.qweld.app.data.reports.QuestionReportWithId
+import com.qweld.app.data.reports.QuestionReportSummary
 
 /**
  * Shared fake implementation of [QuestionReportRepository] for tests.
@@ -15,6 +16,10 @@ class FakeQuestionReportRepository : QuestionReportRepository {
     QuestionReportSubmitResult.Sent
 
   override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> = emptyList()
+
+  override suspend fun listReportSummaries(limit: Int): List<QuestionReportSummary> = emptyList()
+
+  override suspend fun listReportsForQuestion(questionId: String, limit: Int): List<QuestionReportWithId> = emptyList()
 
   override suspend fun getReportById(reportId: String): QuestionReportWithId? = null
 
