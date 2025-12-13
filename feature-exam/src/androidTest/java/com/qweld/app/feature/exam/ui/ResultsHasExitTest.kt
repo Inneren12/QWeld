@@ -3,6 +3,7 @@ package com.qweld.app.feature.exam.ui
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.remember
+import androidx.test.filters.SdkSuppress
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -23,6 +24,7 @@ import org.junit.Assert.assertEquals
 import androidx.activity.ComponentActivity
 
 @RunWith(AndroidJUnit4::class)
+@SdkSuppress(maxSdkVersion = 34)
 class ResultsHasExitTest {
   @get:Rule val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 

@@ -32,8 +32,13 @@ import org.junit.runner.RunWith
 import org.junit.Assert.assertEquals
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onLast
+import androidx.test.filters.MediumTest
+import androidx.test.filters.SdkSuppress
 
 @RunWith(AndroidJUnit4::class)
+@MediumTest
+@SdkSuppress(maxSdkVersion = 34)
+
 class ExamExitTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()

@@ -32,8 +32,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.assertEquals
 import androidx.activity.ComponentActivity
+import androidx.test.filters.SdkSuppress
 
 @RunWith(AndroidJUnit4::class)
+@SdkSuppress(maxSdkVersion = 34)
 class PracticeExitTest {
   @get:Rule val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 

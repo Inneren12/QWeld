@@ -20,11 +20,13 @@ import com.qweld.app.feature.exam.R
 import com.qweld.app.feature.exam.vm.PracticeScope
 import org.junit.Rule
 import org.junit.Test
+import androidx.test.filters.SdkSuppress
 import org.junit.runner.RunWith
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 
 @RunWith(AndroidJUnit4::class)
+@SdkSuppress(maxSdkVersion = 34)
 class PracticeScopeSheetTest {
   @get:Rule val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 

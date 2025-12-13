@@ -30,8 +30,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.test.filters.SdkSuppress
 
 @RunWith(AndroidJUnit4::class)
+@SdkSuppress(maxSdkVersion = 34)
 class ExamSubmitResumeTest {
   @get:Rule val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 

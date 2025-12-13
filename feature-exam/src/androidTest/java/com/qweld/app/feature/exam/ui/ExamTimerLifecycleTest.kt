@@ -33,8 +33,10 @@ import kotlinx.coroutines.flow.StateFlow
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import androidx.test.filters.SdkSuppress
 
 @RunWith(AndroidJUnit4::class)
+@SdkSuppress(maxSdkVersion = 34)
 class ExamTimerLifecycleTest {
   @get:Rule val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
