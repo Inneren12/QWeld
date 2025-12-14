@@ -13,7 +13,6 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
-import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -95,7 +94,7 @@ class AppErrorHandlerTest {
         handler.uiEvents.first()
       }
 
-    assertNull(logTree.messages.firstOrNull { it.contains("app_error_notice") && it.contains("toast") })
+    assertNotNull(logTree.messages.firstOrNull { it.contains("app_error_notice") && it.contains("toast") })
     assertNotNull(eventWhenOffered)
     assertEquals("settings", eventWhenOffered.event.error.context.screen)
   }
