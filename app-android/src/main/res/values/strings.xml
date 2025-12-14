@@ -150,4 +150,14 @@
     <string name="admin_dashboard_reports_reason_line">Reason: %1$s • Status: %2$s</string>
     <string name="admin_dashboard_reports_after_error">Includes recent error context</string>
     <string name="admin_dashboard_reports_error_context">Reported after an error: %1$s</string>
+
+    <string name="app_error_report_title">Report an app error</string>
+    <string name="app_error_report_message">An application error occurred. You can send a report to help us fix it.</string>
+    <string name="app_error_report_privacy">Reports do not include personal data. Please avoid sharing anything sensitive in your comment.</string>
+    <string name="app_error_report_comment_label">Comment (optional)</string>
+    <string name="app_error_report_comment_supporting">Describe what you were doing when the error happened. Do not include personal information.</string>
+    <string name="app_error_report_submit">Send report</string>
+    <string name="app_error_report_disabled">Error reports are disabled in Settings.</string>
+    <string name="app_error_report_submitted">Thank you! The error report was sent.</string>
+    <string name="app_error_report_failed">Could not send the error report. Please try again.</string>
 </resources>
