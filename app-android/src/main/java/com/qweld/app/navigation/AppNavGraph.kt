@@ -40,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.qweld.app.BuildConfig
 import com.qweld.app.admin.AdminDashboardRoute
 import com.qweld.app.admin.AdminDashboardViewModel
+import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.logging.LogCollector
@@ -285,6 +286,7 @@ fun AppNavGraph(
                   setLoading = { isLoading = it },
                   setError = { errorMessage = it },
                   defaultError = genericErrorText,
+                  appErrorHandler = appErrorHandler,
                 ) {
                   authService.signInAnonymously()
                 }
@@ -296,6 +298,7 @@ fun AppNavGraph(
                   setLoading = { isLoading = it },
                   setError = { errorMessage = it },
                   defaultError = genericErrorText,
+                  appErrorHandler = appErrorHandler,
               ) {
                 authService.signInWithEmail(email, password)
               }
@@ -323,6 +326,7 @@ fun AppNavGraph(
           appEnv = appEnv,
           appVersion = appVersion,
           analytics = analytics,
+          appErrorHandler = appErrorHandler,
           userPrefs = userPrefs,
           appLocaleTag = appLocale,
           prewarmConfig =
@@ -409,6 +413,7 @@ fun AppNavGraph(
               attemptsRepository = attemptsRepository,
               answersRepository = answersRepository,
               questionReportRepository = questionReportRepository,
+              appErrorHandler = appErrorHandler,
             )
           }
           AdminDashboardRoute(viewModel = viewModel, onBack = { navController.popBackStack() })
@@ -597,6 +602,7 @@ private fun <T> runAuthAction(
   setLoading: (Boolean) -> Unit,
   setError: (String?) -> Unit,
   defaultError: String,
+  appErrorHandler: AppErrorHandler? = null,
   block: suspend () -> T,
 ) {
   scope.launch {
@@ -606,6 +612,7 @@ private fun <T> runAuthAction(
       block()
     } catch (exception: Exception) {
       setError(exception.localizedMessage?.takeIf { it.isNotBlank() } ?: defaultError)
+      appErrorHandler?.recordError("auth_action_error", exception)
     } finally {
       setLoading(false)
     }

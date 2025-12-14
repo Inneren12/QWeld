@@ -37,6 +37,7 @@ import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
+import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.core.common.AppEnv
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
@@ -102,6 +103,7 @@ class ExamViewModel(
   private val userPrefs: UserPrefs,
   private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   private val appEnv: AppEnv,
+  private val appErrorHandler: AppErrorHandler? = null,
   private val blueprintResolver: BlueprintResolver = BlueprintResolver(StaticBlueprintProvider()),
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = blueprintResolver::forMode,
   private val seedProvider: () -> Long = { Random.nextLong() },
@@ -992,6 +994,7 @@ class ExamViewModel(
         }
       } catch (e: Exception) {
         Timber.e(e, "[question_report] submit failed for questionId=%s", report.questionId)
+        appErrorHandler?.recordError("question_report_submit_failed", e)
         _reportEvents.emit(QuestionReportUiEvent.Failed)
         // User continues exam even if report fails
       }
@@ -1041,6 +1044,8 @@ class ExamViewModel(
       null
     }
 
+    val recentError = appErrorHandler?.lastErrorWithin(ERROR_CONTEXT_WINDOW_MS)
+
     return com.qweld.app.data.reports.QuestionReport(
       // Core identifiers
       questionId = question.id,
@@ -1080,6 +1085,11 @@ class ExamViewModel(
       attemptId = context.attemptId,
       seed = attempt.seed.value,
       attemptKind = attempt.mode.name, // e.g., "IP_MOCK", "PRACTICE", "ADAPTIVE"
+
+      // Error correlation
+      errorContextId = recentError?.id,
+      errorContextMessage = recentError?.message ?: recentError?.throwableType,
+      recentError = recentError != null,
 
       // Admin / workflow
       status = "OPEN",
@@ -1909,6 +1919,7 @@ class ExamViewModel(
     private const val DEFAULT_USER_ID = "local_user"
     private const val IP_MOCK_PASS_THRESHOLD = 70
     private const val AUTOSAVE_INTERVAL_SEC = 10
+    private val ERROR_CONTEXT_WINDOW_MS = Duration.ofMinutes(3).toMillis()
 
     internal fun resolvePracticeTasks(
       blueprint: ExamBlueprint,
@@ -1978,6 +1989,7 @@ class ExamViewModelFactory(
   private val userPrefs: UserPrefs,
   private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   private val appEnv: AppEnv,
+  private val appErrorHandler: AppErrorHandler? = null,
   private val blueprintProvider: BlueprintProvider = StaticBlueprintProvider(),
   private val blueprintResolver: BlueprintResolver = BlueprintResolver(blueprintProvider),
   private val prewarmConfig: PrewarmConfig = PrewarmConfig(),
@@ -2000,6 +2012,7 @@ class ExamViewModelFactory(
         userPrefs = userPrefs,
         questionReportRepository = questionReportRepository,
         appEnv = appEnv,
+        appErrorHandler = appErrorHandler,
         blueprintResolver = blueprintResolver,
         blueprintProvider = blueprintResolver::forMode,
         prewarmController = prewarmController,

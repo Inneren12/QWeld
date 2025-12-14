@@ -78,7 +78,7 @@ Legend:
 
 ### REPORT-1 – Question report pipeline
 - **Status:** ✅
-- **Summary:** Firestore-backed repository exists with offline queueing and retries on app start; UI can submit reports when enabled, metadata (question/locale, blueprint/content versions, app/device info, timestamps) is captured for triage, and failed submissions are persisted for later delivery.
+- **Summary:** Firestore-backed repository exists with offline queueing and retries on app start; UI can submit reports when enabled, metadata (question/locale, blueprint/content versions, app/device info, timestamps) is captured for triage, and failed submissions are persisted for later delivery. Admin dashboard now surfaces queued-report counts and error-context hints in report summaries.
 - **Implemented in:** `core-data` (`FirestoreQuestionReportRepository`), admin/report screens in `app-android`.
 - **Next tasks:**
   - [x] Add offline queue/retry for reports.
@@ -87,7 +87,7 @@ Legend:
 
 ### REPORT-2 – In-app “Report issue” flow for questions
 - **Status:** ⚠️
-- **Summary:** User-facing reporting flow now surfaces on exam and review screens with a dialog for reasons/comments and snackbar feedback; submissions flow through `QuestionReportRepository` with queued fallback. Admin listing still pending.
+- **Summary:** User-facing reporting flow now surfaces on exam and review screens with a dialog for reasons/comments and snackbar feedback; submissions flow through `QuestionReportRepository` with queued fallback. Admin listing now includes summaries, detail views, and badges when a report followed a recent error.
 - **Implemented in:** `feature-exam` (question/review UI) using `QuestionReportRepository` from `core-data` and admin views in `app-android`.
 - **Next tasks:**
   - [x] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
@@ -102,9 +102,10 @@ Legend:
   - [ ] Periodically validate Crashlytics symbol upload in CI.
 
 ### ERROR-2 – User-facing error report dialog
+- **Status:** ⏳
+- **Summary:** A user-visible error reporting dialog layered on top of Crashlytics/analytics to capture context and feedback when something goes wrong. Session-level error handler now records non-fatal issues for admin visibility and question-report correlation; user dialog still pending.
+- **Implemented in:** Planned for a central error handler in `app-android` and logging/diagnostics helpers in `core-data`.
 - **Status:** ✅
-- **Summary:** Centralized `AppErrorHandler` now emits UI error events into the top-level scaffold, which opens a “Сообщить об ошибке приложения” dialog to capture an optional comment and context. Submissions flow to Crashlytics/logging when analytics is enabled and are skipped with user-visible messaging when diagnostics are opted out.
-- **Implemented in:** `app-android` (`AppErrorHandler`, `AppErrorReportDialog`, `AppNavGraph` host integration, Crashlytics wiring in `MainActivity`).
 - **Next tasks:**
   - [ ] Propagate handler usage through more feature screens so unexpected errors surface the dialog consistently.
   - [ ] Add UI/instrumentation coverage for the dialog (visibility, opt-out gating, submission success/failure states) to guard regressions.

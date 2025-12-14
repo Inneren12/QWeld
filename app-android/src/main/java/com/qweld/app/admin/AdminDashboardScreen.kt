@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
+import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Storage
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -179,6 +180,10 @@ private fun DashboardContent(
     }
 
     Card {
+      SystemHealthCard(systemHealth = data.systemHealth, onRefresh = onRefresh)
+    }
+
+    Card {
       Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
           Icon(imageVector = Icons.Filled.BugReport, contentDescription = null)
@@ -216,6 +221,63 @@ private fun DbHealthBlock(dbHealth: DbHealth) {
         stringResource(id = R.string.admin_dashboard_db_expected_version) to dbHealth.expectedVersion,
       ),
     )
+  }
+}
+
+@Composable
+private fun SystemHealthCard(systemHealth: SystemHealthStatus, onRefresh: () -> Unit) {
+  val queueStatus = systemHealth.queueStatus
+  val oldestQueued = queueStatus.oldestQueuedAt?.asDateTime()
+    ?: stringResource(id = R.string.admin_dashboard_unknown)
+  val lastQueueAttempt = queueStatus.lastAttemptAt?.asDateTime()
+    ?: stringResource(id = R.string.admin_dashboard_unknown)
+  val lastError = systemHealth.lastErrorAt?.asDateTime()
+    ?: stringResource(id = R.string.admin_dashboard_health_no_errors)
+
+  Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+      Icon(imageVector = Icons.Filled.Error, contentDescription = null)
+      Text(text = stringResource(id = R.string.admin_dashboard_health_header), style = MaterialTheme.typography.titleMedium)
+    }
+
+    StatsList(
+      items = listOf(
+        stringResource(id = R.string.admin_dashboard_health_queue_count) to queueStatus.queuedCount,
+        stringResource(id = R.string.admin_dashboard_health_errors_count) to systemHealth.recentErrorCount,
+      ),
+    )
+
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+      Text(
+        text = stringResource(id = R.string.admin_dashboard_health_oldest_queue, oldestQueued),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+      Text(
+        text = stringResource(id = R.string.admin_dashboard_health_last_attempt, lastQueueAttempt),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    }
+
+    Divider()
+
+    if (systemHealth.hasErrors) {
+      Text(
+        text = stringResource(id = R.string.admin_dashboard_health_last_error, lastError),
+        style = MaterialTheme.typography.bodyMedium,
+      )
+    } else {
+      Text(
+        text = stringResource(id = R.string.admin_dashboard_health_no_errors),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    }
+
+    Button(onClick = onRefresh, modifier = Modifier.fillMaxWidth()) {
+      Text(text = stringResource(id = R.string.admin_dashboard_refresh))
+    }
   }
 }
 
@@ -346,6 +408,14 @@ private fun QuestionReportSummaryRow(
         )
       }
 
+      if (summary.hasErrorContext) {
+        Text(
+          text = stringResource(id = R.string.admin_dashboard_reports_after_error),
+          style = MaterialTheme.typography.bodySmall,
+          color = MaterialTheme.colorScheme.error,
+        )
+      }
+
       summary.latestUserComment?.takeIf { it.isNotBlank() }?.let { comment ->
         Text(
           text = stringResource(id = R.string.admin_dashboard_reports_comment_preview, comment.take(140)),
@@ -444,6 +514,16 @@ private fun QuestionReportDetailItem(reportWithId: QuestionReportWithId) {
       text = stringResource(id = R.string.admin_dashboard_reports_reason_line, report.reasonCode, report.status),
       style = MaterialTheme.typography.bodyMedium,
     )
+
+    if (report.recentError == true || !report.errorContextMessage.isNullOrBlank()) {
+      val message = report.errorContextMessage?.takeIf { it.isNotBlank() }
+        ?: stringResource(id = R.string.admin_dashboard_reports_after_error)
+      Text(
+        text = stringResource(id = R.string.admin_dashboard_reports_error_context, message),
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+      )
+    }
 
     report.userComment?.takeIf { it.isNotBlank() }?.let { comment ->
       Text(

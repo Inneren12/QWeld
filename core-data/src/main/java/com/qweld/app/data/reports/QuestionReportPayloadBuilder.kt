@@ -60,6 +60,11 @@ internal class QuestionReportPayloadBuilder(
     report.seed.putIfNotNull(data, "seed")
     report.attemptKind.putIfNotNull(data, "attemptKind")
 
+    // Error correlation
+    report.errorContextId.putIfNotNull(data, "errorContextId")
+    report.errorContextMessage.putIfNotNull(data, "errorContextMessage")
+    report.recentError.putIfNotNull(data, "recentError")
+
     // Admin / workflow
     data["status"] = report.status
     data["createdAt"] = createdAtValueProvider()

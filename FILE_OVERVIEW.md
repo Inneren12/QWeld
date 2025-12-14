@@ -45,7 +45,7 @@ Importance legend:
   - **Edit guidelines:** UI changes are safe; be careful with Firestore/reporting toggles.
 - `app-android/src/main/java/com/qweld/app/admin/AdminDashboardViewModel.kt` and `AdminDashboardScreen.kt`
   - **Importance:** 🟡 Important
-  - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, and DB health.
+  - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, DB health, and system/report health (queued reports, recent errors).
   - **Edit guidelines:** Keep `BuildConfig.DEBUG` gating intact and source stats through repositories instead of direct Room access.
 - `app-android/src/androidTest/java/com/qweld/app/admin/AdminReportsUiTest.kt`
   - **Importance:** 🧪 Test
@@ -239,6 +239,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** ⚪ Support
   - **Role:** Logging utilities wrapping Timber.
   - **Edit guidelines:** Safe to adjust formatting; avoid heavy dependencies here.
+- `core-common/src/main/java/com/qweld/app/common/error/AppErrorHandler.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Lightweight in-memory tracker for recent non-fatal errors used for admin visibility and report correlation.
+  - **Edit guidelines:** Keep buffer bounded and avoid storing PII in error messages.
 
 ## core-model/
 

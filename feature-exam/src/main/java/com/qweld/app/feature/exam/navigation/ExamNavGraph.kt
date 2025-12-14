@@ -37,6 +37,7 @@ import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
 import com.qweld.core.common.AppEnv
+import com.qweld.app.common.error.AppErrorHandler
 import java.util.Locale
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -61,6 +62,7 @@ fun ExamNavGraph(
   statsRepository: UserStatsRepository,
   questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   appEnv: AppEnv,
+  appErrorHandler: AppErrorHandler? = null,
   appVersion: String,
   analytics: Analytics,
   userPrefs: UserPrefs,
@@ -78,6 +80,7 @@ fun ExamNavGraph(
       statsRepository,
       questionReportRepository,
       appEnv,
+      appErrorHandler,
       userPrefs,
       blueprintProvider,
       blueprintResolver,
@@ -91,6 +94,7 @@ fun ExamNavGraph(
         userPrefs = userPrefs,
         questionReportRepository = questionReportRepository,
         appEnv = appEnv,
+        appErrorHandler = appErrorHandler,
         blueprintProvider = blueprintProvider,
         blueprintResolver = blueprintResolver,
         prewarmConfig = prewarmConfig,
