@@ -2,6 +2,7 @@ package com.qweld.app.feature.exam.fakes
 
 import com.qweld.app.data.reports.QuestionReport
 import com.qweld.app.data.reports.QuestionReportRepository
+import com.qweld.app.data.reports.QuestionReportQueueStatus
 import com.qweld.app.data.reports.QuestionReportSubmitResult
 import com.qweld.app.data.reports.QuestionReportRetryResult
 import com.qweld.app.data.reports.QuestionReportWithId
@@ -36,4 +37,8 @@ class FakeQuestionReportRepository : QuestionReportRepository {
     maxAttempts: Int,
     batchSize: Int,
   ) = QuestionReportRetryResult(sent = 0, dropped = 0)
+
+  override suspend fun getQueueStatus(): QuestionReportQueueStatus {
+    return QuestionReportQueueStatus(queuedCount = 0, oldestQueuedAt = null, lastAttemptAt = null)
+  }
 }

@@ -47,6 +47,11 @@ data class QuestionReport(
   val seed: Long? = null,
   val attemptKind: String? = null,
 
+  // Optional error correlation
+  val errorContextId: String? = null,
+  val errorContextMessage: String? = null,
+  val recentError: Boolean? = null,
+
   // Admin / workflow
   val status: String = "OPEN",
   val createdAt: Timestamp? = null,

@@ -7,6 +7,9 @@ import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 import timber.log.Timber
 
+/**
+ * Analytics wrapper. Events must remain PII-free and respect user opt-out via [setEnabled].
+ */
 interface Analytics {
   fun log(event: String, params: Map<String, Any?> = emptyMap())
 }

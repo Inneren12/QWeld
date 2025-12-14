@@ -12,6 +12,7 @@ internal class QuestionReportPayloadBuilder(
     val environmentMetadata = environmentMetadataProvider.metadata()
 
     // Core identifiers
+    // Do not include user identifiers or auth context; payload must remain PII-free.
     data["questionId"] = report.questionId
     data["taskId"] = report.taskId
     data["blockId"] = report.blockId
@@ -25,6 +26,7 @@ internal class QuestionReportPayloadBuilder(
     // Reason
     data["reasonCode"] = report.reasonCode
     report.reasonDetail.putIfNotNull(data, "reasonDetail")
+    // User comment is free-form; keep as-is but avoid adding any derived user identity fields here.
     report.userComment.putIfNotNull(data, "userComment")
 
     // Position/context within attempt
@@ -59,6 +61,11 @@ internal class QuestionReportPayloadBuilder(
     report.attemptId.putIfNotNull(data, "attemptId")
     report.seed.putIfNotNull(data, "seed")
     report.attemptKind.putIfNotNull(data, "attemptKind")
+
+    // Error correlation
+    report.errorContextId.putIfNotNull(data, "errorContextId")
+    report.errorContextMessage.putIfNotNull(data, "errorContextMessage")
+    report.recentError.putIfNotNull(data, "recentError")
 
     // Admin / workflow
     data["status"] = report.status

@@ -113,6 +113,7 @@
     <string name="settings_test_crash">Trigger test crash (debug only)</string>
     <string name="settings_test_crash_note">Use on debug builds to verify Crashlytics symbol upload. Build with -PenableAnalyticsDebug=true so reports are sent.</string>
     <string name="settings_test_crash_disabled">Rebuild with analytics enabled (enableAnalyticsDebug=true) to send Crashlytics reports.</string>
+    <string name="settings_test_crash_disabled_opt_out">Enable analytics in Settings to allow Crashlytics reports; they stay disabled when analytics is turned off.</string>
     <string name="settings_open_admin_dashboard">Open admin dashboard</string>
     <string name="admin_dashboard_title">Admin dashboard</string>
     <string name="admin_dashboard_description">Debug-only surface for internal diagnostics.</string>
@@ -128,6 +129,13 @@
     <string name="admin_dashboard_db_status_mismatch">DB version differs from expected schema</string>
     <string name="admin_dashboard_db_version">Current version</string>
     <string name="admin_dashboard_db_expected_version">Expected version</string>
+    <string name="admin_dashboard_health_header">System health / Errors</string>
+    <string name="admin_dashboard_health_errors_count">Non-fatal errors (this session)</string>
+    <string name="admin_dashboard_health_last_error">Last error: %1$s</string>
+    <string name="admin_dashboard_health_no_errors">No errors recorded this session.</string>
+    <string name="admin_dashboard_health_queue_count">Queued question reports</string>
+    <string name="admin_dashboard_health_oldest_queue">Oldest queued: %1$s</string>
+    <string name="admin_dashboard_health_last_attempt">Last queue retry: %1$s</string>
     <string name="admin_dashboard_refresh">Refresh stats</string>
     <string name="admin_dashboard_retry">Retry</string>
     <string name="admin_dashboard_unknown">Unknown</string>
@@ -141,4 +149,16 @@
     <string name="admin_dashboard_reports_clear_selection">Close</string>
     <string name="admin_dashboard_reports_detail_empty">No recent reports found for this question.</string>
     <string name="admin_dashboard_reports_reason_line">Reason: %1$s • Status: %2$s</string>
+    <string name="admin_dashboard_reports_after_error">Includes recent error context</string>
+    <string name="admin_dashboard_reports_error_context">Reported after an error: %1$s</string>
+
+    <string name="app_error_report_title">Report an app error</string>
+    <string name="app_error_report_message">An application error occurred. You can send a report to help us fix it.</string>
+    <string name="app_error_report_privacy">Reports do not include personal data. Please avoid sharing anything sensitive in your comment.</string>
+    <string name="app_error_report_comment_label">Comment (optional)</string>
+    <string name="app_error_report_comment_supporting">Describe what you were doing when the error happened. Do not include personal information.</string>
+    <string name="app_error_report_submit">Send report</string>
+    <string name="app_error_report_disabled">Error reports are disabled in Settings.</string>
+    <string name="app_error_report_submitted">Thank you! The error report was sent.</string>
+    <string name="app_error_report_failed">Could not send the error report. Please try again.</string>
 </resources>
