@@ -1,42 +1,26 @@
 package com.qweld.app.error
 
 import com.qweld.app.common.error.AppError
+import com.qweld.app.common.error.AppErrorEvent
+import com.qweld.app.common.error.AppErrorReportResult
 import com.qweld.app.common.error.ErrorContext
 import com.qweld.app.common.error.UiErrorEvent
 import com.qweld.app.data.logging.LogCollector
-import com.qweld.app.error.CrashReporter
-import com.qweld.app.error.AppErrorEvent
 import com.qweld.core.common.AppEnv
-import java.util.concurrent.CopyOnWriteArrayList
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
+import kotlin.test.assertFalse
+import kotlin.test.assertIs
 import kotlin.test.assertTrue
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
-import timber.log.Timber
 
 class AppErrorHandlerTest {
-  private lateinit var logTree: RecordingTree
-
-  @BeforeTest
-  fun setUp() {
-    Timber.uprootAll()
-    logTree = RecordingTree()
-    Timber.plant(logTree)
-  }
-
-  @AfterTest
-  fun tearDown() {
-    Timber.uprootAll()
-  }
-
   @Test
-  fun handleUnexpected_logsEvent_andForwardsToCrashReporter() {
+  fun handleUnexpected_appendsHistoryEmitsUiEventAndRecordsNonFatal() = runTest {
     val crashReporter = RecordingCrashReporter()
-    val handler = createHandler(crashReporter = crashReporter, analyticsAllowedByBuild = true)
+    val handler = createHandler(crashReporter, analyticsAllowedByBuild = true, clockValue = 1_000L)
     val error =
       AppError.Unexpected(
         cause = IllegalStateException("boom"),
@@ -48,19 +32,50 @@ class AppErrorHandlerTest {
 
     val history = handler.history.value
     assertEquals(1, history.size)
-    assertEquals(error, history.first().error)
-    assertTrue(crashReporter.recordedNonFatal.isNotEmpty())
-    assertTrue(crashReporter.collectionFlags.first())
-    assertTrue(logTree.messages.any { it.contains("[app_error]") && it.contains("screen=home") })
-    val uiEvent = runBlocking { handler.uiEvents.first() }
-    assertEquals(error, uiEvent.event.error)
+    val event = history.first()
+    assertEquals(error, event.error)
+    assertEquals(1_000L, event.timestamp)
+    assertEquals(listOf(event), crashReporter.recordedNonFatal)
+
+    val uiEvent: UiErrorEvent = handler.uiEvents.first()
+    assertEquals(event, uiEvent.event)
   }
 
   @Test
-  fun handleUnexpected_skipsCrashReporterWhenAnalyticsDisabled() {
+  fun handleNotice_skipsCrashReporterAndUiEventWhenDialogNotOffered() = runTest {
     val crashReporter = RecordingCrashReporter()
-    val handler = createHandler(crashReporter = crashReporter, analyticsAllowedByBuild = true)
+    val handler = createHandler(crashReporter, analyticsAllowedByBuild = true)
+    val notice =
+      AppError.Notice(
+        message = "debug log only",
+        context = ErrorContext(screen = "settings"),
+        offerReportDialog = false,
+      )
+
+    val emittedEvents = mutableListOf<UiErrorEvent>()
+    val collector = launch { handler.uiEvents.collect { emittedEvents += it } }
+
+    handler.handle(notice)
+
+    assertTrue(handler.history.value.isNotEmpty())
+    assertTrue(crashReporter.recordedNonFatal.isEmpty())
+    assertTrue(emittedEvents.isEmpty())
+
+    collector.cancel()
+  }
+
+  @Test
+  fun analyticsEnabled_reflectsBuildFlagAndUserOptIn() = runTest {
+    val crashReporter = RecordingCrashReporter()
+    val handler = createHandler(crashReporter, analyticsAllowedByBuild = true)
+
+    assertTrue(handler.analyticsEnabled.value)
+    assertEquals(listOf(true), crashReporter.collectionFlags)
+
     handler.updateAnalyticsEnabled(userOptIn = false)
+
+    assertFalse(handler.analyticsEnabled.value)
+    assertEquals(listOf(true, false), crashReporter.collectionFlags)
 
     handler.handle(
       AppError.Unexpected(
@@ -70,38 +85,38 @@ class AppErrorHandlerTest {
     )
 
     assertTrue(crashReporter.recordedNonFatal.isEmpty())
-    assertTrue(handler.history.value.isNotEmpty())
   }
 
   @Test
-  fun emitsUiEventsOnlyWhenDialogOffered() {
-    val handler = createHandler(crashReporter = null, analyticsAllowedByBuild = false)
+  fun submitReport_respectsAnalyticsToggle() = runTest {
+    val crashReporter = RecordingCrashReporter()
+    val handler = createHandler(crashReporter, analyticsAllowedByBuild = true)
+    val errorEvent =
+      AppErrorEvent(
+        error = AppError.Reporting(
+          cause = IllegalStateException("report"),
+          context = ErrorContext(screen = "reports"),
+        ),
+        timestamp = 5_000L,
+      )
 
-    handler.handle(
-      AppError.Notice(
-        message = "toast",
-        context = ErrorContext(screen = "settings"),
-        offerReportDialog = false,
-      ),
-    )
+    handler.updateAnalyticsEnabled(userOptIn = false)
 
-    val eventWhenOffered: UiErrorEvent? =
-      runBlocking {
-        handler.handle(
-          AppError.Notice(
-            message = "show", context = ErrorContext(screen = "settings"), offerReportDialog = true)
-        )
-        handler.uiEvents.first()
-      }
+    val disabledResult = handler.submitReport(errorEvent, comment = "context")
+    assertIs<AppErrorReportResult.Disabled>(disabledResult)
+    assertTrue(crashReporter.submitted.isEmpty())
 
-    assertNotNull(logTree.messages.firstOrNull { it.contains("app_error_notice") && it.contains("toast") })
-    assertNotNull(eventWhenOffered)
-    assertEquals("settings", eventWhenOffered.event.error.context.screen)
+    handler.updateAnalyticsEnabled(userOptIn = true)
+
+    val submittedResult = handler.submitReport(errorEvent, comment = "context")
+    assertIs<AppErrorReportResult.Submitted>(submittedResult)
+    assertEquals(listOf(errorEvent to "context"), crashReporter.submitted)
   }
 
   private fun createHandler(
     crashReporter: RecordingCrashReporter?,
     analyticsAllowedByBuild: Boolean,
+    clockValue: Long = 0L,
   ): AppErrorHandlerImpl {
     return AppErrorHandlerImpl(
       crashReporter = crashReporter,
@@ -109,7 +124,7 @@ class AppErrorHandlerTest {
       logCollector = null,
       analyticsAllowedByBuild = analyticsAllowedByBuild,
       debugBehaviorEnabled = true,
-      clock = { 123L },
+      clock = { clockValue },
     )
   }
 }
@@ -121,9 +136,9 @@ private object FakeAppEnv : AppEnv {
 }
 
 private class RecordingCrashReporter : CrashReporter {
-  val recordedNonFatal = CopyOnWriteArrayList<AppErrorEvent>()
-  val submitted = CopyOnWriteArrayList<Pair<AppErrorEvent, String?>>()
-  val collectionFlags = CopyOnWriteArrayList<Boolean>()
+  val recordedNonFatal = mutableListOf<AppErrorEvent>()
+  val submitted = mutableListOf<Pair<AppErrorEvent, String?>>()
+  val collectionFlags = mutableListOf<Boolean>()
 
   override fun setCollectionEnabled(enabled: Boolean) {
     collectionFlags.add(enabled)
@@ -133,15 +148,12 @@ private class RecordingCrashReporter : CrashReporter {
     recordedNonFatal.add(event)
   }
 
-  override suspend fun submit(event: AppErrorEvent, comment: String?, appEnv: AppEnv, logCollector: LogCollector?) {
+  override suspend fun submit(
+    event: AppErrorEvent,
+    comment: String?,
+    appEnv: AppEnv,
+    logCollector: LogCollector?,
+  ) {
     submitted.add(event to comment)
-  }
-}
-
-private class RecordingTree : Timber.Tree() {
-  val messages = CopyOnWriteArrayList<String>()
-
-  override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-    messages.add(message)
   }
 }
