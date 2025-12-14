@@ -29,4 +29,10 @@ interface QueuedQuestionReportDao {
 
   @Query("SELECT COUNT(*) FROM queued_question_reports")
   suspend fun count(): Int
+
+  @Query("SELECT MIN(created_at) FROM queued_question_reports")
+  suspend fun oldestCreatedAt(): Long?
+
+  @Query("SELECT MAX(last_attempt_at) FROM queued_question_reports")
+  suspend fun lastAttemptAt(): Long?
 }

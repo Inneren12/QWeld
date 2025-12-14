@@ -128,6 +128,13 @@
     <string name="admin_dashboard_db_status_mismatch">DB version differs from expected schema</string>
     <string name="admin_dashboard_db_version">Current version</string>
     <string name="admin_dashboard_db_expected_version">Expected version</string>
+    <string name="admin_dashboard_health_header">System health / Errors</string>
+    <string name="admin_dashboard_health_errors_count">Non-fatal errors (this session)</string>
+    <string name="admin_dashboard_health_last_error">Last error: %1$s</string>
+    <string name="admin_dashboard_health_no_errors">No errors recorded this session.</string>
+    <string name="admin_dashboard_health_queue_count">Queued question reports</string>
+    <string name="admin_dashboard_health_oldest_queue">Oldest queued: %1$s</string>
+    <string name="admin_dashboard_health_last_attempt">Last queue retry: %1$s</string>
     <string name="admin_dashboard_refresh">Refresh stats</string>
     <string name="admin_dashboard_retry">Retry</string>
     <string name="admin_dashboard_unknown">Unknown</string>
@@ -141,4 +148,6 @@
     <string name="admin_dashboard_reports_clear_selection">Close</string>
     <string name="admin_dashboard_reports_detail_empty">No recent reports found for this question.</string>
     <string name="admin_dashboard_reports_reason_line">Reason: %1$s • Status: %2$s</string>
+    <string name="admin_dashboard_reports_after_error">Includes recent error context</string>
+    <string name="admin_dashboard_reports_error_context">Reported after an error: %1$s</string>
 </resources>

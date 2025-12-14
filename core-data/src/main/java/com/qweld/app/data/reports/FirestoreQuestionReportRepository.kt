@@ -103,6 +103,17 @@ class FirestoreQuestionReportRepository(
     return QuestionReportRetryResult(sent = sent, dropped = dropped)
   }
 
+  override suspend fun getQueueStatus(): QuestionReportQueueStatus {
+    val count = queuedReportDao.count()
+    val oldest = queuedReportDao.oldestCreatedAt()
+    val lastAttempt = queuedReportDao.lastAttemptAt()
+    return QuestionReportQueueStatus(
+      queuedCount = count,
+      oldestQueuedAt = oldest,
+      lastAttemptAt = lastAttempt,
+    )
+  }
+
   override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> {
     try {
       var query: Query = firestoreOrThrow().collection(COLLECTION_NAME)
@@ -158,6 +169,10 @@ class FirestoreQuestionReportRepository(
       return grouped.values.map { reports ->
         val latest = reports.first()
         val latestComment = reports.firstNotNullOfOrNull { it.report.userComment?.takeIf { comment -> comment.isNotBlank() } }
+        val hasErrorContext =
+          reports.any { reportWithId ->
+            reportWithId.report.recentError == true || !reportWithId.report.errorContextId.isNullOrBlank()
+          }
 
         QuestionReportSummary(
           questionId = latest.report.questionId,
@@ -169,6 +184,7 @@ class FirestoreQuestionReportRepository(
           lastReasonCode = latest.report.reasonCode,
           lastLocale = latest.report.locale,
           latestUserComment = latestComment,
+          hasErrorContext = hasErrorContext,
         )
       }.sortedByDescending { it.lastReportAt?.seconds ?: 0 }
     } catch (e: Exception) {
@@ -337,6 +353,11 @@ class FirestoreQuestionReportRepository(
       attemptId = data["attemptId"] as? String,
       seed = (data["seed"] as? Number)?.toLong(),
       attemptKind = data["attemptKind"] as? String,
+
+      // Error correlation
+      errorContextId = data["errorContextId"] as? String,
+      errorContextMessage = data["errorContextMessage"] as? String,
+      recentError = data["recentError"] as? Boolean,
 
       // Admin / workflow
       status = data["status"] as? String ?: "OPEN",

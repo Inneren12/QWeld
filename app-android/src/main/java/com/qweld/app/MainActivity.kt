@@ -28,6 +28,7 @@ import com.qweld.app.data.logging.LogCollectorOwner
 import com.qweld.app.data.reports.FirestoreQuestionReportRepository
 import com.qweld.app.data.reports.DefaultReportEnvironmentMetadataProvider
 import com.qweld.app.data.reports.RetryQueuedQuestionReportsUseCase
+import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -77,6 +78,7 @@ fun QWeldAppRoot(
   val lruCacheSize by userPrefs.lruCacheSizeFlow().collectAsState(
     initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
   )
+  val appErrorHandler = remember { AppErrorHandler() }
   val questionRepository = remember(appContext, lruCacheSize) {
     AssetQuestionRepository(appContext, cacheCapacity = lruCacheSize)
   }
@@ -119,6 +121,7 @@ fun QWeldAppRoot(
       logCollector = logCollector,
       userPrefs = userPrefs,
       contentIndexReader = contentIndexReader,
+      appErrorHandler = appErrorHandler,
     )
   }
 }

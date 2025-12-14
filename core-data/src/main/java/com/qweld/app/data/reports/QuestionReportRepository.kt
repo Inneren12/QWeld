@@ -79,6 +79,11 @@ interface QuestionReportRepository {
     maxAttempts: Int = DEFAULT_MAX_RETRY_ATTEMPTS,
     batchSize: Int = DEFAULT_RETRY_BATCH_SIZE,
   ): QuestionReportRetryResult
+
+  /**
+   * Returns basic visibility into the offline report queue.
+   */
+  suspend fun getQueueStatus(): QuestionReportQueueStatus
 }
 
 /**
@@ -100,11 +105,18 @@ data class QuestionReportSummary(
   val lastReasonCode: String?,
   val lastLocale: String?,
   val latestUserComment: String?,
+  val hasErrorContext: Boolean = false,
 )
 
 data class QuestionReportRetryResult(
   val sent: Int,
   val dropped: Int,
+)
+
+data class QuestionReportQueueStatus(
+  val queuedCount: Int,
+  val oldestQueuedAt: Long?,
+  val lastAttemptAt: Long?,
 )
 
 const val DEFAULT_MAX_RETRY_ATTEMPTS = 5
