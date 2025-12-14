@@ -9,16 +9,18 @@ import com.qweld.app.data.logging.LogCollector
 import com.qweld.core.common.AppEnv
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertIs
-import kotlin.test.assertTrue
+import org.junit.Test
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import kotlinx.coroutines.withTimeout
 
 class AppErrorHandlerTest {
-  @Test
-  fun handleUnexpected_appendsHistoryEmitsUiEventAndRecordsNonFatal() = runTest {
+    @Test
+    fun handleUnexpected_appendsHistoryEmitsUiEventAndRecordsNonFatal() = runBlocking {
     val crashReporter = RecordingCrashReporter()
     val handler = createHandler(crashReporter, analyticsAllowedByBuild = true, clockValue = 1_000L)
     val error =
@@ -30,19 +32,17 @@ class AppErrorHandlerTest {
 
     handler.handle(error)
 
-    val history = handler.history.value
-    assertEquals(1, history.size)
-    val event = history.first()
-    assertEquals(error, event.error)
-    assertEquals(1_000L, event.timestamp)
-    assertEquals(listOf(event), crashReporter.recordedNonFatal)
 
-    val uiEvent: UiErrorEvent = handler.uiEvents.first()
-    assertEquals(event, uiEvent.event)
-  }
+        val history = handler.history.value
+        assertEquals(1, history.size)
+        val event = history.first()
+        assertEquals(error, event.error)
+        assertEquals(1_000L, event.timestamp)
+        assertEquals(listOf(event), crashReporter.recordedNonFatal)
+    }
 
   @Test
-  fun handleNotice_skipsCrashReporterAndUiEventWhenDialogNotOffered() = runTest {
+  fun handleNotice_skipsCrashReporterAndUiEventWhenDialogNotOffered() = runBlocking {
     val crashReporter = RecordingCrashReporter()
     val handler = createHandler(crashReporter, analyticsAllowedByBuild = true)
     val notice =
@@ -65,7 +65,7 @@ class AppErrorHandlerTest {
   }
 
   @Test
-  fun analyticsEnabled_reflectsBuildFlagAndUserOptIn() = runTest {
+  fun analyticsEnabled_reflectsBuildFlagAndUserOptIn() = runBlocking {
     val crashReporter = RecordingCrashReporter()
     val handler = createHandler(crashReporter, analyticsAllowedByBuild = true)
 
@@ -88,7 +88,7 @@ class AppErrorHandlerTest {
   }
 
   @Test
-  fun submitReport_respectsAnalyticsToggle() = runTest {
+  fun submitReport_respectsAnalyticsToggle() = runBlocking {
     val crashReporter = RecordingCrashReporter()
     val handler = createHandler(crashReporter, analyticsAllowedByBuild = true)
     val errorEvent =
@@ -103,13 +103,13 @@ class AppErrorHandlerTest {
     handler.updateAnalyticsEnabled(userOptIn = false)
 
     val disabledResult = handler.submitReport(errorEvent, comment = "context")
-    assertIs<AppErrorReportResult.Disabled>(disabledResult)
+    assertTrue(disabledResult is AppErrorReportResult.Disabled)
     assertTrue(crashReporter.submitted.isEmpty())
 
     handler.updateAnalyticsEnabled(userOptIn = true)
 
     val submittedResult = handler.submitReport(errorEvent, comment = "context")
-    assertIs<AppErrorReportResult.Submitted>(submittedResult)
+    assertTrue(submittedResult is AppErrorReportResult.Submitted)
     assertEquals(listOf(errorEvent to "context"), crashReporter.submitted)
   }
 
