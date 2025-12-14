@@ -28,6 +28,9 @@ import com.qweld.app.data.logging.LogCollectorOwner
 import com.qweld.app.data.reports.FirestoreQuestionReportRepository
 import com.qweld.app.data.reports.DefaultReportEnvironmentMetadataProvider
 import com.qweld.app.data.reports.RetryQueuedQuestionReportsUseCase
+import com.qweld.app.common.error.AppErrorHandler
+import com.qweld.app.error.AppErrorHandler
+import com.qweld.app.error.CrashlyticsCrashReporter
 import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -66,6 +69,7 @@ class MainActivity : ComponentActivity() {
         Firebase.crashlytics.isCrashlyticsCollectionEnabled = analyticsAllowed
       }
     }
+    Firebase.crashlytics.isCrashlyticsCollectionEnabled = BuildConfig.ENABLE_ANALYTICS
     setContent { QWeldAppRoot(analytics = analytics, userPrefs = userPrefs) }
   }
 }
@@ -77,8 +81,13 @@ fun QWeldAppRoot(
 ) {
   val context = LocalContext.current
   val appContext = context.applicationContext
+  val appEnv = remember { AppEnvImpl() }
   val lruCacheSize by userPrefs.lruCacheSizeFlow().collectAsState(
     initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
+  )
+  val appErrorHandler = remember { AppErrorHandler() }
+  val analyticsEnabled by userPrefs.analyticsEnabled.collectAsState(
+    initial = UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED,
   )
   val questionRepository = remember(appContext, lruCacheSize) {
     AssetQuestionRepository(appContext, cacheCapacity = lruCacheSize)
@@ -90,7 +99,7 @@ fun QWeldAppRoot(
   val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
   val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
   val questionReportRepository = remember(database) {
-    val environmentMetadataProvider = DefaultReportEnvironmentMetadataProvider(appEnv = AppEnvImpl())
+    val environmentMetadataProvider = DefaultReportEnvironmentMetadataProvider(appEnv = appEnv)
     FirestoreQuestionReportRepository(
       Firebase.firestore,
       database.queuedQuestionReportDao(),
@@ -103,6 +112,21 @@ fun QWeldAppRoot(
   val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance(), analytics) }
   val logCollector: LogCollector? = remember(appContext) {
     (appContext as? LogCollectorOwner)?.logCollector
+  }
+  val crashReporter = remember { CrashlyticsCrashReporter(Firebase.crashlytics.takeIf { BuildConfig.ENABLE_ANALYTICS }) }
+  val appErrorHandler =
+    remember(logCollector) {
+      AppErrorHandler(
+        crashReporter = crashReporter,
+        appEnv = appEnv,
+        logCollector = logCollector,
+        analyticsAllowedByBuild = BuildConfig.ENABLE_ANALYTICS,
+      )
+    }
+  val errorReportingEnabled by appErrorHandler.analyticsEnabled.collectAsState()
+
+  LaunchedEffect(analyticsEnabled) {
+    appErrorHandler.updateAnalyticsEnabled(analyticsEnabled)
   }
 
   LaunchedEffect(retryQueuedReports) {
@@ -122,6 +146,10 @@ fun QWeldAppRoot(
       logCollector = logCollector,
       userPrefs = userPrefs,
       contentIndexReader = contentIndexReader,
+      appErrorHandler = appErrorHandler,
+      appEnv = appEnv,
+      appErrorHandler = appErrorHandler,
+      errorReportingEnabled = errorReportingEnabled,
     )
   }
 }

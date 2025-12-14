@@ -2,6 +2,7 @@ package com.qweld.app.admin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.data.db.QWELD_DB_VERSION
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptStats
@@ -9,6 +10,7 @@ import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.reports.QuestionReportRepository
 import com.qweld.app.data.reports.QuestionReportSummary
 import com.qweld.app.data.reports.QuestionReportWithId
+import com.qweld.app.data.reports.QuestionReportQueueStatus
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,6 +25,7 @@ class AdminDashboardViewModel(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
   private val questionReportRepository: QuestionReportRepository,
+  private val appErrorHandler: AppErrorHandler? = null,
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
 
@@ -153,6 +156,8 @@ class AdminDashboardViewModel(
     val attemptStats = attemptsRepository.getStats()
     val answerCount = answersRepository.countAll()
     val userVersion = attemptsRepository.getUserVersion()
+    val queueStatus = questionReportRepository.getQueueStatus()
+    val errorEvents = appErrorHandler?.events?.value.orEmpty()
 
     return AdminDashboardData(
       attemptStats = attemptStats,
@@ -160,6 +165,11 @@ class AdminDashboardViewModel(
       dbHealth = DbHealth(
         userVersion = userVersion,
         expectedVersion = QWELD_DB_VERSION,
+      ),
+      systemHealth = SystemHealthStatus(
+        queueStatus = queueStatus,
+        recentErrorCount = errorEvents.size,
+        lastErrorAt = errorEvents.lastOrNull()?.timestamp,
       ),
     )
   }
@@ -177,7 +187,16 @@ data class AdminDashboardData(
   val attemptStats: AttemptStats,
   val answerCount: Int,
   val dbHealth: DbHealth,
+  val systemHealth: SystemHealthStatus,
 )
+
+data class SystemHealthStatus(
+  val queueStatus: QuestionReportQueueStatus,
+  val recentErrorCount: Int,
+  val lastErrorAt: Long?,
+) {
+  val hasErrors: Boolean get() = recentErrorCount > 0
+}
 
 data class QuestionReportsDashboardState(
   val summaries: List<QuestionReportSummary> = emptyList(),

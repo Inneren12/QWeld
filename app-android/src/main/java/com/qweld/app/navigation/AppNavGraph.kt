@@ -13,6 +13,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.navigation.NavType
@@ -38,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.qweld.app.BuildConfig
 import com.qweld.app.admin.AdminDashboardRoute
 import com.qweld.app.admin.AdminDashboardViewModel
+import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.logging.LogCollector
@@ -55,12 +58,15 @@ import com.qweld.app.feature.auth.GoogleSignInCancelledException
 import com.qweld.app.feature.auth.R
 import com.qweld.app.feature.auth.ui.LinkAccountScreen
 import com.qweld.app.feature.auth.ui.SignInScreen
-import com.qweld.app.env.AppEnvImpl
+import com.qweld.app.error.AppErrorHandler
+import com.qweld.app.error.AppErrorReportResult
+import com.qweld.app.error.UiErrorEvent
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
 import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.i18n.LocaleController
+import com.qweld.app.ui.AppErrorReportDialog
 import com.qweld.app.ui.AboutScreen
 import com.qweld.app.ui.SettingsScreen
 import com.qweld.app.ui.TopBarMenus
@@ -83,11 +89,14 @@ fun AppNavGraph(
   logCollector: LogCollector?,
   userPrefs: UserPrefs,
   contentIndexReader: ContentIndexReader,
+  appEnv: AppEnv,
+  appErrorHandler: AppErrorHandler,
+  errorReportingEnabled: Boolean,
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+  val navBackStackEntry by navController.currentBackStackEntryAsState()
+  val currentRoute = navBackStackEntry?.destination?.route
   val user by authService.currentUser.collectAsStateWithLifecycle(initialValue = null)
   val context = LocalContext.current
   val scope = rememberCoroutineScope()
@@ -96,6 +105,12 @@ fun AppNavGraph(
   val missingTokenText = stringResource(id = R.string.auth_error_missing_token)
   var isLoading by remember { mutableStateOf(false) }
   var errorMessage by remember { mutableStateOf<String?>(null) }
+  val snackbarHostState = remember { SnackbarHostState() }
+  var pendingErrorEvent by remember { mutableStateOf<UiErrorEvent?>(null) }
+  var isSubmittingError by remember { mutableStateOf(false) }
+  val errorReportingDisabledMessage = stringResource(id = com.qweld.app.R.string.app_error_report_disabled)
+  val errorReportingSubmittedMessage = stringResource(id = com.qweld.app.R.string.app_error_report_submitted)
+  val errorReportingFailedMessage = stringResource(id = com.qweld.app.R.string.app_error_report_failed)
 
   // Initialize Google Credential Sign-In Manager
   val googleCredentialSignInManager: GoogleCredentialSignInManager = remember {
@@ -116,6 +131,22 @@ fun AppNavGraph(
         }
       }
     }
+
+  LaunchedEffect(appErrorHandler, errorReportingEnabled) {
+    appErrorHandler.events.collect { event ->
+      if (event.offerReportDialog) {
+        if (errorReportingEnabled) {
+          if (pendingErrorEvent == null) {
+            pendingErrorEvent = event
+          } else {
+            Timber.w("[app_error_dialog] skipped=true reason=dialog_active")
+          }
+        } else {
+          snackbarHostState.showSnackbar(message = errorReportingDisabledMessage)
+        }
+      }
+    }
+  }
 
   val navigateToAuth: () -> Unit = {
     navController.navigate(Routes.AUTH) {
@@ -191,6 +222,7 @@ fun AppNavGraph(
 
   Scaffold(
     modifier = modifier,
+    snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     topBar = {
       val hideTopBarRoutes = setOf(Routes.AUTH)
       if (currentRoute !in hideTopBarRoutes) {
@@ -254,6 +286,7 @@ fun AppNavGraph(
                   setLoading = { isLoading = it },
                   setError = { errorMessage = it },
                   defaultError = genericErrorText,
+                  appErrorHandler = appErrorHandler,
                 ) {
                   authService.signInAnonymously()
                 }
@@ -265,6 +298,7 @@ fun AppNavGraph(
                   setLoading = { isLoading = it },
                   setError = { errorMessage = it },
                   defaultError = genericErrorText,
+                  appErrorHandler = appErrorHandler,
               ) {
                 authService.signInWithEmail(email, password)
               }
@@ -281,7 +315,6 @@ fun AppNavGraph(
       }
       composable(Routes.EXAM) {
         val examNavController = rememberNavController()
-        val appEnv: AppEnv = remember { AppEnvImpl() }
         ExamNavGraph(
           navController = examNavController,
           repository = questionRepository,
@@ -293,14 +326,15 @@ fun AppNavGraph(
           appEnv = appEnv,
           appVersion = appVersion,
           analytics = analytics,
+          appErrorHandler = appErrorHandler,
           userPrefs = userPrefs,
           appLocaleTag = appLocale,
-            prewarmConfig =
-                PrewarmConfig(
-                    enabled = BuildConfig.PREWARM_ENABLED,
-                    maxConcurrency = BuildConfig.PREWARM_MAX_CONCURRENCY.toString().toInt(),
-                    taskTimeoutMs = BuildConfig.PREWARM_TIMEOUT_MS.toString().toLong(),
-                    ),
+          prewarmConfig =
+            PrewarmConfig(
+              enabled = BuildConfig.PREWARM_ENABLED,
+              maxConcurrency = BuildConfig.PREWARM_MAX_CONCURRENCY.toString().toInt(),
+              taskTimeoutMs = BuildConfig.PREWARM_TIMEOUT_MS.toString().toLong(),
+            ),
         )
       }
       composable(Routes.SYNC) {
@@ -379,6 +413,7 @@ fun AppNavGraph(
               attemptsRepository = attemptsRepository,
               answersRepository = answersRepository,
               questionReportRepository = questionReportRepository,
+              appErrorHandler = appErrorHandler,
             )
           }
           AdminDashboardRoute(viewModel = viewModel, onBack = { navController.popBackStack() })
@@ -400,6 +435,36 @@ fun AppNavGraph(
           onBack = { navController.popBackStack() }
         )
       }
+    }
+    val currentErrorEvent = pendingErrorEvent
+    if (currentErrorEvent != null && errorReportingEnabled) {
+      AppErrorReportDialog(
+        onDismiss = {
+          if (!isSubmittingError) {
+            pendingErrorEvent = null
+          }
+        },
+        onSubmit = { comment ->
+          if (isSubmittingError) return@AppErrorReportDialog
+          scope.launch {
+            isSubmittingError = true
+            val result = appErrorHandler.submitReport(currentErrorEvent, comment)
+            isSubmittingError = false
+            pendingErrorEvent = null
+            val message =
+              when (result) {
+                AppErrorReportResult.Submitted -> errorReportingSubmittedMessage
+                AppErrorReportResult.Disabled -> errorReportingDisabledMessage
+                is AppErrorReportResult.Failed -> {
+                  Timber.w("[app_error_report] dialog_submit_failed reason=%s", result.reason)
+                  errorReportingFailedMessage
+                }
+              }
+            snackbarHostState.showSnackbar(message = message)
+          }
+        },
+        isSubmitting = isSubmittingError,
+      )
     }
     if (showLogDialog && logExportActions != null) {
       LogExportDialog(
@@ -537,6 +602,7 @@ private fun <T> runAuthAction(
   setLoading: (Boolean) -> Unit,
   setError: (String?) -> Unit,
   defaultError: String,
+  appErrorHandler: AppErrorHandler? = null,
   block: suspend () -> T,
 ) {
   scope.launch {
@@ -546,6 +612,7 @@ private fun <T> runAuthAction(
       block()
     } catch (exception: Exception) {
       setError(exception.localizedMessage?.takeIf { it.isNotBlank() } ?: defaultError)
+      appErrorHandler?.recordError("auth_action_error", exception)
     } finally {
       setLoading(false)
     }

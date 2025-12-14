@@ -19,6 +19,10 @@ Importance legend:
   - **Importance:** 🔴 Critical
   - **Role:** Defines app-level routes and stitches feature destinations together with guards.
   - **Edit guidelines:** Add new routes here; change existing route IDs cautiously to avoid breaking deep links/tests.
+- `app-android/src/main/java/com/qweld/app/error/AppErrorHandler.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Centralized error handler that emits UI events for reportable errors and forwards sanitized payloads to Crashlytics/logging based on analytics opt-in.
+  - **Edit guidelines:** Keep payloads PII-free and respect analytics/Crashlytics toggles when adjusting reporting behavior.
 - `app-android/src/main/java/com/qweld/app/QWeldApp.kt`
   - **Importance:** 🟡 Important
   - **Role:** Application class initializing logging, locale controller, and analytics toggles.
@@ -31,13 +35,17 @@ Importance legend:
   - **Importance:** 🟡 Important
   - **Role:** User-facing settings (locale, analytics opt-out, etc.).
   - **Edit guidelines:** Keep preference keys consistent with `UserPrefsDataStore`.
+- `app-android/src/main/java/com/qweld/app/ui/AppErrorReportDialog.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** User-facing dialog allowing “Report an app error” submissions with an optional comment and privacy guidance.
+  - **Edit guidelines:** Preserve clear copy about optional comments/PII and keep the submit contract aligned with `AppErrorHandler`.
 - `app-android/src/main/java/com/qweld/app/admin/QuestionReportsViewModel.kt` and related admin screens
   - **Importance:** 🟡 Important
   - **Role:** Internal tooling for reviewing submitted question reports.
   - **Edit guidelines:** UI changes are safe; be careful with Firestore/reporting toggles.
 - `app-android/src/main/java/com/qweld/app/admin/AdminDashboardViewModel.kt` and `AdminDashboardScreen.kt`
   - **Importance:** 🟡 Important
-  - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, and DB health.
+  - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, DB health, and system/report health (queued reports, recent errors).
   - **Edit guidelines:** Keep `BuildConfig.DEBUG` gating intact and source stats through repositories instead of direct Room access.
 - `app-android/src/androidTest/java/com/qweld/app/admin/AdminReportsUiTest.kt`
   - **Importance:** 🧪 Test
@@ -231,6 +239,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** ⚪ Support
   - **Role:** Logging utilities wrapping Timber.
   - **Edit guidelines:** Safe to adjust formatting; avoid heavy dependencies here.
+- `core-common/src/main/java/com/qweld/app/common/error/AppErrorHandler.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Lightweight in-memory tracker for recent non-fatal errors used for admin visibility and report correlation.
+  - **Edit guidelines:** Keep buffer bounded and avoid storing PII in error messages.
 
 ## core-model/
 
