@@ -113,6 +113,7 @@
     <string name="settings_test_crash">Trigger test crash (debug only)</string>
     <string name="settings_test_crash_note">Use on debug builds to verify Crashlytics symbol upload. Build with -PenableAnalyticsDebug=true so reports are sent.</string>
     <string name="settings_test_crash_disabled">Rebuild with analytics enabled (enableAnalyticsDebug=true) to send Crashlytics reports.</string>
+    <string name="settings_test_crash_disabled_opt_out">Enable analytics in Settings to allow Crashlytics reports; they stay disabled when analytics is turned off.</string>
     <string name="settings_open_admin_dashboard">Open admin dashboard</string>
     <string name="admin_dashboard_title">Admin dashboard</string>
     <string name="admin_dashboard_description">Debug-only surface for internal diagnostics.</string>

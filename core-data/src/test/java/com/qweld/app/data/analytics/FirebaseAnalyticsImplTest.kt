@@ -1,44 +1,50 @@
 package com.qweld.app.data.analytics
 
 import android.os.Bundle
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
 
 class FirebaseAnalyticsImplTest {
-  private lateinit var backend: RecordingBackend
-
-  @BeforeTest
-  fun setUp() {
-    backend = RecordingBackend()
-  }
-
   @Test
-  fun log_whenOptedOut_doesNotForward() {
-    val analytics = FirebaseAnalyticsImpl(backend, isEnabled = false)
+  fun `log skips when analytics disabled`() {
+    val backend = RecordingBackend()
+    val analytics = FirebaseAnalyticsImpl(backend = backend, isEnabled = false)
 
-    analytics.log("exam_start", mapOf("mode" to "practice"))
+    analytics.log("test_event", mapOf("key" to "value"))
 
+    assertEquals(listOf(false), backend.enabledStates)
     assertTrue(backend.events.isEmpty())
   }
 
   @Test
-  fun log_whenEnabled_forwardsEvent() {
-    val analytics = FirebaseAnalyticsImpl(backend, isEnabled = true)
+  fun `log honors opt-out toggles`() {
+    val backend = RecordingBackend()
+    val analytics = FirebaseAnalyticsImpl(backend = backend, isEnabled = true)
 
-    analytics.log("exam_start", mapOf("mode" to "practice", "questions" to 10))
+    analytics.setEnabled(false)
+    analytics.log("should_skip")
 
+    analytics.setEnabled(true)
+    analytics.log("should_send", mapOf("foo" to "bar"))
+
+    assertEquals(listOf(true, false, true), backend.enabledStates)
     assertEquals(1, backend.events.size)
-    assertEquals("exam_start", backend.events.single().first)
+    val (name, bundle) = backend.events.single()
+    assertEquals("should_send", name)
+    assertEquals("bar", bundle.getString("foo"))
   }
 
   private class RecordingBackend : AnalyticsBackend {
+    val enabledStates = mutableListOf<Boolean>()
     val events = mutableListOf<Pair<String, Bundle>>()
-    override fun setAnalyticsCollectionEnabled(enabled: Boolean) {}
+
+    override fun setAnalyticsCollectionEnabled(enabled: Boolean) {
+      enabledStates.add(enabled)
+    }
 
     override fun logEvent(event: String, params: Bundle) {
-      events += event to Bundle(params)
+      events.add(event to params)
     }
   }
 }

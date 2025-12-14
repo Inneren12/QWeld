@@ -63,7 +63,11 @@ class MainActivity : ComponentActivity() {
       .onEach { tag -> LocaleController.apply(tag) }
       .launchIn(lifecycleScope)
     lifecycleScope.launch {
-      userPrefs.analyticsEnabled.collect { enabled -> analytics.setEnabled(enabled) }
+      userPrefs.analyticsEnabled.collect { enabled ->
+        val analyticsAllowed = BuildConfig.ENABLE_ANALYTICS && enabled
+        analytics.setEnabled(analyticsAllowed)
+        Firebase.crashlytics.isCrashlyticsCollectionEnabled = analyticsAllowed
+      }
     }
     Firebase.crashlytics.isCrashlyticsCollectionEnabled = BuildConfig.ENABLE_ANALYTICS
     setContent { QWeldAppRoot(analytics = analytics, userPrefs = userPrefs) }

@@ -8,7 +8,7 @@
 ## Tech Stack & Platforms
 - **Platform:** Android (minSdk 26, target/compileSdk 35) written in **Kotlin** with **Jetpack Compose** UI and Navigation.
 - **Core libraries:** coroutines, Compose Material3, Room for attempts storage, DataStore for user preferences, kotlinx-serialization for JSON parsing, and Timber logging.
-- **Firebase:** Auth, Analytics, and Crashlytics are available when `google-services.json` is present; analytics can be disabled for debug builds.
+- **Firebase:** Auth, Analytics, and Crashlytics are available when `google-services.json` is present; analytics can be disabled for debug builds and are gated at runtime by the user’s analytics preference.
 - **CI/CD:** GitHub Actions runs formatting (Spotless), linting (Detekt), unit tests, and `assembleDebug` via `.github/workflows/android.yml`. Separate workflows validate blueprints/questions and publish dist summaries for content PRs.
 
 ## Architecture Overview

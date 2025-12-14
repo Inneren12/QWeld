@@ -11,6 +11,11 @@ enum class LogTag(val raw: String) {
   DEFICIT("deficit"),
 }
 
+/**
+ * Central logging wrapper.
+ *
+ * Keep messages free of PII – only log coarse context and identifiers safe for diagnostics.
+ */
 object Logx {
   fun d(tag: LogTag, event: String, vararg kv: Pair<String, Any?>) =
     log(Level.DEBUG, tag, event, null, kv)

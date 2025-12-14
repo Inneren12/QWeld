@@ -106,7 +106,8 @@ fun SettingsScreen(
     initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
   )
   val isDebugBuild = BuildConfig.DEBUG
-  val crashlyticsEnabled = BuildConfig.ENABLE_ANALYTICS
+  val crashlyticsBuildEnabled = BuildConfig.ENABLE_ANALYTICS
+  val crashlyticsEnabled = crashlyticsBuildEnabled && analyticsEnabled
   var contentIndex by remember { mutableStateOf<ContentIndexReader.Result?>(null) }
   var contentIntegrity by remember { mutableStateOf<List<ContentIndexReader.Mismatch>?>(null) }
   var manifestResult by remember { mutableStateOf<ContentManifestDiagnostics.Result?>(null) }
@@ -252,6 +253,7 @@ fun SettingsScreen(
         prewarmEnabled = !prewarmDisabled,
         lruCacheSize = lruCacheInput,
         lruCacheHint = lruCacheHint,
+        crashlyticsBuildEnabled = crashlyticsBuildEnabled,
         onTogglePrewarm = { enabled ->
           scope.launch {
             userPrefs.setPrewarmDisabled(!enabled)
@@ -759,6 +761,7 @@ private fun SettingsToolsSection(
   prewarmEnabled: Boolean,
   lruCacheSize: String,
   lruCacheHint: String,
+  crashlyticsBuildEnabled: Boolean,
   onTogglePrewarm: (Boolean) -> Unit,
   onLruCacheSizeChange: (String) -> Unit,
   onLruCacheSizeCommit: () -> Unit,
@@ -869,7 +872,15 @@ private fun SettingsToolsSection(
       }
       if (!crashlyticsEnabled) {
         Text(
-          text = stringResource(id = R.string.settings_test_crash_disabled),
+          text =
+            stringResource(
+              id =
+                if (crashlyticsBuildEnabled) {
+                  R.string.settings_test_crash_disabled_opt_out
+                } else {
+                  R.string.settings_test_crash_disabled
+                },
+            ),
           style = MaterialTheme.typography.bodySmall,
           color = MaterialTheme.colorScheme.error,
         )

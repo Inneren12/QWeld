@@ -100,6 +100,7 @@
     <string name="settings_test_crash">Тестовый крэш (только debug)</string>
     <string name="settings_test_crash_note">Используйте в debug-сборках для проверки Crashlytics. Соберите с -PenableAnalyticsDebug=true, чтобы отчёты отправились.</string>
     <string name="settings_test_crash_disabled">Пересоберите с включённой аналитикой (enableAnalyticsDebug=true), чтобы отправить отчёты Crashlytics.</string>
+    <string name="settings_test_crash_disabled_opt_out">Включите аналитику в настройках, чтобы разрешить отчёты Crashlytics; при отключённой аналитике они не отправляются.</string>
 
     <string name="app_error_report_title">Сообщить об ошибке приложения</string>
     <string name="app_error_report_message">Произошла ошибка приложения. Вы можете отправить отчёт, чтобы помочь нам исправить её.</string>
