@@ -37,7 +37,9 @@ import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
+import com.qweld.app.common.error.AppError
 import com.qweld.app.common.error.AppErrorHandler
+import com.qweld.app.common.error.ErrorContext
 import com.qweld.core.common.AppEnv
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
@@ -994,7 +996,17 @@ class ExamViewModel(
         }
       } catch (e: Exception) {
         Timber.e(e, "[question_report] submit failed for questionId=%s", report.questionId)
-        appErrorHandler?.recordError("question_report_submit_failed", e)
+        appErrorHandler?.handle(
+          AppError.Reporting(
+            cause = e,
+            context =
+              ErrorContext(
+                screen = "exam",
+                action = "question_report_submit",
+                extras = mapOf("questionId" to report.questionId),
+              ),
+          )
+        )
         _reportEvents.emit(QuestionReportUiEvent.Failed)
         // User continues exam even if report fails
       }

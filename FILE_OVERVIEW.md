@@ -21,8 +21,8 @@ Importance legend:
   - **Edit guidelines:** Add new routes here; change existing route IDs cautiously to avoid breaking deep links/tests.
 - `app-android/src/main/java/com/qweld/app/error/AppErrorHandler.kt`
   - **Importance:** 🟡 Important
-  - **Role:** Centralized error handler that emits UI events for reportable errors and forwards sanitized payloads to Crashlytics/logging based on analytics opt-in.
-  - **Edit guidelines:** Keep payloads PII-free and respect analytics/Crashlytics toggles when adjusting reporting behavior.
+  - **Role:** Centralized error handler implementation that logs non-fatal errors, forwards them to Crashlytics (when analytics are enabled), tracks recent error history for admin diagnostics, and emits UI events for error dialogs/reports.
+  - **Edit guidelines:** Keep payloads PII-free, avoid heavy work on the main thread, and preserve analytics/Crashlytics gating when adjusting reporting behavior.
 - `app-android/src/main/java/com/qweld/app/QWeldApp.kt`
   - **Importance:** 🟡 Important
   - **Role:** Application class initializing logging, locale controller, and analytics toggles.
@@ -241,8 +241,8 @@ e threshold (via `localeCoverage.ru.min`).
   - **Edit guidelines:** Safe to adjust formatting; avoid heavy dependencies here.
 - `core-common/src/main/java/com/qweld/app/common/error/AppErrorHandler.kt`
   - **Importance:** ⚪ Support
-  - **Role:** Lightweight in-memory tracker for recent non-fatal errors used for admin visibility and report correlation.
-  - **Edit guidelines:** Keep buffer bounded and avoid storing PII in error messages.
+  - **Role:** Shared error models and `AppErrorHandler` interface defining non-fatal error handling contracts (history, UI events, Crashlytics/report submission hooks).
+  - **Edit guidelines:** Keep types platform-agnostic and PII-free; preserve backward-compatible defaults when extending the model surface.
 
 ## core-model/
 

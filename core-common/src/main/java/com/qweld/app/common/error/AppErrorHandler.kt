@@ -1,50 +1,79 @@
 package com.qweld.app.common.error
 
 import java.util.UUID
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
 /**
- * Lightweight error handler used for non-fatal, user-visible issues.
- * Stores a rolling buffer of recent error contexts for correlation with
- * question reports and admin diagnostics.
+ * Central abstraction for non-fatal app errors.
+ *
+ * Implementations should route errors to logging/Crashlytics (when enabled)
+ * and emit UI-friendly events when a user-facing surface needs to react.
  */
-class AppErrorHandler(
-  private val maxEvents: Int = DEFAULT_MAX_EVENTS,
-  private val clock: () -> Long = { System.currentTimeMillis() },
-) {
+interface AppErrorHandler {
+  val history: StateFlow<List<AppErrorEvent>>
+  val uiEvents: SharedFlow<UiErrorEvent>
+  val analyticsEnabled: StateFlow<Boolean>
 
-  private val _events = MutableStateFlow<List<AppErrorEvent>>(emptyList())
-  val events: StateFlow<List<AppErrorEvent>> = _events.asStateFlow()
+  fun handle(error: AppError)
 
-  fun recordError(message: String?, throwable: Throwable? = null): AppErrorEvent {
-    val event = AppErrorEvent(
-      id = UUID.randomUUID().toString(),
-      message = message ?: throwable?.localizedMessage,
-      throwableType = throwable?.javaClass?.simpleName,
-      timestamp = clock(),
-    )
-    _events.update { previous ->
-      (previous + event).takeLast(maxEvents)
-    }
-    return event
-  }
+  fun updateAnalyticsEnabled(userOptIn: Boolean)
 
-  fun lastErrorWithin(windowMs: Long): AppErrorEvent? {
-    val now = clock()
-    return events.value.lastOrNull { event -> (now - event.timestamp) <= windowMs }
-  }
+  suspend fun submitReport(event: AppErrorEvent, comment: String?): AppErrorReportResult
+}
 
-  companion object {
-    private const val DEFAULT_MAX_EVENTS = 30
-  }
+data class ErrorContext(
+  val screen: String? = null,
+  val action: String? = null,
+  val extras: Map<String, String> = emptyMap(),
+)
+
+sealed class AppError(open val context: ErrorContext, open val offerReportDialog: Boolean = false) {
+  abstract val cause: Throwable?
+  abstract val forwardToCrashReporting: Boolean
+
+  data class Unexpected(
+    override val cause: Throwable,
+    override val context: ErrorContext,
+    override val offerReportDialog: Boolean = false,
+    override val forwardToCrashReporting: Boolean = true,
+  ) : AppError(context, offerReportDialog)
+
+  data class Network(
+    override val cause: Throwable,
+    override val context: ErrorContext,
+    override val offerReportDialog: Boolean = false,
+    override val forwardToCrashReporting: Boolean = true,
+  ) : AppError(context, offerReportDialog)
+
+  data class Reporting(
+    override val cause: Throwable,
+    override val context: ErrorContext,
+    override val offerReportDialog: Boolean = false,
+    override val forwardToCrashReporting: Boolean = true,
+  ) : AppError(context, offerReportDialog)
+
+  data class Notice(
+    val message: String,
+    override val context: ErrorContext,
+    override val offerReportDialog: Boolean = false,
+    override val forwardToCrashReporting: Boolean = false,
+    override val cause: Throwable? = null,
+  ) : AppError(context, offerReportDialog)
 }
 
 data class AppErrorEvent(
-  val id: String,
-  val message: String?,
-  val throwableType: String?,
+  val id: String = UUID.randomUUID().toString(),
+  val error: AppError,
   val timestamp: Long,
 )
+
+data class UiErrorEvent(
+  val event: AppErrorEvent,
+)
+
+sealed class AppErrorReportResult {
+  data object Submitted : AppErrorReportResult()
+  data object Disabled : AppErrorReportResult()
+  data class Failed(val reason: String) : AppErrorReportResult()
+}
