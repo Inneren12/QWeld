@@ -1055,8 +1055,15 @@ class ExamViewModel(
     } catch (e: Exception) {
       null
     }
-
-    val recentError = appErrorHandler?.lastErrorWithin(ERROR_CONTEXT_WINDOW_MS)
+    // Возьмём последний AppErrorEvent из истории и проверим, что он был недавно.
+    val recentError =
+      appErrorHandler
+        ?.history
+        ?.value
+        ?.lastOrNull()
+        ?.takeIf { event ->
+          nowProvider() - event.timestamp <= ERROR_CONTEXT_WINDOW_MS
+        }
 
     return com.qweld.app.data.reports.QuestionReport(
       // Core identifiers
@@ -1098,10 +1105,11 @@ class ExamViewModel(
       seed = attempt.seed.value,
       attemptKind = attempt.mode.name, // e.g., "IP_MOCK", "PRACTICE", "ADAPTIVE"
 
-      // Error correlation
-      errorContextId = recentError?.id,
-      errorContextMessage = recentError?.message ?: recentError?.throwableType,
-      recentError = recentError != null,
+        // Error correlation
+        errorContextId = recentError?.id,
+        // Короткое не-PII описание — тип ошибки
+        errorContextMessage = recentError?.error?.javaClass?.simpleName,
+        recentError = recentError != null,
 
       // Admin / workflow
       status = "OPEN",
