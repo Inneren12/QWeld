@@ -173,6 +173,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🟡 Important
   - **Role:** Deterministic RNG and sampling utilities used during assembly.
   - **Edit guidelines:** Maintain determinism and seeding behavior; adjust tests when tuning algorithms.
+- `core-domain/src/main/java/com/qweld/app/domain/adaptive/AdaptiveExamPolicy.kt`
+  - **Importance:** 🔴 Critical
+  - **Role:** Design specification and scaffolding for EXAM-3 adaptive exam policy (difficulty bands, hysteresis rules, and state tracking).
+  - **Edit guidelines:** Keep comments and TODOs aligned with stage.md; avoid wiring changes until the adaptive flag is implemented.
 - `core-domain/src/test/...`
   - **Importance:** 🧪 Test
   - **Role:** Coverage for quota distribution, RNG, and sampler correctness.

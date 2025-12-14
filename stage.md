@@ -30,7 +30,7 @@ Legend:
 - **Summary:** Adaptive exam mode that adjusts the difficulty of subsequent questions based on the user’s performance (correct/incorrect streaks).
 - **Implemented in:** Planned for `core-domain` (adaptive sampler/strategy) and `feature-exam` (exam flow wiring and UI toggle).
 - **Next tasks:**
-  - [ ] Design adaptive rules: initial difficulty level, step size for increasing/decreasing difficulty, and min/max bounds.
+  - [x] Design adaptive rules: initial difficulty level, step size for increasing/decreasing difficulty, and min/max bounds. (See `core-domain/src/main/java/com/qweld/app/domain/adaptive/AdaptiveExamPolicy.kt`.)
   - [ ] Implement adaptive question selection in the exam assembly pipeline using existing RNG/samplers.
   - [ ] Add tests for key scenarios (streaks of correct answers, streaks of incorrect answers, alternating answers) to verify difficulty transitions.
   - [ ] Add a user-facing toggle/flag for enabling adaptive mode (beta-only at first).
