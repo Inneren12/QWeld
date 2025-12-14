@@ -157,7 +157,7 @@ class AdminDashboardViewModel(
     val answerCount = answersRepository.countAll()
     val userVersion = attemptsRepository.getUserVersion()
     val queueStatus = questionReportRepository.getQueueStatus()
-    val errorEvents = appErrorHandler?.events?.value.orEmpty()
+    val errorEvents = appErrorHandler?.history?.value.orEmpty()
 
     return AdminDashboardData(
       attemptStats = attemptStats,

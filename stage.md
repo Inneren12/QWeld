@@ -102,12 +102,10 @@ Legend:
   - [ ] Periodically validate Crashlytics symbol upload in CI.
 
 ### ERROR-2 – User-facing error report dialog
-- **Status:** ⏳
-- **Summary:** A user-visible error reporting dialog layered on top of Crashlytics/analytics to capture context and feedback when something goes wrong. Session-level error handler now records non-fatal issues for admin visibility and question-report correlation; user dialog still pending.
-- **Implemented in:** Planned for a central error handler in `app-android` and logging/diagnostics helpers in `core-data`.
-- **Status:** ✅
+- **Status:** ⚠️
+- **Summary:** A user-visible error reporting dialog layered on top of Crashlytics/analytics to capture context and feedback when something goes wrong. A centralized non-fatal error handler now routes errors to logs/Crashlytics, tracks recent events for admin diagnostics, and emits UI events for a future dialog; the user-facing dialog remains pending.
+- **Implemented in:** Central handler in `app-android` (wired in `QWeldApp`/`AppNavGraph`) with shared error models in `core-common`.
 - **Next tasks:**
-  - [ ] Introduce a central error handling path that can surface a friendly dialog when non-fatal errors occur in critical flows.
   - [ ] Add a “Send report” action that attaches a short user comment and high-level context to Crashlytics/logging, respecting analytics/diagnostics opt-out.
   - [x] Verify that no PII or sensitive data is logged, and that error reporting behavior matches privacy expectations.
   - [ ] Propagate handler usage through more feature screens so unexpected errors surface the dialog consistently.

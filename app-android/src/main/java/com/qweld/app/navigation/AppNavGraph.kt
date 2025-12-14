@@ -40,7 +40,11 @@ import androidx.navigation.compose.rememberNavController
 import com.qweld.app.BuildConfig
 import com.qweld.app.admin.AdminDashboardRoute
 import com.qweld.app.admin.AdminDashboardViewModel
+import com.qweld.app.common.error.AppError
+import com.qweld.app.common.error.AppErrorEvent
 import com.qweld.app.common.error.AppErrorHandler
+import com.qweld.app.common.error.AppErrorReportResult
+import com.qweld.app.common.error.ErrorContext
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.content.ContentIndexReader
 import com.qweld.app.data.logging.LogCollector
@@ -58,9 +62,6 @@ import com.qweld.app.feature.auth.GoogleSignInCancelledException
 import com.qweld.app.feature.auth.R
 import com.qweld.app.feature.auth.ui.LinkAccountScreen
 import com.qweld.app.feature.auth.ui.SignInScreen
-import com.qweld.app.error.AppErrorHandler
-import com.qweld.app.error.AppErrorReportResult
-import com.qweld.app.error.UiErrorEvent
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
@@ -106,7 +107,7 @@ fun AppNavGraph(
   var isLoading by remember { mutableStateOf(false) }
   var errorMessage by remember { mutableStateOf<String?>(null) }
   val snackbarHostState = remember { SnackbarHostState() }
-  var pendingErrorEvent by remember { mutableStateOf<UiErrorEvent?>(null) }
+  var pendingErrorEvent by remember { mutableStateOf<AppErrorEvent?>(null) }
   var isSubmittingError by remember { mutableStateOf(false) }
   val errorReportingDisabledMessage = stringResource(id = com.qweld.app.R.string.app_error_report_disabled)
   val errorReportingSubmittedMessage = stringResource(id = com.qweld.app.R.string.app_error_report_submitted)
@@ -133,17 +134,15 @@ fun AppNavGraph(
     }
 
   LaunchedEffect(appErrorHandler, errorReportingEnabled) {
-    appErrorHandler.events.collect { event ->
-      if (event.offerReportDialog) {
-        if (errorReportingEnabled) {
-          if (pendingErrorEvent == null) {
-            pendingErrorEvent = event
-          } else {
-            Timber.w("[app_error_dialog] skipped=true reason=dialog_active")
-          }
+    appErrorHandler.uiEvents.collect { event ->
+      if (errorReportingEnabled) {
+        if (pendingErrorEvent == null) {
+          pendingErrorEvent = event.event
         } else {
-          snackbarHostState.showSnackbar(message = errorReportingDisabledMessage)
+          Timber.w("[app_error_dialog] skipped=true reason=dialog_active")
         }
+      } else {
+        snackbarHostState.showSnackbar(message = errorReportingDisabledMessage)
       }
     }
   }
@@ -155,52 +154,71 @@ fun AppNavGraph(
     }
   }
 
-    fun startGoogle(action: GoogleAction) {
-        errorMessage = null
-        isLoading = true
-        scope.launch {
-            try {
-                val result = googleCredentialSignInManager.signInWithGoogleIdToken(context)
+  fun startGoogle(action: GoogleAction) {
+    errorMessage = null
+    isLoading = true
+    val errorContext = ErrorContext(screen = "auth", action = "google_${action.name.lowercase()}")
+    scope.launch {
+      try {
+        val result = googleCredentialSignInManager.signInWithGoogleIdToken(context)
 
-                result.fold(
-                    onSuccess = { idToken ->
-                        val token = idToken.takeIf { it.isNotBlank() }
-                        if (token == null) {
-                            Timber.e("[auth] Missing idToken from Google sign-in result")
-                            errorMessage = missingTokenText
-                        } else {
-                            try {
-                                when (action) {
-                                    GoogleAction.SignIn -> authService.signInWithGoogle(token)
-                                    GoogleAction.Link -> authService.linkAnonymousToGoogle(token)
-                                }
-                                errorMessage = null
-                            } catch (exception: Exception) {
-                                Timber.e(exception, "Firebase auth failed")
-                                errorMessage =
-                                    exception.localizedMessage?.takeIf { it.isNotBlank() } ?: genericErrorText
-                            }
-                        }
-                    },
-                    onFailure = { exception ->
-                        when (exception) {
-                            is GoogleSignInCancelledException -> {
-                                Timber.d("User cancelled Google Sign-In")
-                                errorMessage = googleCancelledText
-                            }
-                            else -> {
-                                Timber.e(exception, "Google Sign-In failed")
-                                errorMessage =
-                                    exception.localizedMessage?.takeIf { it.isNotBlank() } ?: genericErrorText
-                            }
-                        }
-                    },
+        result.fold(
+          onSuccess = { idToken ->
+            val token = idToken.takeIf { it.isNotBlank() }
+            if (token == null) {
+              Timber.e("[auth] Missing idToken from Google sign-in result")
+              appErrorHandler.handle(
+                AppError.Unexpected(
+                  cause = IllegalStateException("missing_google_token"),
+                  context = errorContext,
                 )
-            } finally {
-                isLoading = false
+              )
+              errorMessage = missingTokenText
+            } else {
+              try {
+                when (action) {
+                  GoogleAction.SignIn -> authService.signInWithGoogle(token)
+                  GoogleAction.Link -> authService.linkAnonymousToGoogle(token)
+                }
+                errorMessage = null
+              } catch (exception: Exception) {
+                Timber.e(exception, "Firebase auth failed")
+                appErrorHandler.handle(
+                  AppError.Unexpected(
+                    cause = exception,
+                    context = errorContext,
+                  )
+                )
+                errorMessage =
+                  exception.localizedMessage?.takeIf { it.isNotBlank() } ?: genericErrorText
+              }
             }
-        }
+          },
+          onFailure = { exception ->
+            when (exception) {
+              is GoogleSignInCancelledException -> {
+                Timber.d("User cancelled Google Sign-In")
+                errorMessage = googleCancelledText
+              }
+              else -> {
+                Timber.e(exception, "Google Sign-In failed")
+                appErrorHandler.handle(
+                  AppError.Unexpected(
+                    cause = exception,
+                    context = errorContext,
+                  )
+                )
+                errorMessage =
+                  exception.localizedMessage?.takeIf { it.isNotBlank() } ?: genericErrorText
+              }
+            }
+          },
+        )
+      } finally {
+        isLoading = false
+      }
     }
+  }
 
     LaunchedEffect(user) {
     val currentRoute = navController.currentBackStackEntry?.destination?.route
@@ -286,6 +304,7 @@ fun AppNavGraph(
                   setLoading = { isLoading = it },
                   setError = { errorMessage = it },
                   defaultError = genericErrorText,
+                  actionLabel = "sign_in_guest",
                   appErrorHandler = appErrorHandler,
                 ) {
                   authService.signInAnonymously()
@@ -298,20 +317,21 @@ fun AppNavGraph(
                   setLoading = { isLoading = it },
                   setError = { errorMessage = it },
                   defaultError = genericErrorText,
+                  actionLabel = "sign_in_email",
                   appErrorHandler = appErrorHandler,
-              ) {
-                authService.signInWithEmail(email, password)
-              }
-            },
-          )
-        user?.isAnonymous == true ->
-          LinkAccountScreen(
-            isLoading = isLoading,
-            errorMessage = errorMessage,
-            onLinkWithGoogle = { startGoogle(GoogleAction.Link) },
-          )
-        else -> LoadingScreen()
-      }
+                ) {
+                  authService.signInWithEmail(email, password)
+                }
+              },
+            )
+          user?.isAnonymous == true ->
+            LinkAccountScreen(
+              isLoading = isLoading,
+              errorMessage = errorMessage,
+              onLinkWithGoogle = { startGoogle(GoogleAction.Link) },
+            )
+          else -> LoadingScreen()
+        }
       }
       composable(Routes.EXAM) {
         val examNavController = rememberNavController()
@@ -602,6 +622,7 @@ private fun <T> runAuthAction(
   setLoading: (Boolean) -> Unit,
   setError: (String?) -> Unit,
   defaultError: String,
+  actionLabel: String,
   appErrorHandler: AppErrorHandler? = null,
   block: suspend () -> T,
 ) {
@@ -612,7 +633,12 @@ private fun <T> runAuthAction(
       block()
     } catch (exception: Exception) {
       setError(exception.localizedMessage?.takeIf { it.isNotBlank() } ?: defaultError)
-      appErrorHandler?.recordError("auth_action_error", exception)
+      appErrorHandler?.handle(
+        AppError.Unexpected(
+          cause = exception,
+          context = ErrorContext(screen = "auth", action = actionLabel),
+        )
+      )
     } finally {
       setLoading(false)
     }
