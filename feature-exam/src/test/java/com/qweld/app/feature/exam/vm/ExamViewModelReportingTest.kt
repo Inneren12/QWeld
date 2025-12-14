@@ -33,13 +33,14 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.launch
 import org.junit.Rule
 import org.junit.Test
 
@@ -63,10 +64,14 @@ class ExamViewModelReportingTest {
     assertTrue(started)
     advanceUntilIdle()
 
-    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "queued")
-    val event = viewModel.reportEvents.first()
+    val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
+    val job = launch { viewModel.reportEvents.take(1).collect(events::add) }
 
-    assertEquals(ExamViewModel.QuestionReportUiEvent.Queued, event)
+    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "queued")
+    advanceUntilIdle()
+    job.cancel()
+
+    assertTrue(events.contains(ExamViewModel.QuestionReportUiEvent.Queued))
     assertTrue(appErrorHandler.handledErrors.isEmpty())
   }
 
@@ -86,11 +91,18 @@ class ExamViewModelReportingTest {
     assertTrue(started)
     advanceUntilIdle()
 
-    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "offline")
-    val event = viewModel.reportEvents.first()
+    val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
+    val job = launch { viewModel.reportEvents.take(1).collect(events::add) }
 
-    assertEquals(ExamViewModel.QuestionReportUiEvent.Failed, event)
-    assertTrue(appErrorHandler.handledErrors.any { it is AppError.Reporting })
+    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "offline")
+    advanceUntilIdle()
+    job.cancel()
+
+    assertTrue(events.contains(ExamViewModel.QuestionReportUiEvent.Failed))
+    val reportingError = appErrorHandler.handledErrors.filterIsInstance<AppError.Reporting>().first()
+    assertEquals("exam", reportingError.context.screen)
+    assertEquals("question_report_submit", reportingError.context.action)
+    assertEquals("Q1", reportingError.context.extras?.get("questionId"))
   }
 
   private fun createViewModel(
