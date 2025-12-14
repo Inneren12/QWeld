@@ -102,13 +102,13 @@ Legend:
   - [ ] Periodically validate Crashlytics symbol upload in CI.
 
 ### ERROR-2 – User-facing error report dialog
-- **Status:** ⏳
-- **Summary:** A user-visible error reporting dialog layered on top of Crashlytics/analytics to capture context and feedback when something goes wrong.
-- **Implemented in:** Planned for a central error handler in `app-android` and logging/diagnostics helpers in `core-data`.
+- **Status:** ✅
+- **Summary:** Centralized `AppErrorHandler` now emits UI error events into the top-level scaffold, which opens a “Сообщить об ошибке приложения” dialog to capture an optional comment and context. Submissions flow to Crashlytics/logging when analytics is enabled and are skipped with user-visible messaging when diagnostics are opted out.
+- **Implemented in:** `app-android` (`AppErrorHandler`, `AppErrorReportDialog`, `AppNavGraph` host integration, Crashlytics wiring in `MainActivity`).
 - **Next tasks:**
-  - [ ] Introduce a central error handling path that can surface a friendly dialog when non-fatal errors occur in critical flows.
-  - [ ] Add a “Send report” action that attaches a short user comment and high-level context to Crashlytics/logging, respecting analytics/diagnostics opt-out.
-  - [ ] Verify that no PII or sensitive data is logged, and that error reporting behavior matches privacy expectations.
+  - [ ] Propagate handler usage through more feature screens so unexpected errors surface the dialog consistently.
+  - [ ] Add UI/instrumentation coverage for the dialog (visibility, opt-out gating, submission success/failure states) to guard regressions.
+  - [ ] Continue reviewing Crashlytics payloads to ensure user comments remain free of PII and align with privacy expectations.
 
 
 ## Testing & QA
