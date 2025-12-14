@@ -51,6 +51,14 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Compose instrumentation coverage for navigating the admin reports list and verifying report details/comments in the detail view.
   - **Edit guidelines:** Keep scenarios short with fake repositories to avoid network dependence.
+- `app-android/src/androidTest/java/com/qweld/app/error/ErrorDialogUiTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Exercises the user-facing “Report app error” dialog to assert visibility, comment input, and submission wiring via a fake crash reporter.
+  - **Edit guidelines:** Keep the composable host minimal and deterministic to avoid emulator flakiness.
+- `app-android/src/test/java/com/qweld/app/error/AppErrorHandlerTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Unit coverage for the centralized AppErrorHandler logging, analytics gating, and UI event emission contracts.
+  - **Edit guidelines:** Use fakes for crash reporting/logging to keep assertions deterministic.
 - `app-android/build.gradle.kts`
   - **Importance:** ⚙️ Build/CI
   - **Role:** App module build config, Crashlytics/Analytics wiring, asset packaging tasks (`verifyAssets`).
@@ -119,6 +127,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🧪 Test
   - **Role:** UI test for the question reporting flow from an exam screen, covering dialog interactions and comment submission.
   - **Edit guidelines:** Use lightweight state and strings to avoid flakiness from full exam navigation.
+- `feature-exam/src/test/java/com/qweld/app/feature/exam/vm/ExamViewModelReportingTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Unit tests for queued/offline question reporting behavior, ensuring UI events surface and errors are routed through the AppErrorHandler.
+  - **Edit guidelines:** Keep repository fakes deterministic and avoid expanding exam assembly complexity.
 
 ## feature-auth/
 
