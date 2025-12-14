@@ -108,7 +108,7 @@ Legend:
 - **Next tasks:**
   - [ ] Introduce a central error handling path that can surface a friendly dialog when non-fatal errors occur in critical flows.
   - [ ] Add a “Send report” action that attaches a short user comment and high-level context to Crashlytics/logging, respecting analytics/diagnostics opt-out.
-  - [ ] Verify that no PII or sensitive data is logged, and that error reporting behavior matches privacy expectations.
+  - [x] Verify that no PII or sensitive data is logged, and that error reporting behavior matches privacy expectations.
 
 
 ## Testing & QA
