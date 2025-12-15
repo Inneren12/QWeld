@@ -90,8 +90,8 @@ interface AdaptiveExamPolicy {
      *   the current band (incorrect streak >= 1) and current band is above EASY.
      * - When a band change occurs, reset both streaks to zero to introduce hysteresis. The new
      *   band becomes the [AdaptiveState.currentDifficulty] used for the next selection.
-     * - Maintain [askedPerBand] by incrementing the band that was actually served to the user
-     *   (the caller should pass this in via [previous]).
+     * - Maintain [askedPerBand] by incrementing the band that was actually served to the user via
+     *   [servedBand].
      * - Clamp to [DifficultyBand.EASY] and [DifficultyBand.HARD] to prevent over/underflow.
      *
      * Zig-zag (oscillation) handling:
@@ -110,7 +110,7 @@ interface AdaptiveExamPolicy {
      *   updated with that actual band and incremented [askedPerBand] to avoid repeated requests for
      *   empty bands.
      */
-    fun nextState(previous: AdaptiveState, wasCorrect: Boolean): AdaptiveState
+    fun nextState(previous: AdaptiveState, servedBand: DifficultyBand, wasCorrect: Boolean): AdaptiveState
 
     /**
      * Chooses the difficulty band that should be requested for the next question.
@@ -156,27 +156,34 @@ class DefaultAdaptiveExamPolicy(
         )
     }
 
-  override fun nextState(previous: AdaptiveState, wasCorrect: Boolean): AdaptiveState {
+  override fun nextState(previous: AdaptiveState, servedBand: DifficultyBand, wasCorrect: Boolean): AdaptiveState {
     val asked = previous.askedPerBand.toMutableMap()
-    asked[previous.currentDifficulty] = asked.getOrElse(previous.currentDifficulty) { 0 } + 1
+    asked[servedBand] = asked.getOrElse(servedBand) { 0 } + 1
     val remaining = (previous.remainingQuestions - 1).coerceAtLeast(0)
+
+    val (baseCorrectStreak, baseIncorrectStreak) =
+      if (servedBand == previous.currentDifficulty) {
+        previous.correctStreak to previous.incorrectStreak
+      } else {
+        0 to 0
+      }
 
     val (nextDifficulty, correctStreak, incorrectStreak) =
       when {
         wasCorrect -> {
-          val streak = previous.correctStreak + 1
-          if (streak >= config.correctStreakForIncrease && previous.currentDifficulty != DifficultyBand.HARD) {
-            Triple(previous.currentDifficulty.increment(), 0, 0)
+          val streak = baseCorrectStreak + 1
+          if (streak >= config.correctStreakForIncrease && servedBand != DifficultyBand.HARD) {
+            Triple(servedBand.increment(), 0, 0)
           } else {
-            Triple(previous.currentDifficulty, streak, 0)
+            Triple(servedBand, streak, 0)
           }
         }
         else -> {
-          val streak = previous.incorrectStreak + 1
-          if (streak >= config.incorrectStreakForDecrease && previous.currentDifficulty != DifficultyBand.EASY) {
-            Triple(previous.currentDifficulty.decrement(), 0, 0)
+          val streak = baseIncorrectStreak + 1
+          if (streak >= config.incorrectStreakForDecrease && servedBand != DifficultyBand.EASY) {
+            Triple(servedBand.decrement(), 0, 0)
           } else {
-            Triple(previous.currentDifficulty, 0, streak)
+            Triple(servedBand, 0, streak)
           }
         }
       }
