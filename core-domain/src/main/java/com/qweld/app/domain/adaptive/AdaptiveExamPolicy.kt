@@ -137,24 +137,69 @@ interface AdaptiveExamPolicy {
  * isolated from current exam assembly until the adaptive flag is wired. Implementors should respect
  * the rules described in [AdaptiveExamPolicy.nextState] and [AdaptiveExamPolicy.pickNextDifficulty].
  */
-class DefaultAdaptiveExamPolicy : AdaptiveExamPolicy {
-    override fun initialState(totalQuestions: Int): AdaptiveState {
-        return AdaptiveState(
-            currentDifficulty = DifficultyBand.INITIAL,
-            correctStreak = 0,
-            incorrectStreak = 0,
+data class AdaptiveConfig(
+  val correctStreakForIncrease: Int = 2,
+  val incorrectStreakForDecrease: Int = 1,
+  val preferMediumWhenRemainingAtOrBelow: Int = 2,
+)
+
+class DefaultAdaptiveExamPolicy(
+  private val config: AdaptiveConfig = AdaptiveConfig(),
+) : AdaptiveExamPolicy {
+  override fun initialState(totalQuestions: Int): AdaptiveState {
+    return AdaptiveState(
+      currentDifficulty = DifficultyBand.INITIAL,
+      correctStreak = 0,
+      incorrectStreak = 0,
             askedPerBand = DifficultyBand.values().associateWith { 0 },
             remainingQuestions = totalQuestions,
         )
     }
 
-    override fun nextState(previous: AdaptiveState, wasCorrect: Boolean): AdaptiveState {
-        // TODO(EXAM-3): implement state transition logic described in the KDoc.
-        return previous
-    }
+  override fun nextState(previous: AdaptiveState, wasCorrect: Boolean): AdaptiveState {
+    val asked = previous.askedPerBand.toMutableMap()
+    asked[previous.currentDifficulty] = asked.getOrElse(previous.currentDifficulty) { 0 } + 1
+    val remaining = (previous.remainingQuestions - 1).coerceAtLeast(0)
 
-    override fun pickNextDifficulty(state: AdaptiveState): DifficultyBand {
-        // TODO(EXAM-3): implement end-of-exam/availability-aware picking rules.
-        return state.currentDifficulty
+    val (nextDifficulty, correctStreak, incorrectStreak) =
+      when {
+        wasCorrect -> {
+          val streak = previous.correctStreak + 1
+          if (streak >= config.correctStreakForIncrease && previous.currentDifficulty != DifficultyBand.HARD) {
+            Triple(previous.currentDifficulty.increment(), 0, 0)
+          } else {
+            Triple(previous.currentDifficulty, streak, 0)
+          }
+        }
+        else -> {
+          val streak = previous.incorrectStreak + 1
+          if (streak >= config.incorrectStreakForDecrease && previous.currentDifficulty != DifficultyBand.EASY) {
+            Triple(previous.currentDifficulty.decrement(), 0, 0)
+          } else {
+            Triple(previous.currentDifficulty, 0, streak)
+          }
+        }
+      }
+
+    return AdaptiveState(
+      currentDifficulty = nextDifficulty,
+      correctStreak = correctStreak,
+      incorrectStreak = incorrectStreak,
+      askedPerBand = asked,
+      remainingQuestions = remaining,
+    )
+  }
+
+  override fun pickNextDifficulty(state: AdaptiveState): DifficultyBand {
+    if (state.remainingQuestions <= config.preferMediumWhenRemainingAtOrBelow) {
+      return DifficultyBand.MEDIUM
     }
+    return state.currentDifficulty
+  }
 }
+
+private fun DifficultyBand.increment(): DifficultyBand =
+  DifficultyBand.values().getOrElse(ordinal + 1) { DifficultyBand.HARD }
+
+private fun DifficultyBand.decrement(): DifficultyBand =
+  DifficultyBand.values().getOrElse(ordinal - 1) { DifficultyBand.EASY }
