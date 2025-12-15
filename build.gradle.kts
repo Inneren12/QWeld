@@ -15,6 +15,7 @@ plugins {
   id("com.diffplug.spotless")
   id("io.gitlab.arturbosch.detekt") version "1.23.6"
   id("org.jetbrains.kotlinx.kover") version "0.7.6"
+    id("com.google.devtools.ksp") version "" apply false
 }
 
 spotless {
@@ -37,6 +38,15 @@ detekt {
 }
 
 subprojects {
+        configurations.all {
+            resolutionStrategy.eachDependency {
+                if (requested.group == "org.xerial" && requested.name == "sqlite-jdbc") {
+                    // Можно взять актуальную версию, например 3.46.0.0
+                    useVersion("3.46.0.0")
+                    because("Room schema verifier + Java 21 на Windows требуют более свежий sqlite-jdbc")
+                }
+            }
+        }
   plugins.withId("org.jetbrains.kotlin.android") {
     apply(plugin = "org.jetbrains.kotlinx.kover")
   }
