@@ -1,5 +1,6 @@
 package com.qweld.app.domain.exam
 
+import com.qweld.app.domain.adaptive.DifficultyBand
 import com.qweld.app.domain.exam.util.WeightsConfig
 import java.time.Duration
 import java.time.Instant
@@ -69,6 +70,7 @@ data class Question(
   val locale: String,
   val stem: Map<String, String>,
   val familyId: String? = null,
+  val difficulty: DifficultyBand? = null,
   val choices: List<Choice>,
   val correctChoiceId: String,
 )

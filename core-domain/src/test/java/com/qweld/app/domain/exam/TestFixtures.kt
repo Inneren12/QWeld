@@ -1,6 +1,7 @@
 package com.qweld.app.domain.exam
 
 import com.qweld.app.domain.Outcome
+import com.qweld.app.domain.adaptive.DifficultyBand
 import com.qweld.app.domain.exam.repo.QuestionRepository
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import java.time.Clock
@@ -48,6 +49,7 @@ fun buildQuestion(
   correctIndex: Int = 0,
   blockId: String = taskId.substringBefore("-"),
   familyId: String? = null,
+  difficulty: DifficultyBand? = null,
 ): Question {
   val questionId = "$taskId-$locale-$index"
   val stem =
@@ -75,6 +77,7 @@ fun buildQuestion(
     locale = locale,
     stem = stem,
     familyId = familyId,
+    difficulty = difficulty,
     choices = choices,
     correctChoiceId = correctChoiceId,
   )
@@ -86,6 +89,7 @@ fun generateQuestions(
   locale: String = "EN",
   blockId: String = taskId.substringBefore("-"),
   familyIdProvider: (Int) -> String? = { null },
+  difficultyProvider: (Int) -> DifficultyBand? = { null },
 ): List<Question> =
   (0 until count).map { index ->
     buildQuestion(
@@ -94,6 +98,7 @@ fun generateQuestions(
       locale = locale,
       blockId = blockId,
       familyId = familyIdProvider(index),
+      difficulty = difficultyProvider(index),
       correctIndex = index % 4,
     )
   }

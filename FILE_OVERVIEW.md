@@ -157,6 +157,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🔴 Critical
   - **Role:** Builds exam/practice sessions by applying quotas, shufflers, and samplers to question sources.
   - **Edit guidelines:** Keep deterministic behavior; update tests when changing assembly rules.
+- `core-domain/src/main/java/com/qweld/app/domain/exam/ExamAssemblerFactory.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Creates standard or adaptive assemblers without changing existing call sites; keeps adaptive mode opt-in.
+  - **Edit guidelines:** Preserve defaults so existing exam/practice wiring stays non-adaptive unless explicitly requested.
 - `core-domain/src/main/java/com/qweld/app/domain/exam/QuotaDistributor.kt`
   - **Importance:** 🔴 Critical
   - **Role:** Allocates question counts across blocks/tasks according to blueprint quotas and practice configs.
@@ -177,6 +181,7 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🔴 Critical
   - **Role:** Design specification and scaffolding for EXAM-3 adaptive exam policy (difficulty bands, hysteresis rules, and state tracking).
   - **Edit guidelines:** Keep comments and TODOs aligned with stage.md; avoid wiring changes until the adaptive flag is implemented.
+  - **Key classes:** `AdaptiveState`, `DefaultAdaptiveExamPolicy`, `AdaptiveExamAssembler` (adaptive sampler that stays opt-in).
 - `core-domain/src/test/...`
   - **Importance:** 🧪 Test
   - **Role:** Coverage for quota distribution, RNG, and sampler correctness.
