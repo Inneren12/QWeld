@@ -370,6 +370,13 @@ internal fun ExamScreenContent(
             color = MaterialTheme.colorScheme.primary,
           )
         }
+        if (attempt.mode == ExamMode.ADAPTIVE) {
+          Text(
+            text = stringResource(id = R.string.exam_adaptive_mode_label),
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary,
+          )
+        }
         Text(
           text = stringResource(
             id = R.string.exam_question_counter,

@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -58,8 +59,10 @@ fun ModeScreen(
   practiceShortcuts: PracticeShortcuts,
   modifier: Modifier = Modifier,
   practiceConfig: PracticeConfig = PracticeConfig(),
+  adaptiveEnabled: Boolean,
   navController: NavHostController,
   appLocaleTag: String = UserPrefsDataStore.DEFAULT_APP_LOCALE,
+  onAdaptiveToggle: (Boolean) -> Unit = {},
   onPracticeSizeCommit: (Int) -> Unit = {},
   onRepeatMistakes: (String, ExamBlueprint, PracticeConfig) -> Unit = { _, _, _ -> },
   onResumeAttempt: () -> Unit = {},
@@ -246,6 +249,21 @@ fun ModeScreen(
       ) {
         Text(text = stringResource(id = R.string.mode_practice))
       }
+      Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+      ) {
+        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+          Text(text = stringResource(id = R.string.mode_adaptive_beta_label), style = MaterialTheme.typography.titleSmall)
+          Text(
+            text = stringResource(id = R.string.mode_adaptive_beta_caption),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+          )
+        }
+        Switch(checked = adaptiveEnabled, onCheckedChange = onAdaptiveToggle)
+      }
       val adaptiveCd = stringResource(id = R.string.mode_adaptive_cd)
       Button(
         modifier = Modifier
@@ -255,6 +273,7 @@ fun ModeScreen(
             contentDescription = adaptiveCd
             role = Role.Button
           },
+        enabled = adaptiveEnabled,
         onClick = { viewModel.startAttempt(ExamMode.ADAPTIVE, resolvedLanguage) },
       ) {
         Text(text = stringResource(id = R.string.mode_adaptive))

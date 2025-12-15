@@ -3,6 +3,8 @@
     <string name="mode_ip_mock">IP Mock</string>
     <string name="mode_practice">Practice</string>
     <string name="mode_adaptive">Adaptive</string>
+    <string name="mode_adaptive_beta_label">Adaptive mode (beta)</string>
+    <string name="mode_adaptive_beta_caption">Opt-in sampler that adjusts difficulty.</string>
     <string name="mode_ip_mock_cd">Start an IP Mock exam</string>
     <string name="mode_practice_cd">Start a practice exam</string>
     <string name="mode_adaptive_cd">Start an adaptive exam</string>
@@ -142,6 +144,7 @@
     <string name="exam_choice_talkback_hint">Double-tap to select this answer</string>
     <string name="exam_choice_state_selected">Selected</string>
     <string name="exam_choice_state_unselected">Not selected</string>
+    <string name="exam_adaptive_mode_label">Adaptive mode (beta)</string>
     <string name="explain_summary">Summary</string>
     <string name="explain_steps">Steps</string>
     <string name="explain_why_not">Why other choices are wrong</string>
