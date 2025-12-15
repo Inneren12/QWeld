@@ -127,6 +127,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🧪 Test
   - **Role:** UI test for the question reporting flow from an exam screen, covering dialog interactions and comment submission.
   - **Edit guidelines:** Use lightweight state and strings to avoid flakiness from full exam navigation.
+- `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/AdaptiveExamUiTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Compose instrumentation smoke test for adaptive exam mode that toggles adaptive on, answers a short attempt, and verifies the adaptive label and results rendering.
+  - **Edit guidelines:** Keep the attempt small and deterministic; avoid heavy navigation stacks to limit emulator flakiness.
 - `feature-exam/src/test/java/com/qweld/app/feature/exam/vm/ExamViewModelReportingTest.kt`
   - **Importance:** 🧪 Test
   - **Role:** Unit tests for queued/offline question reporting behavior, ensuring UI events surface and errors are routed through the AppErrorHandler.
