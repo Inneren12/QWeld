@@ -17,6 +17,7 @@ import com.qweld.app.data.reports.QuestionReportWithId
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
+import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.UserStatsRepository
@@ -74,7 +75,8 @@ class ExamViewModelReportingTest {
     advanceUntilIdle()
     job.join()
 
-    assertEquals(listOf(ExamViewModel.QuestionReportUiEvent.Queued), events)
+    assertEquals(1, events.size)
+    assertEquals(ExamViewModel.QuestionReportUiEvent.Queued, events.first())
     assertTrue(appErrorHandler.handledErrors.isEmpty())
     assertEquals(1, reportRepository.submissions.size)
   }
@@ -104,7 +106,8 @@ class ExamViewModelReportingTest {
     advanceUntilIdle()
     job.join()
 
-    assertEquals(listOf(ExamViewModel.QuestionReportUiEvent.Failed), events)
+    assertEquals(1, events.size)
+    assertEquals(ExamViewModel.QuestionReportUiEvent.Failed, events.first())
     val reportingError = appErrorHandler.handledErrors.filterIsInstance<AppError.Reporting>().first()
     assertEquals("exam", reportingError.context.screen)
     assertEquals("question_report_submit", reportingError.context.action)
@@ -126,7 +129,7 @@ class ExamViewModelReportingTest {
         override suspend fun getUserItemStats(
           userId: String,
           ids: List<String>,
-        ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
+        ): Outcome<Map<String, ItemStats>> = Outcome.Ok(emptyMap<String, ItemStats>())
       }
     val blueprint = ExamBlueprint(
       totalQuestions = 1,

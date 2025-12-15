@@ -48,20 +48,23 @@ class FirebaseAnalyticsImpl internal constructor(
     backend.setAnalyticsCollectionEnabled(value)
   }
 
-  override fun log(event: String, params: Map<String, Any?>) {
-    if (!enabled.get()) {
-      Timber.i("[analytics] skipped=true reason=optout event=%s", event)
-      return
-    }
-    val sanitized = params.filterValues { it != null }
-    Timber.i("[analytics] event=%s params=%s", event, sanitized)
-    val bundle = Bundle()
-    sanitized.forEach { (key, value) ->
-      value?.let { bundle.putParam(key, it) }
-    }
-    backend.logEvent(event, bundle)
-  }
+    override fun log(event: String, params: Map<String, Any?>) {
+        if (!enabled.get()) {
+            Timber.i("[analytics] skipped=true reason=optout event=%s", event)
+            return
+        }
 
+        // Явно фильтруем null'ы и сразу заливаем в Bundle
+        val bundle = Bundle()
+        for ((key, value) in params) {
+            if (value != null) {
+                bundle.putParam(key, value)
+            }
+        }
+
+        Timber.i("[analytics] event=%s params=%s", event, params.filterValues { it != null })
+        backend.logEvent(event, bundle)
+    }
   private fun Bundle.putParam(key: String, value: Any) {
     when (value) {
       is String -> putString(key, value)
