@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 class FakeUserPrefs(
   private val _analyticsEnabled: MutableStateFlow<Boolean> = MutableStateFlow(UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED),
   private val _prewarmDisabled: MutableStateFlow<Boolean> = MutableStateFlow(UserPrefsDataStore.DEFAULT_PREWARM_DISABLED),
+  private val _adaptiveExamEnabled: MutableStateFlow<Boolean> =
+    MutableStateFlow(UserPrefsDataStore.DEFAULT_ADAPTIVE_EXAM_ENABLED),
   private val _practiceSize: MutableStateFlow<Int> = MutableStateFlow(UserPrefsDataStore.DEFAULT_PRACTICE_SIZE),
   private val _lruCacheSize: MutableStateFlow<Int> = MutableStateFlow(UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE),
   private val _fallbackToEN: MutableStateFlow<Boolean> = MutableStateFlow(UserPrefsDataStore.DEFAULT_FALLBACK_TO_EN),
@@ -26,6 +28,7 @@ class FakeUserPrefs(
 
   override val analyticsEnabled: Flow<Boolean> = _analyticsEnabled
   override val prewarmDisabled: Flow<Boolean> = _prewarmDisabled
+  override val adaptiveExamEnabled: Flow<Boolean> = _adaptiveExamEnabled
   override val fallbackToEN: Flow<Boolean> = _fallbackToEN
   override val hapticsEnabled: Flow<Boolean> = _hapticsEnabled
   override val soundsEnabled: Flow<Boolean> = _soundsEnabled
@@ -43,6 +46,10 @@ class FakeUserPrefs(
 
   override suspend fun setPrewarmDisabled(value: Boolean) {
     _prewarmDisabled.value = value
+  }
+
+  override suspend fun setAdaptiveExamEnabled(value: Boolean) {
+    _adaptiveExamEnabled.value = value
   }
 
   override suspend fun setPracticeSize(value: Int) {
@@ -106,6 +113,7 @@ class FakeUserPrefs(
   override suspend fun clear() {
     _analyticsEnabled.value = UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED
     _prewarmDisabled.value = UserPrefsDataStore.DEFAULT_PREWARM_DISABLED
+    _adaptiveExamEnabled.value = UserPrefsDataStore.DEFAULT_ADAPTIVE_EXAM_ENABLED
     _practiceSize.value = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE
     _lruCacheSize.value = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE
     _fallbackToEN.value = UserPrefsDataStore.DEFAULT_FALLBACK_TO_EN

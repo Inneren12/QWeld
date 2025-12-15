@@ -33,6 +33,7 @@ class UserPrefsDataStoreTest {
 
     assertEquals(UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED, prefs.analyticsEnabled.first())
     assertEquals(UserPrefsDataStore.DEFAULT_PREWARM_DISABLED, prefs.prewarmDisabled.first())
+    assertEquals(UserPrefsDataStore.DEFAULT_ADAPTIVE_EXAM_ENABLED, prefs.adaptiveExamEnabled.first())
     assertEquals(UserPrefsDataStore.DEFAULT_PRACTICE_SIZE, prefs.practiceSizeFlow().first())
     assertEquals(UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE, prefs.lruCacheSizeFlow().first())
     assertEquals(UserPrefsDataStore.DEFAULT_WRONG_BIASED, prefs.wrongBiased.first())
@@ -47,6 +48,7 @@ class UserPrefsDataStoreTest {
 
     prefs.setAnalyticsEnabled(false)
     prefs.setPrewarmDisabled(true)
+    prefs.setAdaptiveExamEnabled(true)
     prefs.setPracticeSize(35)
     prefs.setLruCacheSize(16)
     prefs.setFallbackToEN(true)
@@ -56,6 +58,7 @@ class UserPrefsDataStoreTest {
 
     assertFalse(prefs.analyticsEnabled.first())
     assertTrue(prefs.prewarmDisabled.first())
+    assertTrue(prefs.adaptiveExamEnabled.first())
     assertEquals(35, prefs.practiceSizeFlow().first())
     assertEquals(16, prefs.lruCacheSizeFlow().first())
     assertTrue(prefs.fallbackToEN.first())

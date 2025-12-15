@@ -15,9 +15,9 @@ import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
-import com.qweld.app.domain.exam.ExamAssembler
 import com.qweld.app.domain.exam.ExamAssemblyConfig
 import com.qweld.app.domain.exam.ExamBlueprint
+import com.qweld.app.domain.exam.ExamAssemblerFactory
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.QuotaDistributor
@@ -164,6 +164,9 @@ class ExamViewModel(
   private val _prewarmDisabled = MutableStateFlow(UserPrefsDataStore.DEFAULT_PREWARM_DISABLED)
   val prewarmDisabled = _prewarmDisabled.asStateFlow()
 
+  private val _adaptiveExamEnabled = MutableStateFlow(UserPrefsDataStore.DEFAULT_ADAPTIVE_EXAM_ENABLED)
+  val adaptiveExamEnabled = _adaptiveExamEnabled.asStateFlow()
+
   val lastPracticeScope = userPrefs.readLastPracticeScope()
 
   val lastPracticeConfig =
@@ -252,11 +255,17 @@ class ExamViewModel(
         }
       }
     }
+    viewModelScope.launch { userPrefs.adaptiveExamEnabled.collect { enabled -> _adaptiveExamEnabled.value = enabled } }
   }
 
   // endregion
 
   // region Exam Assembly & Starting
+
+  fun setAdaptiveExamEnabled(enabled: Boolean) {
+    _adaptiveExamEnabled.value = enabled
+    viewModelScope.launch { userPrefs.setAdaptiveExamEnabled(enabled) }
+  }
 
   /**
    * Starts a new exam or practice attempt.
@@ -335,42 +344,80 @@ class ExamViewModel(
       }
     }
 
-    val assembler = ExamAssembler(
-      questionRepository = InMemoryQuestionRepository(questions),
-      statsRepository = statsRepository,
-      config =
-        ExamAssemblyConfig(
-          practiceWrongBiased =
-            mode == ExamMode.PRACTICE && normalizedPracticeConfig.wrongBiased,
-        ),
-      logger = { message ->
-        if (message.startsWith("[deficit]")) {
-          val payload = message.removePrefix("[deficit]").trim()
-          val kv =
-            payload
-              .split(' ')
-              .mapNotNull { entry ->
-                val delimiter = entry.indexOf('=')
-                if (delimiter <= 0) return@mapNotNull null
-                entry.substring(0, delimiter) to entry.substring(delimiter + 1)
-              }
-          Logx.w(LogTag.DEFICIT, "detail", *kv.toTypedArray())
-        } else {
-          Timber.i(message)
-        }
-      },
-    )
+    val useAdaptive = mode == ExamMode.ADAPTIVE && _adaptiveExamEnabled.value
+    if (mode == ExamMode.ADAPTIVE && !useAdaptive) {
+      Timber.i("[adaptive_disabled] start blocked")
+      return false
+    }
+    val assemblyConfig =
+      ExamAssemblyConfig(
+        practiceWrongBiased =
+          mode == ExamMode.PRACTICE && normalizedPracticeConfig.wrongBiased,
+      )
+    val assemblerLogger: (String) -> Unit = { message ->
+      if (message.startsWith("[deficit]")) {
+        val payload = message.removePrefix("[deficit]").trim()
+        val kv =
+          payload
+            .split(' ')
+            .mapNotNull { entry ->
+              val delimiter = entry.indexOf('=')
+              if (delimiter <= 0) return@mapNotNull null
+              entry.substring(0, delimiter) to entry.substring(delimiter + 1)
+            }
+        Logx.w(LogTag.DEFICIT, "detail", *kv.toTypedArray())
+      } else {
+        Timber.i(message)
+      }
+    }
     val attemptSeed = AttemptSeed(seedProvider())
-    val assemblyOutcome =
+    val assemblyOutcome: Outcome<AssemblyResult> =
       try {
-        runBlocking(ioDispatcher) {
-          assembler.assemble(
-            userId = userIdProvider(),
-            mode = mode,
-            locale = normalizedLocale,
-            seed = attemptSeed,
-            blueprint = blueprint,
-          )
+        if (useAdaptive) {
+          val assembler =
+            ExamAssemblerFactory.adaptive(
+              questionRepository = InMemoryQuestionRepository(questions),
+              statsRepository = statsRepository,
+              config = assemblyConfig,
+              logger = assemblerLogger,
+            )
+          when (
+            val result =
+              runBlocking(ioDispatcher) {
+                assembler.assemble(
+                  userId = userIdProvider(),
+                  locale = normalizedLocale,
+                  seed = attemptSeed,
+                  blueprint = blueprint,
+                )
+              }
+          ) {
+            is Outcome.Ok -> Outcome.Ok(AssemblyResult(result.value.exam, result.value.seed))
+            is Outcome.Err -> result
+          }
+        } else {
+          val assembler =
+            ExamAssemblerFactory.standard(
+              questionRepository = InMemoryQuestionRepository(questions),
+              statsRepository = statsRepository,
+              config = assemblyConfig,
+              logger = assemblerLogger,
+            )
+          when (
+            val result =
+              runBlocking(ioDispatcher) {
+                assembler.assemble(
+                  userId = userIdProvider(),
+                  mode = mode,
+                  locale = normalizedLocale,
+                  seed = attemptSeed,
+                  blueprint = blueprint,
+                )
+              }
+          ) {
+            is Outcome.Ok -> Outcome.Ok(AssemblyResult(result.value.exam, result.value.seed))
+            is Outcome.Err -> result
+          }
         }
       } catch (error: Throwable) {
         if (error is CancellationException) throw error
@@ -1932,6 +1979,8 @@ class ExamViewModel(
         "An unexpected error occurred while loading questions. Please try again or reinstall the app."
     }
   }
+
+  private data class AssemblyResult(val exam: ExamAttempt, val seed: Long)
 
   companion object {
     private const val DEFAULT_PRACTICE_SIZE = PracticeConfig.DEFAULT_SIZE

@@ -128,6 +128,10 @@ fun ExamNavGraph(
             ),
         )
       val coroutineScope = rememberCoroutineScope()
+      val adaptiveEnabled by
+        examViewModel.adaptiveExamEnabled.collectAsState(
+          initial = UserPrefsDataStore.DEFAULT_ADAPTIVE_EXAM_ENABLED,
+        )
       val practiceSize by
         userPrefs.practiceSizeFlow().collectAsState(
           initial = UserPrefsDataStore.DEFAULT_PRACTICE_SIZE,
@@ -150,8 +154,10 @@ fun ExamNavGraph(
         viewModel = examViewModel,
         practiceShortcuts = practiceShortcuts,
         practiceConfig = practiceConfig,
+        adaptiveEnabled = adaptiveEnabled,
         navController = navController,
         appLocaleTag = appLocaleTag,
+        onAdaptiveToggle = { enabled -> examViewModel.setAdaptiveExamEnabled(enabled) },
         onPracticeSizeCommit = { size ->
           coroutineScope.launch { userPrefs.setPracticeSize(size) }
         },

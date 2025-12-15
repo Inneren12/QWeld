@@ -109,6 +109,7 @@ class ExamViewModelStartTest {
 
     val effect = async { viewModel.effects.first() }
 
+    viewModel.setAdaptiveExamEnabled(true)
     val launched = viewModel.startAttempt(ExamMode.ADAPTIVE, locale = "en")
 
     assertTrue(launched)

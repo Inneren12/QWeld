@@ -49,6 +49,10 @@ class UserPrefsDataStore internal constructor(
     preferences[PREWARM_DISABLED_KEY] ?: DEFAULT_PREWARM_DISABLED
   }
 
+  override val adaptiveExamEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
+    preferences[ADAPTIVE_EXAM_ENABLED_KEY] ?: DEFAULT_ADAPTIVE_EXAM_ENABLED
+  }
+
   override fun practiceSizeFlow(): Flow<Int> {
     return dataStore.data.map { preferences ->
       sanitizePracticeSize(preferences[PRACTICE_SIZE_KEY] ?: DEFAULT_PRACTICE_SIZE)
@@ -122,6 +126,10 @@ class UserPrefsDataStore internal constructor(
 
   override suspend fun setPrewarmDisabled(value: Boolean) {
     dataStore.edit { preferences -> preferences[PREWARM_DISABLED_KEY] = value }
+  }
+
+  override suspend fun setAdaptiveExamEnabled(value: Boolean) {
+    dataStore.edit { preferences -> preferences[ADAPTIVE_EXAM_ENABLED_KEY] = value }
   }
 
   override suspend fun setPracticeSize(value: Int) {
@@ -202,6 +210,7 @@ class UserPrefsDataStore internal constructor(
     const val MIN_PRACTICE_SIZE: Int = 5
     const val MAX_PRACTICE_SIZE: Int = 125
     const val DEFAULT_PREWARM_DISABLED: Boolean = false
+    const val DEFAULT_ADAPTIVE_EXAM_ENABLED: Boolean = false
     const val DEFAULT_LRU_CACHE_SIZE: Int = 8
     const val MIN_LRU_CACHE_SIZE: Int = 4
     const val MAX_LRU_CACHE_SIZE: Int = 32
@@ -215,6 +224,7 @@ class UserPrefsDataStore internal constructor(
       private const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
     private val PREWARM_DISABLED_KEY = booleanPreferencesKey("prewarm_disabled")
+    private val ADAPTIVE_EXAM_ENABLED_KEY = booleanPreferencesKey("adaptive_exam_enabled")
     private val PRACTICE_SIZE_KEY = intPreferencesKey("practice_size")
     private val LRU_CACHE_SIZE_KEY = intPreferencesKey("lru_cache_size")
     private val FALLBACK_TO_EN_KEY = booleanPreferencesKey("allow_fallback_en")
@@ -232,6 +242,7 @@ class UserPrefsDataStore internal constructor(
       return preferencesOf(
         ANALYTICS_ENABLED_KEY to DEFAULT_ANALYTICS_ENABLED,
         PREWARM_DISABLED_KEY to DEFAULT_PREWARM_DISABLED,
+        ADAPTIVE_EXAM_ENABLED_KEY to DEFAULT_ADAPTIVE_EXAM_ENABLED,
         PRACTICE_SIZE_KEY to DEFAULT_PRACTICE_SIZE,
         LRU_CACHE_SIZE_KEY to DEFAULT_LRU_CACHE_SIZE,
         FALLBACK_TO_EN_KEY to DEFAULT_FALLBACK_TO_EN,

@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserPrefs {
   val analyticsEnabled: Flow<Boolean>
   val prewarmDisabled: Flow<Boolean>
+  val adaptiveExamEnabled: Flow<Boolean>
   val fallbackToEN: Flow<Boolean>
   val hapticsEnabled: Flow<Boolean>
   val soundsEnabled: Flow<Boolean>
@@ -22,6 +23,7 @@ interface UserPrefs {
 
   suspend fun setAnalyticsEnabled(value: Boolean)
   suspend fun setPrewarmDisabled(value: Boolean)
+  suspend fun setAdaptiveExamEnabled(value: Boolean)
   suspend fun setPracticeSize(value: Int)
   suspend fun setLruCacheSize(value: Int)
   suspend fun setFallbackToEN(value: Boolean)

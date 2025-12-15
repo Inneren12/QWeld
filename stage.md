@@ -26,14 +26,14 @@ Legend:
   - [ ] Expand preset management beyond “last used” (named presets, sharing).
  
 ### EXAM-3 – Adaptive exam mode
-- **Status:** ⏳
-- **Summary:** Adaptive exam mode that adjusts the difficulty of subsequent questions based on the user’s performance (correct/incorrect streaks).
-- **Implemented in:** Planned for `core-domain` (adaptive sampler/strategy) and `feature-exam` (exam flow wiring and UI toggle).
+- **Status:** ⚠️
+- **Summary:** Adaptive exam mode that adjusts the difficulty of subsequent questions based on the user’s performance (correct/incorrect streaks). A beta-only toggle now gates adaptive assembly and surfaces a subtle in-exam label when active.
+- **Implemented in:** `core-domain` (adaptive sampler/strategy) and `feature-exam` (exam flow wiring, UI toggle, beta label).
 - **Next tasks:**
   - [x] Design adaptive rules: initial difficulty level, step size for increasing/decreasing difficulty, and min/max bounds. (See `core-domain/src/main/java/com/qweld/app/domain/adaptive/AdaptiveExamPolicy.kt`.)
   - [x] Implement adaptive question selection in the exam assembly pipeline using existing RNG/samplers.
   - [x] Add tests for key scenarios (streaks of correct answers, streaks of incorrect answers, alternating answers) to verify difficulty transitions.
-  - [ ] Add a user-facing toggle/flag for enabling adaptive mode (beta-only at first).
+  - [x] Add a user-facing toggle/flag for enabling adaptive mode (beta-only at first).
 
 ## Content & Localization
 

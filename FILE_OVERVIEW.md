@@ -215,7 +215,7 @@ e threshold (via `localeCoverage.ru.min`).
   - **Edit guidelines:** Keep transaction boundaries and threading consistent.
 - `core-data/src/main/java/com/qweld/app/data/prefs/UserPrefsDataStore.kt`
   - **Importance:** 🔴 Critical
-  - **Role:** Stores user preferences (locale, practice presets, analytics opt-out) in DataStore.
+  - **Role:** Stores user preferences (locale, practice presets, analytics opt-out, adaptive exam opt-in) in DataStore.
   - **Edit guidelines:** Keep keys stable; handle migrations when renaming fields.
 - `core-data/src/main/java/com/qweld/app/data/content/questions/{IndexParser,AssetIntegrityGuard}.kt`
   - **Importance:** 🟡 Important
