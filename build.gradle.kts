@@ -15,7 +15,7 @@ plugins {
   id("com.diffplug.spotless")
   id("io.gitlab.arturbosch.detekt") version "1.23.6"
   id("org.jetbrains.kotlinx.kover") version "0.7.6"
-    id("com.google.devtools.ksp") version "" apply false
+  id("com.google.devtools.ksp") version "2.0.20-1" apply false
 }
 
 spotless {
