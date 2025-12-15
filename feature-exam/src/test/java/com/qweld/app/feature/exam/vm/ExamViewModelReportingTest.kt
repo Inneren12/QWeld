@@ -1,5 +1,12 @@
 package com.qweld.app.feature.exam.vm
 
+import com.qweld.app.common.error.AppError
+import com.qweld.app.common.error.AppErrorEvent
+import com.qweld.app.common.error.AppErrorHandler
+import com.qweld.app.common.error.AppErrorReportResult
+import com.qweld.app.common.error.UiErrorEvent
+import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.reports.QuestionReport
 import com.qweld.app.data.reports.QuestionReportQueueStatus
 import com.qweld.app.data.reports.QuestionReportRepository
@@ -7,18 +14,12 @@ import com.qweld.app.data.reports.QuestionReportRetryResult
 import com.qweld.app.data.reports.QuestionReportSubmitResult
 import com.qweld.app.data.reports.QuestionReportSummary
 import com.qweld.app.data.reports.QuestionReportWithId
-import com.qweld.app.data.repo.AnswersRepository
-import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TaskQuota
+import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.UserStatsRepository
-import com.qweld.app.common.error.AppError
-import com.qweld.app.common.error.AppErrorEvent
-import com.qweld.app.common.error.AppErrorHandler
-import com.qweld.app.common.error.AppErrorReportResult
-import com.qweld.app.common.error.UiErrorEvent
 import com.qweld.app.feature.exam.FakeUserPrefs
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
@@ -38,9 +39,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 
@@ -49,13 +50,15 @@ class ExamViewModelReportingTest {
   @get:Rule val dispatcherRule = MainDispatcherRule()
 
   @Test
-  fun reportQueued_emitsQueuedUiEvent_withoutCrashing() = runTest {
+  fun reportQueued_emitsUiEvent_withoutCrashing() = runTest {
     val repository = repositoryWithQuestions(count = 1)
     val appErrorHandler = RecordingAppErrorHandler()
+    val reportRepository =
+      RecordingQuestionReportRepository { QuestionReportSubmitResult.Queued(queueId = 12L) }
     val viewModel =
       createViewModel(
         repository = repository,
-        questionReportRepository = QueuingReportRepository,
+        questionReportRepository = reportRepository,
         appErrorHandler = appErrorHandler,
         ioDispatcher = dispatcherRule.dispatcher,
       )
@@ -67,22 +70,25 @@ class ExamViewModelReportingTest {
     val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
     val job = launch { viewModel.reportEvents.take(1).collect(events::add) }
 
-    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "queued")
+    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "queued path")
     advanceUntilIdle()
-    job.cancel()
+    job.join()
 
-    assertTrue(events.contains(ExamViewModel.QuestionReportUiEvent.Queued))
+    assertEquals(listOf(ExamViewModel.QuestionReportUiEvent.Queued), events)
     assertTrue(appErrorHandler.handledErrors.isEmpty())
+    assertEquals(1, reportRepository.submissions.size)
   }
 
   @Test
-  fun reportFailure_emitsFailedEvent_andForwardedToAppErrorHandler() = runTest {
+  fun reportFailure_emitsFailedEvent_andForwardsToAppErrorHandler() = runTest {
     val repository = repositoryWithQuestions(count = 1)
     val appErrorHandler = RecordingAppErrorHandler()
+    val reportRepository =
+      RecordingQuestionReportRepository { throw RuntimeException("submit_failed") }
     val viewModel =
       createViewModel(
         repository = repository,
-        questionReportRepository = FailingReportRepository,
+        questionReportRepository = reportRepository,
         appErrorHandler = appErrorHandler,
         ioDispatcher = dispatcherRule.dispatcher,
       )
@@ -94,15 +100,15 @@ class ExamViewModelReportingTest {
     val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
     val job = launch { viewModel.reportEvents.take(1).collect(events::add) }
 
-    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "offline")
+    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "boom")
     advanceUntilIdle()
-    job.cancel()
+    job.join()
 
-    assertTrue(events.contains(ExamViewModel.QuestionReportUiEvent.Failed))
+    assertEquals(listOf(ExamViewModel.QuestionReportUiEvent.Failed), events)
     val reportingError = appErrorHandler.handledErrors.filterIsInstance<AppError.Reporting>().first()
     assertEquals("exam", reportingError.context.screen)
     assertEquals("question_report_submit", reportingError.context.action)
-    assertEquals("Q1", reportingError.context.extras?.get("questionId"))
+    assertEquals("Q1", reportingError.context.extras["questionId"])
   }
 
   private fun createViewModel(
@@ -134,12 +140,13 @@ class ExamViewModelReportingTest {
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
       appEnv = FakeAppEnv(),
+      appErrorHandler = appErrorHandler,
       blueprintProvider = { _, _ -> blueprint },
       seedProvider = { 1L },
       userIdProvider = { "user" },
       attemptIdProvider = { UUID.randomUUID().toString() },
       nowProvider = { 0L },
-      timerController = com.qweld.app.domain.exam.TimerController { },
+      timerController = TimerController { },
       ioDispatcher = ioDispatcher,
       prewarmController =
         PrewarmController(
@@ -156,33 +163,28 @@ class ExamViewModelReportingTest {
   }
 
   private fun repositoryWithQuestions(count: Int): AssetQuestionRepository {
-    val questions = buildString {
-      append("[")
-      repeat(count) { index ->
-        if (index > 0) append(",")
-        val qId = "Q${index + 1}"
+    val questions =
+      (1..count).joinToString(prefix = "[", postfix = "]") { index ->
+        val qId = "Q$index"
         val choiceIds = listOf("A", "B", "C", "D").map { suffix -> "${qId}-$suffix" }
-        append(
-          """
+        """
           {
-            \"id\": \"$qId\",
-            \"taskId\": \"A-1\",
-            \"blockId\": \"A\",
-            \"locale\": \"en\",
-            \"stem\": { \"en\": \"Stem $qId\" },
-            \"choices\": [
-              { \"id\": \"${choiceIds[0]}\", \"text\": { \"en\": \"Choice 1\" } },
-              { \"id\": \"${choiceIds[1]}\", \"text\": { \"en\": \"Choice 2\" } },
-              { \"id\": \"${choiceIds[2]}\", \"text\": { \"en\": \"Choice 3\" } },
-              { \"id\": \"${choiceIds[3]}\", \"text\": { \"en\": \"Choice 4\" } }
+            "id": "$qId",
+            "taskId": "A-1",
+            "blockId": "A",
+            "locale": "en",
+            "stem": { "en": "Stem $qId" },
+            "choices": [
+              { "id": "${choiceIds[0]}", "text": { "en": "Choice 1" } },
+              { "id": "${choiceIds[1]}", "text": { "en": "Choice 2" } },
+              { "id": "${choiceIds[2]}", "text": { "en": "Choice 3" } },
+              { "id": "${choiceIds[3]}", "text": { "en": "Choice 4" } }
             ],
-            \"correctId\": \"${choiceIds[0]}\"
+            "correctId": "${choiceIds[0]}"
           }
-          """.trimIndent(),
-        )
+        """
+          .trimIndent()
       }
-      append("]")
-    }
     val assets =
       TestIntegrity.addIndexes(
         mapOf("questions/en/bank.v1.json" to questions.toByteArray()),
@@ -195,35 +197,14 @@ class ExamViewModelReportingTest {
   }
 }
 
-private object QueuingReportRepository : QuestionReportRepository {
-  override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult =
-    QuestionReportSubmitResult.Queued(queueId = 1L)
+private class RecordingQuestionReportRepository(
+  private val submitBehavior: suspend (QuestionReport) -> QuestionReportSubmitResult,
+) : QuestionReportRepository {
+  val submissions = mutableListOf<QuestionReport>()
 
-  override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> = emptyList()
-
-  override suspend fun listReportSummaries(limit: Int): List<QuestionReportSummary> = emptyList()
-
-  override suspend fun listReportsForQuestion(questionId: String, limit: Int): List<QuestionReportWithId> = emptyList()
-
-  override suspend fun getReportById(reportId: String): QuestionReportWithId? = null
-
-  override suspend fun updateReportStatus(
-    reportId: String,
-    status: String,
-    resolutionCode: String?,
-    resolutionComment: String?,
-  ) = Unit
-
-  override suspend fun retryQueuedReports(maxAttempts: Int, batchSize: Int): QuestionReportRetryResult =
-    QuestionReportRetryResult(sent = 0, dropped = 0)
-
-  override suspend fun getQueueStatus(): QuestionReportQueueStatus =
-    QuestionReportQueueStatus(queuedCount = 1, oldestQueuedAt = null, lastAttemptAt = null)
-}
-
-private object FailingReportRepository : QuestionReportRepository {
   override suspend fun submitReport(report: QuestionReport): QuestionReportSubmitResult {
-    error("network_down")
+    submissions.add(report)
+    return submitBehavior(report)
   }
 
   override suspend fun listReports(status: String?, limit: Int): List<QuestionReportWithId> = emptyList()
