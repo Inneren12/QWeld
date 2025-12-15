@@ -27,7 +27,7 @@ Legend:
  
 ### EXAM-3 – Adaptive exam mode
 - **Status:** ⚠️
-- **Summary:** Adaptive exam mode that adjusts the difficulty of subsequent questions based on the user’s performance (correct/incorrect streaks). A beta-only toggle now gates adaptive assembly and surfaces a subtle in-exam label when active.
+- **Summary:** Adaptive exam mode that adjusts the difficulty of subsequent questions based on the user’s performance (correct/incorrect streaks). A beta-only toggle now gates adaptive assembly and surfaces a subtle in-exam label when active. Policy and assembler behavior now carry deterministic unit coverage for streak and fallback scenarios, plus a UI smoke test that exercises a short adaptive run.
 - **Implemented in:** `core-domain` (adaptive sampler/strategy) and `feature-exam` (exam flow wiring, UI toggle, beta label).
 - **Next tasks:**
   - [x] Design adaptive rules: initial difficulty level, step size for increasing/decreasing difficulty, and min/max bounds. (See `core-domain/src/main/java/com/qweld/app/domain/adaptive/AdaptiveExamPolicy.kt`.)
@@ -136,10 +136,10 @@ Legend:
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
 - **Status:** ⏳
-- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows. Payload structure/PII coverage for question reports now lives in unit tests; UI/admin coverage now includes instrumentation for reporting a question and viewing reports in the admin list/detail screens. Added regression checks for the centralized AppErrorHandler (Crashlytics gating + UI events), the “Report app error” dialog submission path, and queued/offline question reporting acknowledgments.
+- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows. Payload structure/PII coverage for question reports now lives in unit tests; UI/admin coverage now includes instrumentation for reporting a question, viewing reports in the admin list/detail screens, and an adaptive exam smoke test. Added regression checks for the centralized AppErrorHandler (Crashlytics gating + UI events), the “Report app error” dialog submission path, and queued/offline question reporting acknowledgments.
 - **Implemented in:** Planned across `feature-exam` UI tests, domain tests in `core-domain`, and integration tests for reporting/error handling.
 - **Next tasks:**
-  - [ ] Add end-to-end tests covering an adaptive exam run (difficulty changes as expected for different answer patterns).
+  - [x] Add end-to-end tests covering an adaptive exam run (difficulty changes as expected for different answer patterns).
   - [x] Add tests for the admin/debug screen (data visibility, access control) and question reporting UI (report creation, basic validation).
   - [ ] Manually exercise error paths to confirm Crashlytics/diagnostics and the in-app error dialog behave correctly.
 

@@ -4,6 +4,7 @@ import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssemblyConfig
 import com.qweld.app.domain.exam.ExamBlueprint
+import com.qweld.app.domain.exam.ItemStats
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.buildQuestion
 import com.qweld.app.domain.exam.generateQuestions
@@ -88,4 +89,111 @@ class AdaptiveExamAssemblerSamplerTest {
     assertEquals(4, attempt.questions.size)
     assertTrue(attempt.questions.count { it.question.difficulty == DifficultyBand.HARD } >= 1)
   }
+
+  @Test
+  fun `difficulty trend follows policy picks during initial run`() {
+    val blueprint = ExamBlueprint(totalQuestions = 5, taskQuotas = listOf(TaskQuota("A-1", "A", 5)))
+    val questions =
+      generateQuestions(
+        taskId = "A-1",
+        count = 6,
+        difficultyProvider = { index -> if (index < 3) DifficultyBand.MEDIUM else DifficultyBand.HARD },
+      )
+    val stats = questions.associate { question -> question.id to ItemStats(questionId = question.id, attempts = 1, correct = 1) }
+    val policy = RecordingPolicy(DefaultAdaptiveExamPolicy())
+    val assembler =
+      AdaptiveExamAssembler(
+        questionRepository = FakeQuestionRepository(questions),
+        statsRepository = FakeUserStatsRepository(stats),
+        policy = policy,
+        assemblyConfig = ExamAssemblyConfig(),
+        clock = fixedClock(),
+      )
+
+    runBlocking {
+      (assembler.assemble("user", "EN", AttemptSeed(7L), blueprint) as Outcome.Ok).value.exam
+    }
+
+    assertEquals(
+      listOf(
+        DifficultyBand.MEDIUM,
+        DifficultyBand.MEDIUM,
+        DifficultyBand.HARD,
+        DifficultyBand.MEDIUM,
+        DifficultyBand.MEDIUM,
+      ),
+      policy.servedBands.take(5),
+    )
+  }
+
+  @Test
+  fun `falls back when desired difficulty is exhausted`() {
+    val blueprint = ExamBlueprint(totalQuestions = 3, taskQuotas = listOf(TaskQuota("A-1", "A", 3)))
+    val questions =
+      listOf(
+        buildQuestion("A-1", 0, difficulty = DifficultyBand.HARD),
+        buildQuestion("A-1", 1, difficulty = DifficultyBand.MEDIUM),
+        buildQuestion("A-1", 2, difficulty = DifficultyBand.MEDIUM),
+      )
+    val policy = GreedyHardPolicy()
+    val assembler =
+      AdaptiveExamAssembler(
+        questionRepository = FakeQuestionRepository(questions),
+        statsRepository = FakeUserStatsRepository(),
+        policy = policy,
+        assemblyConfig = ExamAssemblyConfig(),
+        clock = fixedClock(),
+      )
+
+    val attempt =
+      runBlocking {
+        (assembler.assemble("user", "EN", AttemptSeed(3L), blueprint) as Outcome.Ok).value.exam
+      }
+
+    assertEquals(3, attempt.questions.size)
+    assertEquals(1, attempt.questions.count { it.question.difficulty == DifficultyBand.HARD })
+    assertEquals(listOf(DifficultyBand.HARD, DifficultyBand.MEDIUM, DifficultyBand.MEDIUM), policy.servedBands)
+  }
+}
+
+private class RecordingPolicy(
+  private val delegate: AdaptiveExamPolicy,
+) : AdaptiveExamPolicy {
+  val servedBands = mutableListOf<DifficultyBand>()
+
+  override fun initialState(totalQuestions: Int): AdaptiveState = delegate.initialState(totalQuestions)
+
+  override fun nextState(previous: AdaptiveState, servedBand: DifficultyBand, wasCorrect: Boolean): AdaptiveState {
+    servedBands += servedBand
+    return delegate.nextState(previous, servedBand, wasCorrect)
+  }
+
+  override fun pickNextDifficulty(state: AdaptiveState): DifficultyBand = delegate.pickNextDifficulty(state)
+}
+
+private class GreedyHardPolicy : AdaptiveExamPolicy {
+  val servedBands = mutableListOf<DifficultyBand>()
+
+  override fun initialState(totalQuestions: Int): AdaptiveState =
+    AdaptiveState(
+      currentDifficulty = DifficultyBand.HARD,
+      correctStreak = 0,
+      incorrectStreak = 0,
+      askedPerBand = DifficultyBand.values().associateWith { 0 },
+      remainingQuestions = totalQuestions,
+    )
+
+  override fun nextState(previous: AdaptiveState, servedBand: DifficultyBand, wasCorrect: Boolean): AdaptiveState {
+    servedBands += servedBand
+    val asked = previous.askedPerBand.toMutableMap()
+    asked[servedBand] = asked.getOrElse(servedBand) { 0 } + 1
+    return previous.copy(
+      correctStreak = if (servedBand == DifficultyBand.HARD && wasCorrect) previous.correctStreak + 1 else 0,
+      incorrectStreak = if (servedBand == DifficultyBand.HARD && !wasCorrect) previous.incorrectStreak + 1 else 0,
+      askedPerBand = asked,
+      remainingQuestions = (previous.remainingQuestions - 1).coerceAtLeast(0),
+    )
+  }
+
+  override fun pickNextDifficulty(state: AdaptiveState): DifficultyBand = DifficultyBand.HARD
 }
