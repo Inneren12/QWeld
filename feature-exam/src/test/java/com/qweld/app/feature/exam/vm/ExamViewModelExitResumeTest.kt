@@ -243,7 +243,7 @@ class ExamViewModelExitResumeTest {
       nowProvider = { currentTime },
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcherRule.dispatcher,
-      prewarmController =
+      prewarmRunner =
         PrewarmController(
           repository = repository,
           prewarmUseCase =

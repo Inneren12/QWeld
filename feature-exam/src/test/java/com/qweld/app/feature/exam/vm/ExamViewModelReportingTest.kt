@@ -151,7 +151,7 @@ class ExamViewModelReportingTest {
       nowProvider = { 0L },
       timerController = TimerController { },
       ioDispatcher = ioDispatcher,
-      prewarmController =
+      prewarmRunner =
         PrewarmController(
           repository = repository,
           prewarmUseCase =

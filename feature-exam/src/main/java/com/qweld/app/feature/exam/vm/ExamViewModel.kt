@@ -46,15 +46,12 @@ import com.qweld.core.common.logging.Logx
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -67,8 +64,6 @@ import timber.log.Timber
 import java.time.Duration
 import java.util.Locale
 import java.util.UUID
-import kotlin.math.max
-import kotlin.math.min
 import kotlin.random.Random
 
 /**
@@ -87,9 +82,9 @@ import kotlin.random.Random
  * 10. **State Management**: Convert domain models to UI state
  *
  * ## Architecture:
- * - Uses separate controllers for autosave (AutosaveController) and prewarming (PrewarmController)
+ * - Uses dedicated controllers for autosave (DefaultExamAutosaveController) and prewarming (DefaultExamPrewarmCoordinator)
  * - Uses separate use cases for resume logic (ResumeUseCase) and prewarming (PrewarmUseCase)
- * - Timer logic uses TimerController from domain layer
+ * - Timer logic uses TimerController from domain layer via DefaultExamTimerController
  * - Repositories handle persistence (AttemptsRepository, AnswersRepository)
  *
  * ## Testing:
@@ -114,7 +109,7 @@ class ExamViewModel(
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
   private val timerController: TimerController = TimerController { message -> Timber.i(message) },
   private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-  private val prewarmController: PrewarmController =
+  private val prewarmRunner: PrewarmController =
     PrewarmController(
       repository = repository,
       prewarmUseCase =
@@ -133,24 +128,35 @@ class ExamViewModel(
       userIdProvider = userIdProvider,
       ioDispatcher = ioDispatcher,
     ),
+  timerCoordinatorOverride: ExamTimerController? = null,
+  prewarmCoordinatorOverride: ExamPrewarmCoordinator? = null,
+  autosaveCoordinatorOverride: ExamAutosaveController? = null,
 ) : ViewModel() {
 
   private val _uiState = mutableStateOf(ExamUiState())
   val uiState: State<ExamUiState> = _uiState
 
+  private val timerCoordinator: ExamTimerController =
+    timerCoordinatorOverride ?: DefaultExamTimerController(timerController) { viewModelScope }
+  private val prewarmCoordinator: ExamPrewarmCoordinator =
+    prewarmCoordinatorOverride
+      ?: DefaultExamPrewarmCoordinator(viewModelScope, ioDispatcher, blueprintProvider, prewarmRunner)
+  private val autosaveCoordinator: ExamAutosaveController =
+    autosaveCoordinatorOverride
+      ?: DefaultExamAutosaveController(
+        answersRepository = answersRepository,
+        scope = viewModelScope,
+        ioDispatcher = ioDispatcher,
+        autosaveIntervalSec = AUTOSAVE_INTERVAL_SEC,
+      )
+
   private var currentAttempt: ExamAssemblerResult? = null
   private var latestTimerLabel: String? = null
-  private var timerJob: Job? = null
-  private var timerRunning: Boolean = false
   private var hasFinished: Boolean = false
   private var latestResult: ExamResultData? = null
   private var questionRationales: Map<String, String> = emptyMap()
   private val questionSeenAt = mutableMapOf<String, Long>()
-  private var autosaveController: AutosaveController? = null
-  private var autosaveTickerJob: Job? = null
   private var pendingResume: AttemptEntity? = null
-  private var manualTimerRemaining: Duration? = null
-  private var prewarmJob: Job? = null
 
   private val _events = MutableSharedFlow<ExamEvent>(extraBufferCapacity = 1)
   val events = _events.asSharedFlow()
@@ -250,12 +256,16 @@ class ExamViewModel(
         val previous = _prewarmDisabled.value
         _prewarmDisabled.value = disabled
         if (disabled && !previous) {
-          prewarmJob?.cancel()
-          prewarmJob = null
+          prewarmCoordinator.cancel()
         }
       }
     }
     viewModelScope.launch { userPrefs.adaptiveExamEnabled.collect { enabled -> _adaptiveExamEnabled.value = enabled } }
+    viewModelScope.launch {
+      prewarmCoordinator.prewarmState.collect { state ->
+        _uiState.value = _uiState.value.copy(prewarmState = state)
+      }
+    }
   }
 
   // endregion
@@ -291,7 +301,6 @@ class ExamViewModel(
     }
     val normalizedLocale = locale.lowercase(Locale.US)
     pendingResume = null
-    manualTimerRemaining = null
     _uiState.value = _uiState.value.copy(resumeDialog = null)
     val blueprintSize =
       when {
@@ -755,7 +764,6 @@ class ExamViewModel(
         prepareAutosave(pending.id)
         latestResult = null
         pendingResume = null
-        manualTimerRemaining = null
         _uiState.value = _uiState.value.copy(resumeDialog = null, errorMessage = null)
         if (mode == ExamMode.IP_MOCK) {
           resumeTimer(remaining)
@@ -836,21 +844,7 @@ class ExamViewModel(
         seenAt = seenAt,
         answeredAt = answeredAt,
       )
-    val controller = autosaveController
-    if (controller != null) {
-      controller.onAnswer(
-        questionId = answerEntity.questionId,
-        choiceId = answerEntity.selectedId,
-        correctChoiceId = answerEntity.correctId,
-        isCorrect = answerEntity.isCorrect,
-        displayIndex = answerEntity.displayIndex,
-        timeSpentSec = answerEntity.timeSpentSec,
-        seenAt = answerEntity.seenAt,
-        answeredAt = answerEntity.answeredAt,
-      )
-    } else {
-      viewModelScope.launch(ioDispatcher) { answersRepository.upsert(listOf(answerEntity)) }
-    }
+    autosaveCoordinator.recordAnswer(answerEntity)
     Timber.i("[answer_write] attempt=%s qId=%s correct=%s", attemptResult.attemptId, questionId, correct)
 
     val updatedAnswers = attemptResult.answers + (questionId to choiceId)
@@ -872,7 +866,7 @@ class ExamViewModel(
     val attempt = attemptResult.attempt
     val remaining =
       if (attempt.mode == ExamMode.IP_MOCK) {
-        manualTimerRemaining ?: timerController.remaining()
+        timerCoordinator.remaining()
       } else {
         Duration.ZERO
       }
@@ -892,8 +886,8 @@ class ExamViewModel(
     )
     stopTimer(clearLabel = false)
     hasFinished = true
-    autosaveController?.flush(force = true)
-    stopAutosaveTicker()
+    autosaveCoordinator.flush(force = true)
+    stopAutosaveBlocking()
     val finishedAt = nowProvider()
     val durationSec = ((finishedAt - attemptResult.startedAt).coerceAtLeast(0L) / 1_000L).toInt()
     val passThreshold = if (attempt.mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
@@ -1305,107 +1299,7 @@ class ExamViewModel(
    */
   fun startPrewarmForIpMock(locale: String) {
     if (_prewarmDisabled.value) return
-    val normalizedLocale = locale.lowercase(Locale.US)
-    val current = _uiState.value.prewarmState
-    if (current.isRunning) return
-    if (current.isReady && current.locale.equals(normalizedLocale, ignoreCase = true)) return
-
-    val blueprint = blueprintProvider(ExamMode.IP_MOCK, DEFAULT_PRACTICE_SIZE)
-    val tasks = blueprint.taskQuotas.mapNotNull { quota -> quota.taskId.takeIf { it.isNotBlank() } }.toSet()
-    val expectedTotal = tasks.size.takeIf { it > 0 } ?: 1
-    updatePrewarmState(
-      locale = normalizedLocale,
-      loaded = 0,
-      total = expectedTotal,
-      isRunning = true,
-      isReady = false,
-    )
-
-    prewarmJob?.cancel()
-    prewarmJob =
-      viewModelScope.launch(ioDispatcher) {
-        try {
-          prewarmController.prewarm(normalizedLocale, tasks) { loaded, total ->
-            dispatchPrewarmProgress(normalizedLocale, loaded, total, expectedTotal)
-          }
-          finalizePrewarm(normalizedLocale, expectedTotal)
-        } catch (cancellation: CancellationException) {
-          throw cancellation
-        } catch (error: Throwable) {
-          Logx.e(
-            LogTag.PREWARM,
-            "flow_error",
-            error,
-            "locale" to normalizedLocale,
-          )
-          finalizePrewarm(normalizedLocale, expectedTotal)
-        }
-      }
-  }
-
-  private fun dispatchPrewarmProgress(
-    locale: String,
-    loaded: Int,
-    total: Int,
-    expectedTotal: Int,
-  ) {
-    val safeTotal = when {
-      total > 0 -> total
-      expectedTotal > 0 -> expectedTotal
-      else -> 1
-    }
-    val clampedLoaded = loaded.coerceIn(0, safeTotal)
-    val isReady = clampedLoaded >= safeTotal
-    updatePrewarmState(
-      locale = locale,
-      loaded = clampedLoaded,
-      total = safeTotal,
-      isRunning = !isReady,
-      isReady = isReady,
-    )
-  }
-
-  private fun finalizePrewarm(locale: String, expectedTotal: Int) {
-    val current = _uiState.value.prewarmState
-    updatePrewarmState(
-      locale = locale,
-      loaded = max(current.loaded, current.total.takeIf { it > 0 } ?: expectedTotal),
-      total = current.total.takeIf { it > 0 } ?: expectedTotal,
-      isRunning = false,
-      isReady = true,
-    )
-  }
-
-  private fun updatePrewarmState(
-    locale: String,
-    loaded: Int,
-    total: Int,
-    isRunning: Boolean,
-    isReady: Boolean,
-  ) {
-    viewModelScope.launch {
-      val previous = _uiState.value.prewarmState
-      val clampedTotal = total.coerceAtLeast(0)
-      val resolvedTotal =
-        when {
-          clampedTotal > 0 -> clampedTotal
-          previous.total > 0 -> previous.total
-          else -> max(loaded, 1)
-        }
-      val clampedLoaded = loaded.coerceIn(0, resolvedTotal)
-      val readyState = isReady || (resolvedTotal > 0 && clampedLoaded >= resolvedTotal)
-      _uiState.value =
-        _uiState.value.copy(
-          prewarmState =
-            previous.copy(
-              locale = locale,
-              loaded = clampedLoaded,
-              total = resolvedTotal,
-              isRunning = isRunning && !readyState,
-              isReady = readyState,
-            ),
-        )
-    }
+    prewarmCoordinator.startForIpMock(locale)
   }
 
   private fun toUiModel(
@@ -1445,34 +1339,25 @@ class ExamViewModel(
     return checkNotNull(latestResult) { "Result is not available" }
   }
 
+  private fun updateTimerLabel(label: String?) {
+    latestTimerLabel = label
+    _uiState.value = _uiState.value.copy(timerLabel = label)
+  }
+
   /**
    * Starts a new timer for IP_MOCK exams.
    * Timer runs for 4 hours and automatically finishes exam when expired.
    */
   private fun startTimer() {
-    stopTimer(clearLabel = true)
-    manualTimerRemaining = null
-    timerController.start()
-    timerRunning = true
-    val initialRemaining = TimerController.EXAM_DURATION
-    latestTimerLabel = TimerController.formatDuration(initialRemaining)
+    val initialLabel = TimerController.formatDuration(TimerController.EXAM_DURATION)
     Timber.i(
       "[exam_timer] started=4h remaining=%s",
-      latestTimerLabel,
+      initialLabel,
     )
-    _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
-    timerJob = viewModelScope.launch {
-      while (true) {
-        delay(1_000)
-        val remaining = timerController.remaining()
-        latestTimerLabel = TimerController.formatDuration(remaining)
-        _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
-        if (remaining.isZero) {
-          finishExam()
-          break
-        }
-      }
-    }
+    timerCoordinator.start(
+      onTick = { label, _ -> updateTimerLabel(label) },
+      onExpired = { finishExam() },
+    )
   }
 
   /**
@@ -1480,52 +1365,24 @@ class ExamViewModel(
    * Used when resuming an interrupted IP_MOCK exam.
    */
   private fun resumeTimer(initialRemaining: Duration) {
-    stopTimer(clearLabel = true)
-    manualTimerRemaining = initialRemaining
-    timerRunning = true
-    latestTimerLabel = TimerController.formatDuration(initialRemaining)
+    val initialLabel = TimerController.formatDuration(initialRemaining)
     Timber.i(
       "[exam_timer] resumed remaining=%s",
-      latestTimerLabel,
+      initialLabel,
     )
-    _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
-    timerJob = viewModelScope.launch {
-      var remaining = initialRemaining
-      while (true) {
-        delay(1_000)
-        remaining = remaining.minusSeconds(1)
-        if (remaining.isNegative) {
-          remaining = Duration.ZERO
-        }
-        manualTimerRemaining = remaining
-        latestTimerLabel = TimerController.formatDuration(remaining)
-        _uiState.value = _uiState.value.copy(timerLabel = latestTimerLabel)
-        if (remaining.isZero) {
-          finishExam()
-          break
-        }
-      }
-    }
+    timerCoordinator.resume(
+      initialRemaining = initialRemaining,
+      onTick = { label, _ -> updateTimerLabel(label) },
+      onExpired = { finishExam() },
+    )
   }
 
   /**
    * Stops the timer and optionally clears the timer label from UI.
    */
   private fun stopTimer(clearLabel: Boolean) {
-    timerJob?.cancel()
-    timerJob = null
-    if (timerRunning) {
-      timerController.stop()
-      timerRunning = false
-    }
-    manualTimerRemaining = null
-    if (clearLabel) {
-      latestTimerLabel = null
-      _uiState.value = _uiState.value.copy(timerLabel = null)
-    } else if (latestTimerLabel != null) {
-      latestTimerLabel = null
-      _uiState.value = _uiState.value.copy(timerLabel = null)
-    }
+    timerCoordinator.stop(clearLabel)
+    updateTimerLabel(if (clearLabel) null else timerCoordinator.latestLabel)
   }
 
   // endregion
@@ -1633,16 +1490,14 @@ class ExamViewModel(
     val attemptResult = currentAttempt ?: return false
     val attempt = attemptResult.attempt
     Timber.i("[attempt_abort] id=%s reason=%s", attemptResult.attemptId, reason)
-    autosaveController?.flush(force = true)
-    autosaveController = null
-    stopAutosaveTicker()
+    autosaveCoordinator.flush(force = true)
+    stopAutosave()
     stopTimer(clearLabel = true)
     withContext(ioDispatcher) { attemptsRepository.abortAttempt(attemptResult.attemptId) }
     currentAttempt = null
     latestResult = null
     hasFinished = false
     questionSeenAt.clear()
-    manualTimerRemaining = null
     recordLastSession(attempt.mode, attempt.locale)
     val previous = _uiState.value
     _uiState.value =
@@ -1696,44 +1551,23 @@ class ExamViewModel(
   // region Autosave
 
   fun autosaveFlush(force: Boolean = true) {
-    autosaveController?.flush(force)
+    autosaveCoordinator.flush(force)
   }
 
   private fun prepareAutosave(attemptId: String) {
-    autosaveController?.flush(force = true)
-    stopAutosaveTicker()
-    val controller =
-      AutosaveController(
-        attemptId = attemptId,
-        answersRepository = answersRepository,
-        scope = viewModelScope,
-        ioDispatcher = ioDispatcher,
-      )
-    controller.configure(AUTOSAVE_INTERVAL_SEC)
-    autosaveController = controller
-    startAutosaveTicker()
+    autosaveCoordinator.prepare(attemptId)
   }
 
-  private fun startAutosaveTicker() {
-    stopAutosaveTicker()
-    val controller = autosaveController ?: return
-    autosaveTickerJob =
-      viewModelScope.launch {
-        while (isActive) {
-          delay(controller.intervalMillis)
-          controller.onTick()
-        }
-      }
+  private fun stopAutosave() {
+    viewModelScope.launch { autosaveCoordinator.stop() }
   }
 
-  private fun stopAutosaveTicker() {
-    autosaveTickerJob?.cancel()
-    autosaveTickerJob = null
+  private suspend fun stopAutosaveBlocking() {
+    autosaveCoordinator.stop()
   }
 
   override fun onCleared() {
-    autosaveController?.flush(force = true)
-    stopAutosaveTicker()
+    stopAutosave()
     super.onCleared()
   }
 
@@ -2071,7 +1905,7 @@ class ExamViewModelFactory(
           prewarmDisabled = userPrefs.prewarmDisabled,
           config = prewarmConfig,
         )
-      val prewarmController = PrewarmController(repository = repository, prewarmUseCase = prewarmUseCase)
+      val prewarmRunner = PrewarmController(repository = repository, prewarmUseCase = prewarmUseCase)
       @Suppress("UNCHECKED_CAST")
       return ExamViewModel(
         repository = repository,
@@ -2084,7 +1918,7 @@ class ExamViewModelFactory(
         appErrorHandler = appErrorHandler,
         blueprintResolver = blueprintResolver,
         blueprintProvider = blueprintResolver::forMode,
-        prewarmController = prewarmController,
+        prewarmRunner = prewarmRunner,
       ) as T
     }
     throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")

@@ -295,7 +295,7 @@ class ExamViewModelFinishTest {
       nowProvider = nowProvider,
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcher,
-      prewarmController =
+      prewarmRunner =
         PrewarmController(
           repository = repository,
           prewarmUseCase =

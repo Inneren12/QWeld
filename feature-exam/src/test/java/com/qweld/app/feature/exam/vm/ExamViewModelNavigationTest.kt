@@ -246,7 +246,7 @@ class ExamViewModelNavigationTest {
       nowProvider = { 0L },
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcher,
-      prewarmController =
+      prewarmRunner =
         PrewarmController(
           repository = repository,
           prewarmUseCase =
