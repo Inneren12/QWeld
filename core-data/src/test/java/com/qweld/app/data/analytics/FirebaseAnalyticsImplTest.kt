@@ -1,6 +1,5 @@
 package com.qweld.app.data.analytics
 
-import android.os.Bundle
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -30,20 +29,20 @@ class FirebaseAnalyticsImplTest {
 
     assertEquals(listOf(true, false, true), backend.enabledStates)
     assertEquals(1, backend.events.size)
-    val (name, bundle) = backend.events.single()
+    val (name, params) = backend.events.single()
     assertEquals("should_send", name)
-    assertEquals("bar", bundle.getString("foo"))
+    assertEquals("bar", params["foo"])
   }
 
   private class RecordingBackend : AnalyticsBackend {
     val enabledStates = mutableListOf<Boolean>()
-    val events = mutableListOf<Pair<String, Bundle>>()
+    val events = mutableListOf<Pair<String, Map<String, Any?>>>()
 
     override fun setAnalyticsCollectionEnabled(enabled: Boolean) {
       enabledStates.add(enabled)
     }
 
-    override fun logEvent(event: String, params: Bundle) {
+    override fun logEvent(event: String, params: Map<String, Any?>) {
       events.add(event to params)
     }
   }

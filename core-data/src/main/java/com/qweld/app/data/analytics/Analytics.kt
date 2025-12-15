@@ -16,7 +16,7 @@ interface Analytics {
 
 internal interface AnalyticsBackend {
   fun setAnalyticsCollectionEnabled(enabled: Boolean)
-  fun logEvent(event: String, params: Bundle)
+  fun logEvent(event: String, params: Map<String, Any?>)
 }
 
 private class FirebaseAnalyticsBackend(
@@ -26,8 +26,8 @@ private class FirebaseAnalyticsBackend(
     delegate.setAnalyticsCollectionEnabled(enabled)
   }
 
-  override fun logEvent(event: String, params: Bundle) {
-    delegate.logEvent(event, params)
+  override fun logEvent(event: String, params: Map<String, Any?>) {
+    delegate.logEvent(event, params.toBundle())
   }
 }
 
@@ -48,24 +48,22 @@ class FirebaseAnalyticsImpl internal constructor(
     backend.setAnalyticsCollectionEnabled(value)
   }
 
-    override fun log(event: String, params: Map<String, Any?>) {
-        if (!enabled.get()) {
-            Timber.i("[analytics] skipped=true reason=optout event=%s", event)
-            return
-        }
-
-        // Явно фильтруем null'ы и сразу заливаем в Bundle
-        val bundle = Bundle()
-        for ((key, value) in params) {
-            if (value != null) {
-                bundle.putParam(key, value)
-            }
-        }
-
-        Timber.i("[analytics] event=%s params=%s", event, params.filterValues { it != null })
-        backend.logEvent(event, bundle)
+  override fun log(event: String, params: Map<String, Any?>) {
+    if (!enabled.get()) {
+      Timber.i("[analytics] skipped=true reason=optout event=%s", event)
+      return
     }
-  private fun Bundle.putParam(key: String, value: Any) {
+
+    // фильтруем null'ы на уровне модели
+    val sanitized = params.filterValues { it != null }
+    Timber.i("[analytics] event=%s params=%s", event, sanitized)
+
+    // отдаём уже очищенную карту в backend (Firebase упакует в Bundle)
+    backend.logEvent(event, sanitized)
+  }
+}
+
+private fun Bundle.putParam(key: String, value: Any) {
     when (value) {
       is String -> putString(key, value)
       is Int -> putInt(key, value)
@@ -79,15 +77,14 @@ class FirebaseAnalyticsImpl internal constructor(
     }
   }
 
-  private fun Map<*, *>.toBundle(): Bundle {
-    val bundle = Bundle()
-    forEach { (key, value) ->
-      if (key is String && value != null) {
-        bundle.putParam(key, value)
-      }
+private fun Map<*, *>.toBundle(): Bundle {
+  val bundle = Bundle()
+  forEach { (key, value) ->
+    if (key is String && value != null) {
+      bundle.putParam(key, value)
     }
-    return bundle
   }
+  return bundle
 }
 
 fun Analytics.logExamStart(mode: ExamMode, locale: String, totalQuestions: Int) {
