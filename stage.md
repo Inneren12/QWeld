@@ -160,12 +160,12 @@ Legend:
   - [ ] Evaluate lightweight DI (e.g., Koin/Hilt) for ViewModels and repositories.
 
 ### ARCH-3 – ExamViewModel refactor
-- **Status:** ⚠️
-- **Summary:** `ExamViewModel` handles many responsibilities (assembly, timers, autosave, navigation) and would benefit from splitting.
-- **Implemented in:** `feature-exam` ViewModels/controllers.
+- **Status:** ✅
+- **Summary:** `ExamViewModel` now orchestrates dedicated controllers for timers, prewarm, and autosave/resume instead of owning all behaviors directly.
+- **Implemented in:** `feature-exam` ViewModels/controllers (`DefaultExamTimerController`, `DefaultExamPrewarmCoordinator`, `DefaultExamAutosaveController`).
 - **Next tasks:**
-  - [ ] Extract timers/prewarm/autosave into focused controllers.
   - [ ] Add contract tests around the split to avoid regressions.
+  - [ ] Prepare DI wiring for these controllers (see ARCH-2).
 
 ## Documentation
 

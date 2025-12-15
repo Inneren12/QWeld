@@ -249,7 +249,7 @@ class ExamViewModelTimerTest {
       nowProvider = { 0L },
       timerController = timerController,
       ioDispatcher = dispatcher,
-      prewarmController =
+      prewarmRunner =
         PrewarmController(
           repository = repository,
           prewarmUseCase =

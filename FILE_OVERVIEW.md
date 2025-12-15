@@ -72,8 +72,20 @@ Importance legend:
   - **Edit guidelines:** Add destinations here when expanding flows; keep route constants stable.
 - `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ExamViewModel.kt`
   - **Importance:** 🔴 Critical
-  - **Role:** Central ViewModel managing exam/practice assembly, timers, autosave, and submission.
-  - **Edit guidelines:** Prefer extracting helpers over adding complexity; maintain timer/autosave invariants.
+  - **Role:** Central ViewModel orchestrating exam/practice assembly, navigation, and coordination of the timer/prewarm/autosave controllers.
+  - **Edit guidelines:** Prefer delegating new responsibilities into focused controllers; maintain timer/autosave invariants and adaptive mode behavior.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ExamTimerController.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Timer controller abstraction plus default implementation wrapping `TimerController`, drives tick updates/expiry callbacks for IP exams.
+  - **Edit guidelines:** Keep tick cadence stable (1s) and duration formatting consistent with prior behavior; surface updates via callbacks only.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ExamPrewarmCoordinator.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Coordinates IP exam prewarm runs, tracks progress/readiness state, and wraps `PrewarmController`/`PrewarmUseCase` work.
+  - **Edit guidelines:** Preserve task selection logic and progress math; keep state emissions lightweight for UI consumption.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ExamAutosaveController.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Manages autosave lifecycle (preparing, ticking, flushing) around `AutosaveController` for attempt persistence.
+  - **Edit guidelines:** Keep autosave intervals and flushing semantics unchanged; prefer constructor injection for testability.
 - `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ResultViewModel.kt` and `ReviewViewModel.kt`
   - **Importance:** 🟡 Important
   - **Role:** Drive results summary and review filtering/search.
