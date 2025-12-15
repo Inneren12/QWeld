@@ -1,8 +1,8 @@
 plugins {
   id("com.android.library")
   id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.serialization")
-  id("org.jetbrains.kotlin.kapt")
+  id("org.jetbrains.kotlin.plugin.serialization")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -43,10 +43,8 @@ kotlin {
   jvmToolchain(21)
 }
 
-kapt {
-  arguments {
-    arg("room.schemaLocation", "$projectDir/schemas")
-  }
+ksp {
+  arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 dependencies {
@@ -55,7 +53,7 @@ dependencies {
 
     api("androidx.room:room-runtime:2.6.1")
     api("androidx.room:room-ktx:2.6.1")
-  kapt("androidx.room:room-compiler:2.6.1")
+  ksp("androidx.room:room-compiler:2.6.1")
 
     implementation("com.jakewharton.timber:timber:5.0.1")
 
