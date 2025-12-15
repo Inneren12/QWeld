@@ -153,9 +153,9 @@ class AdaptiveExamAssembler(
       selected += question
       usedIds += question.id
 
-      val answeredState = state.consume(band)
+      // Update adaptive state exactly once using the band actually served.
       val wasCorrect = simulateAnswer(question.id, context.stats, seed, pickIndex)
-      state = policy.nextState(answeredState, wasCorrect)
+      state = policy.nextState(state, band, wasCorrect)
       pickIndex += 1
     }
 
@@ -294,14 +294,4 @@ class AdaptiveExamAssembler(
     val pool: List<Question>,
     val stats: Map<String, com.qweld.app.domain.exam.ItemStats>,
   )
-
-  private fun AdaptiveState.consume(band: DifficultyBand): AdaptiveState {
-    val updated = askedPerBand.toMutableMap()
-    updated[band] = updated.getOrElse(band) { 0 } + 1
-    return copy(
-      askedPerBand = updated,
-      currentDifficulty = band,
-      remainingQuestions = (remainingQuestions - 1).coerceAtLeast(0),
-    )
-  }
 }
