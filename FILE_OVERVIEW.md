@@ -67,6 +67,10 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Unit coverage for the centralized AppErrorHandler logging, analytics gating, and UI event emission contracts.
   - **Edit guidelines:** Use fakes for crash reporting/logging to keep assertions deterministic.
+- `app-android/src/test/java/com/qweld/app/di/AppModuleConfigTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** DI configuration tests for AppModule, verifying all critical bindings can be instantiated without missing dependencies or circular dependencies. Regression test suite for post-DI introduction.
+  - **Edit guidelines:** Add tests when new bindings are added to AppModule; keep tests focused on construction, not behavior.
 - `app-android/build.gradle.kts`
   - **Importance:** ⚙️ Build/CI
   - **Role:** App module build config, Crashlytics/Analytics wiring, asset packaging tasks (`verifyAssets`).
@@ -126,6 +130,26 @@ Importance legend:
   - **Importance:** 🧪 Test
   - **Role:** Hilt test overrides for exam bindings (blueprints, timers, prewarm/resume) to enable deterministic fakes in instrumentation.
   - **Edit guidelines:** Extend/replace bindings here rather than editing production modules for test needs.
+- `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/di/HiltDiIntegrationTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Integration test for Hilt DI configuration, verifying complete DI graph construction, singleton scoping, and that ExamViewModel can be created with all injected dependencies. Regression test for post-DI introduction.
+  - **Edit guidelines:** Extend when adding critical new dependencies to DI graph; keep assertions focused on DI wiring, not business logic.
+- `feature-exam/src/test/java/com/qweld/app/feature/exam/di/ExamModuleConfigTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** DI configuration tests for ExamModule, verifying all exam-specific bindings can be instantiated and form a complete dependency graph. Regression test for post-ExamViewModel refactor.
+  - **Edit guidelines:** Add tests when new bindings are added to ExamModule; validate construction, not behavior.
+- `feature-exam/src/test/java/com/qweld/app/feature/exam/vm/ExamTimerControllerTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Contract tests for ExamTimerController, verifying timer start/resume/stop behavior, tick cadence, expiry callbacks, and remaining time calculations. Regression test for controller extracted from ExamViewModel.
+  - **Edit guidelines:** Keep tests deterministic with test dispatchers; extend when adding new timer features.
+- `feature-exam/src/test/java/com/qweld/app/feature/exam/vm/ExamPrewarmCoordinatorTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Contract tests for ExamPrewarmCoordinator, verifying prewarm orchestration, progress tracking, state management, and error handling. Regression test for controller extracted from ExamViewModel.
+  - **Edit guidelines:** Use fake PrewarmController for isolation; extend when adding new prewarm features.
+- `feature-exam/src/test/java/com/qweld/app/feature/exam/vm/ExamAutosaveControllerTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Contract tests for ExamAutosaveController, verifying autosave lifecycle, answer recording, flush behavior, and ticker management. Regression test for controller extracted from ExamViewModel.
+  - **Edit guidelines:** Use fake repositories and AutosaveController for isolation; extend when adding new autosave features.
 - `feature-exam/src/test/...`
   - **Importance:** 🧪 Test
   - **Role:** Unit/UI tests for exam flows, loaders, and content validation.

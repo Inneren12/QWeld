@@ -113,21 +113,23 @@ Legend:
 
 ### TEST-1 – Domain & content unit tests
 - **Status:** ✅
-- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators, including edge-case quota distribution (rounding/large-small quotas).
-- **Notes:** Locale fallback for `AssetQuestionRepository` now explicitly covers RU present/missing/corrupt scenarios.
-- **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests.
+- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators, including edge-case quota distribution (rounding/large-small quotas). DI configuration and controller contracts have comprehensive regression tests.
+- **Notes:** Locale fallback for `AssetQuestionRepository` now explicitly covers RU present/missing/corrupt scenarios. Post-DI/refactor regression tests verify bindings and controller behavior.
+- **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests, DI configuration tests (`AppModuleConfigTest`, `ExamModuleConfigTest`), controller tests (`ExamTimerControllerTest`, `ExamPrewarmCoordinatorTest`, `ExamAutosaveControllerTest`).
 - **Next tasks:**
   - [x] Expand quota distribution edge-case coverage.
   - [x] Add explicit EN↔RU locale fallback tests for `AssetQuestionRepository`.
+  - [x] Add DI configuration and controller contract tests post-refactor.
   - [ ] Automate snapshot tests for blueprint manifests.
   - [x] Enforce RU locale coverage via CI gate.
 
 ### TEST-2 – UI/instrumentation coverage
 - **Status:** ✅
-- **Summary:** Compose/UI coverage now includes exam submit/resume flows (timer state, answered choices) and a full practice happy path alongside the exam happy path, asserting result screens and score labels.
-- **Implemented in:** `feature-exam` UI tests (partial).
+- **Summary:** Compose/UI coverage now includes exam submit/resume flows (timer state, answered choices) and a full practice happy path alongside the exam happy path, asserting result screens and score labels. DI integration test validates complete Hilt graph and singleton scoping.
+- **Implemented in:** `feature-exam` UI tests (partial), DI integration test (`HiltDiIntegrationTest`).
 - **Next tasks:**
   - [x] Add end-to-end practice runs with answer submission and review.
+  - [x] Add DI integration test to verify Hilt bindings work end-to-end.
   - [ ] Cover localization toggles and admin/report screens.
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
@@ -149,20 +151,27 @@ Legend:
 
 ### ARCH-2 – Dependency injection framework
 - **Status:** ✅
-- **Summary:** Hilt supplies app/data/exam dependencies via `AppModule` and `ExamModule`, injects Application/Activity (`@HiltAndroidApp`, `@AndroidEntryPoint`), and drives ViewModels via `@HiltViewModel`. Test overrides available via `@TestInstallIn` modules (`TestExamModule`).
+- **Summary:** Hilt supplies app/data/exam dependencies via `AppModule` and `ExamModule`, injects Application/Activity (`@HiltAndroidApp`, `@AndroidEntryPoint`), and drives ViewModels via `@HiltViewModel`. Test overrides available via `@TestInstallIn` modules (`TestExamModule`). Comprehensive regression tests verify DI configuration and wiring.
 - **Implemented in:** Hilt modules in `app-android` (`AppModule`) and `feature-exam` (`ExamModule`); `QWeldApp`, `MainActivity`, `ExamViewModel` use Hilt injection; `TestExamModule` provides test overrides.
+- **Test coverage:**
+  - [x] DI configuration tests verify AppModule and ExamModule bindings (`AppModuleConfigTest`, `ExamModuleConfigTest`)
+  - [x] Integration test validates complete DI graph and singleton scoping (`HiltDiIntegrationTest`)
+  - [x] TestExamModule overrides exercised in instrumentation tests
 - **Next tasks:**
   - [ ] Expand DI coverage to remaining ViewModels (admin/result/review ViewModels currently use manual factory patterns).
   - [ ] Migrate any remaining manual providers to Hilt bindings.
-  - [ ] Add instrumentation hooks that exercise the test override modules for broader DI test coverage.
 
 ### ARCH-3 – ExamViewModel refactor
 - **Status:** ✅
-- **Summary:** `ExamViewModel` now orchestrates dedicated controllers for timers, prewarm, and autosave/resume instead of owning all behaviors directly.
+- **Summary:** `ExamViewModel` now orchestrates dedicated controllers for timers, prewarm, and autosave/resume instead of owning all behaviors directly. Controllers are injected via Hilt and have comprehensive contract tests.
 - **Implemented in:** `feature-exam` ViewModels/controllers (`DefaultExamTimerController`, `DefaultExamPrewarmCoordinator`, `DefaultExamAutosaveController`).
+- **Test coverage:**
+  - [x] Contract tests for ExamTimerController verify timer start/resume/stop behavior (`ExamTimerControllerTest`)
+  - [x] Contract tests for ExamPrewarmCoordinator verify prewarm orchestration and progress tracking (`ExamPrewarmCoordinatorTest`)
+  - [x] Contract tests for ExamAutosaveController verify autosave lifecycle and answer recording (`ExamAutosaveControllerTest`)
+  - [x] Controllers are DI-wired via ExamModule and tested in integration tests
 - **Next tasks:**
-  - [ ] Add contract tests around the split to avoid regressions.
-  - [ ] Prepare DI wiring for these controllers (see ARCH-2).
+  - [ ] Continue expanding controller-level tests as new edge cases are discovered.
 
 ## Documentation
 
