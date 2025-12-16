@@ -10,6 +10,22 @@ monorepo containing Android applications, domain logic, and supporting tools.
 3. Execute `scripts/verify-structure.sh` to validate the bootstrap state before
    submitting changes.
 
+### Platform-Specific Configuration (Windows)
+
+If you're developing on Windows and need to configure a custom temporary directory for sqlite-jdbc or other build tools:
+
+- **Do NOT** add OS-specific paths (like `C:/b/gradle-tmp`) to the repo-level `gradle.properties`
+- Instead, configure them in your **user-level** `gradle.properties`:
+  - Location: `%USERPROFILE%\.gradle\gradle.properties`
+  - Example:
+    ```properties
+    org.gradle.jvmargs=-Xmx4g -Dfile.encoding=UTF-8 -Djava.io.tmpdir=C:/your/custom/tmpdir
+    ```
+- Alternatively, set environment variables:
+  - `JAVA_TOOL_OPTIONS` or `GRADLE_OPTS` in your system environment
+
+This keeps the repo configuration platform-agnostic and prevents CI failures on Linux/macOS runners.
+
 ## Development Workflow
 
 - Follow the Kotlin coding conventions and keep modules independent.
