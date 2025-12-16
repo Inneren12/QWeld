@@ -122,10 +122,14 @@ class DefaultAdaptiveExamPolicyTest {
       state = policy.nextState(state, servedBand = pick, wasCorrect = wasCorrect)
     }
 
-    served.zipWithNext { prev, next ->
+    // Verify no aggressive difficulty jumps (max 1 level at a time)
+    for (i in 0 until served.size - 1) {
+      val prev = served[i]
+      val next = served[i + 1]
+      val difficultyJump = (prev.ordinal - next.ordinal).absoluteValue
       assertTrue(
-        "Difficulty changed too aggressively from $prev to $next",
-        (prev.ordinal - next.ordinal).absoluteValue <= 1,
+        actual = difficultyJump <= 1,
+        message = "Difficulty changed too aggressively from $prev to $next (jump=$difficultyJump)",
       )
     }
     assertEquals(DifficultyBand.MEDIUM, state.currentDifficulty)

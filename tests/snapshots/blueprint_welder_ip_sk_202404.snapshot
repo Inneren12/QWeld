@@ -1,0 +1,35 @@
+# Blueprint Snapshot: welder_ip_sk_202404
+# Generated: 2025-12-16T03:37:13Z
+
+[metadata]
+id=welder_ip_sk_202404
+blueprintVersion=1.0.0
+policyVersion=1.0
+questionCount=125
+
+[blocks]
+block=A # Safety, Tools, and Shop Practice
+block=B # Material Preparation and Fit-up
+block=C # Welding Processes and Quality Control
+block=D # Fabrication and Repair Applications
+
+[tasks]
+task=A-1 quota=8 # Follow welding safety legislation and PPE requirements
+task=A-2 quota=6 # Inspect and maintain welding tools and equipment
+task=A-3 quota=6 # Interpret welding documentation and symbols
+task=A-4 quota=5 # Plan shop workflows and material handling
+task=B-5 quota=8 # Select consumables and filler materials
+task=B-6 quota=9 # Prepare joints and bevels for welding
+task=B-7 quota=8 # Assemble components and ensure dimensional accuracy
+task=B-8 quota=8 # Inspect fit-up and perform tack welding
+task=C-10 quota=9 # Perform GMAW/FCAW operations across materials
+task=C-11 quota=9 # Perform GTAW and specialized processes
+task=C-12 quota=9 # Apply weld quality assurance and inspection techniques
+task=C-9 quota=9 # Perform SMAW operations across positions
+task=D-13 quota=11 # Fabricate structural components and assemblies
+task=D-14 quota=10 # Repair and restore welded components
+task=D-15 quota=10 # Coordinate workflow, documentation, and client requirements
+
+[summary]
+totalTasks=15
+totalQuota=125

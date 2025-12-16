@@ -362,6 +362,8 @@ class FirestoreQuestionReportRepository(
       // Admin / workflow
       status = data["status"] as? String ?: "OPEN",
       createdAt = data["createdAt"] as? Timestamp,
+      // Firestore guarantees Map<String, Any?> structure for document fields
+      @Suppress("UNCHECKED_CAST")
       review = data["review"] as? Map<String, Any?>,
     )
   }

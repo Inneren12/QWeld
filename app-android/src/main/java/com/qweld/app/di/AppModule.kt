@@ -24,8 +24,8 @@ import com.qweld.app.data.reports.DefaultReportEnvironmentMetadataProvider
 import com.qweld.app.data.reports.FirestoreQuestionReportRepository
 import com.qweld.app.data.reports.QuestionReportRepository
 import com.qweld.app.data.reports.RetryQueuedQuestionReportsUseCase
-import com.qweld.app.di.qualifiers.IoDispatcher
-import com.qweld.app.di.qualifiers.PrewarmDisabled
+import com.qweld.app.common.di.IoDispatcher
+import com.qweld.app.common.di.PrewarmDisabled
 import com.qweld.app.error.CrashReporter
 import com.qweld.app.error.CrashlyticsCrashReporter
 import com.qweld.app.env.AppEnvImpl
