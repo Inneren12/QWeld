@@ -218,6 +218,10 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🧪 Test
   - **Role:** Coverage for quota distribution, RNG, and sampler correctness.
   - **Edit guidelines:** Extend freely to guard new logic.
+- `core-domain/src/test/java/com/qweld/app/domain/ArchitectureGuardrailsTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Scans domain sources to ensure no Android/AndroidX imports leak into the pure domain layer.
+  - **Edit guidelines:** Update forbidden prefixes here if the domain surface legitimately expands beyond pure Kotlin.
 - `core-domain/src/test/java/com/qweld/app/domain/exam/QuotaDistributorEdgeCaseTest.kt`
   - **Importance:** 🧪 Test
   - **Role:** Edge-case coverage for quota distribution rounding, even splits, and guardrails against invalid allocations.

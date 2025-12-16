@@ -150,7 +150,7 @@ Legend:
 - **Summary:** Clean separation between app shell, features, data, and domain layers with shared utilities.
 - **Implemented in:** Gradle module graph (`app-android`, `feature-*`, `core-*`).
 - **Next tasks:**
-  - [ ] Keep module boundaries enforced during new feature work.
+  - [x] Keep module boundaries enforced during new feature work (periodic guardrail checks now include an Android-free import scan for `core-domain`).
 
 ### ARCH-2 – Dependency injection framework
 - **Status:** ⚠️
