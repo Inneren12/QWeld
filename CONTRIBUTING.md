@@ -16,6 +16,27 @@ monorepo containing Android applications, domain logic, and supporting tools.
 - Ensure new scripts are POSIX-compatible Bash with `set -euo pipefail`.
 - Add automated checks to the CI workflows when introducing new tooling.
 
+## Content Development
+
+When working on question content, blueprints, or explanations:
+
+- Refer to [CONTENT_GUIDE.md](CONTENT_GUIDE.md) for content authoring guidelines
+- Run validation scripts before committing:
+  - `bash scripts/validate-questions.sh` - Validate question schema and rationales
+  - `bash scripts/validate-blueprint.sh` - Validate blueprint structure
+  - `bash scripts/check-quotas.sh` - Verify sufficient questions per task
+  - `bash scripts/check-explanation-coverage.sh` - Check explanation coverage
+  - `bash scripts/generate-blueprint-snapshots.sh verify` - Ensure no unintended structural changes
+
+## Pre-Release Validation
+
+Before releasing a new version:
+
+- Follow the [Pre-Release Validation Checklist](docs/release_checks.md)
+- Ensure all automated validators pass
+- Perform recommended manual checks (sample questions, UI strings, explanations)
+- Run snapshot tests to detect unintended blueprint/manifest changes
+
 ## Pull Requests
 
 - Link related issues and provide context in the pull request description.

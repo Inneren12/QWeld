@@ -1,0 +1,35 @@
+# Blueprint Snapshot: welder_ip_2024
+# Generated: 2025-12-16T03:37:12Z
+
+[metadata]
+id=unknown
+blueprintVersion=2024.1
+policyVersion=unknown
+questionCount=0
+
+[blocks]
+block=null # Inspection and Quality Assurance
+block=null # Materials and Preparation
+block=null # Safety and Compliance
+block=null # Welding Processes
+
+[tasks]
+task=A-1 quota=8 # Workplace safety protocols
+task=A-2 quota=10 # Regulatory compliance and documentation
+task=A-3 quota=7 # Personal protective equipment
+task=A-4 quota=10 # Hazard identification and mitigation
+task=B-1 quota=12 # Metallurgy fundamentals
+task=B-2 quota=10 # Joint preparation and fit-up
+task=B-3 quota=11 # Filler metals and consumables
+task=B-4 quota=12 # Preheat and postheat treatment
+task=C-1 quota=8 # Shielded metal arc welding
+task=C-2 quota=7 # Gas metal arc welding
+task=C-3 quota=9 # Gas tungsten arc welding
+task=C-4 quota=8 # Flux-cored arc welding
+task=D-1 quota=5 # Visual inspection criteria
+task=D-2 quota=4 # Non-destructive testing methods
+task=D-3 quota=4 # Defect analysis and remediation
+
+[summary]
+totalTasks=15
+totalQuota=125

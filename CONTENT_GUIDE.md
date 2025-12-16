@@ -72,6 +72,8 @@ Localized banks mirror the same `taskId` structure under `content/questions/en/`
 ## Validation & QA
 - **Asset gate:** `./gradlew :app-android:verifyAssets` ensures banks, per-task bundles (15 per locale), and `index.json` exist before builds.
 - **Schema/consistency checks:** `bash scripts/validate-blueprint.sh` and `bash scripts/validate-questions.sh` lint blueprints and questions; `bash scripts/check-quotas.sh` validates quotas; `bash scripts/build-questions-dist.sh` builds banks and logs counts.
+- **Explanation coverage:** `bash scripts/check-explanation-coverage.sh` reports percentage of EN questions with explanations and percentage of EN explanations that have RU translations; warns (doesn't fail) when explanations are missing.
+- **Blueprint/manifest snapshots:** `bash scripts/generate-blueprint-snapshots.sh verify` detects unintended changes to blueprint structure or manifest by comparing against stored snapshots in `tests/snapshots/`; use `update` mode to refresh snapshots intentionally (see `tests/snapshots/README.md`).
 - **CI:** `.github/workflows/content-validators.yml` runs the validators and publishes artifacts; `.github/workflows/dist-summary.yml` posts per-locale totals to PRs.
 - **Locale coverage enforcement:** `LocaleCoverageTest` in `feature-exam` computes EN→RU coverage from source content, logs per-task gaps, and enforces a minimum coverage threshold (via `localeCoverage.ru.min` gradle property) to prevent regressions; CI runs this test to gate PRs.
 - **Sanity checks:** ensure blueprint quotas sum to the expected total, every blueprint task has questions in each locale, and per-task bundles count matches expectations (`expectedTaskCount = 15`).

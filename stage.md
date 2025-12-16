@@ -58,11 +58,15 @@ Legend:
 
 ### CONTENT-1 – EN content completeness
 - **Status:** ✅
-- **Summary:** English blueprints, task bundles, and monolithic banks ship with the app and pass existing validators.
-- **Implemented in:** `content/blueprints/`, `content/questions/en/`, asset manifests.
+- **Summary:** English blueprints, task bundles, and monolithic banks ship with the app and pass existing validators. Explanation coverage infrastructure in place with `check-explanation-coverage.sh` reporting EN/RU metrics.
+- **Implemented in:** `content/blueprints/`, `content/questions/en/`, asset manifests, `scripts/check-explanation-coverage.sh`.
+- **Recent additions:**
+  - [x] Added `check-explanation-coverage.sh` script to report EN explanation coverage (% of questions with explanations) and RU translation coverage (% of EN explanations with RU translations)
+  - [x] Explanation validator detects EN questions missing explanations and warns (doesn't fail) when RU translations are missing
 - **Next tasks:**
-  - [ ] Periodically re-run content validators before releases.
-  - [ ] Expand explanation coverage where missing.
+  - [x] Add explanation coverage metrics and validators
+  - [ ] Periodically re-run content validators before releases
+  - [ ] Expand explanation coverage where missing (current: ~3.2% EN coverage, 100% RU translation of existing explanations)
 
 ### CONTENT-2 – RU coverage
 - **Status:** ✅
@@ -133,15 +137,20 @@ Legend:
 
 ### TEST-1 – Domain & content unit tests
 - **Status:** ✅
-- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators, including edge-case quota distribution (rounding/large-small quotas). DI configuration and controller contracts have comprehensive regression tests.
+- **Summary:** Domain samplers/quota utilities and content loaders are covered by unit tests and validators, including edge-case quota distribution (rounding/large-small quotas). DI configuration and controller contracts have comprehensive regression tests. Blueprint/manifest snapshot tests guard against unintended structural changes.
 - **Notes:** Locale fallback for `AssetQuestionRepository` now explicitly covers RU present/missing/corrupt scenarios. Post-DI/refactor regression tests verify bindings and controller behavior.
-- **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests, DI configuration tests (`AppModuleConfigTest`, `ExamModuleConfigTest`), controller tests (`ExamTimerControllerTest`, `ExamPrewarmCoordinatorTest`, `ExamAutosaveControllerTest`).
+- **Implemented in:** `feature-exam` tests for loaders/content, `core-domain` unit tests, DI configuration tests (`AppModuleConfigTest`, `ExamModuleConfigTest`), controller tests (`ExamTimerControllerTest`, `ExamPrewarmCoordinatorTest`, `ExamAutosaveControllerTest`), `scripts/generate-blueprint-snapshots.sh` and `tests/snapshots/`.
+- **Recent additions:**
+  - [x] Added blueprint/manifest snapshot test infrastructure (`generate-blueprint-snapshots.sh`)
+  - [x] Snapshot tests verify blueprint metadata, sorted tasks with quotas, and manifest locale totals
+  - [x] Documented snapshot update procedure in `tests/snapshots/README.md`
+  - [x] Pre-release validation runbook created at `docs/release_checks.md`
 - **Next tasks:**
-  - [x] Expand quota distribution edge-case coverage.
-  - [x] Add explicit EN↔RU locale fallback tests for `AssetQuestionRepository`.
-  - [x] Add DI configuration and controller contract tests post-refactor.
-  - [ ] Automate snapshot tests for blueprint manifests.
-  - [x] Enforce RU locale coverage via CI gate.
+  - [x] Expand quota distribution edge-case coverage
+  - [x] Add explicit EN↔RU locale fallback tests for `AssetQuestionRepository`
+  - [x] Add DI configuration and controller contract tests post-refactor
+  - [x] Automate snapshot tests for blueprint manifests
+  - [x] Enforce RU locale coverage via CI gate
 
 ### TEST-2 – UI/instrumentation coverage
 - **Status:** ✅
