@@ -11,6 +11,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.repo.AnswersRepository
@@ -62,7 +63,7 @@ fun ExamNavGraph(
   userPrefs: UserPrefs,
   appLocaleTag: String,
 ) {
-  val parentEntry = remember(navController) { navController.getBackStackEntry(ExamDestinations.MODE) }
+  val parentEntry = remember(navController.currentBackStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
   val attemptExporter =
     remember(attemptsRepository, answersRepository, appVersion) {
       AttemptExporter(

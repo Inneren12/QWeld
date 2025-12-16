@@ -2,6 +2,7 @@ package com.qweld.app.domain
 
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.sequences.asSequence
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
@@ -13,6 +14,8 @@ class ArchitectureGuardrailsTest {
 
     val violations: List<String> = Files.walk(sourceRoot).use { paths ->
       paths
+        .iterator()
+        .asSequence()
         .filter { path -> path.toString().endsWith(".kt") }
         .flatMap { path ->
           Files.readAllLines(path)
@@ -28,11 +31,9 @@ class ArchitectureGuardrailsTest {
         .toList()
     }
 
-    assertTrue(violations.isEmpty()) {
+    assertTrue(
+      violations.isEmpty(),
       buildString {
         appendLine("Domain layer must remain Android-free. Found disallowed imports:")
-        violations.forEach { violation -> appendLine(" - $violation") }
-      }
-    }
-  }
-}
+  })
+}}

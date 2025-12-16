@@ -312,8 +312,12 @@ class FirestoreQuestionReportRepository(
       ?: throw IllegalStateException("Firestore instance is required for read/update operations")
   }
 
-  private fun parseReportFromDocument(data: Map<String, Any?>): QuestionReport {
-    return QuestionReport(
+    private fun parseReportFromDocument(data: Map<String, Any?>): QuestionReport {
+        // Firestore гарантирует, что поля документа хранятся как Map<String, Any?>
+        @Suppress("UNCHECKED_CAST")
+        val review = data["review"] as? Map<String, Any?>
+
+        return QuestionReport(
       // Core identifiers (required)
       questionId = data["questionId"] as? String ?: "",
       taskId = data["taskId"] as? String ?: "",
@@ -362,9 +366,7 @@ class FirestoreQuestionReportRepository(
       // Admin / workflow
       status = data["status"] as? String ?: "OPEN",
       createdAt = data["createdAt"] as? Timestamp,
-      // Firestore guarantees Map<String, Any?> structure for document fields
-      @Suppress("UNCHECKED_CAST")
-      review = data["review"] as? Map<String, Any?>,
+            review = review,
     )
   }
 

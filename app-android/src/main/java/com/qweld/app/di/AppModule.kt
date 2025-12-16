@@ -7,7 +7,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.qweld.app.BuildConfig
 import com.qweld.app.common.error.AppErrorHandler
-import com.qweld.app.common.error.AppErrorHandlerImpl
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.qweld.app.error.AppErrorHandlerImpl
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
 import com.qweld.app.data.content.ContentIndexReader

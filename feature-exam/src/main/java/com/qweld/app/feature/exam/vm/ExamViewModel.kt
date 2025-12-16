@@ -3,6 +3,7 @@ package com.qweld.app.feature.exam.vm
 import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import com.qweld.app.domain.exam.ExamAttempt
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.qweld.app.common.error.AppError
@@ -872,22 +873,23 @@ class ExamViewModel @Inject constructor(
       timeLeftLabel ?: "-",
     )
     stopTimer(clearLabel = false)
-    hasFinished = true
-    autosaveCoordinator.flush(force = true)
-    stopAutosaveBlocking()
-    val finishedAt = nowProvider()
-    val durationSec = ((finishedAt - attemptResult.startedAt).coerceAtLeast(0L) / 1_000L).toInt()
-    val passThreshold = if (attempt.mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
-    Timber.i("[attempt_finish] id=%s scorePct=%.2f", attemptResult.attemptId, scorePercent)
-    viewModelScope.launch(ioDispatcher) {
-      attemptsRepository.markFinished(
-        attemptId = attemptResult.attemptId,
-        finishedAt = finishedAt,
-        durationSec = durationSec,
-        passThreshold = passThreshold,
-        scorePct = scorePercent,
-      )
-    }
+      hasFinished = true
+      autosaveCoordinator.flush(force = true)
+      val finishedAt = nowProvider()
+      val durationSec = ((finishedAt - attemptResult.startedAt).coerceAtLeast(0L) / 1_000L).toInt()
+      val passThreshold = if (attempt.mode == ExamMode.IP_MOCK) IP_MOCK_PASS_THRESHOLD else null
+      Timber.i("[attempt_finish] id=%s scorePct=%.2f", attemptResult.attemptId, scorePercent)
+
+      viewModelScope.launch(ioDispatcher) {
+          stopAutosaveBlocking()
+          attemptsRepository.markFinished(
+              attemptId = attemptResult.attemptId,
+              finishedAt = finishedAt,
+              durationSec = durationSec,
+              passThreshold = passThreshold,
+              scorePct = scorePercent,
+          )
+      }
     latestResult = ExamResultData(
       attemptId = attemptResult.attemptId,
       attempt = attempt,

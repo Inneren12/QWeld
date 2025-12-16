@@ -12,6 +12,8 @@ import timber.log.Timber
  */
 interface Analytics {
   fun log(event: String, params: Map<String, Any?> = emptyMap())
+
+    fun setEnabled(enabled: Boolean)
 }
 
 internal interface AnalyticsBackend {
@@ -43,7 +45,7 @@ class FirebaseAnalyticsImpl internal constructor(
 
   private val enabled = AtomicBoolean(isEnabled).also { backend.setAnalyticsCollectionEnabled(isEnabled) }
 
-  fun setEnabled(value: Boolean) {
+  override fun setEnabled(value: Boolean) {
     enabled.set(value)
     backend.setAnalyticsCollectionEnabled(value)
   }
