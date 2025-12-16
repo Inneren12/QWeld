@@ -65,7 +65,6 @@ import com.qweld.app.feature.auth.ui.SignInScreen
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.navigation.ExamNavGraph
-import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.i18n.LocaleController
 import com.qweld.app.ui.AppErrorReportDialog
 import com.qweld.app.ui.AboutScreen
@@ -93,6 +92,7 @@ fun AppNavGraph(
   appEnv: AppEnv,
   appErrorHandler: AppErrorHandler,
   errorReportingEnabled: Boolean,
+  appLocaleTag: String,
   modifier: Modifier = Modifier,
 ) {
   val navController = rememberNavController()
@@ -349,12 +349,6 @@ fun AppNavGraph(
           appErrorHandler = appErrorHandler,
           userPrefs = userPrefs,
           appLocaleTag = appLocale,
-          prewarmConfig =
-            PrewarmConfig(
-              enabled = BuildConfig.PREWARM_ENABLED,
-              maxConcurrency = BuildConfig.PREWARM_MAX_CONCURRENCY.toString().toInt(),
-              taskTimeoutMs = BuildConfig.PREWARM_TIMEOUT_MS.toString().toLong(),
-            ),
         )
       }
       composable(Routes.SYNC) {

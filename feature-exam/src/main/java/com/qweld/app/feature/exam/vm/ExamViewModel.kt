@@ -4,20 +4,23 @@ import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.qweld.app.common.error.AppError
+import com.qweld.app.common.error.AppErrorHandler
+import com.qweld.app.common.error.ErrorContext
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.di.qualifiers.IoDispatcher
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
 import com.qweld.app.domain.exam.ExamAssemblyConfig
-import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamAssemblerFactory
+import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.Question
 import com.qweld.app.domain.exam.QuotaDistributor
@@ -37,12 +40,10 @@ import com.qweld.app.feature.exam.model.ExamUiState
 import com.qweld.app.feature.exam.model.ResumeDialogUiModel
 import com.qweld.app.feature.exam.model.ResumeLocaleOption
 import com.qweld.app.feature.exam.vm.ResumeUseCase.MergeState
-import com.qweld.app.common.error.AppError
-import com.qweld.app.common.error.AppErrorHandler
-import com.qweld.app.common.error.ErrorContext
 import com.qweld.core.common.AppEnv
 import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +62,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonPrimitive
 import timber.log.Timber
+import javax.inject.Inject
 import java.time.Duration
 import java.util.Locale
 import java.util.UUID
@@ -92,7 +94,8 @@ import kotlin.random.Random
  * - Providers (seedProvider, nowProvider, etc.) allow deterministic testing
  * - IO operations use injected dispatcher for test control
  */
-class ExamViewModel(
+@HiltViewModel
+class ExamViewModel @Inject constructor(
   private val repository: AssetQuestionRepository,
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
@@ -101,37 +104,21 @@ class ExamViewModel(
   private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   private val appEnv: AppEnv,
   private val appErrorHandler: AppErrorHandler? = null,
-  private val blueprintResolver: BlueprintResolver = BlueprintResolver(StaticBlueprintProvider()),
-  private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = blueprintResolver::forMode,
+  private val blueprintResolver: BlueprintResolver,
+  private val timerController: TimerController,
+  private val prewarmRunner: PrewarmController,
+  private val resumeUseCase: ResumeUseCase,
+  @IoDispatcher private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
   private val seedProvider: () -> Long = { Random.nextLong() },
   private val userIdProvider: () -> String = { DEFAULT_USER_ID },
   private val attemptIdProvider: () -> String = { UUID.randomUUID().toString() },
   private val nowProvider: () -> Long = { System.currentTimeMillis() },
-  private val timerController: TimerController = TimerController { message -> Timber.i(message) },
-  private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-  private val prewarmRunner: PrewarmController =
-    PrewarmController(
-      repository = repository,
-      prewarmUseCase =
-        PrewarmUseCase(
-          repository = repository,
-          prewarmDisabled = userPrefs.prewarmDisabled,
-          ioDispatcher = ioDispatcher,
-          nowProvider = nowProvider,
-        ),
-    ),
-  private val resumeUseCase: ResumeUseCase =
-    ResumeUseCase(
-      repository = repository,
-      statsRepository = statsRepository,
-      blueprintProvider = blueprintProvider,
-      userIdProvider = userIdProvider,
-      ioDispatcher = ioDispatcher,
-    ),
   timerCoordinatorOverride: ExamTimerController? = null,
   prewarmCoordinatorOverride: ExamPrewarmCoordinator? = null,
   autosaveCoordinatorOverride: ExamAutosaveController? = null,
 ) : ViewModel() {
+
+  private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = blueprintResolver::forMode
 
   private val _uiState = mutableStateOf(ExamUiState())
   val uiState: State<ExamUiState> = _uiState
@@ -1884,43 +1871,3 @@ class ExamViewModel(
   }
 }
 
-class ExamViewModelFactory(
-  private val repository: AssetQuestionRepository,
-  private val attemptsRepository: AttemptsRepository,
-  private val answersRepository: AnswersRepository,
-  private val statsRepository: UserStatsRepository,
-  private val userPrefs: UserPrefs,
-  private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
-  private val appEnv: AppEnv,
-  private val appErrorHandler: AppErrorHandler? = null,
-  private val blueprintProvider: BlueprintProvider = StaticBlueprintProvider(),
-  private val blueprintResolver: BlueprintResolver = BlueprintResolver(blueprintProvider),
-  private val prewarmConfig: PrewarmConfig = PrewarmConfig(),
-) : ViewModelProvider.Factory {
-  override fun <T : ViewModel> create(modelClass: Class<T>): T {
-    if (modelClass.isAssignableFrom(ExamViewModel::class.java)) {
-      val prewarmUseCase =
-        PrewarmUseCase(
-          repository = repository,
-          prewarmDisabled = userPrefs.prewarmDisabled,
-          config = prewarmConfig,
-        )
-      val prewarmRunner = PrewarmController(repository = repository, prewarmUseCase = prewarmUseCase)
-      @Suppress("UNCHECKED_CAST")
-      return ExamViewModel(
-        repository = repository,
-        attemptsRepository = attemptsRepository,
-        answersRepository = answersRepository,
-        statsRepository = statsRepository,
-        userPrefs = userPrefs,
-        questionReportRepository = questionReportRepository,
-        appEnv = appEnv,
-        appErrorHandler = appErrorHandler,
-        blueprintResolver = blueprintResolver,
-        blueprintProvider = blueprintResolver::forMode,
-        prewarmRunner = prewarmRunner,
-      ) as T
-    }
-    throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
-  }
-}

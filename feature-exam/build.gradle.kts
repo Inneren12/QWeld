@@ -3,6 +3,8 @@ plugins {
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.plugin.compose")
   id("org.jetbrains.kotlin.plugin.serialization")
+  id("com.google.dagger.hilt.android")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -60,8 +62,11 @@ dependencies {
   implementation("androidx.compose.ui:ui-tooling-preview:1.7.1")
   implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
   implementation("androidx.navigation:navigation-compose:2.8.3")
+  implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
   implementation("com.jakewharton.timber:timber:5.0.1")
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+  implementation("com.google.dagger:hilt-android:2.52")
+  ksp("com.google.dagger:hilt-compiler:2.52")
 
   debugImplementation("androidx.compose.ui:ui-tooling:1.7.1")
   debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.1")

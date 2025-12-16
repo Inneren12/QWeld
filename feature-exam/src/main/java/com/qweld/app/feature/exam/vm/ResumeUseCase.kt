@@ -27,7 +27,7 @@ class ResumeUseCase(
   private val repository: AssetQuestionRepository,
   private val statsRepository: UserStatsRepository,
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint,
-  private val userIdProvider: () -> String,
+  private val userIdProvider: () -> String = { DEFAULT_USER_ID },
   private val ioDispatcher: CoroutineDispatcher,
 ) {
 
@@ -204,5 +204,9 @@ class ResumeUseCase(
       is JsonPrimitive -> mapOf(resolvedLocale to this.content)
       else -> mapOf(resolvedLocale to this.toString())
     }
+  }
+
+  companion object {
+    const val DEFAULT_USER_ID: String = "default_user"
   }
 }

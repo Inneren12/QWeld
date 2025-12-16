@@ -2,16 +2,16 @@ package com.qweld.app.feature.exam.vm
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
+import com.qweld.app.di.qualifiers.IoDispatcher
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.mapTaskToBlock
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,12 +19,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.util.Locale
+import javax.inject.Inject
 
-class PracticeShortcuts(
+@HiltViewModel
+class PracticeShortcuts @Inject constructor(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
   private val userPrefs: UserPrefs,
-  private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+  @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
   private val logger: (String) -> Unit = { message -> Timber.i(message) },
 ) : ViewModel() {
 
@@ -195,23 +197,3 @@ data class RepeatMistakesState(
   val isEnabled: Boolean = availability == RepeatMistakesAvailability.AVAILABLE && blueprint != null
 }
 
-class PracticeShortcutsFactory(
-  private val attemptsRepository: AttemptsRepository,
-  private val answersRepository: AnswersRepository,
-  private val userPrefs: UserPrefs,
-  private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-) : ViewModelProvider.Factory {
-
-  override fun <T : ViewModel> create(modelClass: Class<T>): T {
-    if (modelClass.isAssignableFrom(PracticeShortcuts::class.java)) {
-      @Suppress("UNCHECKED_CAST")
-      return PracticeShortcuts(
-        attemptsRepository = attemptsRepository,
-        answersRepository = answersRepository,
-        userPrefs = userPrefs,
-        ioDispatcher = ioDispatcher,
-      ) as T
-    }
-    throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
-  }
-}

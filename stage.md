@@ -153,11 +153,12 @@ Legend:
   - [ ] Keep module boundaries enforced during new feature work.
 
 ### ARCH-2 – Dependency injection framework
-- **Status:** ⏳
-- **Summary:** Current setup uses manual wiring; no dedicated DI framework is enabled yet.
-- **Implemented in:** Manual constructors/providers.
+- **Status:** ⚠️
+- **Summary:** Hilt now supplies app/data/exam dependencies (AppModule/ExamModule), injects the Application/Activity, and drives the exam/practice ViewModels via `@HiltViewModel`. Test-only overrides for exam bindings are available via a `@TestInstallIn` module.
+- **Implemented in:** Hilt modules (`app-android` + `feature-exam`), injected `ExamViewModel`/`PracticeShortcuts`, Hilt-enabled `MainActivity`/`QWeldApp`.
 - **Next tasks:**
-  - [ ] Evaluate lightweight DI (e.g., Koin/Hilt) for ViewModels and repositories.
+  - [ ] Expand DI coverage to remaining ViewModels (admin/result/review) and cross-feature services.
+  - [ ] Migrate any remaining manual providers to Hilt bindings and add instrumentation hooks that exercise the test override modules.
 
 ### ARCH-3 – ExamViewModel refactor
 - **Status:** ✅
