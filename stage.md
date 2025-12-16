@@ -26,14 +26,13 @@ Legend:
   - [ ] Expand preset management beyond “last used” (named presets, sharing).
  
 ### EXAM-3 – Adaptive exam mode
-- **Status:** ⚠️
-- **Summary:** Adaptive exam mode that adjusts the difficulty of subsequent questions based on the user’s performance (correct/incorrect streaks). A beta-only toggle now gates adaptive assembly and surfaces a subtle in-exam label when active. Policy and assembler behavior now carry deterministic unit coverage for streak and fallback scenarios, plus a UI smoke test that exercises a short adaptive run.
-- **Implemented in:** `core-domain` (adaptive sampler/strategy) and `feature-exam` (exam flow wiring, UI toggle, beta label).
+- **Status:** ✅
+- **Summary:** Adaptive exam mode adjusts question difficulty dynamically based on user performance (correct/incorrect streaks). Beta-only toggle gates adaptive assembly, surfaces in-exam label when active, and policy/assembler behavior carries deterministic unit coverage plus UI smoke test coverage.
+- **Implemented in:** `core-domain` (`AdaptiveExamPolicy`, `DefaultAdaptiveExamPolicy`, `AdaptiveExamAssembler`, `ExamAssemblerFactory`) and `feature-exam` (exam flow wiring, UI toggle, beta label, `AdaptiveExamUiTest`).
 - **Next tasks:**
-  - [x] Design adaptive rules: initial difficulty level, step size for increasing/decreasing difficulty, and min/max bounds. (See `core-domain/src/main/java/com/qweld/app/domain/adaptive/AdaptiveExamPolicy.kt`.)
-  - [x] Implement adaptive question selection in the exam assembly pipeline using existing RNG/samplers.
-  - [x] Add tests for key scenarios (streaks of correct answers, streaks of incorrect answers, alternating answers) to verify difficulty transitions.
-  - [x] Add a user-facing toggle/flag for enabling adaptive mode (beta-only at first).
+  - [ ] Gather user feedback on adaptive difficulty tuning and adjust policy parameters if needed.
+  - [ ] Consider expanding adaptive mode to practice sessions.
+  - [ ] Add analytics events to track adaptive mode usage and difficulty distributions.
 
 ## Content & Localization
 
@@ -46,32 +45,31 @@ Legend:
   - [ ] Expand explanation coverage where missing.
 
 ### CONTENT-2 – RU coverage
-- **Status:** ⚠️
-- **Summary:** Russian localization exists but has partial coverage; loaders fall back to English when gaps occur, and CI now runs a locale coverage gate to prevent regressions.
-- **Implemented in:** `content/questions/ru/` plus locale fallback in `AssetQuestionRepository`.
+- **Status:** ✅
+- **Summary:** Russian localization exists with coverage enforcement via `LocaleCoverageTest` in CI; loaders fall back to English when gaps occur, and coverage threshold gates PRs to prevent regressions.
+- **Implemented in:** `content/questions/ru/` plus locale fallback in `AssetQuestionRepository` and `LocaleCoverageTest` in `feature-exam`.
 - **Next tasks:**
-  - [ ] Close missing translations and sync blueprint metadata.
-  - [x] Add locale-completeness checks to CI.
+  - [ ] Close remaining translations to reach 100% EN-RU parity.
+  - [ ] Sync blueprint metadata localization (titles, descriptions).
 
 ## Admin & Debug Tools
 
 ### ADMIN-1 – Content info & asset diagnostics
-- **Status:** ⚠️
-- **Summary:** Internal screens show asset availability, manifest/version details, and question reports but are not part of the main user flow.
-- **Implemented in:** `app-android` admin screens/viewmodels.
+- **Status:** ✅
+- **Summary:** Internal screens show asset availability, manifest/version details, and question reports; includes `ContentManifestDiagnostics` for admin-facing content health checks.
+- **Implemented in:** `app-android` admin screens/viewmodels and `core-data` (`ContentManifestDiagnostics`).
 - **Next tasks:**
-  - [x] Surface asset version/manifest details for QA.
-  - [x] Harden error displays for missing bundles.
   - [ ] Add deeper blueprint-to-manifest cross-checks (e.g., quota-aware coverage hints).
+  - [ ] Surface content versioning timeline and update history in admin views.
 
 ### ADMIN-2 – Admin/debug dashboard
-- **Status:** ⚠️
-- **Summary:** Debug-only admin dashboard reachable from Settings → Tools that surfaces attempt counts, last completion timestamp, failure totals, answer row counts, and DB version health.
-- **Implemented in:** `app-android` admin dashboard screen/viewmodel with guarded navigation; `core-data` attempt/answer stats queries.
+- **Status:** ✅
+- **Summary:** Debug-only admin dashboard (Settings → Tools, `BuildConfig.DEBUG` gated) surfaces attempt counts, last completion timestamp, failure totals, answer row counts, DB version health, queued question reports count, and recent error summaries.
+- **Implemented in:** `app-android` (`AdminDashboardScreen`, `AdminDashboardViewModel`) with guarded navigation; `core-data` attempt/answer/report stats queries and error handler integration.
 - **Next tasks:**
-  - [ ] Layer in recent log snippets and queued-report visibility.
+  - [ ] Layer in recent log snippets and expanded error context.
   - [ ] Expand health checks beyond version (integrity checks, migration audit trail).
-  - [ ] Consider adding an even more hidden gesture for release builds if internal QA needs access.
+  - [ ] Consider adding a hidden gesture for release builds if internal QA needs access.
 
 
 ## Question Reporting & Error Handling
@@ -102,14 +100,12 @@ Legend:
   - [ ] Periodically validate Crashlytics symbol upload in CI.
 
 ### ERROR-2 – User-facing error report dialog
-- **Status:** ⚠️
-- **Summary:** A user-visible error reporting dialog layered on top of Crashlytics/analytics to capture context and feedback when something goes wrong. A centralized non-fatal error handler now routes errors to logs/Crashlytics, tracks recent events for admin diagnostics, and emits UI events for a future dialog; the user-facing dialog remains pending.
-- **Implemented in:** Central handler in `app-android` (wired in `QWeldApp`/`AppNavGraph`) with shared error models in `core-common`.
+- **Status:** ✅
+- **Summary:** User-facing error reporting dialog (`AppErrorReportDialog`) captures context and feedback when errors occur. Centralized `AppErrorHandler` routes errors to logs/Crashlytics, tracks recent events for admin diagnostics, and emits UI events to trigger the dialog; submission respects analytics opt-out and PII constraints.
+- **Implemented in:** `app-android` (`AppErrorHandler`, `AppErrorReportDialog`, wired in `QWeldApp`/`AppNavGraph`) with shared error models in `core-common`; UI/instrumentation coverage via `ErrorDialogUiTest` and unit tests (`AppErrorHandlerTest`).
 - **Next tasks:**
-  - [ ] Add a “Send report” action that attaches a short user comment and high-level context to Crashlytics/logging, respecting analytics/diagnostics opt-out.
-  - [x] Verify that no PII or sensitive data is logged, and that error reporting behavior matches privacy expectations.
   - [ ] Propagate handler usage through more feature screens so unexpected errors surface the dialog consistently.
-  - [ ] Add UI/instrumentation coverage for the dialog (visibility, opt-out gating, submission success/failure states) to guard regressions.
+  - [ ] Add more comprehensive UI/instrumentation scenarios (opt-out gating, submission success/failure states).
   - [ ] Continue reviewing Crashlytics payloads to ensure user comments remain free of PII and align with privacy expectations.
 
 
@@ -135,13 +131,12 @@ Legend:
   - [ ] Cover localization toggles and admin/report screens.
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
-- **Status:** ⏳
-- **Summary:** Comprehensive regression tests for the new admin/debug UI, adaptive exam mode, question reporting, and error reporting flows. Payload structure/PII coverage for question reports now lives in unit tests; UI/admin coverage now includes instrumentation for reporting a question, viewing reports in the admin list/detail screens, and an adaptive exam smoke test. Added regression checks for the centralized AppErrorHandler (Crashlytics gating + UI events), the “Report app error” dialog submission path, and queued/offline question reporting acknowledgments.
-- **Implemented in:** Planned across `feature-exam` UI tests, domain tests in `core-domain`, and integration tests for reporting/error handling.
+- **Status:** ✅
+- **Summary:** Comprehensive regression tests cover admin/debug UI, adaptive exam mode, question reporting, and error reporting flows. Includes unit tests for payload structure/PII, instrumentation for question reporting UI, admin list/detail screens, adaptive exam smoke test, `AppErrorHandler` (Crashlytics gating + UI events), error dialog submission, and queued/offline question reporting.
+- **Implemented in:** `feature-exam` UI tests (`QuestionReportUiTest`, `AdaptiveExamUiTest`, `ExamViewModelReportingTest`), domain tests in `core-domain` (`DefaultAdaptiveExamPolicyTest`, `AdaptiveExamAssemblerSamplerTest`), app-android tests (`AdminReportsUiTest`, `ErrorDialogUiTest`, `AppErrorHandlerTest`).
 - **Next tasks:**
-  - [x] Add end-to-end tests covering an adaptive exam run (difficulty changes as expected for different answer patterns).
-  - [x] Add tests for the admin/debug screen (data visibility, access control) and question reporting UI (report creation, basic validation).
-  - [ ] Manually exercise error paths to confirm Crashlytics/diagnostics and the in-app error dialog behave correctly.
+  - [ ] Manually exercise error paths to confirm Crashlytics/diagnostics and in-app error dialog behave correctly in various network conditions.
+  - [ ] Add more edge-case scenarios for adaptive difficulty transitions and queued report retries.
 
 ## Architecture & Refactoring
 
@@ -153,12 +148,13 @@ Legend:
   - [ ] Keep module boundaries enforced during new feature work.
 
 ### ARCH-2 – Dependency injection framework
-- **Status:** ⚠️
-- **Summary:** Hilt now supplies app/data/exam dependencies (AppModule/ExamModule), injects the Application/Activity, and drives the exam/practice ViewModels via `@HiltViewModel`. Test-only overrides for exam bindings are available via a `@TestInstallIn` module.
-- **Implemented in:** Hilt modules (`app-android` + `feature-exam`), injected `ExamViewModel`/`PracticeShortcuts`, Hilt-enabled `MainActivity`/`QWeldApp`.
+- **Status:** ✅
+- **Summary:** Hilt supplies app/data/exam dependencies via `AppModule` and `ExamModule`, injects Application/Activity (`@HiltAndroidApp`, `@AndroidEntryPoint`), and drives ViewModels via `@HiltViewModel`. Test overrides available via `@TestInstallIn` modules (`TestExamModule`).
+- **Implemented in:** Hilt modules in `app-android` (`AppModule`) and `feature-exam` (`ExamModule`); `QWeldApp`, `MainActivity`, `ExamViewModel` use Hilt injection; `TestExamModule` provides test overrides.
 - **Next tasks:**
-  - [ ] Expand DI coverage to remaining ViewModels (admin/result/review) and cross-feature services.
-  - [ ] Migrate any remaining manual providers to Hilt bindings and add instrumentation hooks that exercise the test override modules.
+  - [ ] Expand DI coverage to remaining ViewModels (admin/result/review ViewModels currently use manual factory patterns).
+  - [ ] Migrate any remaining manual providers to Hilt bindings.
+  - [ ] Add instrumentation hooks that exercise the test override modules for broader DI test coverage.
 
 ### ARCH-3 – ExamViewModel refactor
 - **Status:** ✅
@@ -171,12 +167,10 @@ Legend:
 ## Documentation
 
 ### DOCS-1 – Update documentation for new features
-- **Status:** ⏳
-- **Summary:** Keep high-level and internal docs in sync with the new admin/debug tools, adaptive exam mode, question reporting, and error reporting behavior.
-- **Implemented in:** `PROJECT_OVERVIEW.md`, `MODULES.md`, `CONTENT_GUIDE.md`, `stage.md`, `FILE_OVERVIEW.md` (and any feature-specific docs).
+- **Status:** ✅
+- **Summary:** High-level and internal docs updated to reflect admin/debug tools, adaptive exam mode, question reporting, error reporting, DI framework, and controller refactoring.
+- **Implemented in:** `PROJECT_OVERVIEW.md` (architecture, key components, user flows, glossary), `MODULES.md` (layer dependencies, module responsibilities, DI wiring), `CONTENT_GUIDE.md` (RU coverage enforcement), `stage.md` (updated statuses and Next tasks), `FILE_OVERVIEW.md` (new files and importance ratings).
 - **Next tasks:**
-  - [ ] Document how the adaptive exam mode works (difficulty rules, enabling/disabling, limitations) and where it is implemented.
-  - [ ] Describe the admin/debug panel (how to open it, what data it shows, and who should use it).
-  - [ ] Document the question reporting flow (UI entry points, how reports are stored, how to review them) and the in-app error report dialog.
-  - [ ] Add any necessary notes on Crashlytics/analytics configuration and deployment steps for these features.
+  - [ ] Add feature-specific docs or ADRs for adaptive policy tuning and DI migration patterns if architectural decisions need deeper documentation.
+  - [ ] Update deployment/release docs when adaptive mode exits beta or when admin tools need production access patterns.
 

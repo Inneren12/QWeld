@@ -222,6 +222,14 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** 🧪 Test
   - **Role:** Edge-case coverage for quota distribution rounding, even splits, and guardrails against invalid allocations.
   - **Edit guidelines:** Keep fixtures deterministic and totals aligned with blueprint expectations.
+- `core-domain/src/test/java/com/qweld/app/domain/adaptive/DefaultAdaptiveExamPolicyTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Unit tests for adaptive policy difficulty transitions, streak tracking, and hysteresis rules.
+  - **Edit guidelines:** Keep test scenarios aligned with policy design; cover edge cases for streak thresholds and difficulty bounds.
+- `core-domain/src/test/java/com/qweld/app/domain/adaptive/AdaptiveExamAssemblerSamplerTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Unit tests for adaptive assembler sampler behavior, verifying difficulty-based question selection and fallback scenarios.
+  - **Edit guidelines:** Maintain deterministic test data and assertions; extend when adaptive sampling logic changes.
 
 ## core-data/
 
