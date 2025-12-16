@@ -28,6 +28,14 @@ class AttemptsRepository(
     attemptDao.markAborted(id, System.currentTimeMillis())
   }
 
+  /**
+   * Updates remaining time for an in-progress attempt.
+   * Used during autosave to persist timer state for process-death resume.
+   */
+  suspend fun updateRemainingTime(attemptId: String, remainingTimeMs: Long?) {
+    attemptDao.updateRemainingTime(attemptId, remainingTimeMs)
+  }
+
   suspend fun getById(id: String): AttemptEntity? = attemptDao.getById(id)
 
   suspend fun listRecent(limit: Int): List<AttemptEntity> = attemptDao.listRecent(limit)

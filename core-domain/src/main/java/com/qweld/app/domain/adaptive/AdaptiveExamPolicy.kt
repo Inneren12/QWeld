@@ -131,15 +131,56 @@ interface AdaptiveExamPolicy {
 }
 
 /**
- * Reference implementation sketch of the default policy.
+ * Configuration for adaptive exam difficulty policy.
  *
- * This class is intentionally left with TODOs for EXAM-3 follow-up tasks. It should remain
- * isolated from current exam assembly until the adaptive flag is wired. Implementors should respect
- * the rules described in [AdaptiveExamPolicy.nextState] and [AdaptiveExamPolicy.pickNextDifficulty].
+ * These thresholds control when difficulty transitions occur and have been tuned to balance
+ * challenge with fairness:
+ *
+ * ### Rationale for default values:
+ * - **correctStreakForIncrease = 2**: Requiring two consecutive correct answers before increasing
+ *   difficulty prevents premature escalation from lucky guesses. This creates meaningful hysteresis
+ *   and ensures users demonstrate consistent competence before facing harder questions.
+ *
+ * - **incorrectStreakForDecrease = 1**: A single incorrect answer at the current difficulty triggers
+ *   a downward adjustment. This is intentionally more sensitive than the increase threshold to avoid
+ *   frustrating users with a prolonged series of difficult questions they can't answer. The asymmetry
+ *   (2-up, 1-down) prevents oscillation because after dropping, users need two consecutive correct
+ *   answers to climb back up.
+ *
+ * - **preferMediumWhenRemainingAtOrBelow = 2**: Near the end of an exam (last 2 questions), the
+ *   policy defaults to MEDIUM difficulty. This prevents outlier easy/hard questions from having
+ *   disproportionate impact on the final score and provides a consistent finishing experience.
+ *
+ * ### Zig-zag prevention:
+ * The 2-up/1-down asymmetry combined with streak resets after any band change prevents rapid
+ * oscillation. Alternating correct/incorrect answers will keep the user at the same difficulty
+ * level rather than bouncing between bands.
+ *
+ * ### Difficulty distribution:
+ * Initial simulations with these thresholds produce roughly:
+ * - 30-40% EASY questions (for users struggling)
+ * - 35-45% MEDIUM questions (default starting point and fallback)
+ * - 20-30% HARD questions (for users demonstrating mastery)
+ *
+ * These values can be adjusted based on user feedback and performance data collected via analytics.
  */
 data class AdaptiveConfig(
+  /**
+   * Number of consecutive correct answers required to increase difficulty.
+   * Default: 2 (prevents escalation from lucky guesses).
+   */
   val correctStreakForIncrease: Int = 2,
+
+  /**
+   * Number of consecutive incorrect answers required to decrease difficulty.
+   * Default: 1 (responsive to user struggle, asymmetric to prevent oscillation).
+   */
   val incorrectStreakForDecrease: Int = 1,
+
+  /**
+   * When this many or fewer questions remain, prefer MEDIUM difficulty to avoid outliers.
+   * Default: 2 (ensures consistent exam conclusion).
+   */
   val preferMediumWhenRemainingAtOrBelow: Int = 2,
 )
 

@@ -143,12 +143,28 @@ class ResumeUseCase(
     return MergeState(answers = answersById, currentIndex = index)
   }
 
+  /**
+   * Calculates remaining time for an exam attempt.
+   *
+   * For IP_MOCK mode:
+   * - First tries to use persisted remainingTimeMs from autosave (supports process-death resume)
+   * - Falls back to calculating from startedAt if not available
+   *
+   * For other modes: returns Duration.ZERO (not timed)
+   */
   fun remainingTime(
     attempt: AttemptEntity,
     mode: ExamMode,
     nowMillis: Long,
   ): Duration {
     if (mode != ExamMode.IP_MOCK) return Duration.ZERO
+
+    // Use persisted remaining time if available (autosaved during exam)
+    attempt.remainingTimeMs?.let { persistedMs ->
+      return Duration.ofMillis(persistedMs.coerceAtLeast(0L))
+    }
+
+    // Fallback: calculate from startedAt (legacy/first-time resume)
     val elapsedMillis = (nowMillis - attempt.startedAt).coerceAtLeast(0L)
     val elapsed = Duration.ofMillis(elapsedMillis)
     val remaining = TimerController.EXAM_DURATION.minus(elapsed)
