@@ -26,4 +26,10 @@ data class AttemptEntity(
   @ColumnInfo(name = "duration_sec") val durationSec: Int? = null,
   @ColumnInfo(name = "pass_threshold") val passThreshold: Int? = null,
   @ColumnInfo(name = "score_pct") val scorePct: Double? = null,
+  /**
+   * Remaining time in milliseconds for timed exams (IP_MOCK).
+   * Updated via autosave during exam progress. Null for untimed modes (PRACTICE, ADAPTIVE).
+   * Used to restore timer state after process kill/app restart.
+   */
+  @ColumnInfo(name = "remaining_time_ms") val remainingTimeMs: Long? = null,
 )

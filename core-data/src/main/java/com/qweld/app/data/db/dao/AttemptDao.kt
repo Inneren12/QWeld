@@ -43,6 +43,19 @@ interface AttemptDao {
   )
   suspend fun markAborted(id: String, finishedAt: Long)
 
+  /**
+   * Updates remaining time for an in-progress attempt.
+   * Used by autosave to persist timer state for process-death resume.
+   */
+  @Query(
+    """
+    UPDATE attempts
+    SET remaining_time_ms = :remainingTimeMs
+    WHERE id = :attemptId
+    """
+  )
+  suspend fun updateRemainingTime(attemptId: String, remainingTimeMs: Long?)
+
   @Query("SELECT * FROM attempts WHERE id = :id LIMIT 1")
   suspend fun getById(id: String): AttemptEntity?
 

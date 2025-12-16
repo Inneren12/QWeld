@@ -8,13 +8,15 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.dao.AttemptDao
+import com.qweld.app.data.db.dao.PracticePresetDao
 import com.qweld.app.data.db.dao.QueuedQuestionReportDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
+import com.qweld.app.data.db.entities.PracticePresetEntity
 import com.qweld.app.data.db.entities.QueuedQuestionReportEntity
 import timber.log.Timber
 
-const val QWELD_DB_VERSION = 4
+const val QWELD_DB_VERSION = 6
 
 private val MIGRATION_1_2 =
   object : Migration(1, 2) {
@@ -146,14 +148,68 @@ private val MIGRATION_3_4 =
     }
   }
 
+/**
+ * Migration to add remaining_time_ms column to attempts table for process-death resume.
+ */
+private val MIGRATION_4_5 =
+  object : Migration(4, 5) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+      db.execSQL(
+        "ALTER TABLE attempts ADD COLUMN remaining_time_ms INTEGER DEFAULT NULL"
+      )
+      Timber.tag("QWeldDb").i("[migration_4_5] added remaining_time_ms column to attempts table")
+    }
+  }
+
+/**
+ * Migration to add practice_presets table for named preset management.
+ */
+private val MIGRATION_5_6 =
+  object : Migration(5, 6) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+      db.execSQL(
+        """
+        CREATE TABLE IF NOT EXISTS practice_presets (
+          id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+          name TEXT NOT NULL,
+          blocks TEXT NOT NULL DEFAULT '',
+          task_ids TEXT NOT NULL DEFAULT '',
+          distribution TEXT NOT NULL DEFAULT 'Proportional',
+          size INTEGER NOT NULL DEFAULT 20,
+          wrong_biased INTEGER NOT NULL DEFAULT 0,
+          created_at INTEGER NOT NULL,
+          updated_at INTEGER NOT NULL
+        )
+        """.trimIndent()
+      )
+
+      db.execSQL(
+        "CREATE UNIQUE INDEX IF NOT EXISTS idx_practice_presets_name ON practice_presets(name)"
+      )
+
+      db.execSQL(
+        "CREATE INDEX IF NOT EXISTS idx_practice_presets_created_at ON practice_presets(created_at DESC)"
+      )
+
+      Timber.tag("QWeldDb").i("[migration_5_6] added practice_presets table for named practice configurations")
+    }
+  }
+
 internal val QWELD_MIGRATIONS = arrayOf(
   MIGRATION_1_2,
   MIGRATION_2_3,
   MIGRATION_3_4,
+  MIGRATION_4_5,
+  MIGRATION_5_6,
 )
 
 @Database(
-  entities = [AttemptEntity::class, AnswerEntity::class, QueuedQuestionReportEntity::class],
+  entities = [
+    AttemptEntity::class,
+    AnswerEntity::class,
+    QueuedQuestionReportEntity::class,
+    PracticePresetEntity::class,
+  ],
   version = QWELD_DB_VERSION,
   exportSchema = true,
 )
@@ -163,6 +219,8 @@ abstract class QWeldDb : RoomDatabase() {
   abstract fun answerDao(): AnswerDao
 
   abstract fun queuedQuestionReportDao(): QueuedQuestionReportDao
+
+  abstract fun practicePresetDao(): PracticePresetDao
 
   companion object {
     private const val TAG = "QWeldDb"

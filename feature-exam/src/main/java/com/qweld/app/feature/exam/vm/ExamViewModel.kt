@@ -1332,6 +1332,23 @@ class ExamViewModel @Inject constructor(
   }
 
   /**
+   * Persists remaining timer value to support process-death resume.
+   * Only persists for IP_MOCK mode; other modes don't have timers.
+   */
+  private fun persistRemainingTime(remainingMs: Long?) {
+    val attemptResult = currentAttempt ?: return
+    val mode = attemptResult.attempt.mode
+    if (mode != ExamMode.IP_MOCK) return
+
+    viewModelScope.launch(ioDispatcher) {
+      attemptsRepository.updateRemainingTime(
+        attemptId = attemptResult.attemptId,
+        remainingTimeMs = remainingMs,
+      )
+    }
+  }
+
+  /**
    * Starts a new timer for IP_MOCK exams.
    * Timer runs for 4 hours and automatically finishes exam when expired.
    */
@@ -1342,7 +1359,10 @@ class ExamViewModel @Inject constructor(
       initialLabel,
     )
     timerCoordinator.start(
-      onTick = { label, _ -> updateTimerLabel(label) },
+      onTick = { label, remaining ->
+        updateTimerLabel(label)
+        persistRemainingTime(remaining.toMillis())
+      },
       onExpired = { finishExam() },
     )
   }
@@ -1359,7 +1379,10 @@ class ExamViewModel @Inject constructor(
     )
     timerCoordinator.resume(
       initialRemaining = initialRemaining,
-      onTick = { label, _ -> updateTimerLabel(label) },
+      onTick = { label, remaining ->
+        updateTimerLabel(label)
+        persistRemainingTime(remaining.toMillis())
+      },
       onExpired = { finishExam() },
     )
   }

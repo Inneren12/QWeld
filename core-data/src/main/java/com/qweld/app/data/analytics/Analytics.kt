@@ -212,3 +212,89 @@ fun Analytics.logAuthLink(method: String) {
 fun Analytics.logAuthSignOut(method: String) {
   log("auth_signout", mapOf("method" to method))
 }
+
+/**
+ * Logs when a user enables or disables adaptive exam mode.
+ *
+ * @param enabled whether adaptive mode was enabled (true) or disabled (false)
+ */
+fun Analytics.logAdaptiveExamToggle(enabled: Boolean) {
+  log(
+    "adaptive_exam_toggle",
+    mapOf("enabled" to enabled),
+  )
+}
+
+/**
+ * Logs when an adaptive exam starts, capturing initial configuration.
+ *
+ * @param locale exam locale
+ * @param totalQuestions total number of questions in the adaptive exam
+ */
+fun Analytics.logAdaptiveExamStart(locale: String, totalQuestions: Int) {
+  log(
+    "adaptive_exam_start",
+    mapOf(
+      "mode" to "adaptive",
+      "locale" to locale.uppercase(Locale.US),
+      "totals" to mapOf("questions" to totalQuestions),
+    ),
+  )
+}
+
+/**
+ * Logs when an adaptive exam finishes, capturing difficulty distribution and results.
+ *
+ * @param locale exam locale
+ * @param totalQuestions total number of questions
+ * @param correctTotal number of correct answers
+ * @param scorePercent final score percentage
+ * @param easyCount number of EASY questions served
+ * @param mediumCount number of MEDIUM questions served
+ * @param hardCount number of HARD questions served
+ */
+fun Analytics.logAdaptiveExamFinish(
+  locale: String,
+  totalQuestions: Int,
+  correctTotal: Int,
+  scorePercent: Double,
+  easyCount: Int,
+  mediumCount: Int,
+  hardCount: Int,
+) {
+  log(
+    "adaptive_exam_finish",
+    mapOf(
+      "mode" to "adaptive",
+      "locale" to locale.uppercase(Locale.US),
+      "score_pct" to scorePercent,
+      "totals" to mapOf(
+        "questions" to totalQuestions,
+        "correct" to correctTotal,
+        "incorrect" to (totalQuestions - correctTotal),
+      ),
+      "difficulty_mix" to mapOf(
+        "easy" to easyCount,
+        "medium" to mediumCount,
+        "hard" to hardCount,
+      ),
+    ),
+  )
+}
+
+/**
+ * Logs when a user starts an adaptive practice session (beta feature).
+ *
+ * @param locale practice locale
+ * @param totalQuestions total number of questions in the practice session
+ */
+fun Analytics.logAdaptivePracticeStart(locale: String, totalQuestions: Int) {
+  log(
+    "adaptive_practice_start",
+    mapOf(
+      "mode" to "adaptive_practice",
+      "locale" to locale.uppercase(Locale.US),
+      "totals" to mapOf("questions" to totalQuestions),
+    ),
+  )
+}

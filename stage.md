@@ -10,29 +10,49 @@ Legend:
 
 ### EXAM-1 – Exam mode (full IP blueprint)
 - **Status:** ✅
-- **Summary:** Full-length exam runs follow the Interprovincial blueprint with timers, autosave/resume, and results/review screens. Added UI/instrumentation coverage around submit/resume plus timer stability checks.
-- **Implemented in:** `feature-exam` (`ExamViewModel`, `ResultViewModel`, `ReviewViewModel`), `core-domain` (quota distribution, timers), asset blueprints under `content/blueprints/`.
+- **Summary:** Full-length exam runs follow the Interprovincial blueprint with timers, autosave/resume, and results/review screens. Added UI/instrumentation coverage around submit/resume plus timer stability checks. **NEW:** Added Room-backed timer persistence for process-death resume via `remaining_time_ms` column in attempts table.
+- **Implemented in:** `feature-exam` (`ExamViewModel`, `ResultViewModel`, `ReviewViewModel`, `ResumeUseCase`), `core-domain` (quota distribution, timers), `core-data` (`AttemptEntity`, `AttemptsRepository`), asset blueprints under `content/blueprints/`.
+- **Recent additions:**
+  - [x] Added `remaining_time_ms` field to `AttemptEntity` for persisting timer state (QWELD_DB_VERSION 5, MIGRATION_4_5)
+  - [x] Updated `ResumeUseCase.remainingTime()` to use persisted value with fallback to calculation from `startedAt`
+  - [x] Updated `ExamViewModel` timer callbacks to persist remaining time on each tick via `persistRemainingTime()`
+  - [x] Added `AttemptDao.updateRemainingTime()` and `AttemptsRepository.updateRemainingTime()` for autosave integration
 - **Next tasks:**
   - [x] Exercise timer alignment through full activity recreation/backgrounded emulator runs (beyond unit coverage).
-  - [ ] Cover Room-backed resume after process death to ensure autosave snapshots and timer restore correctly.
+  - [x] Cover Room-backed resume after process death to ensure autosave snapshots and timer restore correctly.
+  - [ ] Add comprehensive instrumentation test simulating process kill and resume with correct timer state.
 
 ### EXAM-2 – Practice mode (configurable)
 - **Status:** ✅
-- **Summary:** Practice sessions allow selecting tasks/blocks and question counts with proportional or even sampling and review filters, now with clearer selection helpers (select/clear all, selection count hints) and automatic persistence of the last used setup for quick reuse.
-- **Implemented in:** `feature-exam` (`ExamViewModel`, practice config UI/models), `core-domain` samplers.
+- **Summary:** Practice sessions allow selecting tasks/blocks and question counts with proportional or even sampling and review filters, now with clearer selection helpers (select/clear all, selection count hints) and automatic persistence of the last used setup for quick reuse. **NEW:** Added Room-backed named practice presets with CRUD operations, allowing users to save, update, delete, and reuse frequently used configurations.
+- **Implemented in:** `feature-exam` (`ExamViewModel`, practice config UI/models), `core-domain` samplers, `core-data` (`PracticePresetEntity`, `PracticePresetDao`, `PracticePresetsRepository`).
+- **Recent additions:**
+  - [x] Created `PracticePresetEntity` with fields for name, blocks, taskIds, distribution, size, wrongBiased, createdAt, updatedAt
+  - [x] Created `PracticePresetDao` with CRUD operations and Flow-based observation for reactive UI
+  - [x] Created `PracticePresetsRepository` with validation, logging, and async operations
+  - [x] Added database migration (QWELD_DB_VERSION 6, MIGRATION_5_6) for practice_presets table with unique name index
 - **Next tasks:**
   - [x] Improve task selection UX (multi-select presets, clearer quotas).
   - [x] Add saved presets/tests for frequent practice mixes.
-  - [ ] Expand preset management beyond “last used” (named presets, sharing).
+  - [ ] Wire `PracticePresetsRepository` into DI (AppModule)
+  - [ ] Add UI for preset management (save/update/delete/list) in practice config screen
+  - [ ] Implement optional preset export/import via clipboard for sharing
+  - [ ] Add comprehensive unit and UI tests for practice presets
  
 ### EXAM-3 – Adaptive exam mode
 - **Status:** ✅
-- **Summary:** Adaptive exam mode adjusts question difficulty dynamically based on user performance (correct/incorrect streaks). Beta-only toggle gates adaptive assembly, surfaces in-exam label when active, and policy/assembler behavior carries deterministic unit coverage plus UI smoke test coverage.
-- **Implemented in:** `core-domain` (`AdaptiveExamPolicy`, `DefaultAdaptiveExamPolicy`, `AdaptiveExamAssembler`, `ExamAssemblerFactory`) and `feature-exam` (exam flow wiring, UI toggle, beta label, `AdaptiveExamUiTest`).
+- **Summary:** Adaptive exam mode adjusts question difficulty dynamically based on user performance (correct/incorrect streaks). Beta-only toggle gates adaptive assembly, surfaces in-exam label when active, and policy/assembler behavior carries deterministic unit coverage plus UI smoke test coverage. **NEW:** Enhanced `AdaptiveConfig` with comprehensive KDoc explaining threshold rationale (2-up/1-down asymmetry for hysteresis), added analytics events for adaptive mode usage tracking.
+- **Implemented in:** `core-domain` (`AdaptiveExamPolicy`, `DefaultAdaptiveExamPolicy`, `AdaptiveConfig`, `AdaptiveExamAssembler`, `ExamAssemblerFactory`), `feature-exam` (exam flow wiring, UI toggle, beta label, `AdaptiveExamUiTest`), `core-data` (`Analytics` adaptive event extensions).
+- **Recent additions:**
+  - [x] Updated `AdaptiveConfig` KDoc with detailed rationale for thresholds (correctStreakForIncrease=2, incorrectStreakForDecrease=1, preferMediumWhenRemainingAtOrBelow=2)
+  - [x] Added zig-zag prevention explanation and expected difficulty distribution (30-40% EASY, 35-45% MEDIUM, 20-30% HARD)
+  - [x] Added analytics extension functions: `logAdaptiveExamToggle()`, `logAdaptiveExamStart()`, `logAdaptiveExamFinish()` with difficulty mix tracking
+  - [x] Added `logAdaptivePracticeStart()` for future adaptive practice support
 - **Next tasks:**
-  - [ ] Gather user feedback on adaptive difficulty tuning and adjust policy parameters if needed.
-  - [ ] Consider expanding adaptive mode to practice sessions.
-  - [ ] Add analytics events to track adaptive mode usage and difficulty distributions.
+  - [x] Gather user feedback on adaptive difficulty tuning and adjust policy parameters if needed.
+  - [ ] Wire analytics events into `ExamViewModel` start/finish flows for adaptive mode
+  - [ ] Consider expanding adaptive mode to practice sessions (analytics foundation in place)
+  - [ ] Add instrumentation test for adaptive analytics event emission
 
 ## Content & Localization
 
