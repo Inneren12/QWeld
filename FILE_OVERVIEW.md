@@ -39,6 +39,14 @@ Importance legend:
   - **Importance:** ⚪ Support
   - **Role:** User-facing dialog allowing “Report an app error” submissions with an optional comment and privacy guidance.
   - **Edit guidelines:** Preserve clear copy about optional comments/PII and keep the submit contract aligned with `AppErrorHandler`.
+- `app-android/src/main/java/com/qweld/app/di/AppModule.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Hilt bindings for app-wide dependencies (analytics, repositories, DB, error handler, question content/explanation repos, and auth). Also exposes dispatcher/prewarm qualifiers.
+  - **Edit guidelines:** Keep bindings aligned with module boundaries; prefer adding new DI entries here over recreating manual singletons.
+- `app-android/src/main/java/com/qweld/app/di/qualifiers/Qualifiers.kt`
+  - **Importance:** ⚪ Support
+  - **Role:** Qualifier annotations for shared dispatchers and testable toggles (prewarm flag flows).
+  - **Edit guidelines:** Reuse existing qualifiers before adding new ones.
 - `app-android/src/main/java/com/qweld/app/admin/QuestionReportsViewModel.kt` and related admin screens
   - **Importance:** 🟡 Important
   - **Role:** Internal tooling for reviewing submitted question reports.
@@ -110,6 +118,14 @@ Importance legend:
   - **Importance:** ⚪ Support
   - **Role:** Compose screens and dialogs for exam/practice, review, explanations, and reporting.
   - **Edit guidelines:** UI tweaks are safe; keep state contracts with ViewModels intact.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/di/ExamModule.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Hilt bindings for exam-specific dependencies (blueprint resolver, timers, prewarm/resume use cases/controllers).
+  - **Edit guidelines:** Keep bindings pure/Kotlin-friendly; prefer updating this module when introducing new exam controllers/use cases.
+- `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/di/TestExamModule.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** Hilt test overrides for exam bindings (blueprints, timers, prewarm/resume) to enable deterministic fakes in instrumentation.
+  - **Edit guidelines:** Extend/replace bindings here rather than editing production modules for test needs.
 - `feature-exam/src/test/...`
   - **Importance:** 🧪 Test
   - **Role:** Unit/UI tests for exam flows, loaders, and content validation.

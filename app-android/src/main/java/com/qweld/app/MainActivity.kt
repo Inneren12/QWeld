@@ -7,51 +7,58 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.lifecycleScope
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.data.analytics.Analytics
-import com.qweld.app.data.analytics.FirebaseAnalyticsImpl
 import com.qweld.app.data.content.ContentIndexReader
-import com.qweld.app.data.db.QWeldDb
+import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
-import com.qweld.app.data.repo.UserStatsRepositoryRoom
-import com.qweld.app.data.logging.LogCollector
-import com.qweld.app.data.logging.LogCollectorOwner
-import com.qweld.app.data.reports.FirestoreQuestionReportRepository
-import com.qweld.app.data.reports.DefaultReportEnvironmentMetadataProvider
 import com.qweld.app.data.reports.RetryQueuedQuestionReportsUseCase
+import com.qweld.app.domain.exam.repo.UserStatsRepository
+import com.qweld.app.feature.auth.AuthService
 import com.qweld.app.feature.exam.data.AppRulesLoader
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
-import com.qweld.app.feature.auth.firebase.FirebaseAuthService
 import com.qweld.app.i18n.LocaleController
 import com.qweld.app.navigation.AppNavGraph
 import com.qweld.app.ui.theme.QWeldTheme
+import com.qweld.core.common.AppEnv
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
   companion object {
     private const val RULES_ASSET_PATH = "rules/welder_exam_2024.json"
   }
+
+  @Inject lateinit var analytics: Analytics
+  @Inject lateinit var userPrefs: UserPrefsDataStore
+  @Inject lateinit var questionRepository: AssetQuestionRepository
+  @Inject lateinit var explanationRepository: AssetExplanationRepository
+  @Inject lateinit var contentIndexReader: ContentIndexReader
+  @Inject lateinit var attemptsRepository: AttemptsRepository
+  @Inject lateinit var answersRepository: AnswersRepository
+  @Inject lateinit var statsRepository: UserStatsRepository
+  @Inject lateinit var questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository
+  @Inject lateinit var retryQueuedReports: RetryQueuedQuestionReportsUseCase
+  @Inject lateinit var authService: AuthService
+  @Inject lateinit var logCollector: LogCollector
+  @Inject lateinit var appErrorHandler: AppErrorHandler
+  @Inject lateinit var appEnv: AppEnv
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
     runCatching { AppRulesLoader(applicationContext).load(RULES_ASSET_PATH) }
       .onFailure { Timber.e(it, "[rules_load_error] path=%s", RULES_ASSET_PATH) }
-    val analytics = FirebaseAnalyticsImpl(Firebase.analytics, BuildConfig.ENABLE_ANALYTICS)
-    val userPrefs = UserPrefsDataStore(applicationContext)
     userPrefs
       .appLocaleFlow()
       .distinctUntilChanged()
@@ -61,10 +68,27 @@ class MainActivity : ComponentActivity() {
       userPrefs.analyticsEnabled.collect { enabled ->
         val analyticsAllowed = BuildConfig.ENABLE_ANALYTICS && enabled
         analytics.setEnabled(analyticsAllowed)
-        (application as? QWeldApp)?.appErrorHandler?.updateAnalyticsEnabled(enabled)
+        appErrorHandler.updateAnalyticsEnabled(enabled)
       }
     }
-    setContent { QWeldAppRoot(analytics = analytics, userPrefs = userPrefs) }
+    setContent {
+      QWeldAppRoot(
+        analytics = analytics,
+        userPrefs = userPrefs,
+        questionRepository = questionRepository,
+        explanationRepository = explanationRepository,
+        attemptsRepository = attemptsRepository,
+        answersRepository = answersRepository,
+        statsRepository = statsRepository,
+        questionReportRepository = questionReportRepository,
+        contentIndexReader = contentIndexReader,
+        retryQueuedReports = retryQueuedReports,
+        authService = authService,
+        appEnv = appEnv,
+        appErrorHandler = appErrorHandler,
+        logCollector = logCollector,
+      )
+    }
   }
 }
 
@@ -72,50 +96,34 @@ class MainActivity : ComponentActivity() {
 fun QWeldAppRoot(
   analytics: Analytics,
   userPrefs: UserPrefsDataStore,
+  questionRepository: AssetQuestionRepository,
+  explanationRepository: AssetExplanationRepository,
+  attemptsRepository: AttemptsRepository,
+  answersRepository: AnswersRepository,
+  statsRepository: UserStatsRepository,
+  questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
+  contentIndexReader: ContentIndexReader,
+  retryQueuedReports: RetryQueuedQuestionReportsUseCase,
+  authService: AuthService,
+  appEnv: AppEnv,
+  appErrorHandler: AppErrorHandler,
+  logCollector: LogCollector?,
 ) {
-  val context = LocalContext.current
-  val appContext = context.applicationContext
-  val appEnv = remember { (appContext as QWeldApp).appEnv }
-  val lruCacheSize by userPrefs.lruCacheSizeFlow().collectAsState(
-    initial = UserPrefsDataStore.DEFAULT_LRU_CACHE_SIZE,
-  )
-  val appErrorHandler = remember { (appContext as QWeldApp).appErrorHandler }
-  val analyticsEnabled by userPrefs.analyticsEnabled.collectAsState(
-    initial = UserPrefsDataStore.DEFAULT_ANALYTICS_ENABLED,
-  )
-  val questionRepository = remember(appContext, lruCacheSize) {
-    AssetQuestionRepository(appContext, cacheCapacity = lruCacheSize)
-  }
-  val explanationRepository = remember(appContext) { AssetExplanationRepository(appContext) }
-  val contentIndexReader = remember(appContext) { ContentIndexReader(appContext) }
-  val database = remember(appContext) { QWeldDb.create(appContext) }
-  val attemptsRepository = remember(database) { AttemptsRepository(database.attemptDao()) }
-  val answersRepository = remember(database) { AnswersRepository(database.answerDao()) }
-  val statsRepository = remember(database) { UserStatsRepositoryRoom(database.answerDao()) }
-  val questionReportRepository = remember(database) {
-    val environmentMetadataProvider = DefaultReportEnvironmentMetadataProvider(appEnv = appEnv)
-    FirestoreQuestionReportRepository(
-      Firebase.firestore,
-      database.queuedQuestionReportDao(),
-      environmentMetadataProvider = environmentMetadataProvider,
-    )
-  }
-  val retryQueuedReports = remember(questionReportRepository) {
-    RetryQueuedQuestionReportsUseCase(questionReportRepository)
-  }
-  val authService = remember { FirebaseAuthService(FirebaseAuth.getInstance(), analytics) }
-  val logCollector: LogCollector? = remember(appContext) {
-    (appContext as? LogCollectorOwner)?.logCollector
-  }
-  val errorReportingEnabled by appErrorHandler.analyticsEnabled.collectAsState()
+  val appLocale = userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
+  val appErrorReporting by appErrorHandler.analyticsEnabled.collectAsState()
 
-  LaunchedEffect(analyticsEnabled) {
-    appErrorHandler.updateAnalyticsEnabled(analyticsEnabled)
+  LaunchedEffect(appLocale.value) {
+    LocaleController.apply(appLocale.value)
+  }
+
+  LaunchedEffect(appErrorReporting) {
+    appErrorHandler.updateAnalyticsEnabled(appErrorReporting)
   }
 
   LaunchedEffect(retryQueuedReports) {
     retryQueuedReports()
   }
+
   QWeldTheme {
     AppNavGraph(
       authService = authService,
@@ -132,7 +140,8 @@ fun QWeldAppRoot(
       contentIndexReader = contentIndexReader,
       appErrorHandler = appErrorHandler,
       appEnv = appEnv,
-      errorReportingEnabled = errorReportingEnabled,
+      errorReportingEnabled = appErrorReporting,
+      appLocaleTag = appLocale.value,
     )
   }
 }

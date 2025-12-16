@@ -7,8 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,18 +21,13 @@ import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
-import com.qweld.app.feature.exam.data.blueprint.AssetBlueprintProvider
 import com.qweld.app.feature.exam.ui.ModeScreen
 import com.qweld.app.feature.exam.ui.ExamScreen
 import com.qweld.app.feature.exam.ui.ResultScreen
 import com.qweld.app.feature.exam.ui.ReviewScreen
 import com.qweld.app.feature.exam.vm.ExamViewModel
-import com.qweld.app.feature.exam.vm.ExamViewModelFactory
-import com.qweld.app.feature.exam.vm.BlueprintResolver
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
-import com.qweld.app.feature.exam.vm.PracticeShortcutsFactory
-import com.qweld.app.feature.exam.vm.PrewarmConfig
 import com.qweld.app.feature.exam.vm.ResultViewModel
 import com.qweld.app.feature.exam.vm.ResultViewModelFactory
 import com.qweld.core.common.AppEnv
@@ -66,40 +60,9 @@ fun ExamNavGraph(
   appVersion: String,
   analytics: Analytics,
   userPrefs: UserPrefs,
-  prewarmConfig: PrewarmConfig = PrewarmConfig(),
   appLocaleTag: String,
 ) {
-  val context = LocalContext.current.applicationContext
-  val blueprintProvider = remember(context) { AssetBlueprintProvider(context) }
-  val blueprintResolver = remember(blueprintProvider) { BlueprintResolver(blueprintProvider) }
-  val examViewModelFactory =
-    remember(
-      repository,
-      attemptsRepository,
-      answersRepository,
-      statsRepository,
-      questionReportRepository,
-      appEnv,
-      appErrorHandler,
-      userPrefs,
-      blueprintProvider,
-      blueprintResolver,
-      prewarmConfig,
-    ) {
-      ExamViewModelFactory(
-        repository = repository,
-        attemptsRepository = attemptsRepository,
-        answersRepository = answersRepository,
-        statsRepository = statsRepository,
-        userPrefs = userPrefs,
-        questionReportRepository = questionReportRepository,
-        appEnv = appEnv,
-        appErrorHandler = appErrorHandler,
-        blueprintProvider = blueprintProvider,
-        blueprintResolver = blueprintResolver,
-        prewarmConfig = prewarmConfig,
-      )
-    }
+  val parentEntry = remember(navController) { navController.getBackStackEntry(ExamDestinations.MODE) }
   val attemptExporter =
     remember(attemptsRepository, answersRepository, appVersion) {
       AttemptExporter(
@@ -114,19 +77,8 @@ fun ExamNavGraph(
     modifier = modifier,
   ) {
     composable(route = ExamDestinations.MODE) {
-      val examViewModel: ExamViewModel =
-        viewModel(
-          factory = examViewModelFactory,
-        )
-      val practiceShortcuts: PracticeShortcuts =
-        viewModel(
-          factory =
-            PracticeShortcutsFactory(
-              attemptsRepository = attemptsRepository,
-              answersRepository = answersRepository,
-              userPrefs = userPrefs,
-            ),
-        )
+      val examViewModel: ExamViewModel = hiltViewModel()
+      val practiceShortcuts: PracticeShortcuts = hiltViewModel()
       val coroutineScope = rememberCoroutineScope()
       val adaptiveEnabled by
         examViewModel.adaptiveExamEnabled.collectAsState(
@@ -178,12 +130,7 @@ fun ExamNavGraph(
       )
     }
     composable(route = ExamDestinations.EXAM) { backStackEntry ->
-      val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
-      val examViewModel: ExamViewModel =
-        viewModel(
-          parentEntry,
-          factory = examViewModelFactory,
-        )
+      val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
       LaunchedEffect(examViewModel, navController) {
         examViewModel.effects.collectLatest { effect ->
           when (effect) {
@@ -225,12 +172,7 @@ fun ExamNavGraph(
       )
     }
     composable(route = ExamDestinations.RESULT) { backStackEntry ->
-      val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
-      val examViewModel: ExamViewModel =
-        viewModel(
-          parentEntry,
-          factory = examViewModelFactory,
-        )
+      val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
       val resultViewModel: ResultViewModel =
         viewModel(
           backStackEntry,
@@ -256,12 +198,7 @@ fun ExamNavGraph(
       )
     }
     composable(route = ExamDestinations.REVIEW) { backStackEntry ->
-      val parentEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
-      val examViewModel: ExamViewModel =
-        viewModel(
-          parentEntry,
-          factory = examViewModelFactory,
-        )
+      val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
       val resultViewModel: ResultViewModel =
         viewModel(
           backStackEntry,
