@@ -44,7 +44,25 @@ class DefaultExamAutosaveController(
         startAutosaveTicker()
     }
 
-    override fun recordAnswer(answer: AnswerEntity) { /* как у тебя */ }
+    override fun recordAnswer(answer: AnswerEntity) {
+        val controller = currentController
+        tickerScope.launch {
+            if (controller != null) {
+                controller.onAnswer(
+                    questionId = answer.questionId,
+                    choiceId = answer.selectedId ?: "",
+                    correctChoiceId = answer.correctId,
+                    isCorrect = answer.isCorrect,
+                    displayIndex = answer.displayIndex,
+                    timeSpentSec = answer.timeSpentSec,
+                    seenAt = answer.seenAt,
+                    answeredAt = answer.answeredAt,
+                )
+            } else {
+                answersRepository.upsert(listOf(answer))
+            }
+        }
+    }
 
     override fun flush(force: Boolean) {
         currentController?.flush(force)
@@ -54,7 +72,17 @@ class DefaultExamAutosaveController(
         stopInternal()
     }
 
-    private fun startAutosaveTicker() { /* как у тебя */ }
+    private fun startAutosaveTicker() {
+        tickerJob?.cancel()
+        val controller = currentController ?: return
+
+        tickerJob = tickerScope.launch {
+            while (isActive) {
+                delay(autosaveIntervalSec * 1000L)
+                controller.onTick()
+            }
+        }
+    }
 
     private fun stopInternal() {
         tickerJob?.cancel()
