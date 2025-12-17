@@ -3,6 +3,7 @@ package com.qweld.app.feature.exam.di
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.qweld.app.data.db.QWeldDb
+import kotlinx.coroutines.flow.first
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -77,7 +78,7 @@ class ExamModuleConfigTest {
     // Given
     val userPrefs = UserPrefsDataStore(context)
     val repository = runBlocking {
-      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().kotlinx.coroutines.flow.first())
+      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().first())
     }
     val prewarmDisabled = flowOf(false)
     val ioDispatcher = Dispatchers.IO
@@ -100,7 +101,7 @@ class ExamModuleConfigTest {
     // Given
     val userPrefs = UserPrefsDataStore(context)
     val repository = runBlocking {
-      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().kotlinx.coroutines.flow.first())
+      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().first())
     }
     val prewarmUseCase = ExamModule.providePrewarmUseCase(
       repository = repository,
@@ -121,7 +122,7 @@ class ExamModuleConfigTest {
     // Given
     val userPrefs = UserPrefsDataStore(context)
     val repository = runBlocking {
-      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().kotlinx.coroutines.flow.first())
+      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().first())
     }
     val db = QWeldDb.create(context)
     val statsRepository = com.qweld.app.data.repo.UserStatsRepositoryRoom(db.answerDao())
@@ -153,7 +154,7 @@ class ExamModuleConfigTest {
 
     val userPrefs = UserPrefsDataStore(context)
     val repository = runBlocking {
-      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().kotlinx.coroutines.flow.first())
+      AssetQuestionRepository(context, cacheCapacity = userPrefs.lruCacheSizeFlow().first())
     }
     val prewarmConfig = PrewarmConfig(enabled = true, maxConcurrency = 4, taskTimeoutMs = 5000L)
     val prewarmDisabled = flowOf(false)

@@ -11,8 +11,7 @@ import timber.log.Timber
  * Analytics wrapper. Events must remain PII-free and respect user opt-out via [setEnabled].
  */
 interface Analytics {
-  fun log(event: String, params: Map<String, Any?> = emptyMap())
-
+    fun log(event: String, params: Map<String, Any?> = emptyMap())
     fun setEnabled(enabled: Boolean)
 }
 

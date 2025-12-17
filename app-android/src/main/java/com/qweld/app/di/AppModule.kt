@@ -47,6 +47,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import com.google.firebase.crashlytics.ktx.crashlytics
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -161,14 +162,14 @@ object AppModule {
   @Provides
   @Singleton
   fun provideQuestionReportRepository(
-    queuedQuestionReportDao: QueuedQuestionReportDao,
-    environmentMetadataProvider: DefaultReportEnvironmentMetadataProvider,
+      queuedQuestionReportDao: QueuedQuestionReportDao,
+      environmentMetadataProvider: DefaultReportEnvironmentMetadataProvider,
   ): QuestionReportRepository =
-    FirestoreQuestionReportRepository(
-      Firebase.firestore,
-      queuedQuestionReportDao,
-      environmentMetadataProvider,
-    )
+      FirestoreQuestionReportRepository(
+          firestore = Firebase.firestore,
+          queuedReportDao = queuedQuestionReportDao,
+          environmentMetadataProvider = environmentMetadataProvider,
+      )
 
   @Provides
   @Singleton

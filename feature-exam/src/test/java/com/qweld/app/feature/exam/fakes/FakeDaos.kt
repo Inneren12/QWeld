@@ -84,6 +84,15 @@ class FakeAttemptDao : AttemptDao {
     // Для unit-тестов достаточно заглушки: user_version тут не важен
     override suspend fun getUserVersion(query: SupportSQLiteQuery): Int = 0
 
+    override suspend fun updateRemainingTime(
+        attemptId: String,
+        remainingTimeMs: Long?,
+    ) {
+        // Для юнит-тестов нам не критично хранить оставшееся время,
+        // поэтому можно сделать no-op. Если нужно — потом можно
+        // доработать и обновлять AttemptEntity в map.
+    }
+
   /**
    * Test-only method to get all stored attempts.
    */
