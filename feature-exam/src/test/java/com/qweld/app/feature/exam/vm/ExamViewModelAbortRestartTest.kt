@@ -2,7 +2,7 @@ package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.entities.AttemptEntity
-import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
@@ -114,7 +114,7 @@ class ExamViewModelAbortRestartTest {
   ): ExamViewModel {
     val repository = repositoryWithTasks("A-1" to 3)
     val attemptsRepository = AttemptsRepository(attemptDao)
-    val answersRepository = AnswersRepository(FakeAnswerDao())
+    val answersRepository = DefaultAnswersRepository(FakeAnswerDao())
     val questionReportRepository = FakeQuestionReportRepository()
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(

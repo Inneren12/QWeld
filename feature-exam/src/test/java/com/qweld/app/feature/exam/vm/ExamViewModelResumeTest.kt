@@ -6,6 +6,7 @@ import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
 import com.qweld.app.domain.exam.ExamBlueprint
@@ -50,7 +51,7 @@ class ExamViewModelResumeTest {
     context = ApplicationProvider.getApplicationContext()
     db = QWeldDb.inMemory(context)
     attemptsRepository = AttemptsRepository(db.attemptDao()) { }
-    answersRepository = AnswersRepository(db.answerDao())
+    answersRepository = DefaultAnswersRepository(db.answerDao())
     statsRepository = UserStatsRepositoryRoom(db.answerDao()) { }
     viewModel = createViewModel(repositoryWithQuestions(count = 2))
   }

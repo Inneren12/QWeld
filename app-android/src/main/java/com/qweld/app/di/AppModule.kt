@@ -19,6 +19,7 @@ import com.qweld.app.data.db.dao.QueuedQuestionReportDao
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.repo.UserStatsRepositoryRoom
 import com.qweld.app.data.reports.DefaultReportEnvironmentMetadataProvider
@@ -111,7 +112,7 @@ object AppModule {
 
   @Provides
   @Singleton
-  fun provideAnswersRepository(answerDao: AnswerDao): AnswersRepository = AnswersRepository(answerDao)
+  fun provideAnswersRepository(answerDao: AnswerDao): AnswersRepository = DefaultAnswersRepository(answerDao)
 
   @Provides
   @Singleton

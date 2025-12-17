@@ -3,26 +3,36 @@ package com.qweld.app.data.repo
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.entities.AnswerEntity
 
-class AnswersRepository(private val answerDao: AnswerDao) {
+interface AnswersRepository {
+  suspend fun upsert(answers: List<AnswerEntity>)
+  suspend fun listByAttempt(attemptId: String): List<AnswerEntity>
+  suspend fun listWrongByAttempt(attemptId: String): List<String>
+  suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate?
+  suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate>
+  suspend fun countAll(): Int
+  suspend fun clearAll()
+}
 
-  suspend fun upsert(answers: List<AnswerEntity>) {
+class DefaultAnswersRepository(private val answerDao: AnswerDao) : AnswersRepository {
+
+  override suspend fun upsert(answers: List<AnswerEntity>) {
     if (answers.isEmpty()) return
     answerDao.insertAll(answers)
   }
 
-  suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = answerDao.listByAttempt(attemptId)
+  override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = answerDao.listByAttempt(attemptId)
 
-  suspend fun listWrongByAttempt(attemptId: String): List<String> = answerDao.listWrongByAttempt(attemptId)
+  override suspend fun listWrongByAttempt(attemptId: String): List<String> = answerDao.listWrongByAttempt(attemptId)
 
-  suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? =
+  override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? =
     answerDao.countByQuestion(questionId)
 
-  suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> =
+  override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> =
     answerDao.bulkCountByQuestions(questionIds)
 
-  suspend fun countAll(): Int = answerDao.countAll()
+  override suspend fun countAll(): Int = answerDao.countAll()
 
-  suspend fun clearAll() {
+  override suspend fun clearAll() {
     answerDao.clearAll()
   }
 }

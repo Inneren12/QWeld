@@ -3,7 +3,7 @@ package com.qweld.app.feature.exam.export
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.db.entities.AttemptEntity
 import com.qweld.app.data.export.AttemptExporter
-import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.feature.exam.fakes.FakeAnswerDao
 import com.qweld.app.feature.exam.fakes.FakeAttemptDao
@@ -26,7 +26,7 @@ class AttemptExporterTest {
   private val attemptDao = FakeAttemptDao()
   private val answerDao = FakeAnswerDao()
   private val attemptsRepository = AttemptsRepository(attemptDao) { }
-  private val answersRepository = AnswersRepository(answerDao)
+  private val answersRepository = DefaultAnswersRepository(answerDao)
   private val clock = Clock.fixed(Instant.parse("2024-01-01T00:00:00Z"), ZoneOffset.UTC)
   private val exporter =
     AttemptExporter(

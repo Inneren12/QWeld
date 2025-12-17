@@ -1,5 +1,6 @@
 package com.qweld.app.feature.exam.vm
 
+import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.repo.AnswersRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -190,7 +191,11 @@ class ExamAutosaveControllerTest {
     }
 
     override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = emptyList()
-    override suspend fun clearAllAnswers() {}
+    override suspend fun listWrongByAttempt(attemptId: String): List<String> = emptyList()
+    override suspend fun countByQuestion(questionId: String) = null
+    override suspend fun bulkCountByQuestions(questionIds: List<String>) = emptyList()
+    override suspend fun countAll(): Int = 0
+    override suspend fun clearAll() {}
   }
 
   // Fake AutosaveController
@@ -199,7 +204,11 @@ class ExamAutosaveControllerTest {
     answersRepository = object : AnswersRepository {
       override suspend fun upsert(answers: List<AnswerEntity>) {}
       override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = emptyList()
-      override suspend fun clearAllAnswers() {}
+      override suspend fun listWrongByAttempt(attemptId: String): List<String> = emptyList()
+      override suspend fun countByQuestion(questionId: String) = null
+      override suspend fun bulkCountByQuestions(questionIds: List<String>) = emptyList()
+      override suspend fun countAll(): Int = 0
+      override suspend fun clearAll() {}
     },
     scope = TestScope(),
     ioDispatcher = StandardTestDispatcher()

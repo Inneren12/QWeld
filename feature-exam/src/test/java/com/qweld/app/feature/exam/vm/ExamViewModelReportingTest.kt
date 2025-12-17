@@ -5,7 +5,7 @@ import com.qweld.app.common.error.AppErrorEvent
 import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.common.error.AppErrorReportResult
 import com.qweld.app.common.error.UiErrorEvent
-import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.reports.QuestionReport
 import com.qweld.app.data.reports.QuestionReportQueueStatus
@@ -123,7 +123,7 @@ class ExamViewModelReportingTest {
     val attemptDao = FakeAttemptDao()
     val answerDao = FakeAnswerDao()
     val attemptsRepository = AttemptsRepository(attemptDao) { }
-    val answersRepository = AnswersRepository(answerDao)
+    val answersRepository = DefaultAnswersRepository(answerDao)
     val statsRepository =
       object : UserStatsRepository {
         override suspend fun getUserItemStats(

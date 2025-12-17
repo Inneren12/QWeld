@@ -1,7 +1,7 @@
 package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.data.export.AttemptExporter
-import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.exam.AssembledQuestion
 import com.qweld.app.domain.exam.AttemptSeed
@@ -26,7 +26,7 @@ class ResultViewModelTest {
   private val dummyExporter: AttemptExporter =
     AttemptExporter(
       attemptsRepository = AttemptsRepository(attemptDao) { },
-      answersRepository = AnswersRepository(answerDao),
+      answersRepository = DefaultAnswersRepository(answerDao),
       versionProvider = { "" },
       errorLogger = { _, _ -> },
     )
