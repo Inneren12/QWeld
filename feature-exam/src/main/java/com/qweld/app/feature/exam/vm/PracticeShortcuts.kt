@@ -27,8 +27,10 @@ class PracticeShortcuts @Inject constructor(
   private val answersRepository: AnswersRepository,
   private val userPrefs: UserPrefs,
   @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
-  private val logger: (String) -> Unit = { message -> Timber.i(message) },
 ) : ViewModel() {
+
+  // Internal test hook for logging
+  internal var logger: (String) -> Unit = { message -> Timber.i(message) }
 
   private val _repeatMistakes =
     MutableStateFlow(

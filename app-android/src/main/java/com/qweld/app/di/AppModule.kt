@@ -75,7 +75,8 @@ object AppModule {
 
   @Provides
   @Singleton
-  fun provideUserPrefs(@ApplicationContext context: Context): UserPrefsDataStore = UserPrefsDataStore(context)
+  fun provideUserPrefs(@ApplicationContext context: Context): com.qweld.app.data.prefs.UserPrefs =
+    UserPrefsDataStore(context)
 
   @Provides
   @Singleton
@@ -88,7 +89,7 @@ object AppModule {
 
   @Provides
   @PrewarmDisabled
-  fun providePrewarmDisabledFlow(userPrefs: UserPrefsDataStore): Flow<Boolean> = userPrefs.prewarmDisabled
+  fun providePrewarmDisabledFlow(userPrefs: com.qweld.app.data.prefs.UserPrefs): Flow<Boolean> = userPrefs.prewarmDisabled
 
   @Provides
   @Singleton
@@ -124,7 +125,7 @@ object AppModule {
   @Singleton
   fun provideQuestionRepository(
     @ApplicationContext context: Context,
-    userPrefs: UserPrefsDataStore,
+    userPrefs: com.qweld.app.data.prefs.UserPrefs,
   ): AssetQuestionRepository {
     val cacheSize = runBlocking { userPrefs.lruCacheSizeFlow().first() }
     return AssetQuestionRepository(context, cacheCapacity = cacheSize)
