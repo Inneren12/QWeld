@@ -11,7 +11,7 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class AutosaveController(
+open class AutosaveController(
   private val attemptId: String,
   private val answersRepository: AnswersRepository,
   private val scope: CoroutineScope,
@@ -22,7 +22,7 @@ class AutosaveController(
   private val mutex = Mutex()
   private var intervalSec: Int = DEFAULT_INTERVAL_SEC
 
-  fun configure(intervalSec: Int = DEFAULT_INTERVAL_SEC) {
+  open fun configure(intervalSec: Int = DEFAULT_INTERVAL_SEC) {
     require(intervalSec > 0) { "Interval must be positive" }
     this.intervalSec = intervalSec
   }
@@ -30,7 +30,7 @@ class AutosaveController(
   val intervalMillis: Long
     get() = intervalSec * 1_000L
 
-  fun onAnswer(
+  open fun onAnswer(
     questionId: String,
     choiceId: String,
     correctChoiceId: String,
@@ -72,7 +72,7 @@ class AutosaveController(
     }
   }
 
-  fun onTick() {
+  open fun onTick() {
     scope.launch(ioDispatcher) {
       val targets = mutex.withLock {
         pending
@@ -101,7 +101,7 @@ class AutosaveController(
     }
   }
 
-  fun flush(force: Boolean = false) {
+  open fun flush(force: Boolean = false) {
     scope.launch(ioDispatcher) {
       val targets = mutex.withLock {
         val selected =

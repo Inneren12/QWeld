@@ -2,7 +2,7 @@ package com.qweld.app.feature.exam.vm
 
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.entities.AnswerEntity
-import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -18,7 +18,7 @@ class AutosaveControllerTest {
   fun `onAnswer writes immediately`() = runTest {
     val dispatcher = StandardTestDispatcher(testScheduler)
     val dao = FakeAnswerDao()
-    val repository = AnswersRepository(dao)
+    val repository = DefaultAnswersRepository(dao)
     val controller = AutosaveController("attempt", repository, this, dispatcher)
 
     controller.onAnswer(
@@ -43,7 +43,7 @@ class AutosaveControllerTest {
   fun `onTick batches dirty answers`() = runTest {
     val dispatcher = StandardTestDispatcher(testScheduler)
     val dao = FakeAnswerDao(mutableListOf(true, true, false))
-    val repository = AnswersRepository(dao)
+    val repository = DefaultAnswersRepository(dao)
     val controller = AutosaveController("attempt", repository, this, dispatcher)
 
     controller.onAnswer(
@@ -83,7 +83,7 @@ class AutosaveControllerTest {
   fun `flush forced writes even when clean`() = runTest {
     val dispatcher = StandardTestDispatcher(testScheduler)
     val dao = FakeAnswerDao()
-    val repository = AnswersRepository(dao)
+    val repository = DefaultAnswersRepository(dao)
     val controller = AutosaveController("attempt", repository, this, dispatcher)
 
     controller.onAnswer(

@@ -1,6 +1,6 @@
 package com.qweld.app.feature.exam.vm
 
-import com.qweld.app.data.repo.AnswersRepository
+import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.domain.Outcome
 import com.qweld.app.domain.exam.ExamBlueprint
@@ -278,7 +278,7 @@ class ExamViewModelFinishTest {
   ): ExamViewModel {
     val answerDao = FakeAnswerDao()
     val attemptsRepository = AttemptsRepository(attemptDao) { }
-    val answersRepository = AnswersRepository(answerDao)
+    val answersRepository = DefaultAnswersRepository(answerDao)
     val questionReportRepository = FakeQuestionReportRepository()
     val dispatcher = dispatcherRule.dispatcher
     return ExamViewModel(
