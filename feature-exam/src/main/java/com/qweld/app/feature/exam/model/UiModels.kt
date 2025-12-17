@@ -18,7 +18,7 @@ data class ExamUiState(
 )
 
 data class PrewarmUiState(
-  val locale: String? = null,
+  val locale: String = "",
   val isRunning: Boolean = false,
   val loaded: Int = 0,
   val total: Int = 0,
