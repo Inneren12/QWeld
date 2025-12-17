@@ -123,25 +123,29 @@ class ExamViewModelResumeTest {
     )
     val userPrefs = FakeUserPrefs()
     val questionReportRepository = FakeQuestionReportRepository()
+    val dispatcher = dispatcherRule.dispatcher
+    val blueprintResolver = createTestBlueprintResolver(blueprint)
+    val resumeUseCase = createTestResumeUseCase(repository, statsRepository, blueprint, dispatcher)
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
-      blueprintProvider = { _, _ -> blueprint },
+      blueprintResolver = blueprintResolver,
+      resumeUseCase = resumeUseCase,
       seedProvider = { 7L },
       attemptIdProvider = { TEST_ATTEMPT_ID },
       nowProvider = { currentTime },
       timerController = com.qweld.app.domain.exam.TimerController { },
-      ioDispatcher = dispatcherRule.dispatcher,
+      ioDispatcher = dispatcher,
       prewarmRunner =
-        PrewarmController(
+        DefaultPrewarmController(
           repository = repository,
           prewarmUseCase =
             PrewarmUseCase(
               repository = repository,
               prewarmDisabled = flowOf(false),
-              ioDispatcher = dispatcherRule.dispatcher,
+              ioDispatcher = dispatcher,
               nowProvider = { currentTime },
             ),
         ),

@@ -192,8 +192,18 @@ class ExamAutosaveControllerTest {
 
     override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = emptyList()
     override suspend fun listWrongByAttempt(attemptId: String): List<String> = emptyList()
-    override suspend fun countByQuestion(questionId: String) = null
-    override suspend fun bulkCountByQuestions(questionIds: List<String>) = emptyList()
+    override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? = null
+    override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
+      return questionIds.map { questionId ->
+        AnswerDao.QuestionAggregate(
+          questionId = questionId,
+          attempts = 0,
+          correct = 0,
+          lastAnsweredAt = null,
+          lastIsCorrect = null
+        )
+      }
+    }
     override suspend fun countAll(): Int = 0
     override suspend fun clearAll() {}
   }
@@ -205,8 +215,18 @@ class ExamAutosaveControllerTest {
       override suspend fun upsert(answers: List<AnswerEntity>) {}
       override suspend fun listByAttempt(attemptId: String): List<AnswerEntity> = emptyList()
       override suspend fun listWrongByAttempt(attemptId: String): List<String> = emptyList()
-      override suspend fun countByQuestion(questionId: String) = null
-      override suspend fun bulkCountByQuestions(questionIds: List<String>) = emptyList()
+      override suspend fun countByQuestion(questionId: String): AnswerDao.QuestionAggregate? = null
+      override suspend fun bulkCountByQuestions(questionIds: List<String>): List<AnswerDao.QuestionAggregate> {
+        return questionIds.map { questionId ->
+          AnswerDao.QuestionAggregate(
+            questionId = questionId,
+            attempts = 0,
+            correct = 0,
+            lastAnsweredAt = null,
+            lastIsCorrect = null
+          )
+        }
+      }
       override suspend fun countAll(): Int = 0
       override suspend fun clearAll() {}
     },

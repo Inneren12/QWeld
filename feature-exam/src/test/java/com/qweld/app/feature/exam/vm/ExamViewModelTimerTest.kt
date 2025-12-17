@@ -235,6 +235,8 @@ class ExamViewModelTimerTest {
     val answersRepository = DefaultAnswersRepository(answerDao)
     val questionReportRepository = FakeQuestionReportRepository()
     val dispatcher = dispatcherRule.dispatcher
+    val blueprintResolver = createTestBlueprintResolver(blueprint)
+    val resumeUseCase = createTestResumeUseCase(repository, statsRepository, blueprint, dispatcher)
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
@@ -243,14 +245,15 @@ class ExamViewModelTimerTest {
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
-      blueprintProvider = { _, _ -> blueprint },
+      blueprintResolver = blueprintResolver,
+      resumeUseCase = resumeUseCase,
       seedProvider = { 1L },
       attemptIdProvider = { "test-attempt" },
       nowProvider = { 0L },
       timerController = timerController,
       ioDispatcher = dispatcher,
       prewarmRunner =
-        PrewarmController(
+        DefaultPrewarmController(
           repository = repository,
           prewarmUseCase =
             PrewarmUseCase(
