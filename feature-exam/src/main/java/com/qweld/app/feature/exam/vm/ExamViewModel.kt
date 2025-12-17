@@ -129,14 +129,22 @@ class ExamViewModel @Inject constructor(
   private val prewarmCoordinator: ExamPrewarmCoordinator =
     prewarmCoordinatorOverride
       ?: DefaultExamPrewarmCoordinator(viewModelScope, ioDispatcher, blueprintProvider, prewarmRunner)
-  private val autosaveCoordinator: ExamAutosaveController =
-    autosaveCoordinatorOverride
-      ?: DefaultExamAutosaveController(
-        answersRepository = answersRepository,
-        scope = viewModelScope,
-        ioDispatcher = ioDispatcher,
-        autosaveIntervalSec = AUTOSAVE_INTERVAL_SEC,
-      )
+    private val autosaveCoordinator: ExamAutosaveController =
+        autosaveCoordinatorOverride
+            ?: DefaultExamAutosaveController(
+                answersRepository = answersRepository,
+                externalScope = viewModelScope,
+                ioDispatcher = ioDispatcher,
+                autosaveIntervalSec = AUTOSAVE_INTERVAL_SEC,
+                autosaveFactory = { attemptId ->
+                    AutosaveController(
+                        attemptId = attemptId,
+                        answersRepository = answersRepository,
+                        scope = viewModelScope,
+                        ioDispatcher = ioDispatcher,
+                    )
+                },
+            )
 
   private var currentAttempt: ExamAssemblerResult? = null
   private var latestTimerLabel: String? = null

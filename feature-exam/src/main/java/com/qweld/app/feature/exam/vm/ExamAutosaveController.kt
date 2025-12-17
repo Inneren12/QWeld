@@ -8,6 +8,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 
 interface ExamAutosaveController {
   fun prepare(attemptId: String)
@@ -20,78 +21,45 @@ interface ExamAutosaveController {
 }
 
 class DefaultExamAutosaveController(
-  private val answersRepository: AnswersRepository,
-  private val scope: CoroutineScope,
-  private val ioDispatcher: CoroutineDispatcher,
-  private val autosaveIntervalSec: Int,
-  private val autosaveFactory: (String) -> AutosaveController = { attemptId ->
-    AutosaveController(
-      attemptId = attemptId,
-      answersRepository = answersRepository,
-      scope = scope,
-      ioDispatcher = ioDispatcher,
-    )
-  },
+    private val answersRepository: AnswersRepository,
+    externalScope: CoroutineScope,
+    private val ioDispatcher: CoroutineDispatcher,
+    private val autosaveIntervalSec: Int,
+    private val autosaveFactory: (String) -> AutosaveController,
 ) : ExamAutosaveController {
 
-  private var autosaveController: AutosaveController? = null
-  private var autosaveTickerJob: Job? = null
+    private val tickerScope = externalScope + ioDispatcher
 
-  override fun prepare(attemptId: String) {
-    stopInternal()
-    val controller = autosaveFactory(attemptId)
-    controller.configure(autosaveIntervalSec)
-    autosaveController = controller
-    startAutosaveTicker()
-  }
+    private var currentController: AutosaveController? = null
+    private var tickerJob: Job? = null
 
-  override fun recordAnswer(entity: AnswerEntity) {
-    val controller = autosaveController
-    if (controller != null) {
-      controller.onAnswer(
-        questionId = entity.questionId,
-        choiceId = entity.selectedId,
-        correctChoiceId = entity.correctId,
-        isCorrect = entity.isCorrect,
-        displayIndex = entity.displayIndex,
-        timeSpentSec = entity.timeSpentSec,
-        seenAt = entity.seenAt,
-        answeredAt = entity.answeredAt,
-      )
-    } else {
-      scope.launch(ioDispatcher) { answersRepository.upsert(listOf(entity)) }
-    }
-  }
+    override fun prepare(attemptId: String) {
+        stopInternal()
 
-  override fun flush(force: Boolean) {
-    autosaveController?.flush(force)
-  }
-
-  override suspend fun stop() {
-    stopInternal()
-  }
-
-  private fun stopInternal() {
-    autosaveTickerJob?.cancel()
-    autosaveTickerJob = null
-    autosaveController?.flush(force = true)
-    autosaveController = null
-  }
-
-  private fun startAutosaveTicker() {
-    stopAutosaveTicker()
-    val controller = autosaveController ?: return
-    autosaveTickerJob =
-      scope.launch {
-        while (isActive) {
-          delay(controller.intervalMillis)
-          controller.onTick()
+        val controller = autosaveFactory(attemptId).apply {
+            configure(autosaveIntervalSec)
         }
-      }
-  }
+        currentController = controller
 
-  private fun stopAutosaveTicker() {
-    autosaveTickerJob?.cancel()
-    autosaveTickerJob = null
-  }
+        startAutosaveTicker()
+    }
+
+    override fun recordAnswer(answer: AnswerEntity) { /* как у тебя */ }
+
+    override fun flush(force: Boolean) {
+        currentController?.flush(force)
+    }
+
+    override suspend fun stop() {
+        stopInternal()
+    }
+
+    private fun startAutosaveTicker() { /* как у тебя */ }
+
+    private fun stopInternal() {
+        tickerJob?.cancel()
+        tickerJob = null
+        currentController?.flush(force = true)
+        currentController = null
+    }
 }

@@ -28,26 +28,26 @@ import kotlin.test.assertTrue
 @OptIn(ExperimentalCoroutinesApi::class)
 class ExamAutosaveControllerTest {
 
-  private val testDispatcher = StandardTestDispatcher()
-  private lateinit var testScope: TestScope
-  private lateinit var fakeAnswersRepository: FakeAnswersRepository
-  private lateinit var fakeAutosaveFactory: FakeAutosaveFactory
-  private lateinit var controller: ExamAutosaveController
+    private val testDispatcher = StandardTestDispatcher()
+    private lateinit var testScope: TestScope
+    private lateinit var fakeAnswersRepository: FakeAnswersRepository
+    private lateinit var fakeAutosaveFactory: FakeAutosaveFactory
+    private lateinit var controller: ExamAutosaveController
 
-  @Before
-  fun setup() {
-    testScope = TestScope(testDispatcher)
-    fakeAnswersRepository = FakeAnswersRepository()
-    fakeAutosaveFactory = FakeAutosaveFactory()
+    @Before
+    fun setup() {
+        testScope = TestScope(testDispatcher)
+        fakeAnswersRepository = FakeAnswersRepository()
+        fakeAutosaveFactory = FakeAutosaveFactory()
 
-    controller = DefaultExamAutosaveController(
-      answersRepository = fakeAnswersRepository,
-      scope = testScope,
-      ioDispatcher = testDispatcher,
-      autosaveIntervalSec = 10,
-      autosaveFactory = fakeAutosaveFactory::create
-    )
-  }
+        controller = DefaultExamAutosaveController(
+            answersRepository = fakeAnswersRepository,
+            externalScope = testScope.backgroundScope,   // ← было testScope
+            ioDispatcher = testDispatcher,
+            autosaveIntervalSec = 10,
+            autosaveFactory = fakeAutosaveFactory::create,
+        )
+    }
 
   @Test
   fun `prepare creates and configures AutosaveController`() = testScope.runTest {

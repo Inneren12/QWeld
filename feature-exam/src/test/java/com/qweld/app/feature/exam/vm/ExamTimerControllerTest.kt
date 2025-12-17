@@ -33,27 +33,27 @@ import kotlin.test.assertTrue
 @OptIn(ExperimentalCoroutinesApi::class)
 class ExamTimerControllerTest {
 
-  private val testDispatcher = StandardTestDispatcher()
-  private lateinit var testScope: TestScope
-  private lateinit var timerController: TimerController
-  private lateinit var controller: ExamTimerController
+    private val testDispatcher = StandardTestDispatcher()
+    private lateinit var testScope: TestScope
+    private lateinit var timerController: TimerController
+    private lateinit var controller: ExamTimerController
 
-  @Before
-  fun setup() {
-    Dispatchers.setMain(testDispatcher)
-    testScope = TestScope(testDispatcher)
-    timerController = TimerController { } // No logging in tests
-    controller = DefaultExamTimerController(
-      timerController = timerController,
-      coroutineScopeProvider = { testScope }
-    )
-  }
+    @Before
+    fun setup() {
+        Dispatchers.setMain(testDispatcher)
+        testScope = TestScope(testDispatcher)
+        timerController = TimerController { } // No logging in tests
 
-  @After
-  fun teardown() {
-    testScope.cancel()
-    Dispatchers.resetMain()
-  }
+        controller = DefaultExamTimerController(
+            timerController = timerController,
+            coroutineScopeProvider = { testScope.backgroundScope }, // ← было { testScope }
+        )
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
 
   @Test
   fun `start initializes timer with exam duration`() = testScope.runTest {

@@ -197,14 +197,20 @@ class ExamPrewarmCoordinatorTest {
 
   // Helper to create a fake blueprint with tasks
   private fun createFakeBlueprint(size: Int): ExamBlueprint {
-    return ExamBlueprint(
-      totalQuestions = size,
-      taskQuotas = listOf(
-        TaskQuota(taskId = "A-1", blockId = "A", required = 10),
-        TaskQuota(taskId = "A-2", blockId = "A", required = 10),
-        TaskQuota(taskId = "B-1", blockId = "B", required = 10)
+      // делим size на 3 task'а
+      val base = size / 3
+      val rem = size % 3
+
+      val quotas = listOf(
+          TaskQuota(taskId = "A-1", blockId = "A", required = base + if (rem > 0) 1 else 0),
+          TaskQuota(taskId = "A-2", blockId = "A", required = base + if (rem > 1) 1 else 0),
+          TaskQuota(taskId = "B-1", blockId = "B", required = base),
       )
-    )
+
+      return ExamBlueprint(
+          totalQuestions = quotas.sumOf { it.required },
+          taskQuotas = quotas,
+      )
   }
 
   // Fake PrewarmController for testing

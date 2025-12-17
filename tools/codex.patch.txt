@@ -140,11 +140,11 @@ index 0000000000000000000000000000000000000000..267d8710f73590d052eedbfd4c5f581b
 +  packaging { resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" } }
 +
 +  compileOptions {
-+    sourceCompatibility = JavaVersion.VERSION_21
-+    targetCompatibility = JavaVersion.VERSION_21
++    sourceCompatibility = JavaVersion.VERSION_17
++    targetCompatibility = JavaVersion.VERSION_17
 +  }
 +
-+  kotlinOptions { jvmTarget = "21" }
++  kotlinOptions { jvmTarget = "17" }
 +}
 +
 +dependencies {
@@ -463,7 +463,7 @@ index 0000000000000000000000000000000000000000..3e32435cb177455a6b8a7fb6d06525f4
 +    targetCompatibility = JavaVersion.VERSION_21
 +  }
 +
-+  kotlinOptions { jvmTarget = "21" }
++  kotlinOptions { jvmTarget = "17" }
 +}
 +
 +dependencies {
@@ -502,7 +502,7 @@ index 0000000000000000000000000000000000000000..8ed4b80753a254b6b9697642a429ccab
 +    targetCompatibility = JavaVersion.VERSION_21
 +  }
 +
-+  kotlinOptions { jvmTarget = "21" }
++  kotlinOptions { jvmTarget = "17" }
 +}
 +
 +dependencies {

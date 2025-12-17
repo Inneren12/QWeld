@@ -21,11 +21,11 @@ android {
   composeOptions { kotlinCompilerExtensionVersion = "1.5.14" }
 
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
-  kotlinOptions { jvmTarget = "21" }
+  kotlinOptions { jvmTarget = "17" }
 
   sourceSets {
     getByName("test") {
@@ -83,13 +83,14 @@ dependencies {
     testImplementation("org.robolectric:robolectric:4.12.1")
     testImplementation("androidx.test:core:1.5.0")
 
-    androidTestImplementation("androidx.test:runner:<та же версия, что в app-android>")
-    androidTestImplementation("androidx.test.ext:junit:<та же версия>")
-    androidTestImplementation("androidx.test.espresso:espresso-core:<та же версия>")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.52")
+    kspAndroidTest("com.google.dagger:hilt-compiler:2.52")
 
   androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.7.1")
   androidTestImplementation("androidx.test.ext:junit:1.2.1")
   androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
   androidTestImplementation("androidx.navigation:navigation-testing:2.8.3")
   androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+
+    androidTestImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
