@@ -47,7 +47,7 @@ object TestExamModule {
   fun providePrewarmController(
     repository: AssetQuestionRepository,
     prewarmUseCase: PrewarmUseCase,
-  ): PrewarmController = PrewarmController(repository, prewarmUseCase)
+  ): PrewarmController = com.qweld.app.feature.exam.vm.DefaultPrewarmController(repository, prewarmUseCase)
 
   @Provides
   @Singleton

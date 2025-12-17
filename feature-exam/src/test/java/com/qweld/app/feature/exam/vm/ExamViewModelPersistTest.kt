@@ -114,6 +114,9 @@ class ExamViewModelPersistTest {
       taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 1)),
     )
     val questionReportRepository = FakeQuestionReportRepository()
+    val dispatcher = dispatcherRule.dispatcher
+    val blueprintResolver = createTestBlueprintResolver(blueprint)
+    val resumeUseCase = createTestResumeUseCase(repository, statsRepository, blueprint, dispatcher)
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
@@ -122,20 +125,21 @@ class ExamViewModelPersistTest {
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
-      blueprintProvider = { _, _ -> blueprint },
+      blueprintResolver = blueprintResolver,
+      resumeUseCase = resumeUseCase,
       seedProvider = { 1L },
       attemptIdProvider = { TEST_ATTEMPT_ID },
       nowProvider = { currentTime },
       timerController = com.qweld.app.domain.exam.TimerController { },
-      ioDispatcher = dispatcherRule.dispatcher,
+      ioDispatcher = dispatcher,
       prewarmRunner =
-        PrewarmController(
+        DefaultPrewarmController(
           repository = repository,
           prewarmUseCase =
             PrewarmUseCase(
               repository = repository,
               prewarmDisabled = flowOf(false),
-              ioDispatcher = dispatcherRule.dispatcher,
+              ioDispatcher = dispatcher,
               nowProvider = { currentTime },
             ),
         ),

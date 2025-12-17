@@ -117,27 +117,32 @@ class ExamViewModelAbortRestartTest {
     val answersRepository = DefaultAnswersRepository(FakeAnswerDao())
     val questionReportRepository = FakeQuestionReportRepository()
     val dispatcher = dispatcherRule.dispatcher
+    val blueprint = ipBlueprint(required = 1)
+    val statsRepository = object : UserStatsRepository {
+      override suspend fun getUserItemStats(
+        userId: String,
+        ids: List<String>,
+      ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
+    }
+    val blueprintResolver = createTestBlueprintResolver(blueprint)
+    val resumeUseCase = createTestResumeUseCase(repository, statsRepository, blueprint, dispatcher)
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
-      statsRepository = object : UserStatsRepository {
-        override suspend fun getUserItemStats(
-          userId: String,
-          ids: List<String>,
-        ): Outcome<Map<String, com.qweld.app.domain.exam.ItemStats>> = Outcome.Ok(emptyMap())
-      },
+      statsRepository = statsRepository,
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
-      blueprintProvider = { _, _ -> ipBlueprint(required = 1) },
+      blueprintResolver = blueprintResolver,
+      resumeUseCase = resumeUseCase,
       seedProvider = { 1L },
       attemptIdProvider = { attemptIds.removeFirst() },
       nowProvider = { 1_000L },
       timerController = com.qweld.app.domain.exam.TimerController { },
       ioDispatcher = dispatcher,
       prewarmRunner =
-        PrewarmController(
+        DefaultPrewarmController(
           repository = repository,
           prewarmUseCase =
             PrewarmUseCase(
@@ -233,6 +238,10 @@ class ExamViewModelAbortRestartTest {
           passThreshold = passThreshold,
           scorePct = scorePct,
         )
+    }
+
+    override suspend fun updateRemainingTime(attemptId: String, remainingTimeMs: Long?) {
+      // No-op for tests
     }
 
     override suspend fun markAborted(id: String, finishedAt: Long) {

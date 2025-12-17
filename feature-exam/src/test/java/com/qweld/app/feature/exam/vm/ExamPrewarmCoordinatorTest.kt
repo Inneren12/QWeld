@@ -221,7 +221,7 @@ class ExamPrewarmCoordinatorTest {
       locale: String,
       tasks: Set<String>,
       onProgress: (loaded: Int, total: Int) -> Unit
-    ) {
+    ): PrewarmUseCase.RunResult {
       prewarmCalled = true
       callCount++
       lastLocale = locale
@@ -244,10 +244,17 @@ class ExamPrewarmCoordinatorTest {
           onProgress(i, total)
         }
       }
-    }
 
-    override suspend fun preloadQuestions(locale: String, taskId: String) {
-      // Not used in coordinator tests
+      // Return a completed result for the test
+      return PrewarmUseCase.RunResult.Completed(
+        locale = locale,
+        requestedTasks = tasks,
+        tasksLoaded = tasks.size,
+        fallbackToBank = false,
+        hadError = false,
+        elapsedMs = delayMillis,
+        usedQuestionBank = false
+      )
     }
   }
 }

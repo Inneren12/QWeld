@@ -292,5 +292,8 @@ class ReviewViewModelTest {
     override fun log(event: String, params: Map<String, Any?>) {
       events += event to params
     }
+    override fun setEnabled(enabled: Boolean) {
+      // No-op for tests
+    }
   }
 }

@@ -135,6 +135,8 @@ class ExamViewModelReportingTest {
       totalQuestions = 1,
       taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 1)),
     )
+    val blueprintResolver = createTestBlueprintResolver(blueprint)
+    val resumeUseCase = createTestResumeUseCase(repository, statsRepository, blueprint, ioDispatcher)
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,
@@ -144,7 +146,8 @@ class ExamViewModelReportingTest {
       questionReportRepository = questionReportRepository,
       appEnv = FakeAppEnv(),
       appErrorHandler = appErrorHandler,
-      blueprintProvider = { _, _ -> blueprint },
+      blueprintResolver = blueprintResolver,
+      resumeUseCase = resumeUseCase,
       seedProvider = { 1L },
       userIdProvider = { "user" },
       attemptIdProvider = { UUID.randomUUID().toString() },
@@ -152,7 +155,7 @@ class ExamViewModelReportingTest {
       timerController = TimerController { },
       ioDispatcher = ioDispatcher,
       prewarmRunner =
-        PrewarmController(
+        DefaultPrewarmController(
           repository = repository,
           prewarmUseCase =
             PrewarmUseCase(

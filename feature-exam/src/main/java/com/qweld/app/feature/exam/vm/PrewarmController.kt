@@ -5,11 +5,19 @@ import com.qweld.core.common.logging.LogTag
 import com.qweld.core.common.logging.Logx
 import java.util.Locale
 
-class PrewarmController(
+interface PrewarmController {
+  suspend fun prewarm(
+    locale: String,
+    tasks: Set<String>,
+    onProgress: (loaded: Int, total: Int) -> Unit,
+  ): PrewarmUseCase.RunResult
+}
+
+class DefaultPrewarmController(
   private val repository: AssetQuestionRepository,
   private val prewarmUseCase: PrewarmUseCase,
-) {
-  suspend fun prewarm(
+) : PrewarmController {
+  override suspend fun prewarm(
     locale: String,
     tasks: Set<String>,
     onProgress: (loaded: Int, total: Int) -> Unit,
