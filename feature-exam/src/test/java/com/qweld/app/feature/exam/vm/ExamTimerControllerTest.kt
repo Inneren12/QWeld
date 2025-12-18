@@ -52,6 +52,10 @@ class ExamTimerControllerTest {
 
     @After
     fun tearDown() {
+        // Cancel any running timer jobs to prevent test hang
+        controller.stop(clearLabel = true)
+        // Cancel the test scope to clean up background jobs
+        testScope.cancel()
         Dispatchers.resetMain()
     }
 
