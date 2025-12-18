@@ -1,7 +1,9 @@
 package com.qweld.app.feature.exam.di
 
+import android.app.Application
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
+import com.qweld.app.common.di.IoDispatcher
 import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.repo.AnswersRepository
@@ -15,14 +17,19 @@ import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.PrewarmController
 import com.qweld.app.feature.exam.vm.ResumeUseCase
 import com.qweld.core.common.AppEnv
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import org.junit.Before
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertSame
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import kotlin.test.assertNotNull
 
 /**
  * Integration test for Hilt DI configuration.
@@ -61,6 +68,13 @@ class HiltDiIntegrationTest {
 
   @Inject
   lateinit var userPrefs: UserPrefs
+
+  @Inject
+  lateinit var appErrorHandler: AppErrorHandler
+
+  @Inject
+  @IoDispatcher
+  lateinit var ioDispatcher: CoroutineDispatcher
 
   // Exam-specific dependencies from ExamModule
   @Inject
@@ -115,11 +129,12 @@ class HiltDiIntegrationTest {
       userPrefs = userPrefs,
       questionReportRepository = questionReportRepository,
       appEnv = appEnv,
-      appErrorHandler = null, // Optional in real usage
+      appErrorHandler = appErrorHandler,
       blueprintResolver = blueprintResolver,
       timerController = timerController,
       prewarmRunner = prewarmController,
-      resumeUseCase = resumeUseCase
+      resumeUseCase = resumeUseCase,
+      ioDispatcher = ioDispatcher,
     )
 
     // Then - should be successfully created
@@ -164,31 +179,32 @@ class HiltDiIntegrationTest {
   fun di_graph_provides_consistent_singletons() {
     // This test verifies that singleton-scoped dependencies return the same instance
 
-    // Create a second test class and inject
-    val secondTest = SecondInjectionPoint()
-    hiltRule.inject(secondTest)
+    val app = ApplicationProvider.getApplicationContext<Application>()
+    val ep = EntryPointAccessors.fromApplication(app, SingletonDepsEntryPoint::class.java)
 
     // Singletons should be the same instance
-    assert(appEnv === secondTest.appEnv) {
-      "AppEnv should be singleton - same instance across injections"
-    }
-    assert(questionRepository === secondTest.questionRepository) {
-      "AssetQuestionRepository should be singleton - same instance across injections"
-    }
-    assert(blueprintResolver === secondTest.blueprintResolver) {
-      "BlueprintResolver should be singleton - same instance across injections"
-    }
+    assertSame("AppEnv should be singleton - same instance across accesses", appEnv, ep.appEnv())
+    assertSame(
+      "AssetQuestionRepository should be singleton - same instance across accesses",
+      questionRepository,
+      ep.questionRepository(),
+    )
+    assertSame("BlueprintResolver should be singleton - same instance across accesses", blueprintResolver, ep.blueprintResolver())
   }
 
-  // Helper class for singleton verification
-  class SecondInjectionPoint {
-    @Inject
-    lateinit var appEnv: AppEnv
+  @EntryPoint
+  @InstallIn(SingletonComponent::class)
+  interface SingletonDepsEntryPoint {
+    fun appEnv(): AppEnv
+    fun questionRepository(): AssetQuestionRepository
+    fun blueprintResolver(): BlueprintResolver
+  }
 
-    @Inject
-    lateinit var questionRepository: AssetQuestionRepository
-
-    @Inject
-    lateinit var blueprintResolver: BlueprintResolver
+  @EntryPoint
+  @InstallIn(SingletonComponent::class)
+  interface SingletonDepsEntryPoint {
+    fun appEnv(): AppEnv
+    fun questionRepository(): AssetQuestionRepository
+    fun blueprintResolver(): BlueprintResolver
   }
 }

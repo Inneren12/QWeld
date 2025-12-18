@@ -68,6 +68,11 @@ import java.time.Duration
 import java.util.Locale
 import java.util.UUID
 import kotlin.random.Random
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import com.qweld.app.common.error.AppErrorEvent
+import com.qweld.app.common.error.UiErrorEvent
+import com.qweld.app.common.error.AppErrorReportResult
 
 /**
  * ViewModel responsible for managing the exam/practice flow.
