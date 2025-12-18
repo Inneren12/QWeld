@@ -41,6 +41,20 @@ kotlin {
   jvmToolchain(21)
 }
 
+// Workaround for KSP FileAlreadyExistsException on Windows
+// Clean KSP generated files for debugAndroidTest before KSP tasks run
+tasks.configureEach {
+  if (name.startsWith("kspDebugAndroidTest")) {
+    doFirst {
+      val kspOutputDir = project.layout.buildDirectory.dir("generated/ksp/debugAndroidTest").get().asFile
+      if (kspOutputDir.exists()) {
+        project.logger.lifecycle("Cleaning KSP output directory for debugAndroidTest to prevent FileAlreadyExistsException")
+        kspOutputDir.deleteRecursively()
+      }
+    }
+  }
+}
+
 tasks.withType<Test>().configureEach {
   val ruCoverageMin = project.findProperty("localeCoverage.ru.min") as String?
   if (ruCoverageMin != null) {
@@ -80,19 +94,15 @@ dependencies {
   testImplementation("androidx.room:room-testing:2.6.1")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
   testImplementation(project(":core-data"))
-    testImplementation("org.robolectric:robolectric:4.12.1")
-    testImplementation("androidx.test:core:1.5.0")
+  testImplementation("org.robolectric:robolectric:4.12.1")
 
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.52")
-    kspAndroidTest("com.google.dagger:hilt-compiler:2.52")
+  androidTestImplementation("com.google.dagger:hilt-android-testing:2.52")
+  kspAndroidTest("com.google.dagger:hilt-compiler:2.52")
 
   androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.7.1")
   androidTestImplementation("androidx.test.ext:junit:1.2.1")
   androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
   androidTestImplementation("androidx.navigation:navigation-testing:2.8.3")
   androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
-
-    androidTestImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+  androidTestImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
