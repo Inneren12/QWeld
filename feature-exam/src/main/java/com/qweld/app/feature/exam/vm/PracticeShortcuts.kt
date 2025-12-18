@@ -7,6 +7,7 @@ import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.common.di.IoDispatcher
+import com.qweld.app.common.di.TimberLogger
 import com.qweld.app.domain.exam.ExamBlueprint
 import com.qweld.app.domain.exam.TaskQuota
 import com.qweld.app.domain.exam.mapTaskToBlock
@@ -27,7 +28,7 @@ class PracticeShortcuts @Inject constructor(
   private val answersRepository: AnswersRepository,
   private val userPrefs: UserPrefs,
   @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
-  private val logger: (String) -> Unit = { message -> Timber.i(message) },
+  @TimberLogger private val logger: (String) -> Unit,
 ) : ViewModel() {
 
   private val _repeatMistakes =

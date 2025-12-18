@@ -17,3 +17,11 @@ annotation class IoDispatcher
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class PrewarmDisabled
+
+/**
+ * Qualifier for Timber-based logger function.
+ * Used for injecting (String) -> Unit logging functions.
+ */
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class TimberLogger
