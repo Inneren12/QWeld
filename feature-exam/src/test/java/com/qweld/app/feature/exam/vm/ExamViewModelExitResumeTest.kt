@@ -241,13 +241,9 @@ class ExamViewModelExitResumeTest {
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
+      appErrorHandler = null,
       blueprintResolver = blueprintResolver,
-      resumeUseCase = resumeUseCase,
-      seedProvider = { 7L },
-      attemptIdProvider = { "test-attempt-exit-resume" },
-      nowProvider = { currentTime },
       timerController = com.qweld.app.domain.exam.TimerController { },
-      ioDispatcher = dispatcher,
       prewarmRunner =
         DefaultPrewarmController(
           repository = repository,
@@ -259,6 +255,15 @@ class ExamViewModelExitResumeTest {
               nowProvider = { currentTime },
             ),
         ),
+      resumeUseCase = resumeUseCase,
+      ioDispatcher = dispatcher,
+      seedProvider = { 7L },
+      userIdProvider = { "test-user" },
+      attemptIdProvider = { "test-attempt-exit-resume" },
+      nowProvider = { currentTime },
+      timerCoordinatorOverride = null,
+      prewarmCoordinatorOverride = null,
+      autosaveCoordinatorOverride = null,
     )
   }
 

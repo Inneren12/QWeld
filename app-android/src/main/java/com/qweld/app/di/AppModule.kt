@@ -75,7 +75,11 @@ object AppModule {
 
   @Provides
   @Singleton
-  fun provideUserPrefs(@ApplicationContext context: Context): UserPrefsDataStore = UserPrefsDataStore(context)
+  fun provideUserPrefsDataStore(@ApplicationContext context: Context): UserPrefsDataStore = UserPrefsDataStore(context)
+
+  @Provides
+  @Singleton
+  fun provideUserPrefs(impl: UserPrefsDataStore): com.qweld.app.data.prefs.UserPrefs = impl
 
   @Provides
   @Singleton

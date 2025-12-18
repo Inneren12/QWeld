@@ -147,13 +147,7 @@ class ExamViewModelReportingTest {
       appEnv = FakeAppEnv(),
       appErrorHandler = appErrorHandler,
       blueprintResolver = blueprintResolver,
-      resumeUseCase = resumeUseCase,
-      seedProvider = { 1L },
-      userIdProvider = { "user" },
-      attemptIdProvider = { UUID.randomUUID().toString() },
-      nowProvider = { 0L },
       timerController = TimerController { },
-      ioDispatcher = ioDispatcher,
       prewarmRunner =
         DefaultPrewarmController(
           repository = repository,
@@ -165,6 +159,15 @@ class ExamViewModelReportingTest {
               nowProvider = { 0L },
             ),
         ),
+      resumeUseCase = resumeUseCase,
+      ioDispatcher = ioDispatcher,
+      seedProvider = { 1L },
+      userIdProvider = { "user" },
+      attemptIdProvider = { UUID.randomUUID().toString() },
+      nowProvider = { 0L },
+      timerCoordinatorOverride = null,
+      prewarmCoordinatorOverride = null,
+      autosaveCoordinatorOverride = null,
     )
   }
 

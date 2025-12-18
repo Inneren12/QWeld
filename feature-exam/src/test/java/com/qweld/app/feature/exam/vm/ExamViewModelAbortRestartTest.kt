@@ -134,13 +134,9 @@ class ExamViewModelAbortRestartTest {
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
+      appErrorHandler = null,
       blueprintResolver = blueprintResolver,
-      resumeUseCase = resumeUseCase,
-      seedProvider = { 1L },
-      attemptIdProvider = { attemptIds.removeFirst() },
-      nowProvider = { 1_000L },
       timerController = com.qweld.app.domain.exam.TimerController { },
-      ioDispatcher = dispatcher,
       prewarmRunner =
         DefaultPrewarmController(
           repository = repository,
@@ -152,6 +148,15 @@ class ExamViewModelAbortRestartTest {
               nowProvider = { 0L },
             ),
         ),
+      resumeUseCase = resumeUseCase,
+      ioDispatcher = dispatcher,
+      seedProvider = { 1L },
+      userIdProvider = { "test-user" },
+      attemptIdProvider = { attemptIds.removeFirst() },
+      nowProvider = { 1_000L },
+      timerCoordinatorOverride = null,
+      prewarmCoordinatorOverride = null,
+      autosaveCoordinatorOverride = null,
     )
   }
 
