@@ -10,6 +10,7 @@ import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -38,7 +39,7 @@ class ExamAutosaveControllerTest {
     fun setup() {
         testScope = TestScope(testDispatcher)
         fakeAnswersRepository = FakeAnswersRepository()
-        fakeAutosaveFactory = FakeAutosaveFactory()
+        fakeAutosaveFactory = FakeAutosaveFactory(testScope, testDispatcher)
 
         controller = DefaultExamAutosaveController(
             answersRepository = fakeAnswersRepository,
@@ -47,6 +48,16 @@ class ExamAutosaveControllerTest {
             autosaveIntervalSec = 10,
             autosaveFactory = fakeAutosaveFactory::create,
         )
+    }
+
+    @After
+    fun tearDown() {
+        // Stop the controller to cancel any running autosave ticker jobs
+        kotlinx.coroutines.runBlocking {
+            controller.stop()
+        }
+        // Cancel the test scope to clean up background jobs
+        testScope.cancel()
     }
 
   @Test
@@ -209,7 +220,11 @@ class ExamAutosaveControllerTest {
   }
 
   // Fake AutosaveController
-  private class FakeAutosaveController(val attemptId: String) : AutosaveController(
+  private class FakeAutosaveController(
+    val attemptId: String,
+    testScope: TestScope,
+    testDispatcher: StandardTestDispatcher
+  ) : AutosaveController(
     attemptId = attemptId,
     answersRepository = object : AnswersRepository {
       override suspend fun upsert(answers: List<AnswerEntity>) {}
@@ -230,8 +245,8 @@ class ExamAutosaveControllerTest {
       override suspend fun countAll(): Int = 0
       override suspend fun clearAll() {}
     },
-    scope = TestScope(),
-    ioDispatcher = StandardTestDispatcher()
+    scope = testScope.backgroundScope,
+    ioDispatcher = testDispatcher
   ) {
     var configured = false
     var answerRecorded = 0
@@ -265,7 +280,10 @@ class ExamAutosaveControllerTest {
   }
 
   // Fake factory to track controller creation
-  private class FakeAutosaveFactory {
+  private class FakeAutosaveFactory(
+    private val testScope: TestScope,
+    private val testDispatcher: StandardTestDispatcher
+  ) {
     var created = false
     var lastAttemptId: String? = null
     var lastController: FakeAutosaveController? = null
@@ -273,7 +291,7 @@ class ExamAutosaveControllerTest {
     fun create(attemptId: String): AutosaveController {
       created = true
       lastAttemptId = attemptId
-      lastController = FakeAutosaveController(attemptId)
+      lastController = FakeAutosaveController(attemptId, testScope, testDispatcher)
       return lastController!!
     }
   }
