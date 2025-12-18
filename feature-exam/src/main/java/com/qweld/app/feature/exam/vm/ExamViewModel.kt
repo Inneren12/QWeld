@@ -104,47 +104,96 @@ class ExamViewModel @Inject constructor(
   private val userPrefs: UserPrefs,
   private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   private val appEnv: AppEnv,
-  private val appErrorHandler: AppErrorHandler? = null,
+  private val appErrorHandler: AppErrorHandler,
   private val blueprintResolver: BlueprintResolver,
   private val timerController: TimerController,
   private val prewarmRunner: PrewarmController,
   private val resumeUseCase: ResumeUseCase,
-  @IoDispatcher private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-  private val seedProvider: () -> Long = { Random.nextLong() },
-  private val userIdProvider: () -> String = { DEFAULT_USER_ID },
-  private val attemptIdProvider: () -> String = { UUID.randomUUID().toString() },
-  private val nowProvider: () -> Long = { System.currentTimeMillis() },
-  timerCoordinatorOverride: ExamTimerController? = null,
-  prewarmCoordinatorOverride: ExamPrewarmCoordinator? = null,
-  autosaveCoordinatorOverride: ExamAutosaveController? = null,
+  @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
+
+  /**
+   * Testing constructor that allows overriding internal hooks and coordinators.
+   * Used by unit tests to inject deterministic behavior.
+   */
+  @VisibleForTesting
+  internal constructor(
+    repository: AssetQuestionRepository,
+    attemptsRepository: AttemptsRepository,
+    answersRepository: AnswersRepository,
+    statsRepository: UserStatsRepository,
+    userPrefs: UserPrefs,
+    questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
+    appEnv: AppEnv,
+    appErrorHandler: AppErrorHandler?,
+    blueprintResolver: BlueprintResolver,
+    timerController: TimerController,
+    prewarmRunner: PrewarmController,
+    resumeUseCase: ResumeUseCase,
+    @IoDispatcher ioDispatcher: CoroutineDispatcher,
+    seedProvider: () -> Long,
+    userIdProvider: () -> String,
+    attemptIdProvider: () -> String,
+    nowProvider: () -> Long,
+    timerCoordinatorOverride: ExamTimerController?,
+    prewarmCoordinatorOverride: ExamPrewarmCoordinator?,
+    autosaveCoordinatorOverride: ExamAutosaveController?,
+  ) : this(
+    repository = repository,
+    attemptsRepository = attemptsRepository,
+    answersRepository = answersRepository,
+    statsRepository = statsRepository,
+    userPrefs = userPrefs,
+    questionReportRepository = questionReportRepository,
+    appEnv = appEnv,
+    appErrorHandler = appErrorHandler ?: NoOpAppErrorHandler(),
+    blueprintResolver = blueprintResolver,
+    timerController = timerController,
+    prewarmRunner = prewarmRunner,
+    resumeUseCase = resumeUseCase,
+    ioDispatcher = ioDispatcher,
+  ) {
+    this.seedProvider = seedProvider
+    this.userIdProvider = userIdProvider
+    this.attemptIdProvider = attemptIdProvider
+    this.nowProvider = nowProvider
+
+    timerCoordinatorOverride?.let { this.timerCoordinator = it }
+    prewarmCoordinatorOverride?.let { this.prewarmCoordinator = it }
+    autosaveCoordinatorOverride?.let { this.autosaveCoordinator = it }
+  }
 
   private val blueprintProvider: (ExamMode, Int) -> ExamBlueprint = blueprintResolver::forMode
 
+  // Internal hook fields with production-safe defaults for testing
+  internal var seedProvider: () -> Long = { Random.nextLong() }
+  internal var userIdProvider: () -> String = { DEFAULT_USER_ID }
+  internal var attemptIdProvider: () -> String = { UUID.randomUUID().toString() }
+  internal var nowProvider: () -> Long = { System.currentTimeMillis() }
+
+  // Internal coordinators initialized with production defaults
+  internal var timerCoordinator: ExamTimerController =
+    DefaultExamTimerController(timerController) { viewModelScope }
+  internal var prewarmCoordinator: ExamPrewarmCoordinator =
+    DefaultExamPrewarmCoordinator(viewModelScope, ioDispatcher, blueprintProvider, prewarmRunner)
+  internal var autosaveCoordinator: ExamAutosaveController =
+    DefaultExamAutosaveController(
+      answersRepository = answersRepository,
+      externalScope = viewModelScope,
+      ioDispatcher = ioDispatcher,
+      autosaveIntervalSec = AUTOSAVE_INTERVAL_SEC,
+      autosaveFactory = { attemptId ->
+        AutosaveController(
+          attemptId = attemptId,
+          answersRepository = answersRepository,
+          scope = viewModelScope,
+          ioDispatcher = ioDispatcher,
+        )
+      },
+    )
+
   private val _uiState = mutableStateOf(ExamUiState())
   val uiState: State<ExamUiState> = _uiState
-
-  private val timerCoordinator: ExamTimerController =
-    timerCoordinatorOverride ?: DefaultExamTimerController(timerController) { viewModelScope }
-  private val prewarmCoordinator: ExamPrewarmCoordinator =
-    prewarmCoordinatorOverride
-      ?: DefaultExamPrewarmCoordinator(viewModelScope, ioDispatcher, blueprintProvider, prewarmRunner)
-    private val autosaveCoordinator: ExamAutosaveController =
-        autosaveCoordinatorOverride
-            ?: DefaultExamAutosaveController(
-                answersRepository = answersRepository,
-                externalScope = viewModelScope,
-                ioDispatcher = ioDispatcher,
-                autosaveIntervalSec = AUTOSAVE_INTERVAL_SEC,
-                autosaveFactory = { attemptId ->
-                    AutosaveController(
-                        attemptId = attemptId,
-                        answersRepository = answersRepository,
-                        scope = viewModelScope,
-                        ioDispatcher = ioDispatcher,
-                    )
-                },
-            )
 
   private var currentAttempt: ExamAssemblerResult? = null
   private var latestTimerLabel: String? = null
@@ -1835,6 +1884,28 @@ class ExamViewModel @Inject constructor(
   }
 
   private data class AssemblyResult(val exam: ExamAttempt, val seed: Long)
+
+  /**
+   * No-op implementation of AppErrorHandler for testing.
+   * Does nothing when errors are handled.
+   */
+  private class NoOpAppErrorHandler : AppErrorHandler {
+    override val history: StateFlow<List<AppErrorEvent>> = MutableStateFlow(emptyList())
+    override val uiEvents: SharedFlow<UiErrorEvent> = MutableSharedFlow()
+    override val analyticsEnabled: StateFlow<Boolean> = MutableStateFlow(false)
+
+    override fun handle(error: AppError) {
+      // No-op
+    }
+
+    override fun updateAnalyticsEnabled(userOptIn: Boolean) {
+      // No-op
+    }
+
+    override suspend fun submitReport(event: AppErrorEvent, comment: String?): AppErrorReportResult {
+      return AppErrorReportResult.Disabled
+    }
+  }
 
   companion object {
     private const val DEFAULT_PRACTICE_SIZE = PracticeConfig.DEFAULT_SIZE

@@ -245,13 +245,9 @@ class ExamViewModelTimerTest {
       userPrefs = FakeUserPrefs(),
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
+      appErrorHandler = null,
       blueprintResolver = blueprintResolver,
-      resumeUseCase = resumeUseCase,
-      seedProvider = { 1L },
-      attemptIdProvider = { "test-attempt" },
-      nowProvider = { 0L },
       timerController = timerController,
-      ioDispatcher = dispatcher,
       prewarmRunner =
         DefaultPrewarmController(
           repository = repository,
@@ -263,6 +259,15 @@ class ExamViewModelTimerTest {
               nowProvider = { 0L },
             ),
         ),
+      resumeUseCase = resumeUseCase,
+      ioDispatcher = dispatcher,
+      seedProvider = { 1L },
+      userIdProvider = { "test-user" },
+      attemptIdProvider = { "test-attempt" },
+      nowProvider = { 0L },
+      timerCoordinatorOverride = null,
+      prewarmCoordinatorOverride = null,
+      autosaveCoordinatorOverride = null,
     )
   }
 }

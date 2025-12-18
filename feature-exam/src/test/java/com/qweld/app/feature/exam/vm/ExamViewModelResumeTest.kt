@@ -131,13 +131,12 @@ class ExamViewModelResumeTest {
       attemptsRepository = attemptsRepository,
       answersRepository = answersRepository,
       statsRepository = statsRepository,
+      userPrefs = userPrefs,
+      questionReportRepository = questionReportRepository,
+      appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
+      appErrorHandler = null,
       blueprintResolver = blueprintResolver,
-      resumeUseCase = resumeUseCase,
-      seedProvider = { 7L },
-      attemptIdProvider = { TEST_ATTEMPT_ID },
-      nowProvider = { currentTime },
       timerController = com.qweld.app.domain.exam.TimerController { },
-      ioDispatcher = dispatcher,
       prewarmRunner =
         DefaultPrewarmController(
           repository = repository,
@@ -149,9 +148,15 @@ class ExamViewModelResumeTest {
               nowProvider = { currentTime },
             ),
         ),
-        userPrefs = userPrefs,
-        questionReportRepository = questionReportRepository,
-        appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
+      resumeUseCase = resumeUseCase,
+      ioDispatcher = dispatcher,
+      seedProvider = { 7L },
+      userIdProvider = { "test-user" },
+      attemptIdProvider = { TEST_ATTEMPT_ID },
+      nowProvider = { currentTime },
+      timerCoordinatorOverride = null,
+      prewarmCoordinatorOverride = null,
+      autosaveCoordinatorOverride = null,
     )
   }
 
