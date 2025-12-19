@@ -79,5 +79,5 @@ object ExamModule {
 
   @Provides
   @TimberLogger
-  fun provideTimberLogger(): (String) -> Unit = { message -> Timber.i(message) }
+  fun provideTimberLogger(): @JvmSuppressWildcards (String) -> Unit = { message -> Timber.i(message) }
 }
