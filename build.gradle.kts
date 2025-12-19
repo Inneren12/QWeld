@@ -39,15 +39,19 @@ detekt {
 }
 
 subprojects {
-        configurations.all {
-            resolutionStrategy.eachDependency {
-                if (requested.group == "org.xerial" && requested.name == "sqlite-jdbc") {
-                    // Можно взять актуальную версию, например 3.46.0.0
-                    useVersion("3.46.0.0")
-                    because("Room schema verifier + Java 21 на Windows требуют более свежий sqlite-jdbc")
-                }
-            }
-        }
+  configurations.all {
+    resolutionStrategy.eachDependency {
+      if (requested.group == "org.xerial" && requested.name == "sqlite-jdbc") {
+        // Можно взять актуальную версию, например 3.46.0.0
+        useVersion("3.46.0.0")
+        because("Room schema verifier + Java 21 на Windows требуют более свежий sqlite-jdbc")
+      }
+      if (requested.group == "org.jetbrains.kotlinx" && requested.name.startsWith("kotlinx-coroutines-")) {
+        useVersion("1.8.1")
+        because("Align coroutines artifacts for unit tests and dispatchers (StandardTestDispatcher)")
+      }
+    }
+  }
   plugins.withId("org.jetbrains.kotlin.android") {
     apply(plugin = "org.jetbrains.kotlinx.kover")
   }
