@@ -43,16 +43,12 @@ kotlin {
 
 // Workaround for KSP FileAlreadyExistsException on Windows
 // Clean KSP generated files for debugAndroidTest before KSP tasks run
-tasks.configureEach {
-  if (name.startsWith("kspDebugAndroidTest")) {
-    doFirst {
-      val kspOutputDir = project.layout.buildDirectory.dir("generated/ksp/debugAndroidTest").get().asFile
-      if (kspOutputDir.exists()) {
-        project.logger.lifecycle("Cleaning KSP output directory for debugAndroidTest to prevent FileAlreadyExistsException")
-        kspOutputDir.deleteRecursively()
-      }
-    }
-  }
+val cleanDebugAndroidTestKsp by tasks.registering(Delete::class) {
+  delete(layout.buildDirectory.dir("generated/ksp/debugAndroidTest"))
+}
+
+tasks.matching { it.name == "kspDebugAndroidTestKotlin" }.configureEach {
+  dependsOn(cleanDebugAndroidTestKsp)
 }
 
 tasks.withType<Test>().configureEach {
@@ -94,7 +90,6 @@ dependencies {
   testImplementation("androidx.room:room-testing:2.6.1")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
-  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:1.8.1")
   testImplementation(project(":core-data"))
   testImplementation("org.robolectric:robolectric:4.12.1")
 

@@ -21,6 +21,7 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
+import kotlin.jvm.JvmSuppressWildcards
 
 @HiltViewModel
 class PracticeShortcuts @Inject constructor(
@@ -28,7 +29,7 @@ class PracticeShortcuts @Inject constructor(
   private val answersRepository: AnswersRepository,
   private val userPrefs: UserPrefs,
   @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
-  @TimberLogger private val logger: (String) -> Unit,
+  @TimberLogger private val logger: (@JvmSuppressWildcards String) -> Unit,
 ) : ViewModel() {
 
   private val _repeatMistakes =
@@ -197,4 +198,3 @@ data class RepeatMistakesState(
 ) {
   val isEnabled: Boolean = availability == RepeatMistakesAvailability.AVAILABLE && blueprint != null
 }
-
