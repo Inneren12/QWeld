@@ -112,6 +112,10 @@ dependencies {
   implementation(project(":feature-exam"))
   implementation(project(":feature-auth"))
 
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("androidx.test:core:1.6.1")
+    testImplementation("org.robolectric:robolectric:4.12.1")
+
   implementation("androidx.core:core-ktx:1.15.0")
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
   implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
@@ -141,6 +145,10 @@ dependencies {
   androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
   testImplementation("junit:junit:4.13.2")
+}
+
+android {
+testOptions { unitTests.isIncludeAndroidResources = true }
 }
 
 licensee {

@@ -25,8 +25,8 @@ import com.qweld.app.common.error.AppErrorEvent
 import com.qweld.app.common.error.ErrorContext
 import com.qweld.core.common.AppEnv
 import com.qweld.app.data.logging.LogCollector
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import kotlinx.coroutines.launch
 import org.junit.Rule
 import org.junit.Test
