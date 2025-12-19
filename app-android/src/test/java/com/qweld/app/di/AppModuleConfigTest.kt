@@ -2,26 +2,15 @@ package com.qweld.app.di
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.ktx.Firebase
 import com.qweld.app.BuildConfig
-import com.qweld.app.common.error.AppErrorHandler
-import com.qweld.app.data.analytics.Analytics
-import com.qweld.app.data.db.QWeldDb
-import com.qweld.app.data.prefs.UserPrefsDataStore
-import com.qweld.app.data.repo.AnswersRepository
-import com.qweld.app.data.repo.AttemptsRepository
-import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
-import com.qweld.core.common.AppEnv
-import kotlinx.coroutines.CoroutineDispatcher
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.junit.Assert.assertNotNull
 
 /**
  * Tests for AppModule DI configuration.
@@ -56,7 +45,7 @@ class AppModuleConfigTest {
   @Test
   fun `AppModule provides UserPrefsDataStore`() {
     // When
-    val userPrefs = AppModule.provideUserPrefs(context)
+    val userPrefs = AppModule.provideUserPrefsDataStore(context)
 
     // Then
     assertNotNull(userPrefs, "UserPrefsDataStore should be provided")
@@ -149,7 +138,7 @@ class AppModuleConfigTest {
   @Test
   fun `AppModule provides AssetQuestionRepository with proper dependencies`() {
     // Given
-    val userPrefs = AppModule.provideUserPrefs(context)
+    val userPrefs = AppModule.provideUserPrefsDataStore(context)
 
     // When
     val repository = AppModule.provideQuestionRepository(context, userPrefs)
@@ -196,7 +185,7 @@ class AppModuleConfigTest {
   @Test
   fun `AppModule provides prewarm disabled flow from UserPrefsDataStore`() {
     // Given
-    val userPrefs = AppModule.provideUserPrefs(context)
+    val userPrefs = AppModule.provideUserPrefsDataStore(context)
 
     // When
     val flow = AppModule.providePrewarmDisabledFlow(userPrefs)
