@@ -67,5 +67,5 @@ object TestExamModule {
 
   @Provides
   @TimberLogger
-  fun provideTimberLogger(): @JvmSuppressWildcards (String) -> Unit = { }
+  fun provideTimberLogger(): (String) -> Unit = { }
 }
