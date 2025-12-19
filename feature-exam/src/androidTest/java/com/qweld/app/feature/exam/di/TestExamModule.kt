@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.di
 
 import com.qweld.app.common.di.IoDispatcher
+import com.qweld.app.common.di.TimberLogger
 import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
@@ -63,4 +64,8 @@ object TestExamModule {
       blueprintProvider = blueprintResolver::forMode,
       ioDispatcher = ioDispatcher,
     )
+
+  @Provides
+  @TimberLogger
+  fun provideTimberLogger(): @JvmSuppressWildcards (String) -> Unit = { }
 }
