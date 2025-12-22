@@ -53,7 +53,6 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.data.analytics.logExplainFetch
 import com.qweld.app.data.analytics.logReviewOpen
@@ -68,7 +67,6 @@ import com.qweld.app.feature.exam.vm.ReviewListItem
 import com.qweld.app.feature.exam.vm.ReviewSearchHighlights
 import com.qweld.app.feature.exam.vm.ReviewTotals
 import com.qweld.app.feature.exam.vm.ReviewViewModel
-import com.qweld.app.feature.exam.vm.ReviewViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.withContext
@@ -82,12 +80,11 @@ fun ReviewScreen(
   explanationRepository: AssetExplanationRepository,
   onBack: () -> Unit,
   resultViewModel: ResultViewModel,
+  reviewViewModel: ReviewViewModel,
   examViewModel: ExamViewModel,
   analytics: Analytics,
   modifier: Modifier = Modifier,
 ) {
-  val reviewViewModel: ReviewViewModel =
-    viewModel(factory = ReviewViewModelFactory(resultDataProvider = { resultData }, analytics = analytics))
   val uiState by reviewViewModel.uiState.collectAsState()
   val reviewQuestions = uiState.allQuestions
   val locale = resultData.attempt.locale
@@ -669,4 +666,3 @@ private fun highlightAnnotatedText(
     }
   }
 }
-

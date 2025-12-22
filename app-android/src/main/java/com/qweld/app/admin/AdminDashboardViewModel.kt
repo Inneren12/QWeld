@@ -2,6 +2,7 @@ package com.qweld.app.admin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.qweld.app.common.di.IoDispatcher
 import com.qweld.app.common.error.AppErrorHandler
 import com.qweld.app.data.db.QWELD_DB_VERSION
 import com.qweld.app.data.repo.AnswersRepository
@@ -11,8 +12,9 @@ import com.qweld.app.data.reports.QuestionReportRepository
 import com.qweld.app.data.reports.QuestionReportSummary
 import com.qweld.app.data.reports.QuestionReportWithId
 import com.qweld.app.data.reports.QuestionReportQueueStatus
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,12 +23,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class AdminDashboardViewModel(
+@HiltViewModel
+class AdminDashboardViewModel @Inject constructor(
   private val attemptsRepository: AttemptsRepository,
   private val answersRepository: AnswersRepository,
   private val questionReportRepository: QuestionReportRepository,
-  private val appErrorHandler: AppErrorHandler? = null,
-  private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+  private val appErrorHandler: AppErrorHandler,
+  @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
   private val _uiState = MutableStateFlow(AdminDashboardUiState())
@@ -157,7 +160,7 @@ class AdminDashboardViewModel(
     val answerCount = answersRepository.countAll()
     val userVersion = attemptsRepository.getUserVersion()
     val queueStatus = questionReportRepository.getQueueStatus()
-    val errorEvents = appErrorHandler?.history?.value.orEmpty()
+    val errorEvents = appErrorHandler.history.value
 
     return AdminDashboardData(
       attemptStats = attemptStats,

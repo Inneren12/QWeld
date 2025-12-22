@@ -35,7 +35,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-2", blockId = "A", isCorrect = false, isFlagged = true),
     )
 
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     val state = viewModel.uiState.value
     assertEquals(2, state.allQuestions.size)
@@ -53,7 +53,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = true, isFlagged = false),
       QuestionConfig(taskId = "A-2", blockId = "A", isCorrect = false, isFlagged = false),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     viewModel.toggleWrongOnly()
 
@@ -69,7 +69,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = false, isFlagged = true),
       QuestionConfig(taskId = "B-1", blockId = "B", isCorrect = true, isFlagged = false),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     viewModel.toggleFlaggedOnly()
 
@@ -86,7 +86,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-2", blockId = "A", isCorrect = false, isFlagged = false),
       QuestionConfig(taskId = "B-1", blockId = "B", isCorrect = true, isFlagged = true),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     viewModel.toggleWrongOnly()
     viewModel.toggleFlaggedOnly()
@@ -105,7 +105,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "B-2", blockId = "B", isCorrect = false, isFlagged = true),
       QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = false, isFlagged = false),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     viewModel.toggleByTask()
 
@@ -123,7 +123,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = false, isFlagged = true),
       QuestionConfig(taskId = "B-1", blockId = "B", isCorrect = true, isFlagged = false),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     viewModel.toggleWrongOnly()
     viewModel.toggleFlaggedOnly()
@@ -140,7 +140,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = true, isFlagged = false),
       QuestionConfig(taskId = "A-2", blockId = "A", isCorrect = false, isFlagged = true),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     analytics.events.clear()
     viewModel.toggleWrongOnly()
@@ -163,7 +163,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = true, isFlagged = false),
       QuestionConfig(taskId = "B-2", blockId = "B", isCorrect = false, isFlagged = false),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     viewModel.onSearchInputChange("stem 0")
     advanceTimeBy(200)
@@ -184,7 +184,7 @@ class ReviewViewModelTest {
       QuestionConfig(taskId = "A-2", blockId = "A", isCorrect = false, isFlagged = false),
       rationales = rationale,
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     viewModel.onSearchInputChange("weld pool")
     advanceTimeBy(200)
@@ -201,7 +201,7 @@ class ReviewViewModelTest {
     val resultData = createResultData(
       QuestionConfig(taskId = "A-1", blockId = "A", isCorrect = true, isFlagged = false),
     )
-    val viewModel = ReviewViewModel(resultData, analytics)
+    val viewModel = createViewModel(resultData)
 
     val explanation = AssetExplanationRepository.Explanation(
       id = "q0",
@@ -278,6 +278,11 @@ class ReviewViewModelTest {
       passThreshold = null,
       flaggedQuestionIds = flagged,
     )
+  }
+
+  private fun createViewModel(resultData: ExamViewModel.ExamResultData): ReviewViewModel {
+    val holder = ExamResultHolder().apply { update(resultData) }
+    return ReviewViewModel(analytics, holder)
   }
 
   private data class QuestionConfig(

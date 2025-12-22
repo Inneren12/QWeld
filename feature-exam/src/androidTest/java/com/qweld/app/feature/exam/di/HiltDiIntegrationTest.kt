@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.qweld.app.common.di.IoDispatcher
 import com.qweld.app.common.error.AppErrorHandler
+import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -14,6 +15,7 @@ import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.vm.BlueprintResolver
 import com.qweld.app.feature.exam.vm.ExamViewModel
+import com.qweld.app.feature.exam.vm.ExamResultHolder
 import com.qweld.app.feature.exam.vm.PrewarmController
 import com.qweld.app.feature.exam.vm.ResumeUseCase
 import com.qweld.core.common.AppEnv
@@ -73,6 +75,12 @@ class HiltDiIntegrationTest {
   lateinit var appErrorHandler: AppErrorHandler
 
   @Inject
+  lateinit var attemptExporter: AttemptExporter
+
+  @Inject
+  lateinit var resultHolder: ExamResultHolder
+
+  @Inject
   @IoDispatcher
   lateinit var ioDispatcher: CoroutineDispatcher
 
@@ -104,6 +112,7 @@ class HiltDiIntegrationTest {
     assertNotNull(questionRepository, "AssetQuestionRepository should be injected")
     assertNotNull(questionReportRepository, "QuestionReportRepository should be injected")
     assertNotNull(userPrefs, "UserPrefs should be injected")
+    assertNotNull(attemptExporter, "AttemptExporter should be injected")
   }
 
   @Test
@@ -130,6 +139,7 @@ class HiltDiIntegrationTest {
       questionReportRepository = questionReportRepository,
       appEnv = appEnv,
       appErrorHandler = appErrorHandler,
+      resultHolder = resultHolder,
       blueprintResolver = blueprintResolver,
       timerController = timerController,
       prewarmRunner = prewarmController,

@@ -20,7 +20,7 @@ Module names follow the `app-android`, `feature-*`, and `core-*` pattern. Featur
   - `QWeldApp` – Application class (Hilt-enabled with `@HiltAndroidApp`) that seeds logging, locale controller, analytics toggles, and error handler.
   - `AppErrorHandler` – centralized non-fatal error handler that logs errors, forwards to Crashlytics (when analytics enabled), tracks recent error history, and emits UI events for error dialogs.
   - `AppModule` – Hilt module binding app-wide dependencies (analytics, repositories, DB, error handler, question/explanation repos, auth services).
-  - `AdminDashboardViewModel` / `AdminDashboardScreen` – debug-only admin dashboard (Settings → Tools) showing attempt stats, DB health, queued reports, and recent errors.
+  - `AdminDashboardViewModel` / `AdminDashboardScreen` – debug-only admin dashboard (Settings → Tools) showing attempt stats, DB health, queued reports, and recent errors; ViewModel is Hilt-injected.
   - `QuestionReportsViewModel` / `QuestionReportsScreen` – debug-only question report listing and detail views for content triage.
   - `AppErrorReportDialog` – user-facing dialog for reporting app errors with optional comments.
 - **Depends on:** `feature-exam`, `feature-auth`, `core-domain`, `core-data`, `core-model`, `core-common`.
@@ -32,7 +32,7 @@ Module names follow the `app-android`, `feature-*`, and `core-*` pattern. Featur
 - **Key classes:**
   - `ExamViewModel` – orchestrates exam and practice attempts by delegating to specialized controllers for timers, prewarm, and autosave; drives assembly (standard or adaptive), navigation, and persistence.
   - `ExamTimerController` / `ExamPrewarmCoordinator` / `ExamAutosaveController` – focused controllers handling timer ticking/expiry, bundle preloading, and autosave lifecycle independently.
-  - `ResultViewModel` / `ReviewViewModel` – drive results presentation and answer review filtering.
+  - `ResultViewModel` / `ReviewViewModel` – Hilt-injected ViewModels for results presentation and answer review filtering; read the latest result via a scoped holder.
   - `AssetQuestionRepository` – loads task bundles/monolithic banks with locale fallback and caching.
   - `PrewarmUseCase` / `PrewarmController` – preloads bundles before launching an attempt to avoid jank.
   - `BlueprintJsonLoader` – parses blueprint JSONs and resolves block/task metadata for loaders.

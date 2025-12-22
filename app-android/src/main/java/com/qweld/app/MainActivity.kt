@@ -125,19 +125,18 @@ fun QWeldAppRoot(
   }
 
   QWeldTheme {
-    AppNavGraph(
-      authService = authService,
-      questionRepository = questionRepository,
-      explanationRepository = explanationRepository,
-      attemptsRepository = attemptsRepository,
-      answersRepository = answersRepository,
-      statsRepository = statsRepository,
-      questionReportRepository = questionReportRepository,
-      appVersion = BuildConfig.VERSION_NAME,
-      analytics = analytics,
-      logCollector = logCollector,
-      userPrefs = userPrefs,
-      contentIndexReader = contentIndexReader,
+      AppNavGraph(
+        authService = authService,
+        questionRepository = questionRepository,
+        explanationRepository = explanationRepository,
+        attemptsRepository = attemptsRepository,
+        answersRepository = answersRepository,
+        statsRepository = statsRepository,
+        questionReportRepository = questionReportRepository,
+        analytics = analytics,
+        logCollector = logCollector,
+        userPrefs = userPrefs,
+        contentIndexReader = contentIndexReader,
       appErrorHandler = appErrorHandler,
       appEnv = appEnv,
       errorReportingEnabled = appErrorReporting,

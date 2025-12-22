@@ -53,7 +53,7 @@ Importance legend:
   - **Edit guidelines:** UI changes are safe; be careful with Firestore/reporting toggles.
 - `app-android/src/main/java/com/qweld/app/admin/AdminDashboardViewModel.kt` and `AdminDashboardScreen.kt`
   - **Importance:** 🟡 Important
-  - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, DB health, and system/report health (queued reports, recent errors).
+  - **Role:** Debug-only admin dashboard summarizing attempt counts, recent completions, DB health, and system/report health (queued reports, recent errors); ViewModel is Hilt-injected.
   - **Edit guidelines:** Keep `BuildConfig.DEBUG` gating intact and source stats through repositories instead of direct Room access.
 - `app-android/src/androidTest/java/com/qweld/app/admin/AdminReportsUiTest.kt`
   - **Importance:** 🧪 Test
@@ -104,8 +104,12 @@ Importance legend:
   - **Edit guidelines:** Keep autosave intervals and flushing semantics unchanged; prefer constructor injection for testability.
 - `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ResultViewModel.kt` and `ReviewViewModel.kt`
   - **Importance:** 🟡 Important
-  - **Role:** Drive results summary and review filtering/search.
+  - **Role:** Drive results summary and review filtering/search via Hilt-injected ViewModels backed by a scoped result holder.
   - **Edit guidelines:** Keep derived stats consistent with persisted attempts.
+- `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/ExamResultHolder.kt`
+  - **Importance:** 🟡 Important
+  - **Role:** Activity-retained holder for the latest exam result, shared between Hilt-injected result/review ViewModels.
+  - **Edit guidelines:** Keep lifecycle scoped to activity-retained flows; clear on abort/reset paths.
 - `feature-exam/src/main/java/com/qweld/app/feature/exam/vm/PrewarmUseCase.kt` and `PrewarmController.kt`
   - **Importance:** 🟡 Important
   - **Role:** Preloads question bundles before entering an attempt to avoid UI stalls.

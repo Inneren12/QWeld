@@ -212,19 +212,18 @@ Legend:
 
 ### ARCH-2 – Dependency injection framework
 - **Status:** ✅
-- **Summary:** Hilt supplies app/data/exam dependencies via `AppModule` and `ExamModule`, injects Application/Activity (`@HiltAndroidApp`, `@AndroidEntryPoint`), and drives ViewModels via `@HiltViewModel`. Test overrides available via `@TestInstallIn` modules (`TestExamModule`). Comprehensive regression tests verify DI configuration and wiring.
+- **Summary:** Hilt supplies app/data/exam dependencies via `AppModule` and `ExamModule`, injects Application/Activity (`@HiltAndroidApp`, `@AndroidEntryPoint`), and drives ViewModels via `@HiltViewModel` (including admin/result/review flows). Test overrides available via `@TestInstallIn` modules (`TestExamModule`). Comprehensive regression tests verify DI configuration and wiring.
 - **Implemented in:** Hilt modules in `app-android` (`AppModule`) and `feature-exam` (`ExamModule`); `QWeldApp`, `MainActivity`, `ExamViewModel` use Hilt injection; `TestExamModule` provides test overrides.
 - **Test coverage:**
   - [x] DI configuration tests verify AppModule and ExamModule bindings (`AppModuleConfigTest`, `ExamModuleConfigTest`)
   - [x] Integration test validates complete DI graph and singleton scoping (`HiltDiIntegrationTest`)
   - [x] TestExamModule overrides exercised in instrumentation tests
 - **Next tasks:**
-  - [ ] Expand DI coverage to remaining ViewModels (admin/result/review ViewModels currently use manual factory patterns).
-  - [ ] Migrate any remaining manual providers to Hilt bindings.
+  - [ ] Keep new ViewModels/services on Hilt and extend test overrides as new dependencies are introduced.
 
 ### ARCH-3 – ExamViewModel refactor
 - **Status:** ✅
-- **Summary:** `ExamViewModel` now orchestrates dedicated controllers for timers, prewarm, and autosave/resume instead of owning all behaviors directly. Controllers are injected via Hilt and have comprehensive contract tests.
+- **Summary:** `ExamViewModel` now orchestrates dedicated controllers for timers, prewarm, and autosave/resume instead of owning all behaviors directly. Controllers are injected via Hilt and have comprehensive contract tests; result/review flows share the latest exam result via a scoped holder to keep ViewModels Hilt-managed.
 - **Implemented in:** `feature-exam` ViewModels/controllers (`DefaultExamTimerController`, `DefaultExamPrewarmCoordinator`, `DefaultExamAutosaveController`).
 - **Test coverage:**
   - [x] Contract tests for ExamTimerController verify timer start/resume/stop behavior (`ExamTimerControllerTest`)
@@ -238,9 +237,8 @@ Legend:
 
 ### DOCS-1 – Update documentation for new features
 - **Status:** ✅
-- **Summary:** High-level and internal docs updated to reflect admin/debug tools, adaptive exam mode, question reporting, error reporting, DI framework, and controller refactoring.
+- **Summary:** High-level and internal docs updated to reflect admin/debug tools, adaptive exam mode, question reporting, error reporting, DI framework, controller refactoring, and DI/testing contribution expectations.
 - **Implemented in:** `PROJECT_OVERVIEW.md` (architecture, key components, user flows, glossary), `MODULES.md` (layer dependencies, module responsibilities, DI wiring), `CONTENT_GUIDE.md` (RU coverage enforcement), `stage.md` (updated statuses and Next tasks), `FILE_OVERVIEW.md` (new files and importance ratings).
 - **Next tasks:**
-  - [ ] Add feature-specific docs or ADRs for adaptive policy tuning and DI migration patterns if architectural decisions need deeper documentation.
+  - [ ] Add feature-specific docs or ADRs for adaptive policy tuning if architectural decisions need deeper documentation.
   - [ ] Update deployment/release docs when adaptive mode exits beta or when admin tools need production access patterns.
-

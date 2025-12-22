@@ -110,6 +110,7 @@ class ExamViewModel @Inject constructor(
   private val questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
   private val appEnv: AppEnv,
   private val appErrorHandler: AppErrorHandler,
+  private val resultHolder: ExamResultHolder,
   private val blueprintResolver: BlueprintResolver,
   private val timerController: TimerController,
   private val prewarmRunner: PrewarmController,
@@ -131,6 +132,7 @@ class ExamViewModel @Inject constructor(
     questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
     appEnv: AppEnv,
     appErrorHandler: AppErrorHandler?,
+    resultHolder: ExamResultHolder,
     blueprintResolver: BlueprintResolver,
     timerController: TimerController,
     prewarmRunner: PrewarmController,
@@ -152,6 +154,7 @@ class ExamViewModel @Inject constructor(
     questionReportRepository = questionReportRepository,
     appEnv = appEnv,
     appErrorHandler = appErrorHandler ?: NoOpAppErrorHandler(),
+    resultHolder = resultHolder,
     blueprintResolver = blueprintResolver,
     timerController = timerController,
     prewarmRunner = prewarmRunner,
@@ -526,6 +529,7 @@ class ExamViewModel @Inject constructor(
         hasFinished = false
         prepareAutosave(attemptId)
         latestResult = null
+        resultHolder.clear()
         questionSeenAt.clear()
         if (mode == ExamMode.IP_MOCK) {
           startTimer()
@@ -813,6 +817,7 @@ class ExamViewModel @Inject constructor(
         hasFinished = false
         prepareAutosave(pending.id)
         latestResult = null
+        resultHolder.clear()
         pendingResume = null
         _uiState.value = _uiState.value.copy(resumeDialog = null, errorMessage = null)
         if (mode == ExamMode.IP_MOCK) {
@@ -961,6 +966,7 @@ class ExamViewModel @Inject constructor(
       scorePercent = scorePercent,
       passThreshold = passThreshold,
     )
+    resultHolder.update(checkNotNull(latestResult))
     _events.tryEmit(ExamEvent.NavigateToResult)
   }
 
@@ -1570,6 +1576,7 @@ class ExamViewModel @Inject constructor(
     withContext(ioDispatcher) { attemptsRepository.abortAttempt(attemptResult.attemptId) }
     currentAttempt = null
     latestResult = null
+    resultHolder.clear()
     hasFinished = false
     questionSeenAt.clear()
     recordLastSession(attempt.mode, attempt.locale)
@@ -1979,4 +1986,3 @@ class ExamViewModel @Inject constructor(
 
   }
 }
-

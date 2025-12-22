@@ -3,7 +3,6 @@ package com.qweld.app.feature.exam.vm
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.domain.exam.ExamMode
 import com.qweld.app.domain.exam.TimerController
@@ -12,19 +11,22 @@ import com.qweld.app.feature.exam.model.BlockSummaryUiModel
 import com.qweld.app.feature.exam.model.PassStatus
 import com.qweld.app.feature.exam.model.ResultUiState
 import com.qweld.app.feature.exam.model.TaskSummaryUiModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Locale
+import javax.inject.Inject
 
-class ResultViewModel(
-  resultData: ExamViewModel.ExamResultData,
+@HiltViewModel
+class ResultViewModel @Inject constructor(
   private val attemptExporter: AttemptExporter,
-  private val taskToBlock: (String) -> String? = ::mapTaskToBlock,
+  resultHolder: ExamResultHolder,
 ) : ViewModel() {
 
-  private val initialResultData: ExamViewModel.ExamResultData = resultData
+  private val initialResultData: ExamViewModel.ExamResultData = resultHolder.requireLatest()
   private val attemptId: String = initialResultData.attemptId
   private val totalQuestions: Int = initialResultData.attempt.questions.size
   private val scorePercentValue: Double = initialResultData.scorePercent
 
+  private val taskToBlock: (String) -> String? = ::mapTaskToBlock
   private val _uiState = mutableStateOf(createState(initialResultData))
   val uiState: State<ResultUiState> = _uiState
 
@@ -115,18 +117,5 @@ class ResultViewModel(
 
   companion object {
     private const val PASS_THRESHOLD = 70.0
-  }
-}
-
-class ResultViewModelFactory(
-  private val resultDataProvider: () -> ExamViewModel.ExamResultData,
-  private val attemptExporter: AttemptExporter,
-) : ViewModelProvider.Factory {
-  @Suppress("UNCHECKED_CAST")
-  override fun <T : ViewModel> create(modelClass: Class<T>): T {
-    if (modelClass.isAssignableFrom(ResultViewModel::class.java)) {
-      return ResultViewModel(resultDataProvider(), attemptExporter) as T
-    }
-    throw IllegalArgumentException("Unknown ViewModel class")
   }
 }

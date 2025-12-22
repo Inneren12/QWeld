@@ -123,6 +123,22 @@ class AppModuleConfigTest {
   }
 
   @Test
+  fun `AppModule provides AttemptExporter with proper dependencies`() {
+    // Given
+    val db = AppModule.provideDatabase(context)
+    val attemptDao = AppModule.provideAttemptDao(db)
+    val answerDao = AppModule.provideAnswerDao(db)
+    val attemptsRepository = AppModule.provideAttemptsRepository(attemptDao)
+    val answersRepository = AppModule.provideAnswersRepository(answerDao)
+
+    // When
+    val exporter = AppModule.provideAttemptExporter(attemptsRepository, answersRepository)
+
+    // Then
+    assertNotNull(exporter, "AttemptExporter should be provided")
+  }
+
+  @Test
   fun `AppModule provides UserStatsRepository with proper dependencies`() {
     // Given
     val db = AppModule.provideDatabase(context)
