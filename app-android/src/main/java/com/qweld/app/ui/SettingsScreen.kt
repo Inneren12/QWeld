@@ -1,6 +1,7 @@
 package com.qweld.app.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -409,11 +410,12 @@ private fun SettingsLanguageSection(
         Row(
           modifier = Modifier
             .fillMaxWidth()
+            .clickable { onTagSelected(tag) }
             .testTag("settings.locale.option.$tag"),
           verticalAlignment = Alignment.CenterVertically,
           horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-          RadioButton(selected = selectedTag == tag, onClick = { onTagSelected(tag) })
+          RadioButton(selected = selectedTag == tag, onClick = null)
           Text(text = stringResource(id = labelRes), style = MaterialTheme.typography.bodyLarge)
         }
       }
