@@ -1,16 +1,17 @@
 package com.qweld.app.feature.exam.vm
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.qweld.app.data.analytics.Analytics
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.explain.ExplanationRepositoryImpl
 import com.qweld.app.feature.exam.model.ReviewChoiceUiModel
 import com.qweld.app.feature.exam.model.ReviewQuestionUiModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import java.util.LinkedHashMap
 import java.util.Locale
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,11 +22,13 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @OptIn(FlowPreview::class)
-class ReviewViewModel(
-  resultData: ExamViewModel.ExamResultData,
+@HiltViewModel
+class ReviewViewModel @Inject constructor(
   private val analytics: Analytics,
+  resultHolder: ExamResultHolder,
 ) : ViewModel() {
 
+  private val resultData: ExamViewModel.ExamResultData = resultHolder.requireLatest()
   private val allQuestions: List<ReviewQuestionUiModel> = buildReviewQuestions(resultData)
   private val totals = ReviewTotals(
     all = allQuestions.size,
@@ -304,17 +307,4 @@ data class ReviewSearchHighlights(
 sealed interface ReviewListItem {
   data class Section(val title: String) : ReviewListItem
   data class Question(val index: Int, val total: Int, val question: ReviewQuestionUiModel) : ReviewListItem
-}
-
-class ReviewViewModelFactory(
-  private val resultDataProvider: () -> ExamViewModel.ExamResultData,
-  private val analytics: Analytics,
-) : ViewModelProvider.Factory {
-  override fun <T : ViewModel> create(modelClass: Class<T>): T {
-    if (modelClass.isAssignableFrom(ReviewViewModel::class.java)) {
-      @Suppress("UNCHECKED_CAST")
-      return ReviewViewModel(resultDataProvider(), analytics) as T
-    }
-    throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
-  }
 }

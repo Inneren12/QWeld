@@ -32,6 +32,42 @@ This keeps the repo configuration platform-agnostic and prevents CI failures on 
 - Ensure new scripts are POSIX-compatible Bash with `set -euo pipefail`.
 - Add automated checks to the CI workflows when introducing new tooling.
 
+## Dependency Injection
+
+- Use **Hilt** for all new services, repositories, controllers, and ViewModels.
+- Place app-wide bindings in `app-android/src/main/java/com/qweld/app/di/` (`AppModule`/`DispatcherModule`).
+- Place feature-specific bindings in the feature module DI package (e.g., `feature-exam/.../di/ExamModule`).
+- New ViewModels should use `@HiltViewModel` and constructor injection; avoid manual factories.
+- When runtime state is required, prefer `SavedStateHandle` or a scoped holder (e.g., activity-retained state) instead of manual wiring.
+
+## Testing Expectations
+
+- Add **unit tests** for new domain/data logic (repositories, use cases, mappers).
+- Add **UI/instrumentation tests** for critical user flows and regressions.
+- Use Hilt test overrides (`@TestInstallIn`) to replace repositories/controllers with fakes or deterministic implementations.
+- Keep test fixtures deterministic and avoid network dependencies in instrumentation tests.
+
+## CI / Verification
+
+Run the following before opening a PR (adjust per change scope):
+
+- `./gradlew test`
+- `./gradlew connectedDebugAndroidTest`
+- `./gradlew :app-android:verifyAssets`
+
+If you touch content or blueprint assets, also run:
+
+- `bash scripts/validate-questions.sh`
+- `bash scripts/validate-blueprint.sh`
+- `bash scripts/check-quotas.sh`
+- `bash scripts/check-explanation-coverage.sh`
+- `bash scripts/generate-blueprint-snapshots.sh verify`
+
+Optional for new UI flows or blueprints:
+
+- Snapshot tests for blueprints/manifests (see `tests/snapshots/README.md`)
+- Coverage expectations for new features when tests exist
+
 ## Content Development
 
 When working on question content, blueprints, or explanations:

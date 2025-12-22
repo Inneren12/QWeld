@@ -42,7 +42,7 @@ class ResultViewModelTest {
         QuestionConfig("B-2", "B", false),
       ),
     )
-    val viewModel = ResultViewModel(resultData, dummyExporter)
+    val viewModel = createViewModel(resultData)
 
     assertEquals(50.0, viewModel.uiState.value.scorePercent)
     assertEquals(2, viewModel.uiState.value.totalCorrect)
@@ -59,8 +59,8 @@ class ResultViewModelTest {
       questionConfigs = List(5) { index -> QuestionConfig("B-${index}", "B", index < 4) },
     )
 
-    val ipMockVm = ResultViewModel(ipMockData, dummyExporter)
-    val practiceVm = ResultViewModel(practiceData, dummyExporter)
+    val ipMockVm = createViewModel(ipMockData)
+    val practiceVm = createViewModel(practiceData)
 
     assertEquals(PassStatus.Passed, ipMockVm.uiState.value.passStatus)
     assertNull(practiceVm.uiState.value.passStatus)
@@ -77,7 +77,7 @@ class ResultViewModelTest {
         QuestionConfig("C-3", "C", false),
       ),
     )
-    val viewModel = ResultViewModel(resultData, dummyExporter)
+    val viewModel = createViewModel(resultData)
 
     val blockSummaries = viewModel.uiState.value.blockSummaries.associateBy { it.blockId }
     assertEquals(2, blockSummaries.getValue("A").total)
@@ -160,4 +160,9 @@ class ResultViewModelTest {
     val blockId: String,
     val isCorrect: Boolean,
   )
+
+  private fun createViewModel(resultData: ExamViewModel.ExamResultData): ResultViewModel {
+    val holder = ExamResultHolder().apply { update(resultData) }
+    return ResultViewModel(dummyExporter, holder)
+  }
 }

@@ -11,15 +11,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.qweld.app.data.analytics.Analytics
-import com.qweld.app.data.export.AttemptExporter
-import com.qweld.app.data.repo.AnswersRepository
-import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.data.prefs.UserPrefs
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.domain.exam.ExamMode
-import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetExplanationRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.ui.ModeScreen
@@ -30,9 +25,7 @@ import com.qweld.app.feature.exam.vm.ExamViewModel
 import com.qweld.app.feature.exam.vm.PracticeConfig
 import com.qweld.app.feature.exam.vm.PracticeShortcuts
 import com.qweld.app.feature.exam.vm.ResultViewModel
-import com.qweld.app.feature.exam.vm.ResultViewModelFactory
-import com.qweld.core.common.AppEnv
-import com.qweld.app.common.error.AppErrorHandler
+import com.qweld.app.feature.exam.vm.ReviewViewModel
 import java.util.Locale
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -52,26 +45,11 @@ fun ExamNavGraph(
   navController: NavHostController,
   repository: AssetQuestionRepository,
   explanationRepository: AssetExplanationRepository,
-  attemptsRepository: AttemptsRepository,
-  answersRepository: AnswersRepository,
-  statsRepository: UserStatsRepository,
-  questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
-  appEnv: AppEnv,
-  appErrorHandler: AppErrorHandler? = null,
-  appVersion: String,
   analytics: Analytics,
   userPrefs: UserPrefs,
   appLocaleTag: String,
 ) {
   val parentEntry = remember(navController.currentBackStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
-  val attemptExporter =
-    remember(attemptsRepository, answersRepository, appVersion) {
-      AttemptExporter(
-        attemptsRepository = attemptsRepository,
-        answersRepository = answersRepository,
-        versionProvider = { appVersion },
-      )
-    }
   NavHost(
     navController = navController,
     startDestination = ExamDestinations.MODE,
@@ -174,15 +152,7 @@ fun ExamNavGraph(
     }
     composable(route = ExamDestinations.RESULT) { backStackEntry ->
       val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
-      val resultViewModel: ResultViewModel =
-        viewModel(
-          backStackEntry,
-          factory =
-            ResultViewModelFactory(
-              resultDataProvider = { examViewModel.requireLatestResult() },
-              attemptExporter = attemptExporter,
-            ),
-        )
+      val resultViewModel: ResultViewModel = hiltViewModel(backStackEntry)
       ResultScreen(
         viewModel = resultViewModel,
         onReview = {
@@ -200,20 +170,14 @@ fun ExamNavGraph(
     }
     composable(route = ExamDestinations.REVIEW) { backStackEntry ->
       val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
-      val resultViewModel: ResultViewModel =
-        viewModel(
-          backStackEntry,
-          factory =
-            ResultViewModelFactory(
-              resultDataProvider = { examViewModel.requireLatestResult() },
-              attemptExporter = attemptExporter,
-            ),
-        )
+      val resultViewModel: ResultViewModel = hiltViewModel(backStackEntry)
+      val reviewViewModel: ReviewViewModel = hiltViewModel(backStackEntry)
       ReviewScreen(
         resultData = examViewModel.requireLatestResult(),
         explanationRepository = explanationRepository,
         onBack = { navController.popBackStack() },
         resultViewModel = resultViewModel,
+        reviewViewModel = reviewViewModel,
         examViewModel = examViewModel,
         analytics = analytics,
       )

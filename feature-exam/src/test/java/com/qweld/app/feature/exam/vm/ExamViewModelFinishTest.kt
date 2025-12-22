@@ -292,6 +292,7 @@ class ExamViewModelFinishTest {
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
       appErrorHandler = null,
+      resultHolder = ExamResultHolder(),
       blueprintResolver = blueprintResolver,
       timerController = com.qweld.app.domain.exam.TimerController { },
       prewarmRunner =

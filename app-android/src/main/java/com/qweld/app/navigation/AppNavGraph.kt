@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -84,7 +85,6 @@ fun AppNavGraph(
   answersRepository: AnswersRepository,
   statsRepository: UserStatsRepository,
   questionReportRepository: com.qweld.app.data.reports.QuestionReportRepository,
-  appVersion: String,
   analytics: Analytics,
   logCollector: LogCollector?,
   userPrefs: UserPrefs,
@@ -339,14 +339,7 @@ fun AppNavGraph(
           navController = examNavController,
           repository = questionRepository,
           explanationRepository = explanationRepository,
-          attemptsRepository = attemptsRepository,
-          answersRepository = answersRepository,
-          statsRepository = statsRepository,
-          questionReportRepository = questionReportRepository,
-          appEnv = appEnv,
-          appVersion = appVersion,
           analytics = analytics,
-          appErrorHandler = appErrorHandler,
           userPrefs = userPrefs,
           appLocaleTag = appLocale,
         )
@@ -422,14 +415,7 @@ fun AppNavGraph(
         if (!BuildConfig.DEBUG) {
           UnauthorizedAdminScreen(onBack = { navController.popBackStack() })
         } else {
-          val viewModel = remember {
-            AdminDashboardViewModel(
-              attemptsRepository = attemptsRepository,
-              answersRepository = answersRepository,
-              questionReportRepository = questionReportRepository,
-              appErrorHandler = appErrorHandler,
-            )
-          }
+          val viewModel: AdminDashboardViewModel = hiltViewModel()
           AdminDashboardRoute(viewModel = viewModel, onBack = { navController.popBackStack() })
         }
       }

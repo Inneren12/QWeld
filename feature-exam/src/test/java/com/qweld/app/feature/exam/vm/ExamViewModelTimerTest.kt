@@ -246,6 +246,7 @@ class ExamViewModelTimerTest {
       questionReportRepository = questionReportRepository,
       appEnv = com.qweld.app.feature.exam.vm.fakes.FakeAppEnv(),
       appErrorHandler = null,
+      resultHolder = ExamResultHolder(),
       blueprintResolver = blueprintResolver,
       timerController = timerController,
       prewarmRunner =

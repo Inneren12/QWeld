@@ -146,6 +146,7 @@ class ExamViewModelReportingTest {
       questionReportRepository = questionReportRepository,
       appEnv = FakeAppEnv(),
       appErrorHandler = appErrorHandler,
+      resultHolder = ExamResultHolder(),
       blueprintResolver = blueprintResolver,
       timerController = TimerController { },
       prewarmRunner =

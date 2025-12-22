@@ -16,6 +16,7 @@ import com.qweld.app.data.db.QWeldDb
 import com.qweld.app.data.db.dao.AnswerDao
 import com.qweld.app.data.db.dao.AttemptDao
 import com.qweld.app.data.db.dao.QueuedQuestionReportDao
+import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.prefs.UserPrefsDataStore
 import com.qweld.app.data.repo.AnswersRepository
@@ -118,6 +119,18 @@ object AppModule {
   @Provides
   @Singleton
   fun provideAnswersRepository(answerDao: AnswerDao): AnswersRepository = DefaultAnswersRepository(answerDao)
+
+  @Provides
+  @Singleton
+  fun provideAttemptExporter(
+    attemptsRepository: AttemptsRepository,
+    answersRepository: AnswersRepository,
+  ): AttemptExporter =
+    AttemptExporter(
+      attemptsRepository = attemptsRepository,
+      answersRepository = answersRepository,
+      versionProvider = { BuildConfig.VERSION_NAME },
+    )
 
   @Provides
   @Singleton

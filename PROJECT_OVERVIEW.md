@@ -30,7 +30,7 @@
 ### Key components
 - **ExamViewModel** – orchestrates exam and practice attempts by delegating to specialized controllers for timers, prewarm, and autosave; drives assembly, navigation, and persistence.
 - **ExamTimerController / ExamPrewarmCoordinator / ExamAutosaveController** – focused controllers extracted from ExamViewModel that handle timer ticking/expiry, bundle preloading, and autosave lifecycle independently.
-- **ResultViewModel** – summarizes attempt outcomes and drives post-attempt review flows.
+- **ResultViewModel** – Hilt-injected ViewModel that summarizes attempt outcomes and drives post-attempt review flows.
 - **AssetQuestionRepository** – loads question content from bundled assets with locale fallback, caching, and task-bundle preference.
 - **AdaptiveExamPolicy / AdaptiveExamAssembler** – implements adaptive exam mode that adjusts question difficulty based on user performance (correct/incorrect streaks); enabled via beta toggle.
 - **AppErrorHandler** – centralized non-fatal error handler that logs errors, forwards to Crashlytics (when analytics enabled), tracks recent error history for admin diagnostics, and emits UI events for user-facing error dialogs.
@@ -91,5 +91,5 @@
 - Improved content editing and validation tooling for authors.
 - Richer reporting/analytics dashboards while preserving opt-in controls.
 - Expanded accessibility/support tooling (haptics/sounds toggles are present; further refinements expected).
-- Migration of remaining ViewModels and services to Hilt DI.
+- Continued DI coverage for new features and services as they are added.
 - Enhanced admin dashboard features (log snippets, migration audit trail, integrity checks).
