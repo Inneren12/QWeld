@@ -80,19 +80,28 @@ Legend:
 
 ### ADMIN-1 – Content info & asset diagnostics
 - **Status:** ✅
-- **Summary:** Internal screens show asset availability, manifest/version details, and question reports; includes `ContentManifestDiagnostics` for admin-facing content health checks.
+- **Summary:** Internal screens show asset availability, manifest/version details, and question reports; includes `ContentManifestDiagnostics` for admin-facing content health checks with locale/task validation and status reporting (OK/WARNING/ERROR).
 - **Implemented in:** `app-android` admin screens/viewmodels and `core-data` (`ContentManifestDiagnostics`).
+- **Recent additions:**
+  - [x] ContentManifestDiagnostics validates required locales (EN/RU) and tasks against manifest
+  - [x] Status reporting (OK/WARNING/ERROR) with detailed messages for missing locales/tasks
+  - [x] Version and generatedAt timestamp display in Content Info
 - **Next tasks:**
-  - [ ] Add deeper blueprint-to-manifest cross-checks (e.g., quota-aware coverage hints).
-  - [ ] Surface content versioning timeline and update history in admin views.
+  - [ ] Add deeper blueprint-to-manifest cross-checks (e.g., quota-aware coverage hints, blueprint task vs manifest task comparison).
+  - [ ] Surface content versioning timeline and update history in admin views (track build history).
 
 ### ADMIN-2 – Admin/debug dashboard
 - **Status:** ✅
-- **Summary:** Debug-only admin dashboard (Settings → Tools, `BuildConfig.DEBUG` gated) surfaces attempt counts, last completion timestamp, failure totals, answer row counts, DB version health, queued question reports count, and recent error summaries.
+- **Summary:** Debug-only admin dashboard (Settings → Tools, `BuildConfig.DEBUG` gated) surfaces attempt counts, last completion timestamp, failure totals, answer row counts, DB version health, queued question reports count, and recent error summaries from `AppErrorHandler` history.
 - **Implemented in:** `app-android` (`AdminDashboardScreen`, `AdminDashboardViewModel`) with guarded navigation; `core-data` attempt/answer/report stats queries and error handler integration.
+- **Recent additions:**
+  - [x] Recent error summaries integrated from AppErrorHandler history
+  - [x] Queued question reports count displayed
+  - [x] DB version health indicator
 - **Next tasks:**
-  - [ ] Layer in recent log snippets and expanded error context.
-  - [ ] Expand health checks beyond version (integrity checks, migration audit trail).
+  - [ ] Layer in recent log snippets (last N log entries from in-memory or temp log file).
+  - [ ] Show basic error stats (count of non-fatal errors, last error time) in dedicated section.
+  - [ ] Expand health checks with DB migration audit trail (version history, migration timestamps).
   - [ ] Consider adding a hidden gesture for release builds if internal QA needs access.
 
 
@@ -107,29 +116,43 @@ Legend:
   - [x] Include device/context metadata for triage.
   - [x] Testing: payload structure and PII constraints covered by unit tests.
 
-### REPORT-2 – In-app “Report issue” flow for questions
-- **Status:** ⚠️
-- **Summary:** User-facing reporting flow now surfaces on exam and review screens with a dialog for reasons/comments and snackbar feedback; submissions flow through `QuestionReportRepository` with queued fallback. Admin listing now includes summaries, detail views, and badges when a report followed a recent error.
-- **Implemented in:** `feature-exam` (question/review UI) using `QuestionReportRepository` from `core-data` and admin views in `app-android`.
+### REPORT-2 – In-app "Report issue" flow for questions
+- **Status:** ✅
+- **Summary:** User-facing reporting flow surfaces on exam and review screens with a dialog for reasons/comments and snackbar feedback; submissions flow through `QuestionReportRepository` with queued fallback. Admin listing includes summaries, detail views, and badges when a report followed a recent error. Comprehensive test coverage via `QuestionReportUiTest`, `AdminReportsUiTest`, and `ExamViewModelReportingTest`.
+- **Implemented in:** `feature-exam` (question/review UI at ExamScreen.kt:402, ReviewScreen.kt:310) using `QuestionReportRepository` from `core-data` and admin views in `app-android`.
+- **Recent additions:**
+  - [x] In-app "Report issue" action on exam and review screens captures questionId, locale, and optional comment
+  - [x] Wired to `QuestionReportRepository` for submission with offline queueing
+  - [x] Admin dashboard shows list of reports with counts per question and recent comments
+  - [x] Comprehensive UI/unit test coverage (`QuestionReportUiTest`, `AdminReportsUiTest`, `ExamViewModelReportingTest`)
 - **Next tasks:**
-  - [x] Extend the admin/debug dashboard with a list of reported questions (count, latest reports, comments) to support content triage.
-  - [x] Add a “Report issue” action on question and review screens that captures question ID, locale, and an optional free-text comment.
-  - [x] Wire the UI action to `QuestionReportRepository` so reports are sent (or queued) with enough context for moderation.
+  - None - flow is complete and tested.
   
 ### ERROR-1 – Crash/analytics reporting
 - **Status:** ✅
-- **Summary:** Crashlytics and Analytics hooks are wired via `app-android` build config and guarded by debug flags, with a debug-only Crashlytics test crash entry in Settings to validate symbol uploads.
-- **Implemented in:** `app-android` build config, `core-data` analytics helpers.
+- **Summary:** Crashlytics and Analytics hooks are wired via `app-android` build config and guarded by debug flags, with a debug-only Crashlytics test crash entry in Settings to validate symbol uploads. Symbol upload runs automatically during release builds when `google-services.json` is present (via Crashlytics Gradle plugin).
+- **Implemented in:** `app-android` build config (Crashlytics Gradle plugin), `core-data` analytics helpers.
+- **Recent additions:**
+  - [x] Documented Crashlytics symbol upload in `docs/RELEASE_CHECKLIST.md` (automatic during bundleRelease)
+  - [x] Symbol upload verification steps added to release checklist
+  - [x] Manual network error testing checklist created (`docs/manual_error_network_tests.md`)
 - **Next tasks:**
-  - [ ] Periodically validate Crashlytics symbol upload in CI.
+  - [x] Document Crashlytics symbol upload process in release checklist (completed)
+  - [ ] Optionally add CI job to verify symbol upload for release builds (requires Firebase credentials in CI).
 
 ### ERROR-2 – User-facing error report dialog
 - **Status:** ✅
-- **Summary:** User-facing error reporting dialog (`AppErrorReportDialog`) captures context and feedback when errors occur. Centralized `AppErrorHandler` routes errors to logs/Crashlytics, tracks recent events for admin diagnostics, and emits UI events to trigger the dialog; submission respects analytics opt-out and PII constraints.
-- **Implemented in:** `app-android` (`AppErrorHandler`, `AppErrorReportDialog`, wired in `QWeldApp`/`AppNavGraph`) with shared error models in `core-common`; UI/instrumentation coverage via `ErrorDialogUiTest` and unit tests (`AppErrorHandlerTest`).
+- **Summary:** User-facing error reporting dialog (`AppErrorReportDialog`) captures context and feedback when errors occur. Centralized `AppErrorHandler` routes errors to logs/Crashlytics, tracks recent events for admin diagnostics, and emits UI events to trigger the dialog; submission respects analytics opt-out and PII constraints. Comprehensive test coverage validates analytics ON/OFF gating, and offline/retry scenarios.
+- **Implemented in:** `app-android` (`AppErrorHandler`, `AppErrorReportDialog`, wired in `QWeldApp`/`AppNavGraph`) with shared error models in `core-common`; UI/instrumentation coverage via `ErrorDialogUiTest` and unit tests (`AppErrorHandlerTest`). Offline queue/retry tests in `FirestoreQuestionReportRepositoryTest`.
+- **Recent additions:**
+  - [x] AppErrorHandlerTest validates analytics ON/OFF gating (lines 68-114: analyticsEnabled_reflectsBuildFlagAndUserOptIn, submitReport_respectsAnalyticsToggle)
+  - [x] Crashlytics submission respects user analytics opt-out (no reports sent when disabled)
+  - [x] FirestoreQuestionReportRepositoryTest validates offline queue/retry scenarios (lines 43-114)
+  - [x] Manual network error testing checklist created (`docs/manual_error_network_tests.md`)
+  - [x] Firestore security rules documentation created (`docs/firestore_security_notes.md`)
 - **Next tasks:**
   - [ ] Propagate handler usage through more feature screens so unexpected errors surface the dialog consistently.
-  - [ ] Add more comprehensive UI/instrumentation scenarios (opt-out gating, submission success/failure states).
+  - [ ] Add more comprehensive UI/instrumentation scenarios (submission success/failure states, network error dialogs).
   - [ ] Continue reviewing Crashlytics payloads to ensure user comments remain free of PII and align with privacy expectations.
 
 
@@ -154,12 +177,16 @@ Legend:
 
 ### TEST-2 – UI/instrumentation coverage
 - **Status:** ✅
-- **Summary:** Compose/UI coverage now includes exam submit/resume flows (timer state, answered choices) and a full practice happy path alongside the exam happy path, asserting result screens and score labels. DI integration test validates complete Hilt graph and singleton scoping.
-- **Implemented in:** `feature-exam` UI tests (partial), DI integration test (`HiltDiIntegrationTest`).
+- **Summary:** Compose/UI coverage now includes exam submit/resume flows (timer state, answered choices), full practice happy path, localization toggle test, and admin/report screen rendering tests. DI integration test validates complete Hilt graph and singleton scoping.
+- **Implemented in:** `feature-exam` UI tests, `app-android` UI tests (`LocaleSwitchUiTest`, `AdminReportsUiTest`, `ErrorDialogUiTest`), DI integration test (`HiltDiIntegrationTest`).
+- **Recent additions:**
+  - [x] LocaleSwitchUiTest validates EN/RU locale switching and label updates (app-android/src/androidTest/java/com/qweld/app/i18n/LocaleSwitchUiTest.kt)
+  - [x] AdminReportsUiTest covers admin report list and detail screen rendering (app-android/src/androidTest/java/com/qweld/app/admin/AdminReportsUiTest.kt)
+  - [x] ErrorDialogUiTest validates error report dialog submission flow (app-android/src/androidTest/java/com/qweld/app/error/ErrorDialogUiTest.kt)
 - **Next tasks:**
   - [x] Add end-to-end practice runs with answer submission and review.
   - [x] Add DI integration test to verify Hilt bindings work end-to-end.
-  - [ ] Cover localization toggles and admin/report screens.
+  - [x] Cover localization toggles and admin/report screens.
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
 - **Status:** ✅

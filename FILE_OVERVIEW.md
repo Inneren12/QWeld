@@ -61,8 +61,12 @@ Importance legend:
   - **Edit guidelines:** Keep scenarios short with fake repositories to avoid network dependence.
 - `app-android/src/androidTest/java/com/qweld/app/error/ErrorDialogUiTest.kt`
   - **Importance:** 🧪 Test
-  - **Role:** Exercises the user-facing “Report app error” dialog to assert visibility, comment input, and submission wiring via a fake crash reporter.
+  - **Role:** Exercises the user-facing "Report app error" dialog to assert visibility, comment input, and submission wiring via a fake crash reporter.
   - **Edit guidelines:** Keep the composable host minimal and deterministic to avoid emulator flakiness.
+- `app-android/src/androidTest/java/com/qweld/app/i18n/LocaleSwitchUiTest.kt`
+  - **Importance:** 🧪 Test
+  - **Role:** UI test for locale switching functionality. Verifies that users can switch between EN and RU locales and that UI labels update accordingly.
+  - **Edit guidelines:** Keep test simple and deterministic; extend when integrating with real LocaleController/UserPrefs.
 - `app-android/src/test/java/com/qweld/app/error/AppErrorHandlerTest.kt`
   - **Importance:** 🧪 Test
   - **Role:** Unit coverage for the centralized AppErrorHandler logging, analytics gating, and UI event emission contracts.
@@ -399,3 +403,18 @@ e threshold (via `localeCoverage.ru.min`).
   - **Importance:** ⚪ Support
   - **Role:** Misc utilities for development/validation.
   - **Edit guidelines:** Safe to evolve as workflows grow.
+
+## docs/
+
+- `docs/firestore_security_notes.md`
+  - **Importance:** ⚪ Support
+  - **Role:** Documents recommended Firestore security rules for `/question_reports` collection, including PII protection, access patterns, and deployment checklist.
+  - **Edit guidelines:** Update when Firestore rules or access patterns change; keep PII protection guidance current.
+- `docs/manual_error_network_tests.md`
+  - **Importance:** ⚪ Support
+  - **Role:** Manual testing checklist for error handling, network error scenarios, and offline behavior (debug crash, error dialog, question reports, offline queue/retry).
+  - **Edit guidelines:** Extend with new error scenarios as they're discovered; keep test steps clear and actionable.
+- `docs/RELEASE_CHECKLIST.md`
+  - **Importance:** 🟡 Important
+  - **Role:** Release runbook covering build artifacts, content pipeline, QA sanity checks, and Play Console submission.
+  - **Edit guidelines:** Update when release process changes; keep Crashlytics symbol upload documentation current.
