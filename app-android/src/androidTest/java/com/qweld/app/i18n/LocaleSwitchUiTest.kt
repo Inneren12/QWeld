@@ -7,7 +7,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.core.os.LocaleListCompat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.qweld.app.MainActivity
 import com.qweld.app.R
@@ -78,7 +77,11 @@ class LocaleSwitchUiTest {
     // Verify we're on Settings screen by checking the locale section is visible
     composeTestRule.onNodeWithTag("settings.locale.row").assertIsDisplayed()
 
-    // Initially should show English label
+    // Force deterministic baseline: switch to EN first (regardless of device locale)
+    composeTestRule.onNodeWithTag("settings.locale.option.en").performClick()
+    composeTestRule.waitForIdle()
+
+    // Verify EN label is displayed (resource-based)
     composeTestRule.onNodeWithText(enLanguageLabel).assertIsDisplayed()
 
     // Switch to Russian using testTag (not text selector)
