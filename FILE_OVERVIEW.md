@@ -65,8 +65,8 @@ Importance legend:
   - **Edit guidelines:** Keep the composable host minimal and deterministic to avoid emulator flakiness.
 - `app-android/src/androidTest/java/com/qweld/app/i18n/LocaleSwitchUiTest.kt`
   - **Importance:** 🧪 Test
-  - **Role:** UI test for locale switching functionality. Verifies that users can switch between EN and RU locales and that UI labels update accordingly.
-  - **Edit guidelines:** Keep test simple and deterministic; extend when integrating with real LocaleController/UserPrefs.
+  - **Role:** Real E2E UI test for locale switching. Uses testTag-based navigation (topbar.overflow, topbar.menu.settings, settings.locale.option.*) to navigate to Settings and switch locales. Validates UI labels update with resource-based assertions (no hardcoded locale strings).
+  - **Edit guidelines:** Keep test deterministic and testTag-based; avoid text-dependent navigation.
 - `app-android/src/test/java/com/qweld/app/error/AppErrorHandlerTest.kt`
   - **Importance:** 🧪 Test
   - **Role:** Unit coverage for the centralized AppErrorHandler logging, analytics gating, and UI event emission contracts.

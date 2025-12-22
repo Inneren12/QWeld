@@ -1,6 +1,7 @@
 package com.qweld.app.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -43,6 +44,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -400,14 +402,20 @@ private fun SettingsLanguageSection(
     )
   Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
     Text(text = stringResource(id = R.string.language), style = MaterialTheme.typography.titleMedium)
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+    Column(
+      modifier = Modifier.testTag("settings.locale.row"),
+      verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
       options.forEach { (tag, labelRes) ->
         Row(
-          modifier = Modifier.fillMaxWidth(),
+          modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onTagSelected(tag) }
+            .testTag("settings.locale.option.$tag"),
           verticalAlignment = Alignment.CenterVertically,
           horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-          RadioButton(selected = selectedTag == tag, onClick = { onTagSelected(tag) })
+          RadioButton(selected = selectedTag == tag, onClick = null)
           Text(text = stringResource(id = labelRes), style = MaterialTheme.typography.bodyLarge)
         }
       }
