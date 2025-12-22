@@ -13,6 +13,60 @@ This document provides a checklist for manually testing error handling, network 
 
 ---
 
+## Source of Truth in Code
+
+This section lists the key files/classes implementing the features tested in this checklist. Use these references to understand implementation details or debug issues.
+
+### Error Handling
+
+- **Error Handler Interface:** `core-common/src/main/java/com/qweld/app/common/error/AppErrorHandler.kt`
+- **Error Handler Implementation:** `app-android/src/main/java/com/qweld/app/error/AppErrorHandler.kt`
+  - `AppErrorHandlerImpl`: Central error handler tracking history, forwarding to Crashlytics, emitting UI events
+  - `CrashlyticsCrashReporter`: Crashlytics integration with analytics gating
+- **Error Dialog UI:** `app-android/src/main/java/com/qweld/app/ui/AppErrorReportDialog.kt`
+  - User-facing dialog for submitting error reports with optional comments
+- **Error Models:** `core-common/src/main/java/com/qweld/app/common/error/AppErrorHandler.kt`
+  - `AppError`, `AppErrorEvent`, `UiErrorEvent`, `AppErrorReportResult`
+
+### Question Reporting
+
+- **Repository Interface:** `core-data/src/main/java/com/qweld/app/data/reports/QuestionReportRepository.kt`
+- **Firestore Implementation:** `core-data/src/main/java/com/qweld/app/data/reports/FirestoreQuestionReportRepository.kt`
+  - Handles online submission, offline queueing, and retry logic
+- **Offline Queue DAO:** `core-data/src/main/java/com/qweld/app/data/db/dao/QueuedQuestionReportDao.kt`
+  - Room DAO for queued reports persistence
+- **Queue Entity:** `core-data/src/main/java/com/qweld/app/data/db/entities/QueuedQuestionReportEntity.kt`
+- **Retry Use Case:** `core-data/src/main/java/com/qweld/app/data/reports/RetryQueuedQuestionReportsUseCase.kt`
+  - Retries queued reports on app start with configurable attempt/batch limits
+- **Payload Builder:** `core-data/src/main/java/com/qweld/app/data/reports/QuestionReportPayloadBuilder.kt`
+  - Builds sanitized Firestore payloads with metadata (PII-free)
+
+### Admin Dashboard
+
+- **Dashboard ViewModel:** `app-android/src/main/java/com/qweld/app/admin/AdminDashboardViewModel.kt`
+  - Loads attempt stats, DB health, queue status, recent errors
+- **Dashboard Screen:** `app-android/src/main/java/com/qweld/app/admin/AdminDashboardScreen.kt`
+  - UI displaying system health, queued reports count, recent error summaries
+- **Question Reports ViewModel:** `app-android/src/main/java/com/qweld/app/admin/QuestionReportsViewModel.kt`
+  - Lists question reports with summaries and detail views
+- **Navigation:** `app-android/src/main/java/com/qweld/app/navigation/AppNavGraph.kt`
+  - Admin dashboard route: `Settings → Tools → Admin Dashboard` (debug-only)
+
+### DI Wiring
+
+- **App Module:** `app-android/src/main/java/com/qweld/app/di/AppModule.kt`
+  - Binds `AppErrorHandler`, `QuestionReportRepository`, repositories, analytics
+
+### Tests
+
+- **Error Handler Unit Tests:** `app-android/src/test/java/com/qweld/app/error/AppErrorHandlerTest.kt`
+- **Error Dialog UI Tests:** `app-android/src/androidTest/java/com/qweld/app/error/ErrorDialogUiTest.kt`
+- **Question Report UI Tests:** `feature-exam/src/androidTest/java/com/qweld/app/feature/exam/ui/QuestionReportUiTest.kt`
+- **Admin Reports UI Tests:** `app-android/src/androidTest/java/com/qweld/app/admin/AdminReportsUiTest.kt`
+- **Offline/Retry Tests:** `core-data/src/test/java/com/qweld/app/data/reports/FirestoreQuestionReportRepositoryTest.kt`
+
+---
+
 ## 1. Debug Test Crash
 
 This test verifies that Crashlytics symbol upload is working correctly by triggering a test crash.

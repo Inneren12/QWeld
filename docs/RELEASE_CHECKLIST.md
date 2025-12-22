@@ -12,6 +12,7 @@ Use this runbook for every Google Play promotion from Internal testing to Produc
 - [ ] `./gradlew :app-android:bundleRelease`
   - Note: Crashlytics mapping file upload runs automatically during this task when `google-services.json` is present
   - Verify symbol upload succeeded by checking Firebase Console → Crashlytics → Mappings for the build version
+  - CI workflow (`.github/workflows/android.yml`) conditionally enables symbol upload when `GOOGLE_SERVICES_JSON_B64` secret is set
 - [ ] `./gradlew :core-model:publishAllPublicationsToMavenLocal` (if model/schema updates)
 - [ ] Verify release bundle is signed with the Play key (use `apksigner verify`).
 

@@ -31,50 +31,113 @@ service cloud.firestore {
     // Question reports collection
     match /question_reports/{reportId} {
 
+      // Helper function: validate report payload structure and constraints
+      function isValidReport() {
+        let data = request.resource.data;
+        let requiredKeys = ['questionId', 'locale', 'reasonCode', 'status', 'createdAt'];
+        let optionalKeys = [
+          'taskId', 'blockId', 'blueprintId', 'blueprintVersion',
+          'mode', 'reasonDetail', 'userComment',
+          'questionIndex', 'totalQuestions', 'selectedChoiceIds', 'correctChoiceIds', 'blueprintTaskQuota',
+          'contentVersion', 'contentIndexSha',
+          'appVersionName', 'appVersionCode', 'appVersion', 'buildType', 'env', 'platform',
+          'androidVersion', 'deviceModel',
+          'sessionId', 'attemptId', 'seed', 'attemptKind',
+          'errorContextId', 'errorContextMessage', 'recentError',
+          'review'
+        ];
+        let allowedKeys = requiredKeys.concat(optionalKeys);
+
+        return (
+          // Allowlist validation: only permitted keys
+          data.keys().hasOnly(allowedKeys)
+
+          // Required fields present
+          && data.keys().hasAll(requiredKeys)
+
+          // Type and constraint validation
+          && data.questionId is string && data.questionId.size() > 0 && data.questionId.size() <= 100
+          && data.locale is string && data.locale.size() > 0 && data.locale.size() <= 10
+          && data.reasonCode is string && data.reasonCode.size() > 0 && data.reasonCode.size() <= 50
+          && data.status is string && data.status == 'OPEN'
+          && data.createdAt is timestamp && data.createdAt <= request.time
+
+          // Optional userComment max length
+          && (!('userComment' in data) || (data.userComment is string && data.userComment.size() <= 500))
+
+          // Block PII fields
+          && !data.keys().hasAny(['email', 'userName', 'fullName', 'phone', 'userId'])
+        );
+      }
+
       // Allow authenticated users to create new reports (write-only)
       // Users cannot read their own or others' reports from the app
-      allow create: if request.auth != null
-                    && request.resource.data.keys().hasAll(['questionId', 'locale', 'reasonCode', 'status', 'platform', 'createdAt'])
-                    && request.resource.data.status == 'OPEN'
-                    && !request.resource.data.keys().hasAny(['email', 'userName', 'fullName', 'phone', 'userId']);
+      allow create: if request.auth != null && isValidReport();
 
       // Deny read/update/delete for regular users
       allow read, update, delete: if false;
     }
 
     // Admin/backend access (requires custom claim or service account)
-    // Uncomment and adjust if you have admin users with custom claims:
+    // Uncomment if you have admin users with custom claims:
     // match /question_reports/{reportId} {
-    //   allow read, update: if request.auth.token.admin == true;
-    //   allow delete: if false;  // Never allow deletes even for admins; soft-delete via status instead
+    //   allow read, update: if request.auth != null && request.auth.token.admin == true;
+    //   allow delete: if false;  // Never allow deletes; use soft-delete via status field instead
     // }
   }
 }
 ```
 
+**Note:** Admin SDK and service accounts bypass Firestore security rules by default. For backend services, no additional rule configuration is needed.
+
 ---
 
 ## Rule Breakdown
 
-### 1. Create (Submit Report)
+### 1. Create (Submit Report) with Allowlist Validation
 
 ```javascript
-allow create: if request.auth != null
-              && request.resource.data.keys().hasAll(['questionId', 'locale', 'reasonCode', 'status', 'platform', 'createdAt'])
-              && request.resource.data.status == 'OPEN'
-              && !request.resource.data.keys().hasAny(['email', 'userName', 'fullName', 'phone', 'userId']);
+function isValidReport() {
+  let data = request.resource.data;
+  let requiredKeys = ['questionId', 'locale', 'reasonCode', 'status', 'createdAt'];
+  let optionalKeys = [...]; // See full list in rules above
+  let allowedKeys = requiredKeys.concat(optionalKeys);
+
+  return (
+    // Allowlist validation: only permitted keys
+    data.keys().hasOnly(allowedKeys)
+    // Required fields present
+    && data.keys().hasAll(requiredKeys)
+    // Type and constraint validation
+    && data.questionId is string && data.questionId.size() > 0 && data.questionId.size() <= 100
+    && data.locale is string && data.locale.size() > 0 && data.locale.size() <= 10
+    && data.reasonCode is string && data.reasonCode.size() > 0 && data.reasonCode.size() <= 50
+    && data.status is string && data.status == 'OPEN'
+    && data.createdAt is timestamp && data.createdAt <= request.time
+    // Optional userComment max length
+    && (!('userComment' in data) || (data.userComment is string && data.userComment.size() <= 500))
+    // Block PII fields
+    && !data.keys().hasAny(['email', 'userName', 'fullName', 'phone', 'userId'])
+  );
+}
+
+allow create: if request.auth != null && isValidReport();
 ```
 
 **What it does:**
-- Allows any authenticated user to create a new report
-- Requires essential fields to be present (`questionId`, `locale`, `reasonCode`, `status`, `platform`, `createdAt`)
-- Enforces that new reports have `status == 'OPEN'` (prevents users from setting arbitrary statuses)
-- **Blocks PII fields** (`email`, `userName`, `fullName`, `phone`, `userId`) to ensure no personally identifiable information leaks into reports
+- **Allowlist validation:** Uses `hasOnly()` to ensure ONLY expected fields are present (no unexpected keys allowed)
+- **Required fields:** Validates presence of `questionId`, `locale`, `reasonCode`, `status`, `createdAt`
+- **Type validation:** Enforces that fields are correct types (string, timestamp, etc.)
+- **Length constraints:** Limits string lengths (`questionId` ≤ 100 chars, `locale` ≤ 10 chars, `reasonCode` ≤ 50 chars, `userComment` ≤ 500 chars)
+- **Status enforcement:** New reports must have `status == 'OPEN'` (prevents status manipulation)
+- **Timestamp validation:** `createdAt` must be a timestamp ≤ request.time (prevents future-dated reports)
+- **PII blocking:** Explicitly blocks `email`, `userName`, `fullName`, `phone`, `userId` fields
 
 **Why:**
-- Users need write access to submit reports
-- Users should NOT be able to read reports (prevents data leakage, spam, or abuse)
-- PII validation at the rule level adds an extra layer of protection beyond client-side sanitization
+- Allowlist (`hasOnly`) is **more secure** than `hasAll` (which is permissive and allows extra keys)
+- Type and length constraints prevent malicious payloads (e.g., extremely long strings that could DOS Firestore)
+- PII validation at the rule level adds defense-in-depth beyond client-side sanitization
+- Timestamp validation prevents clock manipulation attacks
 
 ### 2. Read/Update/Delete (Denied for Users)
 
@@ -89,24 +152,33 @@ allow read, update, delete: if false;
 - Reports are moderated by admins/backend services, not end users
 - Users submitting a report should not see other users' reports or modify their own after submission
 
-### 3. Admin/Backend Access (Optional)
+### 3. Admin/Backend Access
+
+**Option A: Admin SDK / Service Account (Recommended)**
+
+Firebase Admin SDK and service accounts bypass Firestore security rules automatically. No additional rule configuration needed.
+
+Use this approach for:
+- Backend services (Node.js, Python, etc.)
+- Cloud Functions with Admin SDK
+- Server-side moderation/triage workflows
+
+**Option B: Custom Admin Claims (For Web Admin Dashboards)**
+
+If you have a web admin dashboard with Firebase Auth users, uncomment the following rule in the `/question_reports/{reportId}` match block:
 
 ```javascript
-// Uncomment if you have admin users with custom claims:
-// allow read, update: if request.auth.token.admin == true;
-// allow delete: if false;
+// Add this INSIDE the existing match /question_reports/{reportId} block:
+allow read, update: if request.auth != null && request.auth.token.admin == true;
+allow delete: if false;  // Never allow deletes; use soft-delete via status field instead
 ```
 
-**What it does:**
-- Allows users with a custom `admin` claim to read and update reports
-- Still denies deletes (use soft-delete via `status` field instead)
+This allows users with a custom `admin` claim to read and update reports, but still denies deletes (use soft-delete via `status` field instead).
 
-**When to use:**
-- If you have a web admin dashboard with Firebase Auth users who have an `admin` custom claim
-- For server-side triage/moderation workflows
-
-**Alternative:**
-- Use Firebase Admin SDK or service accounts for backend access (no custom rules needed; service accounts bypass rules by default)
+To set the admin claim, use the Admin SDK:
+```javascript
+admin.auth().setCustomUserClaims(uid, { admin: true });
+```
 
 ---
 
@@ -116,12 +188,16 @@ Use this checklist to ensure your Firestore rules are secure and correct before 
 
 ### Pre-Deployment Review
 
-- [ ] **PII Validation:** Verify that the rules block PII fields (`email`, `userName`, `fullName`, `phone`, `userId`)
-- [ ] **Required Fields:** Confirm that required fields match the payload structure in `QuestionReportPayloadBuilder.kt`
-- [ ] **Status Enforcement:** Check that new reports are forced to `status == 'OPEN'` to prevent status manipulation
+- [ ] **Allowlist Validation:** Verify that the rules use `hasOnly()` to restrict payloads to expected fields only (not just `hasAll()`)
+- [ ] **Required Fields:** Confirm that required fields (`questionId`, `locale`, `reasonCode`, `status`, `createdAt`) match the payload structure in `QuestionReportPayloadBuilder.kt`
+- [ ] **Type Validation:** Check that field types are validated (strings are strings, timestamps are timestamps, etc.)
+- [ ] **Length Constraints:** Ensure string fields have reasonable length limits (`questionId` ≤ 100, `locale` ≤ 10, `reasonCode` ≤ 50, `userComment` ≤ 500)
+- [ ] **Status Enforcement:** Verify that new reports are forced to `status == 'OPEN'` to prevent status manipulation
+- [ ] **Timestamp Validation:** Confirm that `createdAt` is validated as a timestamp ≤ request.time
+- [ ] **PII Blocking:** Verify that the rules block PII fields (`email`, `userName`, `fullName`, `phone`, `userId`)
 - [ ] **Read Access:** Ensure regular users cannot read reports (only admins/backend should have read access)
 - [ ] **Write Access:** Verify that only authenticated users can submit reports (`request.auth != null`)
-- [ ] **Delete Access:** Confirm that deletes are denied (use soft-delete via `status` field instead)
+- [ ] **Delete Access:** Confirm that deletes are denied for all users (use soft-delete via `status` field instead)
 
 ### Deployment Steps
 
