@@ -177,16 +177,21 @@ Legend:
 
 ### TEST-2 – UI/instrumentation coverage
 - **Status:** ✅
-- **Summary:** Compose/UI coverage now includes exam submit/resume flows (timer state, answered choices), full practice happy path, localization toggle test, and admin/report screen rendering tests. DI integration test validates complete Hilt graph and singleton scoping.
-- **Implemented in:** `feature-exam` UI tests, `app-android` UI tests (`LocaleSwitchUiTest`, `AdminReportsUiTest`, `ErrorDialogUiTest`), DI integration test (`HiltDiIntegrationTest`).
+- **Summary:** Compose/UI coverage now includes exam submit/resume flows (timer state, answered choices), full practice happy path, localization toggle test with stable testTag-based navigation, and admin/report screen rendering tests. DI integration test validates complete Hilt graph and singleton scoping. LocaleSwitchUiTest now uses real E2E navigation via overflow menu with testTags (not locale-dependent text selectors) for deterministic, stable test execution.
+- **Implemented in:** `feature-exam` UI tests, `app-android` UI tests (`LocaleSwitchUiTest`, `AdminReportsUiTest`, `ErrorDialogUiTest`), DI integration test (`HiltDiIntegrationTest`), testTags in `TopBarMenus.kt` and `SettingsScreen.kt`.
 - **Recent additions:**
-  - [x] LocaleSwitchUiTest validates EN/RU locale switching and label updates (app-android/src/androidTest/java/com/qweld/app/i18n/LocaleSwitchUiTest.kt)
+  - [x] LocaleSwitchUiTest rewritten to use real E2E UI with testTag-based navigation (app-android/src/androidTest/java/com/qweld/app/i18n/LocaleSwitchUiTest.kt:1-75)
+  - [x] Added testTag "topbar.overflow" to overflow menu IconButton for stable navigation (app-android/src/main/java/com/qweld/app/ui/TopBarMenus.kt:78-83)
+  - [x] Added testTag "topbar.menu.settings" to Settings DropdownMenuItem for stable navigation (app-android/src/main/java/com/qweld/app/ui/TopBarMenus.kt:92-99)
+  - [x] Added testTag "settings.locale.row" to locale section in SettingsScreen for verification (app-android/src/main/java/com/qweld/app/ui/SettingsScreen.kt:401-421)
+  - [x] Added testTag "settings.locale.option.{tag}" to each locale option (en/ru/system) for deterministic selection (app-android/src/main/java/com/qweld/app/ui/SettingsScreen.kt:408-418)
   - [x] AdminReportsUiTest covers admin report list and detail screen rendering (app-android/src/androidTest/java/com/qweld/app/admin/AdminReportsUiTest.kt)
   - [x] ErrorDialogUiTest validates error report dialog submission flow (app-android/src/androidTest/java/com/qweld/app/error/ErrorDialogUiTest.kt)
 - **Next tasks:**
   - [x] Add end-to-end practice runs with answer submission and review.
   - [x] Add DI integration test to verify Hilt bindings work end-to-end.
   - [x] Cover localization toggles and admin/report screens.
+  - [x] Make locale switching test stable via testTags (not text selectors).
 
 ### TEST-3 – Regression testing for admin/adaptive/reporting flows
 - **Status:** ✅

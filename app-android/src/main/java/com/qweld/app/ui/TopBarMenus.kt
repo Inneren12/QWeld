@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.qweld.app.R
@@ -75,7 +76,10 @@ private fun OverflowMenu(
 ) {
   var expanded by remember { mutableStateOf(false) }
   var showLanguageDialog by remember { mutableStateOf(false) }
-  IconButton(onClick = { expanded = true }) {
+  IconButton(
+    onClick = { expanded = true },
+    modifier = Modifier.testTag("topbar.overflow"),
+  ) {
     Icon(imageVector = Icons.Outlined.MoreVert, contentDescription = null)
   }
   DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
@@ -92,6 +96,7 @@ private fun OverflowMenu(
         expanded = false
         onNavigateToSettings()
       },
+      modifier = Modifier.testTag("topbar.menu.settings"),
     )
     DropdownMenuItem(
       text = { Text(text = stringResource(id = R.string.menu_about)) },

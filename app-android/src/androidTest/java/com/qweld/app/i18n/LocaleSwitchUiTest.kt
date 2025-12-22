@@ -1,11 +1,12 @@
 package com.qweld.app.i18n
 
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.qweld.app.MainActivity
-import com.qweld.app.R
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -17,12 +18,13 @@ import org.junit.runner.RunWith
  * Real end-to-end UI test for locale switching functionality.
  *
  * Verifies that:
- * - Users can navigate to Settings and switch between EN and RU locales
- * - UI labels update with real localized resources (R.string.language: "Language" → "Язык")
- * - Locale changes persist after activity recreation (handled by AppCompatDelegate)
+ * - Users can navigate to Settings via overflow menu using stable testTags (not text selectors)
+ * - Users can switch between EN and RU locales using testTag-based navigation
+ * - UI labels update with real localized resources after switching locales
+ * - Locale changes are reflected correctly in the Settings screen
  *
- * This test uses the REAL Settings screen with LocaleController integration,
- * not a test scaffold with local state.
+ * This test uses the REAL app UI (MainActivity with full navigation) and testTags for
+ * deterministic, locale-independent navigation.
  */
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
@@ -40,38 +42,34 @@ class LocaleSwitchUiTest {
 
   @Test
   fun settingsScreen_switchLocale_updatesLabelsWithRealResources() {
-    val context = composeTestRule.activity
-
     // Wait for app to load
     composeTestRule.waitForIdle()
 
-    // Navigate to Settings
-    // Look for the Settings menu button (adjust based on actual navigation)
-    val settingsLabel = context.getString(R.string.menu_settings)
-    composeTestRule.onNodeWithText(settingsLabel).performClick()
+    // Navigate to Settings via overflow menu using testTags (NOT text selectors)
+    // Step 1: Click overflow button to open dropdown
+    composeTestRule.onNodeWithTag("topbar.overflow").performClick()
     composeTestRule.waitForIdle()
 
-    // Verify initial locale label (English: "Language")
-    val enLanguageLabel = context.getString(R.string.language)
-    composeTestRule.onNodeWithText(enLanguageLabel).assertExists()
-
-    // Switch to Russian
-    val ruOption = context.getString(R.string.language_ru) // "Russian" in current locale
-    composeTestRule.onNodeWithText(ruOption).performClick()
+    // Step 2: Click Settings menu item
+    composeTestRule.onNodeWithTag("topbar.menu.settings").performClick()
     composeTestRule.waitForIdle()
 
-    // After locale change, activity may recreate. Wait and re-fetch strings.
+    // Verify we're on Settings screen by checking the locale section is visible
+    composeTestRule.onNodeWithTag("settings.locale.row").assertIsDisplayed()
+
+    // Switch to Russian using testTag (not text selector)
+    composeTestRule.onNodeWithTag("settings.locale.option.ru").performClick()
+    composeTestRule.waitForIdle()
+
+    // After locale change, verify the known RU string is displayed
     // The "Language" label should now show as "Язык" (RU)
-    // We can't fetch strings from context anymore because locale changed,
-    // so we assert the known RU string directly
-    composeTestRule.onNodeWithText("Язык").assertExists()
+    composeTestRule.onNodeWithText("Язык").assertIsDisplayed()
 
-    // Switch back to English
-    // In RU locale, the English option shows as "Английский"
-    composeTestRule.onNodeWithText("Английский").performClick()
+    // Switch back to English using testTag
+    composeTestRule.onNodeWithTag("settings.locale.option.en").performClick()
     composeTestRule.waitForIdle()
 
     // Verify we're back to EN: "Language" label should appear
-    composeTestRule.onNodeWithText("Language").assertExists()
+    composeTestRule.onNodeWithText("Language").assertIsDisplayed()
   }
 }
