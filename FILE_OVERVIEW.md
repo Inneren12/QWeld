@@ -49,7 +49,7 @@ Importance legend:
   - **Edit guidelines:** Reuse existing qualifiers before adding new ones.
 - `app-android/src/main/java/com/qweld/app/admin/QuestionReportsViewModel.kt` and related admin screens
   - **Importance:** 🟡 Important
-  - **Role:** Internal tooling for reviewing submitted question reports.
+  - **Role:** Internal tooling for reviewing submitted question reports (Hilt-injected list/detail ViewModels).
   - **Edit guidelines:** UI changes are safe; be careful with Firestore/reporting toggles.
 - `app-android/src/main/java/com/qweld/app/admin/AdminDashboardViewModel.kt` and `AdminDashboardScreen.kt`
   - **Importance:** 🟡 Important

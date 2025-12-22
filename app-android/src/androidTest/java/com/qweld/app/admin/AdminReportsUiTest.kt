@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
 import com.google.firebase.Timestamp
@@ -64,7 +65,13 @@ private fun AdminReportsTestScaffold(
       onBack = {},
     )
   } else {
-    val detailViewModel = remember(selectedId) { QuestionReportDetailViewModel(repository, selectedId!!) }
+    val detailViewModel =
+      remember(selectedId) {
+        QuestionReportDetailViewModel(
+          repository = repository,
+          savedStateHandle = SavedStateHandle(mapOf("reportId" to selectedId)),
+        )
+      }
     QuestionReportDetailScreen(viewModel = detailViewModel, onBack = { selectedId = null })
   }
 }

@@ -1,25 +1,28 @@
 package com.qweld.app.admin
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.Timestamp
 import com.qweld.app.data.reports.QuestionReportRepository
 import com.qweld.app.data.reports.QuestionReportWithId
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
 /**
  * ViewModel for the admin question reports list screen.
  * Handles loading, filtering, and displaying question reports.
  */
-class QuestionReportsViewModel(
-  private val repository: QuestionReportRepository
+@HiltViewModel
+class QuestionReportsViewModel @Inject constructor(
+  private val repository: QuestionReportRepository,
 ) : ViewModel() {
 
   private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
@@ -71,10 +74,14 @@ class QuestionReportsViewModel(
  * ViewModel for the admin question report detail screen.
  * Handles loading a single report and updating its status.
  */
-class QuestionReportDetailViewModel(
+@HiltViewModel
+class QuestionReportDetailViewModel @Inject constructor(
   private val repository: QuestionReportRepository,
-  private val reportId: String
+  savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+
+  private val reportId: String =
+    checkNotNull(savedStateHandle["reportId"]) { "reportId is required" }
 
   private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
   val uiState: StateFlow<UiState> = _uiState.asStateFlow()

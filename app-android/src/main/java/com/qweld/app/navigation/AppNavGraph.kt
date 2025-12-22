@@ -400,9 +400,7 @@ fun AppNavGraph(
         )
       }
       composable(Routes.ADMIN_REPORTS) {
-        val viewModel = remember {
-          com.qweld.app.admin.QuestionReportsViewModel(questionReportRepository)
-        }
+        val viewModel: com.qweld.app.admin.QuestionReportsViewModel = hiltViewModel()
         com.qweld.app.admin.QuestionReportsScreen(
           viewModel = viewModel,
           onNavigateToDetail = { reportId ->
@@ -423,13 +421,8 @@ fun AppNavGraph(
         route = Routes.ADMIN_REPORT_DETAIL,
         arguments = listOf(navArgument("reportId") { type = NavType.StringType })
       ) { backStackEntry ->
-        val reportId = backStackEntry.arguments?.getString("reportId") ?: return@composable
-        val viewModel = remember(reportId) {
-          com.qweld.app.admin.QuestionReportDetailViewModel(
-            repository = questionReportRepository,
-            reportId = reportId
-          )
-        }
+        val viewModel: com.qweld.app.admin.QuestionReportDetailViewModel =
+          hiltViewModel(backStackEntry)
         com.qweld.app.admin.QuestionReportDetailScreen(
           viewModel = viewModel,
           onBack = { navController.popBackStack() }

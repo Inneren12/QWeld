@@ -21,7 +21,7 @@ Module names follow the `app-android`, `feature-*`, and `core-*` pattern. Featur
   - `AppErrorHandler` – centralized non-fatal error handler that logs errors, forwards to Crashlytics (when analytics enabled), tracks recent error history, and emits UI events for error dialogs.
   - `AppModule` – Hilt module binding app-wide dependencies (analytics, repositories, DB, error handler, question/explanation repos, auth services).
   - `AdminDashboardViewModel` / `AdminDashboardScreen` – debug-only admin dashboard (Settings → Tools) showing attempt stats, DB health, queued reports, and recent errors; ViewModel is Hilt-injected.
-  - `QuestionReportsViewModel` / `QuestionReportsScreen` – debug-only question report listing and detail views for content triage.
+  - `QuestionReportsViewModel` / `QuestionReportDetailViewModel` – debug-only question report list/detail ViewModels (Hilt-injected) with screens for content triage.
   - `AppErrorReportDialog` – user-facing dialog for reporting app errors with optional comments.
 - **Depends on:** `feature-exam`, `feature-auth`, `core-domain`, `core-data`, `core-model`, `core-common`.
 
