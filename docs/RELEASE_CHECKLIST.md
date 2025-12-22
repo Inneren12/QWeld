@@ -10,6 +10,8 @@ Use this runbook for every Google Play promotion from Internal testing to Produc
 
 ## 2. Build artifacts
 - [ ] `./gradlew :app-android:bundleRelease`
+  - Note: Crashlytics mapping file upload runs automatically during this task when `google-services.json` is present
+  - Verify symbol upload succeeded by checking Firebase Console → Crashlytics → Mappings for the build version
 - [ ] `./gradlew :core-model:publishAllPublicationsToMavenLocal` (if model/schema updates)
 - [ ] Verify release bundle is signed with the Play key (use `apksigner verify`).
 
