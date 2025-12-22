@@ -43,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -398,12 +399,17 @@ private fun SettingsLanguageSection(
       "en" to R.string.language_en,
       "ru" to R.string.language_ru,
     )
-  Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+  Column(
+    verticalArrangement = Arrangement.spacedBy(12.dp),
+    modifier = Modifier.testTag("settings.locale.row"),
+  ) {
     Text(text = stringResource(id = R.string.language), style = MaterialTheme.typography.titleMedium)
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
       options.forEach { (tag, labelRes) ->
         Row(
-          modifier = Modifier.fillMaxWidth(),
+          modifier = Modifier
+            .fillMaxWidth()
+            .testTag("settings.locale.option.$tag"),
           verticalAlignment = Alignment.CenterVertically,
           horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {

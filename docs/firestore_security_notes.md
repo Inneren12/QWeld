@@ -34,10 +34,9 @@ service cloud.firestore {
       // Helper function: validate report payload structure and constraints
       function isValidReport() {
         let data = request.resource.data;
-        let requiredKeys = ['questionId', 'locale', 'reasonCode', 'status', 'createdAt'];
+        let requiredKeys = ['questionId', 'taskId', 'blockId', 'blueprintId', 'locale', 'mode', 'reasonCode', 'status', 'createdAt'];
         let optionalKeys = [
-          'taskId', 'blockId', 'blueprintId', 'blueprintVersion',
-          'mode', 'reasonDetail', 'userComment',
+          'blueprintVersion', 'reasonDetail', 'userComment',
           'questionIndex', 'totalQuestions', 'selectedChoiceIds', 'correctChoiceIds', 'blueprintTaskQuota',
           'contentVersion', 'contentIndexSha',
           'appVersionName', 'appVersionCode', 'appVersion', 'buildType', 'env', 'platform',
@@ -57,7 +56,11 @@ service cloud.firestore {
 
           // Type and constraint validation
           && data.questionId is string && data.questionId.size() > 0 && data.questionId.size() <= 100
+          && data.taskId is string && data.taskId.size() > 0 && data.taskId.size() <= 50
+          && data.blockId is string && data.blockId.size() > 0 && data.blockId.size() <= 50
+          && data.blueprintId is string && data.blueprintId.size() > 0 && data.blueprintId.size() <= 100
           && data.locale is string && data.locale.size() > 0 && data.locale.size() <= 10
+          && data.mode is string && data.mode.size() > 0 && data.mode.size() <= 20
           && data.reasonCode is string && data.reasonCode.size() > 0 && data.reasonCode.size() <= 50
           && data.status is string && data.status == 'OPEN'
           && data.createdAt is timestamp && data.createdAt <= request.time
@@ -96,39 +99,15 @@ service cloud.firestore {
 
 ### 1. Create (Submit Report) with Allowlist Validation
 
-```javascript
-function isValidReport() {
-  let data = request.resource.data;
-  let requiredKeys = ['questionId', 'locale', 'reasonCode', 'status', 'createdAt'];
-  let optionalKeys = [...]; // See full list in rules above
-  let allowedKeys = requiredKeys.concat(optionalKeys);
+Authenticated users can submit new reports via `allow create: if request.auth != null && isValidReport();`
 
-  return (
-    // Allowlist validation: only permitted keys
-    data.keys().hasOnly(allowedKeys)
-    // Required fields present
-    && data.keys().hasAll(requiredKeys)
-    // Type and constraint validation
-    && data.questionId is string && data.questionId.size() > 0 && data.questionId.size() <= 100
-    && data.locale is string && data.locale.size() > 0 && data.locale.size() <= 10
-    && data.reasonCode is string && data.reasonCode.size() > 0 && data.reasonCode.size() <= 50
-    && data.status is string && data.status == 'OPEN'
-    && data.createdAt is timestamp && data.createdAt <= request.time
-    // Optional userComment max length
-    && (!('userComment' in data) || (data.userComment is string && data.userComment.size() <= 500))
-    // Block PII fields
-    && !data.keys().hasAny(['email', 'userName', 'fullName', 'phone', 'userId'])
-  );
-}
-
-allow create: if request.auth != null && isValidReport();
-```
+The `isValidReport()` helper function validates the report payload (see full implementation in the Recommended Firestore Rules section above).
 
 **What it does:**
 - **Allowlist validation:** Uses `hasOnly()` to ensure ONLY expected fields are present (no unexpected keys allowed)
-- **Required fields:** Validates presence of `questionId`, `locale`, `reasonCode`, `status`, `createdAt`
+- **Required fields:** Validates presence of `questionId`, `taskId`, `blockId`, `blueprintId`, `locale`, `mode`, `reasonCode`, `status`, `createdAt`
 - **Type validation:** Enforces that fields are correct types (string, timestamp, etc.)
-- **Length constraints:** Limits string lengths (`questionId` ≤ 100 chars, `locale` ≤ 10 chars, `reasonCode` ≤ 50 chars, `userComment` ≤ 500 chars)
+- **Length constraints:** Limits string lengths (`questionId` ≤ 100 chars, `taskId` ≤ 50 chars, `blockId` ≤ 50 chars, `blueprintId` ≤ 100 chars, `locale` ≤ 10 chars, `mode` ≤ 20 chars, `reasonCode` ≤ 50 chars, `userComment` ≤ 500 chars)
 - **Status enforcement:** New reports must have `status == 'OPEN'` (prevents status manipulation)
 - **Timestamp validation:** `createdAt` must be a timestamp ≤ request.time (prevents future-dated reports)
 - **PII blocking:** Explicitly blocks `email`, `userName`, `fullName`, `phone`, `userId` fields
@@ -189,7 +168,7 @@ Use this checklist to ensure your Firestore rules are secure and correct before 
 ### Pre-Deployment Review
 
 - [ ] **Allowlist Validation:** Verify that the rules use `hasOnly()` to restrict payloads to expected fields only (not just `hasAll()`)
-- [ ] **Required Fields:** Confirm that required fields (`questionId`, `locale`, `reasonCode`, `status`, `createdAt`) match the payload structure in `QuestionReportPayloadBuilder.kt`
+- [ ] **Required Fields:** Confirm that required fields (`questionId`, `taskId`, `blockId`, `blueprintId`, `locale`, `mode`, `reasonCode`, `status`, `createdAt`) match the payload structure in `QuestionReportPayloadBuilder.kt`
 - [ ] **Type Validation:** Check that field types are validated (strings are strings, timestamps are timestamps, etc.)
 - [ ] **Length Constraints:** Ensure string fields have reasonable length limits (`questionId` ≤ 100, `locale` ≤ 10, `reasonCode` ≤ 50, `userComment` ≤ 500)
 - [ ] **Status Enforcement:** Verify that new reports are forced to `status == 'OPEN'` to prevent status manipulation
@@ -295,7 +274,7 @@ The following metadata is allowed (non-PII, coarse-grained):
 ### "Permission denied" when submitting a report
 
 - **Cause:** User is not authenticated, or required fields are missing
-- **Fix:** Ensure `request.auth != null` and all required fields (`questionId`, `locale`, `reasonCode`, `status`, `platform`, `createdAt`) are present in the payload
+- **Fix:** Ensure `request.auth != null` and all required fields (`questionId`, `taskId`, `blockId`, `blueprintId`, `locale`, `mode`, `reasonCode`, `status`, `createdAt`) are present in the payload
 
 ### "Permission denied" when reading reports from admin dashboard
 

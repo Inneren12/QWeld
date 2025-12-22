@@ -120,6 +120,10 @@ jobs:
             ./gradlew :app-android:bundleRelease -Pci=true -PwithGoogleServices=false --no-daemon --stacktrace
           fi
 
+      - name: Cleanup google-services.json
+        if: always()
+        run: rm -f app-android/google-services.json
+
       - name: Upload coverage XML
         if: always()
         uses: actions/upload-artifact@v4
