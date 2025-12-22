@@ -110,8 +110,15 @@ jobs:
       - name: Generate CycloneDX SBOM
         run: ./gradlew :app-android:cyclonedxBom --no-daemon --stacktrace
 
-      - name: Build AAB
-        run: ./gradlew :app-android:bundleRelease -Pci=true -PwithGoogleServices=false --no-daemon --stacktrace
+      - name: Build AAB (with Crashlytics symbol upload if google-services.json present)
+        run: |
+          if [ -f app-android/google-services.json ]; then
+            echo "::notice::Building release AAB with Google Services (Crashlytics mapping upload enabled)"
+            ./gradlew :app-android:bundleRelease -Pci=true -PwithGoogleServices=true --no-daemon --stacktrace
+          else
+            echo "::warning::Building release AAB without Google Services (no Crashlytics mapping upload)"
+            ./gradlew :app-android:bundleRelease -Pci=true -PwithGoogleServices=false --no-daemon --stacktrace
+          fi
 
       - name: Upload coverage XML
         if: always()
