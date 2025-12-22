@@ -212,7 +212,7 @@ Legend:
 
 ### ARCH-2 – Dependency injection framework
 - **Status:** ✅
-- **Summary:** Hilt supplies app/data/exam dependencies via `AppModule` and `ExamModule`, injects Application/Activity (`@HiltAndroidApp`, `@AndroidEntryPoint`), and drives ViewModels via `@HiltViewModel` (including admin/result/review flows). Test overrides available via `@TestInstallIn` modules (`TestExamModule`). Comprehensive regression tests verify DI configuration and wiring.
+- **Summary:** Hilt supplies app/data/exam dependencies via `AppModule` and `ExamModule`, injects Application/Activity (`@HiltAndroidApp`, `@AndroidEntryPoint`), and drives ViewModels via `@HiltViewModel` (including admin dashboards, admin report list/detail, result/review flows). Test overrides available via `@TestInstallIn` modules (`TestExamModule`). Comprehensive regression tests verify DI configuration and wiring.
 - **Implemented in:** Hilt modules in `app-android` (`AppModule`) and `feature-exam` (`ExamModule`); `QWeldApp`, `MainActivity`, `ExamViewModel` use Hilt injection; `TestExamModule` provides test overrides.
 - **Test coverage:**
   - [x] DI configuration tests verify AppModule and ExamModule bindings (`AppModuleConfigTest`, `ExamModuleConfigTest`)
@@ -237,7 +237,7 @@ Legend:
 
 ### DOCS-1 – Update documentation for new features
 - **Status:** ✅
-- **Summary:** High-level and internal docs updated to reflect admin/debug tools, adaptive exam mode, question reporting, error reporting, DI framework, controller refactoring, and DI/testing contribution expectations.
+- **Summary:** High-level and internal docs updated to reflect admin/debug tools, adaptive exam mode, question reporting, error reporting, DI framework (including admin report ViewModels), controller refactoring, and DI/testing contribution expectations.
 - **Implemented in:** `PROJECT_OVERVIEW.md` (architecture, key components, user flows, glossary), `MODULES.md` (layer dependencies, module responsibilities, DI wiring), `CONTENT_GUIDE.md` (RU coverage enforcement), `stage.md` (updated statuses and Next tasks), `FILE_OVERVIEW.md` (new files and importance ratings).
 - **Next tasks:**
   - [ ] Add feature-specific docs or ADRs for adaptive policy tuning if architectural decisions need deeper documentation.

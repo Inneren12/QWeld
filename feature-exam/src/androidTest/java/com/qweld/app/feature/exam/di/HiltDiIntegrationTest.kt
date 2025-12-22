@@ -113,6 +113,7 @@ class HiltDiIntegrationTest {
     assertNotNull(questionReportRepository, "QuestionReportRepository should be injected")
     assertNotNull(userPrefs, "UserPrefs should be injected")
     assertNotNull(attemptExporter, "AttemptExporter should be injected")
+    assertNotNull(resultHolder, "ExamResultHolder should be injected")
   }
 
   @Test
