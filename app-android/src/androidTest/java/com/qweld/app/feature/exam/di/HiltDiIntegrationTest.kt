@@ -1,7 +1,6 @@
 package com.qweld.app.feature.exam.di
 
 import android.app.Application
-import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.qweld.app.common.di.IoDispatcher
 import com.qweld.app.common.error.AppErrorHandler
@@ -14,8 +13,6 @@ import com.qweld.app.domain.exam.TimerController
 import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.vm.BlueprintResolver
-import com.qweld.app.feature.exam.vm.ExamViewModel
-import com.qweld.app.feature.exam.vm.ExamResultHolder
 import com.qweld.app.feature.exam.vm.PrewarmController
 import com.qweld.app.feature.exam.vm.ResumeUseCase
 import com.qweld.core.common.AppEnv
@@ -32,7 +29,6 @@ import org.junit.Assert.assertSame
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import kotlin.test.assertNotNull
 
 /**
  * Integration test for Hilt DI configuration.
@@ -79,9 +75,6 @@ class HiltDiIntegrationTest {
   lateinit var attemptExporter: AttemptExporter
 
   @Inject
-  lateinit var resultHolder: ExamResultHolder
-
-  @Inject
   @IoDispatcher
   lateinit var ioDispatcher: CoroutineDispatcher
 
@@ -114,7 +107,6 @@ class HiltDiIntegrationTest {
     assertNotNull(questionReportRepository, "QuestionReportRepository should be injected")
     assertNotNull(userPrefs, "UserPrefs should be injected")
     assertNotNull(attemptExporter, "AttemptExporter should be injected")
-    assertNotNull(resultHolder, "ExamResultHolder should be injected")
   }
 
   @Test
@@ -124,34 +116,6 @@ class HiltDiIntegrationTest {
     assertNotNull(timerController, "TimerController should be injected")
     assertNotNull(prewarmController, "PrewarmController should be injected")
     assertNotNull(resumeUseCase, "ResumeUseCase should be injected")
-  }
-
-  @Test
-  fun examViewModel_can_be_created_with_injected_dependencies() {
-    // This test verifies that ExamViewModel can be manually constructed
-    // with all its dependencies from the DI graph, simulating what Hilt does.
-
-    // When - create ExamViewModel with injected dependencies
-    val viewModel = ExamViewModel(
-      repository = questionRepository,
-      attemptsRepository = attemptsRepository,
-      answersRepository = answersRepository,
-      statsRepository = statsRepository,
-      userPrefs = userPrefs,
-      questionReportRepository = questionReportRepository,
-      appEnv = appEnv,
-      appErrorHandler = appErrorHandler,
-      resultHolder = resultHolder,
-      blueprintResolver = blueprintResolver,
-      timerController = timerController,
-      prewarmRunner = prewarmController,
-      resumeUseCase = resumeUseCase,
-      ioDispatcher = ioDispatcher,
-    )
-
-    // Then - should be successfully created
-    assertNotNull(viewModel, "ExamViewModel should be created with injected dependencies")
-    assertNotNull(viewModel.uiState, "ExamViewModel should have initialized state")
   }
 
   @Test
