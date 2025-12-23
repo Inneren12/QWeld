@@ -55,6 +55,16 @@ Run the following before opening a PR (adjust per change scope):
 - `./gradlew connectedDebugAndroidTest`
 - `./gradlew :app-android:verifyAssets`
 
+### If connectedAndroidTest hangs
+
+`connectedAndroidTest` should fail fast when no online device is available. If it still appears stuck (or on Windows with
+MINGW64), run the ADB preflight and reset ADB:
+
+1. Run `./gradlew adbDevicePreflight` to confirm at least one **device** is online.
+2. If `adb devices` shows `offline` or `unauthorized`, reset the server:
+   - `adb kill-server && adb start-server`
+3. Restart the emulator or reconnect the device, then re-run `./gradlew connectedAndroidTest --info --console=plain`.
+
 If you touch content or blueprint assets, also run:
 
 - `bash scripts/validate-questions.sh`

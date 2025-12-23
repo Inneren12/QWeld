@@ -92,6 +92,8 @@ android {
 
   kotlinOptions { jvmTarget = "17" }
 
+  adbOptions { timeOutInMs = 60_000 }
+
   testOptions { unitTests.isIncludeAndroidResources = true }
 }
 
