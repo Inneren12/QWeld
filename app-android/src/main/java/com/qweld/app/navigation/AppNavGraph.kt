@@ -77,6 +77,7 @@ import com.qweld.core.common.AppEnv
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import androidx.compose.ui.platform.LocalConfiguration
 
 @Composable
 fun AppNavGraph(
@@ -97,6 +98,7 @@ fun AppNavGraph(
   appLocaleTag: String,
   modifier: Modifier = Modifier,
 ) {
+    val configuration = LocalConfiguration.current
   val navController = rememberNavController()
   val navBackStackEntry by navController.currentBackStackEntryAsState()
   val currentRoute = navBackStackEntry?.destination?.route
