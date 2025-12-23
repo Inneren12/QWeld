@@ -151,10 +151,9 @@ subprojects {
     extensions.configure<KoverProjectExtension>("kover") {
       useJacoco()
       if (koverDisableInstrumentation.get()) {
-        currentProject {
-          instrumentation {
-            disableForAll.set(true)
-          }
+        // Kover 0.7.x: вместо instrumentation(...) используем excludeTests { tasks(...) }
+        excludeTests {
+          tasks("test", "testDebugUnitTest", "testReleaseUnitTest")
         }
       }
     }
@@ -176,10 +175,8 @@ subprojects {
 kover {
   useJacoco()
   if (koverDisableInstrumentation.get()) {
-    currentProject {
-      instrumentation {
-        disableForAll.set(true)
-      }
+    excludeTests {
+      tasks("test", "testDebugUnitTest", "testReleaseUnitTest")
     }
   }
 }

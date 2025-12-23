@@ -1,6 +1,8 @@
 package com.qweld.app.feature.exam.vm
 
 import androidx.annotation.VisibleForTesting
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import com.qweld.app.domain.exam.ExamAttempt
@@ -53,6 +55,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -216,8 +219,8 @@ class ExamViewModel @Inject constructor(
   private val _effects = MutableSharedFlow<ExamEffect>(extraBufferCapacity = 1)
   val effects: Flow<ExamEffect> = _effects.asSharedFlow()
 
-  private val _reportEvents = MutableSharedFlow<QuestionReportUiEvent>(extraBufferCapacity = 1)
-  val reportEvents: Flow<QuestionReportUiEvent> = _reportEvents.asSharedFlow()
+  private val _reportEvents = Channel<QuestionReportUiEvent>(capacity = Channel.BUFFERED)
+  val reportEvents: Flow<QuestionReportUiEvent> = _reportEvents.receiveAsFlow()
 
   private val _prewarmDisabled = MutableStateFlow(UserPrefsDataStore.DEFAULT_PREWARM_DISABLED)
   val prewarmDisabled = _prewarmDisabled.asStateFlow()
@@ -1083,6 +1086,8 @@ class ExamViewModel @Inject constructor(
     val report = buildQuestionReport(context, reason, userComment)
     if (report == null) {
       Timber.w("[question_report] cannot build report, missing context")
+      // Never silently no-op: UI/tests should always get a terminal event.
+      _reportEvents.trySend(QuestionReportUiEvent.Failed)
       return
     }
 
@@ -1096,7 +1101,7 @@ class ExamViewModel @Inject constructor(
               report.reasonCode,
               report.mode,
             )
-            _reportEvents.emit(QuestionReportUiEvent.Sent)
+            _reportEvents.trySend(QuestionReportUiEvent.Sent)
           }
           is com.qweld.app.data.reports.QuestionReportSubmitResult.Queued -> {
             Timber.w(
@@ -1105,7 +1110,7 @@ class ExamViewModel @Inject constructor(
               report.reasonCode,
               result.error?.message ?: "unknown",
             )
-            _reportEvents.emit(QuestionReportUiEvent.Queued)
+            _reportEvents.trySend(QuestionReportUiEvent.Queued)
           }
         }
       } catch (e: Exception) {
@@ -1121,7 +1126,7 @@ class ExamViewModel @Inject constructor(
               ),
           )
         )
-        _reportEvents.emit(QuestionReportUiEvent.Failed)
+        _reportEvents.trySend(QuestionReportUiEvent.Failed)
         // User continues exam even if report fails
       }
     }
@@ -1664,6 +1669,7 @@ class ExamViewModel @Inject constructor(
   }
 
   override fun onCleared() {
+    _reportEvents.close()
     stopAutosave()
     super.onCleared()
   }

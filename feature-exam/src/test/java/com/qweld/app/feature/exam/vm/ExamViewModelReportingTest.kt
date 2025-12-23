@@ -31,6 +31,7 @@ import com.qweld.app.feature.exam.vm.fakes.FakeAppEnv
 import java.util.UUID
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -51,7 +52,7 @@ class ExamViewModelReportingTest {
   @get:Rule val dispatcherRule = MainDispatcherRule()
 
   @Test
-  fun reportQueued_emitsUiEvent_withoutCrashing() = runTest {
+  fun reportQueued_emitsUiEvent_withoutCrashing() = runTest(dispatcherRule.dispatcher) {
     val repository = repositoryWithQuestions(count = 1)
     val appErrorHandler = RecordingAppErrorHandler()
     val reportRepository =
@@ -64,25 +65,33 @@ class ExamViewModelReportingTest {
         ioDispatcher = dispatcherRule.dispatcher,
       )
 
-    val started = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
-    assertTrue(started)
-    advanceUntilIdle()
+    try {
+      val started = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+      assertTrue(started)
+      advanceUntilIdle()
 
-    val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
-    val job = launch { viewModel.reportEvents.take(1).collect(events::add) }
+      val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
+      val job =
+        launch(start = CoroutineStart.UNDISPATCHED) {
+          viewModel.reportEvents.take(1).collect(events::add)
+        }
 
-    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "queued path")
-    advanceUntilIdle()
-    job.join()
+      viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "queued path")
+      advanceUntilIdle()
+      job.join()
 
-    assertEquals(1, events.size)
-    assertEquals(ExamViewModel.QuestionReportUiEvent.Queued, events.first())
-    assertTrue(appErrorHandler.handledErrors.isEmpty())
-    assertEquals(1, reportRepository.submissions.size)
+      assertEquals(1, events.size)
+      assertEquals(ExamViewModel.QuestionReportUiEvent.Queued, events.first())
+      assertTrue(appErrorHandler.handledErrors.isEmpty())
+      assertEquals(1, reportRepository.submissions.size)
+    } finally {
+      viewModel.disposeForTest()
+      advanceUntilIdle()
+    }
   }
 
   @Test
-  fun reportFailure_emitsFailedEvent_andForwardsToAppErrorHandler() = runTest {
+  fun reportFailure_emitsFailedEvent_andForwardsToAppErrorHandler() = runTest(dispatcherRule.dispatcher) {
     val repository = repositoryWithQuestions(count = 1)
     val appErrorHandler = RecordingAppErrorHandler()
     val reportRepository =
@@ -100,7 +109,10 @@ class ExamViewModelReportingTest {
     advanceUntilIdle()
 
     val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
-    val job = launch { viewModel.reportEvents.take(1).collect(events::add) }
+    val job =
+      launch(start = CoroutineStart.UNDISPATCHED) {
+        viewModel.reportEvents.take(1).collect(events::add)
+      }
 
     viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "boom")
     advanceUntilIdle()
@@ -261,4 +273,25 @@ private class RecordingAppErrorHandler : AppErrorHandler {
   override suspend fun submitReport(event: AppErrorEvent, comment: String?): AppErrorReportResult {
     return AppErrorReportResult.Submitted
   }
+}
+
+private fun Any.disposeForTest() {
+  // Best-effort cleanup to avoid runTest hanging on background coroutines (e.g., ViewModelScope).
+  runCatching { (this as? AutoCloseable)?.close() }
+  invokeNoArgMethodIfExists("clear") // AndroidX ViewModel has internal clear()
+}
+
+private fun Any.invokeNoArgMethodIfExists(name: String): Boolean {
+  var c: Class<*>? = this.javaClass
+  while (c != null) {
+    try {
+      val m = c.getDeclaredMethod(name)
+      m.isAccessible = true
+      m.invoke(this)
+      return true
+    } catch (_: NoSuchMethodException) {
+      c = c.superclass
+    }
+  }
+  return false
 }

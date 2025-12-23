@@ -139,7 +139,8 @@ dependencies {
   implementation("com.google.firebase:firebase-analytics-ktx")
   implementation("com.google.firebase:firebase-crashlytics-ktx")
   implementation("com.google.dagger:hilt-android:2.52")
-  ksp("com.google.dagger:hilt-compiler:2.52")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.52")
+    ksp("com.google.dagger:hilt-compiler:2.52")
 
   debugImplementation("androidx.compose.ui:ui-tooling:1.7.1")
   debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.1")
