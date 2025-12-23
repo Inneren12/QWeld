@@ -72,7 +72,7 @@ class AdaptiveExamAssemblerSamplerTest {
     val strongStats =
       questions
         .filter { it.difficulty == DifficultyBand.MEDIUM }
-        .associate { q -> ItemStats(questionId = q.id, attempts = 10, correct = 10) }
+        .associate { q -> q.id to ItemStats(questionId = q.id, attempts = 10, correct = 10) }
     val assembler =
       AdaptiveExamAssembler(
         questionRepository = FakeQuestionRepository(questions),
