@@ -32,6 +32,7 @@ import org.junit.Assert.assertSame
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
+import kotlin.test.assertNotNull
 
 /**
  * Integration test for Hilt DI configuration.
@@ -201,14 +202,6 @@ class HiltDiIntegrationTest {
       ep.questionRepository(),
     )
     assertSame("BlueprintResolver should be singleton - same instance across accesses", blueprintResolver, ep.blueprintResolver())
-  }
-
-  @EntryPoint
-  @InstallIn(SingletonComponent::class)
-  interface SingletonDepsEntryPoint {
-    fun appEnv(): AppEnv
-    fun questionRepository(): AssetQuestionRepository
-    fun blueprintResolver(): BlueprintResolver
   }
 
   @EntryPoint

@@ -10,9 +10,6 @@ import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.qweld.app.MainActivity
 import com.qweld.app.R
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -31,18 +28,10 @@ import java.util.Locale
  * deterministic, locale-independent navigation.
  */
 @RunWith(AndroidJUnit4::class)
-@HiltAndroidTest
 class LocaleSwitchUiTest {
-  @get:Rule(order = 0)
-  val hiltRule = HiltAndroidRule(this)
-
-  @get:Rule(order = 1)
+  @get:Rule
   val composeTestRule = createAndroidComposeRule<MainActivity>()
 
-  @Before
-  fun setUp() {
-    hiltRule.inject()
-  }
 
   /**
    * Helper to get a localized string for a specific locale tag.

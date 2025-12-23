@@ -1,11 +1,13 @@
 package com.qweld.app.navigation
 
 import androidx.activity.compose.rememberLauncherForActivityResult
+import kotlin.runCatching
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import kotlinx.coroutines.flow.first
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
@@ -149,7 +151,11 @@ fun AppNavGraph(
 
   val navigateToAuth: () -> Unit = {
     navController.navigate(Routes.AUTH) {
-      popUpTo(navController.graph.startDestinationId) { inclusive = true }
+      // navController.graph can throw before NavHost sets the graph.
+      val startId = runCatching { navController.graph.startDestinationId }.getOrNull()
+      if (startId != null) {
+        popUpTo(startId) { inclusive = true }
+      }
       launchSingleTop = true
     }
   }
@@ -220,16 +226,22 @@ fun AppNavGraph(
     }
   }
 
-    LaunchedEffect(user) {
+  LaunchedEffect(user) {
+    // Wait until NavHost sets the graph (otherwise navController.graph throws)
+    navController.currentBackStackEntryFlow.first()
+
     val currentRoute = navController.currentBackStackEntry?.destination?.route
     val u = user
-    if (u == null) {
-      navigateToAuth()
-    } else if (u.isAnonymous) {
-      navigateToAuth()
+
+    if (u == null || u.isAnonymous) {
+      if (currentRoute != Routes.AUTH) navigateToAuth()
     } else if (currentRoute == Routes.AUTH) {
       navController.navigate(Routes.EXAM) {
-        popUpTo(navController.graph.startDestinationId) { inclusive = true }
+        // navController.graph can still be fragile in startup race; guard it.
+        val startId = runCatching { navController.graph.startDestinationId }.getOrNull()
+        if (startId != null) {
+          popUpTo(startId) { inclusive = true }
+        }
         launchSingleTop = true
       }
     }

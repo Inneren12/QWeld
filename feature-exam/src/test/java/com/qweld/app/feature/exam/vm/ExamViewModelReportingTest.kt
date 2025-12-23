@@ -30,6 +30,7 @@ import com.qweld.app.feature.exam.model.QuestionReportReason
 import com.qweld.app.feature.exam.vm.fakes.FakeAppEnv
 import java.util.UUID
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.CoroutineDispatcher
@@ -46,6 +47,12 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
+
+private val TEST_BLUEPRINT =
+  ExamBlueprint(
+    totalQuestions = 1,
+    taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 1)),
+  )
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ExamViewModelReportingTest {
@@ -66,9 +73,17 @@ class ExamViewModelReportingTest {
       )
 
     try {
-      val started = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+      val started =
+        viewModel.startAttemptForTest(
+          mode = ExamMode.IP_MOCK,
+          locale = "en",
+          blueprintOverride = TEST_BLUEPRINT,
+        )
       assertTrue(started)
       advanceUntilIdle()
+      val attempt = assertNotNull(viewModel.uiState.value.attempt)
+      assertEquals(1, attempt.questions.size)
+      assertEquals(0, attempt.currentIndex)
 
       val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
       val job =
@@ -104,26 +119,40 @@ class ExamViewModelReportingTest {
         ioDispatcher = dispatcherRule.dispatcher,
       )
 
-    val started = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
-    assertTrue(started)
-    advanceUntilIdle()
+    try {
+      val started =
+        viewModel.startAttemptForTest(
+          mode = ExamMode.IP_MOCK,
+          locale = "en",
+          blueprintOverride = TEST_BLUEPRINT,
+        )
+      assertTrue(started)
+      advanceUntilIdle()
+      val attempt = assertNotNull(viewModel.uiState.value.attempt)
+      assertEquals(1, attempt.questions.size)
+      assertEquals(0, attempt.currentIndex)
 
-    val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
-    val job =
-      launch(start = CoroutineStart.UNDISPATCHED) {
-        viewModel.reportEvents.take(1).collect(events::add)
-      }
+      val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
+      val job =
+        launch(start = CoroutineStart.UNDISPATCHED) {
+          viewModel.reportEvents.take(1).collect(events::add)
+        }
 
-    viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "boom")
-    advanceUntilIdle()
-    job.join()
+      viewModel.reportCurrentQuestion(QuestionReportReason.WRONG_ANSWER, "boom")
+      advanceUntilIdle()
+      job.join()
 
-    assertEquals(1, events.size)
-    assertEquals(ExamViewModel.QuestionReportUiEvent.Failed, events.first())
-    val reportingError = appErrorHandler.handledErrors.filterIsInstance<AppError.Reporting>().first()
-    assertEquals("exam", reportingError.context.screen)
-    assertEquals("question_report_submit", reportingError.context.action)
-    assertEquals("Q1", reportingError.context.extras["questionId"])
+      assertEquals(1, events.size)
+      assertEquals(ExamViewModel.QuestionReportUiEvent.Failed, events.first())
+      val reportingError =
+        appErrorHandler.handledErrors.filterIsInstance<AppError.Reporting>().first()
+      assertEquals("exam", reportingError.context.screen)
+      assertEquals("question_report_submit", reportingError.context.action)
+      assertEquals("Q1", reportingError.context.extras["questionId"])
+    } finally {
+      viewModel.disposeForTest()
+      advanceUntilIdle()
+    }
   }
 
   private fun createViewModel(
@@ -143,12 +172,8 @@ class ExamViewModelReportingTest {
           ids: List<String>,
         ): Outcome<Map<String, ItemStats>> = Outcome.Ok(emptyMap<String, ItemStats>())
       }
-    val blueprint = ExamBlueprint(
-      totalQuestions = 1,
-      taskQuotas = listOf(TaskQuota(taskId = "A-1", blockId = "A", required = 1)),
-    )
-    val blueprintResolver = createTestBlueprintResolver(blueprint)
-    val resumeUseCase = createTestResumeUseCase(repository, statsRepository, blueprint, ioDispatcher)
+    val blueprintResolver = createTestBlueprintResolver(TEST_BLUEPRINT)
+      val resumeUseCase = createTestResumeUseCase(repository, statsRepository, TEST_BLUEPRINT, ioDispatcher)
     return ExamViewModel(
       repository = repository,
       attemptsRepository = attemptsRepository,

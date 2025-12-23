@@ -360,6 +360,26 @@ class ExamViewModel @Inject constructor(
     return true
   }
 
+  @VisibleForTesting
+  internal suspend fun startAttemptForTest(
+    mode: ExamMode,
+    locale: String,
+    practiceConfig: PracticeConfig = PracticeConfig(),
+    blueprintOverride: ExamBlueprint? = null,
+  ): Boolean {
+    // Keep the same gate semantics as production startAttempt()
+    if (mode == ExamMode.ADAPTIVE && !_adaptiveExamEnabled.value) {
+      Timber.i("[adaptive_disabled] start blocked")
+      return false
+    }
+    return startAttemptInternal(
+      mode = mode,
+      locale = locale,
+      practiceConfig = practiceConfig,
+      blueprintOverride = blueprintOverride,
+    )
+  }
+
   private suspend fun startAttemptInternal(
     mode: ExamMode,
     locale: String,
