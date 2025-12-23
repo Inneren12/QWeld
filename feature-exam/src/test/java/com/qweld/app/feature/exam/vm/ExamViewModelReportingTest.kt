@@ -30,6 +30,7 @@ import com.qweld.app.feature.exam.model.QuestionReportReason
 import com.qweld.app.feature.exam.vm.fakes.FakeAppEnv
 import java.util.UUID
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.CoroutineDispatcher
@@ -66,9 +67,13 @@ class ExamViewModelReportingTest {
       )
 
     try {
-      val started = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+      val started = viewModel.startAttemptForTest(ExamMode.IP_MOCK, locale = "en")
       assertTrue(started)
       advanceUntilIdle()
+
+      val attempt = assertNotNull(viewModel.uiState.value.attempt)
+      assertEquals(1, attempt.questions.size)
+      assertEquals(0, attempt.currentIndex)
 
       val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
       val job =
@@ -104,9 +109,13 @@ class ExamViewModelReportingTest {
         ioDispatcher = dispatcherRule.dispatcher,
       )
 
-    val started = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+    val started = viewModel.startAttemptForTest(ExamMode.IP_MOCK, locale = "en")
     assertTrue(started)
     advanceUntilIdle()
+
+    val attempt = assertNotNull(viewModel.uiState.value.attempt)
+    assertEquals(1, attempt.questions.size)
+    assertEquals(0, attempt.currentIndex)
 
     val events = mutableListOf<ExamViewModel.QuestionReportUiEvent>()
     val job =

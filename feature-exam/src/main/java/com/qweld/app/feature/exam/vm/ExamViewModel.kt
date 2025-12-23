@@ -360,6 +360,20 @@ class ExamViewModel @Inject constructor(
     return true
   }
 
+  @VisibleForTesting
+  internal suspend fun startAttemptForTest(
+    mode: ExamMode,
+    locale: String,
+    practiceConfig: PracticeConfig = PracticeConfig(),
+    blueprintOverride: ExamBlueprint? = null,
+  ): Boolean =
+    startAttemptInternal(
+      mode = mode,
+      locale = locale,
+      practiceConfig = practiceConfig,
+      blueprintOverride = blueprintOverride,
+    )
+
   private suspend fun startAttemptInternal(
     mode: ExamMode,
     locale: String,
