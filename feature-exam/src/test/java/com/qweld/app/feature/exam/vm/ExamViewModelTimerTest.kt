@@ -51,6 +51,7 @@ class ExamViewModelTimerTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
+    advanceUntilIdle()
 
     val timerLabel = viewModel.uiState.value.timerLabel
     assertNotNull(timerLabel)
@@ -66,6 +67,7 @@ class ExamViewModelTimerTest {
     val config = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1")))
     val launched = viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = config, blueprintOverride = blueprint)
     assertTrue(launched)
+    advanceUntilIdle()
 
     val timerLabel = viewModel.uiState.value.timerLabel
     assertNull(timerLabel)
@@ -81,6 +83,7 @@ class ExamViewModelTimerTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
+    advanceUntilIdle()
 
     assertEquals("04:00:00", viewModel.uiState.value.timerLabel)
 
@@ -106,6 +109,7 @@ class ExamViewModelTimerTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
+    advanceUntilIdle()
     assertNotNull(viewModel.uiState.value.attempt)
 
     // Simulate timer expiration by advancing time
@@ -132,6 +136,7 @@ class ExamViewModelTimerTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
+    advanceUntilIdle()
 
     // Timer is started - verify by checking remaining time equals full duration
     val remainingAfterStart = timer.remaining()
@@ -155,6 +160,7 @@ class ExamViewModelTimerTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
+    advanceUntilIdle()
 
     // Timer is started - verify by checking remaining time equals full duration
     val remainingAfterStart = timer.remaining()

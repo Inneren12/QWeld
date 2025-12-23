@@ -45,6 +45,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao)
 
     viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 3, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = blueprint)
+    advanceUntilIdle()
 
     val questions = viewModel.uiState.value.attempt?.questions ?: emptyList()
 
@@ -76,6 +77,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao)
 
     viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 3, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = blueprint)
+    advanceUntilIdle()
 
     val questions = viewModel.uiState.value.attempt?.questions ?: emptyList()
 
@@ -103,6 +105,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao)
 
     viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 3, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = blueprint)
+    advanceUntilIdle()
 
     // Don't answer any questions
     viewModel.finishExam()
@@ -120,6 +123,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint)
 
     viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = blueprint)
+    advanceUntilIdle()
 
     val event = async { viewModel.events.first() }
 
@@ -137,6 +141,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao)
 
     viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
+    advanceUntilIdle()
 
     val questions = viewModel.uiState.value.attempt?.questions ?: emptyList()
     questions.forEach { question ->
@@ -162,6 +167,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao)
 
     viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = blueprint)
+    advanceUntilIdle()
 
     viewModel.finishExam()
     advanceUntilIdle()
@@ -180,6 +186,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint, attemptDao = attemptDao, nowProvider = { currentTime })
 
     viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = blueprint)
+    advanceUntilIdle()
 
     viewModel.finishExam()
     advanceUntilIdle()
@@ -202,6 +209,7 @@ class ExamViewModelFinishTest {
     val viewModel = createViewModel(repository, blueprint)
 
     viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = blueprint)
+    advanceUntilIdle()
 
     viewModel.finishExam()
     advanceUntilIdle()

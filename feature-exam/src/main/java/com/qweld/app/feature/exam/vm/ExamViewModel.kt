@@ -55,7 +55,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
@@ -343,6 +342,27 @@ class ExamViewModel @Inject constructor(
     practiceConfig: PracticeConfig = PracticeConfig(),
     blueprintOverride: ExamBlueprint? = null,
   ): Boolean {
+    if (mode == ExamMode.ADAPTIVE && !_adaptiveExamEnabled.value) {
+      Timber.i("[adaptive_disabled] start blocked")
+      return false
+    }
+    viewModelScope.launch {
+      startAttemptInternal(
+        mode = mode,
+        locale = locale,
+        practiceConfig = practiceConfig,
+        blueprintOverride = blueprintOverride,
+      )
+    }
+    return true
+  }
+
+  private suspend fun startAttemptInternal(
+    mode: ExamMode,
+    locale: String,
+    practiceConfig: PracticeConfig = PracticeConfig(),
+    blueprintOverride: ExamBlueprint? = null,
+  ): Boolean {
     val normalizedPracticeConfig =
       if (mode == ExamMode.PRACTICE) {
         practiceConfig.copy(size = PracticeConfig.sanitizeSize(practiceConfig.size))
@@ -407,10 +427,6 @@ class ExamViewModel @Inject constructor(
     }
 
     val useAdaptive = mode == ExamMode.ADAPTIVE && _adaptiveExamEnabled.value
-    if (mode == ExamMode.ADAPTIVE && !useAdaptive) {
-      Timber.i("[adaptive_disabled] start blocked")
-      return false
-    }
     val assemblyConfig =
       ExamAssemblyConfig(
         practiceWrongBiased =
@@ -445,7 +461,7 @@ class ExamViewModel @Inject constructor(
             )
           when (
             val result =
-              runBlocking(ioDispatcher) {
+              withContext(ioDispatcher) {
                 assembler.assemble(
                   userId = userIdProvider(),
                   locale = normalizedLocale,
@@ -467,7 +483,7 @@ class ExamViewModel @Inject constructor(
             )
           when (
             val result =
-              runBlocking(ioDispatcher) {
+              withContext(ioDispatcher) {
                 assembler.assemble(
                   userId = userIdProvider(),
                   mode = mode,
