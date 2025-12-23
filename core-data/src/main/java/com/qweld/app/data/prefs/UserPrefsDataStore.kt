@@ -29,17 +29,7 @@ class UserPrefsDataStore internal constructor(
     context: Context,
     scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
     storeName: String = DATA_STORE_NAME,
-  ) : this(
-      PreferenceDataStoreFactory.create(
-        corruptionHandler =
-          ReplaceFileCorruptionHandler { throwable ->
-              Timber.tag(TAG).w(throwable, "[datastore_recover] store=%s cause=corruption", storeName)
-            defaultPreferences()
-          },
-        scope = scope,
-        produceFile = { context.preferencesDataStoreFile(storeName) },
-      ),
-    )
+  ) : this(createDataStore(context = context, scope = scope, storeName = storeName))
 
   override val analyticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[ANALYTICS_ENABLED_KEY] ?: DEFAULT_ANALYTICS_ENABLED
@@ -257,6 +247,21 @@ class UserPrefsDataStore internal constructor(
         LAST_PRACTICE_WRONG_BIASED_KEY to DEFAULT_WRONG_BIASED,
       )
     }
+
+    fun createDataStore(
+      context: Context,
+      scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
+      storeName: String = DATA_STORE_NAME,
+    ): DataStore<Preferences> =
+      PreferenceDataStoreFactory.create(
+        corruptionHandler =
+          ReplaceFileCorruptionHandler { throwable ->
+              Timber.tag(TAG).w(throwable, "[datastore_recover] store=%s cause=corruption", storeName)
+            defaultPreferences()
+          },
+        scope = scope,
+        produceFile = { context.preferencesDataStoreFile(storeName) },
+      )
 
     internal fun sanitizePracticeSize(value: Int): Int {
       return value.coerceIn(MIN_PRACTICE_SIZE, MAX_PRACTICE_SIZE)
