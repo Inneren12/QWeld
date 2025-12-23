@@ -1,5 +1,6 @@
 import groovy.json.JsonSlurper
-import java.io.ByteArrayOutputStream
+import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.file.RegularFileProperty
@@ -45,28 +46,38 @@ fun Project.registerAdbDevicePreflight() = tasks.register("adbDevicePreflight") 
 
   doLast {
     val adbExecutable = providers.environmentVariable("ADB").orNull ?: "adb"
-    val output = ByteArrayOutputStream()
-    val error = ByteArrayOutputStream()
-    val result =
+    val timeoutSeconds = 10L
+    val output = StringBuilder()
+    val error = StringBuilder()
+    val process =
       try {
-        exec {
-          commandLine(adbExecutable, "devices")
-          standardOutput = output
-          errorOutput = error
-          isIgnoreExitValue = true
-        }
+        ProcessBuilder(adbExecutable, "devices").start()
       } catch (ex: Exception) {
         throw GradleException(
           "Failed to run '$adbExecutable devices'. Ensure Android SDK platform-tools are installed and adb is on PATH.",
           ex,
         )
       }
+    val outputThread = thread { output.append(process.inputStream.bufferedReader().readText()) }
+    val errorThread = thread { error.append(process.errorStream.bufferedReader().readText()) }
+    val finished = process.waitFor(timeoutSeconds, TimeUnit.SECONDS)
+    if (!finished) {
+      process.destroyForcibly()
+      outputThread.join(1000)
+      errorThread.join(1000)
+      throw GradleException(
+        "adb devices timed out after ${timeoutSeconds}s. Try `adb kill-server && adb start-server` " +
+          "or ensure the emulator/device is responsive.",
+      )
+    }
+    outputThread.join()
+    errorThread.join()
 
     val outputText = output.toString().trim()
-    if (result.exitValue != 0) {
-      val errorText = error.toString().trim()
+    val errorText = error.toString().trim()
+    if (process.exitValue() != 0) {
       throw GradleException(
-        "adb devices failed (exit ${result.exitValue}).\n${errorText.ifBlank { outputText }}",
+        "adb devices failed (exit ${process.exitValue()}).\n${errorText.ifBlank { outputText }}",
       )
     }
 
