@@ -21,7 +21,7 @@ import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -192,14 +192,14 @@ fun SettingsScreen(
         },
       )
 
-      Divider()
+      HorizontalDivider()
 
       SettingsLanguageSection(
         selectedTag = appLocaleTag,
         onTagSelected = onLocaleSelected,
       )
 
-      Divider()
+      HorizontalDivider()
 
       SettingsPracticeSection(
         practiceSize = resolvedPracticeConfig.size,
@@ -229,7 +229,7 @@ fun SettingsScreen(
         },
       )
 
-      Divider()
+      HorizontalDivider()
 
       SettingsContentInfoSection(
         contentIndex = contentIndex,
@@ -243,11 +243,11 @@ fun SettingsScreen(
         },
       )
 
-      Divider()
+      HorizontalDivider()
 
       SettingsIntegritySection(contentIntegrity = contentIntegrity)
 
-      Divider()
+      HorizontalDivider()
 
       SettingsToolsSection(
         hapticsEnabled = hapticsEnabled,
@@ -860,7 +860,7 @@ private fun SettingsToolsSection(
       }
     }
     if (onTriggerTestCrash != null) {
-      Divider()
+      HorizontalDivider()
       Text(
         text = stringResource(id = R.string.settings_section_debug),
         style = MaterialTheme.typography.titleSmall,

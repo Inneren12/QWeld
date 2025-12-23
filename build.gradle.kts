@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import java.io.ByteArrayOutputStream
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.file.RegularFileProperty
@@ -38,6 +39,77 @@ detekt {
   config.setFrom(files("$rootDir/detekt.yml"))
 }
 
+fun Project.registerAdbDevicePreflight() = tasks.register("adbDevicePreflight") {
+  group = "verification"
+  description = "Fail fast if no online ADB devices are available for connectedAndroidTest."
+
+  doLast {
+    val adbExecutable = providers.environmentVariable("ADB").orNull ?: "adb"
+    val output = ByteArrayOutputStream()
+    val error = ByteArrayOutputStream()
+    val result =
+      try {
+        exec {
+          commandLine(adbExecutable, "devices")
+          standardOutput = output
+          errorOutput = error
+          isIgnoreExitValue = true
+        }
+      } catch (ex: Exception) {
+        throw GradleException(
+          "Failed to run '$adbExecutable devices'. Ensure Android SDK platform-tools are installed and adb is on PATH.",
+          ex,
+        )
+      }
+
+    val outputText = output.toString().trim()
+    if (result.exitValue != 0) {
+      val errorText = error.toString().trim()
+      throw GradleException(
+        "adb devices failed (exit ${result.exitValue}).\n${errorText.ifBlank { outputText }}",
+      )
+    }
+
+    val lines =
+      outputText
+        .lineSequence()
+        .drop(1)
+        .map { it.trim() }
+        .filter { it.isNotBlank() }
+        .toList()
+
+    val online = lines.filter { it.endsWith("\tdevice") && !it.contains("\toffline") }
+    val offline = lines.filter { it.endsWith("\toffline") }
+    val unauthorized = lines.filter { it.endsWith("\tunauthorized") }
+
+    if (online.isEmpty()) {
+      val diagnostics = buildString {
+        appendLine("No online ADB devices detected.")
+        if (lines.isNotEmpty()) {
+          appendLine("adb devices output:")
+          lines.forEach { appendLine("  $it") }
+        }
+        appendLine()
+        appendLine("Fixes:")
+        appendLine("  - adb kill-server && adb start-server")
+        appendLine("  - Restart the emulator or reconnect the device")
+        appendLine("  - Ensure the device is authorized (not 'unauthorized')")
+      }
+      throw GradleException(diagnostics)
+    }
+
+    if (offline.isNotEmpty() || unauthorized.isNotEmpty()) {
+      logger.warn(
+        buildString {
+          appendLine("⚠️  ADB reported offline/unauthorized devices.")
+          offline.forEach { appendLine("  offline: $it") }
+          unauthorized.forEach { appendLine("  unauthorized: $it") }
+        },
+      )
+    }
+  }
+}
+
 subprojects {
   configurations.all {
     resolutionStrategy.eachDependency {
@@ -58,6 +130,18 @@ subprojects {
 
   plugins.withId("org.jetbrains.kotlin.jvm") {
     apply(plugin = "org.jetbrains.kotlinx.kover")
+  }
+
+  plugins.withId("com.android.application") {
+    val preflight = registerAdbDevicePreflight()
+    tasks.matching { it.name.startsWith("connected") && it.name.endsWith("AndroidTest") }
+      .configureEach { dependsOn(preflight) }
+  }
+
+  plugins.withId("com.android.library") {
+    val preflight = registerAdbDevicePreflight()
+    tasks.matching { it.name.startsWith("connected") && it.name.endsWith("AndroidTest") }
+      .configureEach { dependsOn(preflight) }
   }
 }
 

@@ -27,6 +27,8 @@ android {
 
   kotlinOptions { jvmTarget = "17" }
 
+  adbOptions { timeOutInMs = 60_000 }
+
   sourceSets {
     getByName("test") {
       resources.srcDir(rootProject.file("content"))
