@@ -10,6 +10,9 @@ import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.qweld.app.MainActivity
 import com.qweld.app.R
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,11 +29,22 @@ import java.util.Locale
  *
  * This test uses the REAL app UI (MainActivity with full navigation) and testTags for
  * deterministic, locale-independent navigation.
+ *
+ * Uses Hilt DI test infrastructure to properly inject MainActivity dependencies.
  */
+@HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
 class LocaleSwitchUiTest {
-  @get:Rule
+  @get:Rule(order = 0)
+  val hiltRule = HiltAndroidRule(this)
+
+  @get:Rule(order = 1)
   val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+  @Before
+  fun setup() {
+    hiltRule.inject()
+  }
 
 
   /**
