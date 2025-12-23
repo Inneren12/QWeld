@@ -60,7 +60,9 @@ class AdaptiveExamAssemblerSamplerTest {
 
   @Test
   fun `drifts toward harder items when stats show strong accuracy`() {
-    val blueprint = ExamBlueprint(totalQuestions = 4, taskQuotas = listOf(TaskQuota("A-1", "A", 4)))
+    // With preferMediumWhenRemainingAtOrBelow=2, a 4-question exam never has a step
+    // where HARD can be requested after the 2-correct promotion. Use 5 questions instead.
+    val blueprint = ExamBlueprint(totalQuestions = 5, taskQuotas = listOf(TaskQuota("A-1", "A", 5)))
     val questions =
       generateQuestions(
         taskId = "A-1",
@@ -86,7 +88,7 @@ class AdaptiveExamAssemblerSamplerTest {
       runBlocking {
         (assembler.assemble("user", "EN", AttemptSeed(12L), blueprint) as Outcome.Ok).value.exam
       }
-    assertEquals(4, attempt.questions.size)
+    assertEquals(5, attempt.questions.size)
     assertTrue(attempt.questions.count { it.question.difficulty == DifficultyBand.HARD } >= 1)
   }
 

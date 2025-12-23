@@ -1,6 +1,7 @@
 package com.qweld.app.di
 
 import android.content.Context
+import kotlin.runCatching
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -154,8 +155,13 @@ object AppModule {
 
   @Provides
   @Singleton
-  fun provideCrashReporter(): CrashReporter? =
-    CrashlyticsCrashReporter(Firebase.crashlytics.takeIf { BuildConfig.ENABLE_ANALYTICS })
+  fun provideCrashReporter(): CrashReporter? {
+    // IMPORTANT: never touch Firebase.* in unit tests unless initialized.
+    if (!BuildConfig.ENABLE_ANALYTICS) return null
+
+    val crashlytics = runCatching { Firebase.crashlytics }.getOrNull() ?: return null
+    return CrashlyticsCrashReporter(crashlytics)
+  }
 
   @Provides
   @Singleton

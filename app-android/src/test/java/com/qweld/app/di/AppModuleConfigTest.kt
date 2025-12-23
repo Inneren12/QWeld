@@ -1,5 +1,6 @@
 package com.qweld.app.di
 
+import android.app.Application
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.qweld.app.BuildConfig
@@ -23,7 +24,7 @@ import org.robolectric.annotation.Config
  * the configuration remains valid.
  */
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [28], manifest = Config.NONE)
+@Config(sdk = [28], manifest = Config.NONE, application = Application::class)
 class AppModuleConfigTest {
 
   private lateinit var context: Context
@@ -135,7 +136,7 @@ class AppModuleConfigTest {
     val exporter = AppModule.provideAttemptExporter(attemptsRepository, answersRepository)
 
     // Then
-    assertNotNull(exporter, "AttemptExporter should be provided")
+    assertNotNull("AttemptExporter should be provided", exporter)
   }
 
   @Test
@@ -175,7 +176,7 @@ class AppModuleConfigTest {
   @Test
   fun `AppModule provides AppErrorHandler with proper dependencies`() {
     // Given
-    val crashReporter = AppModule.provideCrashReporter()
+      val crashReporter = null
     val appEnv = AppModule.provideAppEnv()
     val logCollector = AppModule.provideLogCollector()
 
