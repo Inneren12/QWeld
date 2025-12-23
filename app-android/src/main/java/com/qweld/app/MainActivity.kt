@@ -1,8 +1,9 @@
 package com.qweld.app
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -34,7 +35,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
   companion object {
     private const val RULES_ASSET_PATH = "rules/welder_exam_2024.json"
   }
@@ -62,7 +63,17 @@ class MainActivity : ComponentActivity() {
     userPrefs
       .appLocaleFlow()
       .distinctUntilChanged()
-      .onEach { tag -> LocaleController.apply(tag) }
+      .onEach { tag ->
+        LocaleController.apply(tag)
+        val appliedLocales = AppCompatDelegate.getApplicationLocales().toLanguageTags()
+        val activityLocale = resources.configuration.locales[0]?.toLanguageTag() ?: "unknown"
+        Timber.i(
+          "[settings_locale] applied tag=%s app_locales=%s activity_locale=%s",
+          tag,
+          appliedLocales,
+          activityLocale
+        )
+      }
       .launchIn(lifecycleScope)
     lifecycleScope.launch {
       userPrefs.analyticsEnabled.collect { enabled ->
@@ -111,10 +122,6 @@ fun QWeldAppRoot(
 ) {
   val appLocale = userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
   val appErrorReporting by appErrorHandler.analyticsEnabled.collectAsState()
-
-  LaunchedEffect(appLocale.value) {
-    LocaleController.apply(appLocale.value)
-  }
 
   LaunchedEffect(appErrorReporting) {
     appErrorHandler.updateAnalyticsEnabled(appErrorReporting)
