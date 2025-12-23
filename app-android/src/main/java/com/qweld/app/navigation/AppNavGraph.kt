@@ -150,14 +150,16 @@ fun AppNavGraph(
   }
 
   val navigateToAuth: () -> Unit = {
-    navController.navigate(Routes.AUTH) {
-      // navController.graph can throw before NavHost sets the graph.
-      val startId = runCatching { navController.graph.startDestinationId }.getOrNull()
-      if (startId != null) {
-        popUpTo(startId) { inclusive = true }
+      // Never touch navController.graph directly here: it can crash before NavHost sets the graph.
+      scope.launch {
+          // Ensure NavHost has set the graph (safe even if already set)
+          navController.currentBackStackEntryFlow.first()
+          navController.navigate(Routes.AUTH) {
+              // Routes.AUTH is the NavHost startDestination (see NavHost(startDestination = Routes.AUTH))
+              popUpTo(Routes.AUTH) { inclusive = true }
+              launchSingleTop = true
+          }
       }
-      launchSingleTop = true
-    }
   }
 
   fun startGoogle(action: GoogleAction) {
@@ -237,11 +239,8 @@ fun AppNavGraph(
       if (currentRoute != Routes.AUTH) navigateToAuth()
     } else if (currentRoute == Routes.AUTH) {
       navController.navigate(Routes.EXAM) {
-        // navController.graph can still be fragile in startup race; guard it.
-        val startId = runCatching { navController.graph.startDestinationId }.getOrNull()
-        if (startId != null) {
-          popUpTo(startId) { inclusive = true }
-        }
+          // Never touch navController.graph here. We know NavHost startDestination == Routes.AUTH.
+          popUpTo(Routes.AUTH) { inclusive = true }
         launchSingleTop = true
       }
     }

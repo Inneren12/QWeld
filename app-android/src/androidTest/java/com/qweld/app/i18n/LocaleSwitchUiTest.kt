@@ -1,12 +1,17 @@
 package com.qweld.app.i18n
 
 import android.content.res.Configuration
+import android.os.SystemClock
 import androidx.annotation.StringRes
 import androidx.compose.ui.test.assertIsDisplayed
+//import androidx.compose.ui.test.assertExists
+import androidx.compose.ui.test.isRoot
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.lifecycle.Lifecycle
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.qweld.app.MainActivity
 import com.qweld.app.R
@@ -45,46 +50,94 @@ class LocaleSwitchUiTest {
     return localizedContext.getString(id)
   }
 
+  /**
+   * Locale apply / config changes can push MainActivity to STOPPED briefly.
+   * When that happens Compose roots are detached and ComposeTestRule throws
+   * "No compose hierarchies found". This helper forces RESUMED and waits until
+   * at least one Compose root is registered again.
+   */
+  private fun ensureComposeReady(timeoutMs: Long = 10_000) {
+    val deadline = SystemClock.uptimeMillis() + timeoutMs
+    while (SystemClock.uptimeMillis() < deadline) {
+      // Bring ActivityScenario back to foreground if it was STOPPED.
+      composeTestRule.activityRule.scenario.moveToState(Lifecycle.State.RESUMED)
+      try {
+        // If no roots exist, this throws IllegalStateException ("No compose hierarchies found")
+        composeTestRule.onAllNodes(isRoot()).fetchSemanticsNodes()
+        return
+      } catch (_: IllegalStateException) {
+        SystemClock.sleep(50)
+      }
+    }
+    throw AssertionError("Compose hierarchies did not appear within ${timeoutMs}ms")
+  }
+
+  private fun scrollToTag(tag: String) {
+    runCatching { composeTestRule.onNodeWithTag(tag).performScrollTo() }
+  }
+
+  private fun scrollToText(text: String) {
+    runCatching { composeTestRule.onNodeWithText(text).performScrollTo() }
+  }
+
   @Test
   fun settingsScreen_switchLocale_updatesLabelsWithRealResources() {
+    // Critical: make sure the activity is RESUMED and Compose root exists before first click.
+    ensureComposeReady()
+
     // Get expected localized strings for assertions (resource-based, not hardcoded)
     val enLanguageLabel = localizedString(R.string.language, "en")
     val ruLanguageLabel = localizedString(R.string.language, "ru")
 
     // Wait for app to load
     composeTestRule.waitForIdle()
+      ensureComposeReady()
 
     // Navigate to Settings via overflow menu using testTags (NOT text selectors)
     // Step 1: Click overflow button to open dropdown
-    composeTestRule.onNodeWithTag("topbar.overflow").performClick()
+      scrollToTag("topbar.overflow")
+      composeTestRule.onNodeWithTag("topbar.overflow").assertExists().performClick()
     composeTestRule.waitForIdle()
+      ensureComposeReady()
 
     // Step 2: Click Settings menu item
-    composeTestRule.onNodeWithTag("topbar.menu.settings").performClick()
+      scrollToTag("topbar.menu.settings")
+      composeTestRule.onNodeWithTag("topbar.menu.settings").assertExists().performClick()
     composeTestRule.waitForIdle()
+      ensureComposeReady()
 
     // Verify we're on Settings screen by checking the locale section is visible
-    composeTestRule.onNodeWithTag("settings.locale.row").assertIsDisplayed()
+      scrollToTag("settings.locale.row")
+      composeTestRule.onNodeWithTag("settings.locale.row").assertIsDisplayed()
 
     // Force deterministic baseline: switch to EN first (regardless of device locale)
-    composeTestRule.onNodeWithTag("settings.locale.option.en").performClick()
+      scrollToTag("settings.locale.option.en")
+      composeTestRule.onNodeWithTag("settings.locale.option.en").assertExists().performClick()
     composeTestRule.waitForIdle()
+      ensureComposeReady()
 
     // Verify EN label is displayed (resource-based)
-    composeTestRule.onNodeWithText(enLanguageLabel).assertIsDisplayed()
+      scrollToText(enLanguageLabel)
+      composeTestRule.onNodeWithText(enLanguageLabel).assertIsDisplayed()
 
     // Switch to Russian using testTag (not text selector)
-    composeTestRule.onNodeWithTag("settings.locale.option.ru").performClick()
+      scrollToTag("settings.locale.option.ru")
+      composeTestRule.onNodeWithTag("settings.locale.option.ru").assertExists().performClick()
     composeTestRule.waitForIdle()
+      ensureComposeReady()
 
     // After locale change, verify the RU string is displayed (resource-based)
-    composeTestRule.onNodeWithText(ruLanguageLabel).assertIsDisplayed()
+      scrollToText(ruLanguageLabel)
+      composeTestRule.onNodeWithText(ruLanguageLabel).assertIsDisplayed()
 
     // Switch back to English using testTag
-    composeTestRule.onNodeWithTag("settings.locale.option.en").performClick()
-    composeTestRule.waitForIdle()
+      scrollToTag("settings.locale.option.en")
+      composeTestRule.onNodeWithTag("settings.locale.option.en").assertExists().performClick()
+      composeTestRule.waitForIdle()
+      ensureComposeReady()
 
     // Verify we're back to EN: English label should appear (resource-based)
-    composeTestRule.onNodeWithText(enLanguageLabel).assertIsDisplayed()
+      scrollToText(enLanguageLabel)
+      composeTestRule.onNodeWithText(enLanguageLabel).assertIsDisplayed()
   }
 }
