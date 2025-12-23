@@ -99,23 +99,23 @@ class HiltDiIntegrationTest {
   @Test
   fun appModule_provides_all_core_dependencies() {
     // Verify all app-level dependencies are injected
-    assertNotNull(appEnv, "AppEnv should be injected")
-    assertNotNull(attemptsRepository, "AttemptsRepository should be injected")
-    assertNotNull(answersRepository, "AnswersRepository should be injected")
-    assertNotNull(statsRepository, "UserStatsRepository should be injected")
-    assertNotNull(questionRepository, "AssetQuestionRepository should be injected")
-    assertNotNull(questionReportRepository, "QuestionReportRepository should be injected")
-    assertNotNull(userPrefs, "UserPrefs should be injected")
-    assertNotNull(attemptExporter, "AttemptExporter should be injected")
+      assertNotNull("AppEnv should be injected", appEnv)
+      assertNotNull("AttemptsRepository should be injected", attemptsRepository)
+      assertNotNull("AnswersRepository should be injected", answersRepository)
+      assertNotNull("UserStatsRepository should be injected", statsRepository)
+      assertNotNull("AssetQuestionRepository should be injected", questionRepository)
+      assertNotNull("QuestionReportRepository should be injected", questionReportRepository)
+      assertNotNull("UserPrefs should be injected", userPrefs)
+      assertNotNull("AttemptExporter should be injected", attemptExporter)
   }
 
   @Test
   fun examModule_provides_all_exam_dependencies() {
     // Verify all exam-specific dependencies are injected
-    assertNotNull(blueprintResolver, "BlueprintResolver should be injected")
-    assertNotNull(timerController, "TimerController should be injected")
-    assertNotNull(prewarmController, "PrewarmController should be injected")
-    assertNotNull(resumeUseCase, "ResumeUseCase should be injected")
+      assertNotNull("BlueprintResolver should be injected", blueprintResolver)
+      assertNotNull("TimerController should be injected", timerController)
+      assertNotNull("PrewarmController should be injected", prewarmController)
+      assertNotNull("ResumeUseCase should be injected", resumeUseCase)
   }
 
   @Test
@@ -124,11 +124,8 @@ class HiltDiIntegrationTest {
     // bindings during instrumentation tests.
 
     // The BlueprintResolver should use StaticBlueprintProvider from TestExamModule
-    assertNotNull(blueprintResolver, "BlueprintResolver should be provided by TestExamModule")
-
-    // TimerController should be the silent test version
-    assertNotNull(timerController, "TimerController should be provided by TestExamModule")
-
+      assertNotNull("BlueprintResolver should be provided by TestExamModule", blueprintResolver)
+      assertNotNull("TimerController should be provided by TestExamModule", timerController)
     // These assertions pass if we reach here without DI errors,
     // confirming test overrides work correctly
   }
