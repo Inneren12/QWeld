@@ -15,9 +15,9 @@ import com.qweld.app.feature.exam.fakes.FakeQuestionReportRepository
 import com.qweld.app.feature.exam.FakeUserPrefs
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -31,13 +31,14 @@ class ExamViewModelTest {
   @get:Rule val dispatcherRule = MainDispatcherRule()
 
   @Test
-  fun startIpMockCreatesAttempt() {
+  fun startIpMockCreatesAttempt() = runTest {
     val repository = repositoryWithQuestions(count = 2)
     val viewModel = createViewModel(repository)
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
 
     assertTrue(launched)
+    advanceUntilIdle()
     val attempt = viewModel.uiState.value.attempt
     assertNotNull(attempt)
     assertEquals(ExamMode.IP_MOCK, attempt.mode)
@@ -46,13 +47,14 @@ class ExamViewModelTest {
   }
 
   @Test
-  fun practiceModeAllowsPreviousNavigation() {
+  fun practiceModeAllowsPreviousNavigation() = runTest {
     val repository = repositoryWithQuestions(count = 2)
     val viewModel = createViewModel(repository)
 
     val launched = viewModel.startAttempt(ExamMode.PRACTICE, locale = "en")
 
     assertTrue(launched)
+    advanceUntilIdle()
     viewModel.nextQuestion()
     assertEquals(1, viewModel.uiState.value.attempt?.currentIndex)
     viewModel.previousQuestion()
@@ -60,13 +62,14 @@ class ExamViewModelTest {
   }
 
   @Test
-  fun ipMockDisablesPreviousNavigation() {
+  fun ipMockDisablesPreviousNavigation() = runTest {
     val repository = repositoryWithQuestions(count = 2)
     val viewModel = createViewModel(repository)
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
 
     assertTrue(launched)
+    advanceUntilIdle()
     viewModel.nextQuestion()
     assertEquals(1, viewModel.uiState.value.attempt?.currentIndex)
     viewModel.previousQuestion()
@@ -74,13 +77,14 @@ class ExamViewModelTest {
   }
 
   @Test
-  fun submitAnswerLocksChoice() {
+  fun submitAnswerLocksChoice() = runTest {
     val repository = repositoryWithQuestions(count = 2)
     val viewModel = createViewModel(repository)
 
     val launched = viewModel.startAttempt(ExamMode.PRACTICE, locale = "en")
 
     assertTrue(launched)
+    advanceUntilIdle()
     val firstQuestion = viewModel.uiState.value.attempt?.currentQuestion()
     val initialChoice = firstQuestion?.choices?.firstOrNull()
     requireNotNull(initialChoice)
@@ -99,13 +103,14 @@ class ExamViewModelTest {
   }
 
   @Test
-  fun startAttemptShowsDeficitDialogWhenBankSmall() {
+  fun startAttemptShowsDeficitDialogWhenBankSmall() = runTest {
     val repository = repositoryWithQuestions(count = 1)
     val viewModel = createViewModel(repository)
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
 
-    assertFalse(launched)
+    assertTrue(launched)
+    advanceUntilIdle()
     assertNull(viewModel.uiState.value.attempt)
     val dialog = viewModel.uiState.value.deficitDialog
     assertNotNull(dialog)
@@ -116,7 +121,7 @@ class ExamViewModelTest {
   }
 
   @Test
-  fun practiceUsesPresetSizeFromConfig() {
+  fun practiceUsesPresetSizeFromConfig() = runTest {
     val repository = repositoryWithQuestions(count = 30)
     var capturedSize: Int? = null
     val viewModel =
@@ -135,6 +140,7 @@ class ExamViewModelTest {
     val launched = viewModel.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = config)
 
     assertTrue(launched)
+    advanceUntilIdle()
     assertEquals(config.size, capturedSize)
   }
 

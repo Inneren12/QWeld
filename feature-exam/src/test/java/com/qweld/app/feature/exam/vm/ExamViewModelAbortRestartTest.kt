@@ -19,7 +19,7 @@ import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Rule
@@ -49,6 +49,7 @@ class ExamViewModelAbortRestartTest {
       blueprintOverride = blueprint,
     )
     assertTrue(launched)
+    advanceUntilIdle()
 
     val navigate = async { viewModel.effects.first { it == ExamViewModel.ExamEffect.NavigateToMode } }
 
@@ -74,11 +75,12 @@ class ExamViewModelAbortRestartTest {
       blueprintOverride = blueprint,
     )
     assertTrue(launched)
+    advanceUntilIdle()
 
     val effect = async { viewModel.effects.first { it == ExamViewModel.ExamEffect.RestartWithSameConfig } }
 
     viewModel.restartAttempt()
-    runCurrent()
+    advanceUntilIdle()
 
     assertEquals(listOf("practice-1"), attemptDao.abortedIds)
     assertIs<ExamViewModel.ExamEffect.RestartWithSameConfig>(effect.await())
@@ -97,11 +99,11 @@ class ExamViewModelAbortRestartTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
-    runCurrent()
+    advanceUntilIdle()
     assertEquals("ip-1", viewModel.uiState.value.attempt?.attemptId)
 
     viewModel.restartAttempt()
-    runCurrent()
+    advanceUntilIdle()
 
     assertEquals(listOf("ip-1"), attemptDao.abortedIds)
     assertEquals(listOf("ip-1", "ip-2"), attemptDao.savedIds)

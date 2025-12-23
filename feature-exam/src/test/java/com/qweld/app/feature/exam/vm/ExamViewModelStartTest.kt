@@ -14,7 +14,6 @@ import com.qweld.app.domain.exam.repo.UserStatsRepository
 import com.qweld.app.feature.exam.data.AssetQuestionRepository
 import com.qweld.app.feature.exam.data.TestIntegrity
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
@@ -22,6 +21,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Rule
@@ -44,6 +44,7 @@ class ExamViewModelStartTest {
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
 
     assertTrue(launched)
+    advanceUntilIdle()
     assertEquals(ExamViewModel.ExamEffect.NavigateToExam, effect.await())
     val attempt = viewModel.uiState.value.attempt
     assertNotNull(attempt)
@@ -61,7 +62,8 @@ class ExamViewModelStartTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
 
-    assertFalse(launched)
+    assertTrue(launched)
+    advanceUntilIdle()
     val deficit = viewModel.uiState.value.deficitDialog
     assertNotNull(deficit)
     val detail = deficit.details.first()
@@ -87,7 +89,8 @@ class ExamViewModelStartTest {
 
     val launched = viewModel.startAttempt(ExamMode.IP_MOCK, locale = "en")
 
-    assertFalse(launched)
+    assertTrue(launched)
+    advanceUntilIdle()
     val emitted = assertIs<ExamViewModel.ExamEffect.ShowError>(effect.await())
     assertEquals("stats failed", emitted.msg)
     assertEquals("stats failed", viewModel.uiState.value.errorMessage)
@@ -113,6 +116,7 @@ class ExamViewModelStartTest {
     val launched = viewModel.startAttempt(ExamMode.ADAPTIVE, locale = "en")
 
     assertTrue(launched)
+    advanceUntilIdle()
     assertEquals(ExamViewModel.ExamEffect.NavigateToExam, effect.await())
     val attempt = viewModel.uiState.value.attempt
     assertNotNull(attempt)

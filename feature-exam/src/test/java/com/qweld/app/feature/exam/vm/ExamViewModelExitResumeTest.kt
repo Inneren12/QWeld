@@ -68,6 +68,7 @@ class ExamViewModelExitResumeTest {
     // Start exam and answer one question
     val launched = viewModel1.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 3, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = practiceBlueprint(3))
     assertTrue(launched)
+    advanceUntilIdle()
 
     val firstQuestion = viewModel1.uiState.value.attempt?.currentQuestion()
     assertNotNull(firstQuestion)
@@ -121,6 +122,7 @@ class ExamViewModelExitResumeTest {
     // Start IP_MOCK exam
     val launched = viewModel1.startAttempt(ExamMode.IP_MOCK, locale = "en")
     assertTrue(launched)
+    advanceUntilIdle()
 
     // Answer first question
     val firstQuestion = viewModel1.uiState.value.attempt?.currentQuestion()
@@ -169,6 +171,7 @@ class ExamViewModelExitResumeTest {
     // Start exam but don't answer anything
     val launched = viewModel1.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = practiceBlueprint(2))
     assertTrue(launched)
+    advanceUntilIdle()
 
     // Immediately abort
     viewModel1.abortAttempt()
@@ -204,6 +207,7 @@ class ExamViewModelExitResumeTest {
 
     // Start and abort exam
     viewModel1.startAttempt(ExamMode.PRACTICE, locale = "en", practiceConfig = PracticeConfig(size = 2, scope = PracticeScope(taskIds = setOf("A-1"))), blueprintOverride = practiceBlueprint(2))
+    advanceUntilIdle()
     viewModel1.abortAttempt()
     advanceUntilIdle()
 
