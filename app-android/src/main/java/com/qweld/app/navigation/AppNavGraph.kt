@@ -128,7 +128,7 @@ fun AppNavGraph(
     remember(userPrefs, scope, currentLocale) {
       { tag: String, source: String ->
         Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
-        LocaleController.apply(tag)
+        // Only update prefs - let the onCreate flow observer apply the locale to avoid feedback loop
         if (tag != currentLocale) {
           scope.launch { userPrefs.setAppLocale(tag) }
         }

@@ -28,9 +28,11 @@ import com.qweld.core.common.AppEnv
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -57,8 +59,17 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Timber.i("[ui] screen=Main | attrs=%s", "{\"start\":true}")
+
+    // Apply locale synchronously before setContent to avoid Activity recreation during startup
+    runBlocking {
+      val currentLocale = userPrefs.appLocaleFlow().first()
+      LocaleController.apply(currentLocale)
+    }
+
     runCatching { AppRulesLoader(applicationContext).load(RULES_ASSET_PATH) }
       .onFailure { Timber.e(it, "[rules_load_error] path=%s", RULES_ASSET_PATH) }
+
+    // Observe locale changes for runtime updates (user changing locale in settings)
     userPrefs
       .appLocaleFlow()
       .distinctUntilChanged()
@@ -112,9 +123,7 @@ fun QWeldAppRoot(
   val appLocale = userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
   val appErrorReporting by appErrorHandler.analyticsEnabled.collectAsState()
 
-  LaunchedEffect(appLocale.value) {
-    LocaleController.apply(appLocale.value)
-  }
+  // REMOVED duplicate locale apply - handled in onCreate flow observer to avoid thrashing
 
   LaunchedEffect(appErrorReporting) {
     appErrorHandler.updateAnalyticsEnabled(appErrorReporting)
