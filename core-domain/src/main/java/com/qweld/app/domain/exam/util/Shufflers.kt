@@ -82,29 +82,51 @@ fun balanceCorrectPositions(
   if (states.isEmpty()) {
     return ChoiceBalanceResult(adjusted = false, histogram = emptyMap())
   }
-  val targetCounts = IntArray(4)
-  val total = states.size
-  val base = total / 4
-  val remainder = total % 4
-  for (index in 0 until 4) {
-    targetCounts[index] = base + if (index < remainder) 1 else 0
-  }
-  val pattern = mutableListOf<Int>()
-  for (index in 0 until 4) {
-    repeat(targetCounts[index]) { pattern.add(index) }
-  }
-  fisherYatesShuffle(pattern, rng)
 
   var adjusted = false
-  val histogram = mutableMapOf("A" to 0, "B" to 0, "C" to 0, "D" to 0)
-  states.forEachIndexed { idx, state ->
-    val target = pattern[idx]
-    if (state.correctIndex != target) {
-      val currentIndex = state.correctIndex
-      state.choices.swap(currentIndex, target)
-      state.correctIndex = target
-      adjusted = true
+
+  // Balance within groups based on how many positions are реально доступны у вопроса.
+  // 2-choice (T/F) -> A/B, 3-choice -> A/B/C, 4+ -> A/B/C/D.
+  val groups: Map<Int, List<MutableQuestionState>> =
+    states.groupBy { state ->
+      val size = state.choices.size
+      if (size >= 4) 4 else size
     }
+
+  // Stable order keeps deterministic results for a given seed.
+  for (bucketCount in listOf(4, 3, 2)) {
+    val group = groups[bucketCount].orEmpty()
+    if (group.isEmpty()) continue
+
+    val total = group.size
+    val base = total / bucketCount
+    val remainder = total % bucketCount
+
+    val targetCounts = IntArray(bucketCount)
+    for (i in 0 until bucketCount) {
+      targetCounts[i] = base + if (i < remainder) 1 else 0
+    }
+
+    val pattern = mutableListOf<Int>()
+    for (i in 0 until bucketCount) {
+      repeat(targetCounts[i]) { pattern.add(i) }
+    }
+    fisherYatesShuffle(pattern, rng)
+
+    group.forEachIndexed { idx, state ->
+      val target = pattern[idx]
+      if (state.correctIndex != target) {
+        val currentIndex = state.correctIndex
+        // target гарантированно < bucketCount <= state.choices.size
+        state.choices.swap(currentIndex, target)
+        state.correctIndex = target
+        adjusted = true
+      }
+    }
+  }
+
+  val histogram = mutableMapOf("A" to 0, "B" to 0, "C" to 0, "D" to 0)
+  states.forEach { state ->
     val bucket =
       when (state.correctIndex) {
         0 -> "A"
@@ -114,6 +136,7 @@ fun balanceCorrectPositions(
       }
     histogram[bucket] = histogram.getValue(bucket) + 1
   }
+
   return ChoiceBalanceResult(adjusted = adjusted, histogram = histogram)
 }
 

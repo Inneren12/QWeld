@@ -67,12 +67,12 @@ class AdaptiveExamAssemblerSamplerTest {
         count = 6,
         difficultyProvider = { index -> if (index >= 4) DifficultyBand.HARD else DifficultyBand.MEDIUM },
       )
+    // Make this deterministic: ensure any MEDIUM pick simulates "always correct"
+    // so the policy will reliably drift to HARD.
     val strongStats =
-      mapOf(
-        questions[0].id to com.qweld.app.domain.exam.ItemStats(questionId = questions[0].id, attempts = 10, correct = 9),
-        questions[1].id to com.qweld.app.domain.exam.ItemStats(questionId = questions[1].id, attempts = 10, correct = 9),
-        questions[2].id to com.qweld.app.domain.exam.ItemStats(questionId = questions[2].id, attempts = 10, correct = 9),
-      )
+      questions
+        .filter { it.difficulty == DifficultyBand.MEDIUM }
+        .associate { q -> ItemStats(questionId = q.id, attempts = 10, correct = 10) }
     val assembler =
       AdaptiveExamAssembler(
         questionRepository = FakeQuestionRepository(questions),
@@ -97,7 +97,7 @@ class AdaptiveExamAssemblerSamplerTest {
       generateQuestions(
         taskId = "A-1",
         count = 6,
-        difficultyProvider = { index -> if (index < 3) DifficultyBand.MEDIUM else DifficultyBand.HARD },
+        difficultyProvider = { index -> if (index < 4) DifficultyBand.MEDIUM else DifficultyBand.HARD },
       )
     val stats = questions.associate { question -> question.id to ItemStats(questionId = question.id, attempts = 1, correct = 1) }
     val policy = RecordingPolicy(DefaultAdaptiveExamPolicy())

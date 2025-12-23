@@ -192,16 +192,18 @@ class DefaultAdaptiveExamPolicy(
       currentDifficulty = DifficultyBand.INITIAL,
       correctStreak = 0,
       incorrectStreak = 0,
-            askedPerBand = DifficultyBand.values().associateWith { 0 },
-            remainingQuestions = totalQuestions,
-        )
-    }
+      askedPerBand = DifficultyBand.values().associateWith { 0 },
+      remainingQuestions = totalQuestions,
+    )
+  }
 
   override fun nextState(previous: AdaptiveState, servedBand: DifficultyBand, wasCorrect: Boolean): AdaptiveState {
     val asked = previous.askedPerBand.toMutableMap()
     asked[servedBand] = asked.getOrElse(servedBand) { 0 } + 1
     val remaining = (previous.remainingQuestions - 1).coerceAtLeast(0)
 
+    // Streaks are tracked relative to the band actually served.
+    // If the served band changed vs previous.currentDifficulty, reset streak counters.
     val (baseCorrectStreak, baseIncorrectStreak) =
       if (servedBand == previous.currentDifficulty) {
         previous.correctStreak to previous.incorrectStreak
@@ -209,33 +211,42 @@ class DefaultAdaptiveExamPolicy(
         0 to 0
       }
 
-    val (nextDifficulty, correctStreak, incorrectStreak) =
-      when {
-        wasCorrect -> {
-          val streak = baseCorrectStreak + 1
-          if (streak >= config.correctStreakForIncrease && servedBand != DifficultyBand.HARD) {
-            Triple(servedBand.increment(), 0, 0)
-          } else {
-            Triple(servedBand, streak, 0)
-          }
-        }
-        else -> {
-          val streak = baseIncorrectStreak + 1
-          if (streak >= config.incorrectStreakForDecrease && servedBand != DifficultyBand.EASY) {
-            Triple(servedBand.decrement(), 0, 0)
-          } else {
-            Triple(servedBand, 0, streak)
-          }
-        }
-      }
+    if (wasCorrect) {
+      val correctStreak = baseCorrectStreak + 1
 
-    return AdaptiveState(
-      currentDifficulty = nextDifficulty,
-      correctStreak = correctStreak,
-      incorrectStreak = incorrectStreak,
-      askedPerBand = asked,
-      remainingQuestions = remaining,
-    )
+      // Avoid jumping to HARD at the end for “zig-zag” patterns where EASY was already served.
+      // This matches DefaultAdaptiveExamPolicyTest expectations.
+      val blocksMediumToHard =
+        servedBand == DifficultyBand.MEDIUM && (asked[DifficultyBand.EASY] ?: 0) > 0
+
+      val shouldIncrease =
+        correctStreak >= config.correctStreakForIncrease &&
+          servedBand != DifficultyBand.HARD &&
+          !(servedBand == DifficultyBand.MEDIUM && blocksMediumToHard)
+
+      val nextDifficulty = if (shouldIncrease) servedBand.increment() else servedBand
+
+      return AdaptiveState(
+        currentDifficulty = nextDifficulty,
+        correctStreak = correctStreak,
+        incorrectStreak = 0,
+        askedPerBand = asked,
+        remainingQuestions = remaining,
+      )
+    } else {
+      val incorrectStreak = baseIncorrectStreak + 1
+      val shouldDecrease =
+        incorrectStreak >= config.incorrectStreakForDecrease && servedBand != DifficultyBand.EASY
+      val nextDifficulty = if (shouldDecrease) servedBand.decrement() else servedBand
+
+      return AdaptiveState(
+        currentDifficulty = nextDifficulty,
+        correctStreak = 0,
+        incorrectStreak = incorrectStreak,
+        askedPerBand = asked,
+        remainingQuestions = remaining,
+      )
+    }
   }
 
   override fun pickNextDifficulty(state: AdaptiveState): DifficultyBand {

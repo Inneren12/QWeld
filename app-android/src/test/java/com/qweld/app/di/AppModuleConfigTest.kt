@@ -39,7 +39,7 @@ class AppModuleConfigTest {
     val appEnv = AppModule.provideAppEnv()
 
     // Then
-    assertNotNull(appEnv, "AppEnv should be provided")
+      assertNotNull("AppEnv should be provided", appEnv)
   }
 
   @Test
@@ -48,7 +48,7 @@ class AppModuleConfigTest {
     val userPrefs = AppModule.provideUserPrefsDataStore(context)
 
     // Then
-    assertNotNull(userPrefs, "UserPrefsDataStore should be provided")
+    assertNotNull( "UserPrefsDataStore should be provided",userPrefs)
   }
 
   @Test
@@ -57,7 +57,7 @@ class AppModuleConfigTest {
     val db = AppModule.provideDatabase(context)
 
     // Then
-    assertNotNull(db, "QWeldDb should be provided")
+    assertNotNull( "QWeldDb should be provided", db)
   }
 
   @Test
@@ -69,7 +69,7 @@ class AppModuleConfigTest {
     val dao = AppModule.provideAttemptDao(db)
 
     // Then
-    assertNotNull(dao, "AttemptDao should be provided from database")
+    assertNotNull( "AttemptDao should be provided from database", dao)
   }
 
   @Test
@@ -81,7 +81,7 @@ class AppModuleConfigTest {
     val dao = AppModule.provideAnswerDao(db)
 
     // Then
-    assertNotNull(dao, "AnswerDao should be provided from database")
+    assertNotNull( "AnswerDao should be provided from database", dao)
   }
 
   @Test
@@ -93,7 +93,7 @@ class AppModuleConfigTest {
     val dao = AppModule.provideQueuedReportDao(db)
 
     // Then
-    assertNotNull(dao, "QueuedQuestionReportDao should be provided from database")
+    assertNotNull( "QueuedQuestionReportDao should be provided from database", dao)
   }
 
   @Test
@@ -106,7 +106,7 @@ class AppModuleConfigTest {
     val repository = AppModule.provideAttemptsRepository(attemptDao)
 
     // Then
-    assertNotNull(repository, "AttemptsRepository should be provided")
+    assertNotNull( "AttemptsRepository should be provided", repository)
   }
 
   @Test
@@ -119,7 +119,7 @@ class AppModuleConfigTest {
     val repository = AppModule.provideAnswersRepository(answerDao)
 
     // Then
-    assertNotNull(repository, "AnswersRepository should be provided")
+    assertNotNull( "AnswersRepository should be provided", repository)
   }
 
   @Test
@@ -148,7 +148,7 @@ class AppModuleConfigTest {
     val repository = AppModule.provideUserStatsRepository(answerDao)
 
     // Then
-    assertNotNull(repository, "UserStatsRepository should be provided")
+    assertNotNull( "UserStatsRepository should be provided", repository)
   }
 
   @Test
@@ -160,7 +160,7 @@ class AppModuleConfigTest {
     val repository = AppModule.provideQuestionRepository(context, userPrefs)
 
     // Then
-    assertNotNull(repository, "AssetQuestionRepository should be provided")
+    assertNotNull( "AssetQuestionRepository should be provided", repository)
   }
 
   @Test
@@ -169,7 +169,7 @@ class AppModuleConfigTest {
     val repository = AppModule.provideExplanationRepository(context)
 
     // Then
-    assertNotNull(repository, "AssetExplanationRepository should be provided")
+    assertNotNull( "AssetExplanationRepository should be provided", repository)
   }
 
   @Test
@@ -183,7 +183,7 @@ class AppModuleConfigTest {
     val errorHandler = AppModule.provideAppErrorHandler(crashReporter, appEnv, logCollector)
 
     // Then
-    assertNotNull(errorHandler, "AppErrorHandler should be provided")
+    assertNotNull( "AppErrorHandler should be provided", errorHandler)
   }
 
   @Test
@@ -192,7 +192,7 @@ class AppModuleConfigTest {
     val config = AppModule.providePrewarmConfig()
 
     // Then
-    assertNotNull(config, "PrewarmConfig should be provided")
+    assertNotNull( "PrewarmConfig should be provided", config)
     assert(config.enabled == BuildConfig.PREWARM_ENABLED) {
       "PrewarmConfig.enabled should match BuildConfig.PREWARM_ENABLED"
     }
@@ -207,7 +207,7 @@ class AppModuleConfigTest {
     val flow = AppModule.providePrewarmDisabledFlow(userPrefs)
 
     // Then
-    assertNotNull(flow, "Prewarm disabled Flow should be provided")
+    assertNotNull( "Prewarm disabled Flow should be provided", flow)
   }
 
   @Test
@@ -216,6 +216,6 @@ class AppModuleConfigTest {
     val dispatcher = DispatcherModule.provideIoDispatcher()
 
     // Then
-    assertNotNull(dispatcher, "IO dispatcher should be provided")
+    assertNotNull( "IO dispatcher should be provided", dispatcher)
   }
 }

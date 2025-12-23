@@ -1,6 +1,7 @@
 package com.qweld.app.feature.exam.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavBackStackEntry
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -41,7 +42,7 @@ object ExamDestinations {
 
 @Composable
 fun ExamNavGraph(
-    modifier: Modifier = Modifier,
+  modifier: Modifier = Modifier,
   navController: NavHostController,
   repository: AssetQuestionRepository,
   explanationRepository: AssetExplanationRepository,
@@ -49,7 +50,6 @@ fun ExamNavGraph(
   userPrefs: UserPrefs,
   appLocaleTag: String,
 ) {
-  val parentEntry = remember(navController.currentBackStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
   NavHost(
     navController = navController,
     startDestination = ExamDestinations.MODE,
@@ -109,6 +109,8 @@ fun ExamNavGraph(
       )
     }
     composable(route = ExamDestinations.EXAM) { backStackEntry ->
+      // MODE is the startDestination; by the time we are in EXAM, MODE is guaranteed to be in back stack.
+      val parentEntry: NavBackStackEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
       val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
       LaunchedEffect(examViewModel, navController) {
         examViewModel.effects.collectLatest { effect ->
@@ -151,6 +153,7 @@ fun ExamNavGraph(
       )
     }
     composable(route = ExamDestinations.RESULT) { backStackEntry ->
+      val parentEntry: NavBackStackEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
       val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
       val resultViewModel: ResultViewModel = hiltViewModel(backStackEntry)
       ResultScreen(
@@ -169,6 +172,7 @@ fun ExamNavGraph(
       )
     }
     composable(route = ExamDestinations.REVIEW) { backStackEntry ->
+      val parentEntry: NavBackStackEntry = remember(backStackEntry) { navController.getBackStackEntry(ExamDestinations.MODE) }
       val examViewModel: ExamViewModel = hiltViewModel(parentEntry)
       val resultViewModel: ResultViewModel = hiltViewModel(backStackEntry)
       val reviewViewModel: ReviewViewModel = hiltViewModel(backStackEntry)

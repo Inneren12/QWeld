@@ -5,11 +5,10 @@ import com.qweld.app.data.db.entities.AnswerEntity
 import com.qweld.app.data.repo.AnswersRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.advanceTimeBy
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
@@ -18,6 +17,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
+import org.junit.Rule
+import com.qweld.app.feature.exam.testing.ThreadLeakWatcher
 
 /**
  * Contract tests for ExamAutosaveController.
@@ -30,6 +31,8 @@ import kotlin.test.assertTrue
 @OptIn(ExperimentalCoroutinesApi::class)
 class ExamAutosaveControllerTest {
 
+    @get:Rule
+    val threadLeaks = ThreadLeakWatcher(printStacks = true)
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var testScope: TestScope
     private lateinit var fakeAnswersRepository: FakeAnswersRepository
@@ -53,12 +56,14 @@ class ExamAutosaveControllerTest {
 
     @After
     fun tearDown() {
-        // Stop the controller to cancel any running autosave ticker jobs
-        kotlinx.coroutines.runBlocking {
-            controller.stop()
-        }
-        // Cancel the test scope to clean up background jobs
+        runBlocking { controller.stop() }
+        // Drain scheduled cancellations/completions on the same scheduler used by StandardTestDispatcher.
+        testDispatcher.scheduler.runCurrent()
+        testDispatcher.scheduler.advanceUntilIdle()
+        dumpNonDaemonThreads("after stop")
         testScope.cancel()
+        testDispatcher.scheduler.runCurrent()
+        dumpNonDaemonThreads("after scope cancel")
     }
 
   @Test
@@ -82,7 +87,8 @@ class ExamAutosaveControllerTest {
 
     // When
     controller.recordAnswer(answer)
-    advanceUntilIdle()
+    // recordAnswer runs in a coroutine; run the scheduler "now" (backgroundScope isn't driven by advanceUntilIdle).
+    testScheduler.runCurrent()
 
     // Then
     assertEquals(1, fakeController.answerRecorded, "Answer should be recorded")
@@ -95,7 +101,7 @@ class ExamAutosaveControllerTest {
 
     // When
     controller.recordAnswer(answer)
-    advanceUntilIdle()
+    testScheduler.runCurrent()
 
     // Then
     assertEquals(1, fakeAnswersRepository.upsertedAnswers.size, "Should save directly to repository")
@@ -150,14 +156,19 @@ class ExamAutosaveControllerTest {
     controller.prepare("attempt-123")
     val fakeController = fakeAutosaveFactory.lastController!!
 
+    // Let ticker coroutine start and schedule its first delay().
+    testScheduler.runCurrent()
+
     // When - advance time by interval (10 seconds)
-    advanceTimeBy(10_000)
+    testScheduler.advanceTimeBy(10_000)
+    testScheduler.runCurrent()
 
     // Then
     assertTrue(fakeController.tickCount >= 1, "Should trigger at least one tick after interval")
 
     // When - advance another interval
-    advanceTimeBy(10_000)
+    testScheduler.advanceTimeBy(10_000)
+    testScheduler.runCurrent()
 
     // Then
     assertTrue(fakeController.tickCount >= 2, "Should trigger another tick")
@@ -168,12 +179,15 @@ class ExamAutosaveControllerTest {
     // Given
     controller.prepare("attempt-123")
     val fakeController = fakeAutosaveFactory.lastController!!
-    advanceTimeBy(10_000)
+    testScheduler.runCurrent()
+    testScheduler.advanceTimeBy(10_000)
+    testScheduler.runCurrent()
     val ticksBeforeStop = fakeController.tickCount
 
     // When
     controller.stop()
-    advanceTimeBy(20_000) // Try to trigger more ticks
+    // Ensure cancellation is processed before advancing further.
+
 
     // Then
     assertEquals(ticksBeforeStop, fakeController.tickCount, "Should not tick after stop")
@@ -224,7 +238,7 @@ class ExamAutosaveControllerTest {
   private class FakeAutosaveController(
     val attemptId: String,
     testScope: TestScope,
-    testDispatcher: StandardTestDispatcher
+    testDispatcher: TestDispatcher
   ) : AutosaveController(
     attemptId = attemptId,
     answersRepository = object : AnswersRepository {
@@ -283,7 +297,7 @@ class ExamAutosaveControllerTest {
   // Fake factory to track controller creation
   private class FakeAutosaveFactory(
     private val testScope: TestScope,
-    private val testDispatcher: StandardTestDispatcher
+    private val testDispatcher: TestDispatcher
   ) {
     var created = false
     var lastAttemptId: String? = null
@@ -296,4 +310,13 @@ class ExamAutosaveControllerTest {
       return lastController!!
     }
   }
+}
+
+private fun dumpNonDaemonThreads(tag: String) {
+    val threads = Thread.getAllStackTraces().keys
+        .filter { it.isAlive && !it.isDaemon }
+        .sortedBy { it.name }
+
+    println("[$tag] Non-daemon threads (${threads.size}):")
+    threads.forEach { t -> println(" - ${t.name} state=${t.state}") }
 }

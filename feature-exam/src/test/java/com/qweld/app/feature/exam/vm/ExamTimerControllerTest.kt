@@ -5,11 +5,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -21,6 +19,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import org.junit.Rule
+import com.qweld.app.feature.exam.testing.ThreadLeakWatcher
 
 /**
  * Contract tests for ExamTimerController.
@@ -32,7 +32,8 @@ import kotlin.test.assertTrue
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 class ExamTimerControllerTest {
-
+    @get:Rule
+    val threadLeaks = ThreadLeakWatcher(printStacks = true)
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var testScope: TestScope
     private lateinit var timerController: TimerController
@@ -54,8 +55,12 @@ class ExamTimerControllerTest {
     fun tearDown() {
         // Cancel any running timer jobs to prevent test hang
         controller.stop(clearLabel = true)
+        // Drain scheduled cancellations/completions
+        testDispatcher.scheduler.runCurrent()
+        testDispatcher.scheduler.advanceUntilIdle()
         // Cancel the test scope to clean up background jobs
         testScope.cancel()
+        testDispatcher.scheduler.runCurrent()
         Dispatchers.resetMain()
     }
 
@@ -95,7 +100,10 @@ class ExamTimerControllerTest {
     )
 
     // Advance time by 3 seconds
-    advanceTimeBy(3_000)
+    // Start the launched timer coroutine and schedule its first delay(1000).
+    testScheduler.runCurrent()
+    testScheduler.advanceTimeBy(3_000)
+    testScheduler.runCurrent()
 
     // Then - should have initial tick + 3 more ticks
     assertTrue(ticks.size >= 4, "Should have at least 4 ticks (initial + 3)")
@@ -140,7 +148,9 @@ class ExamTimerControllerTest {
     )
 
     // Advance time by 3 seconds
-    advanceTimeBy(3_000)
+    testScheduler.runCurrent()
+    testScheduler.advanceTimeBy(3_000)
+    testScheduler.runCurrent()
 
     // Then - ticks should decrement: [10s, 9s, 8s, 7s]
     assertTrue(ticks.size >= 4, "Should have at least 4 ticks")
@@ -223,7 +233,9 @@ class ExamTimerControllerTest {
     assertEquals(initialRemaining, controller.remaining(), "Should return initial remaining")
 
     // When - advance 1 second
-    advanceTimeBy(1_000)
+    testScheduler.runCurrent()
+    testScheduler.advanceTimeBy(1_000)
+    testScheduler.runCurrent()
 
     // Then - should be 1 second less
     assertEquals(Duration.ofMinutes(5).minusSeconds(1), controller.remaining())
@@ -237,7 +249,9 @@ class ExamTimerControllerTest {
       onTick = { _, _ -> firstTimerTicks++ },
       onExpired = {}
     )
-    advanceTimeBy(2_000)
+    testScheduler.runCurrent()
+    testScheduler.advanceTimeBy(2_000)
+    testScheduler.runCurrent()
     val ticksBeforeRestart = firstTimerTicks
 
     // When - start again
@@ -251,7 +265,9 @@ class ExamTimerControllerTest {
     val ticksAfterRestart = firstTimerTicks
     assertEquals(ticksBeforeRestart, ticksAfterRestart, "First timer should not tick after restart")
 
-    advanceTimeBy(2_000)
+    testScheduler.runCurrent()
+    testScheduler.advanceTimeBy(2_000)
+    testScheduler.runCurrent()
     assertTrue(secondTimerTicks > 0, "Second timer should tick")
   }
 
@@ -268,7 +284,9 @@ class ExamTimerControllerTest {
     )
 
     // Advance past expiration
-    advanceTimeBy(3_000)
+    testScheduler.runCurrent()
+    testScheduler.advanceTimeBy(3_000)
+    testScheduler.runCurrent()
 
     // Then - should never emit negative durations
     assertTrue(ticks.all { !it.isNegative }, "All ticks should be non-negative")
