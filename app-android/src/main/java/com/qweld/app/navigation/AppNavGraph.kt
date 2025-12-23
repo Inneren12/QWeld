@@ -122,13 +122,13 @@ fun AppNavGraph(
     )
   }
 
-  val appLocale by userPrefs.appLocaleFlow().collectAsState(initial = UserPrefsDataStore.DEFAULT_APP_LOCALE)
+  // Use the real tag passed from Activity to avoid "system -> saved" flip on first composition.
+  val appLocale by userPrefs.appLocaleFlow().collectAsState(initial = appLocaleTag)
   val currentLocale = appLocale
   val handleLocaleSelection =
     remember(userPrefs, scope, currentLocale) {
       { tag: String, source: String ->
         Timber.i("[settings_locale] select tag=%s (source=%s)", tag, source)
-        LocaleController.apply(tag)
         if (tag != currentLocale) {
           scope.launch { userPrefs.setAppLocale(tag) }
         }
