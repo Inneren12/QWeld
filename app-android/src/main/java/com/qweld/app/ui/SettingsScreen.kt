@@ -43,6 +43,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -81,6 +83,10 @@ fun SettingsScreen(
   onOpenAdminDashboard: (() -> Unit)? = null,
   onBack: () -> Unit,
 ) {
+  // Triggers recomposition on configuration changes (including locale updates via AppCompatDelegate).
+  val configuration = LocalConfiguration.current
+  LaunchedEffect(configuration) { }
+
   val snackbarHostState = remember { SnackbarHostState() }
   val scope = rememberCoroutineScope()
   val analyticsEnabled by userPrefs.analyticsEnabled.collectAsState(
@@ -173,6 +179,7 @@ fun SettingsScreen(
         Modifier
           .fillMaxSize()
           .padding(innerPadding)
+          .testTag("settings.scroll")
           .verticalScroll(rememberScrollState())
           .padding(horizontal = 24.dp, vertical = 16.dp),
       verticalArrangement = Arrangement.spacedBy(24.dp),
