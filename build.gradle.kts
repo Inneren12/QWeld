@@ -7,6 +7,7 @@ import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
+import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 
 plugins {
   id("com.android.application") version "8.5.2" apply false
@@ -39,6 +40,9 @@ detekt {
   buildUponDefaultConfig = true
   config.setFrom(files("$rootDir/detekt.yml"))
 }
+
+val koverDisableInstrumentation =
+  providers.gradleProperty("koverDisableInstrumentation").map { it.toBoolean() }.orElse(false)
 
 fun Project.registerAdbDevicePreflight() = tasks.register("adbDevicePreflight") {
   group = "verification"
@@ -143,6 +147,19 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlinx.kover")
   }
 
+  pluginManager.withPlugin("org.jetbrains.kotlinx.kover") {
+    extensions.configure<KoverProjectExtension>("kover") {
+      useJacoco()
+      if (koverDisableInstrumentation.get()) {
+        currentProject {
+          instrumentation {
+            disableForAll.set(true)
+          }
+        }
+      }
+    }
+  }
+
   plugins.withId("com.android.application") {
     val preflight = registerAdbDevicePreflight()
     tasks.matching { it.name.startsWith("connected") && it.name.endsWith("AndroidTest") }
@@ -153,6 +170,17 @@ subprojects {
     val preflight = registerAdbDevicePreflight()
     tasks.matching { it.name.startsWith("connected") && it.name.endsWith("AndroidTest") }
       .configureEach { dependsOn(preflight) }
+  }
+}
+
+kover {
+  useJacoco()
+  if (koverDisableInstrumentation.get()) {
+    currentProject {
+      instrumentation {
+        disableForAll.set(true)
+      }
+    }
   }
 }
 
