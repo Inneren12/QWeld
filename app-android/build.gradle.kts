@@ -58,7 +58,7 @@ android {
     targetSdk = 35
     versionCode = extra["autoVersionCode"] as Int
     versionName = "1.0.0"
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "com.qweld.app.CustomTestRunner"
     resourceConfigurations += setOf("en", "ru")
     buildConfigField("String", "BUILD_TIME", "\"$buildTimestamp\"")
     buildConfigField("String", "GIT_SHA", "\"${gitShaProvider.get()}\"")
@@ -142,6 +142,7 @@ dependencies {
   implementation("com.google.dagger:hilt-android:2.52")
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.52")
     ksp("com.google.dagger:hilt-compiler:2.52")
+    kspAndroidTest("com.google.dagger:hilt-compiler:2.52")
 
   debugImplementation("androidx.compose.ui:ui-tooling:1.7.1")
   debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.1")
