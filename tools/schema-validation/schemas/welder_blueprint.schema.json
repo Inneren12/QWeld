@@ -1,1 +1,144 @@
-../../../assets/blueprints/schema/welder_blueprint.schema.json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qweld.app/schemas/welder_blueprint.schema.json",
+  "title": "QWeld Questions Index Schema",
+  "description": "Validates both root summary index (questions/index.json) and locale manifest files (questions/{locale}/index.json)",
+  "oneOf": [
+    {
+      "title": "Root Summary Index",
+      "description": "Aggregated summary of all locales with task counts and SHA256 hashes",
+      "type": "object",
+      "required": [
+        "schema",
+        "generatedAt",
+        "locales"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "type": "string",
+          "const": "questions-index-v1",
+          "description": "Schema version identifier"
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when this index was generated"
+        },
+        "locales": {
+          "type": "object",
+          "description": "Map of locale codes to their summary data",
+          "patternProperties": {
+            "^[a-z]{2}(-[A-Z]{2})?$": {
+              "type": "object",
+              "required": [
+                "total",
+                "tasks",
+                "sha256"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Total number of questions across all tasks for this locale"
+                },
+                "tasks": {
+                  "type": "object",
+                  "description": "Map of task IDs to their SHA256 hashes",
+                  "patternProperties": {
+                    "^[A-Z]-[0-9]+$": {
+                      "type": "object",
+                      "required": [
+                        "sha256"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$",
+                          "description": "SHA256 hash of the task JSON file"
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "sha256": {
+                  "type": "object",
+                  "required": [
+                    "sha256"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$",
+                      "description": "SHA256 hash of the locale manifest index.json file"
+                    }
+                  },
+                  "description": "Hash of the locale's manifest file"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1
+        }
+      }
+    },
+    {
+      "title": "Locale Manifest",
+      "description": "Detailed file listing for a specific locale with SHA256 hashes",
+      "type": "object",
+      "required": [
+        "blueprintId",
+        "bankVersion",
+        "files"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "blueprintId": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$",
+          "description": "Identifier for the blueprint (e.g., welder_ip_sk_202404)",
+          "examples": [
+            "welder_ip_sk_202404",
+            "welder_ip_2024"
+          ]
+        },
+        "bankVersion": {
+          "type": "string",
+          "pattern": "^v[0-9]+$",
+          "description": "Version of the question bank",
+          "examples": [
+            "v1",
+            "v2"
+          ]
+        },
+        "files": {
+          "type": "object",
+          "description": "Map of file paths to their metadata",
+          "patternProperties": {
+            "^questions/[a-z]{2}(-[A-Z]{2})?/": {
+              "type": "object",
+              "required": [
+                "sha256"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$",
+                  "description": "SHA256 hash of the file contents"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1
+        }
+      }
+    }
+  ]
+}
