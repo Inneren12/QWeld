@@ -17,13 +17,46 @@ jobs:
       - name: Install validator deps
         working-directory: tools/schema-validation
         run: npm ci
+
+      - name: Debug questions root index shape (what Ajv will read)
+        working-directory: tools/schema-validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "PWD=$(pwd)"
+          echo "List questions dir:"
+          ls -la ../../app-android/src/main/assets/questions || true
+          echo "Print types from root questions/index.json:"
+          node - <<'NODE'
+          const fs = require('fs');
+          const p = '../../app-android/src/main/assets/questions/index.json';
+          const txt = fs.readFileSync(p, 'utf8');
+          const j = JSON.parse(txt);
+          const t = (v) => Array.isArray(v) ? 'array' : (v === null ? 'null' : typeof v);
+          const en = j.locales?.en;
+          const ru = j.locales?.ru;
+          console.log('schema=', j.schema, 'generatedAt=', j.generatedAt);
+          console.log('en.tasks=', t(en?.tasks), 'en.sha256=', t(en?.sha256));
+          console.log('ru.tasks=', t(ru?.tasks), 'ru.sha256=', t(ru?.sha256));
+          console.log('raw "tasks": occurrences=', (txt.match(/"tasks"\\s*:/g) || []).length);
+          console.log('raw "sha256": occurrences=', (txt.match(/"sha256"\\s*:/g) || []).length);
+          NODE
+
       - name: Validate index.json via Ajv
         working-directory: tools/schema-validation
         run: |
+          # Validate ROOT index separately for clearer logs
           npx -y ajv-cli@5 validate \
             -c ajv-formats \
             -s schemas/welder_blueprint.schema.json \
-            -d "../../app-android/src/main/assets/questions/**/index.json" \
+            -d "../../app-android/src/main/assets/questions/index.json" \
+            --spec=draft2020 --all-errors --strict=false
+
+          # Validate per-locale manifests (exclude root)
+          npx -y ajv-cli@5 validate \
+            -c ajv-formats \
+            -s schemas/welder_blueprint.schema.json \
+            -d "../../app-android/src/main/assets/questions/*/index.json" \
             --spec=draft2020 --all-errors --strict=false
       - name: Set up JDK 21
         uses: actions/setup-java@v4
