@@ -45,21 +45,12 @@
                 },
                 "tasks": {
                   "type": "object",
-                  "description": "Map of task IDs to their SHA256 hashes",
+                  "description": "Map of task IDs to question counts",
                   "patternProperties": {
                     "^[A-Z]-[0-9]+$": {
-                      "type": "object",
-                      "required": [
-                        "sha256"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "sha256": {
-                          "type": "string",
-                          "pattern": "^[a-f0-9]{64}$",
-                          "description": "SHA256 hash of the task JSON file"
-                        }
-                      }
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Number of questions in this task"
                     }
                   },
                   "additionalProperties": false
@@ -67,17 +58,30 @@
                 "sha256": {
                   "type": "object",
                   "required": [
-                    "sha256"
+                    "bank",
+                    "tasks"
                   ],
                   "additionalProperties": false,
                   "properties": {
-                    "sha256": {
+                    "bank": {
                       "type": "string",
                       "pattern": "^[a-f0-9]{64}$",
-                      "description": "SHA256 hash of the locale manifest index.json file"
+                      "description": "SHA256 hash of the bank.v1.json file"
+                    },
+                    "tasks": {
+                      "type": "object",
+                      "description": "Map of task IDs to their SHA256 hashes",
+                      "patternProperties": {
+                        "^[A-Z]-[0-9]+$": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$",
+                          "description": "SHA256 hash of the task JSON file"
+                        }
+                      },
+                      "additionalProperties": false
                     }
                   },
-                  "description": "Hash of the locale's manifest file"
+                  "description": "SHA256 hashes of bank and task files"
                 }
               }
             }
