@@ -130,7 +130,7 @@ function main() {
       }
     }
 
-    // sha256.bank: hash of bank file bytes
+    // sha256.bank: hash of bank file bytes (as object with sha256 property)
     const bankAbs = findBankAbs(localeDir);
     if (!bankAbs) {
       console.error(`bank file not found for locale=${locale} under ${localeDir}`);
@@ -138,23 +138,26 @@ function main() {
     }
     const bankHash = sha256(fs.readFileSync(bankAbs));
 
-    // sha256.tasks: deterministic aggregate hash of each tasks file sha
-    const lines = [];
+    // sha256.tasks: object map taskId -> {sha256: "..."}
+    const taskShaMap = {};
     if (isDir(tasksDir)) {
       const taskFiles = listSorted(tasksDir).filter(n => n.endsWith(".json") || n.endsWith(".json.gz"));
       for (const fn of taskFiles) {
         const id = stripJsonExt(fn);
         const abs = path.join(tasksDir, fn);
         const h = sha256(fs.readFileSync(abs));
-        lines.push(`${id}:${h}\n`);
+        taskShaMap[id] = { sha256: h };  // FIX: Wrap in object
       }
     }
-    const tasksHash = sha256(Buffer.from(lines.join(""), "utf8"));
 
+    const taskShaSorted = sortObjectKeys(taskShaMap);
     localesOut[locale] = {
       total,
       tasks: sortObjectKeys(tasksMap),
-      sha256: { bank: bankHash, tasks: tasksHash },
+      sha256: {
+        bank: { sha256: bankHash },  // FIX: Wrap in object
+        tasks: taskShaSorted
+      },
     };
   }
 
