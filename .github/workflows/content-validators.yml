@@ -18,6 +18,30 @@ jobs:
         working-directory: tools/schema-validation
         run: npm ci
 
+      - name: Debug root questions/index.json (what AJV actually sees)
+        working-directory: tools/schema-validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "CI SHA: $(git rev-parse HEAD)"
+          ls -la ../../app-android/src/main/assets/questions
+          echo "--- head of questions/index.json ---"
+          sed -n '1,40p' ../../app-android/src/main/assets/questions/index.json
+          echo "--- types ---"
+          node -e "const fs=require('fs');const p='../../app-android/src/main/assets/questions/index.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));const t=v=>Array.isArray(v)?'array':(v===null?'null':typeof v);console.log('en.tasks',t(j.locales?.en?.tasks),'en.sha256',t(j.locales?.en?.sha256));console.log('ru.tasks',t(j.locales?.ru?.tasks),'ru.sha256',t(j.locales?.ru?.sha256));"
+
+      - name: Debug root questions/index.json (what AJV actually sees)
+        working-directory: tools/schema-validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "CI SHA: $(git rev-parse HEAD)"
+          ls -la ../../app-android/src/main/assets/questions
+          echo "--- head of questions/index.json ---"
+          sed -n '1,40p' ../../app-android/src/main/assets/questions/index.json
+          echo "--- types ---"
+          node -e "const fs=require('fs');const p='../../app-android/src/main/assets/questions/index.json';const j=JSON.parse(fs.readFileSync(p,'utf8'));const t=v=>Array.isArray(v)?'array':(v===null?'null':typeof v);console.log('en.tasks',t(j.locales?.en?.tasks),'en.sha256',t(j.locales?.en?.sha256));console.log('ru.tasks',t(j.locales?.ru?.tasks),'ru.sha256',t(j.locales?.ru?.sha256));"
+
       - name: Debug questions root index shape (what Ajv will read)
         working-directory: tools/schema-validation
         shell: bash
