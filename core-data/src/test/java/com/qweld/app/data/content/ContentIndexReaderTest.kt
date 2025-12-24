@@ -2,8 +2,10 @@ package com.qweld.app.data.content
 
 import java.io.ByteArrayInputStream
 import java.io.FileNotFoundException
-import java.security.MessageDigest
+import java.nio.file.Files
+import java.nio.file.Path
 import java.nio.file.Paths
+import java.security.MessageDigest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -162,27 +164,111 @@ class ContentIndexReaderTest {
 
   @Test
   fun `read parses real bundled manifests`() {
-    val assetsRoot = Paths.get("app-android/src/main/assets").toAbsolutePath().normalize()
+    val repoRoot = findRepoRoot()
+    val assetsRoot = repoRoot.resolve("app-android/src/main/assets").toAbsolutePath().normalize()
+    assertTrue(
+      Files.isDirectory(assetsRoot),
+      "Expected assets directory at: $assetsRoot (repoRoot=$repoRoot, user.dir=${System.getProperty("user.dir")})",
+    )
+
+    // Real assets may grow extra metadata keys; keep this test resilient to additive fields.
+    val runtimeJson = Json { ignoreUnknownKeys = true }
+
+    val opened = mutableListOf<String>()
+    val listed = mutableMapOf<String, List<String>>()
+
     val loader =
       object : ContentIndexReader.AssetLoader {
-        override fun open(path: String) = assetsRoot.resolve(path).toFile().inputStream()
+          override fun open(path: String) =
+              assetsRoot.resolve(path).toFile().inputStream().also { opened.add(path) }
 
         override fun list(path: String): List<String> {
-          return assetsRoot.resolve(path).toFile().list()?.toList() ?: emptyList()
+          // Deterministic order helps keep this test stable across platforms/filesystems.
+          val items = assetsRoot.resolve(path).toFile().list()?.toList()?.sorted() ?: emptyList()
+          listed[path] = items
+          return items
         }
       }
 
-    val reader = ContentIndexReader(loader, json)
+    // 1) Make sure listing("questions") includes the root summary index.json (file), not only locale dirs.
+    val questionsListing = loader.list("questions")
+    assertTrue(
+      questionsListing.contains("index.json"),
+      "Expected questions/ listing to contain 'index.json' (root summary). Actual=$questionsListing",
+    )
+
+    val reader = ContentIndexReader(loader, runtimeJson)
 
     val result = reader.read()
 
     assertNotNull(result)
-    assertEquals(setOf("en", "ru"), result.locales.keys)
-    val enManifest = result.manifests.getValue("en")
-    assertEquals("welder_ip_sk_202404", enManifest.blueprintId)
-    assertEquals("v1", enManifest.bankVersion)
-    assertNotNull(enManifest.expectedFor("questions/en/bank.v1.json"))
-    assertTrue(enManifest.hasPath("questions/en/tasks/A-1.json"))
+
+    // Be tolerant to future locales (fr, etc.) but require at least one parsed locale.
+    assertTrue(result.locales.isNotEmpty(), "Expected at least one locale under questions/")
+
+      assertTrue(
+          !result.locales.containsKey("index.json"),
+          "Root file name 'index.json' must NOT be treated as locale key. locales.keys=${result.locales.keys}",
+          )
+
+      // 2) Strong proof: reader must NOT attempt to open 'questions/index.json/index.json'
+      // (happens if it mistakenly treats listing entry 'index.json' as a locale directory).
+      assertTrue(
+          opened.none { it == "questions/index.json/index.json" },
+          "Reader attempted to treat questions/index.json as locale directory. opened=$opened listed[questions]=${listed["questions"]}",
+          )
+
+    val shaRe = Regex("^[0-9a-fA-F]{64}$")
+
+    // Validate each parsed locale manifest against at least one real file on disk.
+    for ((locale, manifest) in result.locales.toSortedMap()) {
+        assertTrue(
+            !manifest.blueprintId.isNullOrBlank(),
+            "blueprintId is blank for locale=$locale (value='${manifest.blueprintId}')",
+            )
+        assertTrue(
+            !manifest.bankVersion.isNullOrBlank(),
+            "bankVersion is blank for locale=$locale (value='${manifest.bankVersion}')",
+            )
+
+      val entries =
+        manifest.files
+          .filterNot { it.path.endsWith("/index.json") }
+          .sortedBy { it.path }
+      assertTrue(entries.isNotEmpty(), "Manifest for locale=$locale has no file entries")
+
+      // Pick a sample entry that exists on disk (supports optional .gz toggling).
+      val sample =
+        entries.firstOrNull { e ->
+          Files.isRegularFile(assetsRoot.resolve(e.path)) ||
+            Files.isRegularFile(assetsRoot.resolve(toggleGz(e.path)))
+        } ?: entries.first()
+
+      val expectedSha = sample.sha256
+      assertTrue(shaRe.matches(expectedSha), "Invalid sha256 format for ${sample.path}: '$expectedSha'")
+
+      val candidatePaths = listOf(sample.path, toggleGz(sample.path)).distinct()
+      val candidateFiles =
+        candidatePaths
+          .map { assetsRoot.resolve(it) }
+          .filter { Files.isRegularFile(it) }
+
+      assertTrue(
+        candidateFiles.isNotEmpty(),
+        "No file exists on disk for locale=$locale entry=${sample.path} (candidates=$candidatePaths, assetsRoot=$assetsRoot)",
+      )
+
+      val expectedNorm = expectedSha.lowercase()
+      val actualCandidates =
+        candidateFiles
+          .map { sha256Bytes(Files.readAllBytes(it)).lowercase() }
+          .toSet()
+
+      assertTrue(
+        actualCandidates.contains(expectedNorm),
+        "SHA-256 mismatch for locale=$locale entry=${sample.path}. expected=$expectedNorm actual=$actualCandidates candidates=$candidatePaths",
+      )
+    }
   }
 
   private fun sha256(content: String): String {
@@ -190,4 +276,24 @@ class ContentIndexReaderTest {
     val bytes = digest.digest(content.toByteArray())
     return bytes.joinToString(separator = "") { "%02x".format(it) }
   }
+
+  private fun sha256Bytes(bytes: ByteArray): String {
+    val digest = MessageDigest.getInstance("SHA-256")
+    val out = digest.digest(bytes)
+    return out.joinToString(separator = "") { "%02x".format(it) }
+  }
+
+  private fun findRepoRoot(): Path {
+    val start = Paths.get("").toAbsolutePath().normalize()
+    return generateSequence(start) { it.parent }
+      .firstOrNull { p ->
+        Files.exists(p.resolve("settings.gradle.kts")) ||
+          Files.exists(p.resolve("settings.gradle")) ||
+          Files.exists(p.resolve("gradlew")) ||
+          Files.exists(p.resolve(".git"))
+      } ?: start
+  }
+
+  private fun toggleGz(path: String): String =
+    if (path.endsWith(".gz")) path.removeSuffix(".gz") else "$path.gz"
 }
