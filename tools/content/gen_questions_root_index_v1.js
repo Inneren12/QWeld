@@ -13,6 +13,8 @@ function exists(p) { try { fs.accessSync(p); return true; } catch { return false
 function isDir(p) { try { return fs.statSync(p).isDirectory(); } catch { return false; } }
 function listSorted(p) { return fs.readdirSync(p).slice().sort(); }
 function toPosix(p) { return p.split(path.sep).join("/"); }
+function readJson(p) { return JSON.parse(fs.readFileSync(p, "utf8")); }
+function writeJson(p, obj) { fs.writeFileSync(p, JSON.stringify(obj, null, 2) + "\n", "utf8"); }
 
 function findRepoRoot(startDir) {
   let cur = path.resolve(startDir);
@@ -29,29 +31,6 @@ function findRepoRoot(startDir) {
   }
 }
 
-function readJson(p) { return JSON.parse(fs.readFileSync(p, "utf8")); }
-function writeJson(p, obj) { fs.writeFileSync(p, JSON.stringify(obj, null, 2) + "\n", "utf8"); }
-
-function stripJsonExt(name) { return name.replace(/\.json(\.gz)?$/i, ""); }
-
-function gunzipIfNeeded(absPath, bytes) {
-  return absPath.endsWith(".gz") ? zlib.gunzipSync(bytes) : bytes;
-}
-
-function countQuestions(absPath) {
-  const raw = fs.readFileSync(absPath);
-  const bytes = gunzipIfNeeded(absPath, raw);
-  let j;
-  try { j = JSON.parse(bytes.toString("utf8")); } catch { return 0; }
-  if (Array.isArray(j)) return j.length;
-  if (j && typeof j === "object") {
-    if (Array.isArray(j.questions)) return j.questions.length;
-    if (Array.isArray(j.items)) return j.items.length;
-    if (Array.isArray(j.data)) return j.data.length;
-  }
-  return 0;
-}
-
 function pickGeneratedAt(rootIndexPath) {
   const epochIso = new Date(0).toISOString();
   if (exists(rootIndexPath)) {
@@ -65,14 +44,31 @@ function pickGeneratedAt(rootIndexPath) {
   return epochIso;
 }
 
+function stripJsonExt(name) { return name.replace(/\.json(\.gz)?$/i, ""); }
+
+function countQuestions(absPath) {
+  const raw = fs.readFileSync(absPath);
+  const bytes = absPath.endsWith(".gz") ? zlib.gunzipSync(raw) : raw;
+
+  let j;
+  try { j = JSON.parse(bytes.toString("utf8")); } catch { return 0; }
+
+  if (Array.isArray(j)) return j.length;
+  if (j && typeof j === "object") {
+    if (Array.isArray(j.questions)) return j.questions.length;
+    if (Array.isArray(j.items)) return j.items.length;
+    if (Array.isArray(j.data)) return j.data.length;
+  }
+  return 0;
+}
+
 function sortObjectKeys(obj) {
   const out = {};
   for (const k of Object.keys(obj).sort()) out[k] = obj[k];
   return out;
 }
 
-function findBankFile(localeDir) {
-  // Try common names; adapt if yours differs.
+function findBankAbs(localeDir) {
   const candidates = [
     "bank.v1.json",
     "bank.json",
@@ -83,7 +79,6 @@ function findBankFile(localeDir) {
     const abs = path.join(localeDir, c);
     if (exists(abs)) return abs;
   }
-  // fallback: any bank*.json*
   const all = listSorted(localeDir).filter(n => /^bank.*\.json(\.gz)?$/i.test(n));
   if (all.length > 0) return path.join(localeDir, all[0]);
   return null;
@@ -127,7 +122,6 @@ function main() {
         total += c;
       }
       if (total === 0 && taskFiles.length > 0) {
-        // fallback if counting fails
         total = taskFiles.length;
         for (const fn of taskFiles) {
           const id = stripJsonExt(fn);
@@ -137,31 +131,30 @@ function main() {
     }
 
     // sha256.bank: hash of bank file bytes
-    const bankAbs = findBankFile(localeDir);
+    const bankAbs = findBankAbs(localeDir);
     if (!bankAbs) {
       console.error(`bank file not found for locale=${locale} under ${localeDir}`);
       process.exit(1);
     }
     const bankHash = sha256(fs.readFileSync(bankAbs));
 
-    // sha256.tasks: deterministic aggregate of per-task file hashes (not counts)
-    // We hash the actual task JSON bytes so it changes when content changes.
-    const taskHashes = [];
+    // sha256.tasks: deterministic aggregate hash of each tasks file sha
+    const lines = [];
     if (isDir(tasksDir)) {
       const taskFiles = listSorted(tasksDir).filter(n => n.endsWith(".json") || n.endsWith(".json.gz"));
       for (const fn of taskFiles) {
         const id = stripJsonExt(fn);
         const abs = path.join(tasksDir, fn);
         const h = sha256(fs.readFileSync(abs));
-        taskHashes.push(`${id}:${h}\n`);
+        lines.push(`${id}:${h}\n`);
       }
     }
-    const tasksAggHash = sha256(Buffer.from(taskHashes.join(""), "utf8"));
+    const tasksHash = sha256(Buffer.from(lines.join(""), "utf8"));
 
     localesOut[locale] = {
       total,
       tasks: sortObjectKeys(tasksMap),
-      sha256: { bank: bankHash, tasks: tasksAggHash },
+      sha256: { bank: bankHash, tasks: tasksHash },
     };
   }
 
@@ -172,7 +165,7 @@ function main() {
   };
 
   writeJson(rootIndexPath, rootIndex);
-  console.log("OK: rebuilt root questions/index.json");
+  console.log("OK: wrote", toPosix(path.relative(repoRoot, rootIndexPath)));
 }
 
 main();
