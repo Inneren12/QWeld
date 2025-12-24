@@ -20,3 +20,6 @@ logs/
 .gradle/
 local.properties
 **/google-services.json
+
+# CI tools and dependencies
+.ci-node/
