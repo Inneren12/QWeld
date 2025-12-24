@@ -2,11 +2,11 @@
   "blueprintId": "welder_ip_sk_202404",
   "bankVersion": "v1",
   "files": {
-    "questions/en/meta/task_labels.json": {
-      "sha256": "fd63a8ab0e5baaf2def16239f339fd151b7b9ecc32b8a1c7ae3f50e12cdd8342"
-    },
     "questions/en/bank.v1.json": {
       "sha256": "3cd4858d142ed041c5ff2ee3e86b0373894d279c3378f1f8d37c515b0b61ae30"
+    },
+    "questions/en/meta/task_labels.json": {
+      "sha256": "fd63a8ab0e5baaf2def16239f339fd151b7b9ecc32b8a1c7ae3f50e12cdd8342"
     },
     "questions/en/tasks/A-1.json": {
       "sha256": "2e77a653f5c0e62a970d308e4aaf5ec26d00cb332323186e6021afaa6b754fdc"
