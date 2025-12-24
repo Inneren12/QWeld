@@ -3,10 +3,12 @@ package com.qweld.app.data.content
 import java.io.ByteArrayInputStream
 import java.io.FileNotFoundException
 import java.security.MessageDigest
+import java.nio.file.Paths
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import kotlinx.serialization.json.Json
 
 class ContentIndexReaderTest {
@@ -156,6 +158,31 @@ class ContentIndexReaderTest {
     val mismatch = mismatches.single()
     assertEquals("questions/en/index.json", mismatch.path)
     assertEquals(ContentIndexReader.Mismatch.Reason.INDEX_MISSING, mismatch.reason)
+  }
+
+  @Test
+  fun `read parses real bundled manifests`() {
+    val assetsRoot = Paths.get("app-android/src/main/assets").toAbsolutePath().normalize()
+    val loader =
+      object : ContentIndexReader.AssetLoader {
+        override fun open(path: String) = assetsRoot.resolve(path).toFile().inputStream()
+
+        override fun list(path: String): List<String> {
+          return assetsRoot.resolve(path).toFile().list()?.toList() ?: emptyList()
+        }
+      }
+
+    val reader = ContentIndexReader(loader, json)
+
+    val result = reader.read()
+
+    assertNotNull(result)
+    assertEquals(setOf("en", "ru"), result.locales.keys)
+    val enManifest = result.manifests.getValue("en")
+    assertEquals("welder_ip_sk_202404", enManifest.blueprintId)
+    assertEquals("v1", enManifest.bankVersion)
+    assertNotNull(enManifest.expectedFor("questions/en/bank.v1.json"))
+    assertTrue(enManifest.hasPath("questions/en/tasks/A-1.json"))
   }
 
   private fun sha256(content: String): String {
