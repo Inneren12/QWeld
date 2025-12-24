@@ -20,8 +20,6 @@ import com.qweld.app.data.db.dao.QueuedQuestionReportDao
 import com.qweld.app.data.export.AttemptExporter
 import com.qweld.app.data.logging.LogCollector
 import com.qweld.app.data.prefs.UserPrefsDataStore
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.qweld.app.data.repo.AnswersRepository
 import com.qweld.app.data.repo.DefaultAnswersRepository
 import com.qweld.app.data.repo.AttemptsRepository
@@ -79,18 +77,8 @@ object AppModule {
 
   @Provides
   @Singleton
-  fun provideUserPrefsPreferencesDataStore(
-    @ApplicationContext context: Context,
-  ): DataStore<Preferences> =
-    userPrefsDataStore ?: synchronized(AppModule) {
-      userPrefsDataStore ?: UserPrefsDataStore.createDataStore(context = context).also {
-        userPrefsDataStore = it
-      }
-    }
-
-  @Provides
-  @Singleton
-  fun provideUserPrefsDataStore(dataStore: DataStore<Preferences>): UserPrefsDataStore = UserPrefsDataStore(dataStore)
+  fun provideUserPrefsDataStore(@ApplicationContext context: Context): UserPrefsDataStore =
+    UserPrefsDataStore(context)
 
   @Provides
   @Singleton
@@ -218,6 +206,4 @@ object AppModule {
   @Singleton
   fun provideAuthService(analytics: Analytics): AuthService =
     FirebaseAuthService(FirebaseAuth.getInstance(), analytics)
-
-  private var userPrefsDataStore: DataStore<Preferences>? = null
 }

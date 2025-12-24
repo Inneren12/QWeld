@@ -158,6 +158,8 @@ dependencies {
 
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
     androidTestImplementation("androidx.test.espresso:espresso-idling-resource:3.7.0")
+
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 }
 
 licensee {

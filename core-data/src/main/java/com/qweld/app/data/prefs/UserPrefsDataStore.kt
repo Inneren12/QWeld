@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import java.util.Locale
+import java.util.concurrent.ConcurrentHashMap
 
 class UserPrefsDataStore internal constructor(
   private val dataStore: DataStore<Preferences>,
@@ -29,7 +30,7 @@ class UserPrefsDataStore internal constructor(
     context: Context,
     scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
     storeName: String = DATA_STORE_NAME,
-  ) : this(createDataStore(context = context, scope = scope, storeName = storeName))
+  ) : this(getOrCreateDataStore(context = context, scope = scope, storeName = storeName))
 
   override val analyticsEnabled: Flow<Boolean> = dataStore.data.map { preferences ->
     preferences[ANALYTICS_ENABLED_KEY] ?: DEFAULT_ANALYTICS_ENABLED
@@ -211,7 +212,7 @@ class UserPrefsDataStore internal constructor(
     const val DEFAULT_APP_LOCALE: String = "system"
     const val DEFAULT_LAST_PRACTICE_SIZE: Int = DEFAULT_PRACTICE_SIZE
 
-      private const val DATA_STORE_NAME = "user_prefs"
+    private const val DATA_STORE_NAME = "user_prefs"
     private val ANALYTICS_ENABLED_KEY = booleanPreferencesKey("analytics_enabled")
     private val PREWARM_DISABLED_KEY = booleanPreferencesKey("prewarm_disabled")
     private val ADAPTIVE_EXAM_ENABLED_KEY = booleanPreferencesKey("adaptive_exam_enabled")
@@ -246,6 +247,20 @@ class UserPrefsDataStore internal constructor(
         LAST_PRACTICE_SIZE_KEY to DEFAULT_LAST_PRACTICE_SIZE,
         LAST_PRACTICE_WRONG_BIASED_KEY to DEFAULT_WRONG_BIASED,
       )
+    }
+
+    // DataStore must be a process-singleton per file. In instrumented tests, Hilt components can be
+    // recreated within the same process; without caching we'd create multiple DataStores for the same file.
+    private val dataStoreCache = ConcurrentHashMap<String, DataStore<Preferences>>()
+
+    private fun getOrCreateDataStore(
+      context: Context,
+      scope: CoroutineScope,
+      storeName: String,
+    ): DataStore<Preferences> {
+      return dataStoreCache.getOrPut(storeName) {
+        createDataStore(context = context, scope = scope, storeName = storeName)
+      }
     }
 
     fun createDataStore(

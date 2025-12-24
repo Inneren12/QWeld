@@ -15,9 +15,13 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import com.qweld.app.MainActivity
 import com.qweld.app.R
+import org.junit.Before
 import org.junit.Rule
+import org.junit.rules.RuleChain
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.Locale
@@ -35,9 +39,20 @@ import java.util.Locale
  * deterministic, locale-independent navigation.
  */
 @RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class LocaleSwitchUiTest {
+    private val hiltRule = HiltAndroidRule(this)
+    private val composeTestRule = createAndroidComposeRule<MainActivity>()
+
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+    val ruleChain: RuleChain = RuleChain
+        .outerRule(hiltRule)     // MUST run before activity is launched
+        .around(composeTestRule) // launches MainActivity
+
+    @Before
+    fun setUp() {
+        hiltRule.inject()
+    }
 
     /**
      * Helper to get a localized string for a specific locale tag.
