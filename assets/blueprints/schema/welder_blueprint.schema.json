@@ -1,100 +1,140 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://inneren12.github.io/qweld/welder_blueprint.schema.json",
-  "title": "Welder blueprint assets index",
-  "type": "object",
+  "$id": "https://qweld.app/schemas/welder_blueprint.schema.json",
+  "title": "QWeld Questions Index Schema",
+  "description": "Validates both root summary index (questions/index.json) and locale manifest files (questions/{locale}/index.json)",
   "oneOf": [
     {
-      "title": "Root questions index",
+      "title": "Root Summary Index",
+      "description": "Aggregated summary of all locales with task counts and SHA256 hashes",
+      "type": "object",
+      "required": [
+        "schema",
+        "generatedAt",
+        "locales"
+      ],
       "additionalProperties": false,
-      "required": ["schema", "generatedAt", "locales"],
       "properties": {
         "schema": {
           "type": "string",
-          "const": "questions-index-v1"
+          "const": "questions-index-v1",
+          "description": "Schema version identifier"
         },
         "generatedAt": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when this index was generated"
         },
         "locales": {
           "type": "object",
-          "minProperties": 1,
-          "additionalProperties": { "$ref": "#/$defs/localeSummary" }
+          "description": "Map of locale codes to their summary data",
+          "patternProperties": {
+            "^[a-z]{2}(-[A-Z]{2})?$": {
+              "type": "object",
+              "required": [
+                "total",
+                "tasks",
+                "sha256"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Total number of questions across all tasks for this locale"
+                },
+                "tasks": {
+                  "type": "object",
+                  "description": "Map of task IDs to question counts",
+                  "patternProperties": {
+                    "^[A-Z]-[0-9]+$": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Number of questions in this task"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "sha256": {
+                  "type": "object",
+                  "required": [
+                    "bank",
+                    "tasks"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "bank": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$",
+                      "description": "SHA256 hash of the bank.v1.json file (64-char lowercase hex)"
+                    },
+                    "tasks": {
+                      "type": "object",
+                      "description": "Map of task IDs to their SHA256 hashes",
+                      "patternProperties": {
+                        "^[A-Z]-[0-9]+$": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$",
+                          "description": "SHA256 hash of the task JSON file (64-char lowercase hex)"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "description": "SHA256 hashes of bank and task files"
+                }
+              }
+            }
+          },
+          "additionalProperties": false,
+          "minProperties": 1
         }
       }
     },
     {
-      "title": "Locale bundle index",
+      "title": "Locale Manifest",
+      "description": "Detailed file listing for a specific locale with SHA256 hashes",
+      "type": "object",
+      "required": [
+        "blueprintId",
+        "bankVersion",
+        "files"
+      ],
       "additionalProperties": false,
-      "required": ["blueprintId", "bankVersion", "files"],
       "properties": {
         "blueprintId": {
           "type": "string",
-          "pattern": "^welder_ip_[a-z]{2}_[0-9]{6}$"
+          "pattern": "^[a-z0-9_]+$",
+          "description": "Identifier for the blueprint (e.g., welder_ip_sk_202404)"
         },
         "bankVersion": {
           "type": "string",
-          "pattern": "^v[0-9]+$"
+          "pattern": "^v[0-9]+$",
+          "description": "Version of the question bank (e.g., v1, v2)"
         },
         "files": {
           "type": "object",
-          "minProperties": 1,
-          "additionalProperties": { "$ref": "#/$defs/fileEntry" }
-        }
-      }
-    }
-  ],
-  "$defs": {
-    "localeSummary": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["total", "tasks", "sha256"],
-      "properties": {
-        "total": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "tasks": {
-          "type": "object",
-          "minProperties": 1,
+          "description": "Map of file paths to their metadata",
           "patternProperties": {
-            "^[A-D]-\\d+$": {
-              "type": "integer",
-              "minimum": 0
+            "^questions/[a-z]{2}(-[A-Z]{2})?/": {
+              "type": "object",
+              "required": [
+                "sha256"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$",
+                  "description": "SHA256 hash of the file contents (64-char lowercase hex)"
+                }
+              }
             }
           },
-          "additionalProperties": false
-        },
-        "sha256": {
-          "type": "object",
           "additionalProperties": false,
-          "required": ["bank", "tasks"],
-          "properties": {
-            "bank": { "$ref": "#/$defs/sha256" },
-            "tasks": {
-              "type": "object",
-              "minProperties": 1,
-              "patternProperties": {
-                "^[A-D]-\\d+$": { "$ref": "#/$defs/sha256" }
-              },
-              "additionalProperties": false
-            }
-          }
+          "minProperties": 1
         }
       }
-    },
-    "fileEntry": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["sha256"],
-      "properties": {
-        "sha256": { "$ref": "#/$defs/sha256" }
-      }
-    },
-    "sha256": {
-      "type": "string",
-      "pattern": "^[0-9a-f]{64}$"
     }
-  }
+  ]
 }
