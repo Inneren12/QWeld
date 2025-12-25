@@ -81,6 +81,15 @@ jobs:
           test -d "$ANDROID_SDK_ROOT" || exit 1
           test "$ANDROID_SDK_ROOT" != "/android-sdk" || exit 1
 
+      - name: Upload unit test report (core-data)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-data-testDebugUnitTest-report
+          path: |
+            core-data/build/reports/tests/testDebugUnitTest/
+            core-data/build/test-results/testDebugUnitTest/
+
       - name: Remove local.properties
         run: rm -f local.properties
 
