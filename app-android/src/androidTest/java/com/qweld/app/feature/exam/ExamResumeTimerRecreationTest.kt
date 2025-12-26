@@ -1,17 +1,16 @@
 package com.qweld.app.feature.exam
 
 import androidx.compose.ui.semantics.SemanticsProperties
-import androidx.compose.ui.test.hasContentDescription
-import androidx.compose.ui.test.hasStateDescription
-import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodes
+import androidx.compose.ui.test.hasStateDescription
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onAllNodesWithContentDescription
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SdkSuppress
 import com.qweld.app.MainActivity
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.feature.exam.R
@@ -29,7 +28,6 @@ import org.junit.runner.RunWith
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
-@SdkSuppress(maxSdkVersion = 34)
 class ExamResumeTimerRecreationTest {
   private val hiltRule = HiltAndroidRule(this)
   private val composeRule = createAndroidComposeRule<MainActivity>()
@@ -73,7 +71,7 @@ class ExamResumeTimerRecreationTest {
     val startCd = composeRule.activity.getString(R.string.mode_ip_mock_cd)
     composeRule.waitUntil(timeoutMillis = 5_000) {
       composeRule
-        .onAllNodes(hasContentDescription(startCd), useUnmergedTree = false)
+        .onAllNodesWithContentDescription(startCd, useUnmergedTree = false)
         .fetchSemanticsNodes()
         .isNotEmpty()
     }
@@ -84,18 +82,15 @@ class ExamResumeTimerRecreationTest {
   private fun waitForExamScreen() {
     val tag = "exam-content"
     composeRule.waitUntil(timeoutMillis = 10_000) {
-      composeRule.onAllNodes(hasTestTag(tag), useUnmergedTree = false).fetchSemanticsNodes().isNotEmpty()
+      composeRule.onAllNodesWithTag(tag, useUnmergedTree = false).fetchSemanticsNodes().isNotEmpty()
     }
   }
 
   private fun answerCurrentQuestion() {
     val unselected = composeRule.activity.getString(R.string.exam_choice_state_unselected)
     val selected = composeRule.activity.getString(R.string.exam_choice_state_selected)
-    composeRule.onAllNodes(hasStateDescription(unselected), useUnmergedTree = true).onFirst().performClick()
-    composeRule
-      .onAllNodes(hasStateDescription(selected), useUnmergedTree = true)
-      .onFirst()
-      .assertExists()
+    composeRule.onAllNodes(hasStateDescription(unselected), useUnmergedTree = true)[0].performClick()
+    composeRule.onAllNodes(hasStateDescription(selected), useUnmergedTree = true)[0].assertExists()
   }
 
   private fun goToNextQuestion() {
@@ -110,37 +105,36 @@ class ExamResumeTimerRecreationTest {
 
   private fun assertAnswerStillSelected() {
     val selected = composeRule.activity.getString(R.string.exam_choice_state_selected)
-    composeRule
-      .onAllNodes(hasStateDescription(selected), useUnmergedTree = true)
-      .onFirst()
-      .assertExists()
+    composeRule.onAllNodes(hasStateDescription(selected), useUnmergedTree = true)[0].assertExists()
   }
 
   private fun awaitStableTimerSeconds(): Long {
-    val timerLabelPrefix = composeRule.activity.getString(R.string.exam_timer_label, "").trim()
-    composeRule.waitUntil(timeoutMillis = 5_000) {
-      composeRule
-        .onAllNodes(hasText(timerLabelPrefix, substring = true), useUnmergedTree = false)
-        .fetchSemanticsNodes()
-        .isNotEmpty()
-    }
+    composeRule.waitUntil(timeoutMillis = 5_000) { findTimerNode() != null }
     val first = readTimerSeconds()
     composeRule.waitUntil(timeoutMillis = 5_000) { readTimerSeconds() < first }
     return readTimerSeconds()
   }
 
   private fun readTimerSeconds(): Long {
-    val timerLabelPrefix = composeRule.activity.getString(R.string.exam_timer_label, "").trim()
-    val timerTextNode =
-      composeRule
-        .onAllNodes(hasText(timerLabelPrefix, substring = true), useUnmergedTree = false)
-        .fetchSemanticsNodes()
-        .first()
-    val text = timerTextNode.config[SemanticsProperties.Text]?.joinToString(separator = "") { it.text }
+    val text = findTimerNode()
+      ?.config
+      ?.get(SemanticsProperties.Text)
+      ?.joinToString(separator = "") { it.text }
+    require(!text.isNullOrEmpty()) { "Timer label missing text" }
     val match = TIME_PATTERN.find(text.orEmpty()) ?: error("Timer label missing time component")
     val parts = match.value.split(":").map { it.toLong() }
     return TimeUnit.HOURS.toSeconds(parts[0]) + TimeUnit.MINUTES.toSeconds(parts[1]) + parts[2]
   }
+
+  private fun findTimerNode() =
+    composeRule
+      .onAllNodesWithText(":", substring = true, useUnmergedTree = false)
+      .fetchSemanticsNodes()
+      .firstOrNull { semanticsNode ->
+        semanticsNode.config[SemanticsProperties.Text]
+          ?.joinToString(separator = "") { it.text }
+          ?.let { TIME_PATTERN.containsMatchIn(it) } == true
+      }
 
   companion object {
     private val TIME_PATTERN = Regex("\\d{2}:\\d{2}:\\d{2}")
