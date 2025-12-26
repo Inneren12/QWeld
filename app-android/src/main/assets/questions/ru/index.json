@@ -3,7 +3,7 @@
   "bankVersion": "v1",
   "files": {
     "questions/ru/bank.v1.json": {
-      "sha256": "704933b65447c9ecd84b1029941c7b217c343ab7c5e0758673b05d6abca3aee7"
+      "sha256": "333209f278e98bef930b80c712c8b0326d7b2b178933a82949c777dadfb50709"
     },
     "questions/ru/meta/task_labels.json": {
       "sha256": "413195d5a474edaf3aa89bac661b500c25e6997791e32a929c39adf7e784c36c"

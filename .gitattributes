@@ -1,1 +1,2 @@
-app-android/src/main/assets/questions/** text eol=lf
+# Question content is checksum-validated: must be byte-identical across OS.
+app-android/src/main/assets/questions/** -text
