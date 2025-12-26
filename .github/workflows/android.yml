@@ -7,7 +7,14 @@ on:
       - main
   pull_request:
     branches:
-      - '*'
+      - "*"
+
+# Needed for dorny/test-reporter to create check-runs on non-fork PRs.
+# On fork PRs, GitHub restricts permissions; we gate the reporter step to avoid failure.
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
 
 jobs:
   build:
@@ -56,7 +63,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: "21"
           cache: gradle
 
       - name: Verify Java toolchain
@@ -72,7 +79,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: ''
+          packages: ""
 
       - name: Provision SDK 35
         shell: bash
@@ -143,8 +150,9 @@ jobs:
           if-no-files-found: warn
 
       # Show failing tests in the GitHub UI (Summary / Checks)
+      # This fails on fork PRs due to restricted GITHUB_TOKEN permissions.
       - name: Publish unit test results (JUnit)
-        if: always()
+        if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: dorny/test-reporter@v1
         with:
           name: Unit tests (JUnit)
@@ -214,3 +222,8 @@ jobs:
             **/build/reports/licensee/**
             **/build/reports/bom/**
           if-no-files-found: warn
+
+
+
+
+
