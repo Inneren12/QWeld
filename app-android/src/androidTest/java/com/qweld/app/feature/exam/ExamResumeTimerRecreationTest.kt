@@ -1,13 +1,13 @@
 package com.qweld.app.feature.exam
 
 import androidx.compose.ui.semantics.SemanticsProperties
-import androidx.compose.ui.test.onAllNodes
 import androidx.compose.ui.test.hasStateDescription
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithContentDescription
-import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -89,8 +89,11 @@ class ExamResumeTimerRecreationTest {
   private fun answerCurrentQuestion() {
     val unselected = composeRule.activity.getString(R.string.exam_choice_state_unselected)
     val selected = composeRule.activity.getString(R.string.exam_choice_state_selected)
-    composeRule.onAllNodes(hasStateDescription(unselected), useUnmergedTree = true)[0].performClick()
-    composeRule.onAllNodes(hasStateDescription(selected), useUnmergedTree = true)[0].assertExists()
+    composeRule.onNodeWithTag(FIRST_CHOICE_TAG, useUnmergedTree = true).apply {
+      assert(hasStateDescription(unselected))
+      performClick()
+      assert(hasStateDescription(selected))
+    }
   }
 
   private fun goToNextQuestion() {
@@ -105,7 +108,9 @@ class ExamResumeTimerRecreationTest {
 
   private fun assertAnswerStillSelected() {
     val selected = composeRule.activity.getString(R.string.exam_choice_state_selected)
-    composeRule.onAllNodes(hasStateDescription(selected), useUnmergedTree = true)[0].assertExists()
+    composeRule
+      .onNodeWithTag(FIRST_CHOICE_TAG, useUnmergedTree = true)
+      .assert(hasStateDescription(selected))
   }
 
   private fun awaitStableTimerSeconds(): Long {
@@ -128,7 +133,7 @@ class ExamResumeTimerRecreationTest {
 
   private fun findTimerNode() =
     composeRule
-      .onAllNodesWithText(":", substring = true, useUnmergedTree = false)
+      .onAllNodesWithTag(TIMER_TAG, useUnmergedTree = false)
       .fetchSemanticsNodes()
       .firstOrNull { semanticsNode ->
         semanticsNode.config[SemanticsProperties.Text]
@@ -139,5 +144,7 @@ class ExamResumeTimerRecreationTest {
   companion object {
     private val TIME_PATTERN = Regex("\\d{2}:\\d{2}:\\d{2}")
     private const val TIMER_TOLERANCE_SECONDS = 5L
+    private const val TIMER_TAG = "exam.timer"
+    private const val FIRST_CHOICE_TAG = "exam.choice.0"
   }
 }

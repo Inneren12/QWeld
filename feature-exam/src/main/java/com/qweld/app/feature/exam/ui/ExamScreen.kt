@@ -59,6 +59,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -368,6 +369,7 @@ internal fun ExamScreenContent(
             text = stringResource(id = R.string.exam_timer_label, state.timerLabel),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.testTag("exam.timer"),
           )
         }
         if (attempt.mode == ExamMode.ADAPTIVE) {
@@ -405,7 +407,7 @@ internal fun ExamScreenContent(
               Text(text = stringResource(id = R.string.report_question_button))
             }
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-              question.choices.forEach { choice ->
+              question.choices.forEachIndexed { index, choice ->
                 val choiceDescription = stringResource(
                   id = R.string.exam_choice_content_description,
                   choice.label,
@@ -418,6 +420,7 @@ internal fun ExamScreenContent(
                   modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(min = minHeight)
+                    .testTag("exam.choice.$index")
                     .semantics(mergeDescendants = false) {
                       contentDescription = choiceDescription
                       role = Role.Button
