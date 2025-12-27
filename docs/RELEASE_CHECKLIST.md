@@ -7,6 +7,10 @@ Use this runbook for every Google Play promotion from Internal testing to Produc
 - [ ] Update versionName/versionCode in `app-android/build.gradle.kts`.
 - [ ] Update policy dates (Privacy, Data Safety form) if wording changed.
 - [ ] Regenerate changelog / release notes.
+- [ ] Run the release-safe workflow (no content rebuild):
+  ```bash
+  ./gradlew :app-android:verifyAssets test connectedAndroidTest
+  ```
 
 ## 2. Build artifacts
 - [ ] `./gradlew :app-android:bundleRelease`
