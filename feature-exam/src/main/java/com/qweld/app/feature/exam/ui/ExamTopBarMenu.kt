@@ -1,19 +1,13 @@
 package com.qweld.app.feature.exam.ui
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -29,8 +23,7 @@ fun ExamTopBarMenu(
   onExit: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
-  var expanded by remember { mutableStateOf(false) }
-  TopAppBar(
+  CenterAlignedTopAppBar(
     modifier = modifier,
     title = { },
     actions = {
@@ -41,29 +34,15 @@ fun ExamTopBarMenu(
         onClick = onExit,
         modifier = Modifier.semantics { contentDescription = exitCd },
       )
-      val menuCd = stringResource(id = R.string.exam_overflow_cd)
+      val restartCd = stringResource(id = R.string.menu_start_over)
       IconButton(
-        onClick = { expanded = true },
+        onClick = onStartOver,
         modifier = Modifier.semantics {
           role = Role.Button
-          contentDescription = menuCd
+          contentDescription = restartCd
         },
       ) {
-        Icon(imageVector = Icons.Default.MoreVert, contentDescription = null)
-      }
-      DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-        val restartCd = stringResource(id = R.string.menu_start_over)
-        DropdownMenuItem(
-          text = { Text(text = stringResource(id = R.string.menu_start_over)) },
-          onClick = {
-            expanded = false
-            onStartOver()
-          },
-          modifier = Modifier.semantics {
-            role = Role.Button
-            contentDescription = restartCd
-          },
-        )
+        Icon(imageVector = Icons.Outlined.RestartAlt, contentDescription = null)
       }
     },
   )

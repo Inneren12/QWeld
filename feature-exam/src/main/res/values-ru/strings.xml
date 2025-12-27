@@ -51,7 +51,7 @@
     <string name="exam_previous">Назад</string>
     <string name="exam_next">Далее</string>
     <string name="exam_finish">Завершить</string>
-    <string name="finish_exam">Завершить экзамен</string>
+    <string name="finish_exam">Завершить</string>
     <string name="exam_finish_cd">Отправить ответы и завершить экзамен</string>
     <string name="exam_previous_cd">Перейти к предыдущему вопросу</string>
     <string name="exam_next_cd">Перейти к следующему вопросу</string>
