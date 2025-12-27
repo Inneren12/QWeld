@@ -4,12 +4,12 @@ Use this runbook for every Google Play promotion from Internal testing to Produc
 
 ## 1. Prep the build
 - [ ] Confirm `main` is green (CI) and branch is up to date.
-- [ ] Update versionName/versionCode in `app-android/build.gradle.kts`.
+- [ ] Update versionName/versionCode in `app-android/build.gradle.kts` (see [versioning_policy.md](versioning_policy.md)).
 - [ ] Update policy dates (Privacy, Data Safety form) if wording changed.
 - [ ] Regenerate changelog / release notes.
 
 ## 2. Build artifacts
-- [ ] `./gradlew :app-android:bundleRelease`
+- [ ] `./gradlew :app-android:bundleRelease` (details in [docs/release/bundle_release.md](release/bundle_release.md))
   - Note: Crashlytics mapping file upload runs automatically during this task when `google-services.json` is present
   - Verify symbol upload succeeded by checking Firebase Console → Crashlytics → Mappings for the build version
   - CI workflow (`.github/workflows/android.yml`) conditionally enables symbol upload when `GOOGLE_SERVICES_JSON_B64` secret is set
@@ -25,6 +25,7 @@ Use this runbook for every Google Play promotion from Internal testing to Produc
 ## 4. QA sanity
 - [ ] Install the generated `.aab` via internal sharing link or `bundletool`.
 - [ ] Smoke test sign-in, practice session, offline mode, logs export, analytics opt-in/out.
+- [ ] Run the [release smoke checklist](release_smoke_checklist.md) for install → exam → practice → locale switch → offline report.
 - [ ] Capture screenshots for Play listing (7", 10", phone) if UI changed.
 
 ## 5. Play Console submission
