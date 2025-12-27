@@ -1918,7 +1918,7 @@ class ExamViewModel @Inject constructor(
         "Unable to read questions for task $taskId. Please reinstall the app."
 
       is com.qweld.app.feature.exam.data.ContentLoadError.IntegrityMismatch ->
-        "Content verification failed. The app data may be corrupted. Please reinstall the app."
+        "Failed to load question content. Please reinstall."
 
       is com.qweld.app.feature.exam.data.ContentLoadError.InvalidJson ->
         "Question data is invalid or corrupted. Please reinstall the app."

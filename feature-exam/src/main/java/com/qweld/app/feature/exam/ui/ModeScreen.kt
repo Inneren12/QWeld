@@ -426,7 +426,7 @@ private fun com.qweld.app.feature.exam.data.ContentLoadError.toUserFriendlyMessa
       "Cannot read questions for task $taskId. Please reinstall the app."
 
     is com.qweld.app.feature.exam.data.ContentLoadError.IntegrityMismatch ->
-      "Content verification failed for $displayLocale. App data may be corrupted. Please reinstall."
+      "Failed to load question content. Please reinstall."
 
     is com.qweld.app.feature.exam.data.ContentLoadError.InvalidJson ->
       "Question data corrupted for $displayLocale. Please reinstall the app."

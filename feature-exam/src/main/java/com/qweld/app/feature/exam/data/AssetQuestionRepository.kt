@@ -213,6 +213,69 @@ class AssetQuestionRepository internal constructor(
       }
       is AssetPayload.Error -> {
         val bankPath = "questions/$locale/bank.v1.json"
+        if (outcome.throwable is IntegrityMismatchException) {
+          val mismatch = outcome.throwable
+          Logx.w(
+            LogTag.LOAD,
+            "bank_integrity_mismatch",
+            mismatch,
+            "locale" to locale,
+            "task" to "*",
+            "expected" to (mismatch.expected ?: "none"),
+            "actual" to (mismatch.actual ?: "none"),
+          )
+          var singlesOutcome: AssetPayload<List<QuestionDTO>> = AssetPayload.Missing
+          val singlesElapsed = measureTimeMillis { singlesOutcome = loadFromSingleFiles(locale) }
+          when (val rawOutcome = singlesOutcome) {
+            is AssetPayload.Success -> {
+              Logx.i(
+                LogTag.LOAD,
+                "raw_success",
+                "locale" to locale,
+                "task" to "*",
+                "count" to rawOutcome.value.size,
+                "elapsedMs" to singlesElapsed,
+                "fallback" to "bank_integrity_mismatch",
+              )
+              return LoadResult.Success(locale = locale, questions = rawOutcome.value)
+            }
+            AssetPayload.Missing -> {
+              val error = ContentLoadError.fromThrowable(
+                throwable = outcome.throwable,
+                context = "bank_loading",
+                locale = locale,
+                path = bankPath,
+              )
+              Logx.e(
+                LogTag.LOAD,
+                "bank_error",
+                outcome.throwable,
+                "locale" to locale,
+                "task" to "*",
+                "error" to error.diagnosticMessage,
+              )
+              return LoadResult.Corrupt(error)
+            }
+            is AssetPayload.Error -> {
+              val error = ContentLoadError.fromThrowable(
+                throwable = rawOutcome.throwable,
+                context = "raw_files_loading",
+                locale = locale,
+                path = "questions/$locale",
+              )
+              Logx.e(
+                LogTag.LOAD,
+                "raw_error",
+                rawOutcome.throwable,
+                "locale" to locale,
+                "task" to "*",
+                "error" to error.diagnosticMessage,
+              )
+              return LoadResult.Corrupt(error)
+            }
+          }
+        }
+
         val error = ContentLoadError.fromThrowable(
           throwable = outcome.throwable,
           context = "bank_loading",
