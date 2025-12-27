@@ -14,6 +14,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.qweld.app.MainActivity
 import com.qweld.app.data.repo.AttemptsRepository
 import com.qweld.app.feature.exam.R
+import com.qweld.app.testing.ComposeStability.ensureComposeReady
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import java.util.concurrent.TimeUnit
@@ -44,6 +45,7 @@ class ExamResumeTimerRecreationTest {
 
   @Test
   fun answersAndTimerSurviveActivityRecreation() {
+    ensureComposeReady(composeRule)
     startExamFromMode()
     waitForExamScreen()
 
@@ -56,6 +58,7 @@ class ExamResumeTimerRecreationTest {
     val beforeRecreationSeconds = awaitStableTimerSeconds()
 
     composeRule.activityRule.scenario.recreate()
+    ensureComposeReady(composeRule)
     waitForExamScreen()
 
     val afterRecreationSeconds = awaitStableTimerSeconds()
@@ -68,6 +71,7 @@ class ExamResumeTimerRecreationTest {
   }
 
   private fun startExamFromMode() {
+    ensureComposeReady(composeRule)
     val startCd = composeRule.activity.getString(R.string.mode_ip_mock_cd)
     composeRule.waitUntil(timeoutMillis = 5_000) {
       composeRule
@@ -77,13 +81,17 @@ class ExamResumeTimerRecreationTest {
     }
     composeRule.onNodeWithContentDescription(startCd).performScrollTo()
     composeRule.onNodeWithContentDescription(startCd).performClick()
+    composeRule.waitForIdle()
+    ensureComposeReady(composeRule)
   }
 
   private fun waitForExamScreen() {
+    ensureComposeReady(composeRule)
     val tag = "exam-content"
     composeRule.waitUntil(timeoutMillis = 10_000) {
       composeRule.onAllNodesWithTag(tag, useUnmergedTree = false).fetchSemanticsNodes().isNotEmpty()
     }
+    composeRule.waitForIdle()
   }
 
   private fun answerCurrentQuestion() {
@@ -99,11 +107,15 @@ class ExamResumeTimerRecreationTest {
   private fun goToNextQuestion() {
     val nextCd = composeRule.activity.getString(R.string.exam_next_cd)
     composeRule.onNodeWithContentDescription(nextCd).performClick()
+    composeRule.waitForIdle()
+    ensureComposeReady(composeRule)
   }
 
   private fun navigateBackToFirstQuestion() {
     val previousCd = composeRule.activity.getString(R.string.exam_previous_cd)
     repeat(2) { composeRule.onNodeWithContentDescription(previousCd).performClick() }
+    composeRule.waitForIdle()
+    ensureComposeReady(composeRule)
   }
 
   private fun assertAnswerStillSelected() {
@@ -114,6 +126,7 @@ class ExamResumeTimerRecreationTest {
   }
 
   private fun awaitStableTimerSeconds(): Long {
+    ensureComposeReady(composeRule)
     composeRule.waitUntil(timeoutMillis = 5_000) { findTimerNode() != null }
     val first = readTimerSeconds()
     composeRule.waitUntil(timeoutMillis = 5_000) { readTimerSeconds() < first }
