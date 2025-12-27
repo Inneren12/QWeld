@@ -79,9 +79,8 @@ class ExamResumeTimerRecreationTest {
         .fetchSemanticsNodes()
         .isNotEmpty()
     }
-    composeRule.onNodeWithContentDescription(startCd).performScrollTo()
-    composeRule.onNodeWithContentDescription(startCd).performClick()
-    composeRule.waitForIdle()
+      composeRule.onNodeWithContentDescription(startCd).assertExists().performClick()
+      composeRule.waitForIdle()
     ensureComposeReady(composeRule)
   }
 
