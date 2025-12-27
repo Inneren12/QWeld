@@ -17,7 +17,7 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import com.qweld.app.MainActivity
 import com.qweld.app.R
-import com.qweld.app.testing.ComposeStability.ensureComposeReady
+import com.qweld.app.testing.ComposeStability
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.RuleChain
@@ -42,6 +42,10 @@ import java.util.Locale
 class LocaleSwitchUiTest {
     private val hiltRule = HiltAndroidRule(this)
     private val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+    private fun ensureComposeReady(timeoutMs: Long = 10_000) {
+        ComposeStability.ensureComposeReady(composeTestRule, timeoutMs)
+    }
 
     @get:Rule
     val ruleChain: RuleChain = RuleChain
