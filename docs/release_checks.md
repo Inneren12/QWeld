@@ -263,7 +263,7 @@ After all validations and smoke tests pass:
 | Questions | `bash scripts/validate-questions.sh` | Validate question schema and rationales |
 | Quotas | `bash scripts/check-quotas.sh` | Ensure sufficient questions per task |
 | Explanations | `bash scripts/check-explanation-coverage.sh` | Measure explanation coverage EN/RU |
-| RU Coverage | `./gradlew :feature-exam:testDebugUnitTest --tests LocaleCoverageTest` | Enforce minimum RU locale coverage |
+| RU Coverage | `./gradlew :feature-exam:testDebugUnitTest --tests LocaleCoverageTest` | Enforce minimum RU locale coverage (release gate set to 0.99) |
 | Snapshots | `bash scripts/generate-blueprint-snapshots.sh verify` | Detect unintended blueprint/manifest changes |
 
 ---
@@ -284,7 +284,7 @@ After all validations and smoke tests pass:
 ### RU coverage test fails
 
 - Review `LocaleCoverageTest` output for per-task gaps
-- Add RU translations or adjust `localeCoverage.ru.min` threshold if coverage is acceptable
+- Add RU translations or adjust `localeCoverage.ru.min` threshold (currently 0.99 based on 100% parity) if coverage is acceptable
 
 ### Quota validation fails
 
