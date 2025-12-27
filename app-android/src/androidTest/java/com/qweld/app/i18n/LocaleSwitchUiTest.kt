@@ -6,9 +6,7 @@ import androidx.annotation.StringRes
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.isRoot
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.lifecycle.Lifecycle
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -19,6 +17,7 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import com.qweld.app.MainActivity
 import com.qweld.app.R
+import com.qweld.app.testing.ComposeStability
 import org.junit.Before
 import org.junit.Rule
 import org.junit.rules.RuleChain
@@ -43,6 +42,10 @@ import java.util.Locale
 class LocaleSwitchUiTest {
     private val hiltRule = HiltAndroidRule(this)
     private val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+    private fun ensureComposeReady(timeoutMs: Long = 10_000) {
+        ComposeStability.ensureComposeReady(composeTestRule, timeoutMs)
+    }
 
     @get:Rule
     val ruleChain: RuleChain = RuleChain
@@ -71,28 +74,6 @@ class LocaleSwitchUiTest {
      */
     private fun getCurrentActivityLocale(): Locale {
         return composeTestRule.activity.resources.configuration.locales[0]
-    }
-
-    /**
-     * Locale apply / config changes can push MainActivity to STOPPED briefly.
-     * When that happens Compose roots are detached and ComposeTestRule throws
-     * "No compose hierarchies found". This helper forces RESUMED and waits until
-     * at least one Compose root is registered again.
-     */
-    private fun ensureComposeReady(timeoutMs: Long = 10_000) {
-        val deadline = SystemClock.uptimeMillis() + timeoutMs
-        while (SystemClock.uptimeMillis() < deadline) {
-            // Bring ActivityScenario back to foreground if it was STOPPED.
-            composeTestRule.activityRule.scenario.moveToState(Lifecycle.State.RESUMED)
-            try {
-                // If no roots exist, this throws IllegalStateException ("No compose hierarchies found")
-                composeTestRule.onAllNodes(isRoot()).fetchSemanticsNodes()
-                return
-            } catch (_: IllegalStateException) {
-                SystemClock.sleep(50)
-            }
-        }
-        throw AssertionError("Compose hierarchies did not appear within ${timeoutMs}ms")
     }
 
     private fun scrollToTag(tag: String) {
